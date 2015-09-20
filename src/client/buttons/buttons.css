@@ -1,0 +1,42 @@
+.navbar-button {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid black;
+  font-weight: bold;
+}
+
+#ArmoryNavigateButton {
+  top: 10px;
+  left: 15px;
+  width: 120px;
+  height: 120px;
+}
+
+#MissionNavigateButton {
+  top: 180px;
+  left: 15px;
+  width: 120px;
+  height: 120px;
+}
+
+#CommandCenterNavigateButton {
+  top: 360px;
+  left: 15px;
+  width: 120px;
+  height: 120px;
+}
+
+
+#DashboardNavigateButton {
+  top: 540px;
+  left: 15px;
+  width: 120px;
+  height: 120px;
+}
+
+#BriefingNavigateButton {
+  top: 720px;
+  left: 15px;
+  width: 120px;
+  height: 120px;
+}

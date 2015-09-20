@@ -1,0 +1,30 @@
+#CountryInfoScreen {
+  position: relative;
+  width: 1640px;
+  height: 860px;
+  border: 1px solid chocolate;
+}
+
+#InfoContent {
+  position: absolute;
+  left: 150px;
+  width: 1490px;
+  height: 860px;
+  border: 1px solid burlywood;
+}
+
+#CountryList {
+  position: absolute;
+  left: 30px;
+  width: 1270px;
+  height: 810px;
+  border: 1px solid brown;
+}
+
+.info-card {
+  position: static;
+  margin: 20px;
+  margin-left: 80px;
+  padding: 10px;
+  border: 1px solid tan;
+}

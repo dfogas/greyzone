@@ -1,0 +1,211 @@
+#BriefingScreen {
+  position: relative;
+  width: 1640px;
+  height: 860px;
+  border: 2px solid darkblue;
+}
+
+/*AgentScrollBar Tier*/
+#AgentScrollBarWithNavButtons.briefing {
+  position: absolute;
+  top: 700px;
+  left: 260px;
+  margin: 5px;
+}
+
+.agent-scroll-bar.briefing {
+  width: 980px;
+}
+
+#AgentList {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  top: 0px;
+  left: 0px;
+  width: 6000px;
+}
+
+.briefing{
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  width: 920px;
+  height: 143px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.agent-scroll-bar-nav-button {
+  display: inline-block;
+  border: 1px greenyellow solid;
+  background-color: grey;
+}
+
+/*End of Agent-scroll-bar Tier*/
+
+/*Special Mission Layout*/
+#SpecialMissionsLayout {
+  position: absolute;
+  top: 10px;
+  left: 175px;
+  width: 200px;
+  height: 490px;
+  border: 1px solid slategrey;
+}
+
+.mission-card.special {
+  position: relative;
+  margin: 4px;
+  width: 190px;
+  height: 235px;
+  border: 1px solid black;
+}
+
+.mission-title.special {
+  width: 186px;
+  height: 35px;
+}
+
+.task.special {
+  width: 165px;
+  height: 30px;
+  margin: 5px;
+}
+
+.mission-result.loss.special {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 94px;
+  height: 30px;
+  border: 1px solid darkred;
+}
+
+.mission-result.reward.special {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 94px;
+  height: 30px;
+  border: 1px solid darkgreen;
+}
+/*End of Special Mission Layout*/
+
+/*Actual Mission Card*/
+.mission-card.actual {
+  position: relative;
+  top: 5px;
+  left: 440px;
+  width: 550px;
+  height: 690px;
+  border: 2px solid tan;
+}
+
+.task.actual {
+  position: static;
+  margin: 25px;
+  width: 200px;
+}
+
+.agent-assignment {
+  position: absolute;
+  list-style: none;
+  width: 265px;
+  height: 150px;
+  margin: 3px;
+  border: 1px solid darkslategrey;
+}
+
+#AgentAssignment1 {
+  top: 300px;
+  left: 5px;
+}
+
+#AgentAssignment2 {
+  top: 300px;
+  left: 275px;
+}
+
+#AgentAssignment3 {
+  top: 455px;
+  left: 5px;
+}
+
+#AgentAssignment4 {
+  top: 455px;
+  left: 275px;
+}
+
+.mission-result.loss.actual {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 274px;
+  height: 75px;
+  border: 1px solid darkred;
+}
+
+.mission-result.reward.actual {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 274px;
+  height: 75px;
+  border: 1px solid darkgreen;
+}
+/*End of Actual Mission Card*/
+
+/*Mission Layout*/
+#MissionsLayout {
+  position: absolute;
+  top: 5px;
+  left: 990px;
+  width: 490px;
+  height: 690px;
+  border: 1px solid slategrey;
+}
+
+.mission-card.briefing {
+  position: relative;
+  width: 170px;
+  height: 220px;
+  margin-top: 5px;
+  margin-left: 45px;
+  border: 1px solid darkslateblue;
+}
+
+.mission-title.briefing {
+  width: 200px;
+  height: 30px;
+  margin: 0px;
+}
+
+.task.briefing {
+  width: 180px;
+  height: 25px;
+  margin: 5px;
+  margin-top: 2px;
+  margin-left: 20px;
+}
+
+.mission-result.loss.briefing {
+  position: absolute;
+  width: 85px;
+  height: 30px;
+  bottom: 0px;
+  left: 0px;
+  border: 1px solid darkred;
+}
+
+.mission-result.reward.briefing {
+  position: absolute;
+  width: 85px;
+  height: 30px;
+  bottom: 0px;
+  left: 85px;
+  border: 1px solid darkgreen;
+}
+/*End Mission Layout*/

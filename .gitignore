@@ -1,0 +1,11 @@
+*.sublime-workspace
+.DS_Store
+.idea
+bower_components
+build
+coverage
+dist
+docs
+node_modules
+npm-debug.log
+src/server/api/access.log

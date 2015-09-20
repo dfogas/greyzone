@@ -1,0 +1,50 @@
+/*.dice-bin*/
+.dice-bin, .dice-bin::before, .dice-bin::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.dice-bin {
+  width: 160px;
+  height: 160px;
+  background: url("//blog.codepen.io/wp-content/uploads/2012/06/Button-White-Large.png") no-repeat 50%/70% rgba(0, 0, 0, 0.1);
+  color: #FF9900;
+  box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+  margin-top: 670px;
+  margin-left: 205px;
+}
+
+.dice-bin::before, .dice-bin::after {
+  content: '';
+  z-index: -1;
+  margin: -5%;
+  box-shadow: inset 0 0 0 2px;
+  animation: clipMe 8s linear infinite;
+}
+
+.dice-bin::before {
+  animation-delay: -4s;
+}
+
+.dice-bin:hover::after, .dice-bin:hover::before {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(0px, 220.0px, 2px, 0px);
+  }
+  25% {
+    clip: rect(0px, 2px, 220.0px, 0px);
+  }
+  50% {
+    clip: rect(218.0px, 220.0px, 220.0px, 0px);
+  }
+  75% {
+    clip: rect(0px, 220.0px, 220.0px, 218.0px);
+  }
+}
+/*end*/
