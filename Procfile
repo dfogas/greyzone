@@ -1,1 +1,1 @@
-web: gulp -p
+web: node src/server

@@ -14,7 +14,6 @@ var config = {
     'mongodb://localhost:27017/mbase',
   defaultLocale: 'en',
   googleAnalyticsId: 'UA-XXXXXXX-X',
-  herokuAppAdress: 'http://guarded-cliffs-7174.herokuapp.com',
   isProduction: process.env.NODE_ENV === 'production',
   piping: {
     // Ignore webpack custom loaders on server. TODO: Reuse index.js config.
