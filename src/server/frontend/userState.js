@@ -13,7 +13,7 @@ export default function userState() {
   return (req, res, next) => {
 
     const api = process.env.NODE_ENV === 'production' ?
-      'http://warm-fortress-2333.herokuapp.com/api/v1/' :
+      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
       'http://localhost:8000/api/v1/';
 
     if (req.user)

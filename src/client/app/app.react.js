@@ -31,7 +31,7 @@ class App extends Component {
 
   pollStateToPersistance() {
     const api = process.env.NODE_ENV === 'production' ?
-      'http://warm-fortress-2333.herokuapp.com/api/v1/' :
+      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
       'http://localhost:8000/api/v1/';
     const playerId = this.state.jsonapi.get('_id');
     const jsonapi = this.state.jsonapi.toJS();

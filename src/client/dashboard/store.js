@@ -44,7 +44,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === authActions.login) {
     const {email} = data;
     const api = process.env.NODE_ENV === 'production' ?
-      'http://warm-fortress-2333.herokuapp.com/api/v1/' :
+      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
       'http://localhost:8000/api/v1/';
 
     fetch(api + 'users/')
