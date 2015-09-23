@@ -11,10 +11,10 @@
   },
   "engines": {
     "node": "0.10.x",
-	"npm": "3.3.3"
+    "npm": "3.3.3"
   },
   "dependencies": {
-    "autoprefixer-loader": "^2.0.0",
+    "autoprefixer-loader": "^3.1.0",
     "babel": "^5.0.8",
     "babel-core": "^5.0.8",
     "babel-eslint": "^3.0.1",
