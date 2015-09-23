@@ -10,7 +10,8 @@
     "test": "gulp test"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.10.x",
+	"npm": "3.3.3"
   },
   "dependencies": {
     "autoprefixer-loader": "^2.0.0",
