@@ -136,7 +136,24 @@ var agents = {
       'ETAtime': null,
       'loyalty': 'normal',
       'MissionsDone': []
-    }
+    }, {
+	    'KIA': false,
+      'prison': false,
+      'name': 'Brick',
+      'at': 'US',
+      'rank': 5,
+      'experience': 210,
+      'originCountry': 'Norway',
+      'operationsSkill': 6,
+      'electronicsSkill': 2,
+      'stealthSkill': 2,
+      'equipmentSlots': 2,
+      'equipments': [{'name': ''}, {'name': ''}],
+      'ETA': false,
+      'ETAtime': null,
+      'loyalty': 'normal',
+      'MissionsDone': []
+	  }
   ]
 };
 

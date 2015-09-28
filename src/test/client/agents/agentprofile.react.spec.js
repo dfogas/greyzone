@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import {expect} from 'chai'; // http://chaijs.com/api/bdd
 import {render} from 'test/utils';
-import AgentProfile from 'client/agents/agentprofile.react';
+import AgentProfile from 'client/agents/agentcard/agentprofile.react';
 
 describe('Agent profile is well defined', () => {
 

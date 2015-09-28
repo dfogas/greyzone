@@ -2,7 +2,7 @@ import * as agentActions from '../agents/actions';
 import Component from '../components/component.react';
 import React from 'react';
 // import classnames from 'classnames';
-import AgentCard from '../agents/agentcard.react';
+import AgentCard from '../agents/agentcard/agentcard.react';
 import immutable from 'immutable';
 
 class AgentOnMission extends Component {

@@ -2,7 +2,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import AgentCard from '../agents/agentcard.react.js';
+import AgentCard from '../agents/agentcard/agentcard.react.js';
 
 import trainingtable from '../lib/trainingtable';
 

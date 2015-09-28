@@ -1,7 +1,7 @@
 import * as actions from '../agents/actions';
 import Component from '../components/component.react';
 import React from 'react';
-import AgentCard from '../agents/agentcard.react';
+import AgentCard from '../agents/agentcard/agentcard.react';
 import immutable from 'immutable';
 
 class AgentAssignment extends Component {

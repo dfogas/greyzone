@@ -1,13 +1,20 @@
 import React from 'react/addons';
 import {expect} from 'chai'; // http://chaijs.com/api/bdd
 import {render} from 'test/utils';
-import AgentCard from 'client/agents/agentcard.react';
+import AgentCard from 'client/agents/agentcard/agentcard.react';
 
-describe('Agent profile is well defined', () => {
+import immutable from 'immutable';
+import agents from 'client/lib/agents';
+
+describe('Agentcard is well defined', () => {
+
+  var agent=immutable.fromJS(agents.list[0]);
+  console.log(agent);
 
   const component = render(
-    <AgentCard
     // These props are required. We can't test warnings yet.
+    <AgentCard
+      agent={agent}
       id="1"
       name="foo"
       onSave={() => {}}

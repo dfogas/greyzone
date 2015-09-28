@@ -14,7 +14,7 @@ of este.
 
 import State from './lib/state';
 import reviveAuth from './auth/revive';
-import reviveCountries from './countries/revive';
+import reviveCountries from './countries/revive'; // what are revivers for?
 import reviveUsers from './users/revive';
 
 const initialState = process.env.IS_BROWSER

@@ -1,4 +1,4 @@
-import Component from '../components/component.react.js';
+import Component from '../../components/component.react.js';
 import React from 'react';
 
 class AgentProfile extends Component {

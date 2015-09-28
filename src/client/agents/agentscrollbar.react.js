@@ -1,7 +1,7 @@
 import * as agentActions from './actions';
 import Component from '../components/component.react.js';
 import React from 'react';
-import AgentCard from './agentcard.react';
+import AgentCard from './agentcard/agentcard.react';
 import immutable from 'immutable';
 import classnames from 'classnames/dedupe';
 

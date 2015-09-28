@@ -36,11 +36,12 @@ class App extends Component {
     const playerId = this.state.jsonapi.get('_id');
     const jsonapi = this.state.jsonapi.toJS();
     console.log('Polling state to persistance for user', this.state.jsonapi.get('name'), 'id ', this.state.jsonapi.get('_id'));
-    fetch(api + 'players/' + playerId, {
-      method: 'PUT',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify(jsonapi)
-    });
+    if (this.state.jsonapi.get('name') !== 'Default')
+      fetch(api + 'players/' + playerId, {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(jsonapi)
+      });
   }
 
   getState() {

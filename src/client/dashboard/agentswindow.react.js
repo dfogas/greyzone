@@ -3,7 +3,7 @@ import React from 'react';
 import immutable from 'immutable';
 import randomint from '../lib/getrandomint';
 
-import AgentCard from '../agents/agentcard.react';
+import AgentCard from '../agents/agentcard/agentcard.react';
 import AgentForTraining from './agentfortraining.react';
 import AgentsInPrison from './agentsinprison.react';
 import AgentsKia from './agentskia.react';

@@ -71,7 +71,7 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val - results.reputation : val)
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false)
-        .setIn(['agents'], agentsonmission.push(agentontask))
+        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null);
     });
   }
@@ -89,8 +89,6 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val + results.reputation : val)
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val + results.obscurity : val)
-        .setIn(['agents'], agentsonmission.push(agentontask))
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null);
     });
   }
 
@@ -104,7 +102,7 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .set('agents', agents.concat(agentsonmission))
+        .setIn(['agents'], agents.concat(agentsonmission))
         .setIn(['missions'], missions.remove(completedmission))
         .setIn(['activemission'], immutable.fromJS(defaultActiveMission));
     });

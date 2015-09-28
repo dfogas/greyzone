@@ -1,9 +1,9 @@
-import Component from '../components/component.react.js';
+import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
 // dynamic
-import * as agentActions from './actions';
-import * as equipmentActions from '../equipments/actions';
+import * as agentActions from '../actions';
+import * as equipmentActions from '../../equipments/actions';
 
 class AgentEquipmentSlot extends Component {
 
