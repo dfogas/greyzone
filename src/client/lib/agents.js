@@ -137,7 +137,7 @@ var agents = {
       'loyalty': 'normal',
       'MissionsDone': []
     }, {
-	    'KIA': false,
+      'KIA': false,
       'prison': false,
       'name': 'Brick',
       'at': 'US',
@@ -153,7 +153,7 @@ var agents = {
       'ETAtime': null,
       'loyalty': 'normal',
       'MissionsDone': []
-	  }
+    }
   ]
 };
 
