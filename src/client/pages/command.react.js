@@ -2,9 +2,10 @@ import CommandCenterScreen from '../command/commandcenterscreen.react';
 import DocumentTitle from 'react-document-title';
 import Component from '../components/component.react';
 import React from 'react';
-// import immutable from 'immutable';
+import immutable from 'immutable';
 //import requireAuth from '../auth/requireauth.react.js';
 import {msg} from '../intl/store';
+
 
 class Command extends Component {
 
@@ -21,5 +22,9 @@ class Command extends Component {
     );
   }
 }
+
+Command.propTypes = {
+  users: React.PropTypes.instanceOf(immutable.List)
+};
 
 export default Command;

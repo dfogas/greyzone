@@ -2,7 +2,7 @@
 
 module.exports = function(config) {
 
-  config.set({
+  var cfg = {
     // autoWatch, it works enabled or not. Probably defined by singleRun.
     basePath: '',
     browsers: ['ChromeSmall'],
@@ -19,6 +19,10 @@ module.exports = function(config) {
         // Unfortunately it's not possible to hide browser via negative position,
         // and minimized browser is not detected by Karma.
         flags: ['--window-size=200,200']
+      },
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
       }
     },
     exclude: ['./node_modules'],
@@ -49,6 +53,12 @@ module.exports = function(config) {
     webpackServer: {
       noInfo: true
     }
-  });
+  };
+
+  if (process.env.TRAVIS) {
+    cfg.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(cfg);
 
 };

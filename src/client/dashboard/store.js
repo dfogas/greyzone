@@ -60,7 +60,6 @@ export const dispatchToken = register(({action, data}) => {
         return user[0];
       })
       .then((user) => {
-        console.log('dashboard store says: this is your user: ', user);
         const {
           _id
         } = user;

@@ -1,4 +1,4 @@
-import * as state from 'client/state';
+// import * as state from 'client/state';
 import * as agentActions from 'client/agents/actions';
 import {expect} from 'chai';
 

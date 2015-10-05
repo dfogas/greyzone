@@ -23,7 +23,7 @@ class AgentsTier extends Component {
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
     const isMissionSuccess = taskscompleted.size === activetasks.size && taskscompleted.size !== 0;
     const LockedDice = jsonapi.getIn(['activemission', 'equipmenteffects', 'lockeddice']);
-    const isMissionFinished = activetasks.size === taskscompleted.size;
+    // const isMissionFinished = activetasks.size === taskscompleted.size;
 
     return (
       <div id='AgentsTier'>

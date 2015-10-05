@@ -45,7 +45,6 @@ function validateCredentials(fields) {
         reject(new ValidationError(msg('auth.form.wrongPassword'), 'password'));
     };
 
-    console.log(JSON.stringify(fields));
     xhr.send(JSON.stringify(fields));
   });
 }

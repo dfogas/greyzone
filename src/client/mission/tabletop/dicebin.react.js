@@ -11,7 +11,7 @@ class DiceBin extends Component {
 
   drop(ev) {
     ev.preventDefault();
-    var key = ev.dataTransfer.getData('text');
+    // var key = ev.dataTransfer.getData('text');
     diceActions.remove();
   }
 

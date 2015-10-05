@@ -77,8 +77,6 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.success) {
-    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
     const results = jsonapiCursor(['activemission', 'rewards']).toJS();
     const countries = jsonapiCursor(['countries']);
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);

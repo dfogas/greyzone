@@ -18,7 +18,7 @@ export const dispatchToken = register(({action, data}) => {
 
     // start mission if not started already
     if (!missionstarted) {
-      console.log('Mission starts, good luck commander.');
+      console.log('Mission starts, good luck commander.'); //eslint-disable-line no-console
       jsonapiCursor(jsonapi => {
         return jsonapi.setIn(['activemission', 'started'], true);
       });
@@ -60,14 +60,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === actions.create) {
-    console.log(data.value, data.dicetype);
+  if (action === actions.create)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], dicesthrown.push(data.value))
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push(data.dicetype));
     });
-  }
 
   if (action === actions.remove)
     jsonapiCursor(jsonapi => {
@@ -78,9 +76,7 @@ export const dispatchToken = register(({action, data}) => {
     });
 
   /*Done*/
-  if (action === actions.roll) {
-    console.log(data.message.type);
+  if (action === actions.roll)
     dicethrow(data.message.type);
-  }
 
 });

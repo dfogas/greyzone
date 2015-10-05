@@ -6,8 +6,8 @@ import classnames from 'classnames';
 import uuid from '../lib/guid';
 
 // dnd
-import {DragSource} from 'react-dnd';
-import {ItemTypes} from '../lib/dnditemtypes';
+// import {DragSource} from 'react-dnd';
+// import {ItemTypes} from '../lib/dnditemtypes';
 
 /*
   How to approach upgrade to react-dnd?
@@ -21,21 +21,21 @@ import {ItemTypes} from '../lib/dnditemtypes';
 
 
 // // Implements the drag source contract.
-const diceSource = {
-  beginDrag(props) {
-    return {
-      text: props.text
-    };
-  }
-};
+// const diceSource = {
+//   beginDrag(props) {
+//     return {
+//       text: props.text
+//     };
+//   }
+// };
 
 // // Specifies the props to inject into your component.
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  };
-}
+// function collect(connect, monitor) {
+//   return {
+//     connectDragSource: connect.dragSource(),
+//     isDragging: monitor.isDragging()
+//   };
+// }
 
 class Dice extends Component {
   drag(ev) {
@@ -68,9 +68,10 @@ class Dice extends Component {
 }
 
 Dice.propTypes = {
-  connectDragSource: React.PropTypes.func.isRequired,
+  // connectDragSource: React.PropTypes.func.isRequired,
   dicetype: React.PropTypes.string.isRequired,
-  isDragging: React.PropTypes.bool.isRequired,
+  key: React.PropTypes.string,
+  // isDragging: React.PropTypes.bool.isRequired,
   value: React.PropTypes.string.isRequired
 };
 

@@ -8,8 +8,7 @@ import agents from 'client/lib/agents';
 
 describe('Agentcard is well defined', () => {
 
-  var agent=immutable.fromJS(agents.list[0]);
-  console.log(agent);
+  var agent = immutable.fromJS(agents.list[0]);
 
   const component = render(
     // These props are required. We can't test warnings yet.

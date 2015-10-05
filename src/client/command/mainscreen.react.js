@@ -6,7 +6,6 @@ import {msg} from '../intl/store';
 class MainScreen extends Component {
   render() {
     const isLoggedIn = !!this.props.viewer;
-    console.log(this.props.viewer);
 
     return (
       <div className='main-screen'>

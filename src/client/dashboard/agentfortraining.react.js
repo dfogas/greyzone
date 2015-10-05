@@ -4,7 +4,7 @@ import immutable from 'immutable';
 
 import AgentCard from '../agents/agentcard/agentcard.react.js';
 
-import trainingtable from '../lib/trainingtable';
+// import trainingtable from '../lib/trainingtable';
 
 class AgentForTraining extends Component {
 
