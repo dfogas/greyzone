@@ -9,6 +9,7 @@
   z-index: 1;
 }
 
+/*Agent Stat Counter*/
 .agent-stat-counter {
   position: absolute;
   padding: 5px 5px 5px 5px;
@@ -28,51 +29,15 @@
 .agent-stat-counter.stealth {
   top: 100px;
 }
+/**/
 
 .agent-picture {
   position: absolute;
   left: 35px;
 }
 
-.agent-equipment-slot0 {
-  position: absolute;
-  width: 85px;
-  height: 32px;
-  left: 150px;
-  margin-left: 5px;
-  top: 5px;
-  border: 1px solid black;
-}
-
-.agent-equipment-slot1 {
-  position: absolute;
-  width: 85px;
-  height: 32px;
-  left: 150px;
-  margin-left: 5px;
-  top: 40px;
-  border: 1px solid black;
-}
-
-.agent-equipment-slot2 {
-  position: absolute;
-  width: 85px;
-  height: 32px;
-  left: 150px;
-  margin-left: 5px;
-  top: 75px;
-  border: 1px solid black;
-}
-
-.agent-equipment-slot3 {
-  position: absolute;
-  width: 85px;
-  height: 32px;
-  left: 150px;
-  margin-left: 5px;
-  top: 110px;
-  border: 1px solid black;
-}
+/*Agent Equipment Slot*/
+/**/
 
 .agent-equipment-picture-placeholder {
   position: relative;
@@ -140,48 +105,6 @@
   margin-top: 20px;
   margin-left: -20px;
   background-size: 100%;
-}
-
-.showcased.agent-equipment-slot {
-  width: 100px;
-  height: 40px;
-  margin-top: 10px;
-}
-
-.showcased.agent-equipment-slot0 {
-  position: absolute;
-  width: 140px;
-  height: 60px;
-  top: 10px;
-  left: 250px;
-  border: 1px solid black;
-}
-
-.showcased.agent-equipment-slot1 {
-  position: absolute;
-  width: 140px;
-  height: 60px;
-  left: 250px;
-  top: 80px;
-  border: 1px solid black;
-}
-
-.showcased.agent-equipment-slot2 {
-  position: absolute;
-  width: 140px;
-  height: 60px;
-  left: 250px;
-  top: 150px;
-  border: 1px solid black;
-}
-
-.showcased.agent-equipment-slot3 {
-  position: absolute;
-  width: 140px;
-  height: 60px;
-  left: 250px;
-  top: 210px;
-  border: 1px solid black;
 }
 
 .showcased.agent-equipment-picture-placeholder {

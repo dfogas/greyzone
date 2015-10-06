@@ -1,3 +1,4 @@
+import './agentonmission.css';
 import * as agentActions from '../agents/actions';
 import Component from '../components/component.react';
 import React from 'react';

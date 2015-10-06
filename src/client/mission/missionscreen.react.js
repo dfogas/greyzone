@@ -1,10 +1,10 @@
 import './mission.css';
 import Component from '../components/component.react';
 import React from 'react';
-import TaskTier from './tasktier.react';
-import TableTopTier from './tabletoptier.react';
-import AgentsTier from './agentstier.react';
-import NavBar from '../buttons/navbar.react.js';
+import TaskTier from './tasktier/tasktier.react';
+import TableTopTier from './tabletoptier/tabletoptier.react';
+import AgentsTier from './agentstier/agentstier.react';
+import NavBar from '../buttons/navbar.react';
 import immutable from 'immutable';
 
 class MissionTrackingScreen extends Component {

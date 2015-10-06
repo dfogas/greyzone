@@ -1,7 +1,8 @@
-import Component from '../../components/component.react';
+import './missiontestbutton.css';
+import Component from '../../../components/component.react';
 import React from 'react';
 
-import * as missionActions from '../actions';
+import * as missionActions from '../../actions';
 
 class MissionTestButton extends Component {
   starttest() {

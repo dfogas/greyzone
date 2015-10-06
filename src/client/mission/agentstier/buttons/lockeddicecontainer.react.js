@@ -1,10 +1,11 @@
-import Component from '../../components/component.react';
+import './lockeddicecontainer.css';
+import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import Dice from '../../dice/dice.react';
+import Dice from '../../../dice/dice.react';
 
-import * as equipmentActions from '../../equipments/actions';
+import * as equipmentActions from '../../../equipments/actions';
 
 class LockedDiceContainer extends Component {
   allowDrop(ev) {

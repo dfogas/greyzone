@@ -12,7 +12,9 @@ class AgentProfile extends Component {
       classString += ' showcased';
     return (
       <div className={'agent-profile' + classString}>
-        <div className={'agent-picture' + classString}><img draggable="false" src={imgsrc} /></div>
+        <div className={'agent-picture' + classString}>
+          <img draggable="false" src={imgsrc} />
+          </div>
         <div className={'agent-label' + classString}>{name}</div>
       </div>
     );

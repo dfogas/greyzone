@@ -1,4 +1,5 @@
 import './buttons.css';
+import './navbarbutton.css';
 import Component from '../components/component.react';
 import React from 'react';
 // import NavBarButton from './navbar.react';
@@ -17,14 +18,6 @@ class NavBar extends Component {
             id='ArmoryNavigateButton'
             type='button'
             value='Armory'
-            />
-        </Link>
-        <Link to='command'>
-          <input
-            className='navbar-button'
-            id='CommandCenterNavigateButton'
-            type='button'
-            value='Command'
             />
         </Link>
         <Link to='mission'>

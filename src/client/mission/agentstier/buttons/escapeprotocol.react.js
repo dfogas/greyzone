@@ -1,8 +1,9 @@
-import Component from '../../components/component.react';
+import './escapeprotocol.css';
+import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import * as missionActions from '../actions';
+import * as missionActions from '../../actions';
 
 class EscapeProtocol extends Component {
   controldamage() {

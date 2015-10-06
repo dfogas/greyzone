@@ -1,3 +1,4 @@
+import './agentequipcontent.css';
 import Component from '../components/component.react';
 import React from 'react';
 import AgentScrollBarWithNavButtons from './agentscrollbarwithnavbuttons.react';

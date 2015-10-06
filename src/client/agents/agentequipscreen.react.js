@@ -1,4 +1,4 @@
-import './agent.css';
+import './agentequipscreen.css';
 import '../equipments/equipment.css';
 import Component from '../components/component.react';
 import React from 'react';

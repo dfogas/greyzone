@@ -1,3 +1,4 @@
+import './agentinarmory.css';
 import * as agentActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';

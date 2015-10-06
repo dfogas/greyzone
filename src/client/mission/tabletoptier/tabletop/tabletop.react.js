@@ -1,14 +1,14 @@
-import Component from '../../components/component.react';
+import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
 import ProbabilityBar from './probabilitybar.react';
-import Dice from '../../dice/dice.react';
-import MissionTitle from '../missioncard/missiontitle.react';
-import ActionButton from '../buttons/actionbutton.react';
+import Dice from '../../../dice/dice.react';
+import MissionTitle from '../../missioncard/missiontitle.react';
+import ActionButton from './buttons/actionbutton.react';
 
-import * as missionActions from '../actions';
-import * as diceActions from '../../dice/actions';
+import * as missionActions from '../../actions';
+import * as diceActions from '../../../dice/actions';
 
 class TableTop extends Component {
   allowDrop(ev) {

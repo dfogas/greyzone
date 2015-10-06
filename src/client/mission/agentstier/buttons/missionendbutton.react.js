@@ -1,8 +1,9 @@
-import Component from '../../components/component.react';
+import './missionendbutton.css';
+import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import * as missionsActions from '../actions';
+import * as missionsActions from '../../actions';
 
 class MissionEndButton extends Component {
   end() {

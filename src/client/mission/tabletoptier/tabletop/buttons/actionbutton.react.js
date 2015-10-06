@@ -1,5 +1,5 @@
-import * as dicesActions from '../../dice/actions';
-import Component from '../../components/component.react.js';
+import * as dicesActions from '../../../../dice/actions';
+import Component from '../../../../components/component.react.js';
 import React from 'react';
 
 class ActionButton extends Component {

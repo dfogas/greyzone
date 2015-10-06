@@ -1,5 +1,6 @@
-import * as missionActions from '../actions';
-import Component from '../../components/component.react';
+import './escapebutton.css';
+import * as missionActions from '../../actions';
+import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
