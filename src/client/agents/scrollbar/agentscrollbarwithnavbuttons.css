@@ -1,0 +1,37 @@
+#AgentScrollBarWithNavButtons.briefing {
+  position: absolute;
+  top: 700px;
+  left: 260px;
+  margin: 5px;
+}
+
+.agent-scroll-bar.briefing {
+  width: 980px;
+}
+
+#AgentList {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  top: 0px;
+  left: 0px;
+  width: 6000px;
+}
+
+.briefing{
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  width: 920px;
+  height: 143px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.agent-scroll-bar-nav-button {
+  display: inline-block;
+  border: 1px greenyellow solid;
+  background-color: grey;
+}

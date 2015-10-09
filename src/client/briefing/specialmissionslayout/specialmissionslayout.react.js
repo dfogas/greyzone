@@ -1,7 +1,9 @@
-import Component from '../components/component.react';
+import './specialmissionslayout.css';
+import Component from '../../components/component.react';
 import React from 'react';
-import MissionCard from '../mission/missioncard/missioncard.react';
 import immutable from 'immutable';
+
+import MissionCard from '../../mission/missioncard/missioncard.react';
 
 class SpecialMissionsLayout extends Component {
   render() {

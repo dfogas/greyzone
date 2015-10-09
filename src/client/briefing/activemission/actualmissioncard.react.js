@@ -1,10 +1,12 @@
-import Component from '../components/component.react';
+import './actualmissioncard.css';
+import Component from '../../components/component.react';
 import React from 'react';
-import MissionTitle from '../mission/missioncard/missiontitle.react';
-import Task from '../mission/missioncard/task.react';
-import MissionResult from '../mission/missioncard/results/missionresult.react';
-import AgentAssignment from './agentassignment.react';
 import immutable from 'immutable';
+
+import MissionTitle from '../../mission/missioncard/missiontitle.react';
+import Task from '../../mission/missioncard/task.react';
+import MissionResult from '../../mission/missioncard/results/missionresult.react';
+import AgentAssignment from './agentassignment.react';
 
 class ActualMissionCard extends Component {
   render() {

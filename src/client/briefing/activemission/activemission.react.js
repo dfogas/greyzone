@@ -1,7 +1,8 @@
-import Component from '../components/component.react';
+import Component from '../../components/component.react';
 import React from 'react';
-import ActualMissionCard from './actualmissioncard.react';
 import immutable from 'immutable';
+
+import ActualMissionCard from './actualmissioncard.react';
 
 class ActiveMission extends Component {
   render() {

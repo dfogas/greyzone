@@ -1,6 +1,6 @@
 import './agentscrollbar.css';
-import * as actions from './actions';
-import Component from '../components/component.react.js';
+import * as actions from '../actions';
+import Component from '../../components/component.react.js';
 import immutable from 'immutable';
 import React from 'react';
 

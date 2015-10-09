@@ -2,9 +2,10 @@ import './agentequipscreen.css';
 import '../equipments/equipment.css';
 import Component from '../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
+
 import AgentEquipContent from './agentequipcontent.react';
 import NavBar from '../buttons/navbar.react';
-import immutable from 'immutable';
 
 class AgentEquipScreen extends Component {
   render() {

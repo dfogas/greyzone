@@ -73,6 +73,7 @@
     "piping": "0.1.6",
     "react": "^0.13.1",
     "react-dnd": "^1.1.5",
+    "react-dnd-touch-backend": "^0.1.0",
     "react-document-title": "^1.0.0",
     "react-draggable": "^0.8.1",
     "react-hot-loader": "^1.1.4",

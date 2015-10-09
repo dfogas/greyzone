@@ -1,9 +1,11 @@
-import * as agentActions from './actions';
-import Component from '../components/component.react.js';
+import './agentscrollbar.css';
+import * as agentActions from '../actions';
+import Component from '../../components/component.react.js';
 import React from 'react';
-import AgentCard from './agentcard/agentcard.react';
 import immutable from 'immutable';
 import classnames from 'classnames/dedupe';
+
+import AgentCard from '../agentcard/agentcard.react';
 
 class AgentScrollBar extends Component {
 

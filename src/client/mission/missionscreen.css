@@ -1,0 +1,23 @@
+/*Mission Tracking Screen layout*/
+#MissionTrackingScreen {
+  position: relative;
+  width: 1640px;
+  height: 860px;
+  border: 1px solid black;
+}
+
+/*TaskTier*/
+/**/
+
+/*TableTopTier*/
+/**/
+
+/*AgentsTier*/
+/**/
+/**/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

@@ -19,7 +19,7 @@ import '../mission/store';
 import '../users/store';
 
 // DnD funcionality
-import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import {default as TouchBackend } from 'react-dnd-touch-backend';
 import {DragDropContext} from 'react-dnd';
 
 class App extends Component {
@@ -65,11 +65,6 @@ class App extends Component {
     setInterval(this.pollStateToPersistance.bind(this), 10000);
   }
 
-  componentDidMount() {
-    // setInterval(console.log(!!this.state.viewer), 10000);
-    // if (!!this.state.viewer)
-  }
-
   render() {
     React.initializeTouchEvents(true);
     return (
@@ -84,4 +79,4 @@ class App extends Component {
 
 }
 
-export default DragDropContext(HTML5Backend)(App);
+export default DragDropContext(TouchBackend)(App);

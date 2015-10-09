@@ -1,8 +1,9 @@
-import Component from '../components/component.react';
+import Component from '../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
+
 import AgentScrollBar from './agentscrollbar.react';
 import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
-import immutable from 'immutable';
 
 class AgentScrollBarWithNavButtons extends Component {
 

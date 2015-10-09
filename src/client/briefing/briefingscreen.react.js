@@ -2,13 +2,14 @@ import './briefing.css';
 import Component from '../components/component.react';
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import NavBar from '../buttons/navbar.react';
-import AgentScrollBarWithNavButtons from '../agents/agentscrollbarwithnavbuttons.react';
-import ActiveMission from './activemission.react';
-import SpecialMissionsLayout from './specialmissionslayout.react';
-import MissionsLayout from './missionslayout.react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
+
+import NavBar from '../buttons/navbar.react';
+import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
+import ActiveMission from './activemission/activemission.react';
+import SpecialMissionsLayout from './specialmissionslayout/specialmissionslayout.react';
+import MissionsLayout from './missionslayout/missionslayout.react';
 
 class BriefingScreen extends Component {
   render() {

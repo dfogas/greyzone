@@ -4,8 +4,8 @@ import React from 'react';
 import immutable from 'immutable';
 
 import ActionChoose from './buttons/actionchoose.react';
-import AgentScrollBarWithNavButtons from '../../agents/agentscrollbarwithnavbuttons.react';
-import AgentOnMission from '../agentonmission.react';
+import AgentScrollBarWithNavButtons from '../../agents/scrollbar/agentscrollbarwithnavbuttons.react';
+import AgentOnMission from './agentonmission/agentonmission.react';
 import EscapeButton from './buttons/escapebutton.react';
 import EscapeProtocol from './buttons/escapeprotocol.react';
 import LockedDiceContainer from './buttons/lockeddicecontainer.react';
