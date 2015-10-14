@@ -12,6 +12,7 @@ import Command from './pages/command.react';
 import Contest from './pages/contest.react';
 import Countries from './pages/countries.react';
 import Dashboard from './pages/dashboard.react';
+import Help from './pages/help.react';
 import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
 
@@ -26,6 +27,7 @@ export default (
     <Route handler={Contest} name="contest" />
     <Route handler={Countries} name="countries" />
     <Route handler={Dashboard} name="dashboard" />
+    <Route handler={Help} name="help" />
     <Route handler={Mission} name="mission" />
     <Route handler={SignUp} name="signup" />
   </Route>

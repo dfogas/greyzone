@@ -4,84 +4,22 @@
   margin-top: 5px;
   width: 1640px;
   height: 860px;
-  position: relative;
+  position: fixed;
   border: 1px black solid;
 }
 
-#InfoBar {
+.game-title {
   position: absolute;
-  background-color: grey;
-  top: 0px;
-  left: 0px;
-  width: 1640px;
-  height: 45px;
+  z-index: 1;
 }
 
-#AgentBar {
+.command-login {
   position: absolute;
-  top: 45px;
-  left: 0px;
-  width: 190px;
-  height: 815px;
+  z-index: 1;
 }
 
-.main-screen {
+.command-signup {
   position: absolute;
-  overflow-x: hidden;
-  top: 45px;
-  left: 190px;
-  width: 1260px;
-  height: 630px;
-}
-
-#CommandBar {
-  position: absolute;
-  top: 675px;
-  left: 190px;
-  width: 1260px;
-  height: 185px;
-}
-
-#CountryBar {
-  position: absolute;
-  top: 45px;
-  left: 1380px;
-  width: 190px;
-  height: 815px;
-}
-
-.command-button {
-  width: 252px;
-  height: 185px;
-}
-
-.country-icon {
-  width: 190px;
-  height: 152px;
-}
-
-.agent-icon {
-  width: 190px;
-  height: 165px;
-}
-
-.main-screen ul, .main-screen ul li {
-  display: block;
-}
-
-.main-screen ul li.game-segments {
-  background-image: url('../../../assets/img/bullets/bulletpoint-transparent.jpg');
-  background-repeat: no-repeat;
-  background-position: 0px center;
-  padding-left: 45px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.main-screen ul li.terminology {
-
-}
-
-.main-screen ul li.mission-progress {
-  
+  left: 160px;
+  z-index: 1;
 }

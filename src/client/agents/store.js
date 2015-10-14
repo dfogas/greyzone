@@ -1,7 +1,9 @@
-import * as actions from './actions';
 import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+
+import * as actions from './actions';
+import * as scrollBarActions from './scrollbar/actions';
 
 export const dispatchToken = register(({action, data}) => {
 

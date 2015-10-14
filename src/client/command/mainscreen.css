@@ -1,0 +1,28 @@
+.main-screen {
+  position: absolute;
+  width: 1640px;
+  height: 860px;
+  overflow: auto  ;
+}
+
+.main-screen img {
+  width: 3200px;
+  height: 2000px;
+  z-index: -1;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}

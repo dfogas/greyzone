@@ -1,16 +1,15 @@
-import './agentscrollbar.css';
-import * as actions from '../actions';
+import * as scrollbarActions from './actions';
 import Component from '../../components/component.react.js';
 import immutable from 'immutable';
 import React from 'react';
 
 class AgentScrollBarNavButton extends Component {
   scrollleft() {
-    actions.scrollLeft();
+    scrollbarActions.scrollLeft();
   }
 
   scrollright() {
-    actions.scrollRight();
+    scrollbarActions.scrollRight();
   }
 
   render() {

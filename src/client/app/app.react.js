@@ -72,7 +72,6 @@ class App extends Component {
         <Menu viewer={this.state.viewer} />
         <RouteHandler {...this.state} />
         <Footer />
-        <input className='poll-state-button' onClick={this.pollStateToPersistance.bind(this)} type='button' value='Poll State' />
       </div>
     );
   }

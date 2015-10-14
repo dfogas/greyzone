@@ -1,14 +1,6 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 
-export function scrollLeft() {
-  dispatch(scrollLeft, {});
-}
-
-export function scrollRight() {
-  dispatch(scrollRight, {});
-}
-
 export function agentToArmory(agent) {
   dispatch(agentToArmory, {message: agent});
 }
@@ -62,8 +54,6 @@ export function travel() {
 */
 
 setToString('agents', {
-  scrollLeft,
-  scrollRight,
   agentToArmory,
   assignMission,
   assignTask,
