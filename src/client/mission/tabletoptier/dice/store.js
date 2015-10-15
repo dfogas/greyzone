@@ -1,7 +1,7 @@
 import * as actions from './actions';
-import {register} from '../dispatcher';
-import {jsonapiCursor} from '../state';
-import dicethrow from '../lib/dicethrow';
+import {register} from '../../../dispatcher';
+import {jsonapiCursor} from '../../../state';
+import dicethrow from '../../../lib/dicethrow';
 import immutable from 'immutable';
 
 export const dispatchToken = register(({action, data}) => {

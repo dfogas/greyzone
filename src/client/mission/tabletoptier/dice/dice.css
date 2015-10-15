@@ -18,73 +18,73 @@
 }
 
 .pursuit {
-  background-image: url('../../../assets/img/missions/actions/pursuit.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/pursuit.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .hit {
-  background-image: url('../../../assets/img/missions/actions/hit.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/hit.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .close_combat {
-  background-image: url('../../../assets/img/missions/actions/close_combat.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/close_combat.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .dice.operations.improv {
-  background-image: url('../../../assets/img/missions/actions/improv_op.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/improv_op.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .electronics.tap {
-  background-image: url('../../../assets/img/missions/actions/tap.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/tap.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .electronics.monitor {
-  background-image: url('../../../assets/img/missions/actions/monitor.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/monitor.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .electronics.decipher {
-  background-image: url('../../../assets/img/missions/actions/decipher.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/decipher.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .dice.electronics.improv {
-  background-image: url('../../../assets/img/missions/actions/improv_el.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/improv_el.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .stealth.puppet {
-  background-image: url('../../../assets/img/missions/actions/puppet.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/puppet.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .stealth.hide {
-  background-image: url('../../../assets/img/missions/actions/hide.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/hide.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .stealth.infiltrate {
-  background-image: url('../../../assets/img/missions/actions/infiltrate.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/infiltrate.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .dice.stealth.improv {
-  background-image: url('../../../assets/img/missions/actions/improv_st.jpg');
+  background-image: url('../../../../../assets/img/missions/actions/improv_st.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }

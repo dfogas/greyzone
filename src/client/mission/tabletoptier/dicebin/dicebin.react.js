@@ -2,7 +2,7 @@ import './dicebin.css';
 import Component from '../../../components/component.react';
 import React from 'react';
 
-import * as diceActions from '../../../dice/actions';
+import * as diceActions from '../dice/actions';
 
 class DiceBin extends Component {
   allowDrop(ev) {

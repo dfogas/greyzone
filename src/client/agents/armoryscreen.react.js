@@ -1,4 +1,4 @@
-import './agentequipscreen.css';
+import './armoryscreen.css';
 import '../equipments/equipment.css';
 import Component from '../components/component.react';
 import React from 'react';
@@ -7,14 +7,14 @@ import immutable from 'immutable';
 import AgentEquipContent from './agentequipcontent.react';
 import NavBar from '../buttons/navbar.react';
 
-class AgentEquipScreen extends Component {
+class ArmoryScreen extends Component {
   render() {
     const {jsonapi, pendingActions} = this.props;
     const agents = jsonapi.get('agents');
 
     return (
       /*CONVENTION id in camelCase, className dash-separated*/
-      <div id='AgentEquipScreen' >
+      <div id='ArmoryScreen' >
         <NavBar placement='left' />
         <AgentEquipContent agents={agents} jsonapi={jsonapi} pendingActions={pendingActions} />
         <NavBar placement='right' />
@@ -23,9 +23,9 @@ class AgentEquipScreen extends Component {
   }
 }
 
-AgentEquipScreen.propTypes = {
+ArmoryScreen.propTypes = {
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
-export default AgentEquipScreen;
+export default ArmoryScreen;

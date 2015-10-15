@@ -2,7 +2,7 @@ import './actionchoose.css';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import Dice from '../../../dice/dice.react';
+import Dice from '../../tabletoptier/dice/dice.react';
 
 class ActionChoose extends Component {
   render() {

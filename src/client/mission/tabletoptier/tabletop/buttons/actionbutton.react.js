@@ -1,4 +1,4 @@
-import * as dicesActions from '../../../../dice/actions';
+import * as dicesActions from '../../dice/actions';
 import Component from '../../../../components/component.react.js';
 import React from 'react';
 

@@ -15,7 +15,8 @@ class CommandCenterScreen extends Component {
         <h1 className='game-title'>MIA</h1>
         {!isLoggedIn &&
           <Link to='login'><input className='command-login' type='button' value={msg('auth.form.legend.login')} /></Link>}
-        <Link to='signup'><input className='command-signup' type='button' value={msg('auth.form.legend.signup')} /></Link>
+        {!isLoggedIn &&
+          <Link to='signup'><input className='command-signup' type='button' value={msg('auth.form.legend.signup')} /></Link>}
         <MainScreen />
       </div>
     );

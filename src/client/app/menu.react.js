@@ -22,22 +22,14 @@ class Menu extends Component {
             <li><Link to="briefing">{msg('menu.briefing')}</Link></li>}
           {userIsLoggedIn &&
             <span>&nbsp;|&nbsp;</span>}
-          <li><Link to="contest">{msg('menu.contest')}</Link></li>&nbsp;|&nbsp;
-          <li><Link to="countries">{msg('menu.countries')}</Link></li>&nbsp;|&nbsp;
           <li><Link to="dashboard">{msg('menu.dashboard')}</Link></li>
           {userIsLoggedIn &&
             <span>&nbsp;|&nbsp;</span>}
           {userIsLoggedIn &&
             <li><Link to="mission">{msg('menu.mission')}</Link></li>}
+          &nbsp;|&nbsp;
           {!userIsLoggedIn &&
             <span>&nbsp;|&nbsp;</span>}
-          {!userIsLoggedIn &&
-            <li><Link to="signup">{msg('menu.signup')}</Link></li>}
-          {!userIsLoggedIn &&
-            <span>&nbsp;|&nbsp;</span>}
-          {!userIsLoggedIn &&
-          <li><Link to="login">{msg('menu.login')}</Link></li>
-          }&nbsp;|&nbsp;
           <li><Link to="help">{msg('menu.help')}</Link></li>
         </ul>
       </header>

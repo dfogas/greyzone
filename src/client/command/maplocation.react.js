@@ -6,7 +6,7 @@ class MapLocation extends Component {
   render() {
     return (
       <div className='map-location'>
-
+        
       </div>
     );
   }

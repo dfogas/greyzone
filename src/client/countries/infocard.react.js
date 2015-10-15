@@ -35,7 +35,6 @@ class InfoCard extends Component {
         <InfoCardCounter obscurity={country.get('obscurity')} />
         <br />
         <InfoCardCounter activemissions={0} />
-        <input className='country-test-button' onClick={(e)=>this.handleTestButtonClick(e)} type='button' value='Test reviver' />
       </li>
     );
   }

@@ -3,7 +3,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 
-import AgentEquipScreen from '../agents/agentequipscreen.react';
+import ArmoryScreen from '../agents/armoryscreen.react';
 import DocumentTitle from 'react-document-title';
 
 class Armory extends Component {
@@ -13,7 +13,7 @@ class Armory extends Component {
     return (
       <DocumentTitle title={msg('armory.title')}>
         <div className='armory-page'>
-          <AgentEquipScreen jsonapi={jsonapi} pendingActions={pendingActions} />
+          <ArmoryScreen jsonapi={jsonapi} pendingActions={pendingActions} />
         </div>
       </DocumentTitle>
     );

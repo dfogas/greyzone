@@ -3,7 +3,6 @@ import Component from '../components/component.react';
 import React from 'react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
 import EquipmentStock from '../equipments/equipmentstock.react';
-// import AgentCard from '../agents/agentcard.react';
 import AgentInArmory from './agentinarmory.react';
 import immutable from 'immutable';
 

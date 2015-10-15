@@ -1,4 +1,4 @@
-/*Equipment Stock Layout*/
+/*.equipment-stock*/
 .equipment-stock {
   position: absolute;
   top: 480px;
@@ -7,7 +7,6 @@
   border: 1px solid slateblue;
 }
 
-/*.equipment-stock*/
 .equipment-stock.operations {
   left: 140px;
 }

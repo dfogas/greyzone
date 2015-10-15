@@ -13,7 +13,7 @@ import '../agents/store';
 import '../auth/store';
 import '../countries/store';
 import '../dashboard/store';
-import '../dice/store';
+import '../mission/tabletoptier/dice/store';
 import '../equipments/store';
 import '../mission/store';
 import '../users/store';

@@ -8,7 +8,13 @@ import {Link} from 'react-router';
 class NavBarButton extends Component {
   render() {
     return (
-      <Link to='command'><input className='navbar-button' type='button' value='Navigate' /></Link>
+      <Link to='command'>
+        <input
+          className='navbar-button'
+          type='button'
+          value='Navigate'
+          />
+      </Link>
     );
   }
 }

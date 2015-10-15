@@ -9,8 +9,6 @@ import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 import Armory from './pages/armory.react';
 import Briefing from './pages/briefing.react';
 import Command from './pages/command.react';
-import Contest from './pages/contest.react';
-import Countries from './pages/countries.react';
 import Dashboard from './pages/dashboard.react';
 import Help from './pages/help.react';
 import Mission from './pages/mission.react';
@@ -24,8 +22,6 @@ export default (
     <Route handler={Login} name="login" />
     <Route handler={Armory} name="armory" />
     <Route handler={Briefing} name="briefing" />
-    <Route handler={Contest} name="contest" />
-    <Route handler={Countries} name="countries" />
     <Route handler={Dashboard} name="dashboard" />
     <Route handler={Help} name="help" />
     <Route handler={Mission} name="mission" />

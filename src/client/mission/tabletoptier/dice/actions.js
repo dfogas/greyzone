@@ -1,5 +1,5 @@
-import {dispatch} from '../dispatcher';
-import setToString from '../lib/settostring';
+import {dispatch} from '../../../dispatcher';
+import setToString from '../../../lib/settostring';
 
 export function create(dice) {
   dispatch(create, dice);

@@ -1,9 +1,9 @@
 import './dice.css';
 // import * as diceActions from './actions';
-import Component from '../components/component.react';
+import Component from '../../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
-import uuid from '../lib/guid';
+import uuid from '../../../lib/guid';
 
 // dnd
 // import {DragSource} from 'react-dnd';

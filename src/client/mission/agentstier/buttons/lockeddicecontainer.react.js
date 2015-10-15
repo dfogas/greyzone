@@ -3,7 +3,7 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import Dice from '../../../dice/dice.react';
+import Dice from '../../tabletoptier/dice/dice.react';
 
 import * as equipmentActions from '../../../equipments/actions';
 
