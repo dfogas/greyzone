@@ -5,7 +5,6 @@ import React from 'react';
 import immutable from 'immutable';
 
 import AgentEquipContent from './agentequipcontent.react';
-import NavBar from '../buttons/navbar.react';
 
 class ArmoryScreen extends Component {
   render() {
@@ -15,9 +14,7 @@ class ArmoryScreen extends Component {
     return (
       /*CONVENTION id in camelCase, className dash-separated*/
       <div id='ArmoryScreen' >
-        <NavBar placement='left' />
         <AgentEquipContent agents={agents} jsonapi={jsonapi} pendingActions={pendingActions} />
-        <NavBar placement='right' />
       </div>
     );
   }

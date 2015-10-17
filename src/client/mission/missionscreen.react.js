@@ -4,7 +4,6 @@ import React from 'react';
 import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
 import AgentsTier from './agentstier/agentstier.react';
-import NavBar from '../buttons/navbar.react';
 import immutable from 'immutable';
 
 class MissionTrackingScreen extends Component {
@@ -15,11 +14,9 @@ class MissionTrackingScreen extends Component {
 
     return (
       <div id='MissionTrackingScreen'>
-        <NavBar placement='left' />
         <TaskTier isMission={true} jsonapi={jsonapi} pendingActions={pendingActions} />
         <TableTopTier activemission={activemission} pendingActions={pendingActions} />
         <AgentsTier agents={agents} jsonapi={jsonapi} pendingActions={pendingActions} />
-        <NavBar placement='right' />
       </div>
     );
   }

@@ -13,6 +13,7 @@ export function register(callback: Function): string {
 }
 
 // I don't understand these features, seems to be like some implementation of type control
+// It is FlowType
 export function dispatch(action: Function, data: ?Object, options: ?Object) {
   if (isDev && action.toString === Function.prototype.toString)
     throw new Error(`Action ${action} toString method has to be overridden by setToString.`);

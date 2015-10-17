@@ -36,19 +36,6 @@ export function goFree() {
 export function goToPrison() {
   dispatch(goToPrison, {message: 'in prison!'});
 }
-
-export function loyaltyChange() {
-  dispatch(loyaltyChange, {message: 'loyalty shift'});
-}
-
-export function recieveEquipments() {
-  dispatch(recieveEquipments, {message: 'loaded!'});
-}
-
-export function travel() {
-  dispatch(travel, {message: 'On the way!'});
-}
-
 /*
   agent is also draggable to the mission
 */
@@ -60,5 +47,7 @@ setToString('agents', {
   backtoAssignment,
   backtoRoster,
   equip,
-  travel
+  getLevel,
+  goFree,
+  goToPrison
 });

@@ -7,13 +7,13 @@ import * as scrollBarActions from './scrollbar/actions';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === actions.scrollLeft)
+  if (action === scrollBarActions.scrollLeft)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val - 265);
     });
 
-  if (action === actions.scrollRight)
+  if (action === scrollBarActions.scrollRight)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val + 265);

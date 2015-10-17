@@ -5,7 +5,6 @@ import React from 'react';
 import immutable from 'immutable';
 // static components reusable
 import Logout from '../auth/logout.react';
-import Navbar from '../buttons/navbar.react';
 import AgentsWindow from './agentswindow.react';
 import MissionsWindow from './missionswindow.react';
 
@@ -35,7 +34,6 @@ class CommandDashboardScreen extends Component {
 
     return (
       <div id='CommandDashboardScreen'>
-        <Navbar placement='left' />
         <div id='DashboardContent'>
           <div id='PlayerStrip'>
             <div id='PlayerPicture'>
@@ -61,7 +59,6 @@ class CommandDashboardScreen extends Component {
             {countriesstats}
           </div>
         </div>
-        <Navbar placement='right' />
       </div>
     );
   }

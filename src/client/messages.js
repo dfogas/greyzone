@@ -43,18 +43,6 @@ export default {
     command: {
       title: 'Command Center'
     },
-    contest: {
-      title: 'Contest'
-    },
-    countryinfo: {
-      title: 'Country Info',
-      infocard: {
-        labels: {
-          reputation: 'reputation',
-          obscurity: 'obscurity'
-        }
-      }
-    },
     confirmations: {
       cancelEdit: `You have unsaved changes. Are you sure you want to cancel them?`
     },
@@ -149,18 +137,10 @@ export default {
       </ul>`,
       title: 'HelpPage'
     },
-    home: {
-      infoHtml: `App starter kit for <a href="https://github.com/steida/este">Este.js</a>. Check`,
-      title: 'Este.js App',
-      todos: 'todos'
-    },
-    me: {
-      title: 'Me',
-      welcome: `Hi {email}. This is your secret page.`
-    },
     menu: {
       armory: 'Armory',
       briefing: 'Briefing',
+      command: 'Command',
       contest: 'Contest',
       countries: 'Countries',
       dashboard: 'Dashboard',

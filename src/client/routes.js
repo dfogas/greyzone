@@ -1,5 +1,4 @@
 import App from './app/app.react';
-import Home from './pages/home.react';
 import Login from './pages/login.react';
 import NotFound from './pages/notfound.react';
 import React from 'react';
@@ -18,7 +17,6 @@ export default (
   <Route handler={App} path="/">
     <DefaultRoute handler={Command} name="command" />
     <NotFoundRoute handler={NotFound} name="not-found" />
-    <Route handler={Home} name="home" />
     <Route handler={Login} name="login" />
     <Route handler={Armory} name="armory" />
     <Route handler={Briefing} name="briefing" />

@@ -1,3 +1,4 @@
+import './agentassignment.css';
 import * as actions from '../../agents/actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -23,7 +24,12 @@ class AgentAssignment extends Component {
     let agentonmission = activemission.getIn(['agentsonmission', id - 1]) || null;
 
     return (
-      <div className='agent-assignment' id={'AgentAssignment' + id} onDragOver={this.allowDrop} onDrop={this.drop.bind(this)}>
+      <div
+        className='agent-assignment'
+        id={'AgentAssignment' + id}
+        onDragOver={this.allowDrop}
+        onDrop={this.drop.bind(this)}
+        >
         {agentonmission &&
           <AgentCard agent={agentonmission} />}
       </div>

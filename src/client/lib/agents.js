@@ -1,3 +1,4 @@
+/*goes to agent for hire in dashboard*/
 var agents = {
   list: [
     {

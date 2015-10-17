@@ -5,7 +5,6 @@ import DocumentTitle from 'react-document-title';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 
-import NavBar from '../buttons/navbar.react';
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import ActiveMission from './activemission/activemission.react';
 import SpecialMissionsLayout from './specialmissionslayout/specialmissionslayout.react';
@@ -23,7 +22,6 @@ class BriefingScreen extends Component {
     return (
       <DocumentTitle title={msg('briefing.title')}>
         <div id='BriefingScreen'>
-          <NavBar placement='left' />
           <SpecialMissionsLayout
             specialmissions={specialmissions}
             />
@@ -41,7 +39,6 @@ class BriefingScreen extends Component {
             jsonapi={jsonapi}
             pendingActions={pendingActions}
             />
-          <NavBar navbutton={true} placement='right' />
         </div>
       </DocumentTitle>
     );

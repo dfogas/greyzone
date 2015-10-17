@@ -6,12 +6,12 @@ import Menu from './menu.react';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
+import NavTab from './navtab.react';
 import 'isomorphic-fetch';
 
 // Remember to import all app stores here.
 import '../agents/store';
 import '../auth/store';
-import '../countries/store';
 import '../dashboard/store';
 import '../mission/tabletoptier/dice/store';
 import '../equipments/store';
@@ -69,9 +69,10 @@ class App extends Component {
     React.initializeTouchEvents(true);
     return (
       <div className="page">
-        <Menu viewer={this.state.viewer} />
+        {/*<Menu viewer={this.state.viewer} />*/}
+        <NavTab />
         <RouteHandler {...this.state} />
-        <Footer />
+        {/*<Footer />*/}
       </div>
     );
   }

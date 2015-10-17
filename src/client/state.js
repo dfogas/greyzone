@@ -14,7 +14,6 @@ of este.
 
 import State from './lib/state';
 import reviveAuth from './auth/revive';
-import reviveCountries from './countries/revive'; // what are revivers for?
 import reviveUsers from './users/revive';
 
 const initialState = process.env.IS_BROWSER
@@ -25,7 +24,6 @@ export const appState = new State(initialState, function(key, value) { // State 
   switch (key) {
     // them revivers don't update window appState, just state on app
     case 'auth': return reviveAuth(value);
-    case 'countries': return reviveCountries(value);
     case 'users': return reviveUsers(value);
   }
 });
