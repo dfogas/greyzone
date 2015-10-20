@@ -1,4 +1,4 @@
-import './escapebutton.css';
+import './escapebutton.styl';
 import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';

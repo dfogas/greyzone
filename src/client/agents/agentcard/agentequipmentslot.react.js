@@ -1,4 +1,4 @@
-import './agentequipmentslot.css';
+import './agentequipmentslot.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';

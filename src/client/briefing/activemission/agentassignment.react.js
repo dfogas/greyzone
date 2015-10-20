@@ -1,4 +1,4 @@
-import './agentassignment.css';
+import './agentassignment.styl';
 import * as actions from '../../agents/actions';
 import Component from '../../components/component.react';
 import React from 'react';

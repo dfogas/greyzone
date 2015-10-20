@@ -10,7 +10,7 @@ var missions = {
       'name': 'monitor',
       'type': 'electronics',
       'imgsrc': 'monitor.jpg'
-    }, null],
+    }],
     [{
       'name': 'pursuit',
       'type': 'operations',
@@ -32,7 +32,7 @@ var missions = {
       'name': 'close_combat',
       'type': 'operations',
       'imgsrc': 'close_combat.jpg'
-    }, null]
+    }]
     ],
     'inCountry': '',
     'rewards': {
@@ -70,7 +70,7 @@ var missions = {
         'name': 'tap',
         'type': 'electronics',
         'imgsrc': 'tap.jpg'
-      }, null],
+      }],
       [{
         'name': 'close_combat',
         'type': 'operations',

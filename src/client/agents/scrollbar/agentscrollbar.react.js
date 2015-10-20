@@ -1,4 +1,4 @@
-import './agentscrollbar.css';
+import './agentscrollbar.styl';
 import * as agentActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';

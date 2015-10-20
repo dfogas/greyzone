@@ -16,12 +16,6 @@ export default function userState() {
       'http://fierce-shore-7346.herokuapp.com/api/v1/' :
       'http://localhost:8000/api/v1/';
 
-    if (req.user)
-      console.log('req.user is defined');
-
-    if (!req.user)
-      console.log('req.user is not defined');
-
     const acceptsLanguages = req.acceptsLanguages(config.appLocales);
 
     req.userState = {

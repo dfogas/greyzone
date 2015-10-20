@@ -1,4 +1,4 @@
-import './briefing.css';
+import './briefing.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import DocumentTitle from 'react-document-title';

@@ -1,3 +1,7 @@
+/*
+  Dumb Component
+*/
+import './probabilitybar.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 

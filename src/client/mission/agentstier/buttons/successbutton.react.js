@@ -1,4 +1,4 @@
-import './successbutton.css';
+import './successbutton.styl';
 import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';

@@ -1,3 +1,6 @@
+/*
+  Dumb Component
+*/
 import Component from '../components/component.react';
 import React from 'react';
 import {FormattedHTMLMessage} from 'react-intl';

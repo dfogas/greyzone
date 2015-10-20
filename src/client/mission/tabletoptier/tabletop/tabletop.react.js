@@ -1,3 +1,9 @@
+/*
+  Smart Component
+*/
+import './tabletop.styl';
+import * as missionActions from '../../actions';
+import * as diceActions from '../dice/actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -7,8 +13,6 @@ import Dice from '../dice/dice.react';
 import MissionTitle from '../../missioncard/missiontitle.react';
 import ActionButton from './buttons/actionbutton.react';
 
-import * as missionActions from '../../actions';
-import * as diceActions from '../dice/actions';
 
 class TableTop extends Component {
   allowDrop(ev) {
@@ -28,7 +32,6 @@ class TableTop extends Component {
   }
 
   render() {
-    // variables cache
     const {activemission} = this.props;
     const title = activemission.get('title');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);

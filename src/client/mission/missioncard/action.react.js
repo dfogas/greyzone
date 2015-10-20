@@ -1,4 +1,4 @@
-import './actions.css';
+import './actions.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 
@@ -37,7 +37,7 @@ class Action extends Component {
     const key = uuid();
 
     return (
-      <div
+      <li
         className={'action' + classString}
         key={key}
         />

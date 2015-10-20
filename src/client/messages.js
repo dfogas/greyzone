@@ -146,7 +146,6 @@ export default {
       dashboard: 'Dashboard',
       headerHtml: `<a href="https://github.com/steida/este">Este.js</a> App`,
       help: 'Help',
-      home: 'Home',
       login: 'Login',
       me: 'Me',
       mission: 'Mission',

@@ -1,3 +1,6 @@
+/*
+  Smart component
+*/
 import './app.styl';
 import * as state from '../state';
 import Component from '../components/component.react';

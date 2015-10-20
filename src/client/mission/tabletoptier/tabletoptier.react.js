@@ -1,4 +1,7 @@
-import './tabletoptier.css';
+/*
+  Dumb Component
+*/
+import './tabletoptier.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import TableTop from './tabletop/tabletop.react';

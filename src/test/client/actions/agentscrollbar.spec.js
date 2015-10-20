@@ -5,5 +5,5 @@ describe('scrolling capability', () => {
   it(' is defined', () => {
     expect(scrollbarActions.scrollLeft).to.exist;
     expect(scrollbarActions.scrollRight).to.exist;
-  })
-})
+  });
+});

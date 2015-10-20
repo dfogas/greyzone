@@ -1,4 +1,7 @@
-import './agentscrollbarwithnavbuttons.css';
+/*
+  Dumb Component
+*/
+import './agentscrollbarwithnavbuttons.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';

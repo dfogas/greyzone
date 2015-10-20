@@ -1,10 +1,13 @@
-import './actualmissioncard.css';
+/*
+  Dumb Component
+*/
+import './actualmissioncard.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
 import MissionTitle from '../../mission/missioncard/missiontitle.react';
-import Task from '../../mission/missioncard/task.react';
+import Task from '../../mission/missioncard/tasks/task.react';
 import MissionResult from '../../mission/missioncard/results/missionresult.react';
 import AgentAssignment from './agentassignment.react';
 

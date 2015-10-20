@@ -10,13 +10,16 @@ import {msg} from '../intl/store';
 class Command extends Component {
 
   render() {
-    const {users} = this.props;
+    const {jsonapi, users} = this.props;
     const viewer = users.get('viewer');
 
     return (
       <DocumentTitle title={msg('command.title')}>
         <div className='command-page'>
-          <CommandCenterScreen viewer={viewer} />
+          <CommandCenterScreen
+            jsonapi={jsonapi}
+            viewer={viewer}
+            />
         </div>
       </DocumentTitle>
     );
@@ -24,6 +27,7 @@ class Command extends Component {
 }
 
 Command.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   users: React.PropTypes.instanceOf(immutable.List)
 };
 

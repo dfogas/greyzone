@@ -1,17 +1,28 @@
+/*
+  Smart Component
+*/
+import './missioncard.styl';
+import * as missionActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
-import MissionTitle from './missiontitle.react';
-import Task from './task.react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
+import MissionTitle from './missiontitle.react';
+import Task from './tasks/task.react';
+
 class MissionCard extends Component {
+  select() {
+    const {mission} = this.props;
+    missionActions.select(mission);
+  }
+
   render() {
     const {mission} = this.props;
     const inCountry = mission.get('inCountry');
-    var classString = '';
-    var isBriefing = false;
-    var isSpecial = false;
+    let classString = '';
+    let isBriefing = false;
+    let isSpecial = false;
 
     if (this.props.isBriefing) {
       classString += ' briefing';
@@ -39,7 +50,7 @@ class MissionCard extends Component {
       });
 
     return (
-      <div className={'mission-card' + classString}>
+      <div className={'mission-card' + classString} onClick={this.select.bind(this)}>
         <MissionTitle isBriefing={isBriefing} isSpecial={isSpecial} mission={mission} title={mission ? mission.get('title') : msg('mission.title')} />
         {missioncardcontent}
         {!!inCountry &&

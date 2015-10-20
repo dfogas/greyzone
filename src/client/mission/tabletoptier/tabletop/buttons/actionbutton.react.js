@@ -1,3 +1,4 @@
+import './actionbutton.styl';
 import * as dicesActions from '../../dice/actions';
 import Component from '../../../../components/component.react.js';
 import React from 'react';

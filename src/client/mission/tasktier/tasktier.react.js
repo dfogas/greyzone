@@ -1,10 +1,10 @@
-import './tasktier.css';
+import './tasktier.styl';
 // import * as actions from './actions';
 import Component from '../../components/component.react';
 import immutable from 'immutable';
 import React from 'react';
 
-import Task from '../missioncard/task.react';
+import Task from '../missioncard/tasks/task.react';
 import MissionResult from '../missioncard/results/missionresult.react';
 
 class TaskTier extends Component {

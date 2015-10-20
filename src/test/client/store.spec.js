@@ -5,5 +5,5 @@ describe('exports action Log String', () => {
   it('', () => {
     console.log(dispatchToken);
     expect(dispatchToken).to.be.a('string');
-  })
-})
+  });
+});

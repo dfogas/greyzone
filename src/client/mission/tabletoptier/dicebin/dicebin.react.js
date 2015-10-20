@@ -1,4 +1,4 @@
-import './dicebin.css';
+import './dicebin.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 

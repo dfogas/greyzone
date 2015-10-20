@@ -20,12 +20,6 @@
   display: inline-block;
 }
 
-.agent-scroll-bar-nav-button {
-  display: inline-block;
-  border: 1px greenyellow solid;
-  background-color: grey;
-}
-
 div.agent-equipment-slot {
   margin-left: 5px;
 }
