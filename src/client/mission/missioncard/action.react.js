@@ -6,7 +6,7 @@ import uuid from '../../lib/guid';
 
 class Action extends Component {
   render() {
-    let {action} = this.props;
+    let {action, key} = this.props;
     // console.log('Action is immutable:', immutable.Map.isMap(this.props.action));
     let type;
     if (action)
@@ -33,8 +33,6 @@ class Action extends Component {
       classString += ' special';
     if (type)
       classString += ' ' + type;
-
-    const key = uuid();
 
     return (
       <li

@@ -7,6 +7,7 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
+import uuid from '../../lib/guid';
 
 import MissionTitle from './missiontitle.react';
 import Task from './tasks/task.react';
@@ -44,6 +45,7 @@ class MissionCard extends Component {
           <Task
             isBriefing={isBriefing}
             isSpecial={isSpecial}
+            key={uuid() + i}
             task={mission.get('tasks').get(i)}
           />
         );

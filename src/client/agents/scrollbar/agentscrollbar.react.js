@@ -4,6 +4,7 @@ import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
 import classnames from 'classnames/dedupe';
+import uuid from '../../lib/guid';
 
 import AgentCard from '../agentcard/agentcard.react';
 
@@ -32,16 +33,13 @@ class AgentScrollBar extends Component {
       }
     }
 
-    if (missionstarted)
-      return;
+    if (agentinarmory && agentinarmory.get('name') === data)
+      agentActions.backfromArmory(agentinarmory);
 
-    if (agentinarmory)
-      agentActions.backtoRoster(agentinarmory);
-
-    else if (!agentontask)
+    else if (agentsonmission.indexOf(agentsonmission.find(agent => agent.get('name') === data)) !== -1)
       agentActions.backtoRoster(agentsonmission.find(agent => agent.get('name') === data));
 
-    if (agentontask && !missionstarted)
+    else if (agentontask.get('name') === data && !missionstarted)
       agentActions.backtoAssignment(agentontask);
 
   }
@@ -80,6 +78,7 @@ class AgentScrollBar extends Component {
             <AgentCard
               agent={agent}
               agentindex={i}
+              key={uuid() + agent.name}
             />
           );
         })}

@@ -28,7 +28,7 @@ class Command extends Component {
 
 Command.propTypes = {
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
-  users: React.PropTypes.instanceOf(immutable.List)
+  users: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default Command;

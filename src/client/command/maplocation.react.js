@@ -19,9 +19,9 @@ class MapLocation extends Component {
         onMouseOver={this.displayCountry.bind(this)}
         style={{top: coordinates.y, left: coordinates.x + '', position: 'absolute'}}
         >
-        Name: {name}
-        Obscurity: {obscurity}
-        Reputation: {reputation}
+        <span className='maplocation-tag'>Name: {name}</span>
+        <span className='maplocation-tag'>Obscurity: {obscurity}</span>
+        <span className='maplocation-tag'>Reputation: {reputation}</span>
       </div>
     );
   }

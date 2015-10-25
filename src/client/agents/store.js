@@ -10,13 +10,13 @@ export const dispatchToken = register(({action, data}) => {
   if (action === scrollBarActions.scrollLeft)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val - 265);
+        .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val + 265);
     });
 
   if (action === scrollBarActions.scrollRight)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val + 265);
+        .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val - 265);
     });
 
   if (action === actions.assignMission) {
@@ -39,13 +39,14 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === actions.assignTask) {
-    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+    const agentontask = data.message;
     const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
     const taskscompleted = jsonapiCursor(['activemission', 'taskscompleted']);
     const currentindex = taskscompleted.size;
     const currenttask = jsonapiCursor(['activemission', 'tasks', currentindex]);
     let actiontypes = [];
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    console.log(agentontask);
 
     if (currenttask)
       actiontypes = currenttask.toSeq().map(action => action.get('type'), actiontypes).toArray();
@@ -57,23 +58,31 @@ export const dispatchToken = register(({action, data}) => {
     var i;
 
     // is remaining dices set? - PROBLEM: what if mission changes?
-    if (remdices.length === 0) {
-      if (agentontask && taskhasOperations > -1)
-        for (i = 0; i < agentontask.get('operationsSkill'); i += 1)
-          remdices.push('operations');
-      if (agentontask && taskhasElectronics > -1)
-        for (i = 0; i < agentontask.get('electronicsSkill'); i += 1)
-          remdices.push('electronics');
-      if (agentontask && taskhasStealth > -1)
-        for (i = 0; i < agentontask.get('stealthSkill'); i += 1)
-          remdices.push('stealth');
-    }
+    if (taskhasOperations > -1)
+      for (i = 0; i < agentontask.get('operationsSkill'); i += 1)
+        remdices.push('operations');
+    if (taskhasElectronics > -1)
+      for (i = 0; i < agentontask.get('electronicsSkill'); i += 1)
+        remdices.push('electronics');
+    if (taskhasStealth > -1)
+      for (i = 0; i < agentontask.get('stealthSkill'); i += 1)
+        remdices.push('stealth');
+    console.log(remdices);
 
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], data.message)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.delete(agentsonmission.indexOf(data.message)))
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(remdices));
+    });
+  }
+
+  if (action === actions.backfromArmory) {
+    const agents = jsonapiCursor(['agents']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['agents'], agents.push(data.message))
+        .setIn(['agentinarmory'], null);
     });
   }
 
@@ -94,7 +103,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['agents'], agents.push(data.message))
-        .setIn(['agentinarmory'], null)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.delete(agentsonmission.indexOf(data.message)));
     });
   }

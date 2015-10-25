@@ -15,11 +15,10 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, agentindex} = this.props;
+    const {agent, agentindex, key} = this.props;
     let classString = '';
     let isMission = false;
     let isShowcased = false;
-    let key = uuid();
     if (agent)
       var equipments = agent.get('equipments');
 
@@ -39,8 +38,7 @@ class AgentCard extends Component {
         id={agent.get('name')}
         isMission={isMission}
         key={key}
-        onDragStart={this.drag}
-        >
+        onDragStart={this.drag}>
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('operationsSkill')} skillname="operations" />
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('electronicsSkill')} skillname="electronics" />
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('stealthSkill')} skillname="stealth" />
@@ -54,6 +52,7 @@ class AgentCard extends Component {
                 equipmentindex={i}
                 isMission={isMission}
                 isShowcased={isShowcased}
+                key={uuid() + i}
               />
             );
           })
@@ -68,7 +67,8 @@ AgentCard.propTypes = {
   agentindex: React.PropTypes.number,
   data: React.PropTypes.object,
   isMission: React.PropTypes.bool,
-  isShowcased: React.PropTypes.bool
+  isShowcased: React.PropTypes.bool,
+  key: React.PropTypes.string
 };
 
 export default AgentCard;

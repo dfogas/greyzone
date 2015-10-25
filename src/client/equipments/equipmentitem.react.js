@@ -19,9 +19,13 @@ class EquipmentItem extends Component {
   }
 
   render() {
-    const {equipment} = this.props;
+    const {equipment, key} = this.props;
     return (
-      <div className='equipment-item' id={equipment.get('name').replace(/\s+/g, '')}>
+      <div
+        className='equipment-item'
+        id={equipment.get('name').replace(/\s+/g, '')}
+        key={key}
+        >
         <input
           className='equipment-buy-btn'
           onClick={this.buy.bind(this)}

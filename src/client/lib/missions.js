@@ -1188,7 +1188,7 @@ var missions = {
       'agentImprisoned': true,
       'reputation': 30
     },
-    'agentLimit': 0,
+    'agentLimit': 1,
     'special': true
   }, {
     'title': 'Destroy Evidence',

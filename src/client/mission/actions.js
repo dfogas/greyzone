@@ -17,6 +17,10 @@ export function select(mission) {
   dispatch(select, {message: mission});
 }
 
+export function start() {
+  dispatch(start, {});
+}
+
 export function success(mission) {
   dispatch(success, {message: mission});
 }
@@ -38,6 +42,7 @@ setToString('mission', {
   end,
   fail,
   select,
+  start,
   success,
   taskCompleted,
   test

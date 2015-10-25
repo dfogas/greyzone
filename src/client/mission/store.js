@@ -1,11 +1,15 @@
 import * as missionActions from './actions';
-// import fetch from 'isomorphic-fetch';
 import {jsonapiCursor} from '../state';
 import {register} from '../dispatcher';
 import immutable from 'immutable';
 import defaultActiveMission from '../lib/defaultactivemission';
 
 export const dispatchToken = register(({action, data}) => {
+
+  if (action === missionActions.start)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['activemission', 'started'], true);
+    });
 
   if (action === missionActions.select) {
     const agents = jsonapiCursor(['agents']);
@@ -52,7 +56,8 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val - results.reputation : val)
         .setIn(['missions'], missions.remove(completedmission)) // set to default mission and clear mission from mission roster
         .setIn(['agents'], agents.push(agentontask).concat(agentsonmission)) // agents return to command center
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission)); // and clear activemission as well
+        .setIn(['activemission'], immutable.fromJS(defaultActiveMission)) // and clear activemission as well
+        .setIn(['activemission', started], false);
     });
   }
 
@@ -72,7 +77,8 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null);
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
+        .setIn(['activemission', 'started'], false)
     });
   }
 
@@ -86,7 +92,8 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val + results.reputation : val)
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val + results.obscurity : val);
+        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val + results.obscurity : val)
+        .setIn(['activemission', 'started'], false);
     });
   }
 

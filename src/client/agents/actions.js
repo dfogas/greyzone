@@ -13,6 +13,10 @@ export function assignTask(agent) {
   dispatch(assignTask, {message: agent});
 }
 
+export function backfromArmory(agent) {
+  dispatch(backfromArmory, {message: agent});
+}
+
 export function backtoAssignment(agent) {
   dispatch(backtoAssignment, {message: agent});
 }
@@ -44,6 +48,7 @@ setToString('agents', {
   agentToArmory,
   assignMission,
   assignTask,
+  backfromArmory,
   backtoAssignment,
   backtoRoster,
   equip,

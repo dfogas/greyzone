@@ -7,13 +7,18 @@ import AgentEquipContent from './agentequipcontent.react';
 
 class ArmoryScreen extends Component {
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {jsonapi} = this.props;
     const agents = jsonapi.get('agents');
+    const equipments = jsonapi.get('equipments');
 
     return (
       /*CONVENTION id in camelCase, className dash-separated*/
       <div id='ArmoryScreen' >
-        <AgentEquipContent agents={agents} jsonapi={jsonapi} pendingActions={pendingActions} />
+        <AgentEquipContent
+          agents={agents}
+          equipments={equipments}
+          jsonapi={jsonapi}
+          />
       </div>
     );
   }

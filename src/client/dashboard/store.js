@@ -21,7 +21,8 @@ export const dispatchToken = register(({action, data}) => {
     const agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['agents'], agents.push(data))
+        .setIn(['agents'], agents.push(data.agent))
+        .updateIn(['gameCash'], val => val - data.price)
         .setIn(['agentforhire'], null);
     });
   }
@@ -36,7 +37,9 @@ export const dispatchToken = register(({action, data}) => {
     const missions = jsonapiCursor(['missions']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['missions'], missions.push(data))
+        .setIn(['missions'], missions.push(data.mission))
+        .updateIn(['gameCash'], val => val - data.cost[0])
+        .updateIn(['gameContacts'], val => val - data.cost[1])
         .setIn(['missiontoaccept'], null);
     });
   }

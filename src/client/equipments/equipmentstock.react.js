@@ -3,6 +3,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import EquipmentItem from './equipmentitem.react';
+import uuid from '../lib/guid';
 
 class EquipmentStock extends Component {
 
@@ -19,6 +20,7 @@ class EquipmentStock extends Component {
             return (
               <EquipmentItem
                 equipment={equipment}
+                key={uuid()+'eqstock'}
               />
             );
           })

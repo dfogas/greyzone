@@ -13,7 +13,10 @@ class Armory extends Component {
     return (
       <DocumentTitle title={msg('armory.title')}>
         <div className='armory-page'>
-          <ArmoryScreen jsonapi={jsonapi} pendingActions={pendingActions} />
+          <ArmoryScreen
+            jsonapi={jsonapi}
+            pendingActions={pendingActions}
+            />
         </div>
       </DocumentTitle>
     );

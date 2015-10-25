@@ -5,8 +5,8 @@ export function create(dice) {
   dispatch(create, dice);
 }
 
-export function remove() {
-  dispatch(remove, {});
+export function remove(dice) {
+  dispatch(remove, dice);
 }
 
 export function roll(dice) {

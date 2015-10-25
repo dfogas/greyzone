@@ -3,7 +3,6 @@ import './dice.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
-import uuid from '../../../lib/guid';
 
 // dnd
 import {DragSource} from 'react-dnd';
@@ -28,14 +27,13 @@ function collect(connect, monitor) {
 
 class Dice extends Component {
   drag(ev) {
-    const {dicetype, key, value} = this.props;
-    ev.dataTransfer.setData('text', JSON.stringify({dicetype: dicetype, key: key, value: value}));
+    const {diceindex, dicetype, value} = this.props;
+    ev.dataTransfer.setData('text', JSON.stringify({diceindex: diceindex, dicetype: dicetype, value: value}));
   }
 
   render() {
     // const {connectDragSource, dicetype, isDragging, value} = this.props;
-    const {dicetype, value} = this.props;
-    var key = uuid();
+    const {diceindex, dicetype, key, value} = this.props;
 
       // <div
       //   className={classnames('dice', dicetype, value)}
@@ -46,6 +44,7 @@ class Dice extends Component {
     return (
       <div
         className={classnames('dice', dicetype, value)}
+        diceindex={diceindex}
         dicetype={dicetype}
         draggable={true}
         key={key}

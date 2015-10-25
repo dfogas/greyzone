@@ -5,24 +5,16 @@ import dicethrow from '../../../lib/dicethrow';
 import immutable from 'immutable';
 
 export const dispatchToken = register(({action, data}) => {
-  const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
-  let dicesthrown = jsonapiCursor(['activemission', 'mission', 'currenttask', 'dicesthrown']);
-  const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-  const missionstarted = jsonapiCursor(['activemission', 'started']);
 
   if (action === actions.rollAll) {
+    const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
+    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
     const taskscompleted = jsonapiCursor(['activemission', 'taskscompleted']);
+    let actiontypes = [];
+    let dicesthrown = jsonapiCursor(['activemission', 'mission', 'currenttask', 'dicesthrown']);
+
     const currentindex = taskscompleted.size;
     const currenttask = jsonapiCursor(['activemission', 'tasks', currentindex]);
-    let actiontypes = [];
-
-    // start mission if not started already
-    if (!missionstarted) {
-      console.log('Mission starts, good luck commander.'); //eslint-disable-line no-console
-      jsonapiCursor(jsonapi => {
-        return jsonapi.setIn(['activemission', 'started'], true);
-      });
-    }
 
     if (currenttask)
       actiontypes = currenttask.toSeq().map(action => action.get('type'), actiontypes).toArray();
@@ -34,7 +26,6 @@ export const dispatchToken = register(({action, data}) => {
     var remdices = remainingdices.toJS();
     var i;
 
-    // is remaining dices set? - PROBLEM: what if mission changes?
     if (remdices.length === 0) {
       if (agentontask && taskhasOperations > -1)
         for (i = 0; i < agentontask.get('operationsSkill'); i += 1)
@@ -51,7 +42,6 @@ export const dispatchToken = register(({action, data}) => {
 
     dicesthrown = remdices.map(dice => dicethrow(dice), dicesthrown);
 
-    /* set jsonapi for remainingdices and dicesthrown */
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(remdices))
@@ -60,22 +50,28 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === actions.create)
+  if (action === actions.create) {
+    let dicesthrown = jsonapiCursor(['activemission', 'mission', 'currenttask', 'dicesthrown']);
+    const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], dicesthrown.push(data.value))
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push(data.dicetype));
     });
+  }
 
-  if (action === actions.remove)
+  if (action === actions.remove) {
+    let dicesthrown = jsonapiCursor(['activemission', 'mission', 'currenttask', 'dicesthrown']);
+    const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
+    console.log(data);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.remove(0))
-        .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], dicesthrown.remove(0))
+        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.remove(data.diceindex))
+        .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], dicesthrown.remove(data.diceindex))
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
     });
+  }
 
-  /*Done*/
   if (action === actions.roll)
     dicethrow(data.message.type);
 

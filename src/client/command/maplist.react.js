@@ -2,6 +2,7 @@ import './maplist.styl';
 import Component from '../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
+import uuid from '../lib/guid';
 
 import MapLocation from './maplocation.react';
 
@@ -28,6 +29,7 @@ class MapList extends Component {
           return (
             <MapLocation
               coordinates={maplocation.coordinates}
+              key={uuid() + maplocations.name}
               locationindex={i}
               name={maplocation.name}
               obscurity={maplocation.obscurity}

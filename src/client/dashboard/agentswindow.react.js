@@ -1,6 +1,8 @@
 import Component from '../components/component.react';
 import React from 'react';
+import hirecost from '../lib/agenthirecost';
 import immutable from 'immutable';
+import {msg} from '../intl/store';
 import randomint from '../lib/getrandomint';
 
 import AgentCard from '../agents/agentcard/agentcard.react';
@@ -9,26 +11,30 @@ import AgentsInPrison from './agentsinprison.react';
 import AgentsKia from './agentskia.react';
 import {list as AgentsList} from '../lib/agents';
 
-import * as actions from './actions';
+import * as dashboardActions from './actions';
 
 class AgentsWindow extends Component {
   confirmHire() {
     const {agentforhire} = this.props;
-    actions.confirmhire(agentforhire);
+    const price = hirecost(agentforhire.get('rank'));
+    dashboardActions.confirmhire(agentforhire, price);
   }
 
   hireAgent() {
     // immutable object must be passed in order to be pushed to array
-    var randomagentindex = randomint(0, AgentsList.length);
-    actions.hire(immutable.fromJS(AgentsList[randomagentindex]));
+    let randomagentindex = randomint(0, AgentsList.length);
+    dashboardActions.hire(immutable.fromJS(AgentsList[randomagentindex]));
   }
 
   render() {
     const {agentforhire, agents} = this.props;
-    var agentfortraining = agents.find(agent => agent.get('randomSkill') > 0);
+    let agentfortraining = agents.find(agent => agent.get('randomSkill') > 0);
     const agentfortrainingindex = agents.indexOf(agentfortraining);
     const agentsinprison = agents.filter(agent => agent.get('prison') === true);
     const agentskia = agents.filter(agent => agent.get('KIA') === true);
+    let price;
+    if (agentforhire)
+      price = hirecost(agentforhire.get('rank'));
 
     return (
       <div id='AgentsWindow'>
@@ -41,6 +47,11 @@ class AgentsWindow extends Component {
           <AgentCard
             agent={agentforhire}
             />}
+        {!!agentforhire &&
+          <div className='agent-for-hire-price'>
+            Hiring Cost: {price}$
+          </div>
+        }
         {!!agentforhire &&
           <input
             onClick={this.confirmHire.bind(this)}

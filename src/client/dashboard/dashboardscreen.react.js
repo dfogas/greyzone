@@ -49,6 +49,7 @@ class CommandDashboardScreen extends Component {
             </div>
           </div>
           <MissionsWindow
+            countries={countries}
             missiontoaccept={missiontoaccept}
             />
           <AgentsWindow

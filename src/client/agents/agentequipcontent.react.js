@@ -8,8 +8,7 @@ import immutable from 'immutable';
 
 class AgentEquipContent extends Component {
   render() {
-    const {agents, jsonapi, pendingActions} = this.props;
-    const equipments = jsonapi.get('equipments');
+    const {agents, equipments, jsonapi} = this.props;
 
     const equipmentsoperations = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'O').toList();
     const equipmentselectronics = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'E').toList();
@@ -17,8 +16,8 @@ class AgentEquipContent extends Component {
 
     return (
       <div id='AgentEquipContent'>
-        <AgentScrollBarWithNavButtons agents={agents} jsonapi={jsonapi} pendingActions={pendingActions} />
-        <AgentInArmory jsonapi={jsonapi} pendingActions={pendingActions} />
+        <AgentScrollBarWithNavButtons agents={agents} jsonapi={jsonapi} />
+        <AgentInArmory jsonapi={jsonapi} />
         <EquipmentStock equipments={equipmentsoperations} stock='operations' />
         <EquipmentStock equipments={equipmentselectronics} stock='electronics' />
         <EquipmentStock equipments={equipmentsstealth} stock='stealth' />
@@ -29,8 +28,8 @@ class AgentEquipContent extends Component {
 
 AgentEquipContent.propTypes = {
   agents: React.PropTypes.instanceOf(immutable.List),
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
+  equipments: React.PropTypes.instanceOf(immutable.List).isRequired,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default AgentEquipContent;

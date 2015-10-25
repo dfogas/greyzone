@@ -6,10 +6,11 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import Action from '../action.react';
 import immutable from 'immutable';
+import uuid from '../../../lib/guid';
 
 class Task extends Component {
   render() {
-    let {task} = this.props;
+    let {key, task} = this.props;
     let classString = '';
     let isActual = false;
     let isBriefing = false;
@@ -17,14 +18,6 @@ class Task extends Component {
     let isMission = false;
     let isSpecial = false;
 
-    if (!this.props.task) {
-      task = [
-        {name: '', type: '', imgsrc: 'empty.jpg'},
-        {name: '', type: '', imgsrc: 'empty.jpg'},
-        {name: '', type: '', imgsrc: 'empty.jpg'}
-      ];
-      task = immutable.fromJS(task);
-    }
     if (this.props.isActual) {
       classString += ' actual';
       isActual = true;
@@ -46,7 +39,9 @@ class Task extends Component {
       isSpecial = true;
     }
     return (
-      <ul className={'task' + classString}>
+      <ul
+        className={'task' + classString}
+        key={key}>
         {task.map((action, i) => {
           return (
             <Action
@@ -56,6 +51,7 @@ class Task extends Component {
               isCurrent={isCurrent}
               isMission={isMission}
               isSpecial={isSpecial}
+              key={uuid() + i}
               taskindex={i}
               />
           );

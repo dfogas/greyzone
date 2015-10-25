@@ -5,15 +5,15 @@ export function acceptMission(mission) {
   dispatch(acceptMission, {message: mission});
 }
 
-export function confirmhire(agent) {
-  dispatch(confirmhire, agent);
+export function confirmhire(agent, price) {
+  dispatch(confirmhire, {agent, price});
 }
 
-export function confirmmissionaccept(mission) {
-  dispatch(confirmmissionaccept, mission);
+export function confirmmissionaccept(mission, cost) {
+  dispatch(confirmmissionaccept, {mission, cost});
 }
 
-export function hire(agent) {
+export function hire(agent, price) {
   dispatch(hire, agent);
 }
 
