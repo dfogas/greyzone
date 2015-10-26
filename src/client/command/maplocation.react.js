@@ -15,7 +15,7 @@ class MapLocation extends Component {
       <div
         className='map-location'
         id={name + 'MapLocation'}
-        key={uuid()+locationindex}
+        key={uuid() + locationindex}
         onMouseOver={this.displayCountry.bind(this)}
         style={{top: coordinates.y, left: coordinates.x + '', position: 'absolute'}}
         >
@@ -26,5 +26,13 @@ class MapLocation extends Component {
     );
   }
 }
+
+MapLocation.propTypes = {
+  coordinates: React.PropTypes.array,
+  locationindex: React.PropTypes.number,
+  name: React.PropTypes.string,
+  obscurity: React.PropTypes.number,
+  reputation: React.PropTypes.number
+};
 
 export default MapLocation;

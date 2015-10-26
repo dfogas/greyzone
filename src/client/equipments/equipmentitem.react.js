@@ -52,7 +52,8 @@ class EquipmentItem extends Component {
 }
 
 EquipmentItem.propTypes = {
-  equipment: React.PropTypes.instanceOf(immutable.Map)
+  equipment: React.PropTypes.instanceOf(immutable.Map),
+  key: React.PropTypes.string
 };
 
 export default EquipmentItem;

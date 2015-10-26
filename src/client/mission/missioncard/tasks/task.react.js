@@ -67,6 +67,7 @@ Task.propTypes = {
   isCurrent: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   isSpecial: React.PropTypes.bool,
+  key: React.PropTypes.string,
   task: React.PropTypes.instanceOf(immutable.List)
 };
 

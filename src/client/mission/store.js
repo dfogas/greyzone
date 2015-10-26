@@ -57,7 +57,7 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['missions'], missions.remove(completedmission)) // set to default mission and clear mission from mission roster
         .setIn(['agents'], agents.push(agentontask).concat(agentsonmission)) // agents return to command center
         .setIn(['activemission'], immutable.fromJS(defaultActiveMission)) // and clear activemission as well
-        .setIn(['activemission', started], false);
+        .setIn(['activemission', 'started'], false);
     });
   }
 
@@ -78,7 +78,7 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
-        .setIn(['activemission', 'started'], false)
+        .setIn(['activemission', 'started'], false);
     });
   }
 

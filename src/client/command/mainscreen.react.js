@@ -1,6 +1,7 @@
 import './mainscreen.css';
 import Component from '../components/component.react.js';
 import React from 'react';
+import immutable from 'immutable';
 
 import MapList from './maplist.react';
 
@@ -19,6 +20,7 @@ class MainScreen extends Component {
 }
 
 MainScreen.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default MainScreen;

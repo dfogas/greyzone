@@ -28,7 +28,8 @@ class ActionButton extends Component {
 }
 
 ActionButton.propTypes = {
-  diceslock: React.PropTypes.bool
+  diceslock: React.PropTypes.bool,
+  missionStarted: React.PropTypes.bool
 };
 
 export default ActionButton;

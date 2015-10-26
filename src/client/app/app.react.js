@@ -22,7 +22,7 @@ import '../mission/store';
 import '../users/store';
 
 // DnD funcionality
-import {default as TouchBackend } from 'react-dnd-touch-backend';
+import {default as TouchBackend} from 'react-dnd-touch-backend';
 import {DragDropContext} from 'react-dnd';
 
 class App extends Component {

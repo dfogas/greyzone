@@ -6,7 +6,7 @@ import {msg} from '../intl/store';
 
 class NavTab extends Component {
   render() {
-    return(
+    return (
       <div className='nav-tab'>
         <ul>
           <li><Link to='command'>{msg('menu.command')}</Link></li>

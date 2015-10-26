@@ -2,6 +2,8 @@ import './agentcard.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../../intl/store';
+import shouldHaveRank from '../../lib/shouldhaverank';
 import uuid from '../../lib/guid';
 
 import AgentStatCounter from './agentstatcounter.react';
@@ -16,6 +18,8 @@ class AgentCard extends Component {
 
   render() {
     const {agent, agentindex, key} = this.props;
+    const rankup = shouldHaveRank(agent.get('experience')) > agent.get('rank') ? true : false;
+
     let classString = '';
     let isMission = false;
     let isShowcased = false;
@@ -39,6 +43,13 @@ class AgentCard extends Component {
         isMission={isMission}
         key={key}
         onDragStart={this.drag}>
+        {rankup &&
+          <input
+            className='agent-rankup-button'
+            type='button'
+            value={msg('buttons.agentRankUp')}
+            />
+        }
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('operationsSkill')} skillname="operations" />
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('electronicsSkill')} skillname="electronics" />
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('stealthSkill')} skillname="stealth" />

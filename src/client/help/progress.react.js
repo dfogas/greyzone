@@ -1,3 +1,4 @@
+// import './progress.styl';
 import Component from '../components/component.react.js';
 import React from 'react';
 import {msg} from '../intl/store';

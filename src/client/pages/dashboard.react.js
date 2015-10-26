@@ -15,7 +15,10 @@ class Dashboard extends Component {
     return (
       <DocumentTitle title={msg('dashboard.title')}>
         <div className="dashboard-page" >
-          <DashboardScreen jsonapi={jsonapi} pendingActions={pendingActions} />
+          <DashboardScreen
+            jsonapi={jsonapi}
+            pendingActions={pendingActions}
+            />
         </div>
       </DocumentTitle>
     );

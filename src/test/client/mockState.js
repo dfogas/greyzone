@@ -134,31 +134,31 @@ var state = {
   }],
   'equipments': [{
     'name': 'Hired Gun',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'Heavy Arms',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'Protective Gear',
-    'price': 15,
+    'price': 15
   }, {
     'name': 'Handy Kit',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'Custom Tools',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'WPAS',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'Fake passports',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'Drugs Control',
-    'quantity': 1,
+    'quantity': 1
   }, {
     'name': 'DCP',
-    'quantity': 1,
+    'quantity': 1
   }],
   'gameCash': 2000,
   'gameContacts': 300,
@@ -182,3 +182,5 @@ var state = {
     'title': 'Cash Transport'
   }]
 };
+
+export default state;

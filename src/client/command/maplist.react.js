@@ -42,4 +42,8 @@ class MapList extends Component {
   }
 }
 
+MapList.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
+
 export default MapList;

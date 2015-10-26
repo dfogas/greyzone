@@ -1,3 +1,3 @@
 export default function(countryreputation, countryobscurity) {
-  return [100 - countryreputation, 10/countryobscurity];
+  return [100 - countryreputation, Math.round(3 / countryobscurity)];
 }

@@ -1,19 +1,19 @@
-import Component from '../components/component.react';
+import Component from '../../components/component.react';
 import React from 'react';
-import hirecost from '../lib/agenthirecost';
+import hirecost from '../../lib/agenthirecost';
 import immutable from 'immutable';
-import {msg} from '../intl/store';
-import randomint from '../lib/getrandomint';
+import {msg} from '../../intl/store';
+import randomint from '../../lib/getrandomint';
 
-import AgentCard from '../agents/agentcard/agentcard.react';
-import AgentForTraining from './agentfortraining.react';
+import AgentCard from '../../agents/agentcard/agentcard.react';
 import AgentsInPrison from './agentsinprison.react';
 import AgentsKia from './agentskia.react';
-import {list as AgentsList} from '../lib/agents';
+import {list as AgentsList} from '../../lib/agents';
 
-import * as dashboardActions from './actions';
+import * as dashboardActions from '../actions';
 
 class AgentsWindow extends Component {
+
   confirmHire() {
     const {agentforhire} = this.props;
     const price = hirecost(agentforhire.get('rank'));
@@ -28,8 +28,6 @@ class AgentsWindow extends Component {
 
   render() {
     const {agentforhire, agents} = this.props;
-    let agentfortraining = agents.find(agent => agent.get('randomSkill') > 0);
-    const agentfortrainingindex = agents.indexOf(agentfortraining);
     const agentsinprison = agents.filter(agent => agent.get('prison') === true);
     const agentskia = agents.filter(agent => agent.get('KIA') === true);
     let price;
@@ -38,31 +36,28 @@ class AgentsWindow extends Component {
 
     return (
       <div id='AgentsWindow'>
-        <input
-          onClick={this.hireAgent}
-          type='button'
-          value='Recruit Agent'
-          />
-        {!!agentforhire &&
-          <AgentCard
-            agent={agentforhire}
-            />}
-        {!!agentforhire &&
-          <div className='agent-for-hire-price'>
-            Hiring Cost: {price}$
-          </div>
-        }
-        {!!agentforhire &&
+        <div id='AgentHiringWindow'>
           <input
-            onClick={this.confirmHire.bind(this)}
-            type='button' value='Confirm Hire'
-            />}
-        {!!agentfortraining &&
-          <AgentForTraining
-            agentfortraining={agentfortraining}
-            agentfortrainingindex={agentfortrainingindex}
+            onClick={this.hireAgent}
+            type='button'
+            value={msg('buttons.hireAgent')}
             />
-        }
+          {!!agentforhire &&
+            <AgentCard
+              agent={agentforhire}
+              />}
+          {!!agentforhire &&
+            <div className='agent-for-hire-price'>
+              Hiring Cost: {price}$
+            </div>
+          }
+          {!!agentforhire &&
+            <input
+              onClick={this.confirmHire.bind(this)}
+              type='button'
+              value={msg('buttons.confirmHire')}
+              />}
+        </div>
         {!!agentsinprison &&
           <AgentsInPrison
             agentsinprison={agentsinprison}

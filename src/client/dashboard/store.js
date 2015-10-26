@@ -1,5 +1,5 @@
 import {register} from '../dispatcher';
-import * as actions from './actions';
+import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
@@ -8,7 +8,7 @@ import randomInt from '../lib/getrandomint';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === actions.acceptMission) {
+  if (action === dashboardActions.acceptMission) {
     const countries = ['US', 'West Europe', 'Russia', 'SouthEast', 'China', 'Latin America'];
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -17,7 +17,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === actions.confirmhire) {
+  if (action === dashboardActions.confirmhire) {
     const agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -28,12 +28,12 @@ export const dispatchToken = register(({action, data}) => {
   }
 
 
-  if (action === actions.hire)
+  if (action === dashboardActions.hire)
     jsonapiCursor(jsonapi => {
       return jsonapi.setIn(['agentforhire'], data);
     });
 
-  if (action === actions.confirmmissionaccept) {
+  if (action === dashboardActions.confirmmissionaccept) {
     const missions = jsonapiCursor(['missions']);
     jsonapiCursor(jsonapi => {
       return jsonapi

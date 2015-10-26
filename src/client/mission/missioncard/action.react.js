@@ -2,8 +2,6 @@ import './actions.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 
-import uuid from '../../lib/guid';
-
 class Action extends Component {
   render() {
     let {action, key} = this.props;
@@ -48,7 +46,8 @@ Action.propTypes = {
   isActual: React.PropTypes.bool,
   isBriefing: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
-  isSpecial: React.PropTypes.bool
+  isSpecial: React.PropTypes.bool,
+  key: React.PropTypes.string
 };
 
 export default Action;

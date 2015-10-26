@@ -22,7 +22,6 @@ class MissionsWindow extends Component {
       countries.getIn([countries.indexOf(countries.find(country => country.get('name') === countryofmission)), 'obscurity'])
     ];
     const cost = acceptcost(countryreputation, countryobscurity);
-    console.log(cost);
     actions.confirmmissionaccept(missiontoaccept, cost);
   }
 
@@ -63,6 +62,7 @@ class MissionsWindow extends Component {
 }
 
 MissionsWindow.propTypes = {
+  countries: React.PropTypes.instanceOf(immutable.List),
   missiontoaccept: React.PropTypes.instanceOf(immutable.Map)
 };
 

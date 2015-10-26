@@ -5,7 +5,7 @@ import React from 'react';
 import immutable from 'immutable';
 // static components reusable
 import Logout from '../auth/logout.react';
-import AgentsWindow from './agentswindow.react';
+import AgentsWindow from './agentswindow/agentswindow.react';
 import MissionsWindow from './missionswindow/missionswindow.react';
 
 class CommandDashboardScreen extends Component {

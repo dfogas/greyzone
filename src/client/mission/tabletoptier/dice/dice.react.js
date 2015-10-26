@@ -57,6 +57,7 @@ class Dice extends Component {
 
 Dice.propTypes = {
   // connectDragSource: React.PropTypes.func.isRequired,
+  diceindex: React.PropTypes.number.isRequired,
   dicetype: React.PropTypes.string.isRequired,
   key: React.PropTypes.string,
   // isDragging: React.PropTypes.bool.isRequired,

@@ -20,7 +20,7 @@ class EquipmentStock extends Component {
             return (
               <EquipmentItem
                 equipment={equipment}
-                key={uuid()+'eqstock'}
+                key={uuid() + 'eqstock'}
               />
             );
           })
