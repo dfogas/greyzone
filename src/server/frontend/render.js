@@ -48,7 +48,7 @@ function renderPage(req, res, appState) {
 }
 
 function loadAppStateThenRenderHtml(Handler, appState) {
-  state.appState.load(appState); // defined in '../../client/lib/state'
+  state.appState.load(appState);
   return getPageHtml(Handler, appState);
 }
 

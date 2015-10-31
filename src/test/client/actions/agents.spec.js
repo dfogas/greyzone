@@ -38,9 +38,9 @@ describe('equip ', () => {
   });
 });
 
-describe('getLevel ', () => {
+describe('getRank ', () => {
   it('is defined', () => {
-    expect(agentActions.getLevel).to.exist;
+    expect(agentActions.getRank).to.exist;
   });
 });
 

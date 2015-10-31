@@ -1,10 +1,12 @@
+import './missionswindow.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
 import acceptcost from '../../lib/missionacceptcost';
+import {msg} from '../../intl/store';
 
 import * as actions from '../actions';
-import MissionCard from '../../mission/missioncard/missioncard.react';
+import MissionToAccept from './missiontoaccept.react';
 import {list as MissionsList} from '../../lib/missions';
 import randomint from '../../lib/getrandomint';
 
@@ -39,13 +41,15 @@ class MissionsWindow extends Component {
 
     return (
       <div id='MissionsWindow'>
-        <input onClick={this.acceptMission} type='button' value='Mission Impossible' />
+        <input
+          onClick={this.acceptMission}
+          type='button'
+          value={msg('buttons.missionAccept')}
+          />
         <br />
-        {!!missiontoaccept &&
-          <MissionCard
-            isBriefing={true}
-            mission={missiontoaccept}
-            />}
+        <MissionToAccept
+          missiontoaccept={missiontoaccept}
+          />
         {!!missiontoaccept &&
           cost[0] + '$ and ' + cost[1] + 'contacts'}
         <br />
@@ -53,7 +57,7 @@ class MissionsWindow extends Component {
           <input
             onClick={this.confirmMissionAccept.bind(this)}
             type='button'
-            value='Confirm Mission Accept'
+            value={msg('buttons.confirmMission')}
             />}
       </div>
     );

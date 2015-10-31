@@ -12,6 +12,7 @@ import Dashboard from './pages/dashboard.react';
 import Help from './pages/help.react';
 import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
+import Lab from './pages/lab.react';
 
 export default (
   <Route handler={App} path="/">
@@ -24,5 +25,6 @@ export default (
     <Route handler={Help} name="help" />
     <Route handler={Mission} name="mission" />
     <Route handler={SignUp} name="signup" />
+    <Route handler={Lab} name="lab" />
   </Route>
 );

@@ -29,8 +29,8 @@ export function equip(equipmentindexandname) {
   dispatch(equip, equipmentindexandname);
 }
 
-export function getLevel(agent) {
-  dispatch(getLevel, agent);
+export function getRank(agent) {
+  dispatch(getRank, agent);
 }
 
 export function goFree() {
@@ -52,7 +52,7 @@ setToString('agents', {
   backtoAssignment,
   backtoRoster,
   equip,
-  getLevel,
+  getRank,
   goFree,
   goToPrison
 });

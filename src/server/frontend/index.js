@@ -21,8 +21,6 @@ app.use('/assets', express.static('assets'));
 app.use(userState());
 
 app.get('*', (req, res, next) => {
-  // console.log('iterable _state is:',immutable.Iterable.isIterable(state.appState._state));
-  // console.log('viewer from frontend is:', state.appState._state.get('users').get('viewer'));
   render(req, res, req.userState).catch(next);
 });
 

@@ -1,6 +1,10 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 
+export function checkFatalities() {
+  dispatch(checkFatalities, {});
+}
+
 export function controldamage(mission) {
   dispatch(controldamage, {mission});
 }
@@ -38,6 +42,7 @@ export function test() {
 */
 
 setToString('mission', {
+  checkFatalities,
   controldamage,
   end,
   fail,

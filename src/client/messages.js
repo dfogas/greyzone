@@ -1,5 +1,5 @@
 export default {
-  cs: {
+  cz: {
     app: {
       madeByHtml: `uděláno s Este starter kitem v9.2 od <a href="https://twitter.com/steida">steida</a>`
     },
@@ -36,12 +36,14 @@ export default {
       title: 'Příprava'
     },
     buttons: {
+      agentRankUp: 'Povýšit',
       cancel: 'Zrušit',
-      edit: 'Editovat',
-      save: 'Uložit',
-      hireAgent: 'Najmout agenta',
       confirmHire: 'Potvrdit najmutí',
-      agentRankUp: 'Povýšit'
+      confirmMission: 'Potvrdit přijetí mise',
+      edit: 'Editovat',
+      hireAgent: 'Najmout agenta',
+      missionAccept: 'Mise k přijmutí',
+      save: 'Uložit'
     },
     command: {
       title: 'Velitelství'
@@ -106,8 +108,8 @@ export default {
       </ul>
       `,
       overviewHtml: `<p>
-        Vybírá si muž své povolání, nebo si povolání vybírá jeho? Na každý pád,
-        já si nezvolil - co? - Být padouch? - Padouch je možná příliš silné slovo,
+        Vybírá si muž své povolání, nebo si povolání vybírá jeho?
+        Já si nezvolil - co? - Být padouch? - Padouch je možná příliš silné slovo,
         řekněme, že si rád dělám věci po svém,
         nesvázán konvencemi o tom, co je dobré a co špatné.
       </p>
@@ -135,15 +137,15 @@ export default {
       <hr />
       <ul>
         <h2>Game segments</h2>
-        <li className='game-segments'>Představení hry</li>
+        <li className='game-segments'>Velitelství - přehled o herní statistice organizace v herním světě</li>
         <li className='game-segments'>Nástěnka - pro základní přehled o stavu organizace</li>
         <li className='game-segments'>Zbrojnice - umožňuje vybavit agenty pro zlepšení jejich šancí.</li>
         <li className='game-segments'>Briefing - zde je možné nasadit agenty na misi a prohlédnout si aktuální mise</li>
         <li className='game-segments'>Mission - zde je hlavní kouzlo hry. Rozhoduje se tu o vašem úspěchu či neúspěchu.</li>
       </ul>`,
       terminologyHtml: `<p>Player directs his organization in tactical and strategical sense
-      by managing its resources and staying hidden from official probing, while upholding respectable reputation,
-      and by assignment of missions to his agents that carry out his orders, while fullfilling the mission.
+      by managing its resources and staying hidden from official probing, while upholding respectable reputation.
+      To fullfill this objective player assings his agents to missions who carry out his orders.
       </p>
       <hr />
       <ul className='terminology'><h2>Terminology</h2>
@@ -152,7 +154,7 @@ export default {
         <li className='terminology'><em>Mise - sestává z úkolů, které sestávají z požadavků na akce agenta. Pokud splněno úspěšně jste odměněni, jinak utrpíte škodu.</em></li>
         <li className='terminology'><em>Agent - ať už profesionál či amatér, jedinec, který nasazuje krk, aby byla mise splněna. Může se stát, že je uvězněn či zabit.</em></li>
         <li className='terminology'><em>Cash - dolar či euro, yuan či peseto, poskytuje likviditu nutnou k provozu vašich operací.</em></li>
-        <li className='terminology'><em>Contacts - kontakty na oficiální i neoficiální systémy a endpointy jako policie, úřady, celníky atp.</em></li>
+        <li className='terminology'><em>Contacts - kontakty na oficiální i neoficiální systémy jako je policie, úřady, celníci atp.</em></li>
       </ul>`,
       title: 'Stránka nápovědy'
     },
@@ -223,12 +225,14 @@ export default {
       title: 'Briefing Room'
     },
     buttons: {
+      agentRankUp: 'Rank Up',
       cancel: 'Cancel',
-      edit: 'Edit',
-      save: 'Save',
-      hireAgent: 'Hire Agent',
       confirmHire: 'Confirm Hiring',
-      agentRankUp: 'Rank Up'
+      edit: 'Edit',
+      hireAgent: 'Hire Agent',
+      save: 'Save',
+      missionAccept: 'Mission to Accept',
+      confirmMission: 'Confirm Mission Accept'
     },
     command: {
       title: 'Command Center'
@@ -299,7 +303,7 @@ export default {
       </ul>
       `,
       overviewHtml: `<p>
-        Does a man choose his profession, or does profession choose a man? Anyway, I chose not to be a - what? - Being a villain?
+        Does a man choose his profession, or does profession choose a man? I chose not to be a - what? - Being a villain?
         Villain might be too of a strong word, let's say I am not the one to be bound by conventions about what is good and evil,
         and that I do things my way.
       </p>
@@ -326,15 +330,15 @@ export default {
       <hr />
       <ul>
         <h2>Game segments</h2>
-        <li className='game-segments'>Intro - you are reading it</li>
+        <li className='game-segments'>Command - overview of world with country stats for organization</li>
         <li className='game-segments'>Dashboard - not being to fancy, gives you basic overview of current state of things</li>
         <li className='game-segments'>Armory - you can equip your agents here for the mission, as well as check counts.</li>
         <li className='game-segments'>Briefing - you can deploy your agents on the mission here and view current missions</li>
         <li className='game-segments'>Mission - the main deal of game magic happens here, your success is made or lost</li>
       </ul>`,
       terminologyHtml: `<p>Player directs his organization in tactical and strategical sense
-      by managing its resources and staying hidden from official probing, while upholding respectable reputation,
-      and by assignment of missions to his agents that carry out his orders, while fullfilling the mission.
+      by managing its resources and staying hidden from official probing, while upholding respectable reputation.
+      To fullfill this objective player assings his agents to missions who carry out his orders.
       </p>
       <hr />
       <ul className='terminology'><h2>Terminology</h2>
@@ -343,7 +347,7 @@ export default {
         <li className='terminology'><em>Mise - consists of tasks, which constists of agent action requirements. Rewards are given if successfully carried out, else losses are booked.</em></li>
         <li className='terminology'><em>Agent - professional or amateur, the guy who does heavy lifting, risking his neck in the action</em></li>
         <li className='terminology'><em>Cash - dollar or ruble, yuan or peseta cash provides you with necessary liquidity.</em></li>
-        <li className='terminology'><em>Contacts - having the links to people in right places, be it police or goverment spec units, is vital for your operation.</em></li>
+        <li className='terminology'><em>Contacts - having the links to people in right places is vital, for your operation.</em></li>
       </ul>`,
       title: 'HelpPage'
     },

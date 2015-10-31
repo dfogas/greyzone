@@ -1,23 +1,11 @@
 import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+import getRandomSkill from '../lib/getrandomskill';
 
 import * as actions from './actions';
-import * as scrollBarActions from './scrollbar/actions';
 
 export const dispatchToken = register(({action, data}) => {
-
-  if (action === scrollBarActions.scrollLeft)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val + 265);
-    });
-
-  if (action === scrollBarActions.scrollRight)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .updateIn(['componentsstates', 0, 'componentstyle', 'left'], val => val - 265);
-    });
 
   if (action === actions.assignMission) {
     let agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
@@ -117,10 +105,12 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank
-  if (action === actions.getLevel) {
+  if (action === actions.getRank) {
     const agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
-      return jsonapi.updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'randomSkill'], randomskill => randomskill + 1);
+      return jsonapi
+        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), getRandomSkill()], randomskill => randomskill + 1)
+        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => rank + 1);
     });
   }
 });

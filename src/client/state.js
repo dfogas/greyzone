@@ -14,16 +14,17 @@ of este.
 
 import State from './lib/state';
 import reviveAuth from './auth/revive';
+//import reviveI18n from './app/revive';
 import reviveUsers from './users/revive';
 
 const initialState = process.env.IS_BROWSER
   ? window._appState
   : require('../server/initialstate');
 
-export const appState = new State(initialState, function(key, value) { // State is event Emitter, so callbacks
+export const appState = new State(initialState, function(key, value) {
   switch (key) {
-    // them revivers don't update window appState, just state on app
     case 'auth': return reviveAuth(value);
+    // case 'i18n': return reviveI18n(value);
     case 'users': return reviveUsers(value);
   }
 });

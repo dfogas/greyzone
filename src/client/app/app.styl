@@ -1,14 +1,16 @@
-// Remember to use rems and ems. http://css-tricks.com/rems-ems.
+// Remember to use rems and ems. http//css-tricks.com/rems-ems.
 
 @import '../../../node_modules/normalize.css/normalize.css'
 
-// http://phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-color.html
+// http//phonegap-tips.com/articles/essential-phonegap-css-webkit-tap-highlight-color.html
 *
   -webkit-tap-highlight-color rgba(0,0,0,0)
 
 // Goodness.
-*, ::after, ::before
+*, after, before
   box-sizing border-box
+  -moz-box-sizing border-box
+  -webkit-box-sizing border-box
 
 html,
 body
@@ -21,16 +23,15 @@ body
 
 
 ul
-  display: inline-block
-  margin-left: 0
-  padding-left: 0
+  display inline-block
+  margin-left 0
+  padding-left 0
 
 ul li
-  list-style-type: none
-  display: inline-block
+  display inline-block
 
 div
-  display: inline-block
+  display inline-block
 
 #app
   margin 1em 2em
@@ -59,14 +60,14 @@ div
     font-size .75em
     font-style italic
 
-  :focus
+  focus
     outline-style none
 
   a
     color #346392
     text-decoration none
 
-    &:hover:not(.active)
+    &hovernot(.active)
       text-decoration underline
 
     &.active
@@ -86,18 +87,18 @@ div
     &[disabled]
       opacity .5
 
-    &:hover:not(&[disabled])
+    &hovernot(&[disabled])
       background-color #346392
       text-shadow -1px 1px #27496d
 
-    &:active
+    &active
       background-color #27496d
       text-shadow -1px 1px #193047
 
   button
   input
   textarea
-    &:disabled
+    &disabled
       opacity .5
 
   li

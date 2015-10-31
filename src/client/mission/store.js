@@ -74,8 +74,8 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['gameContacts'], val => results.gameContacts ? val - results.gameContacts : val)
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val - results.obscurity : val)
         .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val - results.reputation : val)
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false)
+        // .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
+        // .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
         .setIn(['activemission', 'started'], false);
@@ -113,15 +113,20 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === missionActions.test) {
+  if (action === missionActions.checkFatalities) {
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
     const activemissiontitle = jsonapiCursor(['activemission', 'title']);
     const activemissionrecord = {title: activemissiontitle, inCountry: activemissioncountryname, success: false};
+    const results = jsonapiCursor(['activemission', 'losses']).toJS();
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission'], activemissionrecord);
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false);
     });
   }
+
+  if (action === missionActions.test)
+    console.log('test');
 
 });

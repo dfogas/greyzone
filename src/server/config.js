@@ -8,7 +8,7 @@ var password = 'jajsemmuzikantaprichazimkvamzceskezeme';
 
 var config = {
   apipath: '/api/v1',
-  appLocales: ['en', 'fr'],
+  appLocales: ['en', 'cz'],
   datastorage: process.env.NODE_ENV === 'production' ?
     'mongodb://admin:' + password + '@ds055852.mongolab.com:55852/mbase' :
     'mongodb://localhost:27017/mbase',

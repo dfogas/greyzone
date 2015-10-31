@@ -1,5 +1,5 @@
 // static components own
-import './dashboard.css';
+import './dashboard.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -39,13 +39,19 @@ class CommandDashboardScreen extends Component {
             <div id='PlayerPicture'>
             </div>
             <div id='PlayerLabel'>
-              <div id='PlayerName'>{name}</div>
+              <div id='PlayerName'>
+                {name}
+              </div>
               <Logout />
             </div>
             <div id='PlayerLiquidResources'>
-              <span>Cash: {gameCash}</span>
+              <span>
+                Cash: {gameCash}
+              </span>
               <br />
-              <span>Contacts: {gameContacts}</span>
+              <span>
+                Contacts: {gameContacts}
+              </span>
             </div>
           </div>
           <MissionsWindow

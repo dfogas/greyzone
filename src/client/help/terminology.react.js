@@ -1,4 +1,4 @@
-// import './terminology.styl';
+import './terminology.styl';
 import Component from '../components/component.react.js';
 import React from 'react';
 import {msg} from '../intl/store';

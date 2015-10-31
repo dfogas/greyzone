@@ -52,8 +52,15 @@ class MissionCard extends Component {
       });
 
     return (
-      <div className={'mission-card' + classString} onClick={this.select.bind(this)}>
-        <MissionTitle isBriefing={isBriefing} isSpecial={isSpecial} mission={mission} title={mission ? mission.get('title') : msg('mission.title')} />
+      <div
+        className={'mission-card' + classString}
+        onClick={this.select.bind(this)}>
+        <MissionTitle
+          isBriefing={isBriefing}
+          isSpecial={isSpecial}
+          mission={mission}
+          title={mission ? mission.get('title') : msg('mission.title')}
+          />
         {missioncardcontent}
         {!!inCountry &&
           <div className='mission-locale'>{inCountry}</div>}

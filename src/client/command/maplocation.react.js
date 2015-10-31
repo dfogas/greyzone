@@ -28,7 +28,7 @@ class MapLocation extends Component {
 }
 
 MapLocation.propTypes = {
-  coordinates: React.PropTypes.array,
+  coordinates: React.PropTypes.object,
   locationindex: React.PropTypes.number,
   name: React.PropTypes.string,
   obscurity: React.PropTypes.number,

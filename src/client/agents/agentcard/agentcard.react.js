@@ -1,4 +1,5 @@
 import './agentcard.styl';
+import * as agentsActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,6 +12,11 @@ import AgentProfile from './agentprofile.react';
 import AgentEquipmentSlot from './agentequipmentslot.react';
 
 class AgentCard extends Component {
+
+  agentGetRank() {
+    const {agent, agentindex} = this.props;
+    agentsActions.getRank(agent, agentindex);
+  }
 
   drag(ev) {
     ev.dataTransfer.setData('text', ev.target.id);
@@ -46,6 +52,7 @@ class AgentCard extends Component {
         {rankup &&
           <input
             className='agent-rankup-button'
+            onClick={this.agentGetRank.bind(this)}
             type='button'
             value={msg('buttons.agentRankUp')}
             />

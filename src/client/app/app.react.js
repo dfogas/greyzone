@@ -10,10 +10,13 @@ import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
 import NavTab from './navtab.react';
+import LanguageSelect from './language.select.react';
 import 'isomorphic-fetch';
 
 // Remember to import all app stores here.
+import './store';
 import '../agents/store';
+import '../agents/scrollbar/store';
 import '../auth/store';
 import '../dashboard/store';
 import '../mission/tabletoptier/dice/store';
@@ -38,7 +41,6 @@ class App extends Component {
       'http://localhost:8000/api/v1/';
     const playerId = this.state.jsonapi.get('_id');
     const jsonapi = this.state.jsonapi.toJS();
-    console.log('Polling state to persistance for user', this.state.jsonapi.get('name'), 'id ', this.state.jsonapi.get('_id')); // eslint-disable-line no-console
     if (this.state.jsonapi.get('name') !== 'Default')
       fetch(api + 'players/' + playerId, {
         method: 'PUT',
@@ -51,6 +53,7 @@ class App extends Component {
     return {
       auth: state.authCursor(),
       contest: state.contestCursor(),
+      i18n: state.i18nCursor(),
       jsonapi: state.jsonapiCursor(),
       pendingActions: state.pendingActionsCursor(),
       users: state.usersCursor(),
@@ -74,6 +77,7 @@ class App extends Component {
       <div className="page">
         {/*<Menu viewer={this.state.viewer} />*/}
         <NavTab />
+        <LanguageSelect i18n={this.state.i18n} />
         <RouteHandler {...this.state} />
         {/*<Footer />*/}
       </div>

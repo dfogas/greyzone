@@ -7,12 +7,12 @@ import uuid from '../lib/guid';
 import MapLocation from './maplocation.react';
 
 const locations = [
-  {name: 'US', coordinates: {x: 850, y: 800}},
-  {name: 'France', coordinates: {x: 1530, y: 680}},
-  {name: 'Russia', coordinates: {x: 1800, y: 550}},
-  {name: 'Arabia', coordinates: {x: 1960, y: 1000}},
-  {name: 'SouthEast', coordinates: {x: 2400, y: 1220}},
-  {name: 'Latin America', coordinates: {x: 950, y: 1150}}
+  {name: 'US', coordinates: {x: 425, y: 400}},
+  {name: 'West Europe', coordinates: {x: 765, y: 340}},
+  {name: 'Russia', coordinates: {x: 1000, y: 275}},
+  {name: 'Arabia', coordinates: {x: 980, y: 500}},
+  {name: 'SouthEast', coordinates: {x: 1200, y: 610}},
+  {name: 'Latin America', coordinates: {x: 425, y: 575}}
 ];
 
 class MapList extends Component {
