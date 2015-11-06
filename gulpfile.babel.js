@@ -66,5 +66,5 @@ gulp.task('default', (done) => {
   if (args.production)
     runSequence('server', done);
   else
-    runSequence('server', 'karma-dev', done);
+    runSequence('server', /*'karma-dev',*/ done);
 });

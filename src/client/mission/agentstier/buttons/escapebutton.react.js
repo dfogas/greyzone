@@ -3,6 +3,7 @@ import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../../../intl/store';
 
 class EscapeButton extends Component {
   missionFail() {
@@ -17,7 +18,7 @@ class EscapeButton extends Component {
         className='escape-button'
         onClick={this.missionFail.bind(this)}
         type='button'
-        value='Initiate escape sequence'
+        value={msg('mission.buttons.escapesequence')}
         />
     );
   }

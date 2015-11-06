@@ -1,4 +1,4 @@
-import './missionscreen.css';
+import './missionscreen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import TaskTier from './tasktier/tasktier.react';
@@ -14,9 +14,20 @@ class MissionTrackingScreen extends Component {
 
     return (
       <div id='MissionTrackingScreen'>
-        <TaskTier isMission={true} jsonapi={jsonapi} pendingActions={pendingActions} />
-        <TableTopTier activemission={activemission} pendingActions={pendingActions} />
-        <AgentsTier agents={agents} jsonapi={jsonapi} pendingActions={pendingActions} />
+        <TaskTier
+          isMission={true}
+          jsonapi={jsonapi}
+          pendingActions={pendingActions}
+          />
+        <TableTopTier
+          activemission={activemission}
+          pendingActions={pendingActions}
+          />
+        <AgentsTier
+          agents={agents}
+          jsonapi={jsonapi}
+          pendingActions={pendingActions}
+          />
       </div>
     );
   }

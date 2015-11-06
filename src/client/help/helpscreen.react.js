@@ -12,7 +12,7 @@ class HelpPage extends Component {
 
   render() {
     return (
-      <div className='help-screen'>
+      <div id='HelpScreen'>
         <div className='help-content'>
           <HelpOverview
             />

@@ -66,6 +66,7 @@ class TableTop extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop}>
         <MissionTitle
+          isActual={true}
           title={title}
           />
         {agentontask && remainingdices.size &&

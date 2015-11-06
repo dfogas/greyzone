@@ -49,7 +49,7 @@ router.route('/:player_id')
 
 router.route('/:player_id')
   .put((req, res) => {
-    console.log(req.body.title, req.body.name, req.body.gameContacts, req.body.gameCash);
+    // console.log(req.body.title, req.body.name, req.body.gameContacts, req.body.gameCash);
 
     Player.update(
       // we need params _id here else only 1st record from parent collection is updated

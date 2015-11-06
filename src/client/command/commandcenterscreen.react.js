@@ -3,7 +3,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {Link} from 'react-router';
-import {msg} from '../intl/store';
+import {mymsg} from '../intl/store';
 
 import MainScreen from './mainscreen.react';
 
@@ -15,13 +15,12 @@ class CommandCenterScreen extends Component {
 
     return (
       <div id='CommandCenterScreen'>
-        <h1 className='game-title'>MIA</h1>
         {!isLoggedIn &&
           <Link to='login'>
             <input
               className='command-login'
               type='button'
-              value={msg('auth.form.legend.login')}
+              value={mymsg('auth.form.legend.login')}
               />
           </Link>}
         {!isLoggedIn &&
@@ -29,7 +28,7 @@ class CommandCenterScreen extends Component {
             <input
               className='command-signup'
               type='button'
-              value={msg('auth.form.legend.signup')}
+              value={mymsg('auth.form.legend.signup')}
               />
           </Link>}
         <MainScreen

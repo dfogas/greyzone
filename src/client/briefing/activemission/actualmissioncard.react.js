@@ -38,15 +38,25 @@ class ActualMissionCard extends Component {
 
     return (
       <div className={'mission-card actual'}>
-        <MissionTitle isActual={isActual} isSpecial={isSpecial} title={activemission.get('title')}/>
-        {/*<Task isActual={isActual} isSpecial={isSpecial} task={activemission.get('tasks').get(0)} />
-        <Task isActual={isActual} isSpecial={isSpecial} task={activemission.get('tasks').get(1)} />
-        <Task isActual={isActual} isSpecial={isSpecial} task={activemission.get('tasks').get(2)} />
-        <Task isActual={isActual} isSpecial={isSpecial} task={activemission.get('tasks').get(3)} />*/}
+        <MissionTitle
+          isActual={isActual}
+          isSpecial={isSpecial}
+          title={activemission.get('title')}
+          />
         {actualmissiontasks}
         {assignments}
-        <MissionResult isActual={isActual} isLoss={true} isSpecial={isSpecial} losses={activemission.get('losses')}/>
-        <MissionResult isActual={isActual} isReward={true} isSpecial={isSpecial} rewards={activemission.get('rewards')}/>
+        <MissionResult
+          isActual={isActual}
+          isLoss={true}
+          isSpecial={isSpecial}
+          losses={activemission.get('losses')}
+          />
+        <MissionResult
+          isActual={isActual}
+          isReward={true}
+          isSpecial={isSpecial}
+          rewards={activemission.get('rewards')}
+          />
       </div>
     );
   }

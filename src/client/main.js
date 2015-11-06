@@ -8,5 +8,6 @@ import {measureRender} from './console';
 const app = document.getElementById('app');
 
 Router.run(routes, Router.HistoryLocation, (Handler) => {
+  console.log('Router on client runs.');
   measureRender(done => React.render(<Handler />, app, done));
 });

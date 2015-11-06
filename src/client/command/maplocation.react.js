@@ -17,11 +17,11 @@ class MapLocation extends Component {
         id={name + 'MapLocation'}
         key={uuid() + locationindex}
         onMouseOver={this.displayCountry.bind(this)}
-        style={{top: coordinates.y, left: coordinates.x + '', position: 'absolute'}}
+        style={{top: coordinates.y, left: coordinates.x, position: 'absolute'}}
         >
-        <span className='maplocation-tag'>Name: {name}</span>
-        <span className='maplocation-tag'>Obscurity: {obscurity}</span>
-        <span className='maplocation-tag'>Reputation: {reputation}</span>
+        <span className='maplocation-tag'>{name}</span>
+        <span className='maplocation-tag'>{!!obscurity && obscurity}</span>
+        <span className='maplocation-tag'>{!!reputation && reputation}</span>
       </div>
     );
   }

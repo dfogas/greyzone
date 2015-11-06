@@ -14,7 +14,7 @@ import LanguageSelect from './language.select.react';
 import 'isomorphic-fetch';
 
 // Remember to import all app stores here.
-import './store';
+import '../intl/store';
 import '../agents/store';
 import '../agents/scrollbar/store';
 import '../auth/store';
@@ -76,7 +76,7 @@ class App extends Component {
     return (
       <div className="page">
         {/*<Menu viewer={this.state.viewer} />*/}
-        <NavTab />
+        <NavTab locales={this.state.i18n.get('locales')}/>
         <LanguageSelect i18n={this.state.i18n} />
         <RouteHandler {...this.state} />
         {/*<Footer />*/}

@@ -22,7 +22,11 @@ class LockedDiceContainer extends Component {
     const {activemission} = this.props;
     const lockeddice = activemission.getIn(['equipmenteffects', 'lockeddice']);
     return (
-      <div className='locked-dice-container' onDragOver={this.allowDrop} onDrop={this.drop.bind(this)}>
+      <div
+        className='locked-dice-container'
+        onDragOver={this.allowDrop}
+        onDrop={this.drop.bind(this)}
+        >
         {!!lockeddice &&
           <Dice
             dicetype={lockeddice.length ? lockeddice[0].dicetype : 'stealth'}

@@ -40,6 +40,7 @@ function renderPage(req, res, appState) {
       const html = loadAppStateThenRenderHtml(Handler, appState);
       const notFound = routerState.routes.some(route => route.name === 'not-found');
       const status = notFound ? 404 : 200;
+      console.log('Router runs.');
       res.status(status).send(html);
       resolve();
     });

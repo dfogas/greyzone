@@ -14,7 +14,7 @@ of este.
 
 import State from './lib/state';
 import reviveAuth from './auth/revive';
-//import reviveI18n from './app/revive';
+import reviveI18n from './intl/revive';
 import reviveUsers from './users/revive';
 
 const initialState = process.env.IS_BROWSER

@@ -10,7 +10,6 @@ class MainScreen extends Component {
     const {jsonapi} = this.props;
     return (
       <div className='main-screen'>
-        <img src='../../../assets/img/bg/the_network.png' />
         <MapList
           jsonapi = {jsonapi}
           />

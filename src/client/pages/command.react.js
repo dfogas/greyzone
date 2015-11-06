@@ -4,17 +4,18 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 //import requireAuth from '../auth/requireauth.react.js';
-import {msg} from '../intl/store';
+import {mymsg} from '../intl/store';
 
 
 class Command extends Component {
 
   render() {
-    const {jsonapi, users} = this.props;
+    const {i18n, jsonapi, users} = this.props;
     const viewer = users.get('viewer');
+    const locales = i18n.get('locales');
 
     return (
-      <DocumentTitle title={msg('command.title')}>
+      <DocumentTitle title={mymsg('command.title')}>
         <div className='command-page'>
           <CommandCenterScreen
             jsonapi={jsonapi}

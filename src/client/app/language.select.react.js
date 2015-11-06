@@ -3,11 +3,11 @@ import Component from '../components/component.react';
 import React from 'react';
 import Select from 'react-select';
 
-import * as appActions from './actions';
+import * as intlActions from '../intl/actions';
 
 class LanguageSelect extends Component {
   languageSelect(val) {
-    appActions.languageSelect(val);
+    intlActions.languageSelect(val);
   }
 
   render() {
@@ -18,9 +18,9 @@ class LanguageSelect extends Component {
     ];
     return (
       <Select
+        className='language-select'
         options={options}
         onChange={this.languageSelect.bind(this)}
-        value='English'
       />
     );
   }

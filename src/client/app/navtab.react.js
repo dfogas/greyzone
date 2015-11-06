@@ -6,6 +6,7 @@ import {msg} from '../intl/store';
 
 class NavTab extends Component {
   render() {
+    const {locales} = this.props;
     return (
       <div className='nav-tab'>
         <ul>

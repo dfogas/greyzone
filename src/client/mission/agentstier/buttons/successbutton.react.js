@@ -3,6 +3,7 @@ import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../../../intl/store';
 
 class SuccessButton extends Component {
   missionSuccess() {
@@ -16,7 +17,12 @@ class SuccessButton extends Component {
 
   render() {
     return (
-      <input id='SuccessButton' onClick={this.missionSuccess.bind(this)} type='button' value='Mission Accomplished!' />
+      <input
+        id='SuccessButton'
+        onClick={this.missionSuccess.bind(this)}
+        type='button'
+        value={msg('mission.buttons.success')}
+        />
     );
   }
 }

@@ -2,13 +2,13 @@ import './missionendbutton.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../../../intl/store';
 
 import * as missionsActions from '../../actions';
 
 class MissionEndButton extends Component {
   end() {
     const {activemission} = this.props;
-
     missionsActions.end(activemission);
   }
 
@@ -18,7 +18,7 @@ class MissionEndButton extends Component {
         id='MissionEndButton'
         onClick={this.end.bind(this)}
         type='button'
-        value='Mission End'
+        value={msg('mission.buttons.end')}
         />
     );
   }
