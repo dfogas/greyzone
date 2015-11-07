@@ -23,6 +23,7 @@ import '../mission/tabletoptier/dice/store';
 import '../equipments/store';
 import '../mission/store';
 import '../users/store';
+import '../support/store';
 
 // DnD funcionality
 import {default as TouchBackend} from 'react-dnd-touch-backend';
@@ -56,6 +57,8 @@ class App extends Component {
       i18n: state.i18nCursor(),
       jsonapi: state.jsonapiCursor(),
       pendingActions: state.pendingActionsCursor(),
+      posts: state.postsCursor(),
+      support: state.supportCursor(),
       users: state.usersCursor(),
       viewer: state.usersCursor().get('viewer')
     };
@@ -76,7 +79,7 @@ class App extends Component {
     return (
       <div className="page">
         {/*<Menu viewer={this.state.viewer} />*/}
-        <NavTab locales={this.state.i18n.get('locales')}/>
+        <NavTab locales={this.state.i18n.get('locales')} />
         <LanguageSelect i18n={this.state.i18n} />
         <RouteHandler {...this.state} />
         {/*<Footer />*/}

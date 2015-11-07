@@ -16,15 +16,12 @@ function getCachedInstanceOf(message) {
     return cachedInstances[message];
   // TODO: Add locales support.
   cachedInstances[message] = new IntlMessageFormat(message);
-  console.log('CachedInstances: ' + JSON.stringify(cachedInstances[message]));
   return cachedInstances[message];
 }
 
 export function mymsg(path) {
   const pathParts = ['messages'].concat(path.split('.'));
   const message = i18nCursor(pathParts);
-  console.log(pathParts);
-  console.log('Menu Command: ', i18nCursor(['messages', 'menu', 'command']));
 
   if (message == null)
     throw new ReferenceError('Could not find Intl message: ' + pathParts);

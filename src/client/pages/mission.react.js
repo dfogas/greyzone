@@ -14,7 +14,10 @@ class Mission extends Component {
     return (
       <DocumentTitle title={msg('mission.title')}>
         <div className='mission-page'>
-          <MissionTrackingScreen jsonapi={jsonapi} pendingActions={pendingActions} />
+          <MissionTrackingScreen
+            jsonapi={jsonapi}
+            pendingActions={pendingActions}
+            />
         </div>
       </DocumentTitle>
     );

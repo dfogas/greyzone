@@ -13,7 +13,19 @@ export default {
     locales: initialLocale,
     messages: messages[initialLocale]
   },
+  posts: {
+    editables: {},
+    newPost: {
+      text: ''
+    },
+    list: [
+
+    ]
+  },
   pendingActions: {},
+  support: {
+    posts: ['A post #1', 'A post #2', 'A post #3']
+  },
   users: {
     // User can be authenticated on server, and then viewer must be defined.
     viewer: null

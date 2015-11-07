@@ -193,6 +193,13 @@ export default {
       message: 'Odkaz nefunguje nebo je stránka odstraněna.',
       title: 'Stránka nenalezena'
     },
+    posts: {
+      newPostPlaceholder: 'Co máte na mysli?',
+      emptyList: 'Prázdný List'
+    },
+    support: {
+      title: 'Stránka podpory'
+    },
     validation: {
       email: `Emailová adresa není platná.`,
       password: `Heslo musí obsahovat alespoň {minLength} znaků.`,
@@ -392,38 +399,12 @@ export default {
       message: 'The link may be broken, or the page may have been removed.',
       title: 'Page Not Found'
     },
-    toCheck: {
-      andMuchMore: '... and much more.',
-      header: 'Things to Check',
-      isomorphicPage: 'Isomorphic page',
-      itemListHtml: [  // List of language dependent length containing translated messages for React components
-        {
-          key: 'source',
-          txt: `Server rendered todos, view page source.`
-        },
-        {
-          key: 'development',
-          txt: `Try edit styles, components, actions, or stores to check
-                <a href="https://www.youtube.com/watch?v=pw4fKkyPPg8">live editing</a>
-                in development mode (<code>gulp</code>).`
-        },
-        {
-          key: 'production',
-          txt: `Check real app performance and size in production mode (<code>gulp -p</code>)`
-        },
-        {
-          key: 'edit',
-          txt: `Todos are editable. Click to edit, esc to cancel, enter to save,
-                everything is safely saved in global app state. Try to go
-                elsewhere then back, note components state is always preserved.`
-        },
-        {
-          key: 'globalState',
-          txt: `Global immutable app state, have you seen this <a href="https://www.youtube.com/watch?v=5yHFTN-_mOo">
-                video</a>? Try <b>ctrl+shift+s</b> to save current app state,
-                and <b>ctrl+shift+l</b> to load.`
-        }
-      ]
+    posts: {
+      newPostPlaceholder: 'What is on your mind?',
+      emptyList: 'Empty List'
+    },
+    support: {
+      title: 'SupportPage'
     },
     validation: {
       email: `Email address is not valid.`,

@@ -14,7 +14,7 @@ of este.
 
 import State from './lib/state';
 import reviveAuth from './auth/revive';
-import reviveI18n from './intl/revive';
+import revivePosts from './support/revive';
 import reviveUsers from './users/revive';
 
 const initialState = process.env.IS_BROWSER
@@ -24,7 +24,7 @@ const initialState = process.env.IS_BROWSER
 export const appState = new State(initialState, function(key, value) {
   switch (key) {
     case 'auth': return reviveAuth(value);
-    // case 'i18n': return reviveI18n(value);
+    case 'posts': return revivePosts(value);
     case 'users': return reviveUsers(value);
   }
 });
@@ -34,6 +34,7 @@ export const contestCursor = appState.cursor(['contest']);
 export const i18nCursor = appState.cursor(['i18n']);
 export const jsonapiCursor = appState.cursor(['jsonapi']);
 export const pendingActionsCursor = appState.cursor(['pendingActions']);
-// export const scrollbarCursor = appState.cursor(['componentsstates[0]']);
+export const postsCursor = appState.cursor(['posts']);
+export const supportCursor = appState.cursor(['support']);
 export const usersCursor = appState.cursor(['users']);
 export const viewerCursor = appState.cursor(['users.viewer']);

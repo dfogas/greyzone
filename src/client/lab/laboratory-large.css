@@ -72,12 +72,29 @@ body {
     position: absolute;
     width: 200px;
     height: 200px;
-    background: #fff;
-    box-shadow:inset 0 0 40px #ccc;
+    background-color: red;
+    background-repeat: no-repeat;
+    background-size: 200px 200px;
+    box-shadow:inset 0 0 40px #111111;
     border-radius: 40px;
 }
+.side.front {
+  background-image: url('../../../assets/img/missions/actions/pursuit.jpg');
+}
+.side.top {
+  background-image: url('../../../assets/img/missions/actions/hit.jpg');
+}
+.side.right {
+  background-image: url('../../../assets/img/missions/actions/close_combat.jpg');
+}
+.side.left {
+  background-image: url('../../../assets/img/missions/actions/improv_op.jpg');
+}
+.side.bottom {
+  background-image: url('../../../assets/img/missions/actions/improv_op.jpg');
+}
 #dice .cover, #dice .inner {
-    background: #e0e0e0;
+    background: #101010;
     box-shadow: none;
 }
 #dice .cover {
@@ -126,35 +143,6 @@ body {
 #dice .bottom.inner {
     transform: rotateX(-90deg) translateZ(98px);
 }
-.dot {
-    position:absolute;
-    width:46px;
-    height:46px;
-    border-radius:23px;
-    background:#444;
-    box-shadow:inset 5px 0 10px #000;
-}
-.dot.center {
-    margin:77px 0 0 77px;
-}
-.dot.dtop {
-    margin-top:20px;
-}
-.dot.dleft {
-    margin-left:134px;
-}
-.dot.dright {
-    margin-left:20px;
-}
-.dot.dbottom {
-    margin-top:134px;
-}
-.dot.center.dleft {
-    margin:77px 0 0 20px;
-}
-.dot.center.dright {
-    margin:77px 0 0 134px;
-}
 
 #background {
 	position:fixed;
@@ -189,8 +177,8 @@ input[type=checkbox]:before {
 	border-color:transparent;
 }
 input[type=checkbox] {
-	display:none;
 }
+
 label {
 	opacity:.5;
 	transition:all .3s ease;
