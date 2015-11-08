@@ -7,12 +7,11 @@ import SupportScreen from '../support/supportscreen.react';
 
 class SupportPage extends Component {
   render() {
-    const {posts, support} = this.props;
+    const {posts} = this.props;
     return (
       <DocumentTitle title={msg('support.title')}>
         <SupportScreen
           posts={posts}
-          support={support}
           />
       </DocumentTitle>
     );

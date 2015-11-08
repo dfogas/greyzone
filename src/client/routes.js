@@ -28,5 +28,6 @@ export default (
     <Route handler={SignUp} name="signup" />
     <Route handler={Lab} name="lab" />
     <Route handler={Support} name="support" />
+    <Route handler={Support} name="forum" />
   </Route>
 );

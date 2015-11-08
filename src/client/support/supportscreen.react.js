@@ -3,18 +3,14 @@ import Component from '../components/component.react';
 import React from 'react';
 
 import NewPost from './newpost.react';
+import PostsList from './list.react';
 
 class SupportScreen extends Component {
   render() {
-    const {posts, support} = this.props;
-    const initposts = support.get('posts');
+    const {posts} = this.props;
     return (
       <div id='SupportScreen'>
-        <ul id='PostsList'>Posts List
-          {initposts.map((initpost) => {
-            return (<li>{initpost}</li>);
-          })}
-        </ul>
+        <PostsList posts={posts} />
         <NewPost post={posts.get('newPost')} />
       </div>
     );

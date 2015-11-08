@@ -21,6 +21,8 @@ class NavTab extends Component {
           <li><Link to='mission'>{msg('menu.mission')}</Link></li>
           &nbsp;|&nbsp;
           <li><Link to='help'>{msg('menu.help')}</Link></li>
+          &nbsp;|&nbsp;
+          <li><Link to='forum'>{msg('menu.forum')}</Link></li>
         </ul>
       </div>
     );

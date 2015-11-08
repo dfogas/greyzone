@@ -56,7 +56,8 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], dicesthrown.push(data.value))
-        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push(data.dicetype));
+        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push(data.dicetype))
+        .setIn(['activemission', 'equipmenteffects', 'actionchoose'], null);
     });
   }
 

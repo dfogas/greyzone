@@ -14,12 +14,10 @@ export default {
     messages: messages[initialLocale]
   },
   posts: {
-    editables: {},
     newPost: {
       text: ''
     },
     list: [
-
     ]
   },
   pendingActions: {},

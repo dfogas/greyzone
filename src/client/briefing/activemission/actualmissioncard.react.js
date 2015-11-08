@@ -9,7 +9,7 @@ import uuid from '../../lib/guid';
 
 import MissionTitle from '../../mission/missioncard/missiontitle.react';
 import Task from '../../mission/missioncard/tasks/task.react';
-import MissionResult from '../../mission/missioncard/results/missionresult.react';
+import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
 import AgentAssignment from './agentassignment.react';
 
 class ActualMissionCard extends Component {
@@ -45,13 +45,13 @@ class ActualMissionCard extends Component {
           />
         {actualmissiontasks}
         {assignments}
-        <MissionResult
+        <MissionResultList
           isActual={isActual}
           isLoss={true}
           isSpecial={isSpecial}
           losses={activemission.get('losses')}
           />
-        <MissionResult
+        <MissionResultList
           isActual={isActual}
           isReward={true}
           isSpecial={isSpecial}

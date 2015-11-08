@@ -5,6 +5,7 @@ import {msg} from '../intl/store';
 import immutable from 'immutable';
 
 class NewPost extends Component {
+
   addPostOnEnter(e) {
     if (e.key === 'Enter')
       postsActions.addPost(this.props.post);

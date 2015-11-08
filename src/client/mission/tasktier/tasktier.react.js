@@ -5,7 +5,7 @@ import immutable from 'immutable';
 import React from 'react';
 
 import Task from '../missioncard/tasks/task.react';
-import MissionResult from '../missioncard/results/missionresult.react';
+import MissionResultList from '../missioncard/results/missionresultlist.react';
 
 class TaskTier extends Component {
 
@@ -25,15 +25,27 @@ class TaskTier extends Component {
       <div id='TaskTier'>
         {tasks.map((task, i) => {
           return (
-            <Task isCurrent={currentindex === i} isMission={isMission} task={task} />
+            <Task
+              isCurrent={currentindex === i}
+              isMission={isMission}
+              task={task}
+              />
           );
         })}
-        Losses:
         <br />
-        <MissionResult losses={activemission.get('losses')} />
-        Rewards:
+        <MissionResultList
+          activemissiontitle={activemission.get('name')}
+          isLoss={true}
+          isTask={true}
+          losses={activemission.get('losses')}
+          />
         <br />
-        <MissionResult rewards={activemission.get('rewards')} />
+        <MissionResultList
+          activemissiontitle={activemission.get('title')}
+          isReward={true}
+          isTask={true}
+          rewards={activemission.get('rewards')}
+          />
       </div>
     );
   }

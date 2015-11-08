@@ -176,7 +176,8 @@ export default {
       help: 'Nápověda',
       login: 'Log',
       mission: 'Mise',
-      signup: 'Vytvoření účtu'
+      signup: 'Vytvoření účtu',
+      forum: 'Fórum'
     },
     mission: {
       title: 'Mise',
@@ -382,7 +383,8 @@ export default {
       help: 'Help',
       login: 'Login',
       mission: 'Mission',
-      signup: 'Sign Up'
+      signup: 'Sign Up',
+      forum: 'Forum'
     },
     mission: {
       title: 'Mission',
