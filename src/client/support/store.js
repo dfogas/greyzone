@@ -13,7 +13,7 @@ export const dispatchToken = register(({action, data}) => {
           return list.push(newPost);
         })
         .set('newPost', new Post);
-      });
+    });
 
   if (action === postsActions.onNewPostFieldChange)
     postsCursor(posts => {

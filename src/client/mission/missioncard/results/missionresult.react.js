@@ -1,5 +1,5 @@
 import './missionresult.styl';
-import Component from '../../../components/component.react.js'
+import Component from '../../../components/component.react.js';
 import React from 'react';
 
 class MissionResult extends Component {

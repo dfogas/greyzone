@@ -7,6 +7,7 @@ import HelpGameSegments from './segments.react';
 import HelpTerminology from './terminology.react';
 import HelpMissionProgress from './progress.react';
 import HelpMissionActions from './actions.react';
+import HelpEquipments from './equipments.react';
 
 class HelpPage extends Component {
 
@@ -27,6 +28,9 @@ class HelpPage extends Component {
             />
           <hr />
           <HelpMissionActions
+            />
+          <hr />
+          <HelpEquipments
             />
         </div>
       </div>

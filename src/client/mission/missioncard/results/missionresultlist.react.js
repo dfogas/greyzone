@@ -11,7 +11,10 @@ class MissionResultList extends Component {
     const {activemissiontitle, losses, rewards} = this.props;
     const isDefaultMission = activemissiontitle === 'Default Mission';
     let losseskeys, rewardskeys;
-    losses ? losseskeys = Object.keys(losses.toJS()) : rewardskeys = Object.keys(rewards.toJS())
+    if (losses)
+      losseskeys = Object.keys(losses.toJS());
+    else
+      rewardskeys = Object.keys(rewards.toJS());
 
     var classString = '';
     if (this.props.isActual)

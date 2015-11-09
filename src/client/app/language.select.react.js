@@ -1,3 +1,4 @@
+import './language.select.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import DropDown from 'react-dropdown';
@@ -17,7 +18,6 @@ class LanguageSelect extends Component {
     ];
     return (
       <DropDown
-        className='language-select'
         options={options}
         onChange={this.languageSelect.bind(this)}
         placeholder='Select language'

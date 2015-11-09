@@ -36,6 +36,8 @@ class AgentEquipmentSlot extends Component {
 
     if (this.props.isShowcased)
       classString += ' showcased';
+
+    classString += ' ' + equipment.get('name').replace(/\s+/g, '');
     return (
       <div
         agentindex={agentindex}

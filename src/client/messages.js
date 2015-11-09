@@ -87,13 +87,34 @@ export default {
         <li class='list-of-actions'><em>fail - jednoduše se to nepovedlo</em></li>
       </ul>
       <ul class='list-of-skills'>Dovednosti agentů
-        <li>operations - akce jsou pursuit, hit, close combat, každá s 1/6 pravděpodobnosti</li>
-        <li>electronics - akce jsou decipher, tap, monitor, každá s 1/6 pravděpodobností</li>
-        <li>stealth - akce jsou hide, infiltrate, puppet, každá s 1/6 pravděpodobností</li>
+        <li class='agent-skills operations'>
+          operations - akce jsou pursuit, hit, close combat, každá s 1/6 pravděpodobnosti
+        </li>
+        <li class='agent-skills electronics'>
+          electronics - akce jsou decipher, tap, monitor, každá s 1/6 pravděpodobností
+        </li>
+        <li class='agent-skills stealth'>
+          stealth - akce jsou hide, infiltrate, puppet, každá s 1/6 pravděpodobností
+        </li>
       </ul>
       <p>Každá kostka má 2/6 pravděpodobnost, že na ni padne improvizace příslušné dovednosti a 1/6 pravděpodobnost neúspěchu.</p>`,
-      equipmentsHtml: `tbd
-      termin bude dodan`,
+      equipmentsHtml: `<ul>Vybavení agentů pro mise
+        <ul class='equipment-tier operations'>
+          <li class='agent-equipment HiredGun'>Nájemná puška - +1 kostka operations</li>
+          <li class='agent-equipment HeavyArms'>Těžké zbraně - 1 libovolná akce operations (ne improv)</li>
+          <li class='agent-equipment ProtectiveGear'>Ochranné oblečení - opakování hodu všemi kostkami</li>
+        </ul>
+        <ul class='equipment-tier electronics'>
+          <li class='agent-equipment HandyKit'>Příruční balíček - +1 kostka electronics</li>
+          <li class='agent-equipment CustomTools'>Upravené nástroje - 1 libovolná akce electronics (ne improv)</li>
+          <li class='agent-equipment WPAS'>SASB - schování jednnoho výsledku na další hod</li>
+        </ul>
+        <ul>
+          <li class='agent-equipment FakePassports'>Falešné doklady - +1 kostka stealth</li>
+          <li class='agent-equipment DrugsControl'>Útočné drogy - 1 libovolná akce stealth (ne improv)</li>
+          <li class='agent-equipment DCP'>ÚP - alternativní ukončení mise, ztrať pouze reputaci</li>
+        </ul>
+      `,
       missionProgressHtml: `<p>
         Během průběhu mise je používán mechanismus šestistěnné kostky. Zobrazení pravděpodobnosti úspěchu hodu je placené.
         Posloupnosti průběhu mise procházíte tak, že z agentů na misi vyberete jednoho a přiřadíte jej k aktuálnímu úkolu. Poté provedete akci.
@@ -107,7 +128,7 @@ export default {
         <li class='mission-progress'><em>kliknutím na misi ji vyberete.</em></li>
         <li class='mission-progress'><em>po vybrání mise drag&drop karty agenta na misi.</em></li>
         <li class='mission-progress'><em>mise zvolena, agenti vybaveni, přejděte k obrazovce mise.</em></li>
-        <li class='mission-progress'><em>Agent drag&drop na vyhrazene misto v misi.</em></li>
+        <li class='mission-progress'><em>Agent drag&drop na vyhrazené misto v misi.</em></li>
         <li class='mission-progress'><em>Použití vybavení zvýší šance.</em></li>
         <li class='mission-progress'><em>Splnění úkolu - akce úkolu odpovídají výsledku agentova hodu.</em></li>
         <li class='mission-progress'><em>Drag&Drop kostky na ikonu pod hodem kostku zničí a dá vám nový hod.</em></li>
@@ -115,7 +136,7 @@ export default {
         <li class='mission-progress'><em>Mise Splněna? Blahopřejeme, odměny byly automaticky připsány na váš účet.</em></li>
       </ul>
       `,
-      overviewHtml: `<p>
+      overviewHtml: `<p><h2>Představení?</h2>
         Vybírá si muž své povolání, nebo si povolání vybírá jeho?
         Já si nezvolil - co? - Být padouch? - Padouch je možná příliš silné slovo,
         řekněme, že si rád dělám věci po svém,
@@ -152,9 +173,13 @@ export default {
         <li class='game-segments'>Briefing - zde je možné nasadit agenty na misi a prohlédnout si aktuální mise</li>
         <li class='game-segments'>Mission - zde je hlavní kouzlo hry. Rozhoduje se tu o vašem úspěchu či neúspěchu.</li>
       </ul>`,
-      terminologyHtml: `<p>Hráč řídí organizaci po taktické i strategické stránce
-      - řídí zdroje, zůstává schován před oficiálními místy, a stará se o udržování kontaktů a profesionální reputace organizace.
-      Aby tento cíl plnil hráč posílá agenty, kteří plní jeho rozkazy, na mise.
+      terminologyHtml: `<p>
+        Hráč řídí organizaci po taktické i strategické stránce - řídí zdroje,
+        zůstává schován před oficiálními místy, a stará se o udržování kontaktů
+        a profesionální reputace organizace.
+      </p>
+      <p>
+        Aby tento cíl plnil hráč posílá agenty, kteří plní jeho rozkazy, na mise.
       </p>
       <hr />
       <ul class='terminology'><h2>Terminology</h2>
@@ -303,20 +328,41 @@ export default {
         <li>stealth - actions are hide, infiltrate, puppet, each with 1/6 probability</li>
       </ul>
       <p>Each dice has 2/6 probability of improv result of appropriate skill and 1/6 probability of fail result.</p>`,
-      equipmentHtml: `tbd
-      to be done`,
-      missionProgressHtml: `<p>In mission processing six-sided dice mechanism is used. Display of probabilities of success is paid feature.
-      You go through the mission sequence by assigning agent from agents on mission to each task and then proceed with action.
-      If the throw is not successfull you may try again after sacrificing one of dies, which of course lowers your chances, to the
-      point where you have no chance of succeeding.
-      Desirable result is of course fulfillment of all tasks, in which case is mission successfull.
-      Certain agent's equipments have different effects on the flow of mission, but to that later.</p>
+      equipmentsHtml: `<ul>Agent's equipments for mission
+        <ul class='equipment-tier operations'>
+          <li class='agent-equipment HiredGun'>Hired Gun - +1 operations die</li>
+          <li class='agent-equipment HeavyArms'>Heavy Arms - 1 any operations result(no improv)</li>
+          <li class='agent-equipment ProtectiveGear'>Protective Gear - repeat all dice throw</li>
+        </ul>
+        <ul class='equipment-tier electronics'>
+          <li class='agent-equipment HandyKit'>Handy Kit - +1 electronics die</li>
+          <li class='agent-equipment CustomTools'>Custom Tools - 1 any electronics result(no improv)</li>
+          <li class='agent-equipment WPAS'>WPAS - hide one dice result for later</li>
+        </ul>
+        <ul>
+          <li class='agent-equipment FakePassports'>Fake passports - +1 stealth die</li>
+          <li class='agent-equipment DrugsControl'>Drugs Control - 1 any stealth result(no improv)</li>
+          <li class='agent-equipment DCP'>DCP - alternative mission end, only reputation is lost</li>
+        </ul>`,
+      missionProgressHtml: `<p>
+        In mission processing six-sided dice mechanism is used. Display of
+        probabilities of success is paid feature.
+        You go through the mission sequence by assigning agent from agents on
+        mission to each task and then proceed with action.
+        If the throw is not successfull you may try again after sacrificing one
+        of dies, which of course lowers your chances, to the
+        point where you have no chance of succeeding.
+        Desirable result is of course fulfillment of all tasks, in which case is
+        mission successfull.
+        Certain agent's equipments have different effects on the flow of mission,
+        but to that later.
+      </p>
       <hr />
       <ul class='mission-progress'><h2>Mission progress</h2>
-        <li class='mission-progress'><em>drag&drop to equip your agents for the mission in armory </em></li>
-        <li class='mission-progress'><em>Hit mission card to select it in briefing</em></li>
-        <li class='mission-progress'><em>After selecting mission assign the agents by drag&drop to it</em></li>
-        <li class='mission-progress'><em>Task completion is check againt agent's actions, actions depend on skill and luck</em></li>
+        <li class='mission-progress'><em>drag&drop to equip your agents for the mission in Armory </em></li>
+        <li class='mission-progress'><em>Hit mission card to select it in Briefing</em></li>
+        <li class='mission-progress'><em>After Selecting Mission assign the agents by drag&drop to it</em></li>
+        <li class='mission-progress'><em>Task completion is check against agent's actions, actions depend on skill and luck</em></li>
         <li class='mission-progress'><em>Down on your luck? Try clicking the equipment, maybe it'll do something.</em></li>
         <li class='mission-progress'><em>Trashing your dice will enable rolling again.</em></li>
         <li class='mission-progress'><em>DCP will save your ass, if things don't go as planned.</em></li>
@@ -325,7 +371,8 @@ export default {
         <li class='mission-progress'><em>MissionSuccess? Congrats, pick up your price and do another!</em></li>
       </ul>
       `,
-      overviewHtml: `<p>
+      overviewHtml: `<h2>Introduction</h2>
+      <p>
         Does a man choose his profession, or does profession choose a man? I chose not to be a - what? - Being a villain?
         Villain might be too of a strong word, let's say I am not the one to be bound by conventions about what is good and evil,
         and that I do things my way.
@@ -347,9 +394,12 @@ export default {
         and start asking for aliments. What have you been doing so far? Oh, I was a head of secret
         organization doing this here and that over there - Al Pacino style, fully visualizing it right now ...
       </p>`,
-      segmentsHtml: `<p>In GreyZone Player is a head of illegal organization, which provides all kinds of - services, that are usually
-      reserved for state organizations, but not being a mafia, though occasionally cooperating w/ police and mafias alike.
-      If you watch BlackList show - you pretty much have the idea.</p>
+      segmentsHtml: `<p>
+        In GreyZone Player is a head of illegal organization, which provides all
+        kinds of - services, that are usually reserved for state organizations,
+        but not being a mafia, though occasionally cooperating w/ police and mafias alike.
+        If you watch BlackList show - you pretty much have the idea.
+      </p>
       <hr />
       <ul>
         <h2>Game segments</h2>
@@ -359,15 +409,19 @@ export default {
         <li class='game-segments'>Briefing - you can deploy your agents on the mission here and view current missions</li>
         <li class='game-segments'>Mission - the main deal of game magic happens here, your success is made or lost</li>
       </ul>`,
-      terminologyHtml: `<p>Player directs his organization in tactical and strategical sense
-      by managing its resources and staying hidden from official probing, while upholding respectable reputation.
-      To fullfill this objective player assings his agents to missions who carry out his orders.
+      terminologyHtml: `<p>
+        Player directs his organization in tactical and strategical sense
+        by managing its resources and staying hidden from official probing,
+        while upholding respectable reputation.
+      </p>
+      <p>
+        To fullfill this objective player assings his agents to missions who carry out his orders.
       </p>
       <hr />
       <ul class='terminology'><h2>Terminology</h2>
         <li class='terminology'><em>Reputation - good or bad, used to measure the *quality* of your - service.</em></li>
         <li class='terminology'><em>Obscurity - the nature of your enterprise requires you to be unnoticed by traditional security forces and to avoid them.</em></li>
-        <li class='terminology'><em>Mise - consists of tasks, which constists of agent action requirements. Rewards are given if successfully carried out, else losses are booked.</em></li>
+        <li class='terminology'><em>Mission - consists of tasks, which constists of agent action requirements. Rewards are given if successfully carried out, else losses are booked.</em></li>
         <li class='terminology'><em>Agent - professional or amateur, the guy who does heavy lifting, risking his neck in the action</em></li>
         <li class='terminology'><em>Cash - dollar or ruble, yuan or peseta cash provides you with necessary liquidity.</em></li>
         <li class='terminology'><em>Contacts - having the links to people in right places is vital, for your operation.</em></li>
