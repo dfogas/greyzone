@@ -50,6 +50,7 @@ class MissionsWindow extends Component {
         <MissionToAccept
           missiontoaccept={missiontoaccept}
           />
+        <br />
         {!!missiontoaccept &&
           cost[0] + '$ and ' + cost[1] + 'contacts'}
         <br />

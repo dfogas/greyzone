@@ -5,6 +5,10 @@ export function acceptMission(mission) {
   dispatch(acceptMission, {message: mission});
 }
 
+export function buyContacts() {
+  dispatch(buyContacts, {});
+}
+
 export function confirmhire(agent, price) {
   dispatch(confirmhire, {agent, price});
 }
@@ -19,6 +23,7 @@ export function hire(agent, price) {
 
 setToString('dashboard', {
   acceptMission,
+  buyContacts,
   confirmhire,
   confirmmissionaccept,
   hire

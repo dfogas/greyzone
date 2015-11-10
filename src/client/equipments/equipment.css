@@ -65,7 +65,7 @@
   left: 50px;
   width: 80px;
   height: 80px;
-  background: url('../../../assets/img/equipments/equipment_icon_256.jpg');
+  background: url('../../../assets/img/equipments/equipment_icon_256.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -103,7 +103,7 @@
 }
 
 #DrugsControl > .equipment-stock-item {
-  background: url('../../../assets/img/equipments/drug_control_256.png');
+  background: url('../../../assets/img/equipments/drugs_control_256.png');
   background-color: gold;
   background-size: 100% 100%;
   background-repeat: no-repeat;

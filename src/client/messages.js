@@ -83,10 +83,10 @@ export default {
         <li class='list-of-actions hide'><em>hide - zamést stopy a schovat se</em></li>
         <li class='list-of-actions infiltrate'><em>infiltrate - získání důvěry a pak její zrazení</em></li>
         <li class='list-of-actions puppet'><em>puppet - využití slabostí ostatních k jejich manipulaci</em></li>
-        <li class='list-of-actions'><em>improv - někdy je třeba umět improvizovat</em></li>
-        <li class='list-of-actions'><em>fail - jednoduše se to nepovedlo</em></li>
+        <li class='list-of-actions improvAll'><em>improv - někdy je třeba umět improvizovat</em></li>
+        <li class='list-of-actions failAll'><em>fail - jednoduše se to nepovedlo</em></li>
       </ul>
-      <ul class='list-of-skills'>Dovednosti agentů
+      <ul class='list-of-skills'><h3>Dovednosti agentů</h3>
         <li class='agent-skills operations'>
           operations - akce jsou pursuit, hit, close combat, každá s 1/6 pravděpodobnosti
         </li>
@@ -98,7 +98,8 @@ export default {
         </li>
       </ul>
       <p>Každá kostka má 2/6 pravděpodobnost, že na ni padne improvizace příslušné dovednosti a 1/6 pravděpodobnost neúspěchu.</p>`,
-      equipmentsHtml: `<ul>Vybavení agentů pro mise
+      equipmentsHtml: `<h2>Seznam vybavení na misi pro agenty</h2>
+      <ul>
         <ul class='equipment-tier operations'>
           <li class='agent-equipment HiredGun'>Nájemná puška - +1 kostka operations</li>
           <li class='agent-equipment HeavyArms'>Těžké zbraně - 1 libovolná akce operations (ne improv)</li>
@@ -114,6 +115,7 @@ export default {
           <li class='agent-equipment DrugsControl'>Útočné drogy - 1 libovolná akce stealth (ne improv)</li>
           <li class='agent-equipment DCP'>ÚP - alternativní ukončení mise, ztrať pouze reputaci</li>
         </ul>
+      </ul>
       `,
       missionProgressHtml: `<p>
         Během průběhu mise je používán mechanismus šestistěnné kostky. Zobrazení pravděpodobnosti úspěchu hodu je placené.
@@ -319,16 +321,19 @@ export default {
         <li class='list-of-actions hide'><em>hide - remain unseen, go undetected, be the ghost</em></li>
         <li class='list-of-actions infiltrate'><em>infiltrate - the group, earn their trust and betray them</em></li>
         <li class='list-of-actions puppet'><em>puppet - exploit somebody gullible enough to trust you</em></li>
-        <li class='list-of-actions'><em>improv - comes in all three blends...</em></li>
-        <li class='list-of-actions'><em>fail - about 1/6 of times you simply fail ...</em></li>
+        <li class='list-of-actions improvAll'><em>improv - comes in all three blends...</em></li>
+        <li class='list-of-actions failAll'><em>fail - about 1/6 of times you simply fail ...</em></li>
       </ul>
-      <ul class='list-of-skills'>Agent Skills
-        <li>operations - actions are pursuit, hit, close combat, each with 1/6 probability</li>
-        <li>electronics - actions are decipher, tap, monitor, each with 1/6 probability</li>
-        <li>stealth - actions are hide, infiltrate, puppet, each with 1/6 probability</li>
+      <ul class='list-of-skills'><h3>Agent Skills</h3>
+        <li class='agent-skills operations'>operations - actions are pursuit, hit, close combat, each with 1/6 probability</li>
+        <li class='agent-skills electronics'>electronics - actions are decipher, tap, monitor, each with 1/6 probability</li>
+        <li class='agent-skills stealth'>stealth - actions are hide, infiltrate, puppet, each with 1/6 probability</li>
       </ul>
-      <p>Each dice has 2/6 probability of improv result of appropriate skill and 1/6 probability of fail result.</p>`,
-      equipmentsHtml: `<ul>Agent's equipments for mission
+      <p>
+        Each dice has 2/6 probability of improv result of appropriate skill and 1/6 probability of fail result.
+      </p>`,
+      equipmentsHtml: `<h2>List of agents equipments for missions</h2>
+      <ul>
         <ul class='equipment-tier operations'>
           <li class='agent-equipment HiredGun'>Hired Gun - +1 operations die</li>
           <li class='agent-equipment HeavyArms'>Heavy Arms - 1 any operations result(no improv)</li>
@@ -343,7 +348,8 @@ export default {
           <li class='agent-equipment FakePassports'>Fake passports - +1 stealth die</li>
           <li class='agent-equipment DrugsControl'>Drugs Control - 1 any stealth result(no improv)</li>
           <li class='agent-equipment DCP'>DCP - alternative mission end, only reputation is lost</li>
-        </ul>`,
+        </ul>
+      </ul>`,
       missionProgressHtml: `<p>
         In mission processing six-sided dice mechanism is used. Display of
         probabilities of success is paid feature.

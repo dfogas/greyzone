@@ -16,11 +16,11 @@ class AgentsKia extends Component {
     });
 
     return (
-      <div id='AgentsKia'>
+      <ul id='AgentsKia'>
         Agents memorial wall
         <br />
         {kialist}
-      </div>
+      </ul>
     );
   }
 }

@@ -4,9 +4,11 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 // static components reusable
-import Logout from '../auth/logout.react';
+
+import PlayersWindow from './playerswindow/playerswindow.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
 import MissionsWindow from './missionswindow/missionswindow.react';
+import CountriesWindow from './countrieswindow/countrieswindow.react';
 
 class CommandDashboardScreen extends Component {
 
@@ -20,40 +22,14 @@ class CommandDashboardScreen extends Component {
     const missiontoaccept = jsonapi.get('missiontoaccept');
     const countries = jsonapi.get('countries');
 
-    let countriesstats = countries.map(country => {
-      return (
-        <p
-          className='country-stat'
-        >
-          <span className='country-name-dashboard'>{country.get('name')}&nbsp;</span>
-          <span className='country-stat-reputation-dashboard'>Reputation: { country.get('reputation')}&nbsp;</span>
-          <span className='country-stat-obscurity-dashboard'>Obscurity: {country.get('obscurity')}&nbsp;</span>
-        </p>
-      );
-    });
-
     return (
       <div id='CommandDashboardScreen'>
         <div id='DashboardContent'>
-          <div id='PlayerStrip'>
-            <div id='PlayerPicture'>
-            </div>
-            <div id='PlayerLabel'>
-              <div id='PlayerName'>
-                {name}
-              </div>
-              <Logout />
-            </div>
-            <div id='PlayerLiquidResources'>
-              <span>
-                Cash: {gameCash}
-              </span>
-              <br />
-              <span>
-                Contacts: {gameContacts}
-              </span>
-            </div>
-          </div>
+          <PlayersWindow
+            gameCash={gameCash}
+            gameContacts={gameContacts}
+            name={name}
+            />
           <MissionsWindow
             countries={countries}
             missiontoaccept={missiontoaccept}
@@ -62,9 +38,9 @@ class CommandDashboardScreen extends Component {
             agentforhire={agentforhire}
             agents={agents}
             />
-          <div id='CountryStatsOverview'>
-            {countriesstats}
-          </div>
+          <CountriesWindow
+            countries={jsonapi.get('countries')}
+            />
         </div>
       </div>
     );

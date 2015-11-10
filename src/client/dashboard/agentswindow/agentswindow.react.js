@@ -49,7 +49,7 @@ class AgentsWindow extends Component {
               />}
           {!!agentforhire &&
             <div className='agent-for-hire-price'>
-              Hiring Cost: {price}$
+              Hiring Cost: {price.formatMoney(0, '.', ',')}$
             </div>
           }
           {!!agentforhire &&

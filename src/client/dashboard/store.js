@@ -17,6 +17,13 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === dashboardActions.buyContacts)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('gameCash', val => val - 1000)
+        .update('gameContacts', val => val + 10);
+    });
+
   if (action === dashboardActions.confirmhire) {
     const agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
