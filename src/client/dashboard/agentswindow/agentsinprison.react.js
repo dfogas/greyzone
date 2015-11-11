@@ -11,6 +11,10 @@ class AgentsInPrison extends Component {
       return (
         <li className='agent-in-prison'>
           {'Agent ' + agentinprison.get('name')}
+          <button
+            children={'Free'}
+            >
+          </button>
         </li>
       );
     });

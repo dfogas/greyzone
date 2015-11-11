@@ -6,7 +6,8 @@ import {msg} from '../intl/store';
 
 class NavTab extends Component {
   render() {
-    const {locales} = this.props;
+    const {locales, viewer} = this.props;
+    const isLoggedIn = !!this.props.viewer;
     return (
       <div className='nav-tab'>
         <ul>

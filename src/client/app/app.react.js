@@ -4,14 +4,15 @@
 import './app.styl';
 import * as state from '../state';
 import Component from '../components/component.react';
-import Footer from './footer.react';
-import Menu from './menu.react';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
-import NavTab from './navtab.react';
-import LanguageSelect from './language.select.react';
+import {Link} from 'react-router';
+import {msg} from '../intl/store';
 import 'isomorphic-fetch';
+
+import Footer from './footer.react';
+import Menu from './menu.react';
 
 // Remember to import all app stores here.
 import '../intl/store';
@@ -79,8 +80,10 @@ class App extends Component {
     return (
       <div className="page">
         {/*<Menu viewer={this.state.viewer} />*/}
-        <NavTab locales={this.state.i18n.get('locales')} />
-        <LanguageSelect i18n={this.state.i18n} />
+        <Menu
+          locales={this.state.i18n.get('locales')}
+          {...this.state}
+          />
         <RouteHandler {...this.state} />
         {/*<Footer />*/}
       </div>

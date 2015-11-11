@@ -32,7 +32,11 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(Array(0)))
         .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], immutable.fromJS(Array(0)))
         .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
-        .updateIn(['activemission', 'agentsonmission', agentsonmission.indexOf(agentsonmission.find(agentonmission => agentonmission.get('name') === agentontask.get('name'))), 'experience'], val => val + 15)
+        .updateIn(['activemission'
+          , 'agentsonmission'
+          , agentsonmission.indexOf(agentsonmission.find(agentonmission => agentonmission.get('name') === agentontask.get('name')))
+          , 'experience'],
+            val => val + 15)
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
     });
@@ -48,15 +52,18 @@ export const dispatchToken = register(({action, data}) => {
 
     const activemission = jsonapiCursor(['activemission']);
     const missions = jsonapiCursor(['missions']);
-    var completedmission = missions.indexOf(missions.find(mission => mission.get('title') === activemission.get('title')));
+    const completedmission = missions.indexOf(missions.find(mission => mission.get('title') === activemission.get('title')));
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val - results.obscurity : val)
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val - results.reputation : val)
+        .updateIn(['countries'
+          , countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname))
+          , 'reputation'],
+            val => results.reputation ? val - results.reputation : val)
         .setIn(['missions'], missions.remove(completedmission)) // set to default mission and clear mission from mission roster
-        .setIn(['agents'], agents.push(agentontask).concat(agentsonmission)) // agents return to command center
         .setIn(['activemission'], immutable.fromJS(defaultActiveMission)) // and clear activemission as well
+        .setIn(['agents'], agents.push(agentontask).concat(agentsonmission)) // agents return to command center
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
         .setIn(['activemission', 'started'], false);
     });
   }
@@ -72,13 +79,20 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val - results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val - results.gameContacts : val)
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val - results.obscurity : val)
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val - results.reputation : val)
-        // .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
-        // .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false)
+        .updateIn(['countries',
+          countries.indexOf(
+            countries
+              .find(country => country.get('name') === activemissioncountryname)),
+                'obscurity'],
+                  val => results.obscurity ? val - results.obscurity : val)
+        .updateIn(['countries'
+          , countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname))
+          , 'reputation'],
+            val => results.reputation ? val - results.reputation : val)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
-        .setIn(['activemission', 'started'], false);
+        .setIn(['activemission', 'started'], false)
+        .setIn(['activemission', 'result'], 'fail');
     });
   }
 
@@ -91,9 +105,16 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'reputation'], val => results.reputation ? val + results.reputation : val)
-        .updateIn(['countries', countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)), 'obscurity'], val => results.obscurity ? val + results.obscurity : val)
-        .setIn(['activemission', 'started'], false);
+        .updateIn(['countries'
+          , countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname))
+          , 'reputation'],
+            val => results.reputation ? val + results.reputation : val)
+        .updateIn(['countries'
+          , countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname))
+          , 'obscurity'],
+            val => results.obscurity ? val + results.obscurity : val)
+        .setIn(['activemission', 'started'], false)
+        .setIn(['activemission', 'result'], 'success');
     });
   }
 
@@ -109,7 +130,8 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['agents'], agents.concat(agentsonmission))
         .setIn(['missions'], missions.remove(completedmission))
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission));
+        .setIn(['activemission'], immutable.fromJS(defaultActiveMission))
+        .setIn(['activemission', 'result'], null);
     });
   }
 
@@ -121,8 +143,10 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], results.agentImprisoned ? true : false)
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], results.agentKilled ? true : false);
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'],
+          results.agentImprisoned ? true : false)
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'],
+          results.agentKilled ? true : false);
     });
   }
 

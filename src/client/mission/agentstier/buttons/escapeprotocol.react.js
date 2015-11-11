@@ -13,7 +13,6 @@ class EscapeProtocol extends Component {
   }
 
   render() {
-    const {activemission} = this.props;
     return (
       <input
         className='escape-protocol'

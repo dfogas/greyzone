@@ -1,7 +1,8 @@
 import Component from '../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 
-class CountryWindow extends Component {
+class CountriesWindow extends Component {
   render() {
     const {countries} = this.props;
     const countriesstats = countries.map(country => {
@@ -33,4 +34,8 @@ class CountryWindow extends Component {
   }
 }
 
-export default CountryWindow;
+CountriesWindow.propTypes = {
+  countries: React.PropTypes.instanceOf(immutable.List)
+};
+
+export default CountriesWindow;

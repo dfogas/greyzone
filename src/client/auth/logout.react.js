@@ -4,16 +4,15 @@ import React from 'react';
 import {msg} from '../intl/store';
 
 export default class Logout extends Component {
-
   render() {
     return (
-      <div className="logout">
+      <div className='logout'>
         <button
-          children={msg('auth.logout.button')}
-          onClick={actions.logout}
-        />
+          className='logout-button'
+          onClick={actions.logout}>
+          {msg('auth.logout.button')}
+        </button>
       </div>
     );
   }
-
 }

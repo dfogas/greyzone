@@ -11,7 +11,6 @@ class LanguageSelect extends Component {
   }
 
   render() {
-    const {i18n} = this.props;
     var options = [
       {value: 'en', label: 'English'},
       {value: 'cz', label: 'Czech'}

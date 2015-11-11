@@ -8,7 +8,6 @@ import {msg} from '../intl/store';
 
 class Briefing extends Component {
   render() {
-    const {viewer: {email}} = this.props;
     const {jsonapi, pendingActions} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
 

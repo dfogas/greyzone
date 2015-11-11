@@ -64,7 +64,6 @@ export const dispatchToken = register(({action, data}) => {
   if (action === actions.remove) {
     let dicesthrown = jsonapiCursor(['activemission', 'mission', 'currenttask', 'dicesthrown']);
     const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
-    console.log(data);
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.remove(data.diceindex))
