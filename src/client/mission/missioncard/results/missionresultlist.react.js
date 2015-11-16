@@ -11,7 +11,6 @@ class MissionResultList extends Component {
     const {activemissiontitle, losses, rewards} = this.props;
     const isDefaultMission = activemissiontitle === 'Default Mission';
     let losseskeys, rewardskeys;
-    console.log('Losses: ' + losses, 'Rewards: ' + rewards);
     if (losses)
       losseskeys = Object.keys(losses.toJS());
     if (rewards)
@@ -64,11 +63,13 @@ class MissionResultList extends Component {
 }
 
 MissionResultList.propTypes = {
+  activemissiontitle: React.PropTypes.string,
   isActual: React.PropTypes.bool,
   isBriefing: React.PropTypes.bool,
   isLoss: React.PropTypes.bool,
   isReward: React.PropTypes.bool,
   isSpecial: React.PropTypes.bool,
+  isTask: React.PropTypes.bool,
   losses: React.PropTypes.instanceOf(immutable.Map),
   rewards: React.PropTypes.instanceOf(immutable.Map)
 };

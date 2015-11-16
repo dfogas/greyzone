@@ -12,7 +12,7 @@ class NewPost extends Component {
   }
 
   render() {
-    return(
+    return (
       <input
         autoFocus
         className="new-post"

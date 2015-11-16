@@ -1,12 +1,11 @@
+/*
+  Dumb Component
+*/
 import './agentstatcounter.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 
 class AgentStatCounter extends Component {
-  getStat() {
-    const {skill, skillname} = this.props;
-  }
-
   render() {
     const {skill, skillname} = this.props;
 
@@ -16,7 +15,6 @@ class AgentStatCounter extends Component {
     return (
       <div
         className={'agent-stat-counter ' + skillname + classString }
-        onClick={this.getStat.bind(this)}
         >
         {skill}
       </div>

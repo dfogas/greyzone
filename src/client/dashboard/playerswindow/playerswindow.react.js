@@ -40,4 +40,10 @@ class PlayersWindow extends Component {
   }
 }
 
+PlayersWindow.propTypes = {
+  gameCash: React.PropTypes.number,
+  gameContacts: React.PropTypes.number,
+  name: React.PropTypes.string
+};
+
 export default PlayersWindow;

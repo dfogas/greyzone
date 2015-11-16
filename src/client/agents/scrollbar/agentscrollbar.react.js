@@ -49,7 +49,7 @@ class AgentScrollBar extends Component {
   }
 
   render() {
-    const {agents, jsonapi, style} = this.props;
+    const {agents, style} = this.props;
 
     let classString = '';
     let isMission = false;

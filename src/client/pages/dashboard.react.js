@@ -9,7 +9,7 @@ import {msg} from '../intl/store';
 
 class Dashboard extends Component {
   render() {
-    const {viewer: {email}} = this.props;
+    // const {viewer: {email}} = this.props;
     const {jsonapi, pendingActions} = this.props;
 
     return (

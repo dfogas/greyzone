@@ -1,5 +1,6 @@
 import Component from '../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 
 import Post from './post.react';
 
@@ -19,5 +20,9 @@ class PostsList extends Component {
     );
   }
 }
+
+PostsList.propTypes = {
+  posts: React.PropTypes.instanceOf(immutable.List)
+};
 
 export default PostsList;

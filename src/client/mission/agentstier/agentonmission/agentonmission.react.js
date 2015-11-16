@@ -9,7 +9,7 @@ import immutable from 'immutable';
 class AgentOnMission extends Component {
 
   drop(ev) {
-    const {activemission, agents} = this.props;
+    const {activemission} = this.props;
     const agentsonmission = activemission.get('agentsonmission');
     ev.preventDefault();
     var data = ev.dataTransfer.getData('text');

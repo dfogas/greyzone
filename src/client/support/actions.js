@@ -1,6 +1,5 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import immutable from 'immutable';
 
 export const MAX_POST_TEXT_LENGTH = 322;
 

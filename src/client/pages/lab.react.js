@@ -1,6 +1,5 @@
 import Component from '../components/component.react';
 import React from 'react';
-import {msg} from '../intl/store';
 
 import DocumentTitle from 'react-document-title';
 import Laboratory from '../lab/laboratory.react';

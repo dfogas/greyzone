@@ -4,11 +4,14 @@ import React from 'react';
 class Post extends Component {
   render() {
     const {post} = this.props;
-    console.log('Post is: ' + post);
     return (
       <li>{post}<hr /></li>
     );
   }
 }
+
+Post.propTypes = {
+  post: React.PropTypes.string
+};
 
 export default Post;

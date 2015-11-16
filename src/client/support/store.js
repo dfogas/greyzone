@@ -2,7 +2,6 @@ import * as postsActions from './actions';
 import Post from './post';
 import {register} from '../dispatcher';
 import {postsCursor} from '../state';
-import {getRandomString} from '../lib/getrandomstring';
 
 export const dispatchToken = register(({action, data}) => {
   if (action === postsActions.addPost)

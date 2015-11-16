@@ -7,7 +7,7 @@ import immutable from 'immutable';
 
 class AgentAssignment extends Component {
   drop(ev) {
-    let {agents} = this.props;
+    const {agents} = this.props;
     ev.preventDefault();
     var data = ev.dataTransfer.getData('text');
     // ev.target.appendChild(document.getElementById(data));
@@ -20,7 +20,7 @@ class AgentAssignment extends Component {
   }
 
   render() {
-    const {id, agents, activemission} = this.props;
+    const {id, activemission} = this.props;
     let agentonmission = activemission.getIn(['agentsonmission', id - 1]) || null;
 
     return (

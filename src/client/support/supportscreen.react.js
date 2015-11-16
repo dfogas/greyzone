@@ -1,5 +1,6 @@
 import './supportscreen.styl';
 import Component from '../components/component.react';
+import immutable from 'immutable';
 import React from 'react';
 
 import NewPost from './newpost.react';
@@ -16,5 +17,9 @@ class SupportScreen extends Component {
     );
   }
 }
+
+SupportScreen.propTypes = {
+  posts: React.PropTypes.instanceOf(immutable.List)
+};
 
 export default SupportScreen;

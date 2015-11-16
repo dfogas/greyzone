@@ -16,7 +16,7 @@ import MissionTestButton from './buttons/missiontestbutton.react';
 class AgentsTier extends Component {
 
   render() {
-    const {agents, jsonapi, pendingActions} = this.props;
+    const {jsonapi, pendingActions} = this.props;
     const agentsonmission = jsonapi.getIn(['activemission', 'agentsonmission']);
     const activemission = jsonapi.get('activemission');
     const damageprotocol = jsonapi.getIn(['activemission', 'equipmenteffects', 'damageprotocol']);
@@ -39,7 +39,6 @@ class AgentsTier extends Component {
           />
         <AgentOnMission
           activemission={activemission}
-          agents={agents}
           />
         <MissionTestButton />
         {missionResult &&

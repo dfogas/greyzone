@@ -4,10 +4,8 @@ import React from 'react';
 class CommentForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.refs.title.value);
-    console.log(this.refs.text.value);
     this.refs.title.value = '';
-    this.refs.text.value='';
+    this.refs.text.value = '';
     return;
   }
 

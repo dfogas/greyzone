@@ -4,7 +4,6 @@
 import './agentscrollbarnavbutton.styl';
 import * as scrollbarActions from './actions';
 import Component from '../../components/component.react.js';
-import immutable from 'immutable';
 import React from 'react';
 import classnames from 'classnames';
 
@@ -18,8 +17,7 @@ class AgentScrollBarNavButton extends Component {
   }
 
   render() {
-    const {pendingActions} = this.props,
-      orientation = this.props.data.orientation;
+    const orientation = this.props.data.orientation;
 
     return (
       <div
@@ -32,8 +30,7 @@ class AgentScrollBarNavButton extends Component {
 }
 
 AgentScrollBarNavButton.propTypes = {
-  data: React.PropTypes.object,
-  pendingActions: React.PropTypes.instanceOf(immutable.Map)
+  data: React.PropTypes.object
 };
 
 export default AgentScrollBarNavButton;

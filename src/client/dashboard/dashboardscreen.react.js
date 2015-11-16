@@ -1,9 +1,10 @@
-// static components own
+/*
+  Dumb Component
+*/
 import './dashboard.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-// static components reusable
 
 import PlayersWindow from './playerswindow/playerswindow.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
@@ -11,35 +12,28 @@ import MissionsWindow from './missionswindow/missionswindow.react';
 import CountriesWindow from './countrieswindow/countrieswindow.react';
 
 class CommandDashboardScreen extends Component {
-
   render() {
-    const {jsonapi, pendingActions} = this.props;
-    const agentforhire = jsonapi.get('agentforhire');
-    const agents = jsonapi.get('agents');
-    const gameCash = jsonapi.get('gameCash');
-    const gameContacts = jsonapi.get('gameContacts');
-    const name = jsonapi.get('name');
-    const missiontoaccept = jsonapi.get('missiontoaccept');
+    const {jsonapi} = this.props;
     const countries = jsonapi.get('countries');
 
     return (
       <div id='CommandDashboardScreen'>
         <div id='DashboardContent'>
           <PlayersWindow
-            gameCash={gameCash}
-            gameContacts={gameContacts}
-            name={name}
+            gameCash={jsonapi.get('gameCash')}
+            gameContacts={jsonapi.get('gameContacts')}
+            name={jsonapi.get('name')}
             />
           <MissionsWindow
             countries={countries}
-            missiontoaccept={missiontoaccept}
+            missiontoaccept={jsonapi.get('missiontoaccept')}
             />
           <AgentsWindow
-            agentforhire={agentforhire}
-            agents={agents}
+            agentforhire={jsonapi.get('agentforhire')}
+            agents={jsonapi.get('agents')}
             />
           <CountriesWindow
-            countries={jsonapi.get('countries')}
+            countries={countries}
             />
         </div>
       </div>
@@ -48,8 +42,7 @@ class CommandDashboardScreen extends Component {
 }
 
 CommandDashboardScreen.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default CommandDashboardScreen;
