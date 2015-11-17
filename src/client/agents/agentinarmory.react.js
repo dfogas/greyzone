@@ -8,9 +8,8 @@ import immutable from 'immutable';
 class AgentInArmory extends Component {
 
   drop(ev) {
-    /*drop*/
     ev.preventDefault();
-    const {jsonapi, pendingActions} = this.props;
+    const {jsonapi} = this.props;
     const agents = jsonapi.get('agents');
     const agentinarmory = jsonapi.get('agentinarmory');
     var data = ev.dataTransfer.getData('text');
@@ -24,11 +23,14 @@ class AgentInArmory extends Component {
   }
 
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
 
     return (
-      <div id="AgentInArmory" onDragOver={this.allowDrop.bind(this)} onDrop={this.drop.bind(this)}>
+      <div
+        id="AgentInArmory"
+        onDragOver={this.allowDrop.bind(this)}
+        onDrop={this.drop.bind(this)}>
         {!!agentinarmory &&
           <AgentCard
             agent={agentinarmory}
@@ -42,8 +44,7 @@ class AgentInArmory extends Component {
 
 AgentInArmory.propTypes = {
   agents: React.PropTypes.instanceOf(immutable.List),
-  jsonapi: React.PropTypes.instanceOf(immutable.Map),
-  pendingActions: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentInArmory;

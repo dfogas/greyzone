@@ -12,7 +12,6 @@ class TaskTier extends Component {
   render() {
     const {jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
-    const completedtasks = jsonapi.getIn(['activemission', 'taskscompleted']);
     const tasks = activemission.get('tasks');
 
     var isMission = false;
@@ -23,7 +22,7 @@ class TaskTier extends Component {
         {tasks.map((task, i) => {
           return (
             <Task
-              isCurrent={completedtasks.size === i}
+              isCurrent={activemission.get('taskscompleted').size === i}
               isMission={isMission}
               task={task}
               />

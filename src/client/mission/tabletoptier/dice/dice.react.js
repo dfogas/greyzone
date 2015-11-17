@@ -4,27 +4,6 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
 
-// dnd
-import {DragSource} from 'react-dnd';
-import {ItemTypes} from '../../../lib/dnditemtypes';
-
-// Implements the drag source contract.
-const diceSource = {
-  beginDrag(props) {
-    return {
-      text: props.text
-    };
-  }
-};
-
-// Specifies the props to inject into your component.
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  };
-}
-
 class Dice extends Component {
   drag(ev) {
     const {diceindex, dicetype, value} = this.props;
@@ -32,15 +11,8 @@ class Dice extends Component {
   }
 
   render() {
-    // const {connectDragSource, dicetype, isDragging, value} = this.props;
     const {diceindex, dicetype, key, value} = this.props;
 
-      // <div
-      //   className={classnames('dice', dicetype, value)}
-      //   dicetype={dicetype}
-      //   style={{opacity: isDragging ? 0.5 : 1}}
-      //   value={value}
-      //   />
     return (
       <div
         className={classnames('dice', dicetype, value)}
@@ -56,11 +28,9 @@ class Dice extends Component {
 }
 
 Dice.propTypes = {
-  // connectDragSource: React.PropTypes.func.isRequired,
   diceindex: React.PropTypes.number.isRequired,
   dicetype: React.PropTypes.string.isRequired,
   key: React.PropTypes.string,
-  // isDragging: React.PropTypes.bool.isRequired,
   value: React.PropTypes.string.isRequired
 };
 

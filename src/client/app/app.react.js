@@ -7,11 +7,9 @@ import Component from '../components/component.react';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
-import {Link} from 'react-router';
-import {msg} from '../intl/store';
 import 'isomorphic-fetch';
 
-import Footer from './footer.react';
+// import Footer from './footer.react';
 import Menu from './menu.react';
 
 // Remember to import all app stores here.
@@ -25,10 +23,6 @@ import '../equipments/store';
 import '../mission/store';
 import '../users/store';
 import '../support/store';
-
-// DnD funcionality
-import {default as TouchBackend} from 'react-dnd-touch-backend';
-import {DragDropContext} from 'react-dnd';
 
 class App extends Component {
 
@@ -92,4 +86,4 @@ class App extends Component {
 
 }
 
-export default DragDropContext(TouchBackend)(App);
+export default App;

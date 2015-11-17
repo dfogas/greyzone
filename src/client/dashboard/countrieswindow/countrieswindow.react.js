@@ -4,14 +4,19 @@ import immutable from 'immutable';
 
 class CountriesWindow extends Component {
   render() {
-    const {countries} = this.props;
-    const countriesstats = countries.map(country => {
+    const countriesstats = this.props.countries.map(country => {
       return (
         <tbody>
           <tr className='country-stat'>
-            <td className='country-name-dashboard'>{country.get('name')}&nbsp;</td>
-            <td className='country-stat-reputation-dashboard'>{ country.get('reputation')}&nbsp;</td>
-            <td className='country-stat-obscurity-dashboard'>{country.get('obscurity')}&nbsp;</td>
+            <td className='country-name-dashboard'>
+              {country.get('name')}&nbsp;
+            </td>
+            <td className='country-stat-reputation-dashboard'>
+              {country.get('reputation')}&nbsp;
+            </td>
+            <td className='country-stat-obscurity-dashboard'>
+              {country.get('obscurity')}&nbsp;
+            </td>
           </tr>
         </tbody>
       );

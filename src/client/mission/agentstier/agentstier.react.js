@@ -17,22 +17,16 @@ class AgentsTier extends Component {
 
   render() {
     const {jsonapi, pendingActions} = this.props;
-    const agentsonmission = jsonapi.getIn(['activemission', 'agentsonmission']);
     const activemission = jsonapi.get('activemission');
-    const damageprotocol = jsonapi.getIn(['activemission', 'equipmenteffects', 'damageprotocol']);
     const activetasks = jsonapi.getIn(['activemission', 'tasks']);
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
     const isMissionSuccess = taskscompleted.size === activetasks.size && taskscompleted.size !== 0;
-    const LockedDice = jsonapi.getIn(['activemission', 'equipmenteffects', 'lockeddice']);
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
-    const missionResult = activemission.get('result');
-
-    // const isMissionFinished = activetasks.size === taskscompleted.size;
 
     return (
       <div id='AgentsTier'>
         <AgentScrollBarWithNavButtons
-          agents={agentsonmission}
+          agents={activemission.get('agentsonmission')}
           isMission={true}
           jsonapi={jsonapi}
           pendingActions={pendingActions}
@@ -41,15 +35,15 @@ class AgentsTier extends Component {
           activemission={activemission}
           />
         <MissionTestButton />
-        {missionResult &&
+        {activemission.get('result') &&
           <MissionEndButton activemission={activemission} />}
         {
           <ActionChoose activemission={activemission} />}
-        {LockedDice &&
+        {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
           <LockedDiceContainer activemission={activemission} />}
         {isMissionSuccess && missionStarted &&
           <SuccessButton activemission={activemission} />}
-        {damageprotocol && missionStarted &&
+        {activemission.getIn(['equipmenteffects', 'damageprotocol']) && missionStarted &&
           <EscapeProtocol activemission={activemission} />}
         {!isMissionSuccess && missionStarted &&
           <EscapeButton activemission={activemission} />}

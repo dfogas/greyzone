@@ -23,7 +23,13 @@ class ActualMissionCard extends Component {
 
     let assignments = [];
     for (let i = 1; i <= agentlimit; i += 1)
-      assignments.push(<AgentAssignment activemission={activemission} agents={agents} id={i} />);
+      assignments.push(
+        <AgentAssignment
+          activemission={activemission}
+          agentindex={i}
+          agents={agents}
+          />
+      );
 
     const actualmissiontasks = tasks.map((task, i) => {
       return (

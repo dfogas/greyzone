@@ -6,20 +6,27 @@ import {msg} from '../intl/store';
 
 class NavTab extends Component {
   render() {
-    const {locales, viewer} = this.props;
+    const {viewer} = this.props;
     const isLoggedIn = !!this.props.viewer;
     return (
       <div className='nav-tab'>
         <ul>
           <li><Link to='command'>{msg('menu.command')}</Link></li>
           &nbsp;|&nbsp;
-          <li><Link to='armory'>{msg('menu.armory')}</Link></li>
+          {isLoggedIn &&
+            <li><Link to='armory'>{msg('menu.armory')}</Link></li>
+          }
           &nbsp;|&nbsp;
-          <li><Link to='briefing'>{msg('menu.briefing')}</Link></li>
+          {isLoggedIn &&
+            <li><Link to='briefing'>{msg('menu.briefing')}</Link></li>}
           &nbsp;|&nbsp;
-          <li><Link to='dashboard'>{msg('menu.dashboard')}</Link></li>
+          {isLoggedIn &&
+            <li><Link to='dashboard'>{msg('menu.dashboard')}</Link></li>
+          }
           &nbsp;|&nbsp;
-          <li><Link to='mission'>{msg('menu.mission')}</Link></li>
+          {isLoggedIn &&
+            <li><Link to='mission'>{msg('menu.mission')}</Link></li>
+          }
           &nbsp;|&nbsp;
           <li><Link to='help'>{msg('menu.help')}</Link></li>
           &nbsp;|&nbsp;
@@ -29,5 +36,9 @@ class NavTab extends Component {
     );
   }
 }
+
+NavTab.propTypes = {
+  viewer: React.PropTypes.object
+};
 
 export default NavTab;

@@ -17,8 +17,8 @@ class LanguageSelect extends Component {
     ];
     return (
       <DropDown
-        options={options}
         onChange={this.languageSelect.bind(this)}
+        options={options}
         placeholder='Select language'
       />
     );

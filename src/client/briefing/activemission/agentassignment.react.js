@@ -10,7 +10,6 @@ class AgentAssignment extends Component {
     const {agents} = this.props;
     ev.preventDefault();
     var data = ev.dataTransfer.getData('text');
-    // ev.target.appendChild(document.getElementById(data));
 
     actions.assignMission(agents.find(agent => agent.get('name') === data));
   }
@@ -20,13 +19,13 @@ class AgentAssignment extends Component {
   }
 
   render() {
-    const {id, activemission} = this.props;
-    let agentonmission = activemission.getIn(['agentsonmission', id - 1]) || null;
+    const {activemission, agentindex} = this.props;
+    const agentonmission = activemission.getIn(['agentsonmission', agentindex - 1]) || null;
 
     return (
       <div
         className='agent-assignment'
-        id={'AgentAssignment' + id}
+        id={'AgentAssignment' + agentindex}
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
@@ -39,8 +38,8 @@ class AgentAssignment extends Component {
 
 AgentAssignment.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  agents: React.PropTypes.instanceOf(immutable.List),
-  id:  React.PropTypes.number
+  agentindex: React.PropTypes.number,
+  agents: React.PropTypes.instanceOf(immutable.List)
 };
 
 export default AgentAssignment;

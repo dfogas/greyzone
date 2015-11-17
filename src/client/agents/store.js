@@ -34,7 +34,6 @@ export const dispatchToken = register(({action, data}) => {
     const currenttask = jsonapiCursor(['activemission', 'tasks', currentindex]);
     let actiontypes = [];
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    console.log(agentontask);
 
     if (currenttask)
       actiontypes = currenttask.toSeq().map(action => action.get('type'), actiontypes).toArray();
@@ -55,7 +54,6 @@ export const dispatchToken = register(({action, data}) => {
     if (taskhasStealth > -1)
       for (i = 0; i < agentontask.get('stealthSkill'); i += 1)
         remdices.push('stealth');
-    console.log(remdices);
 
     jsonapiCursor(jsonapi => {
       return jsonapi
