@@ -24,6 +24,9 @@ import '../mission/store';
 import '../users/store';
 import '../support/store';
 
+//libs
+import '../lib/decimalrounding';
+
 class App extends Component {
 
   constructor(props) {

@@ -17,8 +17,12 @@ export function scrollRight() {
   const jsonapi = jsonapiCursor();
   const agentsbstyle = jsonapi.getIn(['componentsstates', 0, 'componentstyle', 'left']);
   const agentscount = jsonapi.get('agents').size;
+  // const agentsonmissioncount = jsonapi.getIn(['activemission', 'agentsonmission'])
+  const missionstarted = jsonapi.getIn(['activemission', 'started']);
 
-  if (agentsbstyle > -((agentscount - 3) * 265))
+  if (missionstarted)
+    dispatch(scrollRight, {});
+  else if (agentsbstyle > -((agentscount - 3) * 265))
     dispatch(scrollRight, {});
   else
     return;

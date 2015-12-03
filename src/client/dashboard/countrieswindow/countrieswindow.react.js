@@ -16,7 +16,7 @@ class CountriesWindow extends Component {
               {country.get('reputation')}&nbsp;
             </td>
             <td className='country-stat-obscurity-dashboard'>
-              {country.get('obscurity')}&nbsp;
+              {Math.round10((country.get('obscurity')), -1)}&nbsp;
             </td>
           </tr>
         </tbody>

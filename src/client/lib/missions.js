@@ -627,7 +627,7 @@ var missions = {
       'gameContacts': -3,
       'agentRecruited': true
     },
-    'lossses': {
+    'losses': {
       'reputation': 100
     },
     'agentLimit': 2,

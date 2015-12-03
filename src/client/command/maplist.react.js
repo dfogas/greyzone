@@ -33,7 +33,7 @@ class MapList extends Component {
               key={uuid() + maplocations.name}
               locationindex={i}
               name={maplocation.name}
-              obscurity={maplocation.obscurity}
+              obscurity={Math.round10(maplocation.obscurity, -1)}
               reputation={maplocation.reputation}
               />
           );

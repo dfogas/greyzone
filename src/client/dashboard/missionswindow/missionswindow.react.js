@@ -1,19 +1,21 @@
 import './missionswindow.styl';
+import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
 import acceptcost from '../../lib/missionacceptcost';
 import {msg} from '../../intl/store';
 
-import * as actions from '../actions';
 import MissionToAccept from './missiontoaccept.react';
+import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
+
 import {list as MissionsList} from '../../lib/missions';
 import randomint from '../../lib/getrandomint';
 
 class MissionsWindow extends Component {
   acceptMission() {
     var randommissionindex = randomint(0, MissionsList.length);
-    actions.acceptMission(immutable.fromJS(MissionsList[randommissionindex]));
+    dashboardActions.acceptMission(immutable.fromJS(MissionsList[randommissionindex]));
   }
 
   confirmMissionAccept() {
@@ -24,7 +26,7 @@ class MissionsWindow extends Component {
       countries.getIn([countries.indexOf(countries.find(country => country.get('name') === countryofmission)), 'obscurity'])
     ];
     const cost = acceptcost(countryreputation, countryobscurity);
-    actions.confirmmissionaccept(missiontoaccept, cost);
+    dashboardActions.confirmmissionaccept(missiontoaccept.toJS(), cost);
   }
 
   render() {
@@ -51,8 +53,16 @@ class MissionsWindow extends Component {
           missiontoaccept={missiontoaccept}
           />
         <br />
+        <span>Rewards:</span><MissionResultList
+          rewards={missiontoaccept ? missiontoaccept.get('rewards') : null}
+          />
+        <br />
+        <span>Losses:</span><MissionResultList
+          losses={missiontoaccept ? missiontoaccept.get('losses') : null}
+          />
+        <br />
         {!!missiontoaccept &&
-          cost[0] + '$ and ' + cost[1] + 'contacts'}
+          <div class='mission-accept-cost'>Acceptin this mission will cost you: {cost[0]}$ and {cost[1]} contacts</div>}
         <br />
         {!!missiontoaccept &&
           <input

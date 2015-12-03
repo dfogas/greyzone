@@ -8,8 +8,7 @@ import MissionResult from './missionresult.react';
 
 class MissionResultList extends Component {
   render() {
-    const {activemissiontitle, losses, rewards} = this.props;
-    const isDefaultMission = activemissiontitle === 'Default Mission';
+    const {losses, rewards} = this.props;
     let losseskeys, rewardskeys;
     if (losses)
       losseskeys = Object.keys(losses.toJS());
@@ -32,7 +31,7 @@ class MissionResultList extends Component {
 
     return (
       <ul className={'mission-result-list' + classString}>
-        {!isDefaultMission &&
+        {
           this.props.losses ?
             losseskeys.map((losskey, i) => {
               return (<MissionResult
@@ -44,7 +43,7 @@ class MissionResultList extends Component {
                   loss={losses.get(losskey)}
                   losskey={losskey}
                 />);
-            }) :
+            }) : this.props.rewards ?
             rewardskeys.map((rewardkey, i) => {
               return (<MissionResult
                   isActual={this.props.isActual}
@@ -55,7 +54,7 @@ class MissionResultList extends Component {
                   reward={rewards.get(rewardkey)}
                   rewardkey={rewardkey}
                 />);
-            })
+            }) : null
           }
       </ul>
     );
@@ -63,7 +62,6 @@ class MissionResultList extends Component {
 }
 
 MissionResultList.propTypes = {
-  activemissiontitle: React.PropTypes.string,
   isActual: React.PropTypes.bool,
   isBriefing: React.PropTypes.bool,
   isLoss: React.PropTypes.bool,
