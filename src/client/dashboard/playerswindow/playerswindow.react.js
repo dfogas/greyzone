@@ -1,5 +1,4 @@
 import './playerswindow.styl';
-import '../../lib/formatmoney';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';

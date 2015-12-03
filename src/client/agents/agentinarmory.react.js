@@ -1,3 +1,6 @@
+/*
+  Smart Component
+*/
 import './agentinarmory.styl';
 import * as agentActions from './actions';
 import Component from '../components/component.react';

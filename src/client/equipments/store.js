@@ -15,6 +15,22 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === actions.agentUnequip) {
+    const agentsequipments = data.get('equipments');
+    const equipments = jsonapiCursor(['equipments']);
+
+    agentsequipments.toJS().map(ae => ae.name).map((aename, i) => {
+      // return if agents equipmentslot empty, else DCP would be incremented, dunno why
+      if (equipments.indexOf(equipments.find(equipment => equipment.get('name') === aename)) === -1)
+        return;
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['equipments', equipments.indexOf(equipments.find(equipment => equipment.get('name') === aename)), 'quantity'], val => val + 1)
+          .setIn(['agentinarmory', 'equipments', i], immutable.fromJS({name: ""}));
+      });
+    });
+  }
+
   if (action === actions.sell) {
     const equipments = jsonapiCursor(['equipments']);
     jsonapiCursor(jsonapi => {

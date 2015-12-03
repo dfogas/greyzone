@@ -1,12 +1,20 @@
 import './agentequipcontent.styl';
+import * as equipmentsActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
-import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
-import EquipmentStock from '../equipments/equipmentstock.react';
-import AgentInArmory from './agentinarmory.react';
 import immutable from 'immutable';
 
+import AgentInArmory from './agentinarmory.react';
+import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
+import EquipmentStock from '../equipments/equipmentstock.react';
+import Task from '../mission/missioncard/tasks/task.react';
+
 class AgentEquipContent extends Component {
+  unequipAll() {
+    const {jsonapi} = this.props;
+    equipmentsActions.agentUnequip(jsonapi.get('agentinarmory'));
+  }
+
   render() {
     const {agents, equipments, jsonapi} = this.props;
 
@@ -17,6 +25,26 @@ class AgentEquipContent extends Component {
     return (
       <div id='AgentEquipContent'>
         <AgentScrollBarWithNavButtons agents={agents} jsonapi={jsonapi} />
+        <div id='ArmoryGameCashCounter'>
+          Cash: {jsonapi.get('gameCash').formatMoney(0, '.', ',')}$
+        </div>
+        <button
+          id='UnequipAll'
+          onClick={this.unequipAll.bind(this)}
+        >
+          Unequip
+        </button>
+        <div id='ActiveMissionTasks'>
+          {jsonapi.getIn(['activemission', 'tasks']).map(task => {
+            return (
+              <Task
+                className='armory-task'
+                isActual={true}
+                task={task}
+                />
+            );
+          })}
+        </div>
         <AgentInArmory jsonapi={jsonapi} />
         <EquipmentStock equipments={equipmentsoperations} stock='operations' />
         <EquipmentStock equipments={equipmentselectronics} stock='electronics' />

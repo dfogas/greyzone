@@ -46,6 +46,7 @@ class CommandDashboardScreen extends Component {
 }
 
 CommandDashboardScreen.propTypes = {
+  contest: React.PropTypes.instanceOf(immutable.List),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

@@ -29,7 +29,7 @@ class AgentEquipmentSlot extends Component {
 
   render() {
     const {agentindex, equipment, equipmentindex} = this.props;
-
+    
     var classString = ' ';
     if (this.props.isMission)
       classString += ' mission';

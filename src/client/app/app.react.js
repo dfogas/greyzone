@@ -26,6 +26,7 @@ import '../support/store';
 
 //libs
 import '../lib/decimalrounding';
+import '../lib/formatmoney';
 
 class App extends Component {
 

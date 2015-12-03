@@ -5,6 +5,10 @@ import {jsonapiCursor} from '../state';
 /*
   Equipment Actions
 */
+export function agentUnequip(agent) {
+  dispatch(agentUnequip, agent);
+}
+
 export function buy(equipment) {
   dispatch(buy, equipment);
 }
@@ -20,17 +24,19 @@ export function sell(equipment) {
     return;
 }
 
-export function use(equipment) {
-  dispatch(use, equipment);
-}
-
 export function lockDice(dice) {
   dispatch(lockDice, dice);
 }
 
+export function use(equipment) {
+  dispatch(use, equipment);
+}
+
+
 setToString('equipment', {
   buy,
+  lockDice,
   sell,
-  use,
-  lockDice
+  agentUnequip,
+  use
 });

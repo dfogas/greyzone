@@ -1,6 +1,6 @@
 {
   "name": "mia-app",
-  "description": "Non-trivial non-clicker webgame for aspiring masterminds, based on este v10 from @steida",
+  "description": "Non-trivial non-clicker webgame for aspiring masterminds, based on este v9 from @steida",
   "author": "@DavidFogas",
   "version": "0.0.0",
   "private": true,

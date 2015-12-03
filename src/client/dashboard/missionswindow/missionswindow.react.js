@@ -62,7 +62,7 @@ class MissionsWindow extends Component {
           />
         <br />
         {!!missiontoaccept &&
-          <div class='mission-accept-cost'>Acceptin this mission will cost you: {cost[0]}$ and {cost[1]} contacts</div>}
+          <div className='mission-accept-cost'>Acceptin this mission will cost you: {cost[0]}$ and {cost[1]} contacts</div>}
         <br />
         {!!missiontoaccept &&
           <input

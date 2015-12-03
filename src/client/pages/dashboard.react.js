@@ -27,6 +27,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  contest: React.PropTypes.instanceOf(immutable.List).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired,
   viewer: React.PropTypes.object

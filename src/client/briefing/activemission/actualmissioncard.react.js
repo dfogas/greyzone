@@ -26,8 +26,8 @@ class ActualMissionCard extends Component {
       assignments.push(
         <AgentAssignment
           activemission={activemission}
-          assignmentindex={i}
           agents={agents}
+          assignmentindex={i}
           />
       );
 
