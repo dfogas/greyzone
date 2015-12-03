@@ -468,6 +468,10 @@ export default {
     support: {
       title: 'SupportPage'
     },
+    uverkalk: {
+      infoHtml: 'Some text for Loan Calculator',
+      title: 'Loan Calculator'
+    },
     validation: {
       email: `Email address is not valid.`,
       password: `Password must contain at least {minLength} characters.`,

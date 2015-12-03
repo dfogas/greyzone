@@ -10,10 +10,11 @@ import PlayersWindow from './playerswindow/playerswindow.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
 import MissionsWindow from './missionswindow/missionswindow.react';
 import CountriesWindow from './countrieswindow/countrieswindow.react';
+import ContestWindow from './contestwindow/contestwindow.react';
 
 class CommandDashboardScreen extends Component {
   render() {
-    const {jsonapi} = this.props;
+    const {contest, jsonapi} = this.props;
     const countries = jsonapi.get('countries');
 
     return (
@@ -34,6 +35,9 @@ class CommandDashboardScreen extends Component {
             />
           <CountriesWindow
             countries={countries}
+            />
+          <ContestWindow
+            contest={contest}
             />
         </div>
       </div>

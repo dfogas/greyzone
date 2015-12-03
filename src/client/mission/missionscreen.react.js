@@ -8,25 +8,18 @@ import immutable from 'immutable';
 
 class MissionTrackingScreen extends Component {
   render() {
-    const {jsonapi, pendingActions} = this.props;
-    const agents = jsonapi.get('agents');
-    const activemission = jsonapi.get('activemission');
+    const {jsonapi} = this.props;
 
     return (
       <div id='MissionTrackingScreen'>
         <TaskTier
-          isMission={true}
-          jsonapi={jsonapi}
-          pendingActions={pendingActions}
+          activemission={jsonapi.get('activemission')}
           />
         <TableTopTier
-          activemission={activemission}
-          pendingActions={pendingActions}
+          activemission={jsonapi.get('activemission')}
           />
         <AgentsTier
-          agents={agents}
           jsonapi={jsonapi}
-          pendingActions={pendingActions}
           />
       </div>
     );
@@ -34,8 +27,7 @@ class MissionTrackingScreen extends Component {
 }
 
 MissionTrackingScreen.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default MissionTrackingScreen;

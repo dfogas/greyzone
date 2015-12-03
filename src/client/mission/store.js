@@ -61,7 +61,7 @@ export const dispatchToken = register(({action, data}) => {
           'reputation'],
             val => results.reputation ? val - results.reputation : val)
         .setIn(['missions'], missions.remove(completedmission)) // set to default mission and clear mission from mission roster
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission)) // and clear activemission as well
+        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(missions.get(0))) // and clear activemission as well
         .setIn(['agents'], agents.push(agentontask).concat(agentsonmission)) // agents return to command center
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
         .setIn(['activemission', 'started'], false);
@@ -130,8 +130,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['agents'], agents.concat(agentsonmission))
         .setIn(['missions'], missions.remove(completedmission))
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission))
-        .setIn(['activemission', 'result'], null);
+        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(missions.get(0)));
     });
   }
 

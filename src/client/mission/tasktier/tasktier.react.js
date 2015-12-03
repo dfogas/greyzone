@@ -10,20 +10,16 @@ import MissionResultList from '../missioncard/results/missionresultlist.react';
 class TaskTier extends Component {
 
   render() {
-    const {jsonapi} = this.props;
-    const activemission = jsonapi.get('activemission');
+    const {activemission} = this.props;
     const tasks = activemission.get('tasks');
 
-    var isMission = false;
-    if (this.props.isMission)
-      isMission = true;
     return (
       <div id='TaskTier'>
         {tasks.map((task, i) => {
           return (
             <Task
               isCurrent={activemission.get('taskscompleted').size === i}
-              isMission={isMission}
+              isMission={true}
               task={task}
               />
           );
@@ -49,7 +45,6 @@ class TaskTier extends Component {
 
 TaskTier.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  isMission: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

@@ -16,7 +16,7 @@ import MissionTestButton from './buttons/missiontestbutton.react';
 class AgentsTier extends Component {
 
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
     const activetasks = jsonapi.getIn(['activemission', 'tasks']);
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
@@ -29,18 +29,14 @@ class AgentsTier extends Component {
           agents={activemission.get('agentsonmission')}
           isMission={true}
           jsonapi={jsonapi}
-          pendingActions={pendingActions}
           />
-        <AgentOnMission
-          activemission={activemission}
-          />
+        <AgentOnMission activemission={activemission}/>
         <MissionTestButton />
+        <ActionChoose activemission={activemission}/>
         {activemission.get('result') &&
-          <MissionEndButton activemission={activemission} />}
-        {
-          <ActionChoose activemission={activemission} />}
+          <MissionEndButton activemission={activemission}/>}
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
-          <LockedDiceContainer activemission={activemission} />}
+          <LockedDiceContainer activemission={activemission}/>}
         {isMissionSuccess && missionStarted &&
           <SuccessButton activemission={activemission} />}
         {activemission.getIn(['equipmenteffects', 'damageprotocol']) && missionStarted &&
@@ -54,8 +50,7 @@ class AgentsTier extends Component {
 
 AgentsTier.propTypes = {
   agents: React.PropTypes.instanceOf(immutable.List),
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default AgentsTier;

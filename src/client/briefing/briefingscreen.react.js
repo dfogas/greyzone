@@ -13,7 +13,6 @@ import MissionsLayout from './missionslayout/missionslayout.react';
 class BriefingScreen extends Component {
   render() {
     const {jsonapi, pendingActions} = this.props;
-    const activemission = jsonapi.get('activemission');
     const agents = jsonapi.get('agents');
     const missions = jsonapi.get('missions');
     const commonmissions = immutable.Seq(missions.toJS()).filterNot(mission => mission.special === true).toList();
@@ -26,7 +25,7 @@ class BriefingScreen extends Component {
             specialmissions={specialmissions}
             />
           <ActiveMission
-            activemission={activemission}
+            activemission={jsonapi.get('activemission')}
             agents={agents}
             />
           <MissionsLayout

@@ -19,13 +19,13 @@ class AgentAssignment extends Component {
   }
 
   render() {
-    const {activemission, agentindex} = this.props;
-    const agentonmission = activemission.getIn(['agentsonmission', agentindex - 1]) || null;
+    const {activemission, assignmentindex} = this.props;
+    const agentonmission = activemission.getIn(['agentsonmission', assignmentindex - 1]) || null;
 
     return (
       <div
         className='agent-assignment'
-        id={'AgentAssignment' + agentindex}
+        id={'AgentAssignment' + assignmentindex}
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
@@ -38,7 +38,7 @@ class AgentAssignment extends Component {
 
 AgentAssignment.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  agentindex: React.PropTypes.number,
+  assignmentindex: React.PropTypes.number,
   agents: React.PropTypes.instanceOf(immutable.List)
 };
 

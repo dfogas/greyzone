@@ -14,6 +14,7 @@ import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
 import Lab from './pages/lab.react';
 import Support from './pages/support.react';
+import UverKalk from './pages/uverkalk.react.js';
 
 export default (
   <Route handler={App} path="/">
@@ -29,5 +30,6 @@ export default (
     <Route handler={Lab} name="lab" />
     <Route handler={Support} name="support" />
     <Route handler={Support} name="forum" />
+    <Route handler={UverKalk} name="uverkalk" />
   </Route>
 );

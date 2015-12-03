@@ -34,26 +34,20 @@ class TableTop extends Component {
 
   render() {
     const {activemission} = this.props;
-    const title = activemission.get('title');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const missionStarted = activemission.get('started');
-
-    const diceslock = activemission.getIn(['mission', 'currenttask', 'diceslock']);
     const dicesthrown = activemission.getIn(['mission', 'currenttask', 'dicesthrown']);
     const remainingdices = activemission.getIn(['mission', 'currenttask', 'remainingdices']);
-
-    const taskscompleted = activemission.get('taskscompleted');
-    const currentindex = taskscompleted.size;
+    const currentindex = activemission.get('taskscompleted').size;
     const currenttask = activemission.getIn(['tasks', currentindex]);
 
-    let taskActions = [];
-    let dicesthrownArray = dicesthrown.toArray();
-
+    let taskActions = [], dicesthrownArray = dicesthrown.toArray();
     if (currenttask)
-      taskActions = currenttask.toSeq().map(action => action.get('name'), taskActions).toArray();
-
+      taskActions = currenttask.toSeq().map(action =>
+                        action.get('name'), taskActions)
+                      .toArray();
     //nice
-    let canCompleteTask = taskActions.every(function(val) {
+    const canCompleteTask = taskActions.every(function(val) {
       let numIn1 = taskActions.filter(function(el) { return el === val; }).length;
       let numIn2 = dicesthrownArray.filter(function(el) { return el === val; }).length;
       return numIn1 <= numIn2;
@@ -67,7 +61,7 @@ class TableTop extends Component {
         onDrop={this.drop}>
         <MissionTitle
           isActual={true}
-          title={title}
+          title={activemission.get('title')}
           />
         {agentontask && remainingdices.size &&
           remainingdices.map((dice, i) => {
@@ -82,7 +76,8 @@ class TableTop extends Component {
           })
         }
         <ProbabilityBar />
-        {canCompleteTask && missionStarted &&
+        {canCompleteTask &&
+          missionStarted &&
           <input
             className='taskcomplete-button'
             onClick={this.completeTask.bind(this)}
@@ -91,7 +86,7 @@ class TableTop extends Component {
             />}
         {agentontask &&
           <ActionButton
-            diceslock={diceslock}
+            diceslock={activemission.getIn(['mission', 'currenttask', 'diceslock'])}
             missionStarted={missionStarted}
             />}
       </div>

@@ -3,6 +3,7 @@ import Component from '../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
 import uuid from '../lib/guid';
+import {ReactCSSTransitionGroup} from 'react';
 
 import MapLocation from './maplocation.react';
 

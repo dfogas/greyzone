@@ -1,6 +1,6 @@
 /*
-userState is function that augments req with userState property
-we are adding new properties to userState here by assignment
+  userState is function that augments req with userState property
+  we are adding new properties to userState here by assignment
 */
 
 import config from '../config';

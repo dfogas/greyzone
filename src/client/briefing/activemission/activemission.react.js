@@ -1,3 +1,6 @@
+/*
+  Dumb Component
+*/
 import './activemission.styl';
 import Component from '../../components/component.react';
 import React from 'react';

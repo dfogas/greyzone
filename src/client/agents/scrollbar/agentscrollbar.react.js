@@ -9,6 +9,9 @@ import uuid from '../../lib/guid';
 import AgentCard from '../agentcard/agentcard.react';
 
 class AgentScrollBar extends Component {
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
 
   drop(ev) {
     ev.preventDefault(ev);
@@ -21,6 +24,7 @@ class AgentScrollBar extends Component {
     const missionstarted = activemission.get('started');
     var data = ev.dataTransfer.getData('text');
 
+    // agentcard classname change to adjust for different sizes
     if (!agents.size) {
       document.getElementById(data).className = classnames(document.getElementById(data).className, {showcased: false});
       var c = document.getElementById(data).children;
@@ -44,20 +48,9 @@ class AgentScrollBar extends Component {
 
   }
 
-  allowDrop(ev) {
-    ev.preventDefault();
-  }
 
   render() {
-    const {agents, style} = this.props;
-
-    let classString = '';
-    let isMission = false;
-
-    if (this.props.isMission) {
-      classString += ' on-mission';
-      isMission = true;
-    }
+    const {agents, isMission, style} = this.props;
 
     if (!agents.size)
       return (
@@ -66,7 +59,7 @@ class AgentScrollBar extends Component {
 
     return (
       <ul
-        className={classString}
+        className={isMission ? ' on-mission' : ''}
         id='AgentList'
         isMission={isMission}
         onDragOver={this.allowDrop}
