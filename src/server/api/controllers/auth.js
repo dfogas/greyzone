@@ -18,7 +18,6 @@ passport.deserializeUser((id, done) => {
 router.route('/login')
   .post(localAuthenticator, (req, res, next) => {
 
-    console.log(req.user);
     //simulate DB checks
     setTimeout(() => {
       res.status(200).end();
@@ -43,9 +42,11 @@ router.route('/signup')
       console.log('New user has been added');
     });
 
+    // IMPORTANT: do not remove these asynchrounous code, if you do, app stops
     setTimeout(() => {
       res.status(200).end();
     }, 1000);
+
   });
 
 export default router;

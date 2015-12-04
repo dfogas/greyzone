@@ -21,7 +21,5 @@ export const dispatchToken = register(({action, data}) => {
         return users.set('viewer', new User(user));
       });
       break;
-
   }
-
 });

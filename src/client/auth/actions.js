@@ -58,6 +58,11 @@ export function logout() {
   location.href = '/';
 }
 
+export function redirectToLoginAfterSignup() {
+  // should reload app with /login path
+  location.href = '/login';
+}
+
 export function updateFormField({target: {name, value}}) {
   // Both email and password max length is 100.
   value = value.slice(0, 100);
@@ -104,6 +109,7 @@ setToString('auth', {
   login,
   loginError,
   logout,
-  updateFormField,
-  signup
+  redirectToLoginAfterSignup,
+  signup,
+  updateFormField
 });

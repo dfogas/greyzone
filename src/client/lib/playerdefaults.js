@@ -3,7 +3,132 @@ var playa =
 "title": "Apprentice",
 "gameCash": 2000,
 "gameContacts": 300,
-"equipments": [],
+"activemission": {
+  "title": "Cash Transport",
+  "tasks": [
+      [{
+        "name": "monitor",
+        "type": "electronics",
+        "imgsrc": "monitor.jpg"
+      }, {
+        "name": "monitor",
+        "type": "electronics",
+        "imgsrc": "monitor.jpg"
+      }],
+      [{
+        "name": "pursuit",
+        "type": "operations",
+        "imgsrc": "pursuit.jpg"
+      }, {
+        "name": "pursuit",
+        "type": "operations",
+        "imgsrc": "pursuit.jpg"
+      }, {
+        "name": "hit",
+        "type": "operations",
+        "imgsrc": "hit.jpg"
+      }],
+      [{
+        "name": "hit",
+        "type": "operations",
+        "imgsrc": "hit.jpg"
+      }, {
+        "name": "close_combat",
+        "type": "operations",
+        "imgsrc": "close_combat.jpg"
+      }]
+    ],
+    "equipmenteffects": {
+      "actionchoose": null,
+      "damageprotocol": false,
+      "lockeddice": null
+    },
+    "taskscompleted": [],
+    "inCountry": "",
+    "rewards": {
+      "reputation": 100,
+      "obscurity": -0.1,
+      "gameCash": 500
+    },
+    "losses": {
+      "gameContacts": 5,
+      "reputation": 100
+    },
+    "agentLimit": 3,
+    "special": false,
+    "started": false,
+    "agentsonmission": [],
+    "mission": {
+      "currenttask": {
+        "agentontask": null,
+        "diceslock": false,
+        "dicesthrown": [],
+        "remainingdices": [],
+        "taskno": null
+      }
+    }
+},
+"agentforhire": null,
+"agentinarmory": null,
+"componentsstates": [{
+  "componentName": "agent-scrollbar",
+  "componentstyle": {"left": 0}
+ }],
+"equipments": [{
+    "description" : "adds 1 operation dice to throw",
+    "name" : "Hired Gun",
+    "price" : 5,
+    "quantity" : 1,
+    "tag" : "E1O"
+  }, {
+    "description" : "set operations dice to any result",
+    "name" : "Heavy Arms",
+    "price" : 10,
+    "quantity" : 1,
+    "tag" : "E2O"
+  }, {
+    "description" : "reroll any number of dices",
+    "name" : "Protective Gear",
+    "price" : 15,
+    "quantity" : 1,
+    "tag" : "E3O"
+  }, {
+    "description" : "adds 1 electronics dice to throw",
+    "name" : "Handy Kit",
+    "price" : 5,
+    "quantity" : 1,
+    "tag" : "E1E"
+  }, {
+    "description" : "set electronics dice to any result",
+    "name" : "Custom Tools",
+    "price" : 10,
+    "quantity" : 1,
+    "tag" : "E2E"
+  }, {
+    "description" : "lock any result of throw before reroll",
+    "name" : "WPAS",
+    "price" : 15,
+    "quantity" : 1,
+    "tag" : "E3E"
+  }, {
+    "description" : "adds 1 stealth dice to throw",
+    "name" : "Fake Passports",
+    "price" : 5,
+    "quantity" : 1,
+    "tag" : "E1S"
+  }, {
+    "description" : "set stealth dice to any result",
+    "name" : "Drugs Control",
+    "price" : 10,
+    "quantity" : 1,
+    "tag" : "E2S"
+  }, {
+    "description" : "quit mission immediately, incur only reputation losses",
+    "name" : "DCP",
+    "price" : 15,
+    "quantity" : 1,
+    "tag" : "E3S"
+}],
 "countries": [{
   "reputation": 100,
   "obscurity": 1,
@@ -19,6 +144,7 @@ var playa =
   "ETAtime": null,
   "ETA": false,
   "equipmentSlots": 3,
+  "equipments": [{"name": ""}, {"name": ""}, {"name": ""}],
   "stealthSkill": 3,
   "electronicsSkill": 5,
   "operationsSkill": 3,
@@ -82,7 +208,8 @@ var playa =
     }]
   ],
   "title": "Blackmailed"
-}]
+  }],
+  "missiontoaccept": null
 }`;
 
 

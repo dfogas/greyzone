@@ -2,9 +2,12 @@ import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
+
 import immutable from 'immutable';
-import 'isomorphic-fetch';
+import uuid from '../lib/guid';
+
 import randomInt from '../lib/getrandomint';
+// import playerdefaults from '../lib/playerdefaults';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -93,6 +96,18 @@ export const dispatchToken = register(({action, data}) => {
             });
           });
       });
+  }
+
+  if (action === dashboardActions.newUserAppendState) {
+    const api = process.env.NODE_ENV === 'production' ?
+      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
+      'http://localhost:8000/api/v1/';
+
+    fetch(api + 'players', {
+      method: 'POST',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({userId: data.userId, name: uuid()})
+    });
   }
 
 });

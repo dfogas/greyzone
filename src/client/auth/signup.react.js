@@ -1,5 +1,6 @@
 import './login.styl';
 import * as actions from './actions';
+import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';
@@ -18,14 +19,19 @@ class SignUp extends Component {
     const fields = this.getForm().fields.toJS();
     actions.signup(fields)
       .then(() => {
+        dashboardActions.newUserAppendState(fields.email);
+      })
+      .then(() => {
         this.redirectAfterSignup();
       })
       .catch(focusInvalidField(this));
+
   }
 
   redirectAfterSignup() {
     const nextPath = this.props.router.getCurrentQuery().nextPath;
     this.props.router.replaceWith(nextPath || '/');
+    actions.redirectToLoginAfterSignup();
   }
 
   render() {
