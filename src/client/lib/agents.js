@@ -1,4 +1,7 @@
-/*goes to agent for hire in dashboard*/
+/*
+  TODO: state agent's data structure definition
+  goes to agent for hire in dashboard
+*/
 var agents = {
   list: [
     {

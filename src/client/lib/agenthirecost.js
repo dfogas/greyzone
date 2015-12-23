@@ -1,5 +1,7 @@
+/*
+  Number -> Number
+*/
 export default function(rank) {
-  //I am trying this encapsulation stuff in order to keep it private
   if (rank === 1)
     return 10;
 

@@ -137,6 +137,22 @@ var playa =
   "reputation": 100,
   "obscurity": 1,
   "name": "West Europe"
+}, {
+  "reputation": 0,
+  "obscurity": 1,
+  "name": "Russia"
+}, {
+  "reputation": 0,
+  "obscurity": 1,
+  "name": "Arabia"
+}, {
+  "reputation": 0,
+  "obscurity": 1,
+  "name": "SouthEast"
+}, {
+  "reputation": 100,
+  "obscurity": 1,
+  "name": "Latin America"
 }],
 "agents": [{
   "MissionsDone": [],

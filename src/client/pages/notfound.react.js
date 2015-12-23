@@ -12,7 +12,6 @@ class NotFound extends Component {
         <div className="notfound-page">
           <h1>{msg('notFound.header')}</h1>
           <p>{msg('notFound.message')}</p>
-          <Link to="home">{msg('notFound.continueMessage')}</Link>
         </div>
       </DocumentTitle>
     );

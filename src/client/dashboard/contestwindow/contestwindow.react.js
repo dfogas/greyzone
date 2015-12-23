@@ -1,7 +1,10 @@
+import './gemini-scrollbar.css';
 import './contestwindow.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+
+import GeminiScrollbar from 'react-gemini-scrollbar';
 
 class ContestWindow extends Component {
   render() {
@@ -23,17 +26,19 @@ class ContestWindow extends Component {
 
     return (
       <div id='ContestWindow'>
-        <table id="ContestTable">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contestoverview}
-          </tbody>
-        </table>
+        <GeminiScrollbar>
+          <table id="ContestTable">
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contestoverview}
+            </tbody>
+          </table>
+        </GeminiScrollbar>
       </div>
     );
   }

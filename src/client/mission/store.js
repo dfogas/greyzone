@@ -23,19 +23,26 @@ export const dispatchToken = register(({action, data}) => {
 
   // WORKS! - Do not touch!!
   if (action === missionActions.taskCompleted) {
+    /*
+      vlastně pouze upravuje izolovaný stav, jednodušší by asi byl redux,
+      to bych jej musel implementovat - to platí pro akce obecně
+    */
     const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
     const taskscompleted = jsonapiCursor(['activemission', 'taskscompleted']);
+    // tady zřejmě nastavuji nový stav, ale přesný mechanismus mi uniká
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'taskscompleted'], taskscompleted.push(data.message))
+        // obecně je zde duplicita v remaining dices a v dicesthrown, ale myslím, že to tak moc nevadí
         .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(Array(0)))
         .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], immutable.fromJS(Array(0)))
         .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
-        .updateIn(['activemission',
-          'agentsonmission',
+        .updateIn(['activemission', 'agentsonmission',
+          // najdi agenta, který plnil úkol mezi agenty na misi
           agentsonmission.indexOf(agentsonmission.find(agentonmission => agentonmission.get('name') === agentontask.get('name'))),
           'experience'],
+            // přidej mu zkušenost
             val => val + 15)
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
@@ -44,7 +51,7 @@ export const dispatchToken = register(({action, data}) => {
 
   if (action === missionActions.controldamage) {
     const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']) ;
     const agents = jsonapiCursor(['agents']);
     const results = jsonapiCursor(['activemission', 'losses']).toJS();
     const countries = jsonapiCursor(['countries']);
@@ -75,6 +82,9 @@ export const dispatchToken = register(({action, data}) => {
     const results = jsonapiCursor(['activemission', 'losses']).toJS();
     const countries = jsonapiCursor(['countries']);
 
+    /*
+      Obecně je to takový tanec mezi vejci a vlastně to ani moc nefunguje
+    */
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val - results.gameCash : val)
@@ -103,6 +113,9 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
+        /*
+          Připisování odměn
+        */
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
         .updateIn(['countries',
@@ -113,6 +126,8 @@ export const dispatchToken = register(({action, data}) => {
           countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
           'obscurity'],
             val => results.obscurity ? val + results.obscurity : val)
+        /**/
+
         .setIn(['activemission', 'started'], false)
         .setIn(['activemission', 'result'], 'success');
     });

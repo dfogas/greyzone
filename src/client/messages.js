@@ -12,7 +12,7 @@ export default {
           login: 'Zalogovat se',
           signup: 'Vytvořit účet'
         },
-        hint: 'Nápověda: pass1',
+        hint: '',
         invalidPassword: 'Zvoleno neplatné heslo',
         legend: {
           login: 'Zalogovat se',
@@ -251,7 +251,7 @@ export default {
           login: 'Login',
           signup: 'Sign up'
         },
-        hint: 'Hint: pass1',
+        hint: '',
         invalidPassword: 'Invalid Password chosen',
         legend: {
           login: 'Log In',

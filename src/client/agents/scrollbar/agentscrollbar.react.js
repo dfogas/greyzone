@@ -48,7 +48,6 @@ class AgentScrollBar extends Component {
 
   }
 
-
   render() {
     const {agents, isMission, style} = this.props;
 
@@ -66,15 +65,18 @@ class AgentScrollBar extends Component {
         onDrop={this.drop.bind(this)}
         style={style}
       >
-        {agents.map((agent, i) => {
-          return (
-            <AgentCard
-              agent={agent}
-              agentindex={i}
-              key={uuid() + agent.name}
-            />
-          );
-        })}
+        {agents
+          .filter(agent => agent.get('prison') !== true)
+          .filter(agent => agent.get('KIA') !== true)
+          .map((agent, i) => {
+            return (
+              <AgentCard
+                agent={agent}
+                agentindex={i}
+                key={uuid() + agent.name}
+              />
+            );
+          })}
       </ul>
     );
   }

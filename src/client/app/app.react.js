@@ -1,5 +1,6 @@
 /*
   Smart component
+  Recieves state and state changes via stores
 */
 import './app.styl';
 import * as state from '../state';

@@ -43,10 +43,13 @@ class AgentsWindow extends Component {
             type='button'
             value={msg('buttons.hireAgent')}
             />
-          {!!agentforhire &&
+          {agentforhire ?
             <AgentCard
               agent={agentforhire}
-              />}
+              /> :
+              <div className='no-agent-for-hire'>
+                {"There's currently no agent for hire."}
+              </div>}
           {!!agentforhire &&
             <div className='agent-for-hire-price'>
               Hiring Cost: {price.formatMoney(0, '.', ',')}$

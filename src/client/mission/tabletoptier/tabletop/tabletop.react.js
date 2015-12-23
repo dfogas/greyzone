@@ -63,7 +63,7 @@ class TableTop extends Component {
           isActual={true}
           title={activemission.get('title')}
           />
-        {agentontask && remainingdices.size &&
+        {agentontask && remainingdices.size ?
           remainingdices.map((dice, i) => {
             return (
               <Dice
@@ -73,7 +73,7 @@ class TableTop extends Component {
                 value={dicesthrown.get(i)}
                 />
             );
-          })
+          }) : <div id="MissionStartStatus">"Mission has not started yet."</div>
         }
         <ProbabilityBar />
         {canCompleteTask &&
