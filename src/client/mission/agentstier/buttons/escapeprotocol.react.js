@@ -8,8 +8,10 @@ import * as missionActions from '../../actions';
 
 class EscapeProtocol extends Component {
   controldamage() {
-    const {activemission} = this.props;
-    missionActions.controldamage(activemission);
+    missionActions.controldamage();
+    missionActions.agentIsBackFromTask();
+    missionActions.clearTabletop();
+    missionActions.fail();
   }
 
   render() {

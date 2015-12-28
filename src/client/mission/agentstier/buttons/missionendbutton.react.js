@@ -4,12 +4,13 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../../intl/store';
 
-import * as missionsActions from '../../actions';
+import * as missionActions from '../../actions';
 
 class MissionEndButton extends Component {
   end() {
-    const {activemission} = this.props;
-    missionsActions.end(activemission);
+    missionActions.agentsAreBackFromMission();
+    missionActions.removeCompletedMission();
+    missionActions.focusMission();
   }
 
   render() {

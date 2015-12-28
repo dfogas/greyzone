@@ -23,7 +23,7 @@ export function hire(agent, price) {
 
 export function newUserAppendState(email) {
   let userId;
-  console.log('newUserAppendState is running');
+  // console.log('newUserAppendState is running');
 
   const api = process.env.NODE_ENV === 'production' ?
     'http://fierce-shore-7346.herokuapp.com/api/v1/' :

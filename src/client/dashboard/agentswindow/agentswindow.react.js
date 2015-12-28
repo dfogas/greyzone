@@ -5,6 +5,7 @@ import hirecost from '../../lib/agenthirecost';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import randomint from '../../lib/getrandomint';
+import formatMoney from '../../lib/formatmoney';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
 import AgentsInPrison from './agentsinprison.react';
@@ -52,7 +53,7 @@ class AgentsWindow extends Component {
               </div>}
           {!!agentforhire &&
             <div className='agent-for-hire-price'>
-              Hiring Cost: {price.formatMoney(0, '.', ',')}$
+              Hiring Cost: {formatMoney(price, 0, '.', ',')}$
             </div>
           }
           {!!agentforhire &&

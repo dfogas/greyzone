@@ -2,6 +2,7 @@ import './playerswindow.styl';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
+import formatMoney from '../../lib/formatmoney';
 
 class PlayersWindow extends Component {
   buyContacts() {
@@ -21,7 +22,7 @@ class PlayersWindow extends Component {
         </div>
         <div id='PlayerLiquidResources'>
           <span className='gameCash-counter'>
-            Cash: {gameCash.formatMoney(0, '.', ',')}$
+            Cash: {formatMoney(gameCash, 0, '.', ',')}$
           </span>
           <br />
           <span className='gameContacts-counter'>

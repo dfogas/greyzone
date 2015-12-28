@@ -3,6 +3,7 @@ import * as equipmentsActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import formatMoney from '../lib/formatmoney';
 
 import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
@@ -26,7 +27,7 @@ class AgentEquipContent extends Component {
       <div id='AgentEquipContent'>
         <AgentScrollBarWithNavButtons agents={agents} jsonapi={jsonapi} />
         <div id='ArmoryGameCashCounter'>
-          Cash: {jsonapi.get('gameCash').formatMoney(0, '.', ',')}$
+          Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
         </div>
         <button
           id='UnequipAll'

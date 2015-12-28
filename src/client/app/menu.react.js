@@ -3,7 +3,7 @@
 */
 import Component from '../components/component.react';
 import React from 'react';
-import {FormattedHTMLMessage} from 'react-intl';
+// import {FormattedHTMLMessage} from 'react-intl';
 import {Link} from 'react-router';
 import {msg} from '../intl/store';
 
@@ -41,6 +41,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
+  locales: React.PropTypes.string,
   viewer: React.PropTypes.object
 };
 

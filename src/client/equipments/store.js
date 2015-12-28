@@ -26,7 +26,7 @@ export const dispatchToken = register(({action, data}) => {
       jsonapiCursor(jsonapi => {
         return jsonapi
           .updateIn(['equipments', equipments.indexOf(equipments.find(equipment => equipment.get('name') === aename)), 'quantity'], val => val + 1)
-          .setIn(['agentinarmory', 'equipments', i], immutable.fromJS({name: ""}));
+          .setIn(['agentinarmory', 'equipments', i], immutable.fromJS({name: ''}));
       });
     });
   }

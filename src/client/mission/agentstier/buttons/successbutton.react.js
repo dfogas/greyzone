@@ -11,8 +11,10 @@ class SuccessButton extends Component {
     const tasks = activemission.get('tasks');
     const taskscompleted = activemission.get('taskscompleted');
 
-    if (tasks.size === taskscompleted.size)
-      missionActions.success(activemission);
+    if (tasks.size === taskscompleted.size) {
+      missionActions.bookRewards();
+      missionActions.success();
+    }
   }
 
   render() {

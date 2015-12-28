@@ -6,84 +6,42 @@ import defaultActiveMission from '../lib/defaultactivemission';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === missionActions.start)
+  if (action === missionActions.agentIsBackFromTask) {
+    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+
     jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['activemission', 'started'], true);
+      return jsonapi
+        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask)) // agents return to command center
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null);
+    });
+  }
+
+  if (action === missionActions.agentOnTaskGetsExperienceForCompletingTask)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'experience'],
+          // přidej mu zkušenost
+          val => val + 15);
     });
 
-  if (action === missionActions.select) {
+  if (action === missionActions.agentsAreBackFromMission) {
     const agents = jsonapiCursor(['agents']);
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['agents'], agents.concat(agentsonmission))
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(data.message));
-    });
-  }
-
-  // WORKS! - Do not touch!!
-  if (action === missionActions.taskCompleted) {
-    /*
-      vlastně pouze upravuje izolovaný stav, jednodušší by asi byl redux,
-      to bych jej musel implementovat - to platí pro akce obecně
-    */
-    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    const taskscompleted = jsonapiCursor(['activemission', 'taskscompleted']);
-    // tady zřejmě nastavuji nový stav, ale přesný mechanismus mi uniká
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['activemission', 'taskscompleted'], taskscompleted.push(data.message))
-        // obecně je zde duplicita v remaining dices a v dicesthrown, ale myslím, že to tak moc nevadí
-        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(Array(0)))
-        .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], immutable.fromJS(Array(0)))
-        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
-        .updateIn(['activemission', 'agentsonmission',
-          // najdi agenta, který plnil úkol mezi agenty na misi
-          agentsonmission.indexOf(agentsonmission.find(agentonmission => agentonmission.get('name') === agentontask.get('name'))),
-          'experience'],
-            // přidej mu zkušenost
-            val => val + 15)
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
-        .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
-    });
-  }
-
-  if (action === missionActions.controldamage) {
-    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']) ;
-    const agents = jsonapiCursor(['agents']);
-    const results = jsonapiCursor(['activemission', 'losses']).toJS();
-    const countries = jsonapiCursor(['countries']);
-    const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
-
-    const activemission = jsonapiCursor(['activemission']);
-    const missions = jsonapiCursor(['missions']);
-    const completedmission = missions.indexOf(missions.find(mission => mission.get('title') === activemission.get('title')));
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['countries',
-          countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
-          'reputation'],
-            val => results.reputation ? val - results.reputation : val)
-        .setIn(['missions'], missions.remove(completedmission)) // set to default mission and clear mission from mission roster
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(missions.get(0))) // and clear activemission as well
-        .setIn(['agents'], agents.push(agentontask).concat(agentsonmission)) // agents return to command center
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
-        .setIn(['activemission', 'started'], false);
+        .setIn(['agents'], agents.concat(agentsonmission));
     });
   }
 
-  if (action === missionActions.fail) {
-    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  if (action === missionActions.bookLosses) {
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
     const results = jsonapiCursor(['activemission', 'losses']).toJS();
     const countries = jsonapiCursor(['countries']);
 
     /*
-      Obecně je to takový tanec mezi vejci a vlastně to ani moc nefunguje
+      books gameCash, gameContacts and reputation, obscurity when agents fail
     */
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -98,15 +56,11 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countries',
           countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
           'reputation'],
-            val => results.reputation ? val - results.reputation : val)
-        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
-        .setIn(['activemission', 'started'], false)
-        .setIn(['activemission', 'result'], 'fail');
+            val => results.reputation ? val - results.reputation : val);
     });
   }
 
-  if (action === missionActions.success) {
+  if (action === missionActions.bookRewards) {
     const results = jsonapiCursor(['activemission', 'rewards']).toJS();
     const countries = jsonapiCursor(['countries']);
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
@@ -114,38 +68,18 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         /*
-          Připisování odměn
+          books gameCash, gameContacts and reputation, obscurity when agents succeeds
         */
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
         .updateIn(['countries',
-          countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
-          'reputation'],
-            val => results.reputation ? val + results.reputation : val)
+        countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
+        'reputation'],
+        val => results.reputation ? val + results.reputation : val)
         .updateIn(['countries',
-          countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
-          'obscurity'],
-            val => results.obscurity ? val + results.obscurity : val)
-        /**/
-
-        .setIn(['activemission', 'started'], false)
-        .setIn(['activemission', 'result'], 'success');
-    });
-  }
-
-  if (action === missionActions.end) {
-    const agents = jsonapiCursor(['agents']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-
-    const activemission = jsonapiCursor(['activemission']);
-    const missions = jsonapiCursor(['missions']);
-    const completedmission = missions.indexOf(missions.find(mission => mission.get('title') === activemission.get('title')));
-
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['agents'], agents.concat(agentsonmission))
-        .setIn(['missions'], missions.remove(completedmission))
-        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(missions.get(0)));
+        countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
+        'obscurity'],
+        val => results.obscurity ? val + results.obscurity : val);
     });
   }
 
@@ -161,6 +95,91 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === missionActions.clearTabletop)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      // obecně je zde duplicita v remaining dices a v dicesthrown, takový námět na refaktoring of state
+      .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(Array(0)))
+      .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], immutable.fromJS(Array(0)));
+    });
+
+  if (action === missionActions.clearTask) {
+    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
+      .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
+      .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
+    });
+  }
+
+  if (action === missionActions.completeTask)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'taskscompleted'], jsonapiCursor(['activemission', 'taskscompleted']).push(data.message));
+    });
+
+  if (action === missionActions.controldamage) {
+    const results = jsonapiCursor(['activemission', 'losses']).toJS();
+    const countries = jsonapiCursor(['countries']);
+    const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
+
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['countries',
+          countries.indexOf(countries.find(country => country.get('name') === activemissioncountryname)),
+          'reputation'],
+            val => results.reputation ? val - results.reputation : val);
+    });
+  }
+
+  if (action === missionActions.focusMission)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(jsonapiCursor(['missions']).get(0)));
+    });
+
+  if (action === missionActions.fail)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'started'], false)
+        .setIn(['activemission', 'result'], 'fail');
+    });
+
+  if (action === missionActions.removeCompletedMission) {
+    const activemission = jsonapiCursor(['activemission']);
+    const missions = jsonapiCursor(['missions']);
+    const completedmission = missions.indexOf(missions.find(mission => mission.get('title') === activemission.get('title')));
+
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['missions'], missions.remove(completedmission));
+    });
+  }
+
+  if (action === missionActions.select) {
+    const agents = jsonapiCursor(['agents']);
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['agents'], agents.concat(agentsonmission))
+        .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(data.message));
+    });
+  }
+
+  if (action === missionActions.start)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['activemission', 'started'], true);
+    });
+
+  if (action === missionActions.success)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'started'], false)
+        .setIn(['activemission', 'result'], 'success');
+    });
+
   //TO DO: fill in apropriate actions and events
   if (action === missionActions.updateAgentsMissionHistory) {
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
@@ -173,8 +192,5 @@ export const dispatchToken = register(({action, data}) => {
           val => val.get('missionsDone').toJS().push(activemissionrecord).fromJS());
     });
   }
-
-  if (action === missionActions.test)
-    console.log('test'); // eslint-disable-line no-console
 
 });

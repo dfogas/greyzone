@@ -23,7 +23,10 @@ class TableTop extends Component {
   completeTask() {
     const {activemission} = this.props;
     const currenttask = activemission.getIn(['tasks', 0]);
-    missionActions.taskCompleted(currenttask);
+    missionActions.completeTask(currenttask);
+    missionActions.clearTabletop();
+    missionActions.agentOnTaskGetsExperienceForCompletingTask();
+    missionActions.clearTask();
   }
 
   drop(ev) {

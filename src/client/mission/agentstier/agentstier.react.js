@@ -11,7 +11,6 @@ import EscapeProtocol from './buttons/escapeprotocol.react';
 import LockedDiceContainer from './buttons/lockeddicecontainer.react';
 import SuccessButton from './buttons/successbutton.react';
 import MissionEndButton from './buttons/missionendbutton.react';
-import MissionTestButton from './buttons/missiontestbutton.react';
 
 class AgentsTier extends Component {
 
@@ -31,7 +30,6 @@ class AgentsTier extends Component {
           jsonapi={jsonapi}
           />
         <AgentOnMission activemission={activemission}/>
-        <MissionTestButton />
         <ActionChoose activemission={activemission}/>
         {activemission.get('result') &&
           <MissionEndButton activemission={activemission}/>}
