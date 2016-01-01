@@ -4,6 +4,7 @@ import {Record} from 'immutable';
 const FormRecord = Record({
   fields: new (Record({
     email: '',
+    organization: '',
     password: ''
   })),
   error: null

@@ -40,12 +40,15 @@ router.route('/signup')
         res.send(err);
 
       console.log('New user has been added');
+      res.json({
+        message: 'New user has been added'
+      });
     });
 
     // IMPORTANT: do not remove these asynchrounous code, if you do, app stops
-    setTimeout(() => {
-      res.status(200).end();
-    }, 1000);
+    // setTimeout(() => {
+    //   res.status(200).end();
+    // }, 1000);
 
   });
 

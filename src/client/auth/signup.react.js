@@ -18,13 +18,13 @@ class SignUp extends Component {
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
     actions.signup(fields)
-      .then(() => {
-        dashboardActions.newUserAppendState(fields.email);
-      })
-      .then(() => {
-        this.redirectAfterSignup();
-      })
-      .catch(focusInvalidField(this));
+        .then(() => {
+          dashboardActions.newUserAppendState(fields.email, fields.organization);
+        })
+        .then(() => {
+          this.redirectAfterSignup();
+        })
+        .catch(focusInvalidField(this));
 
   }
 
@@ -43,6 +43,12 @@ class SignUp extends Component {
         <form onSubmit={(e) => this.onFormSubmit(e)}>
           <fieldset disabled={pendingActions.has(actions.signup.toString())}>
             <legend>{msg('auth.form.legend.signup')}</legend>
+            <input
+              name="organization"
+              onChange={actions.updateFormField}
+              placeholder={msg('auth.form.placeholder.organization')}
+              value={form.fields.organization}
+              />
             <input
               autoFocus
               name="email"

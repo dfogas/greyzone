@@ -11,6 +11,7 @@ import EscapeProtocol from './buttons/escapeprotocol.react';
 import LockedDiceContainer from './buttons/lockeddicecontainer.react';
 import SuccessButton from './buttons/successbutton.react';
 import MissionEndButton from './buttons/missionendbutton.react';
+import BackToMissionButton from './buttons/backtomission.react';
 
 class AgentsTier extends Component {
 
@@ -31,6 +32,11 @@ class AgentsTier extends Component {
           />
         <AgentOnMission activemission={activemission}/>
         <ActionChoose activemission={activemission}/>
+        {!activemission.getIn(['mission', 'currenttask', 'agentlock']) &&
+          activemission.getIn(['mission', 'currenttask', 'agentontask']) &&
+          <BackToMissionButton
+          agentlock={activemission.getIn(['mission', 'currenttask', 'agentlock'])}
+          />}
         {activemission.get('result') &&
           <MissionEndButton activemission={activemission}/>}
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&

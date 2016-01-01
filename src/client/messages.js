@@ -20,6 +20,7 @@ export default {
         },
         placeholder: {
           email: 'vas@email.cz',
+          organization: 'např. MI5',
           password: 'heslo'
         },
         wrongPassword: 'Špatné heslo'
@@ -209,6 +210,7 @@ export default {
     mission: {
       title: 'Mise',
       buttons: {
+        backtomission: 'Zpátky',
         dcp: 'Kontrolované ztráty',
         escapesequence: 'Začít únikovou sekvenci',
         end: 'Konec Mise',
@@ -259,6 +261,7 @@ export default {
         },
         placeholder: {
           email: 'your@email.com',
+          organization: 'e.g. Spectre',
           password: 'password'
         },
         wrongPassword: 'Wrong password'
@@ -449,6 +452,7 @@ export default {
     mission: {
       title: 'Mission',
       buttons: {
+        backtomission: 'Back',
         dcp: 'Control Damage',
         escapesequence: 'Initiate Escape Sequence',
         end: 'Finish Mission',

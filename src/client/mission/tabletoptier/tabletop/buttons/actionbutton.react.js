@@ -6,12 +6,15 @@ import React from 'react';
 
 class ActionButton extends Component {
   action() {
-    const {diceslock, missionStarted} = this.props;
+    const {agentlock, diceslock, missionStarted} = this.props;
     if (!missionStarted)
       missionActions.start();
 
     if (!diceslock && missionStarted)
       dicesActions.rollAll();
+
+    if (!agentlock)
+      missionActions.agentLockedToTask();
   }
 
   render() {
@@ -28,6 +31,7 @@ class ActionButton extends Component {
 }
 
 ActionButton.propTypes = {
+  agentlock: React.PropTypes.bool,
   diceslock: React.PropTypes.bool,
   missionStarted: React.PropTypes.bool
 };

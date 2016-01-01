@@ -25,6 +25,7 @@ function validateForm(fields) {
     // Of course we can add another validation methods.
     .prop('email').required().email()
     .prop('password').required().simplePassword()
+    /* TODO: validation of 'organization' prop */
     .promise;
 }
 

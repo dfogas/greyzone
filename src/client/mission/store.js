@@ -17,6 +17,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === missionActions.agentLockedToTask)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'mission', 'currenttask', 'agentlock'], true);
+    });
+
   if (action === missionActions.agentOnTaskGetsExperienceForCompletingTask)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -108,9 +114,10 @@ export const dispatchToken = register(({action, data}) => {
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
-      .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
-      .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
+        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask))
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null)
+        .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false)
+        .setIn(['activemission', 'mission', 'currenttask', 'agentlock'], false);
     });
   }
 

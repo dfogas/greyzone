@@ -21,7 +21,7 @@ export function hire(agent, price) {
   dispatch(hire, agent);
 }
 
-export function newUserAppendState(email) {
+export function newUserAppendState(email, organization) {
   let userId;
   // console.log('newUserAppendState is running');
 
@@ -44,7 +44,7 @@ export function newUserAppendState(email) {
     })
     .then((users) => {
       userId = users.filter(user => user.username === email).map(user => user._id);
-      dispatch(newUserAppendState, {userId});
+      dispatch(newUserAppendState, {userId, email, organization});
     });
 
 }

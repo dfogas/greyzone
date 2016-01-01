@@ -4,7 +4,6 @@ import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
 
 import immutable from 'immutable';
-import uuid from '../lib/guid';
 
 import randomInt from '../lib/getrandomint';
 // import playerdefaults from '../lib/playerdefaults';
@@ -103,10 +102,11 @@ export const dispatchToken = register(({action, data}) => {
       'http://fierce-shore-7346.herokuapp.com/api/v1/' :
       'http://localhost:8000/api/v1/';
 
+    // console.log('Username: ' + data.email + 'UserId: ' + data.userId);
     fetch(api + 'players', {
       method: 'POST',
       headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({userId: data.userId, name: uuid()})
+      body: JSON.stringify({userId: data.userId, name: data.organization})
     });
   }
 

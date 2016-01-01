@@ -44,7 +44,7 @@ var playa =
       "lockeddice": null
     },
     "taskscompleted": [],
-    "inCountry": "",
+    "inCountry": "West Europe",
     "rewards": {
       "reputation": 100,
       "obscurity": -0.1,
@@ -172,7 +172,56 @@ var playa =
   "prison": false,
   "KIA": false
 }],
-"missions": [{
+"missions": [
+  {
+    "title": "Cash Transport",
+    "tasks": [
+      [{
+        "name": "monitor",
+        "type": "electronics",
+        "imgsrc": "monitor.jpg"
+      }, {
+        "name": "monitor",
+        "type": "electronics",
+        "imgsrc": "monitor.jpg"
+      }],
+      [{
+        "name": "pursuit",
+        "type": "operations",
+        "imgsrc": "pursuit.jpg"
+      }, {
+        "name": "pursuit",
+        "type": "operations",
+        "imgsrc": "pursuit.jpg"
+      }, {
+        "name": "hit",
+        "type": "operations",
+        "imgsrc": "hit.jpg"
+      }],
+      [{
+        "name": "hit",
+        "type": "operations",
+        "imgsrc": "hit.jpg"
+      }, {
+        "name": "close_combat",
+        "type": "operations",
+        "imgsrc": "close_combat.jpg"
+      }]
+    ],
+    "inCountry": "West Europe",
+    "rewards": {
+      "reputation": 100,
+      "obscurity": -0.1,
+      "gameCash": 500
+    },
+    "losses": {
+      "gameContacts": 5,
+      "reputation": 100
+    },
+    "agentLimit": 3,
+    "special": false
+  },
+  {
   "agentLimit": 2,
   "losses": {
     "reputation": 100
@@ -181,7 +230,7 @@ var playa =
     "gameCash": 500,
     "gameContacts": 10
   },
-  "inCountry": "",
+  "inCountry": "US",
   "tasks": [
     [{
       "imgsrc": "puppet.jpg",
@@ -223,6 +272,7 @@ var playa =
       "name": "improv"
     }]
   ],
+  "special": false,
   "title": "Blackmailed"
   }],
   "missiontoaccept": null

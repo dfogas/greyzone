@@ -16,7 +16,8 @@ class AgentOnMission extends Component {
     if (agentsonmission.indexOf(agentsonmission.find(agent => agent.get('name') === data)) === -1)
       return;
 
-    agentActions.assignTask(agentsonmission.find(agent => agent.get('name') === data));
+    if (!activemission.getIn(['mission', 'currenttask', 'agentontask']))
+      agentActions.assignTask(agentsonmission.find(agent => agent.get('name') === data));
   }
 
   allowDrop(ev) {

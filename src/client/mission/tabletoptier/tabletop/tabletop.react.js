@@ -89,6 +89,7 @@ class TableTop extends Component {
             />}
         {agentontask &&
           <ActionButton
+            agentlock={activemission.getIn(['mission', 'currenttask', 'agentlock'])}
             diceslock={activemission.getIn(['mission', 'currenttask', 'diceslock'])}
             missionStarted={missionStarted}
             />}

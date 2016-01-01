@@ -5,6 +5,10 @@ export function agentIsBackFromTask() {
   dispatch(agentIsBackFromTask, {});
 }
 
+export function agentLockedToTask() {
+  dispatch(agentLockedToTask, {});
+}
+
 export function agentOnTaskGetsExperienceForCompletingTask() {
   dispatch(agentOnTaskGetsExperienceForCompletingTask, {});
 }
@@ -75,6 +79,7 @@ export function test() {
 
 setToString('mission', {
   agentIsBackFromTask,
+  agentLockedToTask,
   agentOnTaskGetsExperienceForCompletingTask,
   agentsAreBackFromMission,
   bookLosses,
