@@ -1,10 +1,13 @@
 import './missionscreen.styl';
 import Component from '../components/component.react';
 import React from 'react';
+import {msg} from '../intl/store';
+import {Link} from 'react-router';
+import immutable from 'immutable';
 import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
 import AgentsTier from './agentstier/agentstier.react';
-import immutable from 'immutable';
+import MissionToBriefingButton from '../navs/missiontobriefing.react';
 
 class MissionTrackingScreen extends Component {
   render() {
@@ -21,6 +24,7 @@ class MissionTrackingScreen extends Component {
         <AgentsTier
           jsonapi={jsonapi}
           />
+        <MissionToBriefingButton />        
       </div>
     );
   }

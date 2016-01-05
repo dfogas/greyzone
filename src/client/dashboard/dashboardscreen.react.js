@@ -9,16 +9,28 @@ import immutable from 'immutable';
 import PlayersWindow from './playerswindow/playerswindow.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
 import MissionsWindow from './missionswindow/missionswindow.react';
-import CountriesWindow from './countrieswindow/countrieswindow.react';
+import CountryStatsWindow from './countrieswindow/countrieswindow.react';
 import ContestWindow from './contestwindow/contestwindow.react';
+import DashboardToBriefing from '../navs/dashboardtobriefing.react';
+import DashboardToCommand from '../navs/dashboardtocommand.react';
+import Logout from '../auth/logout.react';
+import LanguageSelect from '../app/language.select.react';
 
-class CommandDashboardScreen extends Component {
+class DashboardScreen extends Component {
   render() {
     const {contest, jsonapi} = this.props;
-    const countries = jsonapi.get('countries');
+    const countrystats = jsonapi.get('countrystats');
+    const isLoggedIn = !!this.props.viewer;
 
     return (
-      <div id='CommandDashboardScreen'>
+      <div id='DashboardScreen'>
+        <DashboardToBriefing />
+        <DashboardToCommand />
+        {isLoggedIn &&
+          <Logout
+            id='DashboardScreenLogout'
+            />}
+        <LanguageSelect locales={this.props.locales}/>
         <div id='DashboardContent'>
           <PlayersWindow
             gameCash={jsonapi.get('gameCash')}
@@ -26,15 +38,16 @@ class CommandDashboardScreen extends Component {
             name={jsonapi.get('name')}
             />
           <MissionsWindow
-            countries={countries}
+            countrystats={countrystats}
             missiontoaccept={jsonapi.get('missiontoaccept')}
             />
           <AgentsWindow
             agentforhire={jsonapi.get('agentforhire')}
             agents={jsonapi.get('agents')}
+            cash={jsonapi.get('gameCash')}
             />
-          <CountriesWindow
-            countries={countries}
+          <CountryStatsWindow
+            countrystats={countrystats}
             />
           <ContestWindow
             contest={contest}
@@ -45,9 +58,9 @@ class CommandDashboardScreen extends Component {
   }
 }
 
-CommandDashboardScreen.propTypes = {
+DashboardScreen.propTypes = {
   contest: React.PropTypes.instanceOf(immutable.List),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
-export default CommandDashboardScreen;
+export default DashboardScreen;

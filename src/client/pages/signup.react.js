@@ -9,7 +9,7 @@ class SignUp extends Component {
   render() {
     return (
       <DocumentTitle title={msg('auth.signup.title')}>
-        <div className="login-page">
+        <div className="signup-page">
           <SignUpForm {...this.props} />
         </div>
       </DocumentTitle>

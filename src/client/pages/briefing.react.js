@@ -15,7 +15,11 @@ class Briefing extends Component {
       <DocumentTitle title={msg('briefing.title')}>
         <div className='briefing-page'>
           {!missionstarted &&
-            <BriefingScreen jsonapi={jsonapi} pendingActions={pendingActions} />}
+            <BriefingScreen
+              jsonapi={jsonapi}
+              pendingActions={pendingActions}
+              />
+          }
         </div>
       </DocumentTitle>
     );

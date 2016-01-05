@@ -10,7 +10,8 @@ import {msg} from '../intl/store';
 class Dashboard extends Component {
   render() {
     // const {viewer: {email}} = this.props;
-    const {contest, jsonapi, pendingActions} = this.props;
+    const {contest, jsonapi, locales, pendingActions, viewer} = this.props;
+    console.log(viewer);
 
     return (
       <DocumentTitle title={msg('dashboard.title')}>
@@ -18,7 +19,9 @@ class Dashboard extends Component {
           <DashboardScreen
             contest={contest}
             jsonapi={jsonapi}
+            locales={locales}
             pendingActions={pendingActions}
+            viewer={viewer}
             />
         </div>
       </DocumentTitle>
@@ -29,6 +32,7 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   contest: React.PropTypes.instanceOf(immutable.List).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  locales: React.PropTypes.string,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired,
   viewer: React.PropTypes.object
 };

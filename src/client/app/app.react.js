@@ -3,6 +3,7 @@
   Recieves state and state changes via stores
 */
 import './app.styl';
+import '../navs/navs.styl';
 import * as state from '../state';
 import Component from '../components/component.react';
 import React from 'react';

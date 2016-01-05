@@ -18,22 +18,22 @@ class Menu extends Component {
 
     return (
       <header>
-        {!isLoggedIn &&
+        {/*!isLoggedIn &&
           <Link to='login'>
             <button className='login-button'>
               {msg('auth.form.legend.login')}
             </button>
-          </Link>}
-        {!isLoggedIn &&
+          </Link>*/}
+        {/*!isLoggedIn &&
           <Link to='signup'>
             <button className='signup-button'>
               {msg('auth.form.legend.signup')}
             </button>
-          </Link>}
-        <NavTab viewer={this.props.viewer}/>
-        {isLoggedIn &&
-          <Logout />}
-        <LanguageSelect locales={this.props.locales}/>
+          </Link>*/}
+        {/*<NavTab viewer={this.props.viewer}/>*/}
+        {/*isLoggedIn &&
+          <Logout />*/}
+        {/*<LanguageSelect locales={this.props.locales}/>*/}
       </header>
     );
   }

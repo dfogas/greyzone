@@ -1,6 +1,9 @@
 /*
   userState is function that augments req with userState property
   we are adding new properties to userState here by assignment
+
+  here should not go player state but the whole game state as
+  game property
 */
 
 import config from '../config';
@@ -24,6 +27,23 @@ export default function userState() {
       }
     };
 
+    req.userState.game = {
+      events: [
+        {name: 'Event no. 1', target: 'target_id'}
+      ],
+      globals: {
+        constants: [{name: 'Global Constant no. 1', value: null}],
+        countries: [
+          {name: 'US', agentsforhire: [], missionstoaccept: []},
+          {name: 'West Europe', agentsforhire: [], missionstoaccept: []},
+          {name: 'Russia', agentsforhire: [], missionstoaccept: []},
+          {name: 'Arabia', agentsforhire: [], missionstoaccept: []},
+          {name: 'SouthEast', agentsforhire: [], missionstoaccept: []},
+          {name: 'Latin America', agentsforhire: [], missionstoaccept: []}
+        ]
+      }
+    };
+
     req.userState.jsonapi = {
       name: 'Default',
       title: 'DefaultTitle',
@@ -32,7 +52,7 @@ export default function userState() {
       missions: [],
       agents: [],
       equipments: [],
-      countries: []
+      countrystats: []
     };
 
     fetch(api + 'players/')

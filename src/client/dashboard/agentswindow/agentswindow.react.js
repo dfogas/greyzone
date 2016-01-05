@@ -6,6 +6,7 @@ import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import randomint from '../../lib/getrandomint';
 import formatMoney from '../../lib/formatmoney';
+import checkbalance from '../../lib/checkbalance';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
 import AgentsInPrison from './agentsinprison.react';
@@ -17,8 +18,12 @@ import * as dashboardActions from '../actions';
 class AgentsWindow extends Component {
 
   confirmHire() {
-    const {agentforhire} = this.props;
+    const {agentforhire, cash} = this.props;
     const price = hirecost(agentforhire.get('rank'));
+    if (!checkbalance(price, cash)) {
+      console.log('insufficient cash');
+      return;
+    }
     dashboardActions.confirmhire(agentforhire, price);
   }
 
@@ -40,7 +45,7 @@ class AgentsWindow extends Component {
       <div id='AgentsWindow'>
         <div id='AgentHiringWindow'>
           <input
-            onClick={this.hireAgent}
+            onClick={this.hireAgent.bind(this)}
             type='button'
             value={msg('buttons.hireAgent')}
             />

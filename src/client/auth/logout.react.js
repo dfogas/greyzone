@@ -5,14 +5,14 @@ import {msg} from '../intl/store';
 
 export default class Logout extends Component {
   render() {
+    const {id} = this.props;
     return (
-      <div className='logout'>
-        <button
-          className='logout-button'
-          onClick={actions.logout}>
-          {msg('auth.logout.button')}
-        </button>
-      </div>
+      <button
+        className='logout-button'
+        id={id}
+        onClick={actions.logout}>
+        {msg('auth.logout.button')}
+      </button>
     );
   }
 }

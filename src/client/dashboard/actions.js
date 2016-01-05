@@ -9,6 +9,7 @@ export function buyContacts() {
   dispatch(buyContacts, {});
 }
 
+// price struct is Number Number
 export function confirmhire(agent, price) {
   dispatch(confirmhire, {agent, price});
 }

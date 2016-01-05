@@ -31,7 +31,9 @@ class AgentsTier extends Component {
           jsonapi={jsonapi}
           />
         <AgentOnMission activemission={activemission}/>
-        <ActionChoose activemission={activemission}/>
+        {activemission.getIn(['equipmenteffects', 'actionchoose']) &&
+          <ActionChoose activemission={activemission}/>
+        }
         {!activemission.getIn(['mission', 'currenttask', 'agentlock']) &&
           activemission.getIn(['mission', 'currenttask', 'agentontask']) &&
           <BackToMissionButton

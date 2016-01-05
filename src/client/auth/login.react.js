@@ -1,5 +1,5 @@
 import './login.styl';
-import * as actions from './actions';
+import * as authActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';
@@ -17,7 +17,7 @@ class Login extends Component {
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
     // fields = { email: '', password: ''}
-    actions.login(fields)
+    authActions.login(fields)
       .then(() => {
         this.redirectAfterLogin();
       })
@@ -36,19 +36,19 @@ class Login extends Component {
     return (
       <div className="login">
         <form onSubmit={(e) => this.onFormSubmit(e)}>
-          <fieldset disabled={pendingActions.has(actions.login.toString())}>
+          <fieldset disabled={pendingActions.has(authActions.login.toString())}>
             <legend>{msg('auth.form.legend.login')}</legend>
             <input
               autoFocus
               name="email"
-              onChange={actions.updateFormField}
+              onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.email')}
               value={form.fields.email}
             />
             <br />
             <input
               name="password"
-              onChange={actions.updateFormField}
+              onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.password')}
               type="password"
               value={form.fields.password}

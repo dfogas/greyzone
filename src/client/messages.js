@@ -42,8 +42,8 @@ export default {
       confirmHire: 'Potvrdit najmutí',
       confirmMission: 'Potvrdit přijetí mise',
       edit: 'Editovat',
-      hireAgent: 'Najmout agenta',
-      missionAccept: 'Mise k přijmutí',
+      hireAgent: 'Prohlédnout kandidáta',
+      missionAccept: 'Požádat o misi',
       save: 'Uložit'
     },
     command: {
@@ -199,6 +199,7 @@ export default {
       armory: 'Zbrojnice',
       briefing: 'Příprava',
       command: 'Velitelství',
+      countries: 'Země',
       dashboard: 'Nástěnka',
       headerHtml: `<a href="https://github.com/steida/este">Este.js</a> App`,
       help: 'Nápověda',
@@ -261,7 +262,7 @@ export default {
         },
         placeholder: {
           email: 'your@email.com',
-          organization: 'e.g. Spectre',
+          organization: 'Organization e.g. Spectre',
           password: 'password'
         },
         wrongPassword: 'Wrong password'
@@ -282,9 +283,9 @@ export default {
       cancel: 'Cancel',
       confirmHire: 'Confirm Hiring',
       edit: 'Edit',
-      hireAgent: 'Hire Agent',
+      hireAgent: 'Screen Candidate',
       save: 'Save',
-      missionAccept: 'Mission to Accept',
+      missionAccept: 'Ask for a Mission',
       confirmMission: 'Confirm Mission Accept'
     },
     command: {
@@ -441,6 +442,7 @@ export default {
       armory: 'Armory',
       briefing: 'Briefing',
       command: 'Command',
+      countries: 'Countries',
       dashboard: 'Dashboard',
       headerHtml: `<a href="https://github.com/steida/este">Este.js</a> App`,
       help: 'Help',

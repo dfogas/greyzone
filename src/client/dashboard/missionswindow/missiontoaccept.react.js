@@ -10,11 +10,13 @@ class MissionToAccept extends Component {
     const {missiontoaccept} = this.props;
     return (
       <div className='mission-to-accept'>
-        {!!missiontoaccept &&
+        {missiontoaccept ?
           <MissionCard
             isBriefing={true}
             mission={missiontoaccept}
-            />}
+            /> : <div className='no-mission-to-accept'>
+            {"There is currently no mission to accept."}</div>
+          }
       </div>
     );
   }

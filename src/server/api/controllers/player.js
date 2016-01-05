@@ -1,6 +1,6 @@
 import express from 'express';
 import Player from '../models/player';
-import playerdefaults from '../../../client/lib/playerdefaults';
+import playerdefaults from '../../lib/playerdefaults';
 // import localAuthenticator from '../strategies/local';
 
 const router = express.Router();

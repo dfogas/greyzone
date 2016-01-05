@@ -1,8 +1,8 @@
 var playa =
   `{
-"title": "Apprentice",
-"gameCash": 2000,
-"gameContacts": 300,
+"title": "Novice",
+"gameCash": 1000,
+"gameContacts": 100,
 "activemission": {
   "title": "Cash Transport",
   "tasks": [
@@ -68,7 +68,7 @@ var playa =
       }
     }
 },
-"agentforhire": null,
+"agentsforhire": [],
 "agentinarmory": null,
 "componentsstates": [{
   "componentName": "agent-scrollbar",
@@ -129,30 +129,30 @@ var playa =
     "quantity" : 1,
     "tag" : "E3S"
 }],
-"countries": [{
-  "reputation": 100,
-  "obscurity": 1,
-  "name": "US"
-}, {
-  "reputation": 100,
-  "obscurity": 1,
-  "name": "West Europe"
-}, {
-  "reputation": 0,
-  "obscurity": 1,
-  "name": "Russia"
-}, {
-  "reputation": 0,
-  "obscurity": 1,
-  "name": "Arabia"
-}, {
-  "reputation": 0,
-  "obscurity": 1,
-  "name": "SouthEast"
-}, {
-  "reputation": 100,
-  "obscurity": 1,
-  "name": "Latin America"
+"countrystats": [{
+    "reputation": 100,
+    "obscurity": 1,
+    "name": "US"
+  }, {
+    "reputation": 100,
+    "obscurity": 1,
+    "name": "West Europe"
+  }, {
+    "reputation": 0,
+    "obscurity": 1,
+    "name": "Russia"
+  }, {
+    "reputation": 0,
+    "obscurity": 1,
+    "name": "Arabia"
+  }, {
+    "reputation": 0,
+    "obscurity": 1,
+    "name": "SouthEast"
+  }, {
+    "reputation": 100,
+    "obscurity": 1,
+    "name": "Latin America"
 }],
 "agents": [{
   "MissionsDone": [],
@@ -275,9 +275,22 @@ var playa =
   "special": false,
   "title": "Blackmailed"
   }],
-  "missiontoaccept": null
+  "missionstoaccept": [],
+  "organization": {
+    "agentsforhire": [],
+    "enhancements": [],
+    "missionsDone": [],
+    "missionstoaccept": []
+  },
+  "achievements": [
+    {
+      "name": "Tutorial"
+    },
+    {
+      "name": "Achievement no. 1"
+    }
+  ]
 }`;
-
 
 var playerdefaults = JSON.parse(playa);
 

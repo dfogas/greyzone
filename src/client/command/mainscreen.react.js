@@ -10,9 +10,9 @@ class MainScreen extends Component {
     const {jsonapi} = this.props;
     return (
       <div className='main-screen'>
-        <MapList
+        {/*<MapList
           jsonapi = {jsonapi}
-          />
+          />*/}
       </div>
     );
   }

@@ -7,8 +7,11 @@ import {msg} from '../intl/store';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import ActiveMission from './activemission/activemission.react';
-import SpecialMissionsLayout from './specialmissionslayout/specialmissionslayout.react';
 import MissionsLayout from './missionslayout/missionslayout.react';
+import SpecialMissionsLayout from './specialmissionslayout/specialmissionslayout.react';
+import ToMission from '../navs/tomission.react';
+import BriefingToDashboard from '../navs/briefingtodashboard.react';
+import BriefingToArmory from '../navs/briefingtoarmory.react';
 
 class BriefingScreen extends Component {
   render() {
@@ -21,17 +24,20 @@ class BriefingScreen extends Component {
     return (
       <DocumentTitle title={msg('briefing.title')}>
         <div id='BriefingScreen'>
-          <SpecialMissionsLayout
+          {/*<SpecialMissionsLayout
             specialmissions={specialmissions}
-            />
+            />*/}
           <ActiveMission
             activemission={jsonapi.get('activemission')}
             agents={agents}
             />
-          <MissionsLayout
+          <BriefingToDashboard />
+          <BriefingToArmory />
+          <ToMission />
+          {/*<MissionsLayout
             isBriefing={true}
             missions={commonmissions}
-            />
+            />*/}
           <AgentScrollBarWithNavButtons
             agents={agents}
             isBriefing={true}

@@ -4,13 +4,12 @@ import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
 
 import immutable from 'immutable';
-
 import randomInt from '../lib/getrandomint';
-// import playerdefaults from '../lib/playerdefaults';
 
 export const dispatchToken = register(({action, data}) => {
 
   if (action === dashboardActions.acceptMission) {
+    // tbd isolate countries to global constants
     const countries = ['US', 'West Europe', 'Russia', 'SouthEast', 'China', 'Latin America'];
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -36,12 +35,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-
-  if (action === dashboardActions.hire)
-    jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['agentforhire'], data);
-    });
-
   if (action === dashboardActions.confirmmissionaccept) {
     const missions = jsonapiCursor(['missions']);
     jsonapiCursor(jsonapi => {
@@ -52,6 +45,11 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['missiontoaccept'], null);
     });
   }
+
+  if (action === dashboardActions.hire)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['agentforhire'], data);
+    });
 
   if (action === authActions.login) {
     const {email} = data;

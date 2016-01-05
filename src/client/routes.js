@@ -8,13 +8,13 @@ import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 import Armory from './pages/armory.react';
 import Briefing from './pages/briefing.react';
 import Command from './pages/command.react';
+import Countries from './pages/countries.react';
 import Dashboard from './pages/dashboard.react';
 import Help from './pages/help.react';
 import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
 import Lab from './pages/lab.react';
 import Support from './pages/support.react';
-import UverKalk from './pages/uverkalk.react.js';
 
 export default (
   <Route handler={App} path="/">
@@ -28,8 +28,8 @@ export default (
     <Route handler={Mission} name="mission" />
     <Route handler={SignUp} name="signup" />
     <Route handler={Lab} name="lab" />
+    <Route handler={Countries} name="countries" />
     <Route handler={Support} name="support" />
     <Route handler={Support} name="forum" />
-    <Route handler={UverKalk} name="uverkalk" />
   </Route>
 );

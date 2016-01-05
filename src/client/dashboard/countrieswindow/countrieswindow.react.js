@@ -5,18 +5,18 @@ import immutable from 'immutable';
 
 class CountriesWindow extends Component {
   render() {
-    const countriesstats = this.props.countries.map(country => {
+    const countrystats = this.props.countrystats.map(countrystat => {
       return (
         <tbody>
           <tr className='country-stat'>
             <td className='country-name-dashboard'>
-              {country.get('name')}&nbsp;
+              {countrystat.get('name')}&nbsp;
             </td>
             <td className='country-stat-reputation-dashboard'>
-              {country.get('reputation')}&nbsp;
+              {countrystat.get('reputation')}&nbsp;
             </td>
             <td className='country-stat-obscurity-dashboard'>
-              {Math.round10((country.get('obscurity')), -1)}&nbsp;
+              {Math.round10((countrystat.get('obscurity')), -1)}&nbsp;
             </td>
           </tr>
         </tbody>
@@ -33,7 +33,7 @@ class CountriesWindow extends Component {
               <th>Obscurity</th>
             </tr>
           </thead>
-          {countriesstats}
+          {countrystats}
         </table>
       </div>
     );
@@ -41,7 +41,7 @@ class CountriesWindow extends Component {
 }
 
 CountriesWindow.propTypes = {
-  countries: React.PropTypes.instanceOf(immutable.List)
+  countrystats: React.PropTypes.instanceOf(immutable.List)
 };
 
 export default CountriesWindow;

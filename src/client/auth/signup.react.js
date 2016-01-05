@@ -1,5 +1,5 @@
-import './login.styl';
-import * as actions from './actions';
+import './signup.styl';
+import * as authActions from './actions';
 import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -17,7 +17,7 @@ class SignUp extends Component {
   onFormSubmit(e) {
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
-    actions.signup(fields)
+    authActions.signup(fields)
         .then(() => {
           dashboardActions.newUserAppendState(fields.email, fields.organization);
         })
@@ -31,7 +31,7 @@ class SignUp extends Component {
   redirectAfterSignup() {
     const nextPath = this.props.router.getCurrentQuery().nextPath;
     this.props.router.replaceWith(nextPath || '/');
-    actions.redirectToLoginAfterSignup();
+    authActions.redirectToLoginAfterSignup();
   }
 
   render() {
@@ -41,25 +41,25 @@ class SignUp extends Component {
     return (
       <div className="signup">
         <form onSubmit={(e) => this.onFormSubmit(e)}>
-          <fieldset disabled={pendingActions.has(actions.signup.toString())}>
+          <fieldset disabled={pendingActions.has(authActions.signup.toString())}>
             <legend>{msg('auth.form.legend.signup')}</legend>
             <input
               name="organization"
-              onChange={actions.updateFormField}
+              onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.organization')}
               value={form.fields.organization}
               />
             <input
               autoFocus
               name="email"
-              onChange={actions.updateFormField}
+              onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.email')}
               value={form.fields.email}
             />
             <br />
             <input
               name="password"
-              onChange={actions.updateFormField}
+              onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.password')}
               type="password"
               value={form.fields.password}

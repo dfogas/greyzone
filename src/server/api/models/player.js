@@ -2,17 +2,14 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 var PlayerSchema = new Schema({
-  name: {
-    type: String,
-    unique: false,
-    required: true
-  },
-  userId: String,
-  title: {
-    type: String,
-    unique: false,
-    required: true
-  },
+  achievements: [Schema.Types.Mixed],
+  activemission: Schema.Types.Mixed,
+  agentsforhire: [Schema.Types.Mixed],
+  agentinarmory: Schema.Types.Mixed,
+  agents: [Schema.Types.Mixed],
+  componentsstates: [Schema.Types.Mixed],
+  countrystats: [Schema.Types.Mixed],
+  equipments: [Schema.Types.Mixed],
   gameCash: {
     type: Number,
     min: 0
@@ -21,18 +18,22 @@ var PlayerSchema = new Schema({
     type: Number,
     min: 0
   },
-  agents: [Schema.Types.Mixed],
   missions: [Schema.Types.Mixed],
-  countries: [Schema.Types.Mixed],
-  equipments: [Schema.Types.Mixed],
-  componentsstates: [Schema.Types.Mixed],
-  agentinarmory: Schema.Types.Mixed,
-  activemission: Schema.Types.Mixed,
-  agentforhire: Schema.Types.Mixed,
-  missiontoaccept: Schema.Types.Mixed
+  missionstoaccept: [Schema.Types.Mixed],
+  name: {
+    type: String,
+    unique: false,
+    required: true
+  },
+  organization: Schema.Types.Mixed,
+  userId: String,
+  title: {
+    type: String,
+    unique: false,
+    required: true
+  }
 });
 
 var Player = mongoose.model('Player', PlayerSchema);
-
 
 export default Player;
