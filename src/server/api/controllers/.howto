@@ -1,0 +1,31 @@
+working with Mongoose again so import it
+express as well (it is a bit strange because it is already contained in main.js)
+then import model that the controller handles
+possibly other things that help you handle client's request
+
+do the const router = express.Router();
+
+then start configuring routes, go e.g. router.route('/...').post((req, res) => {...})
+or .get((req, res) => {...})
+or .delete((req, res))
+
+example of .put
+
+Player.update(
+  // we need params _id here else only 1st record from parent collection is updated
+  // Model.update(criteria, doc, options, callback)
+  {_id: req.params.player_id}, {$set: req.body}, {overwrite: true, upsert: true}, (err, raw) => {
+    if (err)
+      res.send(err);
+
+    res.json({
+      message: JSON.stringify(raw)
+    });
+  }
+);
+
+now functions to handle CRUD
+
+don't forget to import controller in api/index.js
+
+your server api routes for this client call should be set up now

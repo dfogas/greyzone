@@ -1,5 +1,5 @@
 /*
-Augmented Flux dispatcher here, with its dispatch and register methods
+  Augmented Flux dispatcher here, with its dispatch and register methods
 */
 
 import {pendingActionsCursor} from './state';

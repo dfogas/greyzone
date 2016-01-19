@@ -31,6 +31,7 @@ export const appState = new State(initialState, function(key, value) {
 
 export const authCursor = appState.cursor(['auth']);
 export const contestCursor = appState.cursor(['contest']);
+export const gameCursor = appState.cursor(['game']);
 export const i18nCursor = appState.cursor(['i18n']);
 export const jsonapiCursor = appState.cursor(['jsonapi']);
 export const pendingActionsCursor = appState.cursor(['pendingActions']);

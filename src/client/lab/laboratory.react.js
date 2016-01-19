@@ -1,11 +1,11 @@
-import './laboratory.css';
+import './laboratory.styl';
 import Component from '../components/component.react';
 import React from 'react';
 
 class Laboratory extends Component {
   render() {
     return (
-      <div classNameName='laboratory'>
+      <div id='LaboratoryPage'>
         <div id="background"></div>
           <div id="wrapper">
             <input id="secondroll" name="roll" type="checkbox" />

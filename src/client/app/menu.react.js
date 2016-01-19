@@ -4,17 +4,17 @@
 import Component from '../components/component.react';
 import React from 'react';
 // import {FormattedHTMLMessage} from 'react-intl';
-import {Link} from 'react-router';
-import {msg} from '../intl/store';
-
-import NavTab from './navtab.react.js';
-import Logout from '../auth/logout.react';
-import LanguageSelect from './language.select.react';
+// import {Link} from 'react-router';
+// import {msg} from '../intl/store';
+//
+// import NavTab from './navtab.react.js';
+// import Logout from '../auth/logout.react';
+// import LanguageSelect from './language.select.react';
 
 class Menu extends Component {
 
   render() {
-    const isLoggedIn = !!this.props.viewer;
+    // const isLoggedIn = !!this.props.viewer;
 
     return (
       <header>

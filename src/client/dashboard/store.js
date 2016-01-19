@@ -5,51 +5,41 @@ import {jsonapiCursor} from '../state';
 
 import immutable from 'immutable';
 import randomInt from '../lib/getrandomint';
+import CountryList from '../../server/lib/greyzone/country.list';
 
 export const dispatchToken = register(({action, data}) => {
 
   if (action === dashboardActions.acceptMission) {
-    // tbd isolate countries to global constants
-    const countries = ['US', 'West Europe', 'Russia', 'SouthEast', 'China', 'Latin America'];
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['missiontoaccept'], data.message)
-        .setIn(['missiontoaccept', 'inCountry'], countries[randomInt(0, countries.length)]);
-    });
-  }
-
-  if (action === dashboardActions.buyContacts)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .update('gameCash', val => val - 1000)
-        .update('gameContacts', val => val + 10);
-    });
-
-  if (action === dashboardActions.confirmhire) {
-    const agents = jsonapiCursor(['agents']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['agents'], agents.push(data.agent))
-        .updateIn(['gameCash'], val => val - data.price)
-        .setIn(['agentforhire'], null);
-    });
-  }
-
-  if (action === dashboardActions.confirmmissionaccept) {
+    const missiontoaccept = immutable.fromJS(data.message).set('inCountry', CountryList[randomInt(0, CountryList.length)]);
     const missions = jsonapiCursor(['missions']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['missions'], missions.push(data.mission))
-        .updateIn(['gameCash'], val => val - data.cost[0])
-        .updateIn(['gameContacts'], val => val - data.cost[1])
-        .setIn(['missiontoaccept'], null);
+        .set('missions', missions.push(missiontoaccept));
     });
   }
 
-  if (action === dashboardActions.hire)
+  if (action === dashboardActions.bookAgentPrice)
     jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['agentforhire'], data);
+      return jsonapi.update('gameCash', val => val + data.message);
     });
+
+  if (action === dashboardActions.bookMissionPrice)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('gameContacts', val => val - data.message.get('contacts'))
+        .update('gameCash', val => val - data.message.get('cash'));
+    });
+
+  if (action === dashboardActions.hireAgent) {
+    const agents = jsonapiCursor(['agents']);
+    console.log('agent recruited: ' + data.agent.name);
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['agents'], agents.push(immutable.fromJS(data.agent)));
+    });
+  }
+
+  if (action === dashboardActions.hidePlayersWindow)
+    console.log('If hidden, then show. If visible, then hide.');
 
   if (action === authActions.login) {
     const {email} = data;
@@ -107,5 +97,11 @@ export const dispatchToken = register(({action, data}) => {
       body: JSON.stringify({userId: data.userId, name: data.organization})
     });
   }
+
+  if (action === dashboardActions.pointerChange)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['componentsstates', 'dashboard', 'index'], data.message);
+    });
 
 });

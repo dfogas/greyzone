@@ -8,6 +8,7 @@ class Countries extends Component {
   render() {
     return (
       <div className='countries-page'>
+        <CountriesScreen />
       </div>
     );
   }

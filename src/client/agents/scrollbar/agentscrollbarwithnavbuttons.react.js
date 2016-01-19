@@ -14,7 +14,7 @@ class AgentScrollBarWithNavButtons extends Component {
   render() {
     const {agents, jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
-    const agentsbstyle = jsonapi.getIn(['componentsstates', 0, 'componentstyle']);
+    const agentsbstyle = jsonapi.getIn(['componentsstates', 'agentscrollbar', 'componentstyle']);
     const agentsbstyletojs = agentsbstyle.toJS();
 
     var classString = '';

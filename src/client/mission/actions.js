@@ -1,5 +1,6 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
+import {jsonapiCursor} from '../state';
 
 export function agentIsBackFromTask() {
   dispatch(agentIsBackFromTask, {});
@@ -57,7 +58,14 @@ export function removeCompletedMission() {
   dispatch(removeCompletedMission, {});
 }
 
-export function select(mission) {
+export function select(title, inCountry, tier) {
+  const missions = jsonapiCursor(['missions']);
+  const mission = missions.find(mission =>
+      mission.get('title') === title &&
+      mission.get('inCountry') === inCountry &&
+      mission.get('tier') === tier
+    );
+
   dispatch(select, {message: mission});
 }
 

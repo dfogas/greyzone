@@ -1,3 +1,7 @@
+/*
+  taken from MDN
+*/
+
 (function() {
   /**
    * Decimal adjustment of a number.

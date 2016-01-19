@@ -9,7 +9,6 @@ import MainScreen from './mainscreen.react';
 import CommandToDashboard from '../navs/commandtodashboard.react.js';
 import CommandToMission from '../navs/commandtomission.react.js';
 import CommandToBriefing from '../navs/commandtobriefing.react.js';
-import CommandToCountries from '../navs/commandtocountries.react.js';
 
 class CommandCenterScreen extends Component {
 
@@ -37,8 +36,6 @@ class CommandCenterScreen extends Component {
           <CommandToMission />}
         {isLoggedIn &&
           <CommandToBriefing />}
-        {isLoggedIn &&
-          <CommandToCountries />}
         <MainScreen
           jsonapi = {jsonapi}
           />

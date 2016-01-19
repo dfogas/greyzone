@@ -7,8 +7,9 @@ var PlayerSchema = new Schema({
   agentsforhire: [Schema.Types.Mixed],
   agentinarmory: Schema.Types.Mixed,
   agents: [Schema.Types.Mixed],
-  componentsstates: [Schema.Types.Mixed],
+  componentsstates: Schema.Types.Mixed,
   countrystats: [Schema.Types.Mixed],
+  enhancements: [Schema.Types.Mixed],
   equipments: [Schema.Types.Mixed],
   gameCash: {
     type: Number,
@@ -26,6 +27,7 @@ var PlayerSchema = new Schema({
     required: true
   },
   organization: Schema.Types.Mixed,
+  statuses: [Schema.Types.Mixed],
   userId: String,
   title: {
     type: String,

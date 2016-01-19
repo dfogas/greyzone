@@ -35,8 +35,9 @@ router.route('/')
 
 router.route('/:player_id')
   .get((req, res) => {
-    console.log('Player controller says, req.user is: ', req.user);
-    console.log('Params player_id is: ', req.params.player_id);
+    // console.log('Player controller says, req.user is: ', req.user);
+    // console.log('Params player_id is: ', req.params.player_id);
+    // findOne probably returns first found record
     Player.findOne({
       _id: req.params.player_id
     }, function(err, player) {

@@ -10,14 +10,14 @@ import {msg} from '../intl/store';
 class Dashboard extends Component {
   render() {
     // const {viewer: {email}} = this.props;
-    const {contest, jsonapi, locales, pendingActions, viewer} = this.props;
-    console.log(viewer);
+    const {contest, game, jsonapi, locales, pendingActions, viewer} = this.props;
 
     return (
       <DocumentTitle title={msg('dashboard.title')}>
         <div className="dashboard-page" >
           <DashboardScreen
             contest={contest}
+            game={game}
             jsonapi={jsonapi}
             locales={locales}
             pendingActions={pendingActions}

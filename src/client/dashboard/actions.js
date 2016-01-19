@@ -1,25 +1,36 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
+import Agent from '../../server/lib/greyzone/agents.generator';
+import MissionsList from '../lib/missiontiers';
+import randomInt from '../lib/getrandomint';
 
-export function acceptMission(mission) {
-  dispatch(acceptMission, {message: mission});
+import {gameCursor} from '../state';
+
+export function acceptMission(missiontier) {
+  const missionsPerTier = MissionsList.filter(mission => mission.tier === missiontier);
+
+  dispatch(acceptMission, {message: missionsPerTier[randomInt(0, missionsPerTier.length)]});
 }
 
-export function buyContacts() {
-  dispatch(buyContacts, {});
+export function bookAgentPrice(rank) {
+  const agentPrice = gameCursor(['globals', 'constants', 'agentPriceList', JSON.stringify(rank)]);
+
+  dispatch(bookAgentPrice, {message: agentPrice});
 }
 
-// price struct is Number Number
-export function confirmhire(agent, price) {
-  dispatch(confirmhire, {agent, price});
+export function bookMissionPrice(missiontier) {
+  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', JSON.stringify(missiontier)]);
+  dispatch(bookMissionPrice, {message: missionPrice});
 }
 
-export function confirmmissionaccept(mission, cost) {
-  dispatch(confirmmissionaccept, {mission, cost});
+export function hidePlayersWindow() {
+  dispatch(hidePlayersWindow, {});
 }
 
-export function hire(agent, price) {
-  dispatch(hire, agent);
+export function hireAgent(character, rank) {
+  const agent = Agent(character, rank);
+
+  dispatch(hireAgent, {agent});
 }
 
 export function newUserAppendState(email, organization) {
@@ -47,14 +58,18 @@ export function newUserAppendState(email, organization) {
       userId = users.filter(user => user.username === email).map(user => user._id);
       dispatch(newUserAppendState, {userId, email, organization});
     });
+}
 
+export function pointerChange(whereto) {
+  dispatch(pointerChange, {message: whereto});
 }
 
 setToString('dashboard', {
   acceptMission,
-  buyContacts,
-  confirmhire,
-  confirmmissionaccept,
-  hire,
-  newUserAppendState
+  bookAgentPrice,
+  bookMissionPrice,
+  hidePlayersWindow,
+  hireAgent,
+  newUserAppendState,
+  pointerChange
 });

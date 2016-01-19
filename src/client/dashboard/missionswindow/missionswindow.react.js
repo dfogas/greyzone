@@ -3,73 +3,57 @@ import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
-import acceptcost from '../../lib/missionacceptcost';
 import {msg} from '../../intl/store';
 
-import MissionToAccept from './missiontoaccept.react';
+// import MissionToAccept from './missiontoaccept.react';
 import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
 
-import {list as MissionsList} from '../../lib/missions';
-import randomint from '../../lib/getrandomint';
-
 class MissionsWindow extends Component {
-  acceptMission() {
-    var randommissionindex = randomint(0, MissionsList.length);
-    dashboardActions.acceptMission(immutable.fromJS(MissionsList[randommissionindex]));
-  }
-
-  confirmMissionAccept() {
-    const {countries, missiontoaccept} = this.props;
-    const countryofmission = missiontoaccept.get('inCountry');
-    const [countryreputation, countryobscurity] = [
-      countries.getIn([countries.indexOf(countries.find(country => country.get('name') === countryofmission)), 'reputation']),
-      countries.getIn([countries.indexOf(countries.find(country => country.get('name') === countryofmission)), 'obscurity'])
-    ];
-    const cost = acceptcost(countryreputation, countryobscurity);
-    dashboardActions.confirmmissionaccept(missiontoaccept.toJS(), cost);
+  acceptMission(tier) {
+    dashboardActions.acceptMission(tier);
+    dashboardActions.bookMissionPrice(tier);
   }
 
   render() {
-    const {countries, missiontoaccept} = this.props;
-    let countryofmission, countryreputation, countryobscurity, cost;
-    if (missiontoaccept) {
-      countryofmission = missiontoaccept.get('inCountry');
-      [countryreputation, countryobscurity] = [
-        countries.getIn([countries.indexOf(countries.find(country => country.get('name') === countryofmission)), 'reputation']),
-        countries.getIn([countries.indexOf(countries.find(country => country.get('name') === countryofmission)), 'obscurity'])
-      ];
-      cost = acceptcost(countryreputation, countryobscurity);
-    }
-
+    const {enhancements, missionspricelist} = this.props;
+    const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
     return (
       <div id='MissionsWindow'>
-        <input
-          onClick={this.acceptMission}
-          type='button'
-          value={msg('buttons.missionAccept')}
-          />
-        <br />
-        <MissionToAccept
-          missiontoaccept={missiontoaccept}
-          />
-        <br />
-        <span>Rewards:</span><MissionResultList
-          rewards={missiontoaccept ? missiontoaccept.get('rewards') : null}
-          />
-        <br />
-        <span>Losses:</span><MissionResultList
-          losses={missiontoaccept ? missiontoaccept.get('losses') : null}
-          />
-        <br />
-        {!!missiontoaccept &&
-          <div className='mission-accept-cost'>Acceptin this mission will cost you: {cost[0]}$ and {cost[1]} contacts</div>}
-        <br />
-        {!!missiontoaccept &&
-          <input
-            onClick={this.confirmMissionAccept.bind(this)}
-            type='button'
-            value={msg('buttons.confirmMission')}
-            />}
+        <button
+          className='mission-accept-button'
+          id='AcceptMissionTier1'
+          onClick={(e) => this.acceptMission(1)}
+          >Mission Tier 1
+        </button>
+        {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Operation II.') &&
+          <button
+            className='mission-accept-button'
+            id='AcceptMissionTier2'
+            onClick={(e) => this.acceptMission(2)}
+            >Mission Tier 2
+          </button>}
+        {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Good Label') &&
+          <button
+            className='mission-accept-button'
+            id='AcceptMissionTier3'
+            onClick={(e) => this.acceptMission(3)}
+            >Mission Tier 3
+          </button>}
+        {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Higher Level') &&
+          <button
+            className='mission-accept-button'
+            id='AcceptMissionTier4'
+            onClick={(e) => this.acceptMission(4)}
+            >Mission Tier 4
+          </button>}
+        {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Top Class') &&
+          <button
+            className='mission-accept-button'
+            id='AcceptMissionTier5'
+            onClick={(e) => this.acceptMission(5)}
+            >Mission Tier 5</button>
+        }<hr />
+        {JSON.stringify(missionspricelist.toJS())}
       </div>
     );
   }
@@ -77,8 +61,7 @@ class MissionsWindow extends Component {
 }
 
 MissionsWindow.propTypes = {
-  countries: React.PropTypes.instanceOf(immutable.List),
-  missiontoaccept: React.PropTypes.instanceOf(immutable.Map)
+  countrystats: React.PropTypes.instanceOf(immutable.List)
 };
 
 export default MissionsWindow;

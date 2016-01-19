@@ -24,7 +24,7 @@ class AgentCard extends Component {
 
   render() {
     const {agent, agentindex, key} = this.props;
-    const rankup = shouldHaveRank(agent.get('experience')) > agent.get('rank') ? true : false;
+    const rankup = shouldHaveRank(agent.get('experience')) >= agent.get('rank') ? true : false;
 
     let classString = '';
     let isMission = false;
@@ -60,7 +60,12 @@ class AgentCard extends Component {
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('operationsSkill')} skillname="operations" />
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('electronicsSkill')} skillname="electronics" />
         <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('stealthSkill')} skillname="stealth" />
-        <AgentProfile isMission={isMission} isShowcased={isShowcased} name={agent.get('name')} />
+        <AgentProfile
+          imgsrc={agent.get('imgsrc')}
+          isMission={isMission}
+          isShowcased={isShowcased}
+          name={agent.get('name')}
+          />
         {
           equipments.map((equipment, i) => {
             return (

@@ -4,10 +4,9 @@ import React from 'react';
 class AgentProfile extends Component {
   render() {
     //data cache placeholder
-    const {name} = this.props;
+    const {name, imgsrc} = this.props;
 
     var classString = '';
-    var imgsrc = '../../assets/img/agents/agent_user_stock_spy_mail_help_hat_vehicle_vector_trustee-128.png';
     if (this.props.isShowcased)
       classString += ' showcased';
     return (
@@ -22,6 +21,7 @@ class AgentProfile extends Component {
 }
 
 AgentProfile.propTypes = {
+  imgsrc: React.PropTypes.string,
   isShowcased: React.PropTypes.bool,
   name: React.PropTypes.string
 };

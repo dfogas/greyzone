@@ -28,12 +28,12 @@ class PlayersWindow extends Component {
           <span className='gameContacts-counter'>
             Contacts: {gameContacts}
           </span>
-          <button
+          {/*<button
             className='buy10Contacts'
             onClick={this.buyContacts}
             >
             Buy 10 contacts for 1,000$
-          </button>
+          </button>*/}
         </div>
       </div>
     );

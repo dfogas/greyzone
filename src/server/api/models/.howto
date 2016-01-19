@@ -1,0 +1,19 @@
+Setting up mongoose model
+
+make new Schema with properties and their values set to mongoose possible types
+- String
+- Number
+- Boolean
+- Date
+- Mixed
+- Array
+- Buffer
+- ObjectId
+use it to create model
+
+HINT: Schema.Types.Mixed for objects, [Schema.Types.Mixed] for arrays
+
+export that model
+now you can import it and work with it (most likely in the controller handling Rest api calls)
+
+nuff said

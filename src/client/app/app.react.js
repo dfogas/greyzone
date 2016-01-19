@@ -54,6 +54,7 @@ class App extends Component {
     return {
       auth: state.authCursor(),
       contest: state.contestCursor(),
+      game: state.gameCursor(),
       i18n: state.i18nCursor(),
       jsonapi: state.jsonapiCursor(),
       pendingActions: state.pendingActionsCursor(),

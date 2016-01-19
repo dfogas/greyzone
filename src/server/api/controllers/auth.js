@@ -45,10 +45,6 @@ router.route('/signup')
       });
     });
 
-    // IMPORTANT: do not remove these asynchrounous code, if you do, app stops
-    // setTimeout(() => {
-    //   res.status(200).end();
-    // }, 1000);
 
   });
 

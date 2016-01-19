@@ -1,3 +1,7 @@
+/*
+  -> String
+  using default Math.random to determine which skill we increase
+*/
 var getRandomSkill = function() {
   let random = Math.random();
 
