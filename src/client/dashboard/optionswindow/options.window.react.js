@@ -1,6 +1,7 @@
 import './options.window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 
 class OptionsWindow extends Component {
   render() {
@@ -10,8 +11,8 @@ class OptionsWindow extends Component {
     return (
       <div id='OptionsWindow'>
         <form action=''>
-          <input type='checkbox' name='multiplayer' value='Multiplayer'>Multiplayer</input>
-          <input type='checkbox' name='tutorial' value='Tutorial'>Tutorial</input>
+          <input name='multiplayer' type='checkbox' value='Multiplayer'>Multiplayer</input>
+          <input name='tutorial' type='checkbox' value='Tutorial'>Tutorial</input>
         </form>
         <button
           id='ChangeOptions'
@@ -21,5 +22,9 @@ class OptionsWindow extends Component {
     );
   }
 }
+
+OptionsWindow.propTypes = {
+  options: React.Proptypes.instanceOf(immutable.Map)
+};
 
 export default OptionsWindow;

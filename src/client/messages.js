@@ -295,6 +295,15 @@ export default {
       cancelEdit: `You have unsaved changes. Are you sure you want to cancel them?`
     },
     dashboard: {
+      agenthire: {
+        button: {
+          hireAgent: 'Hire Agent'
+        },
+        input: {
+          rank: 'Rank',
+          specialist: 'Specialist'
+        }
+      },
       title: 'Dashboard(protected)'
     },
     equipments: {

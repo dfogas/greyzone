@@ -47,9 +47,21 @@ class AgentEquipContent extends Component {
           })}
         </div>
         <AgentInArmory jsonapi={jsonapi} />
-        <EquipmentStock equipments={equipmentsoperations} stock='operations' />
-        <EquipmentStock equipments={equipmentselectronics} stock='electronics' />
-        <EquipmentStock equipments={equipmentsstealth} stock='stealth' />
+        <EquipmentStock
+          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+          equipments={equipmentsoperations}
+          stock='operations'
+          />
+        <EquipmentStock
+          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+          equipments={equipmentselectronics}
+          stock='electronics'
+          />
+        <EquipmentStock
+          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+          equipments={equipmentsstealth}
+          stock='stealth'
+          />
       </div>
     );
   }

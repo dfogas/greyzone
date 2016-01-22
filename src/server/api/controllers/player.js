@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.route('/')
   .post((req, res) => {
+    console.log('saving to database');
 
     playerdefaults.name = req.body.name;
     playerdefaults.userId = req.body.userId ? req.body.userId : req.user._id; // ?!

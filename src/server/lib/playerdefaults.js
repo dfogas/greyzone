@@ -1,8 +1,21 @@
 var playerdefaults = {
   name: '',
-  title: "Novice",
-  gameCash: 1000,
-  gameContacts: 100,
+  title: 'Novice',
+  gameCash: 1000000,
+  gameContacts: 10000,
+  dashboard: {
+    strategical: {
+      agenthire: {
+        data: null,
+        form: {
+          fields: {
+            rank: '',
+            specialist: ''
+          }
+        }
+      }
+    }
+  },
   activemission: {
     title: 'Set-up operation',
     tasks: [
@@ -219,7 +232,7 @@ var playerdefaults = {
     },
     agentLimit: 3,
     tier: 1
-  },{
+  }, {
     title: 'Reverse Engineering',
     tasks: [
       [{
@@ -263,7 +276,7 @@ var playerdefaults = {
       cash: 0,
       contacts: 0
     },
-    prerequisites: {}
+    prerequisites: []
   }, {
     name: 'Basic Training',
     type: 'leadership',
@@ -271,7 +284,7 @@ var playerdefaults = {
       cash: 0,
       contacts: 0
     },
-    prerequisites: {}
+    prerequisites: []
   }, {
     name: 'Locals',
     type: 'toys',
@@ -279,7 +292,7 @@ var playerdefaults = {
       cash: 0,
       contacts: 0
     },
-    prerequisites: {}
+    prerequisites: []
   }, {
     name: 'Workshop',
     type: 'toys',
@@ -287,7 +300,7 @@ var playerdefaults = {
       cash: 0,
       contacts: 0
     },
-    prerequisites: {}
+    prerequisites: []
   }, {
     name: 'Forger',
     type: 'toys',
@@ -295,7 +308,7 @@ var playerdefaults = {
       cash: 0,
       contacts: 0
     },
-    prerequisites: {}
+    prerequisites: []
   }],
   missionsDone: [],
   achievements: [

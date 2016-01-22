@@ -168,24 +168,24 @@ const EnhancementList = [
     name: 'Stork Ind.',
     prerequisites:[],
     price: {
-      cash: 0,
-      contacts: 0
+      cash: 10000,
+      contacts: 10
     },
     type: 'toys'
   }, {
     name: 'Army Level Crypto',
     prerequisites: [],
     price: {
-      cash: 0,
-      contacts: 0
+      cash: 10000,
+      contacts: 10
     },
     type: 'toys'
   }, {
     name: 'Cleaning Service',
     prerequisites: [],
     price: {
-      cash: 0,
-      contacts: 0
+      cash: 10000,
+      contacts: 10
     },
     type: 'toys'
   }, {

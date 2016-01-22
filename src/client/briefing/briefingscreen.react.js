@@ -15,6 +15,7 @@ import BriefingToArmory from '../navs/briefingtoarmory.react';
 class BriefingScreen extends Component {
   selectMission(e) {
     e.preventDefault();
+
     const targetParentNode = e.target.parentNode;
     const title = targetParentNode.childNodes[0].innerHTML;
     const inCountry = targetParentNode.childNodes[1].innerHTML;

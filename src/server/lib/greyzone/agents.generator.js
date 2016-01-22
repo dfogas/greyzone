@@ -22,9 +22,9 @@ let Agent = function(character, rank) {
   for (let i = 0; i < rank; i += 1) {
     let randomSkill = getRandomSkill();
     if (randomSkill === 'operationsSkill')
-      operationsSkill +=1;
+      operationsSkill += 1;
     if (randomSkill === 'electronicsSkill')
-      electronicsSkill +=1;
+      electronicsSkill += 1;
     if (randomSkill === 'stealthSkill')
       stealthSkill += 1;
   }
@@ -33,7 +33,7 @@ let Agent = function(character, rank) {
     name: generateName('greyzone'),
     originCountry: generateCountry(),
     imgsrc: generateImage(character),
-    class: character,
+    specialist: character,
     operationsSkill: operationsSkill,
     electronicsSkill: electronicsSkill,
     stealthSkill: stealthSkill,

@@ -24,7 +24,7 @@ class MissionTrackingScreen extends Component {
         <AgentsTier
           jsonapi={jsonapi}
           />
-        <MissionToBriefingButton />        
+        <MissionToBriefingButton />
       </div>
     );
   }

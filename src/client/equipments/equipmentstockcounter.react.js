@@ -3,10 +3,10 @@ import React from 'react';
 
 class EquipmentStockCounter extends Component {
   render() {
-    const {name, price, quantity} = this.props;
+    const {available, name, price, quantity} = this.props;
 
     return (
-      <div className="equipment-stock-counter">
+      <div className={'equipment-stock-counter' + (available ? ' available' : '')}>
         {quantity} {quantity === 1 ? 'piece' : 'pieces'}/${price}
         <br />
         {name}
@@ -16,6 +16,7 @@ class EquipmentStockCounter extends Component {
 }
 
 EquipmentStockCounter.propTypes = {
+  available: React.PropTypes.bool,
   name: React.PropTypes.string,
   price: React.PropTypes.number,
   quantity: React.PropTypes.number

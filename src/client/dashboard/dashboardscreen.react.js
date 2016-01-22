@@ -1,8 +1,8 @@
 /*
-  Dumb Component
+  Smart Component
 */
 import './dashboardscreen.styl';
-import * as dashboardActions from './actions';
+// import * as dashboardActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -34,16 +34,17 @@ import StrategicalPointer from './pointers/strategical.pointer.react';
 class DashboardScreen extends Component {
   hidePlayersWindow() {
     const playerWindowDiv = document.querySelector('#PlayersWindow');
-    if (playerWindowDiv.style.top === "0px" || playerWindowDiv.style.top === "")
-      animate(playerWindowDiv, "top", "px", 0, -150, 500);
-    if (playerWindowDiv.style.top === "-150px")
-      animate(playerWindowDiv, "top", "px", -150, 0, 500);
+    if (playerWindowDiv.style.top === '0px' || playerWindowDiv.style.top === '')
+      animate(playerWindowDiv, 'top', 'px', 0, -150, 500);
+    if (playerWindowDiv.style.top === '-150px')
+      animate(playerWindowDiv, 'top', 'px', -150, 0, 500);
   }
 
   render() {
     const {contest, game, jsonapi} = this.props;
     const achievements = game.getIn(['globals', 'achievements']);
-    const statuses = game.getIn(['globals', 'statuses']);
+    const statusesowned = jsonapi.get('statuses');
+    const statusestotal = game.getIn(['globals', 'statuses']);
     const options = game.getIn(['globals', 'options']);
 
     const countrystats = jsonapi.get('countrystats');
@@ -78,11 +79,12 @@ class DashboardScreen extends Component {
             />}
           {dashPointer === 'strategical' &&
             <MissionsWindow
-              enhancements={enhancementstotal}
+              enhancements={enhancementsowned}
               missionspricelist={missionspricelist}
             />}
           {dashPointer === 'strategical' &&
             <AgentsWindow
+              agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
               agents={jsonapi.get('agents')}
               agentspricelist={agentspricelist}
               cash={jsonapi.get('gameCash')}
@@ -101,7 +103,8 @@ class DashboardScreen extends Component {
             />}
           {dashPointer === 'statuses' &&
             <StatusesWindow
-              statuses={statuses}
+              owned={statusesowned}
+              statuses={statusestotal}
             />}
           {(dashPointer === 'enhancements') &&
             <EnhancementsWindow
@@ -123,8 +126,12 @@ class DashboardScreen extends Component {
 }
 
 DashboardScreen.propTypes = {
+  agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   contest: React.PropTypes.instanceOf(immutable.List),
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  locales: React.Proptypes.string,
+  viewer: React.PropTypes.string
 };
 
 export default DashboardScreen;

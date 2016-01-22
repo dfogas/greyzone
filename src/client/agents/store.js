@@ -2,6 +2,7 @@ import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import getRandomSkill from '../lib/getrandomskill';
+import trainingtable from '../../server/lib/greyzone/trainingtable';
 
 import * as actions from './actions';
 
@@ -105,10 +106,23 @@ export const dispatchToken = register(({action, data}) => {
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank
   if (action === actions.getRank) {
     const agents = jsonapiCursor(['agents']);
+    if ((data.get('operationsSkill') + (data.get('electronicsSkill') + (data.get('stealthSkill')))) < trainingtable[data.get('rank') - 1].statstotal)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), getRandomSkill()], randomskill => randomskill + 1);
+      });
+
+    if (data.get('equipmentSlots') < trainingtable[data.get('rank') - 1].slots)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'equipmentSlots'], val => val + 1)
+          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'equipments'], val => val.push({name: ''}));
+      });
+
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), getRandomSkill()], randomskill => randomskill + 1)
         .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => rank + 1);
     });
   }
+
 });

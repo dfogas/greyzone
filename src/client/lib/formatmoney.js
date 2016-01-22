@@ -1,5 +1,10 @@
 /*
   OK, napíšem to hezčejc
+  Number Number String String -> Number
+  1st argument je číslo k formátování
+  2nd je číslo udávající počet desetinných míst, zpravidla 0
+  3rd oddělovač, desetinná čárka
+  4th oddělovač, tisíce
 */
 
 export default function formatMoney(num, c, d, t) {

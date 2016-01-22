@@ -1,7 +1,7 @@
 import './maplist.styl';
 import Component from '../components/component.react.js';
 import React from 'react';
-import immutable from 'immutable';
+// import immutable from 'immutable';
 import uuid from '../lib/guid';
 // import {ReactCSSTransitionGroup} from 'react';
 
@@ -18,7 +18,7 @@ const maplocations = [
 
 class MapList extends Component {
   render() {
-    const {jsonapi} = this.props;
+    // const {jsonapi} = this.props;
 
     // locations will be lib
     // const maplocations = countries.mergeDeep(immutable.fromJS(locations)).toJS();
@@ -42,8 +42,8 @@ class MapList extends Component {
   }
 }
 
-MapList.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map)
-};
+// MapList.propTypes = {
+//   jsonapi: React.PropTypes.instanceOf(immutable.Map)
+// };
 
 export default MapList;

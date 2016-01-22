@@ -1,13 +1,13 @@
 import './mainscreen.styl';
 import Component from '../components/component.react.js';
 import React from 'react';
-import immutable from 'immutable';
+// import immutable from 'immutable';
 
-import MapList from './maplist.react';
+// import MapList from './maplist.react';
 
 class MainScreen extends Component {
   render() {
-    const {jsonapi} = this.props;
+    // const {jsonapi} = this.props;
     return (
       <div className='main-screen'>
         {/*<MapList
@@ -18,8 +18,8 @@ class MainScreen extends Component {
   }
 }
 
-MainScreen.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map)
-};
+// MainScreen.propTypes = {
+//   jsonapi: React.PropTypes.instanceOf(immutable.Map)
+// };
 
 export default MainScreen;

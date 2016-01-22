@@ -8,14 +8,13 @@ import DocumentTitle from 'react-document-title';
 
 class Armory extends Component {
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {jsonapi} = this.props;
 
     return (
       <DocumentTitle title={msg('armory.title')}>
         <div className='armory-page'>
           <ArmoryScreen
             jsonapi={jsonapi}
-            pendingActions={pendingActions}
             />
         </div>
       </DocumentTitle>

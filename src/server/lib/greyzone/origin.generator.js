@@ -38,7 +38,7 @@ const countries = [
 ];
 
 function generateCountry() {
-  return countries[Math.round(Math.random()*(countries.length - 1))];
+  return countries[Math.round(Math.random() * (countries.length - 1))];
 }
 
 export default generateCountry;

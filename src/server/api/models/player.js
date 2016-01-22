@@ -9,6 +9,7 @@ var PlayerSchema = new Schema({
   agents: [Schema.Types.Mixed],
   componentsstates: Schema.Types.Mixed,
   countrystats: [Schema.Types.Mixed],
+  dashboard: Schema.Types.Mixed,
   enhancements: [Schema.Types.Mixed],
   equipments: [Schema.Types.Mixed],
   gameCash: {

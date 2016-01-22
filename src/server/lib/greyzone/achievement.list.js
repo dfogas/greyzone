@@ -10,7 +10,7 @@ const AchievementList = [{
     backFromTask: false,
     equiping: false,
     hiring: false,
-    ranking_up: false,
+    rankingUp: false,
     dismissing: false
   },
   tutorMissions: {
@@ -20,7 +20,7 @@ const AchievementList = [{
       tier2: false,
       cdp: false,
       wpas: false,
-      protective_gear: false
+      protectiveGear: false
     },
     diceBurned: false,
     failure: false,

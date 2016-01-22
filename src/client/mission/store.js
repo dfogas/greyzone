@@ -175,8 +175,6 @@ export const dispatchToken = register(({action, data}) => {
           .setIn(['agents'], agents.concat(agentsonmission))
           .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(data.message));
       });
-    else
-      console.log('Mission is: ' + data.message);
   }
 
   if (action === missionActions.start)

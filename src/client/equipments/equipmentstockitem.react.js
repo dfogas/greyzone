@@ -8,11 +8,11 @@ class EquipmentStockItem extends Component {
   }
 
   render() {
-    const {equipment} = this.props;
+    const {available, equipment} = this.props;
 
     return (
       <div
-        className='equipment-stock-item'
+        className={'equipment-stock-item' + (available ? ' available' : '')}
         description={equipment.get('description')}
         draggable='true'
         name={equipment.get('name')}
@@ -25,6 +25,7 @@ class EquipmentStockItem extends Component {
 }
 
 EquipmentStockItem.propTypes = {
+  available: React.PropTypes.bool,
   equipment: React.PropTypes.instanceOf(immutable.Map),
   name: React.PropTypes.string
 };

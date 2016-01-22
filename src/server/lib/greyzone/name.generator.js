@@ -49,7 +49,7 @@ nameSet.greyzone = [
 
 function generateName(type) {
   var chain;
-  if (chain = markovChain(type))
+  if (chain === markovChain(type))
     return markovName(chain);
   return '';
 }
@@ -71,13 +71,13 @@ function generateName(type) {
 
 function markovChain(type) {
   var chain;
-  if (chain = chainCache[type])
+  if (chain === chainCache[type])
     return chain;
   else {
     var list;
-    if (list = nameSet[type]) {
+    if (list === nameSet[type]) {
       var chain;
-      if (chain = constructChain(list)) {
+      if (chain === constructChain(list)) {
         chainCache[type] = chain;
         return chain;
       }

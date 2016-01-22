@@ -19,4 +19,8 @@ class AchievementsWindow extends Component {
   }
 }
 
+AchievementsWindow.propTypes = {
+  achievements: React.PropTypes.instanceOf(immutable.List)
+};
+
 export default AchievementsWindow;

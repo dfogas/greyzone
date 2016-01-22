@@ -1,15 +1,14 @@
 import './agentswindow.styl';
+import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
-import formatMoney from '../../lib/formatmoney';
-import checkbalance from '../../lib/checkbalance';
 
 import AgentsInPrison from './agentsinprison.react';
 import AgentsKia from './agentskia.react';
-
-import * as dashboardActions from '../actions';
+import AgentHireForm from './agenthire.form.react';
+import AgentPriceTable from './agentprice.table.react';
 
 class AgentsWindow extends Component {
 
@@ -19,7 +18,7 @@ class AgentsWindow extends Component {
   }
 
   render() {
-    const {agents, agentspricelist} = this.props;
+    const {agenthire, agents, agentspricelist} = this.props;
     const agentsinprison = agents.filter(agent => agent.get('prison') === true);
     const agentskia = agents.filter(agent => agent.get('KIA') === true);
 
@@ -33,7 +32,7 @@ class AgentsWindow extends Component {
           <AgentsKia
             agentskia={agentskia}
             />}
-        <button
+        {/*<button
           className='hire-agent'
           id='HireAgentRankOne'
           onClick={(e) => this.hireAgent('operative', 1)}
@@ -50,15 +49,23 @@ class AgentsWindow extends Component {
           id='HireAgentRankOne'
           onClick={(e) => this.hireAgent('technician', 1)}
           >Hire Technician Rank 1
-        </button>
-        {JSON.stringify(agentspricelist.toJS())}
+        </button>*/}
+        <AgentHireForm
+          agenthire={agenthire}
+          />
+        <br />
+        <AgentPriceTable
+          agentspricelist={agentspricelist}
+          />
       </div>
     );
   }
 }
 
 AgentsWindow.propTypes = {
+  agenthire: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
+  agentspricelist: React.PropTypes.instanceOf(immutable.List),
   cash: React.PropTypes.number
 };
 

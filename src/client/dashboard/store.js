@@ -2,33 +2,58 @@ import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
-
 import immutable from 'immutable';
-import randomInt from '../lib/getrandomint';
-import CountryList from '../../server/lib/greyzone/country.list';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === dashboardActions.acceptMission) {
-    const missiontoaccept = immutable.fromJS(data.message).set('inCountry', CountryList[randomInt(0, CountryList.length)]);
-    const missions = jsonapiCursor(['missions']);
+  if (action === dashboardActions.acceptMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .set('missions', missions.push(missiontoaccept));
+        .update('missions', val => val.push(immutable.fromJS(data.message)));
     });
+
+  if (action === dashboardActions.bookAgentPrice) {
+    const gameCash = jsonapiCursor(['gameCash']);
+    if (gameCash >= data.message)
+      jsonapiCursor(jsonapi => {
+        return jsonapi.update('gameCash', val => val - data.message);
+      });
   }
 
-  if (action === dashboardActions.bookAgentPrice)
-    jsonapiCursor(jsonapi => {
-      return jsonapi.update('gameCash', val => val + data.message);
-    });
-
-  if (action === dashboardActions.bookMissionPrice)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
+  if (action === dashboardActions.bookMissionPrice) {
+    const gameCash = jsonapiCursor(['gameCash']);
+    const gameContacts = jsonapiCursor(['gameContacts']);
+    if (gameCash >= data.message.get('cash') && gameContacts >= data.message.get('contacts'))
+      jsonapiCursor(jsonapi => {
+        return jsonapi
         .update('gameContacts', val => val - data.message.get('contacts'))
         .update('gameCash', val => val - data.message.get('cash'));
-    });
+      });
+  }
+
+  if (action === dashboardActions.buyEnhancement) {
+    const gameCash = jsonapiCursor(['gameCash']);
+    const gameContacts = jsonapiCursor(['gameContacts']);
+    if (gameCash >= data.message.price.cash && gameContacts >= data.message.price.contacts)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .update('enhancements', val => val.push(immutable.fromJS(data.message)))
+          .update('gameCash', val => val - data.message.price.cash)
+          .update('gameContacts', val => val - data.message.price.contacts);
+      });
+  }
+
+  if (action === dashboardActions.buyStatus) {
+    const gameCash = jsonapiCursor(['gameCash']);
+    const gameContacts = jsonapiCursor(['gameContacts']);
+    if (gameCash >= data.message.price.cash && gameContacts >= data.message.price.contacts)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .update('statuses', val => val.push(immutable.fromJS(data.message)))
+          .update('gameCash', val => val - data.message.price.cash)
+          .update('gameContacts', val => val - data.message.price.contacts);
+      });
+  }
 
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
@@ -103,5 +128,23 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['componentsstates', 'dashboard', 'index'], data.message);
     });
+
+  if (action === dashboardActions.updateFormField)
+    jsonapiCursor(jsonapi => {
+      const {name, value} = data;
+      return jsonapi.setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', name], value);
+    });
+
+  if (action === dashboardActions. upgradeEnhancement) {
+    const gameCash = jsonapiCursor(['gameCash']);
+    const gameContacts = jsonapiCursor(['gameContacts']);
+    if (gameCash >= data.enhancement.price.cash && gameContacts >= data.enhancement.price.contacts)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .update('enhancements', val => val.push(immutable.fromJS(data.enhancement)))
+          .update('gameCash', val => val - data.enhancement.price.cash)
+          .update('gameContacts', val => val - data.enhancement.price.contacts);
+      });
+  }
 
 });

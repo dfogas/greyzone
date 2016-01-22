@@ -68,6 +68,11 @@
   background: url('../../../assets/img/equipments/equipment_icon_256.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  opacity: 0.5
+}
+
+.equipment-stock-item.available {
+  opacity: 1;
 }
 
 #HiredGun > .equipment-stock-item {
@@ -148,4 +153,9 @@
   left: 130px;
   width: 120px;
   height: 80px;
+  opacity: 0.5;
+}
+
+.equipment-stock-counter.available {
+  opacity: 1;
 }

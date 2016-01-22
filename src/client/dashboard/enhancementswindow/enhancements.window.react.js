@@ -1,37 +1,73 @@
 import './enhancements.window.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
+import R from 'ramda';
+import immutable from 'immutable';
 
 import CapabilitySubCards from './capability.subcards.react';
 import LeadershipSubCards from './leadership.subcards.react';
+import EnhancementCard from './enhancement.card.react';
 
 class EnhancementsWindow extends Component {
   render() {
     const {enhancements, owned} = this.props;
-    const capability = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
-    const leadership = enhancements.filter(enhancement => enhancement.get('type') === 'leadership');
+    const capabilityowned = owned.filter(enhancement => enhancement.get('type') === 'capability');
+    const leadershipowned = owned.filter(enhancement => enhancement.get('type') === 'leadership');
+    const toysowned = owned.filter(enhancement => enhancement.get('type') === 'toys');
+    const operationsscopeowned = owned.filter(enhancement => enhancement.get('type') === 'operationsscope');
+
     const toys = enhancements.filter(enhancement => enhancement.get('type') === 'toys');
     const operationsscope = enhancements.filter(enhancement => enhancement.get('type') === 'operationsscope');
+
+    const toysnotowned = immutable.fromJS(R.without(toysowned.toJS(), toys.toJS()));
+    const operationsscopenotowned = immutable.fromJS(R.without(operationsscopeowned.toJS(), operationsscope.toJS()));
+
     return (
       <div id='EnhancementWindow'>
         <CapabilitySubCards
-          capability={capability} />
+          capability={capabilityowned} />
         <LeadershipSubCards
-          leadership={leadership} />
-        {toys.map((enhancement) => {
+          leadership={leadershipowned} />
+        {toysowned.map((enhancement) => {
           return (
-            <div className='enhancement-card'>
-              <div>{enhancement.get('name')}</div>
-              <div>${enhancement.getIn(['price', 'cash'])}</div>
-              <div>{'\u03A9'}{enhancement.getIn(['price', 'contacts'])}</div>
-            </div>);
+            <EnhancementCard
+              enhancement={enhancement}
+              owned={true}
+              />
+          );
         })}
-        {operationsscope.map((enhancement) => {
-          return (<div className='enhancement-card'>{enhancement.get('name')}</div>);
+        {operationsscopeowned.map((enhancement) => {
+          return (
+            <EnhancementCard
+              enhancement={enhancement}
+              owned={true}
+              />
+          );
+        })}
+        {toysnotowned.map((enhancement) => {
+          return (
+            <EnhancementCard
+              enhancement={enhancement}
+              owned={false}
+              />
+          );
+        })}
+        {operationsscopenotowned.map((enhancement) => {
+          return (
+            <EnhancementCard
+              enhancement={enhancement}
+              owned={false}
+              />
+          );
         })}
       </div>
     );
   }
 }
+
+EnhancementsWindow.propTypes = {
+  enhancements: React.PropTypes.instanceOf(immutable.List),
+  owned: React.PropTypes.instanceOf(immutable.List)
+};
 
 export default EnhancementsWindow;

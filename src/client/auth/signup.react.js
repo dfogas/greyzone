@@ -25,7 +25,6 @@ class SignUp extends Component {
           this.redirectAfterSignup();
         })
         .catch(focusInvalidField(this));
-
   }
 
   redirectAfterSignup() {
@@ -44,13 +43,13 @@ class SignUp extends Component {
           <fieldset disabled={pendingActions.has(authActions.signup.toString())}>
             <legend>{msg('auth.form.legend.signup')}</legend>
             <input
+              autoFocus
               name="organization"
               onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.organization')}
               value={form.fields.organization}
               />
             <input
-              autoFocus
               name="email"
               onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.email')}
