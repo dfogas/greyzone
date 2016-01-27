@@ -46,7 +46,7 @@ class CapabilitySubCards extends Component {
               '$' + formatMoney(nextlevel.price.cash, 0, '.', ',')}
           </div>
           <div>
-            {!hasMaxed && '\u03A9'}
+            {!hasMaxed && '\u{1f575}'}
             {!hasMaxed && nextlevel.price.contacts}</div>
           {!hasMaxed &&
             <button

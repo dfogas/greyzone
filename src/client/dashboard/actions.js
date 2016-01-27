@@ -11,15 +11,15 @@ import StatusesList from '../../server/lib/greyzone/status.list';
 
 export function acceptMission(missiontier) {
   const missionsPerTier = MissionsList.filter(mission => mission.tier === missiontier);
-  let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length)];
-  randomMission.inCountry = CountryList[randomInt(0, CountryList.length)].name;
+  let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
+  randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
 
   dispatch(acceptMission, {message: randomMission});
 }
 
 export function bookAgentPrice(rank) {
-  const agentPrice = gameCursor(['globals', 'constants', 'agentsPriceList', JSON.stringify(rank)]);
-
+  const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
+  const agentPrice = agentPriceList[rank];
   dispatch(bookAgentPrice, {message: agentPrice});
 }
 
@@ -39,6 +39,10 @@ export function buyStatus({target}) {
   const status = StatusesList.filter(status => status.name === target.parentNode.childNodes[0].innerHTML)[0];
   // console.log(status);
   dispatch(buyStatus, {message: status});
+}
+
+export function clearAgentHireFields() {
+  dispatch(clearAgentHireFields, {});
 }
 
 export function hidePlayersWindow() {
@@ -99,6 +103,7 @@ setToString('dashboard', {
   bookMissionPrice,
   buyEnhancement,
   buyStatus,
+  clearAgentHireFields,
   hidePlayersWindow,
   hireAgent,
   newUserAppendState,

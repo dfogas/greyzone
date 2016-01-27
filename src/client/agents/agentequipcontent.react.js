@@ -1,4 +1,5 @@
 import './agentequipcontent.styl';
+import * as agentActions from './actions';
 import * as equipmentsActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -35,7 +36,11 @@ class AgentEquipContent extends Component {
         >
           Unequip
         </button>
-        <div id='ActiveMissionTasks'>
+        <button
+          id='DismissAgentButton'
+          onClick={agentActions.dismissAgent}
+          >Dismiss Agent</button>
+        {/*<div id='ActiveMissionTasks'>
           {jsonapi.getIn(['activemission', 'tasks']).map(task => {
             return (
               <Task
@@ -45,7 +50,7 @@ class AgentEquipContent extends Component {
                 />
             );
           })}
-        </div>
+        </div>*/}
         <AgentInArmory jsonapi={jsonapi} />
         <EquipmentStock
           enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}

@@ -30,7 +30,7 @@ class MissionResultList extends Component {
       classString += ' task';
 
     return (
-      <ul className={'mission-result-list' + classString}>
+      <div className={'mission-result-list' + classString}>
         {
           this.props.losses ?
             losseskeys.map((losskey, i) => {
@@ -56,7 +56,7 @@ class MissionResultList extends Component {
                 />);
             }) : null
           }
-      </ul>
+      </div>
     );
   }
 }

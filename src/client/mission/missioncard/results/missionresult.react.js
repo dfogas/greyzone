@@ -2,10 +2,23 @@ import './missionresult.styl';
 import Component from '../../../components/component.react.js';
 import React from 'react';
 
+function determiningIcon(resultkey) {
+  if (resultkey === 'reputation')
+    return '\u{1f3c6}';
+  if (resultkey === 'gameCash')
+    return '\u{1f4b0}';
+  if (resultkey === 'gameContacts')
+    return '\u{1f575}';
+  if (resultkey === 'obscurity')
+    return '\u{1f441}';
+  else
+    return '\u{1f631}';
+}
+
 class MissionResult extends Component {
   render() {
     const {loss, losskey, reward, rewardkey} = this.props;
-    var classString = '';
+    let classString = '';
     if (this.props.isActual)
       classString += ' actual';
     if (this.props.isBriefing)
@@ -20,9 +33,10 @@ class MissionResult extends Component {
       classString += ' task';
 
     return (
-      <li className={'mission-result' + classString}>
-        {loss ? losskey + ' : ' + loss : rewardkey + ' : ' + reward}
-      </li>
+      <div className={'mission-result' + classString}>
+        {loss && determiningIcon(losskey) + ' : ' + loss}
+        {reward && determiningIcon(rewardkey) + ' : ' + reward}
+      </div>
     );
   }
 }

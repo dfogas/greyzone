@@ -130,7 +130,7 @@ DashboardScreen.propTypes = {
   contest: React.PropTypes.instanceOf(immutable.List),
   game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  locales: React.Proptypes.string,
+  locales: React.PropTypes.string,
   viewer: React.PropTypes.string
 };
 

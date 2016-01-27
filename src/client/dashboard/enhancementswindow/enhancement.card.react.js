@@ -33,6 +33,8 @@ class EnhancementCard extends Component {
         <div
           onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
           >{enhancement.get('name')}</div>
+        {owned &&
+          <div><em>Owned</em></div>}
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
@@ -40,7 +42,7 @@ class EnhancementCard extends Component {
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
-          >{'\u03A9'}{enhancement.getIn(['price', 'contacts'])}</div>}
+          >{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
         {!owned && <button
           className='enhancement-buy-button'
           onClick={dashboardActions.buyEnhancement}>
@@ -52,7 +54,7 @@ class EnhancementCard extends Component {
 }
 
 EnhancementCard.propTypes = {
-  enhancement: React.Proptypes.instanceOf(immutable.Map),
+  enhancement: React.PropTypes.instanceOf(immutable.Map),
   owned: React.PropTypes.bool
 };
 

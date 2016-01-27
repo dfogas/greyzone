@@ -69,6 +69,7 @@ var playerdefaults = {
     },
     taskscompleted: [],
     inCountry: 'West Europe',
+    imgsrc: './godfather_free_youtube.jpg',
     started: false,
     agentsonmission: [],
     mission: {
@@ -85,6 +86,11 @@ var playerdefaults = {
   componentsstates: {
     agentscrollbar: {
       componentstyle: {left: 0}
+    },
+    dashboard: {
+      pointer: {
+        index: 'strategical'
+      }
     }
   },
   equipments: [{
@@ -230,6 +236,7 @@ var playerdefaults = {
       reputation: 100,
       gameCash: 200
     },
+    imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
     tier: 1
   }, {
@@ -265,6 +272,7 @@ var playerdefaults = {
     losses: {
       gameCash: 200
     },
+    imgsrc: 'entrap2.jpg',
     agentLimit: 2,
     tier: 1
   }],

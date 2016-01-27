@@ -25,6 +25,10 @@ export function backtoRoster(agent) {
   dispatch(backtoRoster, {message: agent});
 }
 
+export function dismissAgent() {
+  dispatch(dismissAgent, {});
+}
+
 export function equip(equipmentindexandname) {
   dispatch(equip, equipmentindexandname);
 }
@@ -40,9 +44,10 @@ export function goFree() {
 export function goToPrison() {
   dispatch(goToPrison, {message: 'in prison!'});
 }
-/*
-  agent is also draggable to the mission
-*/
+
+export function passOnMission(mission) {
+  dispatch(passOnMission, {message: mission});
+}
 
 setToString('agents', {
   agentToArmory,
@@ -51,8 +56,10 @@ setToString('agents', {
   backfromArmory,
   backtoAssignment,
   backtoRoster,
+  dismissAgent,
   equip,
   getRank,
   goFree,
-  goToPrison
+  goToPrison,
+  passOnMission
 });

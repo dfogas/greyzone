@@ -55,6 +55,13 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
+  if (action === dashboardActions.clearAgentHireFields)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', 'rank'], null)
+        .setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', 'specialist'], null);
+    });
+
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
     console.log('agent recruited: ' + data.agent.name);

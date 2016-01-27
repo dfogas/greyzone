@@ -42,6 +42,7 @@ const MissionsList = [
       obscurity: 0.1,
       reputation: 100
     },
+    imgsrc: 'Sagesse.jpg',
     agentLimit: 3,
     tier: 1
   }, {
@@ -91,6 +92,7 @@ const MissionsList = [
       obscurity: 0.1,
       reputation: 100
     },
+    imgsrc: 'Sagesse.jpg',
     agentLimit: 3,
     tier: 2
   }, {
@@ -141,7 +143,7 @@ const MissionsList = [
         imgsrc: 'improv.jpg'
       }]
     ],
-    inCountry: '',
+    inCountry: 'Sagesse.jpg',
     rewards: {
       gameCash: 400
     },
@@ -215,6 +217,7 @@ const MissionsList = [
       obscurity: 0.1,
       reputation: 100
     },
+    imgsrc: 'Sagesse.jpg',
     agentLimit: 3,
     tier: 4
   }, {
@@ -281,7 +284,7 @@ const MissionsList = [
         imgsrc: 'infiltrate.jpg'
       }]
     ],
-    inCountry: '',
+    inCountry: 'Sagesse.jpg',
     rewards: {
       gameCash: 400
     },
@@ -336,6 +339,7 @@ const MissionsList = [
       reputation: 100,
       gameCash: 200
     },
+    imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
     tier: 1
   }, {
@@ -391,6 +395,7 @@ const MissionsList = [
       reputation: 100,
       gameCash: 200
     },
+    imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
     tier: 2
   }, {
@@ -455,6 +460,7 @@ const MissionsList = [
       reputation: 100,
       gameCash: 200
     },
+    imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
     tier: 3
   }, {
@@ -523,6 +529,7 @@ const MissionsList = [
       reputation: 100,
       gameCash: 200
     },
+    imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
     tier: 4
   }, {
@@ -599,6 +606,7 @@ const MissionsList = [
       reputation: 100,
       gameCash: 200
     },
+    imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
     tier: 5
   }, {
@@ -632,6 +640,7 @@ const MissionsList = [
       agentImprisoned: true,
       gameContacts: 3
     },
+    imgsrc: 'marceullus.jpg',
     agentLimit: 1,
     tier: 1
   }, {
@@ -669,6 +678,7 @@ const MissionsList = [
       agentImprisoned: true,
       gameContacts: 3
     },
+    imgsrc: 'marceullus.jpg',
     agentLimit: 1,
     tier: 2
   }, {
@@ -711,6 +721,7 @@ const MissionsList = [
       agentImprisoned: true,
       gameContacts: 3
     },
+    imgsrc: 'marceullus.jpg',
     agentLimit: 1,
     tier: 3
   }, {
@@ -757,6 +768,7 @@ const MissionsList = [
       agentImprisoned: true,
       gameContacts: 3
     },
+    imgsrc: 'marceullus.jpg',
     agentLimit: 1,
     tier: 4
   }, {
@@ -816,6 +828,7 @@ const MissionsList = [
       agentImprisoned: true,
       gameContacts: 3
     },
+    imgsrc: 'marceullus.jpg',
     agentLimit: 1,
     tier: 5
   }, {
@@ -851,6 +864,7 @@ const MissionsList = [
     losses: {
       reputation: 100
     },
+    imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
     tier: 1
   }, {
@@ -895,6 +909,7 @@ const MissionsList = [
     losses: {
       reputation: 100
     },
+    imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
     tier: 2
   }, {
@@ -943,6 +958,7 @@ const MissionsList = [
     losses: {
       reputation: 100
     },
+    imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
     tier: 3
   }, {
@@ -996,6 +1012,7 @@ const MissionsList = [
     losses: {
       reputation: 100
     },
+    imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
     tier: 4
   }, {
@@ -1057,6 +1074,7 @@ const MissionsList = [
     losses: {
       reputation: 100
     },
+    imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
     tier: 5
   }, {
@@ -1099,6 +1117,7 @@ const MissionsList = [
       gameCash: 50,
       gameContacts: 3
     },
+    imgsrc: 'chinese.jpg',
     agentLimit: 3,
     tier: 1
   }, {
@@ -1149,6 +1168,7 @@ const MissionsList = [
       gameCash: 50,
       gameContacts: 3
     },
+    imgsrc: 'chinese.jpg',
     agentLimit: 3,
     tier: 2
   }, {
@@ -1208,6 +1228,7 @@ const MissionsList = [
       gameCash: 50,
       gameContacts: 3
     },
+    imgsrc: 'chinese.jpg',
     agentLimit: 3,
     tier: 3
   }, {
@@ -1271,6 +1292,7 @@ const MissionsList = [
       gameCash: 50,
       gameContacts: 3
     },
+    imgsrc: 'chinese.jpg',
     agentLimit: 3,
     tier: 4
   }, {
@@ -1338,6 +1360,7 @@ const MissionsList = [
       gameCash: 50,
       gameContacts: 3
     },
+    imgsrc: 'chinese.jpg',
     agentLimit: 3,
     tier: 5
   }, {
@@ -1373,6 +1396,7 @@ const MissionsList = [
     losses: {
       gameCash: 200
     },
+    imgsrc: 'entrap2.jpg',
     agentLimit: 2,
     tier: 1
   }, {
@@ -1417,6 +1441,7 @@ const MissionsList = [
     losses: {
       gameCash: 200
     },
+    imgsrc: 'entrap2.jpg',
     agentLimit: 2,
     tier: 2
   }, {
@@ -1465,6 +1490,7 @@ const MissionsList = [
     losses: {
       gameCash: 200
     },
+    imgsrc: 'entrap2.jpg',
     agentLimit: 2,
     tier: 3
   }, {
@@ -1521,6 +1547,7 @@ const MissionsList = [
     losses: {
       gameCash: 200
     },
+    imgsrc: 'entrap2.jpg',
     agentLimit: 2,
     tier: 4
   }, {
@@ -1581,6 +1608,7 @@ const MissionsList = [
     losses: {
       gameCash: 200
     },
+    imgsrc: 'entrap2.jpg',
     agentLimit: 2,
     tier: 5
   }

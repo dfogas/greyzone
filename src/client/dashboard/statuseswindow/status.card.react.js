@@ -33,6 +33,8 @@ class StatusCard extends Component {
           <div
             onMouseLeave={(e) => {if (!owned) this.unfocusParentStatus(e); }}
             >{status.get('name')}</div>}
+        {owned &&
+          <div><em>Owned</em></div>}
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentStatus(e); }}
@@ -40,7 +42,7 @@ class StatusCard extends Component {
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentStatus(e); }}
-          >{'\u03A9'}{status.getIn(['price', 'contacts'])}</div>}
+          >{'\u{1f575}'}{status.getIn(['price', 'contacts'])}</div>}
         <br />
         {!owned && <button
           className='status-buy-button'

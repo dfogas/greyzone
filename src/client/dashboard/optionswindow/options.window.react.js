@@ -24,7 +24,7 @@ class OptionsWindow extends Component {
 }
 
 OptionsWindow.propTypes = {
-  options: React.Proptypes.instanceOf(immutable.Map)
+  options: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default OptionsWindow;

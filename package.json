@@ -71,6 +71,7 @@
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
     "piping": "0.1.6",
+    "ramda": "^0.19.1",
     "react": "^0.13.1",
     "react-dnd": "^1.1.5",
     "react-dnd-touch-backend": "^0.1.0",

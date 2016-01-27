@@ -11,12 +11,14 @@ import MissionTitle from '../../mission/missioncard/missiontitle.react';
 import Task from '../../mission/missioncard/tasks/task.react';
 import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
 import AgentAssignment from './agentassignment.react';
+import MissionThumbnail from './missionthumbnail.react';
 
 class ActualMissionCard extends Component {
   render() {
     const {activemission, agents} = this.props;
     const agentlimit = activemission.get('agentLimit');
     const tasks = activemission.get('tasks');
+    const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
 
     let isActual = true;
     let isSpecial = false;
@@ -44,13 +46,20 @@ class ActualMissionCard extends Component {
 
     return (
       <div className={'mission-card actual'}>
+        <MissionThumbnail
+          imgsrc={imgsrc}
+          />
         <MissionTitle
-          isActual={isActual}
+          isActual={false}
           isSpecial={isSpecial}
           title={activemission.get('title')}
           />
-        {actualmissiontasks}
-        {assignments}
+        <div id='ActualMissionTasks'>
+          {actualmissiontasks}
+        </div>
+        <div id='AgentAssignmentsContainer'>
+          {assignments}
+        </div>
         <MissionResultList
           isActual={isActual}
           isLoss={true}

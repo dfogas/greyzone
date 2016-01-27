@@ -29,6 +29,8 @@ class AgentAssignment extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
+        {!agentonmission &&
+          'Drag&Drop Agent here to assign her to mission.'}
         {agentonmission &&
           <AgentCard agent={agentonmission} />}
       </div>
