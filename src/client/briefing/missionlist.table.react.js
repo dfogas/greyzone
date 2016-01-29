@@ -26,6 +26,7 @@ class MissionsListTable extends Component {
               <th>Region</th>
               <th>Tier</th>
               <th>ETA</th>
+              <th>Pass</th>
             </tr>
           </thead>
           <tbody>

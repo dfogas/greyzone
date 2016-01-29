@@ -86,7 +86,7 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 400
+      gameCash: 2400
     },
     losses: {
       obscurity: 0.1,
@@ -145,7 +145,7 @@ const MissionsList = [
     ],
     inCountry: 'Sagesse.jpg',
     rewards: {
-      gameCash: 400
+      gameCash: 12000
     },
     losses: {
       obscurity: 0.1,
@@ -211,7 +211,7 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 400
+      gameCash: 60000
     },
     losses: {
       obscurity: 0.1,
@@ -286,7 +286,7 @@ const MissionsList = [
     ],
     inCountry: 'Sagesse.jpg',
     rewards: {
-      gameCash: 400
+      gameCash: 360000
     },
     losses: {
       obscurity: 0.1,
@@ -387,13 +387,13 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 600,
-      reputation: 100
+      gameCash: 1200,
+      reputation: 200
     },
     losses: {
       agentImprisoned: true,
-      reputation: 100,
-      gameCash: 200
+      reputation: 200,
+      gameCash: 400
     },
     imgsrc: 'godfather_free_youtube.jpg',
     agentLimit: 3,
@@ -452,12 +452,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 600,
-      reputation: 100
+      gameCash: 1800,
+      reputation: 300
     },
     losses: {
       agentImprisoned: true,
-      reputation: 100,
+      reputation: 300,
       gameCash: 200
     },
     imgsrc: 'godfather_free_youtube.jpg',
@@ -521,12 +521,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 600,
-      reputation: 100
+      gameCash: 2400,
+      reputation: 400
     },
     losses: {
       agentImprisoned: true,
-      reputation: 100,
+      reputation: 400,
       gameCash: 200
     },
     imgsrc: 'godfather_free_youtube.jpg',
@@ -598,12 +598,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 600,
-      reputation: 100
+      gameCash: 3000,
+      reputation: 500
     },
     losses: {
       agentImprisoned: true,
-      reputation: 100,
+      reputation: 500,
       gameCash: 200
     },
     imgsrc: 'godfather_free_youtube.jpg',
@@ -671,12 +671,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 8,
-      obscurity: 0.1
+      gameContacts: 24,
+      obscurity: 0.15
     },
     losses: {
       agentImprisoned: true,
-      gameContacts: 3
+      gameContacts: 9
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -714,12 +714,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 8,
-      obscurity: 0.1
+      gameContacts: 48,
+      obscurity: 0.2
     },
     losses: {
       agentImprisoned: true,
-      gameContacts: 3
+      gameContacts: 18
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -761,12 +761,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 8,
-      obscurity: 0.1
+      gameContacts: 72,
+      obscurity: 0.25
     },
     losses: {
       agentImprisoned: true,
-      gameContacts: 3
+      gameContacts: 27
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -821,12 +821,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 8,
-      obscurity: 0.1
+      gameContacts: 96,
+      obscurity: 0.3
     },
     losses: {
       agentImprisoned: true,
-      gameContacts: 3
+      gameContacts: 36
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -904,10 +904,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      reputation: 200
+      reputation: 400
     },
     losses: {
-      reputation: 100
+      reputation: 200
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
@@ -953,10 +953,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      reputation: 200
+      reputation: 600
     },
     losses: {
-      reputation: 100
+      reputation: 300
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
@@ -1007,10 +1007,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      reputation: 200
+      reputation: 800
     },
     losses: {
-      reputation: 100
+      reputation: 400
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
@@ -1069,10 +1069,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      reputation: 200
+      reputation: 1000
     },
     losses: {
-      reputation: 100
+      reputation: 500
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 1,
@@ -1114,7 +1114,7 @@ const MissionsList = [
       reputation: 50
     },
     losses: {
-      gameCash: 50,
+      gameCash: 500,
       gameContacts: 3
     },
     imgsrc: 'chinese.jpg',
@@ -1161,12 +1161,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 5,
-      reputation: 50
+      gameContacts: 25,
+      reputation: 100
     },
     losses: {
-      gameCash: 50,
-      gameContacts: 3
+      gameCash: 1500,
+      gameContacts: 15
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
@@ -1221,12 +1221,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 5,
-      reputation: 50
+      gameContacts: 125,
+      reputation: 150
     },
     losses: {
-      gameCash: 50,
-      gameContacts: 3
+      gameCash: 4500,
+      gameContacts: 75
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
@@ -1285,12 +1285,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 5,
-      reputation: 50
+      gameContacts: 625,
+      reputation: 200
     },
     losses: {
-      gameCash: 50,
-      gameContacts: 3
+      gameCash: 13500,
+      gameContacts: 375
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
@@ -1353,12 +1353,12 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 5,
-      reputation: 50
+      gameContacts: 3125,
+      reputation: 250
     },
     losses: {
-      gameCash: 50,
-      gameContacts: 3
+      gameCash: 62500,
+      gameContacts: 1875
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
@@ -1436,10 +1436,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 500
+      gameCash: 2500
     },
     losses: {
-      gameCash: 200
+      gameCash: 1000
     },
     imgsrc: 'entrap2.jpg',
     agentLimit: 2,
@@ -1485,10 +1485,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 500
+      gameCash: 12500
     },
     losses: {
-      gameCash: 200
+      gameCash: 2500
     },
     imgsrc: 'entrap2.jpg',
     agentLimit: 2,
@@ -1542,10 +1542,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 500
+      gameCash: 62500
     },
     losses: {
-      gameCash: 200
+      gameCash: 12500
     },
     imgsrc: 'entrap2.jpg',
     agentLimit: 2,
@@ -1603,10 +1603,10 @@ const MissionsList = [
     ],
     inCountry: '',
     rewards: {
-      gameCash: 500
+      gameCash: 325000
     },
     losses: {
-      gameCash: 200
+      gameCash: 62500
     },
     imgsrc: 'entrap2.jpg',
     agentLimit: 2,

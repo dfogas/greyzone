@@ -141,17 +141,23 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === missionActions.fail)
+  jsonapiCursor(jsonapi => {
+    return jsonapi
+    .setIn(['activemission', 'started'], false)
+    .setIn(['activemission', 'result'], 'fail');
+  });
+
   if (action === missionActions.focusMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(jsonapiCursor(['missions']).get(0)));
     });
 
-  if (action === missionActions.fail)
+  if (action === missionActions.passOnMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'started'], false)
-        .setIn(['activemission', 'result'], 'fail');
+        .update('missions', val => val.delete(val.indexOf(data.message)));
     });
 
   if (action === missionActions.removeCompletedMission) {

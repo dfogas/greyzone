@@ -15,7 +15,7 @@ class AgentHireForm extends Component {
     const fields = this.getForm().get('fields').toJS();
     dashboardActions.hireAgent(fields.specialist, fields.rank);
     dashboardActions.bookAgentPrice(fields.rank);
-    dashboardActions.clearAgentHireFields();
+    dashboardActions.clearAgentHireFields(fields.rank);
   }
 
   render() {

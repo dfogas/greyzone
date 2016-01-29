@@ -1,5 +1,7 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
+import {jsonapiCursor} from '../state';
+import leadershipCheck from '../lib/leadershipcheck';
 
 export function agentToArmory(agent) {
   dispatch(agentToArmory, {message: agent});
@@ -34,7 +36,10 @@ export function equip(equipmentindexandname) {
 }
 
 export function getRank(agent) {
-  dispatch(getRank, agent);
+  const enhancements = jsonapiCursor(['enhancements']).toJS();
+  const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
+  if (leadershipCheck(agent.get('rank'), enhancementnames))
+    dispatch(getRank, agent);
 }
 
 export function goFree() {
@@ -43,10 +48,6 @@ export function goFree() {
 
 export function goToPrison() {
   dispatch(goToPrison, {message: 'in prison!'});
-}
-
-export function passOnMission(mission) {
-  dispatch(passOnMission, {message: mission});
 }
 
 setToString('agents', {
@@ -60,6 +61,5 @@ setToString('agents', {
   equip,
   getRank,
   goFree,
-  goToPrison,
-  passOnMission
+  goToPrison
 });

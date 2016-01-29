@@ -30,7 +30,7 @@ class AgentAssignment extends Component {
         onDrop={this.drop.bind(this)}
         >
         {!agentonmission &&
-          'Drag&Drop Agent here to assign her to mission.'}
+          <div className='assignment-text-placeholder'>Drag&Drop Agent here to assign her to mission.</div>}
         {agentonmission &&
           <AgentCard agent={agentonmission} />}
       </div>

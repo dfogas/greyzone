@@ -19,7 +19,7 @@ let Agent = function(character, rank) {
   if (character === 'spy')
     stealthSkill += 3;
 
-  for (let i = 0; i < rank; i += 1) {
+  for (let i = 6; i < trainingtable[rank -1].statstotal; i += 1) {
     let randomSkill = getRandomSkill();
     if (randomSkill === 'operationsSkill')
       operationsSkill += 1;

@@ -1,8 +1,8 @@
 var playerdefaults = {
   name: '',
   title: 'Novice',
-  gameCash: 1000000,
-  gameContacts: 10000,
+  gameCash: 50000,
+  gameContacts: 500,
   dashboard: {
     strategical: {
       agenthire: {
@@ -177,8 +177,8 @@ var playerdefaults = {
     MissionsDone: [],
     loyalty: 'normal',
     ETA: false,
-    equipmentSlots: 3,
-    equipments: [{name: ''}, {name: ''}, {name: ''}],
+    equipmentSlots: 2,
+    equipments: [{name: ''}, {name: ''}],
     stealthSkill: 3,
     electronicsSkill: 5,
     operationsSkill: 3,

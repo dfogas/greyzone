@@ -1,14 +1,15 @@
-import * as agentsActions from '../agents/actions';
 import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 
+import MissionClock from './mission.clock.react';
+
 class MissionListItem extends Component {
   missionPass() {
     const {mission} = this.props;
-    agentsActions.passOnMission(mission);
+    missionActions.passOnMission(mission);
   }
 
   selectMission(e) {
@@ -32,6 +33,11 @@ class MissionListItem extends Component {
         <td>{mission.get('title')}</td>
         <td>{mission.get('inCountry')}</td>
         <td>{mission.get('tier')}</td>
+        <td>
+          <MissionClock
+            mission={mission}
+            />
+        </td>
         <td>
           {
             <button

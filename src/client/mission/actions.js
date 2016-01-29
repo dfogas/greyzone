@@ -54,6 +54,10 @@ export function focusMission() {
   dispatch(focusMission, {});
 }
 
+export function passOnMission(mission) {
+  dispatch(passOnMission, {message: mission});
+}
+
 export function removeCompletedMission() {
   dispatch(removeCompletedMission, {});
 }
@@ -99,6 +103,7 @@ setToString('mission', {
   controldamage,
   fail,
   focusMission,
+  passOnMission,
   removeCompletedMission,
   select,
   start,
