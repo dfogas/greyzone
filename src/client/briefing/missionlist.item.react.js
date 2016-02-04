@@ -12,23 +12,18 @@ class MissionListItem extends Component {
     missionActions.passOnMission(mission);
   }
 
-  selectMission(e) {
-    e.preventDefault();
+  selectMission() {
+    const {mission} = this.props;
 
-    const targetParentNode = e.target.parentNode;
-    const title = targetParentNode.childNodes[0].innerHTML;
-    const inCountry = targetParentNode.childNodes[1].innerHTML;
-    const tier = parseInt(targetParentNode.childNodes[2].innerHTML, 10);
-
-    console.log('Mission ' + title + ' in ' + inCountry + ' Tier ' + tier);
-    missionActions.select(title, inCountry, tier);
+    console.log('Mission ' + mission.get('title') + ' in ' + mission.get('inCountry') + ' Tier ' + mission.get('tier'));
+    missionActions.select(mission);
   }
 
   render() {
     const {mission} = this.props;
     return (
       <tr
-        onClick={(e) => this.selectMission(e)}
+        onClick={this.selectMission.bind(this)}
         >
         <td>{mission.get('title')}</td>
         <td>{mission.get('inCountry')}</td>

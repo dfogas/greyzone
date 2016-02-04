@@ -2,12 +2,20 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 
+/*it should transfer agent from task to agents on mission
+  used 3 times*/
 export function agentIsBackFromTask() {
   dispatch(agentIsBackFromTask, {});
 }
 
 export function agentLockedToTask() {
   dispatch(agentLockedToTask, {});
+}
+
+/* fires for all agents on mission after result is determined
+  extracts information from active mission and stores it in List within agent struct*/
+export function agentMissionDone(index) {
+  dispatch(agentMissionDone, {message: index});
 }
 
 export function agentOnTaskGetsExperienceForCompletingTask() {
@@ -26,6 +34,8 @@ export function bookRewards(mission) {
   dispatch(bookRewards, {message: mission});
 }
 
+/* check whether there is agentImprisoned or
+  agentKilled */
 export function checkFatalities() {
   dispatch(checkFatalities, {});
 }
@@ -46,40 +56,43 @@ export function controldamage() {
   dispatch(controldamage, {});
 }
 
+/* sets activemission result to 'fail'
+  and its started property to false */
 export function fail() {
   dispatch(fail, {});
 }
 
-export function focusMission() {
-  dispatch(focusMission, {});
+/* fires after mission result is determined (success or fail)
+  extracts information from active mission and stores it in List within player struct*/
+export function organizationMissionDone() {
+  dispatch(organizationMissionDone, {});
 }
 
+/*finds passed mission within player's missions and removes it*/
 export function passOnMission(mission) {
   dispatch(passOnMission, {message: mission});
 }
 
+/*finds activemission in missions and removes it*/
 export function removeCompletedMission() {
   dispatch(removeCompletedMission, {});
 }
 
-export function select(title, inCountry, tier) {
-  const missions = jsonapiCursor(['missions']);
-  const mission = missions.find(mission =>
-      mission.get('title') === title &&
-      mission.get('inCountry') === inCountry &&
-      mission.get('tier') === tier
-    );
-
+/*passed mission is merged to become a activemission*/
+export function select(mission) {
   if (mission.get('ETA') - Date.now() <= 0)
     dispatch(passOnMission, {message: mission});
   else
     dispatch(select, {message: mission});
 }
 
+/*sets activemission.started true*/
 export function start() {
   dispatch(start, {});
 }
 
+/* sets activemission result to 'success'
+  and its started property to false */
 export function success() {
   dispatch(success, {});
 }
@@ -91,6 +104,7 @@ export function success() {
 setToString('mission', {
   agentIsBackFromTask,
   agentLockedToTask,
+  agentMissionDone,
   agentOnTaskGetsExperienceForCompletingTask,
   agentsAreBackFromMission,
   bookLosses,
@@ -101,7 +115,7 @@ setToString('mission', {
   completeTask,
   controldamage,
   fail,
-  focusMission,
+  organizationMissionDone,
   passOnMission,
   removeCompletedMission,
   select,

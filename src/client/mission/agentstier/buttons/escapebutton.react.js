@@ -8,10 +8,16 @@ import {msg} from '../../../intl/store';
 class EscapeButton extends Component {
   missionFail() {
     const {activemission} = this.props;
+    const agentsonmission = activemission.get('agentsonmission');
     missionActions.checkFatalities();
     missionActions.bookLosses(activemission);
     missionActions.agentIsBackFromTask();
     missionActions.fail();
+    console.log('agentsonmission size is' + agentsonmission.size);
+    for (var i = 0; i < agentsonmission.size + 1; i += 1) {
+      missionActions.agentMissionDone(i);
+    }
+    missionActions.organizationMissionDone();
   }
 
   render() {

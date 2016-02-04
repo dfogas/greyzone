@@ -8,11 +8,9 @@ export const dispatchToken = register(({action, data}) => {
 
   if (action === missionActions.agentIsBackFromTask) {
     const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(agentontask)) // agents return to command center
+        .updateIn(['activemission', 'agentsonmission'], val => val.push(agentontask)) // agents return to command center
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], null);
     });
   }
@@ -23,6 +21,22 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'agentlock'], true);
     });
 
+  if (action === missionActions.agentMissionDone) {
+    const activemission = jsonapiCursor(['activemission']);
+    const missionDone = {
+      title: activemission.get('title'),
+      timeDone: Date.now(),
+      tier: activemission.get('tier'),
+      result: activemission.get('result'),
+      organization: jsonapiCursor(['name']),
+      inCountry: activemission.get('inCountry')
+    }
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['activemission', 'agentsonmission', data.message, 'missionsDone'], val => val.push(immutable.fromJS(missionDone)));
+    });
+  }
+
   if (action === missionActions.agentOnTaskGetsExperienceForCompletingTask)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -32,12 +46,10 @@ export const dispatchToken = register(({action, data}) => {
     });
 
   if (action === missionActions.agentsAreBackFromMission) {
-    const agents = jsonapiCursor(['agents']);
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['agents'], agents.concat(agentsonmission));
+        .update('agents', val => val.concat(agentsonmission));
     });
   }
 
@@ -142,17 +154,36 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.fail)
-  jsonapiCursor(jsonapi => {
-    return jsonapi
-    .setIn(['activemission', 'started'], false)
-    .setIn(['activemission', 'result'], 'fail');
-  });
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .setIn(['activemission', 'started'], false)
+      .setIn(['activemission', 'result'], 'fail');
+    });
 
   if (action === missionActions.focusMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(jsonapiCursor(['missions']).get(0)));
     });
+
+  if (action === missionActions.organizationMissionDone) {
+    const activemission = jsonapiCursor(['activemission']);
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+    const agentsmissionall = agentontask ? agentsonmission.concat(agentontask) : agentsonmission;
+    const missionDone = {
+      title: activemission.get('title'),
+      timeDone: Date.now(),
+      tier: activemission.get('tier'),
+      result: activemission.get('result'),
+      inCountry: activemission.get('inCountry'),
+      agents: agentsmissionall.toJS()
+    };
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('missionsDone', val => val.push(immutable.fromJS(missionDone)));
+    });
+  }
 
   if (action === missionActions.passOnMission)
     jsonapiCursor(jsonapi => {
@@ -163,22 +194,24 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.removeCompletedMission) {
     const activemission = jsonapiCursor(['activemission']);
     const missions = jsonapiCursor(['missions']);
-    const completedmission = missions.indexOf(missions.find(mission => mission.get('title') === activemission.get('title')));
-
+    const completedmission = missions.indexOf(
+      missions.find(mission =>
+        mission.get('title') === activemission.get('title') &&
+        mission.get('inCountry') === activemission.get('inCountry')
+      )
+    );
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['missions'], missions.remove(completedmission));
+        .updateIn(['missions'], val => val.delete(completedmission));
     });
   }
 
   if (action === missionActions.select) {
-    const agents = jsonapiCursor(['agents']);
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-
     if (data.message)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['agents'], agents.concat(agentsonmission))
+          .updateIn(['agents'], val => val.concat(agentsonmission))
           .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(data.message));
       });
   }
@@ -194,18 +227,5 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'started'], false)
         .setIn(['activemission', 'result'], 'success');
     });
-
-  //TO DO: fill in apropriate actions and events
-  if (action === missionActions.updateAgentsMissionHistory) {
-    const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
-    const activemissiontitle = jsonapiCursor(['activemission', 'title']);
-    const activemissionrecord = {title: activemissiontitle, inCountry: activemissioncountryname, success: false};
-
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .updateIn(['activemission', 'agentsonmission'],
-          val => val.get('missionsDone').toJS().push(activemissionrecord).fromJS());
-    });
-  }
 
 });

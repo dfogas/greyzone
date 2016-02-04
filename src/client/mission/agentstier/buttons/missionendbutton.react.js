@@ -8,9 +8,9 @@ import * as missionActions from '../../actions';
 
 class MissionEndButton extends Component {
   end() {
-    missionActions.agentsAreBackFromMission();
+    const {missions} = this.props;
     missionActions.removeCompletedMission();
-    missionActions.focusMission();
+    missionActions.select(missions.get(1));
   }
 
   render() {
@@ -26,7 +26,7 @@ class MissionEndButton extends Component {
 }
 
 MissionEndButton.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map)
+  missions: React.PropTypes.instanceOf(immutable.List)
 };
 
 export default MissionEndButton;

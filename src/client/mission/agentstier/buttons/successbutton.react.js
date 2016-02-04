@@ -8,12 +8,17 @@ import {msg} from '../../../intl/store';
 class SuccessButton extends Component {
   missionSuccess() {
     const {activemission} = this.props;
+    const agentsonmission = activemission.get('agentsonmission');
     const tasks = activemission.get('tasks');
     const taskscompleted = activemission.get('taskscompleted');
 
     if (tasks.size === taskscompleted.size) {
       missionActions.bookRewards();
       missionActions.success();
+      for (var i = 0; i < agentsonmission.size; i += 1) {
+        missionActions.agentMissionDone(i);
+      }
+      missionActions.organizationMissionDone();
     }
   }
 

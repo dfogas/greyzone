@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 var PlayerSchema = new Schema({
   achievements: [Schema.Types.Mixed],
   activemission: Schema.Types.Mixed,
-  agentsforhire: [Schema.Types.Mixed],
   agentinarmory: Schema.Types.Mixed,
   agents: [Schema.Types.Mixed],
   componentsstates: Schema.Types.Mixed,
@@ -20,8 +19,9 @@ var PlayerSchema = new Schema({
     type: Number,
     min: 0
   },
+  log: [String],
   missions: [Schema.Types.Mixed],
-  missionstoaccept: [Schema.Types.Mixed],
+  missionsDone: [Schema.Types.Mixed],
   name: {
     type: String,
     unique: false,

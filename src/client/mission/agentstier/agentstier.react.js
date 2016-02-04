@@ -40,7 +40,9 @@ class AgentsTier extends Component {
           agentlock={activemission.getIn(['mission', 'currenttask', 'agentlock'])}
           />}
         {activemission.get('result') &&
-          <MissionEndButton activemission={activemission}/>}
+          <MissionEndButton
+            missions={jsonapi.get('missions')}
+            />}
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
           <LockedDiceContainer activemission={activemission}/>}
         {isMissionSuccess && missionStarted &&
