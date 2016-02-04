@@ -43,15 +43,3 @@ describe('getRank ', () => {
     expect(agentActions.getRank).to.exist;
   });
 });
-
-describe('goFree ', () => {
-  it('is defined', () => {
-    expect(agentActions.goFree).to.exist;
-  });
-});
-
-describe('goToPrison ', () => {
-  it('is defined', () => {
-    expect(agentActions.goToPrison).to.exist;
-  });
-});
