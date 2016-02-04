@@ -32,6 +32,11 @@ class CapabilitySubCards extends Component {
       capability.filter(enh => enh.get('name') === 'Operation I.').get(0);
     const name = enhancement.get('name');
     const capabilityList = EnhancementList.filter(enh => enh.type === 'capability');
+    const currentlevel = (name === 'Operation I.' ? capabilityList[0] :
+      name === 'Operation II.' ? capabilityList[1] :
+      name === 'Good Label' ? capabilityList[2] :
+      name === 'Higher Level' ? capabilityList[3] : capabilityList[4]);
+    const description = currentlevel.description;
     const nextlevel = (name === 'Operation I.' ? capabilityList[1] :
       name === 'Operation II.' ? capabilityList[2] :
       name === 'Good Label' ? capabilityList[3] :
@@ -39,7 +44,7 @@ class CapabilitySubCards extends Component {
     const hasMaxed = enhancement.get('name') === 'Top Class';
     return (
       <div id='CapabilitySubCards'>
-        <div className='enhancement-card owned'>
+        <div className='capability-enhancement-card owned'>
           <div>{name}</div>
           <div>
             {!hasMaxed &&
@@ -53,6 +58,7 @@ class CapabilitySubCards extends Component {
               id='UpgradeLeaderhipEnhancement'
               onClick={this.upgradeCapability.bind(this)}
               >Upgrade</button>}
+          <div>{description}</div>
           {hasMaxed &&
             'Max Level reached!'}
         </div>

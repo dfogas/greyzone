@@ -10,6 +10,7 @@ import uuid from '../../lib/guid';
 import AgentStatCounter from './agentstatcounter.react';
 import AgentProfile from './agentprofile.react';
 import AgentEquipmentSlot from './agentequipmentslot.react';
+import AgentClock from './agent.clock.react';
 
 class AgentCard extends Component {
 
@@ -70,6 +71,7 @@ class AgentCard extends Component {
           equipments.map((equipment, i) => {
             return (
               <AgentEquipmentSlot
+                agent={agent}
                 agentindex={agentindex}
                 equipment={equipment}
                 equipmentindex={i}
@@ -80,6 +82,9 @@ class AgentCard extends Component {
             );
           })
         }
+        <AgentClock
+          agent={agent}
+          />
       </li>
     );
   }

@@ -32,6 +32,11 @@ class LeadershipSubCards extends Component {
       leadership.filter(enh => enh.get('name') === 'Basic Training').get(0);
     const name = enhancement.get('name');
     const leadershipList = EnhancementList.filter(enh => enh.type === 'leadership');
+    const currentlevel = (name === 'Basic Training' ? leadershipList[0] :
+      name === 'Crash Course' ? leadershipList[1] :
+      name === 'Training Grounds' ? leadershipList[2] :
+      name === 'Focus Training I.' ? leadershipList[3] : leadershipList[4]);
+    const description = currentlevel.description;
     const nextlevel = (name === 'Basic Training' ? leadershipList[1] :
       name === 'Crash Course' ? leadershipList[2] :
       name === 'Training Grounds' ? leadershipList[3] :
@@ -40,7 +45,7 @@ class LeadershipSubCards extends Component {
     return (
       <div id='LeadershipSubCards'>
         <div
-          className='enhancement-card owned'
+          className='leadership-enhancement-card owned'
           >
           <div>{name}</div>
           <div>
@@ -49,12 +54,14 @@ class LeadershipSubCards extends Component {
           </div>
           <div>
             {!hasMaxed && '\u{1f575}'}
-            {!hasMaxed && nextlevel.price.contacts}</div>
+            {!hasMaxed && nextlevel.price.contacts}
+          </div>
           {!hasMaxed &&
             <button
               id='UpgradeLeaderhipEnhancement'
               onClick={this.upgradeLeadership.bind(this)}
               >Upgrade</button>}
+          <div>{description}</div>
           {hasMaxed &&
             'Max Level reached!'}
         </div>

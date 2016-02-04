@@ -9,7 +9,7 @@ import formatMoney from '../lib/formatmoney';
 import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
 import EquipmentStock from '../equipments/equipmentstock.react';
-import Task from '../mission/missioncard/tasks/task.react';
+// import Task from '../mission/missioncard/tasks/task.react';
 
 class AgentEquipContent extends Component {
   unequipAll() {

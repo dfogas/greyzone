@@ -28,8 +28,11 @@ export function lockDice(dice) {
   dispatch(lockDice, dice);
 }
 
-export function use(equipment) {
-  dispatch(use, equipment);
+export function use(agent, equipment) {
+  const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+
+  if (agent.get('name') === agentontask.get('name'))
+    dispatch(use, equipment);
 }
 
 

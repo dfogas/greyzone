@@ -106,10 +106,10 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank
+  // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank - TODO: check whether it is already implemented
   if (action === agentActions.getRank) {
     const agents = jsonapiCursor(['agents']);
-    console.log(data.toJS());
+    // console.log(data.toJS());
     if ((data.get('operationsSkill') + (data.get('electronicsSkill') + (data.get('stealthSkill')))) < trainingtable[data.get('rank') - 1].statstotal)
       jsonapiCursor(jsonapi => {
         return jsonapi
@@ -128,5 +128,11 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => rank + 1);
     });
   }
+
+  if (action === agentActions.incurETA)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.ETAtime);
+    });
 
 });

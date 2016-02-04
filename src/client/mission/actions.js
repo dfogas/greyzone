@@ -70,7 +70,10 @@ export function select(title, inCountry, tier) {
       mission.get('tier') === tier
     );
 
-  dispatch(select, {message: mission});
+  if (mission.get('ETA') - Date.now() <= 0)
+    dispatch(passOnMission, {message: mission});
+  else
+    dispatch(select, {message: mission});
 }
 
 export function start() {
@@ -81,12 +84,8 @@ export function success() {
   dispatch(success, {});
 }
 
-export function test() {
-  dispatch(test, {});
-}
-
 /*
-  get success probability
+  TODO: get success probability
 */
 
 setToString('mission', {
@@ -107,6 +106,5 @@ setToString('mission', {
   removeCompletedMission,
   select,
   start,
-  success,
-  test
+  success
 });

@@ -8,7 +8,9 @@ export function agentToArmory(agent) {
 }
 
 export function assignMission(agent) {
-  dispatch(assignMission, {message: agent});
+  /* pokud je agent unavený např. z předchozí mise */
+  if (agent.get('ETA') - Date.now() < 0)
+    dispatch(assignMission, {message: agent});
 }
 
 export function assignTask(agent) {
@@ -20,10 +22,12 @@ export function backfromArmory(agent) {
 }
 
 export function backtoAssignment(agent) {
+  /* agent se vrací z tasku do týmu, který je na misi */
   dispatch(backtoAssignment, {message: agent});
 }
 
 export function backtoRoster(agent) {
+  /* agent se vrací z týmu přípravujícího se na misi zpět do agentů čekajících */
   dispatch(backtoRoster, {message: agent});
 }
 
@@ -32,6 +36,7 @@ export function dismissAgent() {
 }
 
 export function equip(equipmentindexandname) {
+  // TODO: napsat líp
   dispatch(equip, equipmentindexandname);
 }
 
@@ -42,12 +47,16 @@ export function getRank(agent) {
     dispatch(getRank, agent);
 }
 
-export function goFree() {
-  dispatch(goFree, {message: 'run free!'});
-}
+// export function goFree() {
+//   dispatch(goFree, {message: 'run free!'});
+// }
+//
+// export function goToPrison() {
+//   dispatch(goToPrison, {message: 'in prison!'});
+// }
 
-export function goToPrison() {
-  dispatch(goToPrison, {message: 'in prison!'});
+export function incurETA(agent, ETAtime) {
+  dispatch(incurETA, {message: agent, ETAtime: ETAtime});
 }
 
 setToString('agents', {
@@ -60,6 +69,7 @@ setToString('agents', {
   dismissAgent,
   equip,
   getRank,
-  goFree,
-  goToPrison
+  // goFree,
+  // goToPrison,
+  incurETA
 });

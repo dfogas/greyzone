@@ -22,9 +22,10 @@ class AgentEquipmentSlot extends Component {
   }
 
   equipmentUse() {
-    const {equipment, equipmentindex} = this.props;
+    const {agent, equipment, equipmentindex} = this.props;
 
-    equipmentActions.use({equipment: equipment, equipmentindex: equipmentindex});
+    equipmentActions.use(agent, {equipment: equipment, equipmentindex: equipmentindex});
+    agentActions.incurETA(agent, Date.now() + 5 * 60 * 1000);
   }
 
   render() {
@@ -61,6 +62,7 @@ class AgentEquipmentSlot extends Component {
 }
 
 AgentEquipmentSlot.propTypes = {
+  agent: React.PropTypes.instanceOf(immutable.Map),
   agentindex: React.PropTypes.number,
   equipment: React.PropTypes.instanceOf(immutable.Map),
   equipmentindex: React.PropTypes.number,

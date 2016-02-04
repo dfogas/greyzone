@@ -5,11 +5,10 @@ import {msg} from '../intl/store';
 
 export default class Logout extends Component {
   render() {
-    const {id} = this.props;
     return (
       <button
         className='logout-button'
-        id={id}
+        id='DashboardScreenLogout'
         onClick={actions.logout}>
         {msg('auth.logout.button')}
       </button>

@@ -18,12 +18,12 @@ import Support from './pages/support.react';
 
 export default (
   <Route handler={App} path="/">
-    <DefaultRoute handler={Command} name="command" />
+    <DefaultRoute handler={Dashboard} name="dashboard" />
     <NotFoundRoute handler={NotFound} name="not-found" />
     <Route handler={Login} name="login" />
     <Route handler={Armory} name="armory" />
     <Route handler={Briefing} name="briefing" />
-    <Route handler={Dashboard} name="dashboard" />
+    <Route handler={Command} name="command" />
     <Route handler={Help} name="help" />
     <Route handler={Mission} name="mission" />
     <Route handler={SignUp} name="signup" />

@@ -4,11 +4,6 @@ import React from 'react';
 import uuid from '../lib/guid';
 
 class MapLocation extends Component {
-  displayCountry() {
-    console.log('boom!');
-    // this.props.style = {width: 150, height: 220};
-  }
-
   render() {
     const {coordinates, locationindex, name, obscurity, reputation} = this.props;
     return (
@@ -16,7 +11,6 @@ class MapLocation extends Component {
         className='map-location'
         id={name + 'MapLocation'}
         key={uuid() + locationindex}
-        onMouseOver={this.displayCountry.bind(this)}
         style={{top: coordinates.y, left: coordinates.x, position: 'absolute'}}
         >
         <span className='maplocation-tag'>{name}</span>

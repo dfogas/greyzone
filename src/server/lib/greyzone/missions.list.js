@@ -1,3 +1,14 @@
+/*
+  Missions and Tiers
+  Overview
+    - Money channeling (5 tiers)
+    - Set-up operation (5 tiers)
+    - Desinformation (5 tiers)
+    - Demonstration of Power (5 tiers)
+    - Connections Map (5 tiers)
+    - Reverse Enginering (5 tiers)
+  */
+
 const MissionsList = [
   {
     title: 'Money channeling',

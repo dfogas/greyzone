@@ -1,7 +1,8 @@
 import './agentprice.table.styl';
 import Component from '../../components/component.react';
 import React from 'react';
-import {msg} from '../../intl/store';
+import immutable from 'immutable';
+// import {msg} from '../../intl/store';
 import formatMoney from '../../lib/formatmoney';
 
 class AgentPriceTable extends Component {
@@ -47,5 +48,9 @@ class AgentPriceTable extends Component {
     );
   }
 }
+
+AgentPriceTable.propTypes = {
+  agentspricelist: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default AgentPriceTable;

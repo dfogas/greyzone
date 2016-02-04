@@ -12,6 +12,7 @@ import Task from '../../mission/missioncard/tasks/task.react';
 import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
 import AgentAssignment from './agentassignment.react';
 import MissionThumbnail from './missionthumbnail.react';
+// import MissionClock from './mission.clock.react';
 
 class ActualMissionCard extends Component {
   render() {

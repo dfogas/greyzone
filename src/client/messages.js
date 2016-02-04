@@ -139,7 +139,7 @@ export default {
         <li class='mission-progress'><em>Mise Splněna? Blahopřejeme, odměny byly automaticky připsány na váš účet.</em></li>
       </ul>
       `,
-      overviewHtml: `<p><h2>Představení?</h2>
+      overviewHtml: `<h2>O hře</h2><em><p>
         Vybírá si muž své povolání, nebo si povolání vybírá jeho?
         Já si nezvolil - co? - Být padouch? - Padouch je možná příliš silné slovo,
         řekněme, že si rád dělám věci po svém,
@@ -162,7 +162,7 @@ export default {
         a žádat o podporu v případě, že s tím seknu. Co jste doposud dělal?
         Byl jsem hlavou tajné organizace dělající tu ono, a tam tohle - ve stylu Al Pacina,
         úplně tu situaci vidím ...
-      </p>`,
+      </p></em>`,
       segmentsHtml: `<p>Ve Souboji Duchů(Ghost Struggle) je hráč hlavou ilegální organizace, která
       nabízí různé druhy - služeb, takových, jaké jsou obvykle vyhrazeny pro státní organizace.
       Oficiální či neoficiální organizace násilí jako jsou státy a mafie jsou jeho - partnery.
@@ -195,6 +195,10 @@ export default {
       </ul>`,
       title: 'Stránka nápovědy'
     },
+    login: {
+      message: `<p>Pokud jste na této stránce poprvé, klikněte na tlačítko vytvořit účet.</p>
+        <p>V opačném případě se zalogujte s emailem a heslem, které jste uvedli při vytvoření účtu.</p>`
+    },
     menu: {
       armory: 'Zbrojnice',
       briefing: 'Příprava',
@@ -205,6 +209,7 @@ export default {
       help: 'Nápověda',
       login: 'Log',
       mission: 'Mise',
+      introduction: 'O hře',
       signup: 'Vytvoření účtu',
       forum: 'Fórum'
     },
@@ -227,6 +232,10 @@ export default {
     posts: {
       newPostPlaceholder: 'Co máte na mysli?',
       emptyList: 'Prázdný List'
+    },
+    signup: {
+      message: `<p>Zde vytvoříte účet se jménem své organizace, který již během hry nepůjde změnit.
+        Na váš email přijde nejpozději do 1h žádost o potvrzení. Po potvrzení se přihlašte a můžete začít kout pikle.</p>`
     },
     support: {
       title: 'Stránka podpory'
@@ -447,6 +456,10 @@ export default {
       </ul>`,
       title: 'HelpPage'
     },
+    login: {
+      message: `<p>If you are on this page for the first time, click on the button Sign Up.</p>
+        <p>Else, log in with your credentials as you stated them when you signed up.</p>`
+    },
     menu: {
       armory: 'Armory',
       briefing: 'Briefing',
@@ -455,6 +468,7 @@ export default {
       dashboard: 'Dashboard',
       headerHtml: `<a href="https://github.com/steida/este">Este.js</a> App`,
       help: 'Help',
+      introduction: 'Intro',
       login: 'Login',
       mission: 'Mission',
       signup: 'Sign Up',
@@ -472,7 +486,7 @@ export default {
     },
     notFound: {
       continueMessage: 'Continue here please.',
-      header: 'This page isn\'t available',
+      header: 'This page isn\'t available.',
       message: 'The link may be broken, or the page may have been removed.',
       title: 'Page Not Found'
     },
@@ -480,12 +494,12 @@ export default {
       newPostPlaceholder: 'What is on your mind?',
       emptyList: 'Empty List'
     },
+    signup: {
+      message: `<p>Here you are going to create the name of your organization. After that
+        your email will recieve message of confirmation within 1h. You confirm the message and can start scheming.</p>`
+    },
     support: {
       title: 'SupportPage'
-    },
-    uverkalk: {
-      infoHtml: 'Some text for Loan Calculator',
-      title: 'Loan Calculator'
     },
     validation: {
       email: `Email address is not valid.`,

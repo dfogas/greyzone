@@ -1,7 +1,7 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import Agent from '../../server/lib/greyzone/agents.generator';
-import MissionsList from '../lib/missiontiers';
+import MissionsList from '../../server/lib/greyzone/missions.list';
 import randomInt from '../lib/getrandomint';
 
 import {gameCursor} from '../state';
@@ -15,6 +15,7 @@ export function acceptMission(missiontier) {
   const missionsPerTier = MissionsList.filter(mission => mission.tier === missiontier);
   let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
   randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
+  randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
 
   dispatch(acceptMission, {message: randomMission});
 }
@@ -54,15 +55,10 @@ export function clearAgentHireFields(rank) {
     dispatch(clearAgentHireFields, {});
 }
 
-export function hidePlayersWindow() {
-  dispatch(hidePlayersWindow, {});
-}
-
 export function hireAgent(specialist, rank) {
   const agent = Agent(specialist, rank);
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  console.log(enhancementnames);
   if (leadershipCheck(rank - 1, enhancementnames))
     dispatch(hireAgent, {agent});
 }
@@ -90,7 +86,7 @@ export function newUserAppendState(email, organization) {
     })
     .then((users) => {
       userId = users.filter(user => user.username === email).map(user => user._id);
-      console.log(userId[0]);
+      // console.log(userId[0]);
       return userId[0];
       // dispatch(newUserAppendState, {userId, email, organization});
     })
@@ -125,7 +121,6 @@ setToString('dashboard', {
   buyEnhancement,
   buyStatus,
   clearAgentHireFields,
-  hidePlayersWindow,
   hireAgent,
   newUserAppendState,
   pointerChange,

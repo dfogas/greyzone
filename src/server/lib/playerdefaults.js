@@ -1,21 +1,26 @@
+/*
+  Object that serves main component of initial state of new player
+  It is merged to some state skeleton and saved to database via player.js controller on server
+*/
+import EnhancementList from './greyzone/enhancement.list';
+import Agent from './greyzone/agents.generator';
+import Mission from './greyzone/mission.generator';
+
 var playerdefaults = {
   name: '',
   title: 'Novice',
   gameCash: 50000,
   gameContacts: 500,
-  dashboard: {
-    strategical: {
-      agenthire: {
-        data: null,
-        form: {
-          fields: {
-            rank: '',
-            specialist: ''
-          }
-        }
-      }
+  agentinarmory: null,
+  timestarted: Date.now(),
+  achievements: [
+    {
+      name: 'Tutorial'
+    },
+    {
+      name: 'Achievement no. 1'
     }
-  },
+  ],
   activemission: {
     title: 'Set-up operation',
     tasks: [
@@ -80,76 +85,23 @@ var playerdefaults = {
         remainingdices: [],
         taskno: null
       }
-    }
+    },
+    ETA: Date.now() + 24 * 60 * 60 * 1000
   },
-  agentinarmory: null,
+  agents: [
+    Agent('technician', 6)
+  ],
   componentsstates: {
     agentscrollbar: {
       componentstyle: {left: 0}
     },
     dashboard: {
-      pointer: {
-        index: 'strategical'
-      }
+      index: 'strategical'
     }
   },
-  equipments: [{
-    description: 'adds 1 operation dice to throw',
-    name: 'Hired Gun',
-    price: 5,
-    quantity: 1,
-    tag: 'E1O'
-  }, {
-    description: 'set operations dice to any result',
-    name: 'Heavy Arms',
-    price: 10,
-    quantity: 1,
-    tag: 'E2O'
-  }, {
-    description: 'reroll any number of dices',
-    name: 'Protective Gear',
-    price: 15,
-    quantity: 1,
-    tag: 'E3O'
-  }, {
-    description: 'adds 1 electronics dice to throw',
-    name: 'Handy Kit',
-    price: 5,
-    quantity: 1,
-    tag: 'E1E'
-  }, {
-    description: 'set electronics dice to any result',
-    name: 'Custom Tools',
-    price: 10,
-    quantity: 1,
-    tag: 'E2E'
-  }, {
-    description: 'lock any result of throw before reroll',
-    name: 'WPAS',
-    price: 15,
-    quantity: 1,
-    tag: 'E3E'
-  }, {
-    description: 'adds 1 stealth dice to throw',
-    name: 'Fake Passports',
-    price: 5,
-    quantity: 1,
-    tag: 'E1S'
-  }, {
-    description: 'set stealth dice to any result',
-    name: 'Drugs Control',
-    price: 10,
-    quantity: 1,
-    tag: 'E2S'
-  }, {
-    description: 'quit mission immediately, incur only reputation losses',
-    name: 'DCP',
-    price: 15,
-    quantity: 1,
-    tag: 'E3S'
-  }],
-  countrystats: [{
-      reputation: 100,
+  countrystats: [
+    {
+      reputation: 0,
       obscurity: 1,
       name: 'US'
     }, {
@@ -172,162 +124,91 @@ var playerdefaults = {
       reputation: 0,
       obscurity: 1,
       name: 'Latin America'
-    }],
-  agents: [{
-    MissionsDone: [],
-    loyalty: 'normal',
-    ETA: false,
-    equipmentSlots: 2,
-    equipments: [{name: ''}, {name: ''}],
-    stealthSkill: 3,
-    electronicsSkill: 5,
-    operationsSkill: 3,
-    originCountry: 'UK',
-    experience: 280,
-    rank: 6,
-    imgsrc: '../../assets/img/agents/technician/tech1_128.jpg',
-    specialist: 'technician',
-    name: 'Jeremy',
-    prison: false,
-    KIA: false
-  }],
-  missions: [{
-    title: 'Set-up operation',
-    tasks: [
-      [{
-        name: 'close_combat',
-        type: 'operations',
-        imgsrc: 'close_combat.jpg'
-      }, {
-        name: 'hide',
-        type: 'stealth',
-        imgsrc: 'hide.jpg'
-      }],
-      [{
-        name: 'hit',
-        type: 'operations',
-        imgsrc: 'hit.jpg'
-      }, {
-        name: 'improv',
-        type: 'operations',
-        imgsrc: 'improv.jpg'
-      }],
-      [{
-        name: 'infiltrate',
-        type: 'stealth',
-        imgsrc: 'infiltrate.jpg'
-      }, {
-        name: 'improv',
-        type: 'stealth',
-        imgsrc: 'improv.jpg'
-      }, {
-        name: 'hide',
-        type: 'stealth',
-        imgsrc: 'hide.jpg'
-      }]
-    ],
-    inCountry: 'West Europe',
-    rewards: {
-      gameCash: 600,
-      reputation: 100
-    },
-    losses: {
-      agentImprisoned: true,
-      reputation: 100,
-      gameCash: 200
-    },
-    imgsrc: 'godfather_free_youtube.jpg',
-    agentLimit: 3,
-    tier: 1
-  }, {
-    title: 'Reverse Engineering',
-    tasks: [
-      [{
-        name: 'decipher',
-        type: 'electronics',
-        imgsrc: 'decipher.jpg'
-      }, {
-        name: 'decipher',
-        type: 'electronics',
-        imgsrc: 'decipher.jpg'
-      }, {
-        name: 'improv',
-        type: 'operations',
-        imgsrc: 'improv.jpg'
-      }],
-      [{
-        name: 'tap',
-        type: 'electronics',
-        imgsrc: 'tap.jpg'
-      }, {
-        name: 'improv',
-        type: 'operations',
-        imgsrc: 'improv.jpg'
-      }]
-    ],
-    inCountry: 'US',
-    rewards: {
-      gameCash: 500
-    },
-    losses: {
-      gameCash: 200
-    },
-    imgsrc: 'entrap2.jpg',
-    agentLimit: 2,
-    tier: 1
-  }],
-  statuses: [],
-  enhancements: [{
-    name: 'Operation I.',
-    type: 'capability',
-    price: {
-      cash: 0,
-      contacts: 0
-    },
-    prerequisites: []
-  }, {
-    name: 'Basic Training',
-    type: 'leadership',
-    price: {
-      cash: 0,
-      contacts: 0
-    },
-    prerequisites: []
-  }, {
-    name: 'Locals',
-    type: 'toys',
-    price: {
-      cash: 0,
-      contacts: 0
-    },
-    prerequisites: []
-  }, {
-    name: 'Workshop',
-    type: 'toys',
-    price: {
-      cash: 0,
-      contacts: 0
-    },
-    prerequisites: []
-  }, {
-    name: 'Forger',
-    type: 'toys',
-    price: {
-      cash: 0,
-      contacts: 0
-    },
-    prerequisites: []
-  }],
-  missionsDone: [],
-  achievements: [
-    {
-      name: 'Tutorial'
-    },
-    {
-      name: 'Achievement no. 1'
     }
   ],
-  timestarted: 0
+  dashboard: {
+    strategical: {
+      agenthire: {
+        data: null,
+        form: {
+          fields: {
+            rank: '',
+            specialist: ''
+          }
+        }
+      }
+    }
+  },
+  enhancements: [
+    EnhancementList[0], // Operation I.
+    EnhancementList[5], // Basic Training
+    EnhancementList[10], // Locals
+    EnhancementList[11], // Workshop
+    EnhancementList[12] // Forger
+  ],
+  equipments: [
+    {
+      description: 'adds 1 operation dice to throw',
+      name: 'Hired Gun',
+      price: 5,
+      quantity: 1,
+      tag: 'E1O'
+    }, {
+      description: 'set operations dice to any result',
+      name: 'Heavy Arms',
+      price: 10,
+      quantity: 1,
+      tag: 'E2O'
+    }, {
+      description: 'reroll any number of dices',
+      name: 'Protective Gear',
+      price: 15,
+      quantity: 1,
+      tag: 'E3O'
+    }, {
+      description: 'adds 1 electronics dice to throw',
+      name: 'Handy Kit',
+      price: 5,
+      quantity: 1,
+      tag: 'E1E'
+    }, {
+      description: 'set electronics dice to any result',
+      name: 'Custom Tools',
+      price: 10,
+      quantity: 1,
+      tag: 'E2E'
+    }, {
+      description: 'lock any result of throw before reroll',
+      name: 'WPAS',
+      price: 15,
+      quantity: 1,
+      tag: 'E3E'
+    }, {
+      description: 'adds 1 stealth dice to throw',
+      name: 'Fake Passports',
+      price: 5,
+      quantity: 1,
+      tag: 'E1S'
+    }, {
+      description: 'set stealth dice to any result',
+      name: 'Drugs Control',
+      price: 10,
+      quantity: 1,
+      tag: 'E2S'
+    }, {
+      description: 'quit mission immediately, incur only reputation losses',
+      name: 'DCP',
+      price: 15,
+      quantity: 1,
+      tag: 'E3S'
+    }
+  ],
+  missions: [
+    Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),
+    Mission('Money channeling', 1, (24 * 60 * 60 * 1000))
+  ],
+  missionsDone: [],
+  statuses: []
 };
 
 export default playerdefaults;

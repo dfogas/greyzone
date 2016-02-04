@@ -76,11 +76,12 @@ class TableTop extends Component {
                 value={dicesthrown.get(i)}
                 />
             );
-          }) : <div id="MissionStartStatus">"Mission has not started yet."</div>
+          }) : <div id="MissionStartStatus">Mission has not started yet.</div>
         }
         <ProbabilityBar />
         {canCompleteTask &&
           missionStarted &&
+          (activemission.get('tasks').size !== activemission.get('taskscompleted').size) &&
           <input
             className='taskcomplete-button'
             onClick={this.completeTask.bind(this)}

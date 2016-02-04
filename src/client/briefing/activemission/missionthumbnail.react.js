@@ -18,13 +18,17 @@ class MissionThumbnail extends Component {
     return (
       <div
         id='ActualMissionThumbnail'
-        onMouseOver={(e) => this.showTasks(e)}
         onMouseLeave={(e) => this.hideTasks(e)}
+        onMouseOver={(e) => this.showTasks(e)}
         >
         <img src={'../../../../assets/img/missions/thumbnails/' + imgsrc} />
       </div>
     );
   }
 }
+
+MissionThumbnail.propTypes = {
+  imgsrc: React.PropTypes.string
+};
 
 export default MissionThumbnail;

@@ -70,9 +70,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.hidePlayersWindow)
-    console.log('If hidden, then show. If visible, then hide.');
-
   if (action === authActions.login) {
     const {email} = data;
     const api = process.env.NODE_ENV === 'production' ?

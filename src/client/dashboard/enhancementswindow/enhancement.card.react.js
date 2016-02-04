@@ -24,6 +24,7 @@ class EnhancementCard extends Component {
 
   render() {
     const {enhancement, owned} = this.props;
+    const description = enhancement.get('description');
     return (
       <div
         className={'enhancement-card' + (owned ? ' owned' : '')}
@@ -33,6 +34,8 @@ class EnhancementCard extends Component {
         <div
           onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
           >{enhancement.get('name')}</div>
+        {owned &&
+          <div><em>{description}</em></div>}
         {owned &&
           <div><em>Owned</em></div>}
         {!owned &&

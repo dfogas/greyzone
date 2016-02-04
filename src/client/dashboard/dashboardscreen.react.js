@@ -17,13 +17,16 @@ import CountryStatsWindow from './countrieswindow/countrystatswindow.react';
 import ContestWindow from './contestwindow/contestwindow.react';
 import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
+import LogWindow from './logwindow/log.window.react.js';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
 import DashboardToCommand from '../navs/dashboardtocommand.react';
+import DashboardToHelp from '../navs/dashboardtohelp.react';
 import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
 
+// pointers
 import AchievementPointer from './pointers/achievements.pointer.react';
 // import ContestPointer from './pointers/contest.pointer.react';
 import EnhancementsPointer from './pointers/enhancements.pointer.react';
@@ -33,6 +36,9 @@ import StrategicalPointer from './pointers/strategical.pointer.react';
 
 class DashboardScreen extends Component {
   hidePlayersWindow() {
+    /*
+      ANTIPATTERN: direct DOM manipulation
+      */
     const playerWindowDiv = document.querySelector('#PlayersWindow');
     if (playerWindowDiv.style.top === '0px' || playerWindowDiv.style.top === '')
       animate(playerWindowDiv, 'top', 'px', 0, -150, 500);
@@ -59,6 +65,7 @@ class DashboardScreen extends Component {
       <div id='DashboardScreen'>
         <DashboardToBriefing />
         <DashboardToCommand />
+        <DashboardToHelp />
         <AchievementPointer />
         {/*<ContestPointer />*/}
         <EnhancementsPointer />
@@ -66,9 +73,7 @@ class DashboardScreen extends Component {
         <StatusesPointer />
         <StrategicalPointer />
         {isLoggedIn &&
-          <Logout
-            id='DashboardScreenLogout'
-            />}
+          <Logout />}
         <LanguageSelect locales={this.props.locales}/>
         <div id='DashboardContent'>
           {dashPointer === 'strategical' &&
@@ -89,6 +94,9 @@ class DashboardScreen extends Component {
               agentspricelist={agentspricelist}
               cash={jsonapi.get('gameCash')}
             />}
+          {dashPointer === 'strategical' &&
+            <LogWindow
+              />}
           {dashPointer === 'options' &&
             <OptionsWindow
               options={options}

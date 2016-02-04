@@ -1,6 +1,7 @@
 import './missionsprice.table.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
+import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
 class MissionPriceTable extends Component {
@@ -44,5 +45,9 @@ class MissionPriceTable extends Component {
     );
   }
 }
+
+MissionPriceTable.propTypes = {
+  missionspricelist: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default MissionPriceTable;
