@@ -6,9 +6,16 @@ import {msg} from '../../intl/store';
 
 class LogWindow extends Component {
   render() {
+    const {log} = this.props;
     return (
       <div id="LogWindow">
-        Logging actions ...
+        {log.map(record => {
+          return (
+            <div className='log-record'>
+              {record}
+            </div>
+          );
+        })}
       </div>
     );
   }

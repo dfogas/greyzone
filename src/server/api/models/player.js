@@ -19,7 +19,7 @@ var PlayerSchema = new Schema({
     type: Number,
     min: 0
   },
-  log: [String],
+  log: [Schema.Types.Mixed],
   missions: [Schema.Types.Mixed],
   missionsDone: [Schema.Types.Mixed],
   name: {

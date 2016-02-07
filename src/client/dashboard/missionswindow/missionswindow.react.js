@@ -63,7 +63,7 @@ class MissionsWindow extends Component {
 MissionsWindow.propTypes = {
   countrystats: React.PropTypes.instanceOf(immutable.List),
   enhancements: React.PropTypes.instanceOf(immutable.List),
-  missionspricelist: React.PropTypes.instanceOf(immutable.List)
+  missionspricelist: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default MissionsWindow;

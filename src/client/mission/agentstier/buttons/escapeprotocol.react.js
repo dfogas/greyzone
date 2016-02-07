@@ -14,9 +14,8 @@ class EscapeProtocol extends Component {
     missionActions.clearTabletop();
     missionActions.fail();
     const agentsonmission = activemission('agentsonmission');
-    for (var i = 0; i < agentsonmission.size + 1; i += 1) {
+    for (var i = 0; i < agentsonmission.size + 1; i += 1)
       missionActions.agentMissionDone(i);
-    }
     missionActions.organizationMissionDone();
   }
 

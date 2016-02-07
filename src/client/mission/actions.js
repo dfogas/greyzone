@@ -62,6 +62,10 @@ export function fail() {
   dispatch(fail, {});
 }
 
+export function log(message) {
+  dispatch(log, {message}); // still enhanced literal? Probably yes.
+}
+
 /* fires after mission result is determined (success or fail)
   extracts information from active mission and stores it in List within player struct*/
 export function organizationMissionDone() {
@@ -115,6 +119,7 @@ setToString('mission', {
   completeTask,
   controldamage,
   fail,
+  log,
   organizationMissionDone,
   passOnMission,
   removeCompletedMission,

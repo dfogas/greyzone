@@ -27,8 +27,7 @@ class ArmoryScreen extends Component {
 }
 
 ArmoryScreen.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default ArmoryScreen;

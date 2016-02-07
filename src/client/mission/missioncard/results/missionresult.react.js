@@ -1,39 +1,23 @@
 import './missionresult.styl';
 import Component from '../../../components/component.react.js';
 import React from 'react';
-
-function determiningIcon(resultkey) {
-  if (resultkey === 'reputation')
-    return '\u{1f3c6}';
-  if (resultkey === 'gameCash')
-    return '\u{1f4b0}';
-  if (resultkey === 'gameContacts')
-    return '\u{1f575}';
-  if (resultkey === 'obscurity')
-    return '\u{1f441}';
-  else
-    return '\u{1f631}';
-}
+import classnames from 'classnames';
+import determiningIcon from '../../../lib/determiningicon';
 
 class MissionResult extends Component {
   render() {
     const {loss, losskey, reward, rewardkey} = this.props;
-    let classString = '';
-    if (this.props.isActual)
-      classString += ' actual';
-    if (this.props.isBriefing)
-      classString += ' briefing';
-    if (this.props.isLoss)
-      classString += ' loss';
-    if (this.props.isReward)
-      classString += ' reward';
-    if (this.props.isSpecial)
-      classString += ' special';
-    if (this.props.isTask)
-      classString += ' task';
+    const classString = classnames('mission-result', {
+      'actual': this.props.isActual,
+      'briefing': this.props.isBriefing,
+      'loss': this.props.isLoss,
+      'reward': this.props.isReward,
+      'special': this.props.isSpecial,
+      'task': this.props.isTask
+    });
 
     return (
-      <div className={'mission-result' + classString}>
+      <div className={classString}>
         {loss && determiningIcon(losskey) + ' : ' + loss}
         {reward && determiningIcon(rewardkey) + ' : ' + reward}
       </div>
@@ -48,9 +32,17 @@ MissionResult.propTypes = {
   isReward: React.PropTypes.bool,
   isSpecial: React.PropTypes.bool,
   isTask: React.PropTypes.bool,
-  loss: React.PropTypes.string,
+  loss: React.PropTypes.oneOfType([
+    React.PropTypes.bool,
+    React.PropTypes.number,
+    React.PropTypes.string
+  ]),
   losskey: React.PropTypes.string,
-  reward: React.PropTypes.string,
+  reward: React.PropTypes.oneOfType([
+    React.PropTypes.bool,
+    React.PropTypes.number,
+    React.PropTypes.string
+  ]),
   rewardkey: React.PropTypes.string
 };
 

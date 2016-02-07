@@ -21,6 +21,7 @@ class CapabilitySubCards extends Component {
       name === 'Good Label' ? capabilityList[3] :
       name === 'Higher Level' ? capabilityList[4] : null);
     dashboardActions.upgradeEnhancement(nextlevel);
+    dashboardActions.log('You have upgraded ' + name + ' to ' + nextlevel.name + '.');
   }
 
   render() {

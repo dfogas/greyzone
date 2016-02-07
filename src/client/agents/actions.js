@@ -3,8 +3,8 @@ import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import leadershipCheck from '../lib/leadershipcheck';
 
-export function agentToArmory(agent) {
-  dispatch(agentToArmory, {message: agent});
+export function toArmory(agent) {
+  dispatch(toArmory, {message: agent});
 }
 
 export function assignMission(agent) {
@@ -14,16 +14,14 @@ export function assignMission(agent) {
 }
 
 export function assignTask(agent) {
+  // fairly complicated action resolve in agents/store
+  // basically it finds out what is current task and which action types it has
+  // then adds dices to tabletop
   dispatch(assignTask, {message: agent});
 }
 
 export function backfromArmory(agent) {
   dispatch(backfromArmory, {message: agent});
-}
-
-export function backtoAssignment(agent) {
-  /* agent se vrací z tasku do týmu, který je na misi */
-  dispatch(backtoAssignment, {message: agent});
 }
 
 export function backtoRoster(agent) {
@@ -59,17 +57,22 @@ export function incurETA(agent, ETAtime) {
   dispatch(incurETA, {message: agent, ETAtime: ETAtime});
 }
 
+export function log(message) {
+  message = Date.now() + message;
+  dispatch(log, {message});
+}
+
 setToString('agents', {
-  agentToArmory,
+  toArmory,
   assignMission,
   assignTask,
   backfromArmory,
-  backtoAssignment,
   backtoRoster,
   dismissAgent,
   equip,
   getRank,
   // goFree,
   // goToPrison,
-  incurETA
+  incurETA,
+  log
 });

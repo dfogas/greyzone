@@ -63,6 +63,11 @@ export function hireAgent(specialist, rank) {
     dispatch(hireAgent, {agent});
 }
 
+export function log(message) {
+  message = Date.now() + message;
+  dispatch(log, {message});
+}
+
 export function newUserAppendState(email, organization) {
   let userId;
   // console.log('newUserAppendState is running');
@@ -122,6 +127,7 @@ setToString('dashboard', {
   buyStatus,
   clearAgentHireFields,
   hireAgent,
+  log,
   newUserAppendState,
   pointerChange,
   updateFormField,

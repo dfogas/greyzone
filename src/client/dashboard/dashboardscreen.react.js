@@ -96,6 +96,7 @@ class DashboardScreen extends Component {
             />}
           {dashPointer === 'strategical' &&
             <LogWindow
+              log={jsonapi.get('log')}
               />}
           {dashPointer === 'options' &&
             <OptionsWindow
@@ -139,7 +140,7 @@ DashboardScreen.propTypes = {
   game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   locales: React.PropTypes.string,
-  viewer: React.PropTypes.string
+  viewer: React.PropTypes.object
 };
 
 export default DashboardScreen;

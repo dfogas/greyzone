@@ -70,6 +70,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === dashboardActions.log)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('log', val => val.push(data));
+    });
+
   if (action === authActions.login) {
     const {email} = data;
     const api = process.env.NODE_ENV === 'production' ?
@@ -139,7 +145,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi.setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', name], value);
     });
 
-  if (action === dashboardActions. upgradeEnhancement) {
+  if (action === dashboardActions.upgradeEnhancement) {
     const gameCash = jsonapiCursor(['gameCash']);
     const gameContacts = jsonapiCursor(['gameContacts']);
     if (gameCash >= data.enhancement.price.cash && gameContacts >= data.enhancement.price.contacts)

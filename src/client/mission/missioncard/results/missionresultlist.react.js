@@ -2,6 +2,7 @@ import './missionresultlist.styl';
 import Component from '../../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
+import classnames from 'classnames';
 
 // import classnames from 'classnames';
 import MissionResult from './missionresult.react';
@@ -9,32 +10,27 @@ import MissionResult from './missionresult.react';
 class MissionResultList extends Component {
   render() {
     const {losses, rewards} = this.props;
+    const classString = classnames('mission-result-list', {
+      'actual': this.props.isActual,
+      'briefing': this.props.isBriefing,
+      'loss': this.props.isLoss,
+      'reward': this.props.isReward,
+      'special': this.props.isSpecial,
+      'task': this.props.isTask
+    });
     let losseskeys, rewardskeys;
     if (losses)
       losseskeys = Object.keys(losses.toJS());
     if (rewards)
       rewardskeys = Object.keys(rewards.toJS());
 
-    var classString = '';
-    if (this.props.isActual)
-      classString += ' actual';
-    if (this.props.isLoss)
-      classString += ' loss';
-    if (this.props.isReward)
-      classString += ' reward';
-    if (this.props.isBriefing)
-      classString += ' briefing';
-    if (this.props.isSpecial)
-      classString += ' special';
-    if (this.props.isTask)
-      classString += ' task';
-
     return (
-      <div className={'mission-result-list' + classString}>
+      <div className={classString}>
         {
           this.props.losses ?
             losseskeys.map((losskey, i) => {
-              return (<MissionResult
+              return (
+                <MissionResult
                   isActual={this.props.isActual}
                   isBriefing={this.props.isBriefing}
                   isLoss={true}
@@ -42,7 +38,8 @@ class MissionResultList extends Component {
                   isTask={this.props.isTask}
                   loss={losses.get(losskey)}
                   losskey={losskey}
-                />);
+                />
+              );
             }) : this.props.rewards ?
             rewardskeys.map((rewardkey, i) => {
               return (<MissionResult

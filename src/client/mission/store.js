@@ -30,7 +30,7 @@ export const dispatchToken = register(({action, data}) => {
       result: activemission.get('result'),
       organization: jsonapiCursor(['name']),
       inCountry: activemission.get('inCountry')
-    }
+    };
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['activemission', 'agentsonmission', data.message, 'missionsDone'], val => val.push(immutable.fromJS(missionDone)));
@@ -156,14 +156,20 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.fail)
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .setIn(['activemission', 'started'], false)
-      .setIn(['activemission', 'result'], 'fail');
+        .setIn(['activemission', 'started'], false)
+        .setIn(['activemission', 'result'], 'fail');
     });
 
   if (action === missionActions.focusMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(jsonapiCursor(['missions']).get(0)));
+    });
+
+  if (action === missionActions.log)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('log', val => val.push(message));
     });
 
   if (action === missionActions.organizationMissionDone) {

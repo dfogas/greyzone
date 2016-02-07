@@ -2,6 +2,7 @@ import './agentcard.styl';
 import * as agentsActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
+import classnames from 'classnames';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import shouldHaveRank from '../../lib/shouldhaverank';
@@ -27,27 +28,21 @@ class AgentCard extends Component {
     const {agent, agentindex, key} = this.props;
     const rankup = shouldHaveRank(agent.get('experience')) >= agent.get('rank') ? true : false;
 
-    let classString = '';
-    let isMission = false;
-    let isShowcased = false;
+    const classString = classnames(
+      'agent-card', {
+        'on-mission': this.props.isMission,
+        'showcased': this.props.isShowcased
+      }
+    );
     if (agent)
       var equipments = agent.get('equipments');
 
-    if (this.props.isShowcased) {
-      classString += ' showcased';
-      isShowcased = true;
-    }
-    if (this.props.isMission) {
-      classString += ' on-mission';
-      isMission = true;
-    }
-
     return (
       <li
-        className={'agent-card' + classString}
+        className={classString}
         draggable="true"
         id={agent.get('name')}
-        isMission={isMission}
+        isMission={this.props.isMission}
         key={key}
         onDragStart={this.drag}>
         {rankup &&
@@ -58,13 +53,28 @@ class AgentCard extends Component {
             value={msg('buttons.agentRankUp')}
             />
         }
-        <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('operationsSkill')} skillname="operations" />
-        <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('electronicsSkill')} skillname="electronics" />
-        <AgentStatCounter isMission={isMission} isShowcased={isShowcased} skill={agent.get('stealthSkill')} skillname="stealth" />
+        <AgentStatCounter
+          isMission={this.props.isMission}
+          isShowcased={this.props.isShowcased}
+          skill={agent.get('operationsSkill')}
+          skillname="operations"
+          />
+        <AgentStatCounter
+          isMission={this.props.isMission}
+          isShowcased={this.props.isShowcased}
+          skill={agent.get('electronicsSkill')}
+          skillname="electronics"
+          />
+        <AgentStatCounter
+          isMission={this.props.isMission}
+          isShowcased={this.props.isShowcased}
+          skill={agent.get('stealthSkill')}
+          skillname="stealth"
+          />
         <AgentProfile
           imgsrc={agent.get('imgsrc')}
-          isMission={isMission}
-          isShowcased={isShowcased}
+          isMission={this.props.isMission}
+          isShowcased={this.props.isShowcased}
           name={agent.get('name')}
           />
         {
@@ -75,8 +85,8 @@ class AgentCard extends Component {
                 agentindex={agentindex}
                 equipment={equipment}
                 equipmentindex={i}
-                isMission={isMission}
-                isShowcased={isShowcased}
+                isMission={this.props.isMission}
+                isShowcased={this.props.isShowcased}
                 key={uuid() + i}
               />
             );

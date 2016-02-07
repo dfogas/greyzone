@@ -65,7 +65,7 @@ class AgentsWindow extends Component {
 AgentsWindow.propTypes = {
   agenthire: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
-  agentspricelist: React.PropTypes.instanceOf(immutable.List),
+  agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   cash: React.PropTypes.number
 };
 

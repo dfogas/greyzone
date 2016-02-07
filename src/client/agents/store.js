@@ -18,7 +18,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === agentActions.agentToArmory) {
+  if (action === agentActions.toArmory) {
     const agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -71,17 +71,6 @@ export const dispatchToken = register(({action, data}) => {
         .set('agentinarmory', null);
     });
 
-  if (action === agentActions.backtoAssignment) {
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['activemission', 'agentsonmission'], agentsonmission.push(data.message));
-    });
-
-    jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['activemission', 'mission', 'currenttask', 'agentontask'], undefined); // eslint-disable-line no-undefined
-    });
-  }
-
   if (action === agentActions.backtoRoster)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -109,7 +98,6 @@ export const dispatchToken = register(({action, data}) => {
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank - TODO: check whether it is already implemented
   if (action === agentActions.getRank) {
     const agents = jsonapiCursor(['agents']);
-    // console.log(data.toJS());
     if ((data.get('operationsSkill') + (data.get('electronicsSkill') + (data.get('stealthSkill')))) < trainingtable[data.get('rank') - 1].statstotal)
       jsonapiCursor(jsonapi => {
         return jsonapi
@@ -133,6 +121,12 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.ETAtime);
+    });
+
+  if (action === agentActions.log)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('log', val => val.push(data));
     });
 
 });

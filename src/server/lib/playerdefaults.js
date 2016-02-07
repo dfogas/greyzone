@@ -203,6 +203,7 @@ var playerdefaults = {
       tag: 'E3S'
     }
   ],
+  log: [],
   missions: [
     Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),
     Mission('Money channeling', 1, (24 * 60 * 60 * 1000))

@@ -15,9 +15,8 @@ class SuccessButton extends Component {
     if (tasks.size === taskscompleted.size) {
       missionActions.bookRewards();
       missionActions.success();
-      for (var i = 0; i < agentsonmission.size; i += 1) {
+      for (var i = 0; i < agentsonmission.size; i += 1)
         missionActions.agentMissionDone(i);
-      }
       missionActions.organizationMissionDone();
     }
   }

@@ -18,7 +18,7 @@ class AgentInArmory extends Component {
     var data = ev.dataTransfer.getData('text');
 
     if (!agentinarmory)
-      agentActions.agentToArmory(agents.find(agent => agent.get('name') === data));
+      agentActions.toArmory(agents.find(agent => agent.get('name') === data));
   }
 
   allowDrop(ev) {

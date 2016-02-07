@@ -44,8 +44,7 @@ class TaskTier extends Component {
 }
 
 TaskTier.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map),
-  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
+  activemission: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default TaskTier;
