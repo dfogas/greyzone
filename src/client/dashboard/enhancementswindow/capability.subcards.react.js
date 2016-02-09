@@ -3,6 +3,7 @@ import Component from '../../components/component.react.js';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
+import dayandtime from '../../lib/dayandtime';
 
 import EnhancementList from '../../../server/lib/greyzone/enhancement.list';
 
@@ -21,7 +22,7 @@ class CapabilitySubCards extends Component {
       name === 'Good Label' ? capabilityList[3] :
       name === 'Higher Level' ? capabilityList[4] : null);
     dashboardActions.upgradeEnhancement(nextlevel);
-    dashboardActions.log('You have upgraded ' + name + ' to ' + nextlevel.name + '.');
+    dashboardActions.log(dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Upgraded ' + name + ' to ' + nextlevel.name + '.');
   }
 
   render() {

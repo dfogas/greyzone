@@ -17,17 +17,15 @@ class AgentEquipmentSlot extends Component {
     const {equipmentindex} = this.props;
     ev.preventDefault();
     var message = ev.dataTransfer.getData('text');
-    if (ev) {
+    if (ev)
       agentActions.equip(immutable.fromJS({equipmentindex: equipmentindex, equipmentname: message}));
-      agentActions.log(message + ' equiped.');
-    }
   }
 
   equipmentUse() {
     const {agent, equipment, equipmentindex} = this.props;
 
     equipmentActions.use(agent, {equipment: equipment, equipmentindex: equipmentindex});
-    agentActions.incurETA(agent, Date.now() + 5 * 60 * 1000);
+    agentActions.incurETA(agent, Date.now() + 10 * 60 * 1000);
   }
 
   render() {

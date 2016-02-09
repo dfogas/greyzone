@@ -120,7 +120,10 @@ export const dispatchToken = register(({action, data}) => {
   if (action === agentActions.incurETA)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.ETAtime);
+      .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.ETAtime)
+      .update('log', val => val.push(
+        'Agent on task incurred some fatigue and might be unavailable for missions for a limited time.'
+      ));
     });
 
   if (action === agentActions.log)

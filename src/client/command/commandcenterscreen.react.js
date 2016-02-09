@@ -39,6 +39,9 @@ class CommandCenterScreen extends Component {
         <MainScreen
           jsonapi = {jsonapi}
           />
+        <div id='CommandEmailSupport'>
+          Technical problems?! Send mail to support@ghoststruggle.com - You'll recieve answer within next 24 hours.
+        </div>
       </div>
     );
   }

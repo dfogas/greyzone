@@ -6,6 +6,8 @@ import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
 import AgentsTier from './agentstier/agentstier.react';
 import MissionToBriefingButton from '../navs/missiontobriefing.react';
+import MissionToDashboardButton from '../navs/missiontodashboard.react';
+
 
 class MissionTrackingScreen extends Component {
   render() {
@@ -23,6 +25,7 @@ class MissionTrackingScreen extends Component {
           jsonapi={jsonapi}
           />
         <MissionToBriefingButton />
+        <MissionToDashboardButton />
       </div>
     );
   }

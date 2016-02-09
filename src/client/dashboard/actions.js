@@ -17,7 +17,7 @@ export function acceptMission(missiontier) {
   randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
   randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
 
-  dispatch(acceptMission, {message: randomMission});
+  dispatch(acceptMission, {mission: randomMission});
 }
 
 export function bookAgentPrice(rank) {
@@ -64,7 +64,6 @@ export function hireAgent(specialist, rank) {
 }
 
 export function log(message) {
-  message = Date.now() + message;
   dispatch(log, {message});
 }
 

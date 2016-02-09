@@ -3,6 +3,7 @@ import {jsonapiCursor} from '../state';
 import {register} from '../dispatcher';
 import immutable from 'immutable';
 import defaultActiveMission from '../lib/defaultactivemission';
+import dayandtime from '../lib/dayandtime';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -54,27 +55,20 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.bookLosses) {
-    const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
     const results = jsonapiCursor(['activemission', 'losses']).toJS();
     const countrystats = jsonapiCursor(['countrystats']);
+    const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
+    const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname));
 
-    /*
-      books gameCash, gameContacts and reputation, obscurity when agents fail
-    */
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val - results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val - results.gameContacts : val)
-        .updateIn(['countrystats',
-          countrystats.indexOf(
-            countrystats
-              .find(country => country.get('name') === activemissioncountryname)),
-                'obscurity'],
-                  val => results.obscurity ? val - results.obscurity : val)
-        .updateIn(['countrystats',
-          countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname)),
-          'reputation'],
-            val => results.reputation ? val - results.reputation : val);
+        .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? val - results.obscurity : val)
+        .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val - results.reputation : val)
+        .update('log', val => val.push(
+          'Losses booked.'
+        ));
     });
   }
 
@@ -82,35 +76,40 @@ export const dispatchToken = register(({action, data}) => {
     const results = jsonapiCursor(['activemission', 'rewards']).toJS();
     const countrystats = jsonapiCursor(['countrystats']);
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
+    const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname));
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        /*
-          books gameCash, gameContacts and reputation, obscurity when agents succeeds
-        */
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
-        .updateIn(['countrystats',
-        countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname)),
-        'reputation'],
-        val => results.reputation ? val + results.reputation : val)
-        .updateIn(['countrystats',
-        countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname)),
-        'obscurity'],
-        val => results.obscurity ? val + results.obscurity : val);
+        .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val + results.reputation : val)
+        .updateIn(['countrystats', countryindex,'obscurity'], val => results.obscurity ? val + results.obscurity : val)
+        .update('log', val => val.push(
+          'Rewards booked.'
+        ));
     });
   }
 
   if (action === missionActions.checkFatalities) {
     const results = jsonapiCursor(['activemission', 'losses']).toJS();
-
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'],
-          results.agentImprisoned ? true : false)
-        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'],
-          results.agentKilled ? true : false);
-    });
+    const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+    const activemission = jsonapiCursor(['activemission']);
+    if (results.agentImprisoned)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], true)
+          .update('log', val => val.push(
+            dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Agent ' + agentontask.get('name') + ' was caught in ' + activemission.get('inCountry') + '.'
+          ));
+      });
+    if (results.agentKilled)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], true)
+          .update('log', val => val.push(
+            dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Agent ' + agentontask.get('name') + ' was killed in ' + activemission.get('inCountry') + '.'
+          ));
+      });
   }
 
   if (action === missionActions.clearTabletop)
@@ -143,22 +142,28 @@ export const dispatchToken = register(({action, data}) => {
     const results = jsonapiCursor(['activemission', 'losses']).toJS();
     const countrystats = jsonapiCursor(['countrystats']);
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
+    const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname));
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['countrystats',
-          countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname)),
-          'reputation'],
-            val => results.reputation ? val - results.reputation : val);
+        .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val - results.reputation : val)
+        .update('log', val => val.push(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission('inCountry') + ' failed, with limited damages.'
+        ));
     });
   }
 
-  if (action === missionActions.fail)
+  if (action === missionActions.fail) {
+    const activemission = jsonapiCursor(['activemission']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'started'], false)
-        .setIn(['activemission', 'result'], 'fail');
+      .setIn(['activemission', 'started'], false)
+      .setIn(['activemission', 'result'], 'fail')
+      .update('log', val => val.push(
+        dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission('inCountry') + ' failed.'
+      ));
     });
+  }
 
   if (action === missionActions.focusMission)
     jsonapiCursor(jsonapi => {
@@ -227,11 +232,16 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi.setIn(['activemission', 'started'], true);
     });
 
-  if (action === missionActions.success)
+  if (action === missionActions.success) {
+    const activemission = jsonapiCursor(['activemission']);
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'started'], false)
-        .setIn(['activemission', 'result'], 'success');
+        .setIn(['activemission', 'result'], 'success')
+        .update('log', val => val.push(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' succeeded.'
+        ));
     });
+  }
 
 });

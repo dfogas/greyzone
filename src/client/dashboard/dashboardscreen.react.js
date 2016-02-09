@@ -23,6 +23,7 @@ import LogWindow from './logwindow/log.window.react.js';
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
 import DashboardToCommand from '../navs/dashboardtocommand.react';
 import DashboardToHelp from '../navs/dashboardtohelp.react';
+import DashboardToMission from '../navs/dashboardtomission.react';
 import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
 
@@ -66,6 +67,7 @@ class DashboardScreen extends Component {
         <DashboardToBriefing />
         <DashboardToCommand />
         <DashboardToHelp />
+        <DashboardToMission />
         <AchievementPointer />
         {/*<ContestPointer />*/}
         <EnhancementsPointer />

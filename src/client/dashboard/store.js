@@ -3,14 +3,21 @@ import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+import dayandtime from '../lib/dayandtime';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === dashboardActions.acceptMission)
+  if (action === dashboardActions.acceptMission) {
+    const mission = data.mission;
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('missions', val => val.push(immutable.fromJS(data.message)));
+      .update('missions', val => val.push(immutable.fromJS(data)))
+      .update('log', val => val.push(
+        dayandtime(Date.now(), new Date().getTimezoneOffset()) +
+          ' - Mission ' + mission.title + ' in ' + mission.inCountry + ' accepted.'
+        ));
     });
+  }
 
   if (action === dashboardActions.bookAgentPrice) {
     const gameCash = jsonapiCursor(['gameCash']);
@@ -64,9 +71,14 @@ export const dispatchToken = register(({action, data}) => {
 
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
-    console.log('agent recruited: ' + data.agent.name);
+    const agent = data.agent;
     jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['agents'], agents.push(immutable.fromJS(data.agent)));
+      return jsonapi
+        .setIn(['agents'], agents.push(immutable.fromJS(agent)))
+        .update('log', val => val.push(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) +
+          ' - Agent ' + agent.name + ' rank ' + agent.rank + ' recruited.'
+        ));
     });
   }
 
