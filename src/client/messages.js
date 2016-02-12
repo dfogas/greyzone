@@ -248,7 +248,9 @@ export default {
       message: `
         <p>
           Zde vytvoříte účet se jménem své organizace, který již během hry nepůjde změnit.
-          Na váš email přijde nejpozději do 1h žádost o potvrzení. Po potvrzení se přihlašte a můžete začít kout pikle.
+          (NEIMPLEMENTOVÁNO: Na váš email přijde nejpozději do 1h žádost o potvrzení.
+          Po potvrzení se přihlašte a můžete začít kout pikle.)
+          Poté budete přesměrováni opět k loginu, kde po přihlášení můžete začít hrát.
         </p>
       `
     },
@@ -528,8 +530,9 @@ export default {
       emptyList: 'Empty List'
     },
     signup: {
-      message: `<p>Here you are going to create the name of your organization. After that
-        your email will recieve message of confirmation within 1h. You confirm the message and can start scheming.</p>`
+      message: `<p>Here you are going to create the name of your organization. (TO BE IMPLEMENTED YET: After that
+        your email will recieve message of confirmation within 1h. You confirm the message and can start scheming.)
+        You'll be redirected to login, where you put in your credentials again and can start playing.</p>`
     },
     support: {
       title: 'SupportPage'

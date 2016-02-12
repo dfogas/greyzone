@@ -11,8 +11,8 @@ class OptionsWindow extends Component {
     return (
       <div id='OptionsWindow'>
         <form action=''>
-          <input name='multiplayer' type='checkbox' value='Multiplayer'>Multiplayer</input>
-          <input name='tutorial' type='checkbox' value='Tutorial'>Tutorial</input>
+          <input checked={multiplayer} name='multiplayer' type='checkbox' value='Multiplayer'>Multiplayer</input>
+          <input checked={tutorial} name='tutorial' type='checkbox' value='Tutorial'>Tutorial</input>
         </form>
         <button
           id='ChangeOptions'

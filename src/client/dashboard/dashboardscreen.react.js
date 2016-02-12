@@ -103,10 +103,10 @@ class DashboardScreen extends Component {
             <LogWindow
               log={jsonapi.get('log')}
               />}
-          {dashPointer === 'options' &&
+          {/*dashPointer === 'options' &&
             <OptionsWindow
               options={options}
-              />}
+              />*/}
           {dashPointer === 'strategical' &&
             <CountryStatsWindow
               countrystats={countrystats}
