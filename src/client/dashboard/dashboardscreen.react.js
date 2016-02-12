@@ -50,24 +50,27 @@ class DashboardScreen extends Component {
   render() {
     const {contest, game, jsonapi} = this.props;
     const achievements = game.getIn(['globals', 'achievements']);
-    const statusesowned = jsonapi.get('statuses');
+    const agentspricelist = game.getIn(['globals', 'constants', 'agentsPriceList']);
+    const enhancementstotal = game.getIn(['globals', 'enhancements']);
     const statusestotal = game.getIn(['globals', 'statuses']);
-    const options = game.getIn(['globals', 'options']);
+    const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
 
     const countrystats = jsonapi.get('countrystats');
-    const isLoggedIn = !!this.props.viewer;
     const dashPointer = jsonapi.getIn(['componentsstates', 'dashboard', 'index']);
     const enhancementsowned = jsonapi.get('enhancements');
-    const enhancementstotal = game.getIn(['globals', 'enhancements']);
-    const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
-    const agentspricelist = game.getIn(['globals', 'constants', 'agentsPriceList']);
+    const isLoggedIn = !!this.props.viewer;
+    const options = jsonapi.get('options');
+    const statusesowned = jsonapi.get('statuses');
 
     return (
       <div id='DashboardScreen'>
-        <DashboardToBriefing />
+        {!jsonapi.getIn(['activemission', 'started']) &&
+          <DashboardToBriefing />}
         <DashboardToCommand />
         <DashboardToHelp />
-        <DashboardToMission />
+        {jsonapi.getIn(['activemission', 'agentsonmission']) ? (!!jsonapi.getIn(['activemission', 'agentsonmission']) > 0 ||
+          !!jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask'])) &&
+          <DashboardToMission /> : <DashboardToMission />}
         <AchievementPointer />
         {/*<ContestPointer />*/}
         <EnhancementsPointer />

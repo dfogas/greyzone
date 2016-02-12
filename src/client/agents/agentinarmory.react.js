@@ -7,6 +7,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import AgentCard from './agentcard/agentcard.react';
 import immutable from 'immutable';
+import {msg} from '../intl/store';
 
 class AgentInArmory extends Component {
 
@@ -40,6 +41,8 @@ class AgentInArmory extends Component {
             isShowcased={true}
           />
         }
+        {!agentinarmory &&
+          msg('tutorial.agentinarmory')}
       </div>
     );
   }

@@ -31,7 +31,8 @@ class BriefingScreen extends Component {
             />
           <BriefingToDashboard />
           <BriefingToArmory />
-          <ToMission />
+          {jsonapi.getIn(['activemission', 'agentsonmission']).size > 0 &&
+            <ToMission />}
           <AgentScrollBarWithNavButtons
             agents={agents}
             isBriefing={true}

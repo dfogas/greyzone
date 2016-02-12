@@ -11,7 +11,7 @@ export const dispatchToken = register(({action, data}) => {
     const mission = data.mission;
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .update('missions', val => val.push(immutable.fromJS(data)))
+      .update('missions', val => val.push(immutable.fromJS(mission)))
       .update('log', val => val.push(
         dayandtime(Date.now(), new Date().getTimezoneOffset()) +
           ' - Mission ' + mission.title + ' in ' + mission.inCountry + ' accepted.'
@@ -82,11 +82,13 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.log)
+  if (action === dashboardActions.log) {
+    data = data.message || data;
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('log', val => val.push(data));
+      .update('log', val => val.push(data));
     });
+  }
 
   if (action === authActions.login) {
     const {email} = data;

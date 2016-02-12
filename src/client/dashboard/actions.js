@@ -61,6 +61,8 @@ export function hireAgent(specialist, rank) {
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
   if (leadershipCheck(rank - 1, enhancementnames))
     dispatch(hireAgent, {agent});
+  else
+    dispatch(log, {message: 'You have to upgrade leadership facility to recruit agent of higher ranks.'});
 }
 
 export function log(message) {

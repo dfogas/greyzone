@@ -2,9 +2,9 @@ import './agentonmission.css';
 import * as agentActions from '../../../agents/actions';
 import Component from '../../../components/component.react';
 import React from 'react';
-// import classnames from 'classnames';
-import AgentCard from '../../../agents/agentcard/agentcard.react';
 import immutable from 'immutable';
+import {msg} from '../../../intl/store';
+import AgentCard from '../../../agents/agentcard/agentcard.react';
 
 class AgentOnMission extends Component {
 
@@ -36,6 +36,8 @@ class AgentOnMission extends Component {
            isShowcased={true}
            />
         }
+        {!agentontask &&
+          msg('tutorial.agentonmission')}
       </div>
     );
   }

@@ -2,6 +2,7 @@ import './agentequipmentslot.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../../intl/store';
 // dynamic
 import * as agentActions from '../actions';
 import * as equipmentActions from '../../equipments/actions';
@@ -54,7 +55,7 @@ class AgentEquipmentSlot extends Component {
         <div
           className={'agent-equipment-description-placeholder' + classString}
           >
-          {equipment.get('name') ? equipment.get('name') : 'empty'}
+          {equipment.get('name') ? equipment.get('name') : msg('tutorial.equipmentslot')}
         </div>
       </div>
     );

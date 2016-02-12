@@ -5,6 +5,7 @@
 import EnhancementList from './greyzone/enhancement.list';
 import Agent from './greyzone/agents.generator';
 import Mission from './greyzone/mission.generator';
+import dayandtime from '../../client/lib/dayandtime';
 
 var playerdefaults = {
   name: '',
@@ -15,7 +16,11 @@ var playerdefaults = {
   timestarted: Date.now(),
   achievements: [
     {
-      name: 'Tutorial'
+      active: true,
+      name: 'Tutorial',
+      progress: {
+        firstMission: false
+      }
     },
     {
       name: 'Achievement no. 1'
@@ -203,13 +208,24 @@ var playerdefaults = {
       tag: 'E3S'
     }
   ],
-  log: [],
+  log: [
+    dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.',
+    'You managed to set up the facilities for basic operation.',
+    'You also managed to scrape enough cash and connections for start',
+    'You may have not done anything noticeable yet but that is goint to change',
+    'You need to hire two agents first - operative and spy specialists',
+    'After you hired them, head to briefing room.'
+  ],
   missions: [
     Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),
     Mission('Money channeling', 1, (24 * 60 * 60 * 1000))
   ],
   missionsDone: [],
-  statuses: []
+  statuses: [],
+  options: {
+    multiplayer: false,
+    tutorial: true
+  }
 };
 
 export default playerdefaults;

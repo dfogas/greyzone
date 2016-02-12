@@ -27,6 +27,7 @@ var PlayerSchema = new Schema({
     unique: false,
     required: true
   },
+  options: Schema.Types.Mixed,
   organization: Schema.Types.Mixed,
   statuses: [Schema.Types.Mixed],
   userId: String,
