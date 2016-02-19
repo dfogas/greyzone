@@ -2,30 +2,42 @@ import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
 
-export function scrollLeft() {
+export function scrollLeft(context) {
   const jsonapi = jsonapiCursor();
-  const agentsbstyle = jsonapi.getIn(['componentsstates', 'agentscrollbar', 'componentstyle', 'left']);
+  const agentscrollbarbriefing = jsonapiCursor(['components', 'agentscrollbar', 'briefing', 'left']);
+  const agentscrollbarmission = jsonapiCursor(['components', 'agentscrollbar', 'mission', 'left']);
+  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  const agents = jsonapiCursor(['agents']);
 
-  if (agentsbstyle < 0)
-    dispatch(scrollLeft, {});
-  else
-    return;
+  if (context === 'briefing' && agentscrollbarbriefing < 0)
+    dispatch(scrollLeft, {context});
 
+  if (context === 'mission' && agentscrollbarmission < 0)
+    dispatch(scrollLeft, {context});
 }
 
-export function scrollRight() {
+export function scrollRight(context) {
   const jsonapi = jsonapiCursor();
-  const agentsbstyle = jsonapi.getIn(['componentsstates', 'agentscrollbar', 'componentstyle', 'left']);
-  const agentscount = jsonapi.get('agents').size;
-  // const agentsonmissioncount = jsonapi.getIn(['activemission', 'agentsonmission'])
-  const missionstarted = jsonapi.getIn(['activemission', 'started']);
+  const agentscrollbarbriefing = jsonapiCursor(['components', 'agentscrollbar', 'briefing', 'left']);
+  const agentscrollbarmission = jsonapiCursor(['components', 'agentscrollbar', 'mission', 'left']);
+  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  const agents = jsonapiCursor(['agents']);
 
-  if (missionstarted)
-    dispatch(scrollRight, {});
-  else if (agentsbstyle > -((agentscount - 3) * 265))
-    dispatch(scrollRight, {});
-  else
-    return;
+  if (context === 'briefing' && agentscrollbarbriefing > -((agents.size - 3) * 265)) {
+    console.log('Agents: ' + (-(agents.size - 3 * 265)));
+    console.log('Scrollbar left: ' + agentscrollbarbriefing);
+    dispatch(scrollRight, {context});
+  }
+  if (context === 'mission' && agentscrollbarmission > -((agentsonmission.size - 1) * 265)) {
+    console.log('Agents on mission: ' + (-(agentsonmission.size * 265)));
+    console.log('Scrollbar left: ' + agentscrollbarmission);
+    dispatch(scrollRight, {context});
+  }
+  // if (missionstarted)
+  //   dispatch(scrollRight, {});
+  // if (agentsbstyle > -((agentscount - 3) * 265))
+  //   dispatch(scrollRight, {context});
+
 }
 
 setToString('scrollbar', {

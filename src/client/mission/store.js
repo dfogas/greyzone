@@ -77,7 +77,6 @@ export const dispatchToken = register(({action, data}) => {
     const countrystats = jsonapiCursor(['countrystats']);
     const activemissioncountryname = jsonapiCursor(['activemission', 'inCountry']);
     const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === activemissioncountryname));
-
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
@@ -149,7 +148,8 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val - results.reputation : val)
         .update('log', val => val.push(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission('inCountry') + ' failed, with limited damages.'
-        ));
+        ))
+        .setIn(['activemission', 'log'], 'Mission failed - limited damages. - Finish it!');
     });
   }
 
@@ -159,8 +159,9 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
       .setIn(['activemission', 'started'], false)
       .setIn(['activemission', 'result'], 'fail')
+      .setIn(['activemission', 'log'], 'Mission has failed... - Go finish it.')
       .update('log', val => val.push(
-        dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission('inCountry') + ' failed.'
+        dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' failed.'
       ));
     });
   }
@@ -219,17 +220,19 @@ export const dispatchToken = register(({action, data}) => {
 
   if (action === missionActions.select) {
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    if (data.message)
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .updateIn(['agents'], val => val.concat(agentsonmission))
-          .setIn(['activemission'], immutable.fromJS(defaultActiveMission).mergeDeep(data.message));
-      });
+    // if (data.message) - TODO: Why is this check here?
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('agents', val => val.concat(agentsonmission))
+        .set('activemission', data.message ? immutable.fromJS(defaultActiveMission).mergeDeep(data.message) : immutable.fromJS(defaultActiveMission));
+    });
   }
 
   if (action === missionActions.start)
     jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['activemission', 'started'], true);
+      return jsonapi
+        .setIn(['activemission', 'started'], true)
+        .setIn(['activemission', 'log'], 'Mission has started.');
     });
 
   if (action === missionActions.success) {
@@ -238,6 +241,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['activemission', 'started'], false)
         .setIn(['activemission', 'result'], 'success')
+        .setIn(['activemission', 'log'], 'Mission success!! - Finish mission.')
         .update('log', val => val.push(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' succeeded.'
         ));

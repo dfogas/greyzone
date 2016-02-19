@@ -134,23 +134,23 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  if (action === dashboardActions.newUserAppendState) {
-    const api = process.env.NODE_ENV === 'production' ?
-      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-      'http://localhost:8000/api/v1/';
-
-    // console.log('Username: ' + data.email + 'UserId: ' + data.userId);
-    fetch(api + 'players', {
-      method: 'POST',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({userId: data.userId, name: data.organization})
-    });
-  }
+  // if (action === dashboardActions.newUserAppendState) {
+  //   const api = process.env.NODE_ENV === 'production' ?
+  //     'http://fierce-shore-7346.herokuapp.com/api/v1/' :
+  //     'http://localhost:8000/api/v1/';
+  //
+  //   // console.log('Username: ' + data.email + 'UserId: ' + data.userId);
+  //   fetch(api + 'players', {
+  //     method: 'POST',
+  //     headers: {'Content-type': 'application/json'},
+  //     body: JSON.stringify({userId: data.userId, name: data.organization})
+  //   });
+  // }
 
   if (action === dashboardActions.pointerChange)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['componentsstates', 'dashboard', 'index'], data.message);
+        .setIn(['components', 'dashboard', 'index'], data.message);
     });
 
   if (action === dashboardActions.updateFormField)

@@ -101,7 +101,7 @@ var state = {
     'rank': 9,
     'stealthSkill': 6
   }],
-  'componentsstates': [{
+  'components': [{
     'componentname': 'agent-scrollbar',
     'componentstyle': {
       'left': 0

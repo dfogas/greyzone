@@ -1,4 +1,4 @@
-import './agentonmission.css';
+import './agentonmission.styl';
 import * as agentActions from '../../../agents/actions';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -10,13 +10,19 @@ class AgentOnMission extends Component {
 
   drop(ev) {
     const {activemission} = this.props;
+    const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agentsonmission = activemission.get('agentsonmission');
+    const activetasks = activemission.get('tasks');
+    const missionresult = activemission.get('result');
+    const taskscompleted = activemission.get('taskscompleted');
+    const isLastTaskDone = taskscompleted.size === activetasks.size && taskscompleted.size !== 0;
     ev.preventDefault();
     var data = ev.dataTransfer.getData('text');
+    // TODO: Why is this condition here?
     if (agentsonmission.indexOf(agentsonmission.find(agent => agent.get('name') === data)) === -1)
       return;
 
-    if (!activemission.getIn(['mission', 'currenttask', 'agentontask']))
+    if (!agentontask && (missionresult ? (!isLastTaskDone && !missionresult) || (isLastTaskDone && !missionresult) : !isLastTaskDone))
       agentActions.assignTask(agentsonmission.find(agent => agent.get('name') === data));
   }
 
@@ -27,17 +33,27 @@ class AgentOnMission extends Component {
   render() {
     const {activemission} = this.props;
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
+    const missionresult = activemission.get('result');
+    const activetasks = activemission.get('tasks');
+    const taskscompleted = activemission.get('taskscompleted');
+    const isLastTaskDone = taskscompleted.size === activetasks.size && taskscompleted.size !== 0;
 
     return (
-      <div id='AgentOnMission' onDragOver={this.allowDrop} onDrop={this.drop.bind(this)}>
+      <div
+        id='AgentOnMission'
+        onDragOver={this.allowDrop}
+        onDrop={this.drop.bind(this)}
+        >
         {!!agentontask &&
           <AgentCard
            agent={agentontask}
            isShowcased={true}
            />
         }
-        {!agentontask &&
+        {!agentontask && (missionresult ? (!isLastTaskDone && !missionresult) || (isLastTaskDone && !missionresult) : !isLastTaskDone) &&
           msg('tutorial.agentonmission')}
+        {!agentontask && (isLastTaskDone || missionresult) &&
+          `You can't assign task to agent at the moment either because last task was completed or mission has failed before last task has been finished.`}
       </div>
     );
   }

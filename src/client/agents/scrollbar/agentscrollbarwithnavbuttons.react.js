@@ -5,6 +5,7 @@ import './agentscrollbarwithnavbuttons.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import classnames from 'classnames';
 
 import AgentScrollBar from './agentscrollbar.react';
 import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
@@ -12,30 +13,27 @@ import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
 class AgentScrollBarWithNavButtons extends Component {
 
   render() {
-    const {agents, jsonapi} = this.props;
-    const activemission = jsonapi.get('activemission');
-    const agentsbstyle = jsonapi.getIn(['componentsstates', 'agentscrollbar', 'componentstyle']);
+    const {isBriefing, isMission, jsonapi} = this.props;
+    const agentsbstyle = isBriefing ? jsonapi.getIn(['components', 'agentscrollbar', 'briefing']) : jsonapi.getIn(['components', 'agentscrollbar', 'mission']);
     const agentsbstyletojs = agentsbstyle.toJS();
-
-    var classString = '';
-    var isMission = false;
-    if (this.props.isMission) {
-      classString += ' on-mission';
-      isMission = true;
-    }
-    if (this.props.isBriefing)
-      classString += ' briefing';
+    const classString = classnames('agent-scroll-bar', {
+      'briefing': this.props.isBriefing,
+      'on-mission': this.props.isMission
+    });
 
     return (
       <div className={classString} id='AgentScrollBarWithNavButtons' >
         <AgentScrollBarNavButton
           data={{orientation: 'left'}}
+          isBriefing={this.props.isBriefing}
+          isMission={this.props.isMission}
           />
-        <div className={'agent-scroll-bar' + classString}>
+        <div className={classString}>
           <AgentScrollBar
-            activemission={activemission}
-            agents={agents}
+            activemission={jsonapi.get('activemission')}
+            agents={isMission ? jsonapi.get(['activemission', 'agentsonmission']) : jsonapi.getIn(['agents'])}
             className={classString}
+            isBriefing={isBriefing}
             isMission={isMission}
             jsonapi={jsonapi}
             style={agentsbstyletojs}
@@ -43,6 +41,8 @@ class AgentScrollBarWithNavButtons extends Component {
         </div>
         <AgentScrollBarNavButton
           data={{orientation: 'right'}}
+          isBriefing={this.props.isBriefing}
+          isMission={this.props.isMission}
           />
       </div>
     );

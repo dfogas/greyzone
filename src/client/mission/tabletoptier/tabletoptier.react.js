@@ -1,12 +1,12 @@
-/*
-  Dumb Component
-*/
+// Dumb Component
 import './tabletoptier.styl';
 import Component from '../../components/component.react';
 import React from 'react';
-import TableTop from './tabletop/tabletop.react';
-import DiceBin from './dicebin/dicebin.react';
 import immutable from 'immutable';
+
+import DiceBin from './dicebin/dicebin.react';
+import TableTop from './tabletop/tabletop.react';
+import TableTopMessage from './tabletop/tabletop.message.react';
 
 class TableTopTier extends Component {
   render() {
@@ -16,7 +16,8 @@ class TableTopTier extends Component {
       <div id='TableTopTier'>
         <span className='mission-incountry'>in {activemission.get('inCountry')}</span>
         <TableTop activemission={activemission} />
-        <DiceBin />
+        <TableTopMessage missionlog={activemission.get('log')}/>
+        <DiceBin activemission={activemission} />
       </div>
     );
   }

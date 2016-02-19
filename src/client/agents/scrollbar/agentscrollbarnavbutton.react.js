@@ -9,20 +9,28 @@ import classnames from 'classnames';
 
 class AgentScrollBarNavButton extends Component {
   scrollleft() {
-    scrollbarActions.scrollLeft();
+    const {isBriefing, isMission} = this.props;
+    const context = isBriefing ? 'briefing' : 'mission';
+    scrollbarActions.scrollLeft(context);
   }
 
   scrollright() {
-    scrollbarActions.scrollRight();
+    const {isBriefing, isMission} = this.props;
+    const context = isBriefing ? 'briefing' : 'mission';
+    scrollbarActions.scrollRight(context);
   }
 
   render() {
     const orientation = this.props.data.orientation;
+    const classString = classnames('agent-scroll-bar-nav-button', orientation, {
+      'briefing': this.props.isBriefing,
+      'on-mission': this.props.isMission
+    });
 
     return (
       <div
         className={classnames('agent-scroll-bar-nav-button ', orientation)}
-        onClick={orientation === 'left' ? this.scrollleft : this.scrollright}
+        onClick={orientation === 'left' ? this.scrollleft.bind(this) : this.scrollright.bind(this)}
       >
       </div>
     );

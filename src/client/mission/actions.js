@@ -84,7 +84,7 @@ export function removeCompletedMission() {
 
 /*passed mission is merged to become a activemission*/
 export function select(mission) {
-  if (mission.get('ETA') - Date.now() <= 0)
+  if (mission && mission.get('ETA') - Date.now() <= 0)
     dispatch(passOnMission, {message: mission});
   else
     dispatch(select, {message: mission});

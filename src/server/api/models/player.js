@@ -6,7 +6,7 @@ var PlayerSchema = new Schema({
   activemission: Schema.Types.Mixed,
   agentinarmory: Schema.Types.Mixed,
   agents: [Schema.Types.Mixed],
-  componentsstates: Schema.Types.Mixed,
+  components: Schema.Types.Mixed,
   countrystats: [Schema.Types.Mixed],
   dashboard: Schema.Types.Mixed,
   enhancements: [Schema.Types.Mixed],

@@ -56,7 +56,7 @@ class DashboardScreen extends Component {
     const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
 
     const countrystats = jsonapi.get('countrystats');
-    const dashPointer = jsonapi.getIn(['componentsstates', 'dashboard', 'index']);
+    const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     const enhancementsowned = jsonapi.get('enhancements');
     const isLoggedIn = !!this.props.viewer;
     const options = jsonapi.get('options');

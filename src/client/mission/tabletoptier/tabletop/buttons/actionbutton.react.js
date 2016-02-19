@@ -18,14 +18,16 @@ class ActionButton extends Component {
   }
 
   render() {
-    const {missionStarted} = this.props;
+    const {missionStarted, diceslock} = this.props;
     return (
-      <input
-        className='action-button'
-        onClick={this.action.bind(this)}
-        type='button'
-        value={missionStarted ? 'Action - Dice Throw' : 'Start Mission' }
-        />
+      <div>
+        {!diceslock && <input
+          className='action-button'
+          onClick={this.action.bind(this)}
+          type='button'
+          value={missionStarted ? 'Action - Dice Throw' : 'Start Mission' }
+          />}
+      </div>
     );
   }
 }

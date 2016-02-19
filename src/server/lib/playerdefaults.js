@@ -6,6 +6,7 @@ import EnhancementList from './greyzone/enhancement.list';
 import Agent from './greyzone/agents.generator';
 import Mission from './greyzone/mission.generator';
 import dayandtime from '../../client/lib/dayandtime';
+import defaultActiveMission from '../../client/lib/defaultactivemission';
 
 var playerdefaults = {
   name: '',
@@ -26,79 +27,14 @@ var playerdefaults = {
       name: 'Achievement no. 1'
     }
   ],
-  activemission: {
-    title: 'Set-up operation',
-    tasks: [
-      [{
-        name: 'close_combat',
-        type: 'operations',
-        imgsrc: 'close_combat.jpg'
-      }, {
-        name: 'hide',
-        type: 'stealth',
-        imgsrc: 'hide.jpg'
-      }],
-      [{
-        name: 'hit',
-        type: 'operations',
-        imgsrc: 'hit.jpg'
-      }, {
-        name: 'improv',
-        type: 'operations',
-        imgsrc: 'improv.jpg'
-      }],
-      [{
-        name: 'infiltrate',
-        type: 'stealth',
-        imgsrc: 'infiltrate.jpg'
-      }, {
-        name: 'improv',
-        type: 'stealth',
-        imgsrc: 'improv.jpg'
-      }, {
-        name: 'hide',
-        type: 'stealth',
-        imgsrc: 'hide.jpg'
-      }]
-    ],
-    rewards: {
-      gameCash: 600,
-      reputation: 100
-    },
-    losses: {
-      agentImprisoned: true,
-      reputation: 100,
-      gameCash: 200
-    },
-    agentLimit: 3,
-    tier: 1,
-    equipmenteffects: {
-      actionchoose: null,
-      damageprotocol: false,
-      lockeddice: null
-    },
-    taskscompleted: [],
-    inCountry: 'West Europe',
-    imgsrc: './godfather_free_youtube.jpg',
-    started: false,
-    agentsonmission: [],
-    mission: {
-      currenttask: {
-        agentontask: null,
-        diceslock: false,
-        dicesthrown: [],
-        remainingdices: [],
-        taskno: null
-      }
-    },
-    ETA: Date.now() + 24 * 60 * 60 * 1000
-  },
+  activemission: defaultActiveMission,
   agents: [
     Agent('technician', 6)
   ],
-  componentsstates: {
+  components: {
     agentscrollbar: {
-      componentstyle: {left: 0}
+      briefing: {left: 0},
+      mission: {left: 0}
     },
     dashboard: {
       index: 'strategical'

@@ -97,6 +97,7 @@ export function newUserAppendState(email, organization) {
       // dispatch(newUserAppendState, {userId, email, organization});
     })
     .then((userId) => {
+      // console.log('Attempting new user fetch POST to players api.');
       fetch(api + 'players', {
         method: 'POST',
         headers: {'Content-type': 'application/json'},

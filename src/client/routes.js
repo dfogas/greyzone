@@ -11,6 +11,7 @@ import Command from './pages/command.react';
 import Countries from './pages/countries.react';
 import Dashboard from './pages/dashboard.react';
 import Help from './pages/help.react';
+import Introduction from './pages/introduction.react';
 import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
 import Lab from './pages/lab.react';
@@ -25,6 +26,7 @@ export default (
     <Route handler={Briefing} name="briefing" />
     <Route handler={Command} name="command" />
     <Route handler={Help} name="help" />
+    <Route handler={Introduction} name="intro" />
     <Route handler={Mission} name="mission" />
     <Route handler={SignUp} name="signup" />
     <Route handler={Lab} name="lab" />

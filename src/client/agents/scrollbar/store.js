@@ -8,12 +8,15 @@ export const dispatchToken = register(({action, data}) => {
   if (action === scrollbarActions.scrollLeft)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['componentsstates', 'agentscrollbar', 'componentstyle', 'left'], val => val + 265);
+        .updateIn(['components', 'agentscrollbar', data.context, 'left'], val => val + 265);
     });
 
-  if (action === scrollbarActions.scrollRight)
+  if (action === scrollbarActions.scrollRight) {
+    console.log(data);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['componentsstates', 'agentscrollbar', 'componentstyle', 'left'], val => val - 265);
+        .updateIn(['components', 'agentscrollbar', data.context, 'left'], val => val - 265);
     });
+  }
+
 });

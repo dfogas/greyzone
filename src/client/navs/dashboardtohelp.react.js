@@ -11,7 +11,7 @@ class DashboardToHelp extends Component {
         <button
           className='ingame-nav-button'
           id='DashboardToHelp'
-          >{msg('menu.introduction')}</button>
+          >{msg('menu.help')}</button>
       </Link>
     );
   }

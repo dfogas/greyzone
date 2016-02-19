@@ -2,7 +2,6 @@ import './helpscreen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 
-import HelpOverview from './overview.react';
 import HelpGameSegments from './segments.react';
 import HelpTerminology from './terminology.react';
 import HelpMissionProgress from './progress.react';
@@ -15,9 +14,6 @@ class HelpPage extends Component {
     return (
       <div id='HelpScreen'>
         <div className='help-content'>
-          <HelpOverview
-            />
-          <hr />
           <HelpGameSegments
             />
           <hr />

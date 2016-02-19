@@ -14,6 +14,7 @@ class Login extends Component {
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
           <Link to='signup'><button id='LoginToSignup'>Sign Up</button></Link>
+          <Link to='intro'><button id='LoginToIntro'>About</button></Link>
           <LoginMessage />
           <LoginForm {...this.props} />
         </div>
