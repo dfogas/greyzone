@@ -80,10 +80,10 @@ class App extends Component {
     return (
       <div className="page">
         {/*<Menu viewer={this.state.viewer} />*/}
-        <Menu
+        {/*<Menu
           locales={this.state.i18n.get('locales')}
           {...this.state}
-          />
+          />*/}
         <RouteHandler {...this.state} />
         {/*<Footer />*/}
       </div>

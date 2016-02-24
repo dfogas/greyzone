@@ -5,9 +5,9 @@
 
 const profilePics = {
   operative: [
-    '../../assets/img/agents/operative/operative1_128.jpg',
-    '../../assets/img/agents/operative/operative2_128.jpg',
-    '../../assets/img/agents/operative/operative3_128.jpg',
+    '../../assets/img/agents/operative/operative1_128.png',
+    '../../assets/img/agents/operative/operative2_128.png',
+    '../../assets/img/agents/operative/operative3_128.png',
     '../../assets/img/agents/operative/operative4_128.jpg',
     '../../assets/img/agents/operative/operative5_128.jpg'
   ],

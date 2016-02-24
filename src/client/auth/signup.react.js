@@ -15,15 +15,42 @@ class SignUp extends Component {
   }
 
   onFormSubmit(e) {
+    const api = process.env.NODE_ENV === 'production' ?
+      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
+      'http://localhost:8000/api/v1/';
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
+    const {email, organization} = fields;
     authActions.signup(fields)
-        .then(() => {
-          dashboardActions.newUserAppendState(fields.email, fields.organization);
+        .then((po) => {
+          // dashboardActions.newUserAppendState(po.email, po.organization);
+          fetch(api + 'users', {
+            method: 'GET',
+            headers: {'Content-type': 'application/json'}
+          })
+            .then((res) => {
+              if (res.status >= 400)
+                throw new Error('Bad server response.');
+              return res.json();
+            })
+            .then((users) => {
+              console.log('Users: ' + users);
+              let userId = users.filter(user => user.username === email).map(user => user._id);
+              console.log('User Id is: ' + userId[0]);
+              return userId[0];
+            })
+            .then((userId) => {
+              fetch(api + 'players', {
+                method: 'POST',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({userId: userId, name: organization})
+              });
+            });
         })
-        .then(() => {
-          this.redirectAfterSignup();
-        })
+        // .then((po) => {
+          // this.redirectAfterSignup();
+          // console.log('Resolved.');
+        // })
         .catch(focusInvalidField(this));
   }
 

@@ -27,12 +27,11 @@ router.route('/login')
 
 router.route('/signup')
   .post((req, res, next) => {
-    const {email} = req.body;
-    const {password} = req.body;
+    const {email, password} = req.body;
 
     let user = new User({
-      username: email,
-      password: password
+      password: password,
+      username: email
     });
 
     user.save((err) => {

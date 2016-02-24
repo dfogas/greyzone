@@ -37,14 +37,11 @@ export function bookMissionPrice(missiontier) {
 
 export function buyEnhancement({target}) {
   const enhancement = EnhancementList.filter(enhancement => enhancement.name === target.parentNode.childNodes[0].innerHTML)[0];
-  // console.log(target.parentNode.childNodes[0].innerHTML);
-  // console.log(enhancement);
   dispatch(buyEnhancement, {message: enhancement});
 }
 
 export function buyStatus({target}) {
   const status = StatusesList.filter(status => status.name === target.parentNode.childNodes[0].innerHTML)[0];
-  // console.log(status);
   dispatch(buyStatus, {message: status});
 }
 
@@ -70,9 +67,6 @@ export function log(message) {
 }
 
 export function newUserAppendState(email, organization) {
-  let userId;
-  // console.log('newUserAppendState is running');
-
   const api = process.env.NODE_ENV === 'production' ?
     'http://fierce-shore-7346.herokuapp.com/api/v1/' :
     'http://localhost:8000/api/v1/';
@@ -83,21 +77,14 @@ export function newUserAppendState(email, organization) {
     .then((res) => {
       if (res.status >= 400)
         throw new Error('Bad server response.');
-        // console.log(res.ok);
-        // console.log(res.status);
-        // console.log(res.statusText);
-        // console.log(res.headers);
-        // console.log(res.headers.get('content-type'));
       return res.json();
     })
     .then((users) => {
-      userId = users.filter(user => user.username === email).map(user => user._id);
-      // console.log(userId[0]);
+      let userId = users.filter(user => user.username === email).map(user => user._id);
+      console.log(userId[0]);
       return userId[0];
-      // dispatch(newUserAppendState, {userId, email, organization});
     })
     .then((userId) => {
-      // console.log('Attempting new user fetch POST to players api.');
       fetch(api + 'players', {
         method: 'POST',
         headers: {'Content-type': 'application/json'},

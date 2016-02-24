@@ -16,7 +16,8 @@ class AgentScrollBar extends Component {
   drop(ev) {
     ev.preventDefault(ev);
 
-    const {jsonapi, activemission} = this.props;
+    const {jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
     const agentinarmory = jsonapi.get('agentinarmory');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agents = jsonapi.get('agents');

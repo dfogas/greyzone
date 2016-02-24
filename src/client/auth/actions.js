@@ -81,7 +81,7 @@ export function signup(fields) {
       throw error;
     });
 
-  return dispatch(signup, promise);
+  return promise;
 }
 
 function saveCredentials(fields) {

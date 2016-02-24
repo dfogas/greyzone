@@ -9,8 +9,9 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
   password: {
+    required: true,
     type: String,
-    required: true
+    unique: false
   }
 });
 

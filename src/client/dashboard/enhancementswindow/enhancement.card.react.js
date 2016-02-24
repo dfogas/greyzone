@@ -37,7 +37,7 @@ class EnhancementCard extends Component {
         {owned &&
           <div><em>{description}</em></div>}
         {owned &&
-          <div><em>Owned</em></div>}
+          <div><small>Owned</small></div>}
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}

@@ -1,6 +1,7 @@
 import './helpscreen.styl';
 import Component from '../components/component.react';
 import React from 'react';
+import GeminiScrollbar from 'react-gemini-scrollbar';
 
 import HelpGameSegments from './segments.react';
 import HelpTerminology from './terminology.react';
@@ -14,20 +15,22 @@ class HelpPage extends Component {
     return (
       <div id='HelpScreen'>
         <div className='help-content'>
-          <HelpGameSegments
-            />
-          <hr />
-          <HelpTerminology
-            />
-          <hr />
-          <HelpMissionProgress
-            />
-          <hr />
-          <HelpMissionActions
-            />
-          <hr />
-          <HelpEquipments
-            />
+            <GeminiScrollbar>
+            <HelpGameSegments
+              />
+            <hr />
+            <HelpTerminology
+              />
+            <hr />
+            <HelpMissionProgress
+              />
+            <hr />
+            <HelpMissionActions
+              />
+            <hr />
+            <HelpEquipments
+              />
+          </GeminiScrollbar>
         </div>
       </div>
     );

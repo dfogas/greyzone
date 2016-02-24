@@ -9,17 +9,16 @@ export const dispatchToken = register(({action, data}) => {
     // See how user store can handle auth action.
     case authActions.login:
       usersCursor(users => {
-        // data - {email: 'pr@t.ur', password: pratur};
         return users.set('viewer', data);
       });
       break;
 
-    case authActions.signup:
-      // here it should redirect to login
-      usersCursor(users => {
-        const user = data;
-        return users.set('viewer', new User(user));
-      });
-      break;
+    // case authActions.signup:
+    //   // here it should redirect to login
+    //   usersCursor(users => {
+    //     const user = data;
+    //     return users.set('viewer', new User(user));
+    //   });
+    //   break;
   }
 });
