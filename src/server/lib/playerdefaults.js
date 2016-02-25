@@ -3,7 +3,6 @@
   It is merged to some state skeleton and saved to database via player.js controller on server
 */
 import EnhancementList from './greyzone/enhancement.list';
-import Agent from './greyzone/agents.generator';
 import Mission from './greyzone/mission.generator';
 import dayandtime from '../../client/lib/dayandtime';
 import defaultActiveMission from '../../client/lib/defaultactivemission';
@@ -29,7 +28,6 @@ var playerdefaults = {
   ],
   activemission: defaultActiveMission,
   agents: [
-    Agent('technician', 6)
   ],
   components: {
     agentscrollbar: {
@@ -146,10 +144,7 @@ var playerdefaults = {
   ],
   log: [
     dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.',
-    'You managed to set up the facilities for basic operation.',
-    'You also managed to scrape enough cash and connections for start',
-    'You may have not done anything noticeable yet but that is goint to change',
-    'You need to hire two agents first - operative and spy specialists',
+    'You need to hire agents first - operative, technician and spy specialists',
     'After you hired them, head to briefing room.'
   ],
   missions: [

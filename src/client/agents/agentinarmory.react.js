@@ -42,7 +42,7 @@ class AgentInArmory extends Component {
           />
         }
         {!agentinarmory &&
-          msg('tutorial.agentinarmory')}
+          <div id='AgentInArmoryStatus'>{msg('tutorial.agentinarmory')}</div>}
       </div>
     );
   }

@@ -7,10 +7,11 @@ import {msg} from '../intl/store';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import ActiveMission from './activemission/activemission.react';
-import ToMission from '../navs/tomission.react';
+import BriefingInCountry from './briefing.incountry.react';
 import BriefingToDashboard from '../navs/briefingtodashboard.react';
 import BriefingToArmory from '../navs/briefingtoarmory.react';
 import MissionsListTable from './missionlist.table.react';
+import ToMission from '../navs/tomission.react';
 
 class BriefingScreen extends Component {
   render() {
@@ -28,6 +29,9 @@ class BriefingScreen extends Component {
           <div id='BriefingMissionShiftLeft'></div>
           <MissionsListTable
             missions={jsonapi.get('missions')}
+            />
+          <BriefingInCountry
+            inCountry={jsonapi.getIn(['activemission', 'inCountry'])}
             />
           <BriefingToDashboard />
           <BriefingToArmory />

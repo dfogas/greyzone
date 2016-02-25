@@ -14,7 +14,7 @@ class TableTopTier extends Component {
 
     return (
       <div id='TableTopTier'>
-        <span className='mission-incountry'>in {activemission.get('inCountry')}</span>
+        <span id='MissionInCountry'>in {activemission.get('inCountry')}</span>
         <TableTop activemission={activemission} />
         <TableTopMessage missionlog={activemission.get('log')}/>
         <DiceBin activemission={activemission} />

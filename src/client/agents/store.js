@@ -60,7 +60,8 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], data.message)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.delete(agentsonmission.indexOf(data.message)))
-        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(remdices));
+        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(remdices))
+        .setIn(['activemission', 'log'], 'Agent has been assigned to task.');
     });
   }
 

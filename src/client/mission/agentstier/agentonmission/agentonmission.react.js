@@ -51,9 +51,9 @@ class AgentOnMission extends Component {
            />
         }
         {!agentontask && (missionresult ? (!isLastTaskDone && !missionresult) || (isLastTaskDone && !missionresult) : !isLastTaskDone) &&
-          msg('tutorial.agentonmission')}
+          <div id='AgentOnMissionStatus'>{msg('tutorial.agentonmission')}</div>}
         {!agentontask && (isLastTaskDone || missionresult) &&
-          `You can't assign task to agent at the moment either because last task was completed or mission has failed before last task has been finished.`}
+          <div id='AgentOnMissionStatus'>`You can't assign task to agent at the moment either because last task was completed or mission has failed before last task has been finished.`</div>}
       </div>
     );
   }
