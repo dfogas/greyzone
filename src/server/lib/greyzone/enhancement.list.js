@@ -221,7 +221,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'New mission - Next On the Blacklist',
-    name: 'Puppeting FBI',
+    name: 'Puppeteering FBI',
     prerequisites: [{
       name: 'Good Label',
       type: 'enhancement'
@@ -318,7 +318,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'New mission - Private Collection',
-    name: 'Boy with an apple',
+    name: 'Boy with an Apple',
     prerequisites: [{
       name: 'Good Label',
       type: 'enhancement'
@@ -354,7 +354,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'New mission - Secret Investigation',
-    name: 'Playing detective',
+    name: 'Playing Detective',
     prerequisites: [{
       name: 'Good Label',
       type: 'enhancement'

@@ -3,6 +3,7 @@ import setToString from '../lib/settostring';
 import Agent from '../../server/lib/greyzone/agents.generator';
 import MissionsList from '../../server/lib/greyzone/missions.list';
 import randomInt from '../lib/getrandomint';
+import xmissioncheck from '../lib/xmissioncheck';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
@@ -12,7 +13,10 @@ import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
 
 export function acceptMission(missiontier) {
-  const missionsPerTier = MissionsList.filter(mission => mission.tier === missiontier);
+  const enhancements = jsonapiCursor(['enhancements']).toJS();
+  const enhancementnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
+  const modifiedMissionsList = xmissioncheck(enhancementnames, MissionsList);
+  const missionsPerTier = modifiedMissionsList.filter(mission => mission.tier === missiontier);
   let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
   randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
   randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
@@ -37,7 +41,12 @@ export function bookMissionPrice(missiontier) {
 
 export function buyEnhancement({target}) {
   const enhancement = EnhancementList.filter(enhancement => enhancement.name === target.parentNode.childNodes[0].innerHTML)[0];
-  dispatch(buyEnhancement, {message: enhancement});
+  const enhancements = jsonapiCursor(['enhancements']).toJS();
+  const enhancementcapabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
+  if (enhancementcapabilitynames.indexOf('Good Label') === -1 && enhancement.type === 'operationsscope')
+    dispatch(log, {message: 'You need to upgrade operation to Good Label, before enhancing your operations scope.'});
+  else
+    dispatch(buyEnhancement, {message: enhancement});
 }
 
 export function buyStatus({target}) {

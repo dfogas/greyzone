@@ -805,7 +805,7 @@ var missions = {
     'agentLimit': 2,
     'special': false
   }, {
-    'title': 'Money channeling',
+    'title': 'Money channelling',
     'tasks': [
       [{
         'name': 'tap',

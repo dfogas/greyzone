@@ -149,7 +149,7 @@ var playerdefaults = {
   ],
   missions: [
     Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),
-    Mission('Money channeling', 1, (24 * 60 * 60 * 1000))
+    Mission('Money channelling', 1, (24 * 60 * 60 * 1000))
   ],
   missionsDone: [],
   statuses: [],
