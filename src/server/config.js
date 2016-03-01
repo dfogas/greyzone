@@ -1,16 +1,15 @@
-var MongoStore = require('mongo-store');
+var passwords = require('./passwords');
 var nconf = require('nconf');
 
 // Specifying an env delimiter allows you to override below config when shipping to production server
 // by e.g. defining piping__ignore or version variables.
 nconf.env('__');
-var password = 'jajsemmuzikantaprichazimkvamzceskezeme';
 
 var config = {
   apipath: '/api/v1',
   appLocales: ['en', 'cz'],
   datastorage: process.env.NODE_ENV === 'production' ?
-    'mongodb://admin:' + password + '@ds055852.mongolab.com:55852/mbase' :
+    'mongodb://admin:' + passwords.mbase + '@ds055852.mongolab.com:55852/mbase' :
     'mongodb://localhost:27017/mbase',
   defaultLocale: 'en',
   googleAnalyticsId: 'UA-XXXXXXX-X',
@@ -22,15 +21,6 @@ var config = {
     hook: true
   },
   port: process.env.PORT || 8000,
-  sessionOptions: {
-    resave: false,
-    saveUninitialized: true,
-    secret: 'keyboard cat',
-    session: new MongoStore({
-      url: this.datastorage,
-      collection: 'sessions'
-    })
-  },
   version: require('../../package').version,
   webpackStylesExtensions: ['css', 'less', 'sass', 'scss', 'styl']
 };

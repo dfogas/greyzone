@@ -1,3 +1,9 @@
+/*
+  another example of crappy design process
+  no comments whatsoever
+  state seems to extending EventEmitter
+  looks like Java code
+*/
 import EventEmitter from 'eventemitter3';
 import immutable from 'immutable';
 

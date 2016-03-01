@@ -1,3 +1,6 @@
+/*
+  server/api/index.js
+*/
 import bodyParser from 'body-parser';
 import config from '../config';
 import cors from 'cors';
@@ -8,8 +11,6 @@ import morgan from 'morgan';
 import path from 'path';
 
 import passport from 'passport';
-// import cookieParser from 'cookie-parser';
-// import session from 'express-session';
 
 // controllers
 import auth from './controllers/auth';
@@ -22,17 +23,16 @@ mongoose.connect(config.datastorage); // establish database Mongo connection
 const app = express();
 
 // Create a read stream, in append mode
-let accessLogStream = fs.createWriteStream(path.join(__dirname, '/access.log'), {flags: 'a'});
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, '/access.log'),
+  {flags: 'a'} // adding to file
+);
 
-// authentication and session middleware
-// app.use(cookieParser('keyboard cat'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(session(config.sessionOptions));
 if (!config.isProduction)
   app.use(morgan('combined', {stream: accessLogStream}));
 app.use(passport.initialize());
-// app.use(passport.session());
 
 app.use(cors()); // what does it do?
 

@@ -14,11 +14,11 @@ app.use(config.apipath, api);
 if (!config.isProduction)
   app.use(morgan('dev'));
 
-app.get('/zohoverify/verifyforzoho.html', (req, res) => {  
+app.get('/zohoverify/verifyforzoho.html', (req, res) => {
   res.send('1454573815244');
 });
 
-// Load react-js frontend. i.e. rendering logic
+// Load react-js frontend. i.e. rendering logic, eats everything
 app.use(frontend);
 
 // Add error handler. Four arguments need to be defined in order for the

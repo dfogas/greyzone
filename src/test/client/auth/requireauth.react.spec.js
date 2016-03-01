@@ -1,6 +1,5 @@
 import Component from 'client/components/component.react';
 import React from 'react';
-//import {usersCursor} from 'client/state';
 import requireAuth from 'client/auth/requireauth.react';
 import {expect} from 'chai'; // http://chaijs.com/api/bdd
 import {render} from 'test/utils';

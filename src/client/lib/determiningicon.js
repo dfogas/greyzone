@@ -1,3 +1,7 @@
+/*
+  String -> Unicode char
+*/
+
 export default function determiningIcon(resultkey) {
   if (resultkey === 'reputation')
     return '\u{1f3c6}';

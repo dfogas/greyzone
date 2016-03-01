@@ -8,4 +8,4 @@ export default function dayandtime(ts, tz) {
   return t.slice(11,15) + '-' + t.slice(4,7) + '-' + t.slice(8,10) + ' ' + t.slice(16,21) + ' GMT';
 }
 
-// given: 0, -60 as it is CET expected: 1970-Jan-01 00:00 GMT
+// given: 0, -60(CET) expected: 1970-Jan-01 00:00 GMT

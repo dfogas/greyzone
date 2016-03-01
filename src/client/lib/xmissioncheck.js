@@ -31,43 +31,30 @@ import SecretInvestigation from '../../server/lib/greyzone/missions/secret.inves
 function xmissioncheck(enhancementsnames, MissionsList) {
   let missionsList;
   missionsList = MissionsList;
-  if (enhancementsnames.indexOf('Deputy of Law') !== -1) {
+  if (enhancementsnames.indexOf('Deputy of Law') !== -1)
     missionsList = missionsList.concat(CatchSerialKiller);
-  }
-  if (enhancementsnames.indexOf('Puppeteering FBI') !== -1) {
+  if (enhancementsnames.indexOf('Puppeteering FBI') !== -1)
     missionsList = missionsList.concat(NextOnTheBlacklist);
-  }
-  if (enhancementsnames.indexOf('Augean Stables') !== -1) {
+  if (enhancementsnames.indexOf('Augean Stables') !== -1)
     missionsList = missionsList.concat(Assasination);
-  }
-  if (enhancementsnames.indexOf('Nostalgia') !== -1) {
+  if (enhancementsnames.indexOf('Nostalgia') !== -1)
     missionsList = missionsList.concat(BankRobbery);
-  }
-  if (enhancementsnames.indexOf('Side Quest') !== -1) {
+  if (enhancementsnames.indexOf('Side Quest') !== -1)
     missionsList = missionsList.concat(AnOldDebt);
-  }
-  if (enhancementsnames.indexOf('We Got the Power') !== -1) {
+  if (enhancementsnames.indexOf('We Got the Power') !== -1)
     missionsList = missionsList.concat(PrisonBreak);
-  }
-  if (enhancementsnames.indexOf('Repaying the favors') !== -1) {
+  if (enhancementsnames.indexOf('Repaying the favors') !== -1)
     missionsList = missionsList.concat(ProtectWitness);
-  }
-  if (enhancementsnames.indexOf('Gala in Opera house') !== -1) {
+  if (enhancementsnames.indexOf('Gala in Opera house') !== -1)
     missionsList = missionsList.concat(AFriendInInnerCircle);
-  }
-  if (enhancementsnames.indexOf('Boy with an Apple') !== -1) {
+  if (enhancementsnames.indexOf('Boy with an Apple') !== -1)
     missionsList = missionsList.concat(PrivateCollection);
-  }
-  if (enhancementsnames.indexOf('You can\'t see me') !== -1) {
+  if (enhancementsnames.indexOf('You can\'t see me') !== -1)
     missionsList = missionsList.concat(DestroyEvidence);
-  }
-  if (enhancementsnames.indexOf('WS intriques') !== -1) {
+  if (enhancementsnames.indexOf('WS intriques') !== -1)
     missionsList = missionsList.concat(IndustrialEspionage);
-  }
-  if (enhancementsnames.indexOf('Playing Detective') !== -1) {
+  if (enhancementsnames.indexOf('Playing Detective') !== -1)
     missionsList = missionsList.concat(SecretInvestigation);
-  }
-  console.log(missionsList.map(xs => xs.title));
   return missionsList;
 }
 

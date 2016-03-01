@@ -18,7 +18,6 @@ passport.use(new Strategy({
   passReqToCallback: true
   },
   (req, username, password, done) => {
-    console.log('Local says: I am here.');
     User.findOne({username: req.user ? req.user.username : username}, (err, user) => {
       if (err)
           done(err);
