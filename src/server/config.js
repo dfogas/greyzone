@@ -9,7 +9,7 @@ var config = {
   apipath: '/api/v1',
   appLocales: ['en', 'cz'],
   datastorage: process.env.NODE_ENV === 'production' ?
-    'mongodb://admin:' + passwords.mbase + '@ds055852.mongolab.com:55852/mbase' :
+    'mongodb://admin:' + passwords.mbase + '@ds055852.mlab.com:55852/mbase' :
     'mongodb://localhost:27017/mbase',
   defaultLocale: 'en',
   googleAnalyticsId: 'UA-XXXXXXX-X',

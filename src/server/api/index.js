@@ -9,7 +9,6 @@ import fs from 'fs';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import path from 'path';
-
 import passport from 'passport';
 
 // controllers
