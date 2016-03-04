@@ -9,6 +9,5 @@ docs
 node_modules
 npm-debug.log
 src/server/api/access.log
-src/server/passwords.js
 Vagrantfile
 zohoverify
