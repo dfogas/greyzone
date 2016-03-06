@@ -12,15 +12,16 @@ class Command extends Component {
   render() {
     const {jsonapi, users} = this.props;
     const viewer = users.get('viewer');
+    const missionstarted = jsonapi.getIn(['activemission', 'started']);
 
     return (
       <DocumentTitle title={msg('command.title')}>
-        <div className='command-page'>
+        {!missionstarted && <div className='command-page'>
           <CommandCenterScreen
             jsonapi={jsonapi}
             viewer={viewer}
             />
-        </div>
+        </div>}
       </DocumentTitle>
     );
   }

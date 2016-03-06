@@ -49,7 +49,6 @@ class AgentInArmory extends Component {
 }
 
 AgentInArmory.propTypes = {
-  agents: React.PropTypes.instanceOf(immutable.List),
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

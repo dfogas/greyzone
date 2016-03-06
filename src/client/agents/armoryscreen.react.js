@@ -9,16 +9,11 @@ import ArmoryToBriefing from '../navs/armorytobriefing.react';
 class ArmoryScreen extends Component {
   render() {
     const {jsonapi} = this.props;
-    const agents = jsonapi.get('agents');
-    const equipments = jsonapi.get('equipments');
 
     return (
-      /*CONVENTION id in camelCase, className dash-separated*/
       <div id='ArmoryScreen' >
         <ArmoryToBriefing />
         <AgentEquipContent
-          agents={agents}
-          equipments={equipments}
           jsonapi={jsonapi}
           />
       </div>

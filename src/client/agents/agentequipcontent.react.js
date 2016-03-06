@@ -18,15 +18,19 @@ class AgentEquipContent extends Component {
   }
 
   render() {
-    const {agents, equipments, jsonapi} = this.props;
+    const {jsonapi} = this.props;
 
+    const equipments = jsonapi.get('equipments');
     const equipmentsoperations = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'O').toList();
     const equipmentselectronics = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'E').toList();
     const equipmentsstealth = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'S').toList();
 
     return (
       <div id='AgentEquipContent'>
-        <AgentScrollBarWithNavButtons agents={agents} jsonapi={jsonapi} />
+        <AgentScrollBarWithNavButtons
+          agents={jsonapi.get('agents')}
+          jsonapi={jsonapi}
+          />
         <div id='ArmoryGameCashCounter'>
           Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
         </div>
@@ -40,17 +44,6 @@ class AgentEquipContent extends Component {
           id='DismissAgentButton'
           onClick={agentActions.dismissAgent}
           >Dismiss Agent</button>
-        {/*<div id='ActiveMissionTasks'>
-          {jsonapi.getIn(['activemission', 'tasks']).map(task => {
-            return (
-              <Task
-                className='armory-task'
-                isActual={true}
-                task={task}
-                />
-            );
-          })}
-        </div>*/}
         <AgentInArmory jsonapi={jsonapi} />
         <EquipmentStock
           enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
@@ -73,8 +66,6 @@ class AgentEquipContent extends Component {
 }
 
 AgentEquipContent.propTypes = {
-  agents: React.PropTypes.instanceOf(immutable.List),
-  equipments: React.PropTypes.instanceOf(immutable.List).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

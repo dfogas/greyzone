@@ -1,0 +1,6 @@
+CSS
+id CamelCase
+className dash-case
+
+STATE
+states in all non-caps, no separators

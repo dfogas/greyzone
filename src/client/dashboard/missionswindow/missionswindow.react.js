@@ -5,8 +5,6 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
-// import MissionToAccept from './missiontoaccept.react';
-// import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
 import MissionsPriceTable from './missionsprice.table.react';
 
 class MissionsWindow extends Component {
