@@ -10,7 +10,10 @@ var config = {
   appLocales: ['en', 'cz'],
   datastorage: process.env.NODE_ENV === 'production' ?
     'mongodb://admin:' + passwords.mbase + '@ds055852.mlab.com:55852/mbase' :
-    'mongodb://localhost:27017/mbase',
+    process.env.NODE_ENV ?
+    'mongodb://localhost:27017/mbase' :
+    // for API test
+    'mongodb://localhost:27017/mtest',
   defaultLocale: 'en',
   googleAnalyticsId: 'UA-XXXXXXX-X',
   isProduction: process.env.NODE_ENV === 'production',

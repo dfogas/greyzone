@@ -16,10 +16,16 @@ import auth from './controllers/auth';
 import player from './controllers/player';
 import user from './controllers/user';
 
-mongoose.connect(config.datastorage); // establish database Mongo connection
-
 // Create general-purpose API sub-app
 const app = express();
+
+mongoose.connect(config.datastorage, function(err, res) {
+  if (err)
+    console.log('Error connecting to database.' + err);
+  else
+    console.log('Connected to database: ' + config.datastorage);
+}); // establish database Mongo connection
+
 
 // Create a read stream, in append mode
 const accessLogStream = fs.createWriteStream(

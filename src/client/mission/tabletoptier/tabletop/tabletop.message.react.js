@@ -1,7 +1,6 @@
 import './tabletop.message.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
-import immutable from 'immutable';
 
 class TabletopMessage extends Component {
   render() {

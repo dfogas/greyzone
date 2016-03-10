@@ -1,6 +1,7 @@
 import Component from '../../components/component.react.js';
 import React from 'react';
 import classnames from 'classnames';
+import immutable from 'immutable';
 
 class AgentEquipmentPicturePlaceholder extends Component {
   render() {
@@ -17,5 +18,11 @@ class AgentEquipmentPicturePlaceholder extends Component {
     );
   }
 }
+
+AgentEquipmentPicturePlaceholder.propTypes = {
+  equipment: React.PropTypes.instanceOf(immutable.Map),
+  isMission: React.PropTypes.bool,
+  isShowcased: React.PropTypes.bool
+};
 
 export default AgentEquipmentPicturePlaceholder;

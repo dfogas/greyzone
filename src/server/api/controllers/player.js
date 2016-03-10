@@ -16,11 +16,12 @@ router.route('/')
     player.save((err) => {
       if (err)
         res.send(err);
-
-      res.json({
-        message: 'player added to player roster',
-        data: player
-      });
+      else
+        res.json({
+          // data: player,
+          message: 'player added to player roster',
+          name: player.name
+        });
     });
   });
 
@@ -36,9 +37,6 @@ router.route('/')
 
 router.route('/:player_id')
   .get((req, res) => {
-    // console.log('Player controller says, req.user is: ', req.user);
-    // console.log('Params player_id is: ', req.params.player_id);
-    // findOne probably returns first found record
     Player.findOne({
       _id: req.params.player_id
     }, function(err, player) {
@@ -51,9 +49,9 @@ router.route('/:player_id')
 
 router.route('/:player_id')
   .put((req, res) => {
-    // console.log(req.body.title, req.body.name, req.body.gameContacts, req.body.gameCash);
 
     Player.update(
+      // TODO: rewrite through findById and save combination
       // we need params _id here else only 1st record from parent collection is updated
       // Model.update(criteria, doc, options, callback)
       {_id: req.params.player_id}, {$set: req.body}, {overwrite: true, upsert: true}, (err, raw) => {

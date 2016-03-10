@@ -38,7 +38,9 @@ class AgentScrollBarNavButton extends Component {
 }
 
 AgentScrollBarNavButton.propTypes = {
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  isBriefing: React.PropTypes.bool,
+  isMission: React.PropTypes.bool
 };
 
 export default AgentScrollBarNavButton;

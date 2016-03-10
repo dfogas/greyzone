@@ -2,7 +2,6 @@ import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../intl/store';
 
 import MissionClock from './mission.clock.react';
 
@@ -14,8 +13,6 @@ class MissionListItem extends Component {
 
   selectMission() {
     const {mission} = this.props;
-
-    console.log('Mission ' + mission.get('title') + ' in ' + mission.get('inCountry') + ' Tier ' + mission.get('tier'));
     missionActions.select(mission);
   }
 

@@ -1,6 +1,5 @@
 import './signup.styl';
 import * as authActions from './actions';
-import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';
@@ -23,7 +22,6 @@ class SignUp extends Component {
     const {email, organization} = fields;
     authActions.signup(fields)
         .then((po) => {
-          // dashboardActions.newUserAppendState(po.email, po.organization);
           fetch(api + 'users', {
             method: 'GET',
             headers: {'Content-type': 'application/json'}
@@ -34,9 +32,7 @@ class SignUp extends Component {
               return res.json();
             })
             .then((users) => {
-              console.log('Users: ' + users);
               let userId = users.filter(user => user.username === email).map(user => user._id);
-              console.log('User Id is: ' + userId[0]);
               return userId[0];
             })
             .then((userId) => {
@@ -47,10 +43,7 @@ class SignUp extends Component {
               });
             });
         })
-        // .then((po) => {
-          // this.redirectAfterSignup();
-          // console.log('Resolved.');
-        // })
+        // TODO: Redirect after signup, also, nodemailer will be implemented
         .catch(focusInvalidField(this));
   }
 

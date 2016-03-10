@@ -12,7 +12,7 @@ import {measureRender} from '../console';
 import 'isomorphic-fetch';
 
 // import Footer from './footer.react';
-import Menu from './menu.react';
+// import Menu from './menu.react';
 
 // Remember to import all app stores here.
 import '../intl/store';

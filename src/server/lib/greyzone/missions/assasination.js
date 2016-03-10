@@ -47,7 +47,7 @@ const Assasination = [{
   title: 'Assasination',
   tasks: [
     [infiltrate, improv_st, improv_op],
-    [tap]
+    [tap],
     [hit, hit, hit],
     [hide, improv_st, hide]
   ],

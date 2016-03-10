@@ -2,6 +2,7 @@ import bg from 'gulp-bg';
 import eslint from 'gulp-eslint';
 import gulp from 'gulp';
 import makeWebpackConfig from './webpack/makeconfig';
+import mocha from 'gulp-mocha';
 import path from 'path';
 import runSequence from 'run-sequence';
 import webpackBuild from './webpack/build';
@@ -58,6 +59,18 @@ gulp.task('test', (done) => {
   // are not passing, and it doesn't make sense to run tests, if lint has failed.
   // Gulp deps aren't helpful, because we want to run tasks without deps as well.
   runSequence('eslint', 'karma-ci', 'build-webpack-production', done);
+});
+
+gulp.task('apitest', () => {
+  return gulp.src('./src/test/server/api/*.*', {read: false})
+    // gulp-mocha needs filepaths so you can't have any plugins before it
+    .pipe(mocha(
+      // {reporter: 'nyan'}
+    ));
+});
+
+gulp.task('api', (done) => {
+  runSequence('apitest', done);
 });
 
 gulp.task('server', ['env', 'build'], bg('node', 'src/server'));

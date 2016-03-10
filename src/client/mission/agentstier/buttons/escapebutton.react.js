@@ -13,7 +13,6 @@ class EscapeButton extends Component {
     missionActions.bookLosses(activemission);
     missionActions.agentIsBackFromTask();
     missionActions.fail();
-    console.log('agentsonmission size is' + agentsonmission.size);
     for (var i = 0; i < agentsonmission.size + 1; i += 1)
       missionActions.agentMissionDone(i);
     missionActions.organizationMissionDone();

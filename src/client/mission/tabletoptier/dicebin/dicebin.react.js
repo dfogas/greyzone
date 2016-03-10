@@ -1,6 +1,7 @@
 import './dicebin.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 
 import * as diceActions from '../dice/actions';
 
@@ -19,7 +20,6 @@ class DiceBin extends Component {
     const {activemission} = this.props;
     const missionstarted = activemission.get('started');
     const dicesthrown = activemission.getIn(['mission', 'currenttask', 'dicesthrown']);
-    const remainingdices = activemission.getIn(['mission', 'currenttask', 'remainingdices']);
     const currentindex = activemission.get('taskscompleted').size;
     const currenttask = activemission.getIn(['tasks', currentindex]);
 
@@ -53,5 +53,9 @@ class DiceBin extends Component {
     );
   }
 }
+
+DiceBin.propTypes = {
+  activemission: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default DiceBin;

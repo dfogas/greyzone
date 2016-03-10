@@ -86,7 +86,7 @@ export const dispatchToken = register(({action, data}) => {
     data = data.message || data;
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .update('log', val => val.push(data));
+        .update('log', val => val.push(data));
     });
   }
 

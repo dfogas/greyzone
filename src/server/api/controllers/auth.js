@@ -17,8 +17,9 @@ passport.deserializeUser((id, done) => {
 
 router.route('/login')
   .post(localAuthenticator, (req, res, next) => {
-
-    //simulate DB checks
+    // res.status(200).end();
+    // simulate DB checks
+    // wihout it -> WRONG PASSWORD on login
     setTimeout(() => {
       res.status(200).end();
     }, 1000);
@@ -29,6 +30,8 @@ router.route('/signup')
   .post((req, res, next) => {
     const {email, password} = req.body;
 
+    // TODO: Change it to NotVerified with added hash for verification
+    // password hash should not be visible in REST API
     let user = new User({
       password: password,
       username: email
@@ -37,14 +40,26 @@ router.route('/signup')
     user.save((err) => {
       if (err)
         res.send(err);
-
-      console.log('New user has been added');
-      res.json({
-        message: 'New user has been added'
-      });
+      // add username for verification by API test
+      else
+        res.send({
+          message: 'New user has been added',
+          user: user.username
+        });
     });
+  });
 
+router.route('/verify')
+  .get((req, res, next) => {
+    const {id, hash} = this.props;
 
+    // NotVerified.findOne({_id: id}, (err, notverified) {
+        // if (hash === notverified.hash) {
+          // ... add new user to users collection
+        //} else {
+          // res.json({message: 'Wrong authorization'});
+      // }
+    // });
   });
 
 export default router;

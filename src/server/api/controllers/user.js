@@ -15,10 +15,9 @@ router.route('/')
 
 router.route('/:user_id')
   .get((req, res) => {
-    User.find({_id: req.params.user_id}, (err, user) => {
+    User.findById(req.params.user_id, (err, user) => {
       if (err)
         res.send(err);
-
       res.json(user);
     });
   });
