@@ -15,6 +15,8 @@ var config = {
     // for API test
     'mongodb://localhost:27017/mtest',
   defaultLocale: 'en',
+  dns: process.env.NODE_ENV === 'production' ? 'http://www.ghoststruggle.com' :
+    'http://localhost:8000',
   googleAnalyticsId: 'UA-XXXXXXX-X',
   isProduction: process.env.NODE_ENV === 'production',
   piping: {
@@ -24,6 +26,7 @@ var config = {
     hook: true
   },
   port: process.env.PORT || 8000,
+  strawman: 'j.drapal@ghoststruggle.com',
   version: require('../../package').version,
   webpackStylesExtensions: ['css', 'less', 'sass', 'scss', 'styl']
 };

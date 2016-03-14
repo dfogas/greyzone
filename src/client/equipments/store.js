@@ -111,6 +111,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'equipmenteffects', 'lockeddice'], new Array(data));
-        // TO DO: remove dice from dicesthrown
+        // TODO: remove dice from dicesthrown or rather actiondices
     });
 });

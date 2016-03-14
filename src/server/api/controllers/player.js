@@ -6,7 +6,8 @@ import playerdefaults from '../../lib/playerdefaults';
 const router = express.Router();
 
 router.route('/')
-  .post((req, res) => { // TODO: check missing next in parameters
+  .post((req, res) => {
+    // TODO: check missing next in parameters
     console.log('saving to database');
 
     playerdefaults.name = req.body.name;

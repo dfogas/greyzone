@@ -1,6 +1,4 @@
-/*
-  Smart Component
-*/
+/* Smart Component */
 import './tabletop.styl';
 import * as missionActions from '../../actions';
 import * as diceActions from '../dice/actions';
@@ -8,12 +6,12 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import uuid from '../../../lib/guid';
+import canCompleteTask from '../../../lib/cancompletetask';
 
 import ProbabilityBar from './probabilitybar.react';
 import Dice from '../dice/dice.react';
 import MissionTitle from '../../missioncard/missiontitle.react';
 import ActionButton from './buttons/actionbutton.react';
-
 
 class TableTop extends Component {
   allowDrop(ev) {
@@ -41,20 +39,7 @@ class TableTop extends Component {
     const missionStarted = activemission.get('started');
     const dicesthrown = activemission.getIn(['mission', 'currenttask', 'dicesthrown']);
     const remainingdices = activemission.getIn(['mission', 'currenttask', 'remainingdices']);
-    const currentindex = activemission.get('taskscompleted').size;
-    const currenttask = activemission.getIn(['tasks', currentindex]);
-
-    let taskActions = [], dicesthrownArray = dicesthrown.toArray();
-    if (currenttask)
-      taskActions = currenttask.toSeq().map(action =>
-                        action.get('name'), taskActions)
-                      .toArray();
-    //nice
-    const canCompleteTask = taskActions.every(function(val) {
-      let numIn1 = taskActions.filter(function(el) { return el === val; }).length;
-      let numIn2 = dicesthrownArray.filter(function(el) { return el === val; }).length;
-      return numIn1 <= numIn2;
-    });
+    const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
 
     return (
       <div
@@ -79,7 +64,8 @@ class TableTop extends Component {
           }) : <div id="MissionStartStatus">Mission has not started yet.</div>
         }
         <ProbabilityBar />
-        {canCompleteTask &&
+        {currenttask &&
+          canCompleteTask(currenttask.map(action => action.get('name')).toArray(), dicesthrown.toArray()) &&
           missionStarted &&
           (activemission.get('tasks').size !== activemission.get('taskscompleted').size) &&
           <input

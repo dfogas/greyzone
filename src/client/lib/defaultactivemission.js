@@ -9,6 +9,7 @@ const defaultActiveMission = {
   taskscompleted: [],
   mission: {
     currenttask: {
+      actiondices: [],
       agentlock: false,
       remainingdices: [],
       dicesthrown: [],

@@ -13,12 +13,6 @@ app.use(config.apipath, api);
 if (!config.isProduction)
   app.use(morgan('dev'));
 
-app.get('/zohoverify/verifyforzoho.html', (req, res) => {
-  res.send('1454573815244');
-});
-
-// console.log(process.env.NODE_ENV);
-
 // Load react-js frontend. i.e. rendering logic, eats everything
 if (process.env.NODE_ENV)
   // frontend is not needed when we test server REST api

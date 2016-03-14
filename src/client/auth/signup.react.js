@@ -21,28 +21,28 @@ class SignUp extends Component {
     const fields = this.getForm().fields.toJS();
     const {email, organization} = fields;
     authActions.signup(fields)
-        .then((po) => {
-          fetch(api + 'users', {
-            method: 'GET',
-            headers: {'Content-type': 'application/json'}
-          })
-            .then((res) => {
-              if (res.status >= 400)
-                throw new Error('Bad server response.');
-              return res.json();
-            })
-            .then((users) => {
-              let userId = users.filter(user => user.username === email).map(user => user._id);
-              return userId[0];
-            })
-            .then((userId) => {
-              fetch(api + 'players', {
-                method: 'POST',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify({userId: userId, name: organization})
-              });
-            });
-        })
+        // .then((po) => {
+        //   fetch(api + 'users', {
+        //     method: 'GET',
+        //     headers: {'Content-type': 'application/json'}
+        //   })
+        //     .then((res) => {
+        //       if (res.status >= 400)
+        //         throw new Error('Bad server response.');
+        //       return res.json();
+        //     })
+        //     .then((users) => {
+        //       let userId = users.filter(user => user.username === email).map(user => user._id);
+        //       return userId[0];
+        //     })
+        //     .then((userId) => {
+        //       fetch(api + 'players', {
+        //         method: 'POST',
+        //         headers: {'Content-type': 'application/json'},
+        //         body: JSON.stringify({userId: userId, name: organization})
+        //       });
+        //     });
+        // })
         // TODO: Redirect after signup, also, nodemailer will be implemented
         .catch(focusInvalidField(this));
   }
