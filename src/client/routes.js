@@ -15,6 +15,8 @@ import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
 import Lab from './pages/lab.react';
 import Support from './pages/support.react';
+import LPRecover from './pages/lprecover.react';
+import Reauthentication from './pages/reauthentication.react';
 
 export default (
   <Route handler={App} path="/">
@@ -29,6 +31,8 @@ export default (
     <Route handler={Mission} name="mission" />
     <Route handler={SignUp} name="signup" />
     <Route handler={Lab} name="lab" />
+    <Route handler={Reauthentication} name="reauthenticate" />
+    <Route handler={LPRecover} name="lprecover" />
     <Route handler={Support} name="support" />
     <Route handler={Support} name="forum" />
   </Route>

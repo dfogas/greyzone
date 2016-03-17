@@ -3,11 +3,13 @@ import passport from 'passport';
 import Player from '../models/player';
 import User from '../models/user';
 import NotVerified from '../models/notverified';
+import LPRecover from '../models/lprecover';
 import localAuthenticator from '../strategies/local';
 import playerdefaults from '../../lib/playerdefaults';
 import transporter from '../mail/transporter';
 import uuid from '../../../client/lib/guid';
 import verifier from '../mail/email.verifier';
+import lostpassword from '../mail/lost.password';
 
 const router = express.Router();
 
@@ -58,7 +60,7 @@ router.route('/signup')
           if (err)
             console.log('Sending mail Error: ' + err.message);
           else
-            console.log('Message has been sent.');
+            console.log('New sign up mail message has been sent.');
         });
         res.json({
           message: 'New not-verified user.',
@@ -98,7 +100,7 @@ router.route('/verify')
                 });
               else
                 res.json({
-                  message: 'New user and player have been added',
+                  message: 'New user and player have been added. You may log in now.',
                   user: user.username,
                   player: player.name
                 });
@@ -112,6 +114,69 @@ router.route('/verify')
     NotVerified.findByIdAndRemove(id, function(err) {
       if (err)
         console.log(err);
+    });
+  });
+
+router.route('/lprecover')
+  .post((req, res) => {
+    const {email} = req.body;
+
+    const newLPRecover = new LPRecover({
+      recoverhash: uuid(),
+      email: email
+    });
+
+    newLPRecover.save((err, lpw) => {
+      if (err)
+        res.send(err);
+      else
+        transporter.sendMail(lostpassword(lpw.recoverhash, lpw.email), (err) => {
+          if (err)
+            res.send(err);
+          else
+            res.json({
+              message: 'Message for lost password recovery was sent to ' + lpw.email + '.',
+              email: lpw.email
+            });
+        });
+    });
+  });
+
+router.route('/reauthentication')
+  .post((req, res) => {
+    const {email, password} = req.body;
+    const {hash} = req.query;
+
+    LPRecover.findOne({email: email}, function(err, lpw) {
+      if (err)
+        res.send(err);
+      if (lpw.recoverhash === hash && lpw.email === email)
+        User.findOne({username: lpw.email}, function(err, doc) {
+          if (doc) {
+            doc.password = password;
+            doc.save(function(err, changed) {
+              if (err)
+                res.send(err);
+              else
+                res.json({
+                  message: 'New password has been set for user ' + changed.username + '.',
+                  user: changed.username,
+                  pwchanged: changed.password !== password
+                });
+            });
+          }
+        });
+        // User.findOneAndUpdate({username: lpw.email}, {$set: {password: password}}, (err, doc) => {
+        //   if (err)
+        //     res.send(err);
+        //   else
+        //     // TODO: REMOVE LPRecover by hash or email probably set-up periodical check for deletion
+        //     res.json({
+        //       message: 'New password has been set for user ' + doc.username + '.',
+        //       user: doc.username,
+        //       pwchanged: doc.password !== password
+        //     });
+        // });
     });
   });
 

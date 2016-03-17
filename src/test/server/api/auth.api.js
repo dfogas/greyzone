@@ -33,11 +33,11 @@ describe('Auth', function() {
             .get('/api/v1/auth/verify?id=' + notverified.body._id + '&hash=' + notverified.body.activationhash)
             .end(function(err, res) {
               if (err)
-                console.log('Error has occured: ' + err);
+                res.send('Error has occured: ' + err);
               else if (res.error)
-                console.log(res.error);
+                res.send(res.error);
               else if (res.notfound)
-                console.log(res.notfound);
+                res.send(res.notfound);
               else {
                 res.should.have.status(200);
                 res.should.be.json;
@@ -52,4 +52,47 @@ describe('Auth', function() {
             });
       });
   });
+  // it('should add a SINGLE lpw request to lostpasswords on /api/v1/auth/lprecover POST', function(done) {
+  //   this.timeout(5000);
+  //   chai.request(server)
+  //     .post('/api/v1/auth/lprecover')
+  //     .send({
+  //       email: 'r.parkund@ghoststruggle.com'
+  //     })
+  //     .end(function(err, res) {
+  //       if (err)
+  //         res.send(err);
+  //       else {
+  //         res.should.have.status(200);
+  //         res.should.be.json;
+  //         res.body.should.have.property('message');
+  //         res.body.should.have.property('email');
+  //         res.body.email.should.equal('r.parkund@ghoststruggle.com');
+  //         setTimeout(done, 5000);
+  //       }
+  //     });
+  // });
+  // it('should change password of a ONE record in users on /api/v1/auth/reauthentication POST', function(done) {
+  //     chai.request(server)
+  //       .post('/api/v1/auth/lprecover')
+  //       .send({
+  //         email: 'r.parkund@ghoststruggle.com', // shouldn't it be just password??
+  //         password: 'barnacle'
+  //       })
+  //       .end(function(err, res) {
+  //         if (err)
+  //           res.send(err);
+  //         else {
+  //           res.should.have.status(200);
+  //           res.should.be.json;
+  //           console.log();
+  //           res.body.should.have.property('message');
+  //           res.body.should.have.property('user');
+  //           res.body.should.have.property('pwchanged');
+  //           res.body.user.should.equal('r.parkund@ghoststruggle.com');
+  //           res.body.pwchanged.should.equal(true);
+  //           done();
+  //         }
+  //       });
+  // });
 });

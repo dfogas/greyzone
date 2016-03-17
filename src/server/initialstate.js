@@ -6,7 +6,9 @@ export default {
   // Each key represents one app feature/store.
   auth: {
     data: null,
-    form: null
+    form: null,
+    lprecover: {message: ''},
+    reauthentication: {message: ''}
   },
   i18n: {
     formats: {},

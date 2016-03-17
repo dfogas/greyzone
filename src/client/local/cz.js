@@ -27,6 +27,12 @@ const CZECH = {
     logout: {
       button: 'Odlogovat se'
     },
+    lprecover: {
+      title: 'Zapomenuté heslo'
+    },
+    reauthentication: {
+      title: 'Ověření registrace'
+    },
     signup: {
       title: 'Účet'
     },
@@ -243,17 +249,14 @@ const CZECH = {
     title: 'Stránka nenalezena'
   },
   posts: {
-    newPostPlaceholder: 'Co máte na mysli?',
+    newPostPlaceholder: 'Co vás právě napadlo?',
     emptyList: 'Prázdný List'
   },
   signup: {
     message: `
-      <p>
-        Zde vytvoříte účet se jménem své organizace, který již během hry nepůjde změnit.
-        (NEIMPLEMENTOVÁNO: Na váš email přijde nejpozději do 1h žádost o potvrzení.
-        Po potvrzení se přihlašte a můžete začít kout pikle.)
-        Poté budete přesměrováni opět k loginu, kde po přihlášení můžete začít hrát.
-      </p>
+      <p>Zde vytvoříte účet se jménem své organizace, to již během hry nepůjde měnit.
+        Po zaregistrování bude na uvedený email zaslán aktivační link. Po jeho
+        potvrzení se můžete zalogovat a začít kout pikle.</p>
     `
   },
   support: {

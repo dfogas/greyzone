@@ -6,6 +6,7 @@ import exposeRouter from '../components/exposerouter.react';
 import immutable from 'immutable';
 import {focusInvalidField} from '../lib/validation';
 import {msg} from '../intl/store';
+import {Link} from 'react-router';
 
 class Login extends Component {
 
@@ -53,14 +54,12 @@ class Login extends Component {
               type="password"
               value={form.fields.password}
             />
+          <span><Link to='lprecover'>Forgotten password?</Link></span>
             <br />
             <button
               children={msg('auth.form.button.login')}
               type="submit"
             />
-            {/*
-             <button type="submit">{msg('auth.form.button.signup')}</button>
-            */}
             {form.error &&
               <span className="error-message">{form.error.message}</span>
             }

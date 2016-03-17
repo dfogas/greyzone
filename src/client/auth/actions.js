@@ -22,7 +22,7 @@ function validateForm(fields) {
   // Validate function is just wrapper for node-validator providing promise api,
   // so we can mix client sync and server async validations easily.
   return validate(fields)
-    // Of course we can add another validation methods.
+    // Of course we can add another validation method.
     .prop('email').required().email()
     .prop('password').required().simplePassword()
     /* TODO: validation of 'organization' prop */
@@ -59,9 +59,51 @@ export function logout() {
   location.href = '/';
 }
 
-export function redirectToLoginAfterSignup() {
+export function redirectToLogin() {
   // should reload app with /login path
   location.href = '/login';
+}
+
+export function lpwRecover(fields) {
+  const promise = validateEmail(fields)
+    .then(() => {
+      return recoverPassword(fields);
+    })
+    .catch(error => {
+      lpwRecoverError(error);
+      throw error;
+    });
+
+  return dispatch(lpwRecover, promise);
+}
+
+function validateEmail(fields) {
+  return validate(fields)
+    .prop('email').required().email()
+    .promise;
+}
+
+function recoverPassword(fields) {
+  return new Promise((resolve, reject) => {
+    // TODO: find better way to write this, comment well on interfaces used
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/v1/auth/lprecover', true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState !== 4) return;
+      if (xhr.status === 200)
+        resolve(fields);
+      // else
+      //   reject(new ValidationError(msg('auth.form.invalidPassword'), 'password'));
+    };
+
+    xhr.send(JSON.stringify(fields));
+  });
+}
+
+export function lpwRecoverError(error) {
+  dispatch(lpwRecoverError, error);
 }
 
 export function updateFormField({target: {name, value}}) {
@@ -91,6 +133,7 @@ function saveCredentials(fields) {
     xhr.setRequestHeader('Content-type', 'application/json');
 
     xhr.onreadystatechange = () => {
+      // TODO: figure out this API, put comment here
       if (xhr.readyState !== 4) return;
       if (xhr.status === 200)
         resolve(fields);
@@ -106,11 +149,51 @@ export function signupError(error) {
   dispatch(signupError, error);
 }
 
+export function reauthenticate(fields, hash) {
+  const promise = validateForm(fields)
+    .then(() => {
+      resaveCredentials(fields, hash);
+    })
+    .catch(error => {
+      reauthenticateError(error);
+      throw error;
+    });
+
+  return dispatch(reauthenticate, promise);
+}
+
+function resaveCredentials(fields, hash) {
+  return new Promise((resolve, reject) => {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/v1/auth/reauthentication?hash=' + hash, true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    console.log('/api/v1/auth/reauthentication?hash=' + hash);
+
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState !== 4) return;
+      if (xhr.status === 200)
+        resolve(fields);
+      // else
+      //   reject(new ValidationError(msg('auth.form.invalidPassword'), 'password'));
+    };
+
+    xhr.send(JSON.stringify(fields));
+  });
+}
+
+export function reauthenticateError(error) {
+  dispatch(reauthenticateError, error);
+}
+
 setToString('auth', {
   login,
   loginError,
   logout,
-  redirectToLoginAfterSignup,
+  lpwRecover,
+  lpwRecoverError,
+  reauthenticate,
+  reauthenticateError,
+  redirectToLogin,
   signup,
   updateFormField
 });

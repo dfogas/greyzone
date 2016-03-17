@@ -50,7 +50,7 @@ class SignUp extends Component {
   redirectAfterSignup() {
     // const nextPath = this.props.router.getCurrentQuery().nextPath;
     // this.props.router.replaceWith(nextPath || '/');
-    authActions.redirectToLoginAfterSignup();
+    authActions.redirectToLogin();
   }
 
   render() {

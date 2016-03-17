@@ -27,6 +27,22 @@ const ENGLISH = {
     logout: {
       button: 'Logout'
     },
+    lprecover: {
+      title: 'Recover Lost Password',
+      placeholder: 'Email',
+      message: 'Fill in email for which you want to recover password',
+      legend: 'Password Recover',
+      button: 'Send'
+    },
+    reauthentication: {
+      title: 'Revalidating signup',
+      placeholder: {
+        email: 'Email',
+        password: 'New password'
+      },
+      legend: 'Set Up New Password',
+      button: 'Confirm'
+    },
     signup: {
       title: 'Sign Up'
     },
@@ -254,9 +270,9 @@ const ENGLISH = {
     emptyList: 'Empty List'
   },
   signup: {
-    message: `<p>Here you are going to create the name of your organization. (TO BE IMPLEMENTED YET: After that
-      your email will recieve message of confirmation within 1h. You confirm the message and can start scheming.)
-      You'll be redirected to login, where you put in your credentials again and can start playing.</p>`
+    message: `<p>Here you are going to create the name of your organization.
+      On the email will be sent message with the link to activate a game account.
+      After clicking it and you can log in and can start scheming.</p>`
   },
   support: {
     title: 'SupportPage'
