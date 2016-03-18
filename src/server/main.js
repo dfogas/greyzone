@@ -3,10 +3,20 @@ import config from './config';
 import express from 'express';
 import frontend from './frontend';
 import morgan from 'morgan';
+import {secureServer} from 'https';
 import {Server} from 'http';
+import fs from 'fs';
+
+const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
+const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
+
+const options = {
+  key: gskey,
+  cert: gscert
+};
 
 const app = express();
-const server = Server(app);
+const server = process.env.NODE_ENV === 'development' ? Server(app) : secureServer(options, app);
 
 app.use(config.apipath, api);
 
