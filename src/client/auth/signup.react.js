@@ -1,5 +1,6 @@
 import './signup.styl';
 import * as authActions from './actions';
+import cconfig from '../client.config';
 import Component from '../components/component.react';
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';
@@ -15,8 +16,8 @@ class SignUp extends Component {
 
   onFormSubmit(e) {
     const api = process.env.NODE_ENV === 'production' ?
-      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-      'http://localhost:8000/api/v1/';
+      cconfig.dnsprod + '/api/v1/' :
+      cconfig.dnsdevel + '/api/v1/';
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
     const {email, organization} = fields;

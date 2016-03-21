@@ -1,5 +1,6 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
+import cconfig from '../client.config';
 import Agent from '../../server/lib/greyzone/agents.generator';
 import MissionsList from '../../server/lib/greyzone/missions.list';
 import randomInt from '../lib/getrandomint';
@@ -77,8 +78,8 @@ export function log(message) {
 
 export function newUserAppendState(email, organization) {
   const api = process.env.NODE_ENV === 'production' ?
-    'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-    'http://localhost:8000/api/v1/';
+    cconfig.dnsprod + '/api/v1/' :
+    cconfig.dnsdevel + '/api/v1/';
   fetch(api + 'users', {
     method: 'GET',
     headers: {'Content-type': 'application/json'}

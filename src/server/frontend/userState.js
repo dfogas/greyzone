@@ -7,6 +7,7 @@
 */
 
 import config from '../config';
+import cconfig from '../../client/client.config';
 import fetch from 'node-fetch';
 fetch.Promise = require('bluebird');
 import 'isomorphic-fetch';
@@ -23,8 +24,8 @@ export default function userState() {
   return (req, res, next) => {
 
     const api = process.env.NODE_ENV === 'production' ?
-      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-      'http://localhost:8000/api/v1/';
+      cconfig.dnsprod + '/api/v1/' :
+      cconfig.dnsdevel + '/api/v1/';
 
     const acceptsLanguages = req.acceptsLanguages(config.appLocales);
 

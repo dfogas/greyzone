@@ -4,6 +4,8 @@
 */
 import './app.styl';
 import '../navs/navs.styl';
+// import config from '../../server/config';
+import cconfig from '../client.config';
 import * as state from '../state';
 import Component from '../components/component.react';
 import React from 'react';
@@ -38,8 +40,8 @@ class App extends Component {
 
   pollStateToPersistance() {
     const api = process.env.NODE_ENV === 'production' ?
-      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-      'http://localhost:8000/api/v1/';
+      cconfig.dnsprod + '/api/v1/' :
+      cconfig.dnsdevel + '/api/v1/';
     const playerId = this.state.jsonapi.get('_id');
     const jsonapi = this.state.jsonapi.toJS();
     if (this.state.jsonapi.get('name') !== 'Default')

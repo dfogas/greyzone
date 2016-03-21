@@ -2,6 +2,7 @@ import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
 import {jsonapiCursor} from '../state';
+import cconfig from '../client.config';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
 
@@ -93,8 +94,8 @@ export const dispatchToken = register(({action, data}) => {
   if (action === authActions.login) {
     const {email} = data;
     const api = process.env.NODE_ENV === 'production' ?
-      'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-      'http://localhost:8000/api/v1/';
+      cconfig.dnsprod + '/api/v1/' :
+      cconfig.dnsdevel + '/api/v1/';
 
     fetch(api + 'users/')
       .then((response) => {
@@ -136,8 +137,8 @@ export const dispatchToken = register(({action, data}) => {
 
   // if (action === dashboardActions.newUserAppendState) {
   //   const api = process.env.NODE_ENV === 'production' ?
-  //     'http://fierce-shore-7346.herokuapp.com/api/v1/' :
-  //     'http://localhost:8000/api/v1/';
+  //     cconfig.dnsprod + '/api/v1/' :
+  //     cconfig.dnsdevel + '/api/v1/';
   //
   //   // console.log('Username: ' + data.email + 'UserId: ' + data.userId);
   //   fetch(api + 'players', {
