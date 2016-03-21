@@ -44,6 +44,8 @@ const ENGLISH = {
       button: 'Confirm'
     },
     signup: {
+      button: 'Back To Login',
+      complete: 'Signup completed',
       title: 'Sign Up'
     },
     title: 'Login'

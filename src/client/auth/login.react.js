@@ -54,12 +54,12 @@ class Login extends Component {
               type="password"
               value={form.fields.password}
             />
-          <span><Link to='lprecover'>Forgotten password?</Link></span>
-            <br />
             <button
               children={msg('auth.form.button.login')}
               type="submit"
             />
+            <br />
+            <span><Link to='lprecover'>Forgotten password?</Link></span>
             {form.error &&
               <span className="error-message">{form.error.message}</span>
             }
