@@ -1,6 +1,4 @@
-/*
-  Smart Component
-*/
+/* Smart */
 import './dashboardscreen.styl';
 // import * as dashboardActions from './actions';
 import Component from '../components/component.react';
@@ -37,9 +35,7 @@ import StrategicalPointer from './pointers/strategical.pointer.react';
 
 class DashboardScreen extends Component {
   hidePlayersWindow() {
-    /*
-      ANTIPATTERN: direct DOM manipulation
-      */
+    /* ANTIPATTERN: direct DOM manipulation*/
     const playerWindowDiv = document.querySelector('#PlayersWindow');
     if (playerWindowDiv.style.top === '0px' || playerWindowDiv.style.top === '')
       animate(playerWindowDiv, 'top', 'px', 0, -150, 500);
@@ -79,7 +75,7 @@ class DashboardScreen extends Component {
         <StrategicalPointer />
         {isLoggedIn &&
           <Logout />}
-        <LanguageSelect locales={this.props.locales}/>
+        {/*<LanguageSelect locales={this.props.locales}/>*/}
         <div id='DashboardContent'>
           {dashPointer === 'strategical' &&
             <PlayersWindow

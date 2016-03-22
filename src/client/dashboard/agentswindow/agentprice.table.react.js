@@ -27,22 +27,6 @@ class AgentPriceTable extends Component {
             <td>{formatMoney(agentspricelist.get('5'), 0, '.', ',')}$</td>
             <td>{formatMoney(agentspricelist.get('6'), 0, '.', ',')}$</td>
           </tr>
-          <tr>
-            <td>Rank 7</td>
-            <td>Rank 8</td>
-            <td>Rank 9</td>
-            <td>Rank 10</td>
-            <td>Rank 11</td>
-            <td>Rank 12</td>
-          </tr>
-          <tr>
-            <td>{formatMoney(agentspricelist.get('7'), 0, '.', ',')}$</td>
-            <td>{formatMoney(agentspricelist.get('8'), 0, '.', ',')}$</td>
-            <td>{formatMoney(agentspricelist.get('9'), 0, '.', ',')}$</td>
-            <td>{formatMoney(agentspricelist.get('10'), 0, '.', ',')}$</td>
-            <td>{formatMoney(agentspricelist.get('11'), 0, '.', ',')}$</td>
-            <td>{formatMoney(agentspricelist.get('12'), 0, '.', ',')}$</td>
-          </tr>
         </table>
       </div>
     );

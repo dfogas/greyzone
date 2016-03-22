@@ -1,7 +1,7 @@
 import './language.select.styl';
 import Component from '../components/component.react';
 import React from 'react';
-import DropDown from 'react-dropdown';
+import DropDown from 'react-dropdown-w-react13';
 
 import * as intlActions from '../intl/actions';
 

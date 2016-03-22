@@ -32,24 +32,6 @@ class AgentsWindow extends Component {
           <AgentsKia
             agentskia={agentskia}
             />}
-        {/*<button
-          className='hire-agent'
-          id='HireAgentRankOne'
-          onClick={(e) => this.hireAgent('operative', 1)}
-          >Hire Operative Rank 1
-        </button>
-        <button
-          className='hire-agent'
-          id='HireAgentRankOne'
-          onClick={(e) => this.hireAgent('spy', 1)}
-          >Hire Spy Rank 1
-        </button>
-        <button
-          className='hire-agent'
-          id='HireAgentRankOne'
-          onClick={(e) => this.hireAgent('technician', 1)}
-          >Hire Technician Rank 1
-        </button>*/}
         <AgentHireForm
           agenthire={agenthire}
           />

@@ -77,7 +77,7 @@
     "react-dnd-touch-backend": "^0.1.0",
     "react-document-title": "^1.0.0",
     "react-draggable": "^0.8.1",
-    "react-dropdown": "^0.6.1",
+    "react-dropdown-w-react13": "^1.0.0",
     "react-gemini-scrollbar": "^1.1.1",
     "react-hot-loader": "^1.1.4",
     "react-intl": "^1.1.0",

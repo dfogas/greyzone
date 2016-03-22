@@ -5601,10 +5601,9 @@
         }
       }
     },
-    "react-dropdown": {
-      "version": "0.6.1",
-      "from": "react-dropdown@0.6.1",
-      "resolved": "https://registry.npmjs.org/react-dropdown/-/react-dropdown-0.6.1.tgz",
+    "react-dropdown-w-react13": {
+      "version": "1.0.0",
+      "from": "react-dropdown-w-react13@*",
       "dependencies": {
         "classnames": {
           "version": "1.2.2",

@@ -1,3 +1,4 @@
+/* Dashboard Actions */
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import cconfig from '../client.config';
@@ -56,20 +57,17 @@ export function buyStatus({target}) {
 }
 
 export function clearAgentHireFields(rank) {
-  const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  if (leadershipCheck(rank - 1, enhancementnames))
-    dispatch(clearAgentHireFields, {});
+  dispatch(clearAgentHireFields, {});
 }
 
 export function hireAgent(specialist, rank) {
   const agent = Agent(specialist, rank);
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  if (leadershipCheck(rank - 1, enhancementnames))
+  if (leadershipCheck(rank - 1, enhancementnames) && rank <= 6)
     dispatch(hireAgent, {agent});
   else
-    dispatch(log, {message: 'You have to upgrade leadership facility to recruit agent of higher ranks.'});
+    dispatch(log, {message: 'Upgrade leadership facility to recruit and train agent of higher ranks.'});
 }
 
 export function log(message) {
@@ -107,7 +105,12 @@ export function pointerChange(whereto) {
   dispatch(pointerChange, {message: whereto});
 }
 
-export function updateFormField({target: {name, value}}) {
+export function selectSpecialist(specialist) {
+  console.log(specialist);
+  dispatch(selectSecialist, specialist);
+}
+
+export function updateFormField({name, value}) {
   // Both email and password max length is 100.
   value = value.slice(0, 100);
   dispatch(updateFormField, {name, value});
@@ -129,6 +132,7 @@ setToString('dashboard', {
   log,
   newUserAppendState,
   pointerChange,
+  selectSpecialist,
   updateFormField,
   upgradeEnhancement
 });
