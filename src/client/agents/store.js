@@ -130,7 +130,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === agentActions.log)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('log', val => val.push(data));
+        .update('log', val => val.unshift(data));
     });
 
 });

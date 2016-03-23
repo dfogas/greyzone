@@ -42,8 +42,9 @@ class AgentEquipContent extends Component {
         </button>
         <button
           id='DismissAgentButton'
-          onClick={agentActions.dismissAgent}
-          >Dismiss Agent</button>
+          onClick={agentActions.dismissAgent}>
+          Dismiss Agent
+        </button>
         <AgentInArmory jsonapi={jsonapi} />
         <EquipmentStock
           enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}

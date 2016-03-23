@@ -29,15 +29,6 @@ var playerdefaults = {
   activemission: defaultActiveMission,
   agents: [
   ],
-  components: {
-    agentscrollbar: {
-      briefing: {left: 0},
-      mission: {left: 0}
-    },
-    dashboard: {
-      index: 'strategical'
-    }
-  },
   countrystats: [
     {
       reputation: 0,
@@ -65,6 +56,11 @@ var playerdefaults = {
       name: 'Latin America'
     }
   ],
+  components: {
+    dashboard: {
+      index: 'strategical'
+    }
+  },
   dashboard: {
     strategical: {
       agenthire: {
@@ -143,9 +139,7 @@ var playerdefaults = {
     }
   ],
   log: [
-    dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.',
-    'You need to hire agents first - operative, technician and spy specialists',
-    'After you hired them, head to briefing room.'
+    dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.'
   ],
   missions: [
     Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),

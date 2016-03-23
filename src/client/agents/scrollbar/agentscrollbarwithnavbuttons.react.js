@@ -14,8 +14,10 @@ class AgentScrollBarWithNavButtons extends Component {
 
   render() {
     const {isBriefing, isMission, jsonapi} = this.props;
-    const agentsbstyle = isBriefing ? jsonapi.getIn(['components', 'agentscrollbar', 'briefing']) : jsonapi.getIn(['components', 'agentscrollbar', 'mission']);
-    const agentsbstyletojs = agentsbstyle.toJS();
+    const agentsbstyle = isBriefing ? jsonapi.getIn(['components', 'agentscrollbar', 'briefing']) :
+      isMission ? jsonapi.getIn(['components', 'agentscrollbar', 'mission']) : jsonapi.getIn(['components', 'agentscrollbar', 'armory']);
+    console.log('ASBS: ', agentsbstyle);
+    const agentsbstyletojs = agentsbstyle ? agentsbstyle.toJS() : agentsbstyle;
     const classString = classnames('agent-scroll-bar', {
       'briefing': this.props.isBriefing,
       'on-mission': this.props.isMission
@@ -49,9 +51,8 @@ class AgentScrollBarWithNavButtons extends Component {
 }
 
 AgentScrollBarWithNavButtons.propTypes = {
-  agents: React.PropTypes.instanceOf(immutable.List).isRequired,
-  isBriefing: React.PropTypes.bool,
-  isMission: React.PropTypes.bool,
+  isBriefing: React.PropTypes.bool.isRequired,
+  isMission: React.PropTypes.bool.isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

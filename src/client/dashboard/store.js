@@ -13,7 +13,7 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
       .update('missions', val => val.push(immutable.fromJS(mission)))
-      .update('log', val => val.push(
+      .update('log', val => val.unshift(
         dayandtime(Date.now(), new Date().getTimezoneOffset()) +
           ' - Mission ' + mission.title + ' in ' + mission.inCountry + ' accepted.'
         ));
@@ -76,7 +76,7 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['agents'], agents.push(immutable.fromJS(agent)))
-        .update('log', val => val.push(
+        .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) +
           ' - Agent ' + agent.name + ' rank ' + agent.rank + ' recruited.'
         ));
@@ -87,7 +87,15 @@ export const dispatchToken = register(({action, data}) => {
     data = data.message || data;
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('log', val => val.push(data));
+        .update('log', val => val.unshift(data));
+    });
+  }
+
+  if (action === dashboardActions.logAgentsWindow) {
+    data = data.message || data;
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'agentswindow', 'message'], data);
     });
   }
 

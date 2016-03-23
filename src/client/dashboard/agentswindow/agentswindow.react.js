@@ -18,27 +18,34 @@ class AgentsWindow extends Component {
   }
 
   render() {
-    const {agenthire, agents, agentspricelist} = this.props;
+    const {agenthire, agents, agentspricelist, log} = this.props;
     const agentsinprison = agents.filter(agent => agent.get('prison') === true);
     const agentskia = agents.filter(agent => agent.get('KIA') === true);
 
     return (
       <div id='AgentsWindow'>
-        {!!agentsinprison &&
-          <AgentsInPrison
-            agentsinprison={agentsinprison}
-            />}
-        {!!agentskia &&
-          <AgentsKia
-            agentskia={agentskia}
-            />}
         <AgentHireForm
           agenthire={agenthire}
-          />
-        <br />
-        <AgentPriceTable
           agentspricelist={agentspricelist}
           />
+        <div id='AgentsWindowMessage'>
+          {log}
+        </div>
+        <div id="AgentsList">
+          <table>
+            {agents.map(agent => {
+              return (
+                <tr>
+                  <td>{agent.get('name')}</td>
+                  <td>Rank {agent.get('rank')}</td>
+                  <td>{agent.get('experience')} XP</td>
+                  <td>{agent.get('prison') ? 'In Prison' : agent.get('ETA') < Date.now() ? 'Available' : 'Tired'}</td>
+                  <td>{agent.get('specialist')}</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
       </div>
     );
   }

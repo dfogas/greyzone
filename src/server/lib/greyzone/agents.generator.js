@@ -19,15 +19,15 @@ let Agent = function(character, rank) {
   if (character === 'spy')
     stealthSkill += 3;
 
-  for (let i = 6; i < trainingtable[rank - 1].statstotal; i += 1) {
-    let randomSkill = getRandomSkill();
-    if (randomSkill === 'operationsSkill')
-      operationsSkill += 1;
-    if (randomSkill === 'electronicsSkill')
-      electronicsSkill += 1;
-    if (randomSkill === 'stealthSkill')
-      stealthSkill += 1;
-  }
+  // for (let i = 6; i < trainingtable[rank - 1].statstotal; i += 1) {
+  //   let randomSkill = getRandomSkill();
+  //   if (randomSkill === 'operationsSkill')
+  //     operationsSkill += 1;
+  //   if (randomSkill === 'electronicsSkill')
+  //     electronicsSkill += 1;
+  //   if (randomSkill === 'stealthSkill')
+  //     stealthSkill += 1;
+  // }
 
   return {
     name: generateName('greyzone'),

@@ -40,6 +40,11 @@ const actions = {
     type: 'operations',
     imgsrc: 'close_combat.jpg'
   },
+  pursuit: {
+    name: 'pursuit',
+    type: 'operations',
+    imgsrc: 'pursuit.jpg'
+  },
   improv_el: {
     name: 'improv',
     type: 'electronics',

@@ -10,6 +10,7 @@ import xmissioncheck from '../lib/xmissioncheck';
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
 import leadershipCheck from '../lib/leadershipcheck';
+import maxAgentsCheck from '../lib/maxagentscheck';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
@@ -62,16 +63,27 @@ export function clearAgentHireFields(rank) {
 
 export function hireAgent(specialist, rank) {
   const agent = Agent(specialist, rank);
-  const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  if (leadershipCheck(rank - 1, enhancementnames) && rank <= 6)
-    dispatch(hireAgent, {agent});
+  const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
+  const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
+
+  if (!maxAgentsCheck(jsonapiCursor(['agents']).size, capabilityNames))
+    dispatch(logAgentsWindow, {message: 'Max agents reached already. Dismiss an agent if you want to hire new one.'});
+  else if (!leadershipCheck(rank - 1, leadershipNames))
+    dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
   else
-    dispatch(log, {message: 'Upgrade leadership facility to recruit and train agent of higher ranks.'});
+    dispatch(hireAgent, {agent});
+  // if (leadershipCheck(rank - 1, leadershipNames) && rank <= 6)
+  //   dispatch(hireAgent, {agent});
+  // else
+  //   dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
 }
 
 export function log(message) {
   dispatch(log, {message});
+}
+
+export function logAgentsWindow(message) {
+  dispatch(logAgentHire, {message});
 }
 
 export function newUserAppendState(email, organization) {
@@ -105,11 +117,6 @@ export function pointerChange(whereto) {
   dispatch(pointerChange, {message: whereto});
 }
 
-export function selectSpecialist(specialist) {
-  console.log(specialist);
-  dispatch(selectSecialist, specialist);
-}
-
 export function updateFormField({name, value}) {
   // Both email and password max length is 100.
   value = value.slice(0, 100);
@@ -130,9 +137,9 @@ setToString('dashboard', {
   clearAgentHireFields,
   hireAgent,
   log,
+  logAgentsWindow,
   newUserAppendState,
   pointerChange,
-  selectSpecialist,
   updateFormField,
   upgradeEnhancement
 });

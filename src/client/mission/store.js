@@ -177,7 +177,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.log)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('log', val => val.push(message));
+        .update('log', val => val.unshift(message));
     });
 
   if (action === missionActions.organizationMissionDone) {

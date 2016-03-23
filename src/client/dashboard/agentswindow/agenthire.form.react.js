@@ -4,6 +4,7 @@ import Component from '../../components/component.react';
 import React from 'react';
 import {msg} from '../../intl/store';
 import immutable from 'immutable';
+import formatMoney from '../../lib/formatmoney';
 import DropDown from 'react-dropdown-w-react13';
 
 class AgentHireForm extends Component {
@@ -19,16 +20,13 @@ class AgentHireForm extends Component {
     dashboardActions.clearAgentHireFields(fields.rank);
   }
 
-  selectSpecialist(option) {
-    dashboardActions.selectSpecialist(option.name);
-  }
-
   render() {
-    const {agenthire} = this.props;
+    const {agenthire, agentspricelist} = this.props;
     const form = agenthire.get('form');
     return (
       <div id='AgentHireForm'>
         <form onSubmit={(e) => this.onFormSubmit(e)}>
+          <h3>Hire Agent</h3>
           <fieldset>
             {/*<input
               name="rank"
@@ -37,7 +35,7 @@ class AgentHireForm extends Component {
               value={form.getIn(['fields', 'rank'])}
               />*/}
             <DropDown
-              baseClassName='Rank'
+              baseClassName='rank'
               name='rank'
               onChange={option => dashboardActions.updateFormField(option)}
               options={[
@@ -51,7 +49,7 @@ class AgentHireForm extends Component {
               value={form.getIn(['fields', 'rank']) || 'Select...'}
               />
             <DropDown
-              baseClassName='Specialist'
+              baseClassName='specialist'
               name="specialist"
               onChange={option => dashboardActions.updateFormField(option)}
               options={[
@@ -71,6 +69,9 @@ class AgentHireForm extends Component {
               <button id='HireAgentButton' type="submit">{msg('dashboard.agenthire.button.hireAgent')}</button>}
           </fieldset>
         </form>
+        <div id='AgentHirePriceTag'>
+          {formatMoney(agentspricelist.get(form.getIn(['fields', 'rank'])), 0, '.', ',') || ''}$
+        </div>
       </div>
     );
   }

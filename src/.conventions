@@ -1,10 +1,14 @@
-###Code
-  CSS
-  id CamelCase
-  className dash-case
+Code
+----
 
-  STATE
-  states in all non-caps, no separators
+###CSS
 
-###messages.js
+id CamelCase
+className dash-case
+
+###STATE
+states in all non-caps, no separators
+
+messages.js
+-----------
   className and id in components directly

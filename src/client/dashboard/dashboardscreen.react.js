@@ -94,6 +94,7 @@ class DashboardScreen extends Component {
               agents={jsonapi.get('agents')}
               agentspricelist={agentspricelist}
               cash={jsonapi.get('gameCash')}
+              log={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
             />}
           {dashPointer === 'strategical' &&
             <LogWindow

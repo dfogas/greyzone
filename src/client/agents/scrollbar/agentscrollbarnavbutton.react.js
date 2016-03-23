@@ -10,13 +10,13 @@ import classnames from 'classnames';
 class AgentScrollBarNavButton extends Component {
   scrollleft() {
     const {isBriefing, isMission} = this.props;
-    const context = isBriefing ? 'briefing' : 'mission';
+    const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
     scrollbarActions.scrollLeft(context);
   }
 
   scrollright() {
     const {isBriefing, isMission} = this.props;
-    const context = isBriefing ? 'briefing' : 'mission';
+    const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
     scrollbarActions.scrollRight(context);
   }
 

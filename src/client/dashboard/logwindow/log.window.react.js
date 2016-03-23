@@ -8,7 +8,8 @@ class LogWindow extends Component {
   render() {
     const {log} = this.props;
     return (
-      <div id="LogWindow">
+      <div
+        id="LogWindow">
         {log.map(record => {
           return (
             <div className='log-record'>

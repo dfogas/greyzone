@@ -19,7 +19,11 @@ const ReverseEngineering = [{
     tier: 1
   }, {
     title: 'Reverse Engineering',
-    tasks: [],
+    tasks: [
+      [decipher, decipher, improv_el],
+      [tap, improv_el, improv_op],
+      [pursuit]
+    ],
     inCountry: '',
     rewards: {
       gameCash: 2500
