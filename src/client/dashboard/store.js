@@ -47,7 +47,11 @@ export const dispatchToken = register(({action, data}) => {
         return jsonapi
           .update('enhancements', val => val.push(immutable.fromJS(data.message)))
           .update('gameCash', val => val - data.message.price.cash)
-          .update('gameContacts', val => val - data.message.price.contacts);
+          .update('gameContacts', val => val - data.message.price.contacts)
+          .update('log', val => val.unshift(
+            dayandtime(Date.now(), new Date().getTimezoneOffset()) +
+              ' - Enhancement ' + data.message.name + ' for your organization bought.'
+          ));
       });
   }
 
@@ -78,7 +82,7 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['agents'], agents.push(immutable.fromJS(agent)))
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-          ' - Agent ' + agent.name + ' rank ' + agent.rank + ' recruited.'
+          ' - Agent ' + agent.name + ' with ' + agent.experience + 'XP recruited.'
         ));
     });
   }
@@ -142,19 +146,6 @@ export const dispatchToken = register(({action, data}) => {
           });
       });
   }
-
-  // if (action === dashboardActions.newUserAppendState) {
-  //   const api = process.env.NODE_ENV === 'production' ?
-  //     cconfig.dnsprod + '/api/v1/' :
-  //     cconfig.dnsdevel + '/api/v1/';
-  //
-  //   // console.log('Username: ' + data.email + 'UserId: ' + data.userId);
-  //   fetch(api + 'players', {
-  //     method: 'POST',
-  //     headers: {'Content-type': 'application/json'},
-  //     body: JSON.stringify({userId: data.userId, name: data.organization})
-  //   });
-  // }
 
   if (action === dashboardActions.pointerChange)
     jsonapiCursor(jsonapi => {

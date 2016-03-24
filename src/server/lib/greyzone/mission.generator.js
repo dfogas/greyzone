@@ -9,7 +9,7 @@ function Mission(title, tier, ETA) {
   let mission;
   mission = MissionsList.filter(mission => mission.title === title && mission.tier === tier)[0];
   mission.ETA = Date.now() + ETA;
-  mission.inCountry = CountryList[randomint(0, CountryList.length - 1)];
+  mission.inCountry = CountryList[randomint(0, CountryList.length - 1)].name;
   return mission;
 }
 

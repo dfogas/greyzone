@@ -15,8 +15,8 @@ class AgentScrollBarWithNavButtons extends Component {
   render() {
     const {isBriefing, isMission, jsonapi} = this.props;
     const agentsbstyle = isBriefing ? jsonapi.getIn(['components', 'agentscrollbar', 'briefing']) :
-      isMission ? jsonapi.getIn(['components', 'agentscrollbar', 'mission']) : jsonapi.getIn(['components', 'agentscrollbar', 'armory']);
-    console.log('ASBS: ', agentsbstyle);
+      isMission ? jsonapi.getIn(['components', 'agentscrollbar', 'mission']) :
+      jsonapi.getIn(['components', 'agentscrollbar', 'armory']);
     const agentsbstyletojs = agentsbstyle ? agentsbstyle.toJS() : agentsbstyle;
     const classString = classnames('agent-scroll-bar', {
       'briefing': this.props.isBriefing,

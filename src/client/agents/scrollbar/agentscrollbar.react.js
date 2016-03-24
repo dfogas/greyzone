@@ -24,6 +24,8 @@ class AgentScrollBar extends Component {
     const agentsonmission = activemission.get('agentsonmission');
     var data = ev.dataTransfer.getData('text');
 
+    console.log('Dragged data are: ', data);
+
     // agentcard classname change to adjust for different sizes
     if (!agents.size) {
       // why is that condition there?

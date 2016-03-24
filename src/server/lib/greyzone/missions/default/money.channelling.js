@@ -47,7 +47,7 @@ const MoneyChannelling = [{
       [improv_st]
     ]
   ],
-  inCountry: 'Sagesse.jpg',
+  inCountry: '',
   rewards: {
     gameCash: 12000
   },
@@ -55,6 +55,7 @@ const MoneyChannelling = [{
     obscurity: 0.1,
     reputation: 100
   },
+  imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
   tier: 3
 }, {
@@ -84,7 +85,7 @@ const MoneyChannelling = [{
     [decipher, decipher, improv_el],
     [infiltrate, puppet, improv_st]
   ],
-  inCountry: 'Sagesse.jpg',
+  inCountry: '',
   rewards: {
     gameCash: 360000
   },
@@ -92,6 +93,7 @@ const MoneyChannelling = [{
     obscurity: 0.1,
     reputation: 100
   },
+  imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
   tier: 5
 }];

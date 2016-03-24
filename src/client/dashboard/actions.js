@@ -72,10 +72,6 @@ export function hireAgent(specialist, rank) {
     dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
   else
     dispatch(hireAgent, {agent});
-  // if (leadershipCheck(rank - 1, leadershipNames) && rank <= 6)
-  //   dispatch(hireAgent, {agent});
-  // else
-  //   dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
 }
 
 export function log(message) {

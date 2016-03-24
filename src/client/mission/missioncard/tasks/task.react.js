@@ -1,56 +1,34 @@
-/*
-  Dumb Component
-*/
+/* Dumb Component */
 import './task.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 import Action from '../action.react';
+import classnames from 'classnames';
 import immutable from 'immutable';
 import uuid from '../../../lib/guid';
 
 class Task extends Component {
   render() {
-    let {key, task} = this.props;
-    let classString = '';
-    let isActual = false;
-    let isBriefing = false;
-    let isCurrent = false;
-    let isMission = false;
-    let isSpecial = false;
+    const {key, task} = this.props;
+    const classString = classnames('task', {
+      'actual': this.props.isActual,
+      'briefing': this.props.isBriefing,
+      'current': this.props.isCurrent,
+      'on-mission': this.props.isMission
+    });
 
-    if (this.props.isActual) {
-      classString += ' actual';
-      isActual = true;
-    }
-    if (this.props.isBriefing) {
-      classString += ' briefing';
-      isBriefing = true;
-    }
-    if (this.props.isCurrent) {
-      classString += ' current';
-      isCurrent = true;
-    }
-    if (this.props.isMission) {
-      classString += ' on-mission';
-      isMission = true;
-    }
-    if (this.props.isSpecial) {
-      classString += ' special';
-      isSpecial = true;
-    }
     return (
       <ul
-        className={'task' + classString}
+        className={classString}
         key={key}>
         {task.map((action, i) => {
           return (
             <Action
               action={action}
-              isActual={isActual}
-              isBriefing={isBriefing}
-              isCurrent={isCurrent}
-              isMission={isMission}
-              isSpecial={isSpecial}
+              isActual={this.props.isActual || false}
+              isBriefing={this.props.isBriefing || false}
+              isCurrent={this.props.isCurrent || false}
+              isMission={this.props.isMission || false}
               key={uuid() + i}
               taskindex={i}
               />
@@ -66,7 +44,6 @@ Task.propTypes = {
   isBriefing: React.PropTypes.bool,
   isCurrent: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
-  isSpecial: React.PropTypes.bool,
   key: React.PropTypes.string,
   task: React.PropTypes.instanceOf(immutable.List)
 };

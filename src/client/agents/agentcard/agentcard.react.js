@@ -22,6 +22,7 @@ class AgentCard extends Component {
 
   drag(ev) {
     ev.dataTransfer.setData('text', ev.target.id);
+    console.log('Dragged item is: ' + ev.target.id);
   }
 
   render() {
