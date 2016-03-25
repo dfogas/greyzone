@@ -1,40 +1,33 @@
 import './actions.styl';
 import Component from '../../components/component.react';
 import React from 'react';
+import classnames from 'classnames';
+import immutable from 'immutable';
 
 class Action extends Component {
   render() {
     let {action, key} = this.props;
-    // console.log('Action is immutable:', immutable.Map.isMap(this.props.action));
     let type;
+
     if (action)
       type = action.get('type');
 
-    var classString = '';
-    if (!this.props.action) {
-      action = {
+    if (!this.props.action)
+      action = immutable.fromJS({
         name: '',
         type: '',
         imgsrc: 'empty.jpg'
-      };
-      classString += ' ' + action.imgsrc.substr(0, 5);
-    }
-    if (this.props.isActual)
-      classString += ' actual';
-    if (this.props.action)
-      classString += ' ' + action.get('imgsrc').substr(0, action.get('imgsrc').length - 4);
-    if (this.props.isBriefing)
-      classString += ' briefing';
-    if (this.props.isMission)
-      classString += ' mission';
-    if (this.props.isSpecial)
-      classString += ' special';
-    if (type)
-      classString += ' ' + type;
+      });
+
+    const classString = classnames('action', action.get('imgsrc').substr(0, action.get('imgsrc').length - 4), type ? type : '', {
+      'actual': this.props.isActual,
+      'briefing': this.props.isBriefing,
+      'mission': this.props.isMission
+    });
 
     return (
       <li
-        className={'action' + classString}
+        className={classString}
         key={key}
         />
     );

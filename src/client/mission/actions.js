@@ -90,6 +90,10 @@ export function select(mission) {
     dispatch(select, {message: mission});
 }
 
+export function setDefault(mission) {
+  dispatch(setDefault, {});
+}
+
 /*sets activemission.started true*/
 export function start() {
   dispatch(start, {});
@@ -124,6 +128,7 @@ setToString('mission', {
   passOnMission,
   removeCompletedMission,
   select,
+  setDefault,
   start,
   success
 });

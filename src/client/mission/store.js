@@ -50,7 +50,8 @@ export const dispatchToken = register(({action, data}) => {
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('agents', val => val.concat(agentsonmission));
+        .update('agents', val => val.concat(agentsonmission))
+        .setIn(['activemission', 'agentsonmission'], immutable.fromJS(Array(0)));
     });
   }
 
@@ -207,7 +208,8 @@ export const dispatchToken = register(({action, data}) => {
     const completedmission = missions.indexOf(
       missions.find(mission =>
         mission.get('title') === activemission.get('title') &&
-        mission.get('inCountry') === activemission.get('inCountry')
+        mission.get('inCountry') === activemission.get('inCountry') &&
+        mission.get('tier') === activemission.get('tier')
       )
     );
     jsonapiCursor(jsonapi => {
@@ -225,6 +227,11 @@ export const dispatchToken = register(({action, data}) => {
         .set('activemission', data.message ? immutable.fromJS(defaultActiveMission).mergeDeep(data.message) : immutable.fromJS(defaultActiveMission));
     });
   }
+
+  if (action === missionActions.setDefault)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.set('activemission', immutable.fromJS(defaultActiveMission));
+    });
 
   if (action === missionActions.start)
     jsonapiCursor(jsonapi => {

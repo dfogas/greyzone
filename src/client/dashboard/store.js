@@ -20,14 +20,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.bookAgentPrice) {
-    const gameCash = jsonapiCursor(['gameCash']);
-    if (gameCash >= data.message)
-      jsonapiCursor(jsonapi => {
-        return jsonapi.update('gameCash', val => val - data.message);
-      });
-  }
-
   if (action === dashboardActions.bookMissionPrice) {
     const gameCash = jsonapiCursor(['gameCash']);
     const gameContacts = jsonapiCursor(['gameContacts']);
@@ -77,12 +69,14 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
     const agent = data.agent;
+    const gameCash = jsonapiCursor(['gameCash']);
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['agents'], agents.push(immutable.fromJS(agent)))
+        .update('gameCash', val => val - data.agentPrice)
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-          ' - Agent ' + agent.name + ' with ' + agent.experience + 'XP recruited.'
+          ' - ' + agent.specialist + ' ' + agent.name + ' with ' + agent.experience + 'XP recruited for $' + data.agentPrice + '.'
         ));
     });
   }

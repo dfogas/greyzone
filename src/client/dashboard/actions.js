@@ -27,15 +27,6 @@ export function acceptMission(missiontier) {
   dispatch(acceptMission, {mission: randomMission});
 }
 
-export function bookAgentPrice(rank) {
-  const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
-  const agentPrice = agentPriceList[rank];
-  const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  if (leadershipCheck(rank - 1, enhancementnames))
-    dispatch(bookAgentPrice, {message: agentPrice});
-}
-
 export function bookMissionPrice(missiontier) {
   const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', JSON.stringify(missiontier)]);
 
@@ -65,13 +56,22 @@ export function hireAgent(specialist, rank) {
   const agent = Agent(specialist, rank);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
   const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
+  const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size;
 
-  if (!maxAgentsCheck(jsonapiCursor(['agents']).size, capabilityNames))
+  const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
+  const agentPrice = agentPriceList[rank];
+  const gameCash = jsonapiCursor(['gameCash']);
+
+  if (agentPrice > gameCash)
+    dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
+  else if (!maxAgentsCheck(totalAgents, capabilityNames))
     dispatch(logAgentsWindow, {message: 'Max agents reached already. Dismiss an agent if you want to hire new one.'});
   else if (!leadershipCheck(rank - 1, leadershipNames))
     dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
-  else
-    dispatch(hireAgent, {agent});
+  else {
+    dispatch(hireAgent, {agent, agentPrice});
+    dispatch(logAgentsWindow, {message: 'New agent recruited.'});
+  }
 }
 
 export function log(message) {
@@ -126,7 +126,6 @@ export function upgradeEnhancement(enhancement) {
 
 setToString('dashboard', {
   acceptMission,
-  bookAgentPrice,
   bookMissionPrice,
   buyEnhancement,
   buyStatus,

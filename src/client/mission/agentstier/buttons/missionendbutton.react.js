@@ -10,7 +10,8 @@ class MissionEndButton extends Component {
   end() {
     const {missions} = this.props;
     missionActions.removeCompletedMission();
-    missionActions.select(missions.get(1));
+    missionActions.agentsAreBackFromMission();
+    missionActions.setDefault();
   }
 
   render() {

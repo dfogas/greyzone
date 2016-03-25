@@ -1,5 +1,5 @@
+/* Dumb Component */
 import './agentswindow.styl';
-import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,12 +11,6 @@ import AgentHireForm from './agenthire.form.react';
 import AgentPriceTable from './agentprice.table.react';
 
 class AgentsWindow extends Component {
-
-  hireAgent(character, rank) {
-    dashboardActions.hireAgent(character, rank);
-    dashboardActions.bookAgentPrice(rank);
-  }
-
   render() {
     const {agenthire, agents, agentspricelist, log} = this.props;
     const agentsinprison = agents.filter(agent => agent.get('prison') === true);
@@ -41,6 +35,9 @@ class AgentsWindow extends Component {
                   <td>{agent.get('experience')} XP</td>
                   <td>{agent.get('prison') ? 'In Prison' : agent.get('ETA') < Date.now() ? 'Available' : 'Tired'}</td>
                   <td>{agent.get('specialist')}</td>
+                  <td style={{color: 'red', fontWeight: 'bold'}}>{agent.get('operationsSkill')}</td>
+                  <td style={{color: 'green', fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
+                  <td style={{color: 'gold', fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
                 </tr>
               );
             })}
