@@ -111,9 +111,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.clearTabletop)
     jsonapiCursor(jsonapi => {
       return jsonapi
-      // obecně je zde duplicita v remaining dices a v dicesthrown, takový námět na refaktoring of state
-        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(Array(0)))
-        .setIn(['activemission', 'mission', 'currenttask', 'dicesthrown'], immutable.fromJS(Array(0)))
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(Array(0)))
         .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(Array(0)));
     });
 

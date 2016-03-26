@@ -1,6 +1,7 @@
 /* Smart */
 import './dashboardscreen.styl';
 // import * as dashboardActions from './actions';
+import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -126,6 +127,11 @@ class DashboardScreen extends Component {
             <AchievementsWindow
               achievements={achievements}
               />}
+          {<button
+            className='set-default-button'
+            onClick={missionActions.setDefault}
+            >Set Default Mission</button>
+          }
           {/*<button
             className='hide-show-button'
             onClick={this.hidePlayersWindow}

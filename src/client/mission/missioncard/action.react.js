@@ -19,11 +19,14 @@ class Action extends Component {
         imgsrc: 'empty.jpg'
       });
 
-    const classString = classnames('action', action.get('imgsrc').substr(0, action.get('imgsrc').length - 4), type ? type : '', {
-      'actual': this.props.isActual,
-      'briefing': this.props.isBriefing,
-      'mission': this.props.isMission
-    });
+    const classString = classnames(
+      'action',
+      action.get('imgsrc').substr(0, action.get('imgsrc').length - 4), type ? type : '',
+      {
+        'actual': this.props.isActual,
+        'briefing': this.props.isBriefing,
+        'mission': this.props.isMission
+      });
 
     return (
       <li

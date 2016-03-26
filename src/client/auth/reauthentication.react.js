@@ -16,7 +16,6 @@ class ReauthenticationForm extends Component {
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
     const hash = getParameterByName('hash');
-    console.log(hash);
     authActions.reauthenticate(fields, hash)
       // .then(() => {
       //   setTimeout(authActions.redirectToLogin, 2000);

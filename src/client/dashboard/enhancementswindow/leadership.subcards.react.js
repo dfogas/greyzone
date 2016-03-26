@@ -50,11 +50,11 @@ class LeadershipSubCards extends Component {
           className='leadership-enhancement-card owned'
           >
           <div>{name}</div>
+          <div>{description}</div>
+          <div>Upgrades to {nextlevel.name}</div>
           <div>
-            {!hasMaxed &&
+            For {!hasMaxed &&
               '$' + formatMoney(nextlevel.price.cash, 0, '.', ',')}
-          </div>
-          <div>
             {!hasMaxed && '\u{1f575}'}
             {!hasMaxed && nextlevel.price.contacts}
           </div>
@@ -63,7 +63,6 @@ class LeadershipSubCards extends Component {
               id='UpgradeLeaderhipEnhancement'
               onClick={this.upgradeLeadership.bind(this)}
               >Upgrade</button>}
-          <div>{description}</div>
           {hasMaxed &&
             'Max Level reached!'}
         </div>

@@ -15,7 +15,7 @@ const DemonstrationOfPower = [{
       reputation: 100
     },
     imgsrc: 'Heat-Movie.jpg',
-    agentLimit: 1,
+    agentLimit: 2,
     tier: 1
   }, {
     title: 'Demonstration of power',
@@ -32,7 +32,7 @@ const DemonstrationOfPower = [{
       reputation: 200
     },
     imgsrc: 'Heat-Movie.jpg',
-    agentLimit: 1,
+    agentLimit: 2,
     tier: 2
   }, {
     title: 'Demonstration of power',
@@ -49,7 +49,7 @@ const DemonstrationOfPower = [{
       reputation: 300
     },
     imgsrc: 'Heat-Movie.jpg',
-    agentLimit: 1,
+    agentLimit: 2,
     tier: 3
   }, {
     title: 'Demonstration of power',
@@ -67,7 +67,7 @@ const DemonstrationOfPower = [{
       reputation: 400
     },
     imgsrc: 'Heat-Movie.jpg',
-    agentLimit: 1,
+    agentLimit: 2,
     tier: 4
   }, {
     title: 'Demonstration of power',
@@ -85,7 +85,7 @@ const DemonstrationOfPower = [{
       reputation: 500
     },
     imgsrc: 'Heat-Movie.jpg',
-    agentLimit: 1,
+    agentLimit: 2,
     tier: 5
   }];
 

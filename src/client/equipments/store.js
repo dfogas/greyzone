@@ -41,26 +41,26 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === actions.use) {
-    const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
+    const actiondices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']);
 
     if (data.equipment.get('name') === msg('equipments.operations.0.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push('operations'))
+          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'operations', name: 'fail'}))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
     if (data.equipment.get('name') === msg('equipments.electronics.0.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push('electronics'))
+          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'electronics', name: 'fail'}))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
     if (data.equipment.get('name') === msg('equipments.stealth.0.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], remainingdices.push('stealth'))
+          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'stealth', name: 'fail'}))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 

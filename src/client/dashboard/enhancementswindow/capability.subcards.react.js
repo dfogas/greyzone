@@ -48,19 +48,18 @@ class CapabilitySubCards extends Component {
       <div id='CapabilitySubCards'>
         <div className='capability-enhancement-card owned'>
           <div>{name}</div>
+          <div>{description}</div>
+          <div>Upgrade to {nextlevel.name}</div>
           <div>
-            {!hasMaxed &&
+             For {!hasMaxed &&
               '$' + formatMoney(nextlevel.price.cash, 0, '.', ',')}
-          </div>
-          <div>
-            {!hasMaxed && '\u{1f575}'}
+              {!hasMaxed && '\u{1f575}'}
             {!hasMaxed && nextlevel.price.contacts}</div>
           {!hasMaxed &&
             <button
               id='UpgradeLeaderhipEnhancement'
               onClick={this.upgradeCapability.bind(this)}
               >Upgrade</button>}
-          <div>{description}</div>
           {hasMaxed &&
             'Max Level reached!'}
         </div>

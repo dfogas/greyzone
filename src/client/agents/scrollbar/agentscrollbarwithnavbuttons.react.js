@@ -34,6 +34,7 @@ class AgentScrollBarWithNavButtons extends Component {
           <AgentScrollBar
             agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
             className={classString}
+            isAgents={this.props.isAgents}
             isBriefing={isBriefing}
             isMission={isMission}
             jsonapi={jsonapi}

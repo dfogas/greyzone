@@ -41,5 +41,5 @@ export default function dicethrow(type) {
       else
         diceThrowResult = 'fail';
   }
-  return diceThrowResult;
+  return {type: type, name: diceThrowResult};
 }

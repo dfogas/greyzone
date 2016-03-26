@@ -8,8 +8,8 @@ import MissionClock from './mission.clock.react';
 class MissionListItem extends Component {
   missionPass() {
     const {mission} = this.props;
-    console.log(mission.toJS());
     missionActions.passOnMission(mission);
+    missionActions.setDefault();
   }
 
   selectMission() {
@@ -20,10 +20,8 @@ class MissionListItem extends Component {
   render() {
     const {mission} = this.props;
     return (
-      <tr
-        onClick={this.selectMission.bind(this)}
-        >
-        <td>{mission.get('title')}</td>
+      <tr>
+        <td onClick={this.selectMission.bind(this)}>{mission.get('title')}</td>
         <td>{mission.get('inCountry')}</td>
         <td>{mission.get('tier')}</td>
         <td>

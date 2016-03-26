@@ -29,7 +29,7 @@ export const dispatchToken = register(({action, data}) => {
 
   if (action === agentActions.assignTask) {
     const agentontask = data.message;
-    const remainingdices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'remainingdices']);
+    const actiondices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']);
     const taskscompleted = jsonapiCursor(['activemission', 'taskscompleted']);
     const currentindex = taskscompleted.size;
     const currenttask = jsonapiCursor(['activemission', 'tasks', currentindex]);
@@ -42,25 +42,25 @@ export const dispatchToken = register(({action, data}) => {
     var taskhasOperations = actiontypes.indexOf('operations');
     var taskhasElectronics = actiontypes.indexOf('electronics');
     var taskhasStealth = actiontypes.indexOf('stealth');
-    var remdices = remainingdices.toJS();
+    var actdices = actiondices.toJS();
     var i;
 
     // is remaining dices set? - PROBLEM: what if mission changes?
     if (taskhasOperations > -1)
       for (i = 0; i < agentontask.get('operationsSkill'); i += 1)
-        remdices.push('operations');
+        actdices.push({type: 'operations', name: 'fail'});
     if (taskhasElectronics > -1)
       for (i = 0; i < agentontask.get('electronicsSkill'); i += 1)
-        remdices.push('electronics');
+        actdices.push({type: 'electronics', name: 'fail'});
     if (taskhasStealth > -1)
       for (i = 0; i < agentontask.get('stealthSkill'); i += 1)
-        remdices.push('stealth');
+        actdices.push({type: 'stealth', name: 'fail'});
 
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], data.message)
         .setIn(['activemission', 'agentsonmission'], agentsonmission.delete(agentsonmission.indexOf(data.message)))
-        .setIn(['activemission', 'mission', 'currenttask', 'remainingdices'], immutable.fromJS(remdices))
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(actdices))
         .setIn(['activemission', 'log'], 'Agent has been assigned to task.');
     });
   }
@@ -99,13 +99,13 @@ export const dispatchToken = register(({action, data}) => {
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank - TODO: check whether it is already implemented
   if (action === agentActions.getRank) {
     const agents = jsonapiCursor(['agents']);
-    if ((data.get('operationsSkill') + (data.get('electronicsSkill') + (data.get('stealthSkill')))) < trainingtable[data.get('rank') - 1].statstotal)
+    if ((data.get('operationsSkill') + (data.get('electronicsSkill') + (data.get('stealthSkill')))) < trainingtable[data.get('rank')].statstotal)
       jsonapiCursor(jsonapi => {
         return jsonapi
           .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), getRandomSkill()], randomskill => randomskill + 1);
       });
 
-    if (data.get('equipmentSlots') < trainingtable[data.get('rank') - 1].slots)
+    if (data.get('equipmentSlots') < trainingtable[data.get('rank')].slots)
       jsonapiCursor(jsonapi => {
         return jsonapi
           .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'equipmentSlots'], val => val + 1)
@@ -114,7 +114,7 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => rank + 1);
+        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => parseInt(rank) + 1);
     });
   }
 

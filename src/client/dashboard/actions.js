@@ -79,7 +79,7 @@ export function log(message) {
 }
 
 export function logAgentsWindow(message) {
-  dispatch(logAgentHire, {message});
+  dispatch(logAgentsWindow, {message});
 }
 
 export function newUserAppendState(email, organization) {
@@ -97,7 +97,6 @@ export function newUserAppendState(email, organization) {
     })
     .then((users) => {
       let userId = users.filter(user => user.username === email).map(user => user._id);
-      console.log(userId[0]);
       return userId[0];
     })
     .then((userId) => {

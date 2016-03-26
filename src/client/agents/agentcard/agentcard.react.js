@@ -22,7 +22,6 @@ class AgentCard extends Component {
 
   drag(ev) {
     ev.dataTransfer.setData('text', ev.target.id);
-    console.log('Dragged item is: ' + ev.target.id);
   }
 
   render() {
@@ -46,7 +45,7 @@ class AgentCard extends Component {
         isMission={this.props.isMission}
         key={key}
         onDragStart={this.drag}>
-        {rankup &&
+        {rankup && this.props.isAgents &&
           <input
             className='agent-rankup-button'
             onClick={this.agentGetRank.bind(this)}

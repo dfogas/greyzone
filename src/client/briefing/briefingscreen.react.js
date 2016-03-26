@@ -38,6 +38,7 @@ class BriefingScreen extends Component {
           {jsonapi.getIn(['activemission', 'agentsonmission']) &&
             <ToMission />}
           <AgentScrollBarWithNavButtons
+            isAgents={true}
             isBriefing={true}
             isMission={false}
             jsonapi={jsonapi}

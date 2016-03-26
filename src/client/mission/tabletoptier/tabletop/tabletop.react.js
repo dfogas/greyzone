@@ -35,10 +35,11 @@ class TableTop extends Component {
 
   render() {
     const {activemission} = this.props;
+    const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const missionStarted = activemission.get('started');
-    const dicesthrown = activemission.getIn(['mission', 'currenttask', 'dicesthrown']);
-    const remainingdices = activemission.getIn(['mission', 'currenttask', 'remainingdices']);
+    const dicesthrown = actiondices.toJS().map(action => action.name);
+    const remainingdices = actiondices.toJS().map(action => action.type);
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
 
     return (
@@ -51,21 +52,21 @@ class TableTop extends Component {
           isActual={true}
           title={activemission.get('title')}
           />
-        {agentontask && remainingdices.size ?
+        {agentontask && remainingdices.length ?
           remainingdices.map((dice, i) => {
             return (
               <Dice
                 diceindex={i}
                 dicetype={dice}
                 key={uuid() + 'dice'}
-                value={dicesthrown.get(i)}
+                value={dicesthrown[i]}
                 />
             );
           }) : <div id="MissionStartStatus">Mission has not started yet.</div>
         }
         <ProbabilityBar />
         {currenttask &&
-          canCompleteTask(currenttask.map(action => action.get('name')).toArray(), dicesthrown.toArray()) &&
+          canCompleteTask(currenttask.toJS(), actiondices.toJS()) &&
           missionStarted &&
           (activemission.get('tasks').size !== activemission.get('taskscompleted').size) &&
           <input

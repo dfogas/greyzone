@@ -1,13 +1,38 @@
-// [Dice] [Action] -> Boolean;
-// import ramda from 'ramda';
+// [Action] [Dice]-> Boolean;
+// where Action is Name(String) Type(String) ImgSrc(String)
+// and Dice is Name(String) Type(String)
+import R from 'ramda';
+//
+// var testactions = [
+//   {name: 'tap', type: 'electronics', imgsrc: 'john'},
+//   {name: 'improv', type: 'electronics', imgsrc: 'ladida'},
+//   {name: 'improv', type: 'operations', imgsrc: 'blueeffect'}
+// ];
+// var testdices = [
+//   {name: 'tap', type: 'electronics'},
+//   {name: 'improv', type: 'electronics'},
+//   {name: 'improv', type: 'operations'},
+//   {name: 'pursuit', type: 'operations'},
+//   {name: 'fail', type: 'operations'}
+// ];
+// //
 
 const canCompleteTask = function(actions, dices) {
-  const canComplete = actions.every(function(val) {
-    let numIn1 = actions.filter(function(el) { return el === val; }).length;
-    let numIn2 = dices.filter(function(el) { return el === val; }).length;
-    return numIn1 <= numIn2;
-  });
-  return canComplete;
+  // return R.without(actions.map(action => { return {name: action.name, type: action.type}}), dices).length <= dices.length - actions.length;
+
+  const uniqActions = R.uniq(actions);
+
+  let count = 0;
+  for (let i = 0; i < uniqActions.length; i += 1) {
+    let actionCount = actions.filter(action => action.name === uniqActions[i].name && action.type === uniqActions[i]. type).length;
+    let diceCount = dices.filter(dice => dice.name === uniqActions[i].name && dice.type === uniqActions[i].type).length;
+    if (actionCount <= diceCount)
+      count += 1;
+  }
+  if (count === uniqActions.length)
+    return true;
+  else
+    return false;
 };
 
 export default canCompleteTask;

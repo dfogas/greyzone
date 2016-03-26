@@ -167,7 +167,6 @@ function resaveCredentials(fields, hash) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/v1/auth/reauthentication?hash=' + hash, true);
     xhr.setRequestHeader('Content-type', 'application/json');
-    console.log('/api/v1/auth/reauthentication?hash=' + hash);
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState !== 4) return;

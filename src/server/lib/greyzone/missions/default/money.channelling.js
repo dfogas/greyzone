@@ -40,12 +40,10 @@ const MoneyChannelling = [{
 }, {
   title: 'Money channelling',
   tasks: [
-    [
-      [tap, decipher, improv_el],
-      [puppet, puppet, tap],
-      [decipher, decipher, improv_el],
-      [improv_st]
-    ]
+    [tap, decipher, improv_el],
+    [puppet, puppet, tap],
+    [decipher, decipher, improv_el],
+    [improv_st]
   ],
   inCountry: '',
   rewards: {

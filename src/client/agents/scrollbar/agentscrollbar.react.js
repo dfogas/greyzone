@@ -22,13 +22,12 @@ class AgentScrollBar extends Component {
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agents = jsonapi.get('agents');
     const agentsonmission = activemission.get('agentsonmission');
+    const missionstarted = activemission.get('started');
     var data = ev.dataTransfer.getData('text');
 
-    console.log('Dragged data are: ', data);
-
-    // agentcard classname change to adjust for different sizes
+    // why is that condition there?
     if (!agents.size) {
-      // why is that condition there?
+      // ANTIPATTERN: Direct DOM manipulation
       document.getElementById(data).className = classnames(document.getElementById(data).className, {showcased: false});
       var c = document.getElementById(data).children;
       var i, j;
@@ -39,10 +38,10 @@ class AgentScrollBar extends Component {
           cc[j].className = classnames(cc[j].className, {showcased: false});
       }
     }
-
-    if (agentinarmory && agentinarmory.get('name') === data)
+    if (missionstarted)
+      return;
+    else if (agentinarmory && agentinarmory.get('name') === data)
       agentActions.backfromArmory(agentinarmory);
-
     else if (agentsonmission.indexOf(agentsonmission.find(agent => agent.get('name') === data)) !== -1)
       agentActions.backtoRoster(agentsonmission.find(agent => agent.get('name') === data));
 
@@ -73,6 +72,7 @@ class AgentScrollBar extends Component {
               <AgentCard
                 agent={agent}
                 agentindex={i}
+                isAgents={this.props.isAgents}
                 key={uuid() + agent.name}
               />
             );

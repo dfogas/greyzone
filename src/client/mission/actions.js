@@ -1,6 +1,6 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import {jsonapiCursor} from '../state';
+// import {jsonapiCursor} from '../state';
 
 /*it should transfer agent from task to agents on mission
   used 3 times*/
