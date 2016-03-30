@@ -25,8 +25,11 @@ class MissionTrackingScreen extends Component {
           jsonapi={jsonapi}
           />
         {!jsonapi.getIn(['activemission', 'started']) &&
+          jsonapi.getIn(['activemission', 'title']) === 'Default Mission' &&
           <MissionToBriefingButton />}
-        <MissionToDashboardButton />
+        {(!jsonapi.getIn(['activemission', 'started']) ||
+          jsonapi.getIn(['activemission', 'title']) === 'Default Mission') &&
+          <MissionToDashboardButton />}
       </div>
     );
   }

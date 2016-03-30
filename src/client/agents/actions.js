@@ -29,8 +29,8 @@ export function backtoRoster(agent) {
   dispatch(backtoRoster, {message: agent});
 }
 
-export function dismissAgent() {
-  dispatch(dismissAgent, {});
+export function dismissAgent(agent) {
+  dispatch(dismissAgent, {agent});
 }
 
 export function equip(equipmentindexandname) {

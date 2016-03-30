@@ -12,22 +12,24 @@ class StatusesWindow extends Component {
     const statusesnotowned = immutable.fromJS(R.without(owned.toJS(), statuses.toJS()));
     return (
       <div id='StatusesWindow'>
-        {owned.map((status) => {
-          return (
-            <StatusCard
-              owned={true}
-              status={status}
-              />
-          );
-        })}
-        {statusesnotowned.map((status) => {
-          return (
-            <StatusCard
-              owned={false}
-              status={status}
-              />
-          );
-        })}
+        <div id='StatusesFilmBand'>
+          {owned.map((status) => {
+            return (
+              <StatusCard
+                owned={true}
+                status={status}
+                />
+            );
+          })}
+          {statusesnotowned.map((status) => {
+            return (
+              <StatusCard
+                owned={false}
+                status={status}
+                />
+            );
+          })}
+        </div>
       </div>
     );
   }

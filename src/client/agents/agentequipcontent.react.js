@@ -19,6 +19,7 @@ class AgentEquipContent extends Component {
 
   render() {
     const {jsonapi} = this.props;
+    const agentinarmory = jsonapi.get('agentinarmory');
 
     const equipments = jsonapi.get('equipments');
     const equipmentsoperations = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'O').toList();
@@ -43,7 +44,7 @@ class AgentEquipContent extends Component {
         </button>
         <button
           id='DismissAgentButton'
-          onClick={agentActions.dismissAgent}>
+          onClick={(e) => agentActions.dismissAgent(agentinarmory)}>
           Dismiss Agent
         </button>
         <AgentInArmory jsonapi={jsonapi} />

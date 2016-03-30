@@ -1,9 +1,11 @@
+/* Smart */
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 // import animate from '../../lib/animate';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
+import classnames from 'classnames';
 
 class StatusCard extends Component {
   focusStatus(e) {
@@ -23,9 +25,17 @@ class StatusCard extends Component {
 
   render() {
     const {status, owned} = this.props;
+
+    const classString = classnames(
+      'status-card',
+      status.get('imgsrc').substr(0, status.get('imgsrc').length - 4),
+      {
+        'owned': this.props.owned
+      }
+    );
     return (
       <div
-        className={'status-card' + (owned ? ' owned' : '')}
+        className={classString}
         onMouseLeave={(e) => {if (!owned) this.unfocusStatus(e); }}
         onMouseOver={(e) => {if (!owned) this.focusStatus(e); }}
         >
@@ -33,8 +43,9 @@ class StatusCard extends Component {
           <div
             onMouseLeave={(e) => {if (!owned) this.unfocusParentStatus(e); }}
             >{status.get('name')}</div>}
+        &nbsp;-&nbsp;
         {owned &&
-          <div><em>Owned</em></div>}
+          <span><em>Owned</em></span>}
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentStatus(e); }}

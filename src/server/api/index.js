@@ -33,7 +33,7 @@ const accessLogStream = fs.createWriteStream(
   {flags: 'a'} // adding to file
 );
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '200kb'}));
 app.use(bodyParser.urlencoded({extended: true}));
 if (!config.isProduction)
   app.use(morgan('combined', {stream: accessLogStream}));

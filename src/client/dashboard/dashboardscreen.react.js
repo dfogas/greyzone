@@ -127,9 +127,10 @@ class DashboardScreen extends Component {
             <AchievementsWindow
               achievements={achievements}
               />}
-          {<button
-            className='set-default-button'
-            onClick={missionActions.setDefault}
+          {dashPointer === 'strategical' &&
+            <button
+              className='set-default-button'
+              onClick={missionActions.setDefault}
             >Set Default Mission</button>
           }
           {/*<button
