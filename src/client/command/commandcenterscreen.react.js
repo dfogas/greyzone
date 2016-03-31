@@ -7,7 +7,6 @@ import {msg} from '../intl/store';
 
 import MainScreen from './mainscreen.react';
 import CommandToDashboard from '../navs/commandtodashboard.react.js';
-import CommandToMission from '../navs/commandtomission.react.js';
 import CommandToBriefing from '../navs/commandtobriefing.react.js';
 
 class CommandCenterScreen extends Component {
@@ -33,14 +32,12 @@ class CommandCenterScreen extends Component {
         {isLoggedIn &&
           <CommandToDashboard />}
         {isLoggedIn &&
-          <CommandToMission />}
-        {isLoggedIn &&
           <CommandToBriefing />}
         <MainScreen
           jsonapi = {jsonapi}
           />
         <div id='CommandEmailSupport'>
-          Technical problems?! Send mail to support@ghoststruggle.com - You'll recieve answer within next 24 hours.
+          Technical problems?! Send mail to support@ghoststruggle.com.
         </div>
       </div>
     );

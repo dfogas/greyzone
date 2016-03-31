@@ -19,7 +19,6 @@ class AgentScrollBar extends Component {
     const {jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
     const agentinarmory = jsonapi.get('agentinarmory');
-    const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agents = jsonapi.get('agents');
     const agentsonmission = activemission.get('agentsonmission');
     const missionstarted = activemission.get('started');
@@ -41,7 +40,7 @@ class AgentScrollBar extends Component {
     if (missionstarted)
       return;
     else if (agentinarmory && agentinarmory.get('name') === data)
-      agentActions.backfromArmory(agentinarmory);
+      agentActions.backFromArmory(agentinarmory);
     else if (agentsonmission.indexOf(agentsonmission.find(agent => agent.get('name') === data)) !== -1)
       agentActions.backtoRoster(agentsonmission.find(agent => agent.get('name') === data));
 
@@ -86,6 +85,7 @@ AgentScrollBar.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
   data: React.PropTypes.array,
+  isAgents: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
   style: React.PropTypes.object

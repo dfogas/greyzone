@@ -65,9 +65,8 @@ class DashboardScreen extends Component {
           <DashboardToBriefing />}
         <DashboardToCommand />
         <DashboardToHelp />
-        {jsonapi.getIn(['activemission', 'agentsonmission']) ? (!!jsonapi.getIn(['activemission', 'agentsonmission']) > 0 ||
-          !!jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask'])) &&
-          <DashboardToMission /> : <DashboardToMission />}
+        {jsonapi.getIn(['activemission', 'started']) &&
+          <DashboardToMission />}
         <AchievementPointer />
         {/*<ContestPointer />*/}
         <EnhancementsPointer />

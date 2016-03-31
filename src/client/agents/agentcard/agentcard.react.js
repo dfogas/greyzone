@@ -104,6 +104,7 @@ AgentCard.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map),
   agentindex: React.PropTypes.number,
   data: React.PropTypes.object,
+  isAgents: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
   key: React.PropTypes.string

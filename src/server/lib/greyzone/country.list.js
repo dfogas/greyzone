@@ -5,9 +5,9 @@ const CountryList = [{
 }, {
   name: 'Russia'
 }, {
-  name: 'SouthEast'
+  name: 'Arabia'
 }, {
-  name: 'China'
+  name: 'SouthEast'
 }, {
   name: 'Latin America'
 }];

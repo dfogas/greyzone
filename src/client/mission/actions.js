@@ -56,6 +56,10 @@ export function controldamage() {
   dispatch(controldamage, {});
 }
 
+export function end() {
+  dispatch(end, {});
+}
+
 /* sets activemission result to 'fail'
   and its started property to false */
 export function fail() {
@@ -122,6 +126,7 @@ setToString('mission', {
   clearTask,
   completeTask,
   controldamage,
+  end,
   fail,
   log,
   organizationMissionDone,

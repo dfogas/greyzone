@@ -43,6 +43,7 @@ export const dispatchToken = register(({action, data}) => {
 
     case authActions.reauthenticateError:
       authCursor(auth => {
+        const error = data;
         return auth
           .setIn(['form', 'error'], error);
       });

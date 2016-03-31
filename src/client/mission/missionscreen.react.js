@@ -12,6 +12,7 @@ import MissionToDashboardButton from '../navs/missiontodashboard.react';
 class MissionTrackingScreen extends Component {
   render() {
     const {jsonapi} = this.props;
+    const missionStarted = jsonapi.getIn(['activemission', 'started']);
 
     return (
       <div id='MissionTrackingScreen'>
@@ -24,11 +25,9 @@ class MissionTrackingScreen extends Component {
         <AgentsTier
           jsonapi={jsonapi}
           />
-        {!jsonapi.getIn(['activemission', 'started']) &&
-          jsonapi.getIn(['activemission', 'title']) === 'Default Mission' &&
+        {!missionStarted &&
           <MissionToBriefingButton />}
-        {(!jsonapi.getIn(['activemission', 'started']) ||
-          jsonapi.getIn(['activemission', 'title']) === 'Default Mission') &&
+        {!missionStarted &&
           <MissionToDashboardButton />}
       </div>
     );

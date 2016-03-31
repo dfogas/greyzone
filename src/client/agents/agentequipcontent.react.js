@@ -12,6 +12,12 @@ import EquipmentStock from '../equipments/equipmentstock.react';
 // import Task from '../mission/missioncard/tasks/task.react';
 
 class AgentEquipContent extends Component {
+  backFromArmory() {
+    const {jsonapi} = this.props;
+    const agentinarmory = jsonapi.get('agentinarmory');
+    agentActions.backFromArmory(agentinarmory);
+  }
+
   unequipAll() {
     const {jsonapi} = this.props;
     equipmentsActions.agentUnequip(jsonapi.get('agentinarmory'));
@@ -36,17 +42,17 @@ class AgentEquipContent extends Component {
         <div id='ArmoryGameCashCounter'>
           Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
         </div>
-        <button
+        {agentinarmory && <button
+          id='BackFromArmory'
+          onClick={this.backFromArmory.bind(this)}>Back</button>}
+        {agentinarmory && <button
           id='UnequipAll'
-          onClick={this.unequipAll.bind(this)}
-        >
-          Unequip
-        </button>
-        <button
+          onClick={this.unequipAll.bind(this)}>Unequip</button>}
+        {/*<button
           id='DismissAgentButton'
           onClick={(e) => agentActions.dismissAgent(agentinarmory)}>
           Dismiss Agent
-        </button>
+        </button>*/}
         <AgentInArmory jsonapi={jsonapi} />
         <EquipmentStock
           enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}

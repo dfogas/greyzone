@@ -9,6 +9,7 @@ import * as missionActions from '../../actions';
 class MissionEndButton extends Component {
   end() {
     const {missions} = this.props;
+    missionActions.end();
     missionActions.removeCompletedMission();
     missionActions.agentsAreBackFromMission();
     missionActions.setDefault();

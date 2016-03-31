@@ -21,7 +21,9 @@ class AgentsTier extends Component {
     const activetasks = jsonapi.getIn(['activemission', 'tasks']);
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
     const isLastTaskDone = taskscompleted.size === activetasks.size && taskscompleted.size !== 0;
+    const isDefaultMission = jsonapi.getIn(['activemission', 'title']) === 'Default Mission';
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
+    const missionResult = jsonapi.getIn(['activemission', 'result']);
 
     return (
       <div id='AgentsTier'>
@@ -46,11 +48,12 @@ class AgentsTier extends Component {
             />}
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
           <LockedDiceContainer activemission={activemission}/>}
-        {isLastTaskDone && missionStarted &&
+        {isLastTaskDone && !missionResult && missionStarted &&
           <SuccessButton activemission={activemission} />}
-        {activemission.getIn(['equipmenteffects', 'damageprotocol']) && missionStarted &&
+        {activemission.getIn(['equipmenteffects', 'damageprotocol']) && !missionResult &&
           <EscapeProtocol activemission={activemission} />}
-        {!isLastTaskDone && missionStarted &&
+        {!isLastTaskDone && !missionResult &&
+          !isDefaultMission && missionStarted &&
           <EscapeButton activemission={activemission} />}
       </div>
     );

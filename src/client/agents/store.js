@@ -66,7 +66,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === agentActions.backfromArmory)
+  if (action === agentActions.backFromArmory)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('agents', val => val.push(data.message))
@@ -98,7 +98,7 @@ export const dispatchToken = register(({action, data}) => {
           .setIn(['agents'], agents.remove(agents.indexOf(agents.find(agent => agent.get('name') === data.agent.get('name')))))
           .update('log', val => val.unshift(
             dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-              'Agent ' + data.agent.get('specialist') + ' '+ data.agent.get('name') + ' has been left to rot in prison.'
+              'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been left to rot in prison.'
           ));
       });
   }
@@ -132,18 +132,25 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => parseInt(rank) + 1);
+        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => parseInt(rank, 10) + 1);
     });
   }
 
-  if (action === agentActions.incurETA)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-      .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.ETAtime)
-      .setIn(['activemission', 'log'],
-        'Agent fatigue.'
-      );
-    });
+  if (action === agentActions.incurETA) {
+    const agentETA = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA']);
+    if (agentETA + 10 * 60 * 1000 <= Date.now())
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], Date.now() + 10 * 60 * 1000)
+          .setIn(['activemission', 'log'], 'Agent fatigue.');
+      });
+    else
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], val => val + 10 * 60 * 1000)
+          .setIn(['activemission', 'log'], 'Additional fatigue has gathered.');
+      });
+  }
 
   if (action === agentActions.log)
     jsonapiCursor(jsonapi => {

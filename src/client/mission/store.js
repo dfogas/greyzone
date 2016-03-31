@@ -4,6 +4,7 @@ import {register} from '../dispatcher';
 import immutable from 'immutable';
 import defaultActiveMission from '../lib/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
+import bookObscurity from '../lib/bookobscurity';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -65,7 +66,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val - results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val - results.gameContacts : val)
-        .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? val - results.obscurity : val)
+        .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? bookObscurity(val, -results.obscurity) : val)
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val - results.reputation : val)
         .setIn(['activemission', 'log'], 'Losses booked.');
     });
@@ -81,7 +82,7 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val + results.reputation : val)
-        .updateIn(['countrystats', countryindex,'obscurity'], val => results.obscurity ? val + results.obscurity : val)
+        .updateIn(['countrystats', countryindex,'obscurity'], val => results.obscurity ? bookObscurity(val, results.obscurity) : val)
         .setIn(['activemission', 'log'], 'Rewards booked.');
     });
   }
@@ -150,16 +151,21 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === missionActions.end)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'started'], true);
+    });
+
   if (action === missionActions.fail) {
     const activemission = jsonapiCursor(['activemission']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .setIn(['activemission', 'started'], false)
-      .setIn(['activemission', 'result'], 'fail')
-      .setIn(['activemission', 'log'], 'Mission has failed... - Go finish it.')
-      .update('log', val => val.unshift(
-        dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' failed.'
-      ));
+        .setIn(['activemission', 'result'], 'fail')
+        .setIn(['activemission', 'log'], 'Mission has failed... - Go finish it.')
+        .update('log', val => val.unshift(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' failed.'
+        ));
     });
   }
 
@@ -242,7 +248,6 @@ export const dispatchToken = register(({action, data}) => {
     const activemission = jsonapiCursor(['activemission']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'started'], false)
         .setIn(['activemission', 'result'], 'success')
         .setIn(['activemission', 'log'], 'Mission success!! - Finish mission.')
         .update('log', val => val.unshift(

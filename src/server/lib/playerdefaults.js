@@ -4,6 +4,8 @@
 */
 import EnhancementList from './greyzone/enhancement.list';
 import Mission from './greyzone/mission.generator';
+import equipmentsList from './greyzone/equipments.list';
+import playerEquipments from './greyzone/playerequipments';
 import dayandtime from '../../client/lib/dayandtime';
 import defaultActiveMission from '../../client/lib/defaultactivemission';
 
@@ -27,8 +29,7 @@ var playerdefaults = {
     }
   ],
   activemission: defaultActiveMission,
-  agents: [
-  ],
+  agents: [],
   countrystats: [
     {
       reputation: 0,
@@ -81,63 +82,7 @@ var playerdefaults = {
     EnhancementList[11], // Workshop
     EnhancementList[12] // Forger
   ],
-  equipments: [
-    {
-      description: 'adds 1 operation dice to throw',
-      name: 'Hired Gun',
-      price: 5,
-      quantity: 1,
-      tag: 'E1O'
-    }, {
-      description: 'set operations dice to any result',
-      name: 'Heavy Arms',
-      price: 10,
-      quantity: 1,
-      tag: 'E2O'
-    }, {
-      description: 'reroll any number of dices',
-      name: 'Protective Gear',
-      price: 15,
-      quantity: 1,
-      tag: 'E3O'
-    }, {
-      description: 'adds 1 electronics dice to throw',
-      name: 'Handy Kit',
-      price: 5,
-      quantity: 1,
-      tag: 'E1E'
-    }, {
-      description: 'set electronics dice to any result',
-      name: 'Custom Tools',
-      price: 10,
-      quantity: 1,
-      tag: 'E2E'
-    }, {
-      description: 'lock any result of throw before reroll',
-      name: 'WPAS',
-      price: 15,
-      quantity: 1,
-      tag: 'E3E'
-    }, {
-      description: 'adds 1 stealth dice to throw',
-      name: 'Fake Passports',
-      price: 5,
-      quantity: 1,
-      tag: 'E1S'
-    }, {
-      description: 'set stealth dice to any result',
-      name: 'Drugs Control',
-      price: 10,
-      quantity: 1,
-      tag: 'E2S'
-    }, {
-      description: 'quit mission immediately, incur only reputation losses',
-      name: 'DCP',
-      price: 15,
-      quantity: 1,
-      tag: 'E3S'
-    }
-  ],
+  equipments: playerEquipments(equipmentsList, 1),
   log: [
     dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.'
   ],

@@ -20,8 +20,8 @@ export function assignTask(agent) {
   dispatch(assignTask, {message: agent});
 }
 
-export function backfromArmory(agent) {
-  dispatch(backfromArmory, {message: agent});
+export function backFromArmory(agent) {
+  dispatch(backFromArmory, {message: agent});
 }
 
 export function backtoRoster(agent) {
@@ -53,8 +53,8 @@ export function getRank(agent) {
 //   dispatch(goToPrison, {message: 'in prison!'});
 // }
 
-export function incurETA(agent, ETAtime) {
-  dispatch(incurETA, {message: agent, ETAtime: ETAtime});
+export function incurETA(agent) {
+  dispatch(incurETA, {message: agent});
 }
 
 export function log(message) {
@@ -66,7 +66,7 @@ setToString('agents', {
   toArmory,
   assignMission,
   assignTask,
-  backfromArmory,
+  backFromArmory,
   backtoRoster,
   dismissAgent,
   equip,

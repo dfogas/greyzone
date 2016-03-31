@@ -26,7 +26,7 @@ class AgentEquipmentSlot extends Component {
     const {agent, equipment, equipmentindex} = this.props;
 
     equipmentActions.use(agent, {equipment: equipment, equipmentindex: equipmentindex});
-    agentActions.incurETA(agent, Date.now() + 10 * 60 * 1000);
+    agentActions.incurETA(agent);
   }
 
   render() {

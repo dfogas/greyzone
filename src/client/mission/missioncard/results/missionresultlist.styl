@@ -5,21 +5,25 @@
   align-items center
   justify-content center
   position absolute
-  box-shadow 0 0 10px red inset
-  background-color gold
   margin 0
   padding 0
+
+.mission-result.loss
+  background-color silver
+  box-shadow 0 0 10px black inset
+
+.mission-result.reward
+  background-color gold
+  box-shadow 0 0 10px red inset
 
 .mission-result-list.task
   font-size 1.5em
 
 .mission-result-list.loss.task
   bottom 0px
-  background-color darkred
 
 .mission-result-list.reward.task
   bottom 105px
-  background-color lime
 
 .mission-result-list.actual
   font-size 1.2em
@@ -30,7 +34,6 @@
   bottom 0px
   width 274px
   height 75px
-  border 1px solid darkred
 
 .mission-result-list.reward.actual
   position absolute
@@ -38,4 +41,3 @@
   bottom 0px
   width 274px
   height 75px
-  border 1px solid darkgreen

@@ -1,7 +1,7 @@
 import generateName from './name.generator';
 import generateCountry from './origin.generator';
 import generateImage from './image.generator';
-import generateEquipments from './equipments.generator';
+import generateEquipments from './generateequipments';
 import trainingtable from './trainingtable';
 import getRandomSkill from '../../../client/lib/getrandomskill';
 
