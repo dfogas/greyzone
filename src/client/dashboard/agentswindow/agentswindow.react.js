@@ -26,6 +26,7 @@ class AgentsWindow extends Component {
           {log}
         </div>
         <AgentsList
+          agentbeingfreed={this.props.agentbeingfreed}
           agents={agents}
           />
       </div>

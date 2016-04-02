@@ -30,7 +30,7 @@ export function backtoRoster(agent) {
 }
 
 export function dismissAgent(agent) {
-  dispatch(dismissAgent, {agent});
+  dispatch(dismissAgent, {message: agent});
 }
 
 export function equip(equipmentindexandname) {
@@ -62,6 +62,17 @@ export function log(message) {
   dispatch(log, {message});
 }
 
+export function saveAgent(agent) {
+  const enhancements = jsonapiCursor(['enhancements']);
+  const enhancementnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
+  if (enhancementnames.indexOf(`We Got the Power`) === -1)
+    dispatch(logAgentsWindow, `Buy enhancement 'We Got the Power first.'`);
+  else {
+    dispatch(saveAgent, {agent});
+    dispatch(logAgentsWindow, `Agent ` + agent.get('name') + ` should be freed by next Prison Break mission.`);
+  }
+}
+
 setToString('agents', {
   toArmory,
   assignMission,
@@ -74,5 +85,6 @@ setToString('agents', {
   // goFree,
   // goToPrison,
   incurETA,
-  log
+  log,
+  saveAgent
 });

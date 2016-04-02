@@ -13,13 +13,16 @@ class AgentsList extends Component {
     return (
       <div id="AgentsList">
         <table>
-          {agents.map(agent => {
-            return (
-              <AgentsListRecord
-                agent={agent}
-                />
-            );
-          })}
+          <tbody>
+            {agents.map(agent => {
+              return (
+                <AgentsListRecord
+                  agentbeingfreed={this.props.agentbeingfreed}
+                  agent={agent}
+                  />
+              );
+            })}
+          </tbody>
         </table>
       </div>
     );

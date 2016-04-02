@@ -84,6 +84,12 @@ function getPageHtml(Handler, appState) {
         ga('create','${config.googleAnalyticsId}');ga('send','pageview');
       </script>`;
 
+  scriptHtml += `
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+    </script>`;
+
   const title = DocumentTitle.rewind();
 
   return '<!DOCTYPE html>' + React.renderToStaticMarkup(

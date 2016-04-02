@@ -80,28 +80,15 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.message)));
     });
 
-  if (action === agentActions.dismissAgent) {
-    const agentinarmory = jsonapiCursor(['agentinarmory']);
-    let agents = jsonapiCursor(['agents']);
-    if (agentinarmory && data.agent.get('name') === agentinarmory.get('name'))
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .set('agentinarmory', null)
-          .update('log', val => val.unshift(
-            dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-              'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been dismissed.'
-          ));
-      });
-    else
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .setIn(['agents'], agents.remove(agents.indexOf(agents.find(agent => agent.get('name') === data.agent.get('name')))))
-          .update('log', val => val.unshift(
-            dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-              'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been left to rot in prison.'
-          ));
-      });
-  }
+  if (action === agentActions.dismissAgent)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('log', val => val.unshift(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) +
+          'Agent ' + data.message.get('specialist') + ' ' + data.message.get('name') + ' has been left to rot in prison.'
+        ))
+        .update('agents', val => val.delete(val.indexOf(data.message)));
+    });
 
   if (action === agentActions.equip) {
     const equipments = jsonapiCursor(['equipments']);

@@ -2298,6 +2298,11 @@
           "from": "q@>=1.4.1 <2.0.0",
           "resolved": "https://registry.npmjs.org/q/-/q-1.4.1.tgz"
         },
+        "socket.io": {
+          "version": "0.9.16",
+          "from": "socket.io@0.9.16",
+          "resolved": "https://registry.npmjs.org/socket.io/-/socket.io-0.9.16.tgz"
+        },
         "source-map": {
           "version": "0.4.4",
           "from": "source-map@>=0.4.2 <0.5.0",
@@ -6042,9 +6047,121 @@
       "resolved": "https://registry.npmjs.org/sntp/-/sntp-1.0.9.tgz"
     },
     "socket.io": {
-      "version": "0.9.16",
-      "from": "socket.io@0.9.16",
-      "resolved": "https://registry.npmjs.org/socket.io/-/socket.io-0.9.16.tgz"
+      "version": "1.4.5",
+      "from": "socket.io@*",
+      "resolved": "https://registry.npmjs.org/socket.io/-/socket.io-1.4.5.tgz",
+      "dependencies": {
+        "accepts": {
+          "version": "1.1.4",
+          "from": "accepts@1.1.4",
+          "resolved": "https://registry.npmjs.org/accepts/-/accepts-1.1.4.tgz"
+        },
+        "engine.io": {
+          "version": "1.6.8",
+          "from": "engine.io@1.6.8",
+          "resolved": "https://registry.npmjs.org/engine.io/-/engine.io-1.6.8.tgz"
+        },
+        "engine.io-client": {
+          "version": "1.6.8",
+          "from": "engine.io-client@1.6.8",
+          "resolved": "https://registry.npmjs.org/engine.io-client/-/engine.io-client-1.6.8.tgz"
+        },
+        "engine.io-parser": {
+          "version": "1.2.4",
+          "from": "engine.io-parser@1.2.4",
+          "resolved": "https://registry.npmjs.org/engine.io-parser/-/engine.io-parser-1.2.4.tgz",
+          "dependencies": {
+            "has-binary": {
+              "version": "0.1.6",
+              "from": "has-binary@0.1.6",
+              "resolved": "https://registry.npmjs.org/has-binary/-/has-binary-0.1.6.tgz"
+            }
+          }
+        },
+        "has-binary": {
+          "version": "0.1.7",
+          "from": "has-binary@0.1.7",
+          "resolved": "https://registry.npmjs.org/has-binary/-/has-binary-0.1.7.tgz"
+        },
+        "has-cors": {
+          "version": "1.1.0",
+          "from": "has-cors@1.1.0",
+          "resolved": "https://registry.npmjs.org/has-cors/-/has-cors-1.1.0.tgz"
+        },
+        "mime-db": {
+          "version": "1.12.0",
+          "from": "mime-db@>=1.12.0 <1.13.0",
+          "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.12.0.tgz"
+        },
+        "mime-types": {
+          "version": "2.0.14",
+          "from": "mime-types@>=2.0.4 <2.1.0",
+          "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.0.14.tgz"
+        },
+        "negotiator": {
+          "version": "0.4.9",
+          "from": "negotiator@0.4.9",
+          "resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.4.9.tgz"
+        },
+        "parseuri": {
+          "version": "0.0.4",
+          "from": "parseuri@0.0.4",
+          "resolved": "https://registry.npmjs.org/parseuri/-/parseuri-0.0.4.tgz"
+        },
+        "socket.io-adapter": {
+          "version": "0.4.0",
+          "from": "socket.io-adapter@0.4.0",
+          "resolved": "https://registry.npmjs.org/socket.io-adapter/-/socket.io-adapter-0.4.0.tgz",
+          "dependencies": {
+            "socket.io-parser": {
+              "version": "2.2.2",
+              "from": "socket.io-parser@2.2.2",
+              "resolved": "https://registry.npmjs.org/socket.io-parser/-/socket.io-parser-2.2.2.tgz",
+              "dependencies": {
+                "debug": {
+                  "version": "0.7.4",
+                  "from": "debug@0.7.4",
+                  "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.4.tgz"
+                }
+              }
+            }
+          }
+        },
+        "socket.io-client": {
+          "version": "1.4.5",
+          "from": "socket.io-client@1.4.5",
+          "resolved": "https://registry.npmjs.org/socket.io-client/-/socket.io-client-1.4.5.tgz",
+          "dependencies": {
+            "component-emitter": {
+              "version": "1.2.0",
+              "from": "component-emitter@1.2.0",
+              "resolved": "https://registry.npmjs.org/component-emitter/-/component-emitter-1.2.0.tgz"
+            }
+          }
+        },
+        "socket.io-parser": {
+          "version": "2.2.6",
+          "from": "socket.io-parser@2.2.6",
+          "resolved": "https://registry.npmjs.org/socket.io-parser/-/socket.io-parser-2.2.6.tgz",
+          "dependencies": {
+            "json3": {
+              "version": "3.3.2",
+              "from": "json3@3.3.2",
+              "resolved": "https://registry.npmjs.org/json3/-/json3-3.3.2.tgz"
+            }
+          }
+        },
+        "to-array": {
+          "version": "0.1.4",
+          "from": "to-array@0.1.4",
+          "resolved": "https://registry.npmjs.org/to-array/-/to-array-0.1.4.tgz"
+        },
+        "ws": {
+          "version": "1.0.1",
+          "from": "ws@1.0.1",
+          "resolved": "https://registry.npmjs.org/ws/-/ws-1.0.1.tgz"
+        }
+      }
     },
     "socket.io-adapter": {
       "version": "0.3.1",
@@ -6817,6 +6934,11 @@
       "from": "xmlhttprequest@1.4.2",
       "resolved": "https://registry.npmjs.org/xmlhttprequest/-/xmlhttprequest-1.4.2.tgz"
     },
+    "xmlhttprequest-ssl": {
+      "version": "1.5.1",
+      "from": "xmlhttprequest-ssl@1.5.1",
+      "resolved": "https://registry.npmjs.org/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.1.tgz"
+    },
     "xtend": {
       "version": "4.0.1",
       "from": "xtend@>=4.0.0 <5.0.0",
@@ -6838,6 +6960,11 @@
           "resolved": "https://registry.npmjs.org/cliui/-/cliui-3.0.3.tgz"
         }
       }
+    },
+    "yeast": {
+      "version": "0.1.2",
+      "from": "yeast@0.1.2",
+      "resolved": "https://registry.npmjs.org/yeast/-/yeast-0.1.2.tgz"
     },
     "zeparser": {
       "version": "0.0.5",

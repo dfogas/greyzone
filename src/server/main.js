@@ -6,6 +6,7 @@ import morgan from 'morgan';
 // import {Server} from 'https';
 import {Server} from 'http';
 import fs from 'fs';
+import ioServer from 'socket.io';
 
 // const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
 // const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
@@ -23,6 +24,11 @@ const app = express();
 // const server = process.env.NODE_ENV === 'development' ? Server(app) : secureServer(options, app);
 // const server = Server(options, app); https Server
 const server = Server(app);
+const io = ioServer(server);
+
+io.on('connection', (socket) => {
+  console.log('user has connected');
+});
 
 app.use(config.apipath, api);
 

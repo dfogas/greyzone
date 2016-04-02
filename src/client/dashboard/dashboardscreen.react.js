@@ -90,6 +90,7 @@ class DashboardScreen extends Component {
             />}
           {dashPointer === 'strategical' &&
             <AgentsWindow
+              agentbeingfreed={jsonapi.get('agentbeingfreed')}
               agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
               agents={jsonapi.get('agents')}
               agentspricelist={agentspricelist}
