@@ -1,6 +1,5 @@
 import * as authActions from '../auth/actions';
 import {register} from '../dispatcher';
-import User from './user';
 import {usersCursor} from '../state';
 
 export const dispatchToken = register(({action, data}) => {

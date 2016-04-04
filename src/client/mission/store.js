@@ -82,7 +82,7 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
         .updateIn(['gameContacts'], val => results.gameContacts ? val + results.gameContacts : val)
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val + results.reputation : val)
-        .updateIn(['countrystats', countryindex,'obscurity'], val => results.obscurity ? bookObscurity(val, results.obscurity) : val)
+        .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? bookObscurity(val, results.obscurity) : val)
         .setIn(['activemission', 'log'], 'Rewards booked.');
     });
   }
@@ -178,7 +178,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.log)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('log', val => val.unshift(message));
+        .update('log', val => val.unshift(data.message));
     });
 
   if (action === missionActions.organizationMissionDone) {

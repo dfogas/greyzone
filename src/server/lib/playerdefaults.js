@@ -3,9 +3,11 @@
   It is merged to some state skeleton and saved to database via player.js controller on server
 */
 import EnhancementList from './greyzone/enhancement.list';
+import CountryList from './greyzone/country.list';
 import Mission from './greyzone/mission.generator';
 import equipmentsList from './greyzone/equipments.list';
 import playerEquipments from './greyzone/playerequipments';
+import playerCountryStats from './greyzone/playercountrystats';
 import dayandtime from '../../client/lib/dayandtime';
 import defaultActiveMission from '../../client/lib/defaultactivemission';
 
@@ -16,47 +18,10 @@ var playerdefaults = {
   gameContacts: 500,
   agentinarmory: null,
   timestarted: Date.now(),
-  achievements: [
-    {
-      active: true,
-      name: 'Tutorial',
-      progress: {
-        firstMission: false
-      }
-    },
-    {
-      name: 'Achievement no. 1'
-    }
-  ],
+  achievements: [],
   activemission: defaultActiveMission,
   agents: [],
-  countrystats: [
-    {
-      reputation: 0,
-      obscurity: 1,
-      name: 'US'
-    }, {
-      reputation: 0,
-      obscurity: 1,
-      name: 'West Europe'
-    }, {
-      reputation: 0,
-      obscurity: 1,
-      name: 'Russia'
-    }, {
-      reputation: 0,
-      obscurity: 1,
-      name: 'Arabia'
-    }, {
-      reputation: 0,
-      obscurity: 1,
-      name: 'SouthEast'
-    }, {
-      reputation: 0,
-      obscurity: 1,
-      name: 'Latin America'
-    }
-  ],
+  countrystats: playerCountryStats(CountryList, 0, 1),
   components: {
     dashboard: {
       index: 'strategical'
@@ -72,6 +37,16 @@ var playerdefaults = {
             specialist: ''
           }
         }
+      },
+      missionaccept: {
+        data: null,
+        form: {
+          fields: {
+            tier: '',
+            focus: '',
+            country: ''
+          }
+        }
       }
     }
   },
@@ -83,9 +58,7 @@ var playerdefaults = {
     EnhancementList[12] // Forger
   ],
   equipments: playerEquipments(equipmentsList, 1),
-  log: [
-    dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.'
-  ],
+  log: [dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.'],
   missions: [
     Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),
     Mission('Money channelling', 1, (24 * 60 * 60 * 1000))
@@ -94,6 +67,7 @@ var playerdefaults = {
   statuses: [],
   options: {
     multiplayer: false,
+    tipsenable: true,
     tutorial: true
   }
 };

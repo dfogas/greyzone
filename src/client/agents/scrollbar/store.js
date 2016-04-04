@@ -11,12 +11,10 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['components', 'agentscrollbar', data.context, 'left'], data.agentscrollbar + 265);
     });
 
-  if (action === scrollbarActions.scrollRight) {
-    console.log(data);
+  if (action === scrollbarActions.scrollRight)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['components', 'agentscrollbar', data.context, 'left'], data.agentscrollbar - 265);
     });
-  }
 
 });

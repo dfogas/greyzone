@@ -2,16 +2,13 @@ process.env.NODE_ENV = 'apitest';
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import mongoose from 'mongoose';
 
 import server from '../../../server/main';
-import config from '../../../server/config';
 import User from '../../../server/api/models/user';
 
-const should = chai.should();
 chai.use(chaiHttp);
 
-console.log('Process env is: ' + process.env.NODE_ENV);
+console.log('Process env is: ' + process.env.NODE_ENV); // eslint-disable-line no-console
 /*
   General note
 */
@@ -26,7 +23,7 @@ describe('Users', function() {
     });
     newUser.save(function(err, data) {
       if (err)
-        console.log('TestDB saving Error: ' + err.message);
+        console.log('TestDB saving Error: ' + err.message); // eslint-disable-line no-console
       done();
     });
   });
@@ -41,7 +38,7 @@ describe('Users', function() {
       .get('/api/v1/users')
       .end(function(err, res) {
         if (err)
-          console.log(err.message);
+          res.send(err.message);
         res.should.have.status(200);
         res.should.be.json;
         done();
@@ -55,7 +52,7 @@ describe('Users', function() {
       .send({email: 'f.pincasek@seznam.cz', password: 'Fan0U5'})
       .end(function(err, res) {
         if (err)
-          console.log('POST send Error: ' + err.message);
+          res.send('POST send Error: ' + err.message);
         res.should.have.status(200);
         res.should.be.json;
         done();
@@ -70,10 +67,12 @@ describe('Users', function() {
     // console.log(newUser.save);
     newUser.save(function(err, data) {
       if (err)
-        console.log('TestDB saving Error: ' + err.message);
+        console.log('TestDB saving Error: ' + err.message); // eslint-disable-line no-console
       chai.request(server)
         .get('/api/v1/users/' + data._id)
         .end(function(err, res) {
+          if (err)
+            res.send(err);
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('object');

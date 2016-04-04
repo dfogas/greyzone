@@ -152,6 +152,8 @@ router.route('/reauthentication')
         res.send(err);
       if (lpw.recoverhash === hash && lpw.email === email)
         User.findOne({username: lpw.email}, function(err, doc) {
+          if (err)
+            res.send(err);
           if (doc) {
             doc.password = password;
             doc.save(function(err, changed) {

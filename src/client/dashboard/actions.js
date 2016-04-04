@@ -1,4 +1,5 @@
 /* Dashboard Actions */
+import Promise from 'bluebird';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import cconfig from '../client.config';
@@ -9,17 +10,18 @@ import xmissioncheck from '../lib/xmissioncheck';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
+import determineFocus from '../lib/determinefocus';
 import leadershipCheck from '../lib/leadershipcheck';
 import maxAgentsCheck from '../lib/maxagentscheck';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
 
-export function acceptMission(missiontier) {
+export function acceptMission(tier, focus, country) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
   const modifiedMissionsList = xmissioncheck(enhancementnames, MissionsList);
-  const missionsPerTier = modifiedMissionsList.filter(mission => mission.tier === missiontier);
+  const missionsPerTier = modifiedMissionsList.filter(mission => mission.tier === parseInt(tier, 10));
   let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
   randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
   randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
@@ -27,8 +29,8 @@ export function acceptMission(missiontier) {
   dispatch(acceptMission, {mission: randomMission});
 }
 
-export function bookMissionPrice(missiontier) {
-  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', JSON.stringify(missiontier)]);
+export function bookMissionPrice(tier) {
+  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', JSON.stringify(tier)]);
 
   dispatch(bookMissionPrice, {message: missionPrice});
 }
@@ -48,8 +50,19 @@ export function buyStatus({target}) {
   dispatch(buyStatus, {message: status});
 }
 
-export function clearAgentHireFields(rank) {
+export function changeOption(name, value) {
+  const promise = new Promise((resolve, reject) => {
+    resolve({name, value});
+  });
+  dispatch(changeOption, promise);
+}
+
+export function clearAgentHireFields() {
   dispatch(clearAgentHireFields, {});
+}
+
+export function clearMissionAcceptFields() {
+  dispatch(clearMissionAcceptFields, {});
 }
 
 export function hireAgent(specialist, rank) {
@@ -112,10 +125,25 @@ export function pointerChange(whereto) {
   dispatch(pointerChange, {message: whereto});
 }
 
-export function updateFormField({name, value}) {
+export function saveAgent(agent) {
+  const enhancements = jsonapiCursor(['enhancements']);
+  const enhancementnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
+  if (enhancementnames.indexOf(`We Got the Power`) === -1)
+    dispatch(logAgentsWindow, `Buy enhancement 'We Got the Power first.'`);
+  else {
+    dispatch(saveAgent, {agent});
+    dispatch(logAgentsWindow, `Agent ` + agent.get('name') + ` should be freed by next Prison Break mission.`);
+  }
+}
+
+export function showTip(destination) {
+  dispatch(showTip, {destination});
+}
+
+export function updateFormField({name, value}, context) {
   // Both email and password max length is 100.
   value = value.slice(0, 100);
-  dispatch(updateFormField, {name, value});
+  dispatch(updateFormField, {name, value, context});
 }
 
 export function upgradeEnhancement(enhancement) {
@@ -128,12 +156,16 @@ setToString('dashboard', {
   bookMissionPrice,
   buyEnhancement,
   buyStatus,
+  changeOption,
   clearAgentHireFields,
+  clearMissionAcceptFields,
   hireAgent,
   log,
   logAgentsWindow,
   newUserAppendState,
   pointerChange,
+  saveAgent,
+  showTip,
   updateFormField,
   upgradeEnhancement
 });

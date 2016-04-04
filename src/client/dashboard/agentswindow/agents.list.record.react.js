@@ -1,5 +1,5 @@
 import './agents.list.record.styl';
-import * as agentsActions from '../../agents/actions';
+import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -9,16 +9,17 @@ import classnames from 'classnames';
 class AgentListRecord extends Component {
   dismissAgent() {
     const {agent} = this.props;
-    agentsActions.dismissAgent(agent);
+    dashboardActions.dismissAgent(agent);
   }
 
   saveAgent() {
     const {agent} = this.props;
-    agentsActions.saveAgent(agent);
+    dashboardActions.saveAgent(agent);
   }
 
   render() {
     const {agent, agentbeingfreed} = this.props;
+    const isFreed = agentbeingfreed ? agent.get('name') === agentbeingfreed.get('name') : false;
 
     const classString = classnames('agent-list-record', agent.get('specialist'));
 
@@ -27,7 +28,7 @@ class AgentListRecord extends Component {
         <td>{agent.get('name')}</td>
         <td>Rank {agent.get('rank')}</td>
         <td>{agent.get('experience')} XP</td>
-        <td>{agent.get('prison') ? 'In Prison' : agent.get('ETA') < Date.now() ? 'Available' : 'Tired'}</td>
+        <td>{agent.get('prison') ? 'In Prison' : isFreed ? 'Being Rescued' : agent.get('ETA') < Date.now() ? 'Available' : 'Tired'}</td>
         <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('operationsSkill')}</td>
         <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
         <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
@@ -51,7 +52,8 @@ class AgentListRecord extends Component {
 }
 
 AgentListRecord.propTypes = {
-  agent: React.PropTypes.instanceOf(immutable.Map)
+  agent: React.PropTypes.instanceOf(immutable.Map),
+  agentbeingfreed: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentListRecord;

@@ -16,3 +16,5 @@ const concepts = {
     ingame: ``
   }
 };
+
+export default concepts;

@@ -28,8 +28,9 @@ import LanguageSelect from '../app/language.select.react';
 
 // pointers
 import AchievementPointer from './pointers/achievements.pointer.react';
-// import ContestPointer from './pointers/contest.pointer.react';
+import ContestPointer from './pointers/contest.pointer.react';
 import EnhancementsPointer from './pointers/enhancements.pointer.react';
+import LogPointer from './pointers/log.pointer.react';
 import OptionsPointer from './pointers/options.pointer.react';
 import StatusesPointer from './pointers/statuses.pointer.react';
 import StrategicalPointer from './pointers/strategical.pointer.react';
@@ -53,9 +54,11 @@ class DashboardScreen extends Component {
     const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
 
     const countrystats = jsonapi.get('countrystats');
+    const dashboard = jsonapi.get('dashboard');
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     const enhancementsowned = jsonapi.get('enhancements');
     const isLoggedIn = !!this.props.viewer;
+    const missions = jsonapi.get('missions');
     const options = jsonapi.get('options');
     const statusesowned = jsonapi.get('statuses');
 
@@ -68,14 +71,16 @@ class DashboardScreen extends Component {
         {jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToMission />}
         <AchievementPointer />
-        {/*<ContestPointer />*/}
+        <ContestPointer />
         <EnhancementsPointer />
+        <LogPointer />
         <OptionsPointer />
         <StatusesPointer />
         <StrategicalPointer />
         {isLoggedIn &&
           <Logout />}
-        {/*<LanguageSelect locales={this.props.locales}/>*/}
+        {dashPointer === 'options' &&
+          <LanguageSelect locales={this.props.locales}/>}
         <div id='DashboardContent'>
           {dashPointer === 'strategical' &&
             <PlayersWindow
@@ -85,7 +90,9 @@ class DashboardScreen extends Component {
             />}
           {dashPointer === 'strategical' &&
             <MissionsWindow
+              dashboard={dashboard}
               enhancements={enhancementsowned}
+              missions={missions}
               missionspricelist={missionspricelist}
             />}
           {dashPointer === 'strategical' &&
@@ -94,22 +101,23 @@ class DashboardScreen extends Component {
               agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
               agents={jsonapi.get('agents')}
               agentspricelist={agentspricelist}
-              cash={jsonapi.get('gameCash')}
+              dashboard={dashboard}
               log={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
+              options={options}
             />}
-          {dashPointer === 'strategical' &&
+          {dashPointer === 'log' &&
             <LogWindow
               log={jsonapi.get('log')}
               />}
-          {/*dashPointer === 'options' &&
+          {dashPointer === 'options' &&
             <OptionsWindow
               options={options}
-              />*/}
+              />}
           {dashPointer === 'strategical' &&
             <CountryStatsWindow
               countrystats={countrystats}
             />}
-          {(dashPointer === 'contest' || dashPointer === 'strategical') &&
+          {dashPointer === 'contest' &&
             <ContestWindow
               contest={contest}
             />}
@@ -127,7 +135,7 @@ class DashboardScreen extends Component {
             <AchievementsWindow
               achievements={achievements}
               />}
-          {dashPointer === 'strategical' &&
+          {dashPointer === 'options' &&
             <button
               className='set-default-button'
               onClick={missionActions.setDefault}

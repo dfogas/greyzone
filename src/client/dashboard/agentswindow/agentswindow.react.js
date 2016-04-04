@@ -1,20 +1,17 @@
 /* Dumb Component */
 import './agentswindow.styl';
-import * as agentsActions from '../../agents/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
 import AgentHireForm from './agenthire.form.react';
-import AgentPriceTable from './agentprice.table.react';
 import AgentsList from './agents.list.react';
 
 class AgentsWindow extends Component {
 
-
   render() {
-    const {agenthire, agents, agentspricelist, log} = this.props;
+    const {agentbeingfreed, agenthire, agents, agentspricelist, dashboard, log, options} = this.props;
 
     return (
       <div id='AgentsWindow'>
@@ -26,8 +23,10 @@ class AgentsWindow extends Component {
           {log}
         </div>
         <AgentsList
-          agentbeingfreed={this.props.agentbeingfreed}
+          agentbeingfreed={agentbeingfreed}
           agents={agents}
+          dashboard={dashboard}
+          options={options}
           />
       </div>
     );
@@ -35,10 +34,13 @@ class AgentsWindow extends Component {
 }
 
 AgentsWindow.propTypes = {
+  agentbeingfreed: React.PropTypes.instanceOf(immutable.Map),
   agenthire: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
-  cash: React.PropTypes.number
+  dashboard: React.PropTypes.instanceOf(immutable.Map),
+  log: React.PropTypes.string,
+  options: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentsWindow;

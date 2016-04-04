@@ -6,7 +6,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
-import MissionsPriceTable from './missionsprice.table.react';
+import MissionAcceptForm from './missionaccept.form.react';
 
 class MissionsWindow extends Component {
   acceptMission(tier) {
@@ -15,42 +15,16 @@ class MissionsWindow extends Component {
   }
 
   render() {
-    const {enhancements, missionspricelist} = this.props;
-    const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
+    const {dashboard, enhancements, missions, missionspricelist} = this.props;
+    // const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
+    const missionaccept = dashboard.getIn(['strategical', 'missionaccept']);
+
     return (
       <div id='MissionsWindow'>
-        <div id='MissionAcceptButtons'>
-          <button
-            className='mission-accept-button'
-            id='AcceptMissionTier1'
-            onClick={(e) => this.acceptMission(1)}
-            >Mission Tier 1</button>
-          {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Operation II.') &&
-            <button
-              className='mission-accept-button'
-              id='AcceptMissionTier2'
-              onClick={(e) => this.acceptMission(2)}
-              >Mission Tier 2</button>}
-          {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Good Label') &&
-            <button
-              className='mission-accept-button'
-              id='AcceptMissionTier3'
-              onClick={(e) => this.acceptMission(3)}
-              >Mission Tier 3</button>}
-          {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Higher Level') &&
-            <button
-              className='mission-accept-button'
-              id='AcceptMissionTier4'
-              onClick={(e) => this.acceptMission(4)}
-              >Mission Tier 4</button>}
-          {capabilityEnhancements.find(enhancement => enhancement.get('name') === 'Top Class') &&
-            <button
-              className='mission-accept-button'
-              id='AcceptMissionTier5'
-              onClick={(e) => this.acceptMission(5)}
-              >Mission Tier 5</button>}
-        </div>
-        <MissionsPriceTable
+        <MissionAcceptForm
+          enhancements={enhancements}
+          missionaccept={missionaccept}
+          missions={missions}
           missionspricelist={missionspricelist}
           />
       </div>
@@ -60,8 +34,9 @@ class MissionsWindow extends Component {
 }
 
 MissionsWindow.propTypes = {
-  countrystats: React.PropTypes.instanceOf(immutable.List),
+  dashboard: React.PropTypes.instanceOf(immutable.Map),
   enhancements: React.PropTypes.instanceOf(immutable.List),
+  missions: React.PropTypes.instanceOf(immutable.List),
   missionspricelist: React.PropTypes.instanceOf(immutable.Map)
 };
 

@@ -3,10 +3,7 @@ import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
 
 export function scrollLeft(context) {
-  const jsonapi = jsonapiCursor();
   const agentscrollbar = jsonapiCursor(['components', 'agentscrollbar', context, 'left']) || 0;
-  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-  const agents = jsonapiCursor(['agents']);
 
   if (context === 'armory' && agentscrollbar < 0)
     dispatch(scrollLeft, {context, agentscrollbar});
@@ -19,12 +16,11 @@ export function scrollLeft(context) {
 }
 
 export function scrollRight(context) {
-  const jsonapi = jsonapiCursor();
   const agentscrollbar = jsonapiCursor(['components', 'agentscrollbar', context, 'left']) || 0;
   const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
   const agents = jsonapiCursor(['agents']);
 
-  if (context === 'armory' && agentscrollbar > -((agents.size - 3))*265)
+  if (context === 'armory' && agentscrollbar > -((agents.size - 3)) * 265)
     dispatch(scrollRight, {context, agentscrollbar});
 
   if (context === 'briefing' && agentscrollbar > -((agents.size - 3) * 265))

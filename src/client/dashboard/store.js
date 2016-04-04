@@ -26,8 +26,8 @@ export const dispatchToken = register(({action, data}) => {
     if (gameCash >= data.message.get('cash') && gameContacts >= data.message.get('contacts'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-        .update('gameContacts', val => val - data.message.get('contacts'))
-        .update('gameCash', val => val - data.message.get('cash'));
+          .update('gameContacts', val => val - data.message.get('contacts'))
+          .update('gameCash', val => val - data.message.get('cash'));
       });
   }
 
@@ -59,6 +59,12 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
+  if (action === dashboardActions.changeOption)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['options', data.name], data.value);
+    });
+
   if (action === dashboardActions.clearAgentHireFields)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -66,10 +72,17 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', 'specialist'], null);
     });
 
+  if (action === dashboardActions.clearMissionAcceptFields)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'tier'], null)
+        .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'focus'], 'random')
+        .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'country'], 'random');
+    });
+
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
     const agent = data.agent;
-    const gameCash = jsonapiCursor(['gameCash']);
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['agents'], agents.push(immutable.fromJS(agent)))
@@ -147,10 +160,16 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['components', 'dashboard', 'index'], data.message);
     });
 
+  if (action === dashboardActions.showTip)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['dashboard', 'strategical', data.destination, 'tip'], val => val === true ? val = false : val = true);
+    });
+
   if (action === dashboardActions.updateFormField)
     jsonapiCursor(jsonapi => {
-      const {name, value} = data;
-      return jsonapi.setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', name], value);
+      const {context, name, value} = data;
+      return jsonapi.setIn(['dashboard', 'strategical', context, 'form', 'fields', name], value);
     });
 
   if (action === dashboardActions.upgradeEnhancement) {

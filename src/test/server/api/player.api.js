@@ -2,10 +2,11 @@ process.env.NODE_ENV = 'apitest';
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import mongoose from 'mongoose';
 
 import server from '../../../server/main';
 import Player from '../../../server/api/models/player';
+
+chai.use(chaiHttp);
 
 describe('Players', function() {
   Player.collection.drop();
@@ -17,13 +18,12 @@ describe('Players', function() {
     });
     newPlayer.save(function(err, data) {
       if (err)
-        console.log('TestDB saving Error: ' + err.message);
+        console.log('TestDB saving Error: ' + err.message); // eslint-disable-line no-console
       done();
     });
   });
   afterEach(function(done) {
     Player.collection.drop();
-
     done();
   });
 
@@ -31,6 +31,8 @@ describe('Players', function() {
     chai.request(server)
       .get('/api/v1/players/')
       .end(function(err, res) {
+        if (err)
+          res.send(err);
         res.should.have.status(200);
         done();
       });
@@ -46,7 +48,7 @@ describe('Players', function() {
       })
       .end(function(err, res) {
         if (err)
-          console.log('POST send Error: ' + err.message);
+          res.send('POST send Error: ' + err.message);
         res.should.have.status(200);
         res.should.be.json;
         res.should.be.a('object');
@@ -64,10 +66,12 @@ describe('Players', function() {
     });
     newPlayer.save(function(err, data) {
       if (err)
-        console.log('TestDB saving Error: ' + err.message);
+        console.log('TestDB saving Error: ' + err.message); // eslint-disable-line no-console
       chai.request(server)
         .get('/api/v1/players/' + data._id)
         .end(function(err, res) {
+          if (err)
+            res.send(err);
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('object');
@@ -86,12 +90,14 @@ describe('Players', function() {
     chai.request(server)
       .get('/api/v1/players/')
       .end(function(err, players) {
+        if (err)
+          console.log('PUT request error: ' + err.message); // eslint-disable-line no-console
         chai.request(server)
           .put('/api/v1/players/' + players.body[0]._id)
           .send({name: 'Nuclear'})
           .end(function(err, res) {
             if (err)
-              console.log('Error on PUT players/<id>: ' + err.message);
+              res.send('Error on PUT players/<id>: ' + err.message);
             res.should.have.status(200);
             res.should.be.json;
             res.should.be.a('object');
@@ -104,11 +110,13 @@ describe('Players', function() {
     chai.request(server)
       .get('/api/v1/players/')
       .end(function(err, players) {
+        if (err)
+          console.log('DELETE request error: ' + err.message); // eslint-disable-line no-console
         chai.request(server)
           .delete('/api/v1/players/' + players.body[0]._id)
           .end(function(err, res) {
             if (err)
-              console.log('Error on DELETE request: ' + err.message);
+              res.send('Error on DELETE request: ' + err.message);
             res.should.have.status(200);
             res.should.be.json;
             res.should.be.a('object');

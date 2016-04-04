@@ -52,6 +52,7 @@ class AgentScrollBarWithNavButtons extends Component {
 }
 
 AgentScrollBarWithNavButtons.propTypes = {
+  isAgents: React.PropTypes.bool,
   isBriefing: React.PropTypes.bool.isRequired,
   isMission: React.PropTypes.bool.isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired

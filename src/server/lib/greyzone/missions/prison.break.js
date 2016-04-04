@@ -12,7 +12,7 @@ const PrisonBreak = [{
   inCountry: '',
   rewards: {
     gameCash: -10000,
-    agentLoyal: true
+    agentFreed: true
   },
   losses: {
     gameCash: 10000,

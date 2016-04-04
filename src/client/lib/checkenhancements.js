@@ -1,6 +1,8 @@
 /* String -> Boolean
   is Enhancement present? */
 
-function checkEnhancements(name) {
+function checkEnhancements(name, enhancementlist) {
 
 }
+
+export default checkEnhancements;

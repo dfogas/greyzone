@@ -22,4 +22,8 @@ class LogWindow extends Component {
   }
 }
 
+LogWindow.propTypes = {
+  log: React.PropTypes.instanceOf(immutable.List)
+};
+
 export default LogWindow;

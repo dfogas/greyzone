@@ -2,10 +2,8 @@ process.env.NODE_ENV = 'apitest';
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import mongoose from 'mongoose';
 
 import server from '../../../server/main';
-import NotVerified from '../../../server/api/models/notverified';
 
 chai.use(chaiHttp);
 
@@ -27,7 +25,7 @@ describe('Auth', function() {
       })
       .end(function(err, notverified) {
         if (err)
-          console.log('POST Error to /signup: ' + err);
+          console.log('POST Error to /signup: ' + err); // eslint-disable-line no-console
         else
           chai.request(server)
             .get('/api/v1/auth/verify?id=' + notverified.body._id + '&hash=' + notverified.body.activationhash)

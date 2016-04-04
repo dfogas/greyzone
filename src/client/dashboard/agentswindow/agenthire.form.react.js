@@ -16,27 +16,21 @@ class AgentHireForm extends Component {
     e.preventDefault();
     const fields = this.getForm().get('fields').toJS();
     dashboardActions.hireAgent(fields.specialist, fields.rank);
-    dashboardActions.clearAgentHireFields(fields.rank);
+    dashboardActions.clearAgentHireFields();
   }
 
   render() {
     const {agenthire, agentspricelist} = this.props;
-    const form = agenthire.get('form');
+    const form = this.getForm();
     return (
       <div id='AgentHireForm'>
         <form onSubmit={(e) => this.onFormSubmit(e)}>
-          <h3>Hire Agent</h3>
+          <h3>{msg('dashboard.strategical.agenthire.title')}</h3>
           <fieldset>
-            {/*<input
-              name="rank"
-              onChange={dashboardActions.updateFormField}
-              placeholder={msg('dashboard.agenthire.input.rank')}
-              value={form.getIn(['fields', 'rank'])}
-              />*/}
             <DropDown
               baseClassName='rank'
               name='rank'
-              onChange={option => dashboardActions.updateFormField(option)}
+              onChange={option => dashboardActions.updateFormField(option, 'agenthire')}
               options={[
                 {value: '1', name: 'rank', label: 'Rank 1'},
                 {value: '2', name: 'rank', label: 'Rank 2'},
@@ -50,7 +44,7 @@ class AgentHireForm extends Component {
             <DropDown
               baseClassName='specialist'
               name="specialist"
-              onChange={option => dashboardActions.updateFormField(option)}
+              onChange={option => dashboardActions.updateFormField(option, 'agenthire')}
               options={[
                 {value: 'operative', name: 'specialist', label: 'Operative'},
                 {value: 'technician', name: 'specialist', label: 'Technician'},
@@ -58,14 +52,8 @@ class AgentHireForm extends Component {
               ]}
               value={form.getIn(['fields', 'specialist']) || 'Select...'}
               />
-            {/*<input
-              name="specialist"
-              onChange={dashboardActions.updateFormField}
-              placeholder={msg('dashboard.agenthire.input.specialist')}
-              value={form.getIn(['fields', 'specialist'])}
-              />*/}
             {form.getIn(['fields', 'specialist']) && form.getIn(['fields', 'rank']) &&
-              <button id='HireAgentButton' type="submit">{msg('dashboard.agenthire.button.hireAgent')}</button>}
+              <button id='HireAgentButton' type="submit">{msg('dashboard.strategical.agenthire.button.hireAgent')}</button>}
           </fieldset>
         </form>
         <div id='AgentHirePriceTag'>
@@ -77,7 +65,8 @@ class AgentHireForm extends Component {
 }
 
 AgentHireForm.propTypes = {
-  agenthire: React.PropTypes.instanceOf(immutable.Map)
+  agenthire: React.PropTypes.instanceOf(immutable.Map),
+  agentspricelist: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentHireForm;

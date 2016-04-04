@@ -1,6 +1,7 @@
 import Component from '../../components/component.react.js';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import React from 'react';
+import immutable from 'immutable';
 
 class AgentEquipmentDescriptionPlaceholder extends Component {
   allowDrop(ev) {
@@ -17,7 +18,7 @@ class AgentEquipmentDescriptionPlaceholder extends Component {
     //   'on-mission': this.props.isMission,
     //   'showcased': this.props.isShowcased
     // });
-    const classString = '';
+    // const classString = '';
     return (
       <div
         className={'agent-equipment-description-placeholder'}>
@@ -26,5 +27,9 @@ class AgentEquipmentDescriptionPlaceholder extends Component {
     );
   }
 }
+
+AgentEquipmentDescriptionPlaceholder.propTypes = {
+  equipment: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default AgentEquipmentDescriptionPlaceholder;

@@ -15,12 +15,12 @@ class SignUp extends Component {
   }
 
   onFormSubmit(e) {
-    const api = process.env.NODE_ENV === 'production' ?
-      cconfig.dnsprod + '/api/v1/' :
-      cconfig.dnsdevel + '/api/v1/';
+    // const api = process.env.NODE_ENV === 'production' ?
+    //   cconfig.dnsprod + '/api/v1/' :
+    //   cconfig.dnsdevel + '/api/v1/';
     e.preventDefault();
     const fields = this.getForm().fields.toJS();
-    const {email, organization} = fields;
+    // const {email, organization} = fields;
     authActions.signup(fields).catch(focusInvalidField(this));
     this.redirectAfterSignup();
   }

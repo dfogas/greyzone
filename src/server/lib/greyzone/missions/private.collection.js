@@ -11,7 +11,7 @@ const PrivateCollection = [{
   inCountry: '',
   rewards: {
     gameCash: -10000,
-    statusGained: true
+    artPieceGained: true
   },
   losses: {
     agentImprisoned: true,
@@ -31,7 +31,7 @@ const PrivateCollection = [{
   inCountry: '',
   rewards: {
     gameCash: -18000,
-    statusGained: true
+    artPieceGained: true
   },
   losses: {
     agentImprisoned: true,

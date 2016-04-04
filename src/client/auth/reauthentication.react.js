@@ -61,4 +61,8 @@ class ReauthenticationForm extends Component {
   }
 }
 
+ReauthenticationForm.propTypes = {
+  auth: React.PropTypes.instanceOf(immutable.Map)
+};
+
 export default ReauthenticationForm;

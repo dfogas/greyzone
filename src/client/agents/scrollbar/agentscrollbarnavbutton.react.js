@@ -29,7 +29,7 @@ class AgentScrollBarNavButton extends Component {
 
     return (
       <div
-        className={classnames('agent-scroll-bar-nav-button ', orientation)}
+        className={classString}
         onClick={orientation === 'left' ? this.scrollleft.bind(this) : this.scrollright.bind(this)}
       >
       </div>

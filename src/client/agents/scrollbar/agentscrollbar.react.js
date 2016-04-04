@@ -51,7 +51,7 @@ class AgentScrollBar extends Component {
 
     if (!agents.size)
       return (
-        <span>AgentList is empty</span>
+        <span id='AgentListPlaceholder'>No agents are present.</span>
       );
 
     return (

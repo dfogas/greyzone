@@ -7,6 +7,11 @@ import immutable from 'immutable';
 import GeminiScrollbar from 'react-gemini-scrollbar';
 
 class ContestWindow extends Component {
+  refreshContest() {
+    // TODO:
+    console.log('Refreshing players\s standings...'); // eslint-disable-line no-console
+  }
+
   render() {
     const {contest} = this.props;
     const contestsortedbytotalrep = contest.sortBy(contestant =>
@@ -39,6 +44,9 @@ class ContestWindow extends Component {
             </tbody>
           </table>
         </GeminiScrollbar>
+        <button
+          id='RefreshContestButton'
+          onClick={this.refreshContest}>Refresh</button>
       </div>
     );
   }

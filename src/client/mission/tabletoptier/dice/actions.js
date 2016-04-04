@@ -1,6 +1,6 @@
 import {dispatch} from '../../../dispatcher';
 import setToString from '../../../lib/settostring';
-import {jsonapiCursor} from '../../../state';
+// import {jsonapiCursor} from '../../../state';
 
 export function create(dice) {
   dispatch(create, dice);

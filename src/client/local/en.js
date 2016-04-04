@@ -70,13 +70,22 @@ const ENGLISH = {
     cancelEdit: `You have unsaved changes. Are you sure you want to cancel them?`
   },
   dashboard: {
-    agenthire: {
-      button: {
-        hireAgent: 'Hire Agent'
+    strategical: {
+      agenthire: {
+        button: {
+          hireAgent: 'Confirm'
+        },
+        placeholder: `Here, list of your agents is displayed. It might be so that
+          you'll need to hire some specialist. You do so by means of form on the left.
+          There is a cap on number of agents that you can have.
+          This cap can be expanded by upgrading agents' training facilities in Enhancement
+          section. Go have a look there too.`,
+        title: 'Hire Agent'
       },
-      input: {
-        rank: 'Rank',
-        specialist: 'Specialist'
+      missionaccept: {
+        button: {
+          acceptMission: 'Accept'
+        }
       }
     },
     title: 'Dashboard(protected)'
@@ -212,7 +221,7 @@ const ENGLISH = {
       <h2>Introduction</h2>
       <p>
         Does a man choose his profession, or does profession choose a man?
-        I chose not to be a - what? - Being a villain??
+        I chose not to be a - what? - Villain?
         Villain might be too of a strong word, let's say I am not the one
         to be bound by conventions about what is good and evil,
         and that I do things my way.
