@@ -45,6 +45,11 @@ class DashboardScreen extends Component {
       animate(playerWindowDiv, 'top', 'px', -150, 0, 500);
   }
 
+  setDefaultMission() {
+    missionActions.agentsAreBackFromMission();
+    missionActions.setDefault();
+  }
+
   render() {
     const {contest, game, jsonapi} = this.props;
     const achievements = game.getIn(['globals', 'achievements']);
@@ -53,6 +58,8 @@ class DashboardScreen extends Component {
     const statusestotal = game.getIn(['globals', 'statuses']);
     const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
 
+    const allagents = jsonapi.get('agents').concat(jsonapi.getIn(['activemission', 'agentsonmission']));
+    const agentinarmory = jsonapi.get('agentinarmory');
     const countrystats = jsonapi.get('countrystats');
     const dashboard = jsonapi.get('dashboard');
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
@@ -61,6 +68,7 @@ class DashboardScreen extends Component {
     const missions = jsonapi.get('missions');
     const options = jsonapi.get('options');
     const statusesowned = jsonapi.get('statuses');
+    const totalagents = agentinarmory ? allagents.unshift(agentinarmory) : allagents;
 
     return (
       <div id='DashboardScreen'>
@@ -92,6 +100,7 @@ class DashboardScreen extends Component {
             <MissionsWindow
               dashboard={dashboard}
               enhancements={enhancementsowned}
+              missionlog={jsonapi.getIn(['dashboard', 'missionswindow', 'message'])}
               missions={missions}
               missionspricelist={missionspricelist}
             />}
@@ -99,10 +108,10 @@ class DashboardScreen extends Component {
             <AgentsWindow
               agentbeingfreed={jsonapi.get('agentbeingfreed')}
               agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
-              agents={jsonapi.get('agents')}
+              agentlog={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
+              agents={totalagents}
               agentspricelist={agentspricelist}
               dashboard={dashboard}
-              log={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
               options={options}
             />}
           {dashPointer === 'log' &&
@@ -138,7 +147,7 @@ class DashboardScreen extends Component {
           {dashPointer === 'options' &&
             <button
               className='set-default-button'
-              onClick={missionActions.setDefault}
+              onClick={this.setDefaultMission}
             >Set Default Mission</button>
           }
           {/*<button

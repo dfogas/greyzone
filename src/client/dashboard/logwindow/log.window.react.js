@@ -17,6 +17,12 @@ class LogWindow extends Component {
             </div>
           );
         })}
+        <button
+          id='SaveLogButton'
+          onClick={this.saveLog}>Save Log</button>
+        <button
+          id='ClearLogButton'
+          onClick={this.clearLog}>Clear Log</button>
       </div>
     );
   }

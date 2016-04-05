@@ -10,23 +10,40 @@ import xmissioncheck from '../lib/xmissioncheck';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
+import capabilityCheck from '../lib/capabilitycheck';
+import checkArmory from '../lib/checkarmory';
 import determineFocus from '../lib/determinefocus';
 import leadershipCheck from '../lib/leadershipcheck';
 import maxAgentsCheck from '../lib/maxagentscheck';
+import maxMissionsCheck from '../lib/maxmissionscheck';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
 
 export function acceptMission(tier, focus, country) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const enhancementnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
-  const modifiedMissionsList = xmissioncheck(enhancementnames, MissionsList);
-  const missionsPerTier = modifiedMissionsList.filter(mission => mission.tier === parseInt(tier, 10));
+  const missions = jsonapiCursor(['missions']);
+  const operationsnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
+  const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
+  const modifiedMissionsList = xmissioncheck(operationsnames, MissionsList);
+  const focusedModifiedMissionsList = focus !== 'random' && focus !== 'special' && focus !== 'multiplayer' ? modifiedMissionsList.filter(mission => determineFocus(mission.rewards)[focus]) : modifiedMissionsList;
+  const missionsPerTier = focusedModifiedMissionsList.filter(mission => mission.tier === parseInt(tier, 10));
   let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
-  randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
+  if (country !== 'random')
+    randomMission.inCountry = country;
+  else
+    randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
   randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
 
-  dispatch(acceptMission, {mission: randomMission});
+  console.log(capabilitynames);
+  if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
+    dispatch(logMissionsWindow, {message: 'Upgrade your capability enhancement for higher tier missions.'});
+  else if (!maxMissionsCheck(missions.size, capabilitynames))
+    dispatch(logMissionsWindow, {message: 'Missions limit reached, pass on some missions to accept new ones.'});
+  else {
+    dispatch(acceptMission, {mission: randomMission});
+    dispatch(logMissionsWindow, {message: 'New mission has been accepted.'});
+  }
 }
 
 export function bookMissionPrice(tier) {
@@ -69,7 +86,7 @@ export function hireAgent(specialist, rank) {
   const agent = Agent(specialist, rank);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
   const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
-  const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size;
+  const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (checkArmory() ? 1 : 0);
 
   const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
   const agentPrice = agentPriceList[rank];
@@ -93,6 +110,10 @@ export function log(message) {
 
 export function logAgentsWindow(message) {
   dispatch(logAgentsWindow, {message});
+}
+
+export function logMissionsWindow(message) {
+  dispatch(logMissionsWindow, {message});
 }
 
 export function newUserAppendState(email, organization) {
@@ -162,6 +183,7 @@ setToString('dashboard', {
   hireAgent,
   log,
   logAgentsWindow,
+  logMissionsWindow,
   newUserAppendState,
   pointerChange,
   saveAgent,

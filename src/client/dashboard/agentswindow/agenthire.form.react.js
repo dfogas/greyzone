@@ -57,7 +57,7 @@ class AgentHireForm extends Component {
           </fieldset>
         </form>
         <div id='AgentHirePriceTag'>
-          {formatMoney(agentspricelist.get(form.getIn(['fields', 'rank'])), 0, '.', ',') || ''}$
+          {(formatMoney(agentspricelist.get(form.getIn(['fields', 'rank'])), 0, '.', ',') || '') + '\u{1f4b0}'}
         </div>
       </div>
     );

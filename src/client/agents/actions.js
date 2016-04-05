@@ -33,9 +33,14 @@ export function dismissAgent(agent) {
   dispatch(dismissAgent, {message: agent});
 }
 
-export function equip(equipmentindexandname) {
+export function equip(obj) {
   // TODO: napsat líp
-  dispatch(equip, equipmentindexandname);
+  const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(obj.get('name')) !== -1;
+  if (!hasAlready) {
+    dispatch(equip, obj);
+    dispatch(logArmory, {message: 'Agent equipped.'});
+  }
+  else dispatch(logArmory, {message: 'Agent has this equipment already.'});
 }
 
 export function getRank(agent) {
@@ -57,9 +62,8 @@ export function incurETA(agent) {
   dispatch(incurETA, {message: agent});
 }
 
-export function log(message) {
-  message = Date.now() + message;
-  dispatch(log, {message});
+export function logArmory(message) {
+  dispatch(logArmory, {message});
 }
 
 setToString('agents', {
@@ -74,5 +78,5 @@ setToString('agents', {
   // goFree,
   // goToPrison,
   incurETA,
-  log
+  logArmory
 });

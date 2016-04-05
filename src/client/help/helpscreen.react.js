@@ -18,16 +18,12 @@ class HelpPage extends Component {
             <GeminiScrollbar>
             <HelpGameSegments
               />
-            <hr />
             <HelpTerminology
               />
-            <hr />
             <HelpMissionProgress
               />
-            <hr />
             <HelpMissionActions
               />
-            <hr />
             <HelpEquipments
               />
           </GeminiScrollbar>

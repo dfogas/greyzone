@@ -15,7 +15,7 @@ export const dispatchToken = register(({action, data}) => {
       .update('missions', val => val.push(immutable.fromJS(mission)))
       .update('log', val => val.unshift(
         dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-          ' - Mission ' + mission.title + ' in ' + mission.inCountry + ' accepted.'
+          ' - Mission ' + mission.title + ' in ' + mission.title + ' accepted.'
         ));
     });
   }
@@ -107,6 +107,14 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'agentswindow', 'message'], data);
+    });
+  }
+
+  if (action === dashboardActions.logMissionsWindow) {
+    data = data.message || data;
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'missionswindow', 'message'], data);
     });
   }
 

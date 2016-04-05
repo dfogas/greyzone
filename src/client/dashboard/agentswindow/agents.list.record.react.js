@@ -1,5 +1,6 @@
 import './agents.list.record.styl';
 import * as dashboardActions from '../actions';
+import * as agentsActions from '../../agents/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -9,7 +10,7 @@ import classnames from 'classnames';
 class AgentListRecord extends Component {
   dismissAgent() {
     const {agent} = this.props;
-    dashboardActions.dismissAgent(agent);
+    agentsActions.dismissAgent(agent);
   }
 
   saveAgent() {

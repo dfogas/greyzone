@@ -26,6 +26,7 @@ class AgentEquipContent extends Component {
   render() {
     const {jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
+    const armorylog = jsonapi.getIn(['armory', 'message']);
 
     const equipments = jsonapi.get('equipments');
     const equipmentsoperations = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'O').toList();
@@ -69,6 +70,9 @@ class AgentEquipContent extends Component {
           equipments={equipmentsstealth}
           stock='stealth'
           />
+        <div id='ArmoryMessage'>
+          Message : {armorylog}
+        </div>
       </div>
     );
   }

@@ -77,6 +77,11 @@ class MissionAcceptForm extends Component {
               type='submit'>{msg('dashboard.strategical.missionaccept.button.acceptMission')}</button>
           </fieldset>
         </form>
+        <div id='MissionAcceptPriceTag'>
+          {(missionspricelist.getIn([form.getIn(['fields', 'tier']), 'cash']) || '0') + '\u{1f4b0}'}
+          <br />
+          {(missionspricelist.getIn([form.getIn(['fields', 'tier']), 'contacts']) || '0') + '\u{1f575}'}
+        </div>
       </div>
     );
   }

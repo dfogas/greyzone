@@ -19,7 +19,7 @@ class AgentEquipmentSlot extends Component {
     ev.preventDefault();
     var message = ev.dataTransfer.getData('text');
     if (ev)
-      agentActions.equip(immutable.fromJS({equipmentindex: equipmentindex, equipmentname: message}));
+      agentActions.equip(immutable.fromJS({index: equipmentindex, name: message}));
   }
 
   equipmentUse() {

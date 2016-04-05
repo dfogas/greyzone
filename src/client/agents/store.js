@@ -84,19 +84,20 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('log', val => val.unshift(
-          dayandtime(Date.now(), new Date().getTimezoneOffset()) +
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - ' +
           'Agent ' + data.message.get('specialist') + ' ' + data.message.get('name') + ' has been left to rot in prison.'
         ))
+        .setIn(['dashboard', 'agentswindow', 'message'], 'Agent left in prison.')
         .update('agents', val => val.delete(val.indexOf(data.message)));
     });
 
   if (action === agentActions.equip) {
     const equipments = jsonapiCursor(['equipments']);
-    const stockindex = equipments.indexOf(equipments.find(equipment => equipment.get('name') === data.get('equipmentname')));
+    const stockindex = equipments.indexOf(equipments.find(equipment => equipment.get('name') === data.get('name')));
     if (equipments.getIn([stockindex, 'quantity']) > 0)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['agentinarmory', 'equipments', data.get('equipmentindex'), 'name'], data.get('equipmentname'))
+          .setIn(['agentinarmory', 'equipments', data.get('index'), 'name'], data.get('name'))
           .updateIn(['equipments', stockindex, 'quantity'], val => val - 1);
       });
   }
@@ -139,10 +140,12 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  if (action === agentActions.log)
+  if (action === agentActions.logArmory) {
+    data = data.message || data;
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('log', val => val.unshift(data));
+        .setIn(['armory', 'message'], data);
     });
+  }
 
 });

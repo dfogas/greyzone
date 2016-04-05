@@ -60,7 +60,7 @@ class SignUp extends Component {
               value={form.fields.password}
             />
             <br />
-             <button type="submit">{msg('auth.form.button.signup')}</button>
+            <button type="submit">{msg('auth.form.button.signup')}</button>
             {form.error &&
               <span className="error-message">{form.error.message}</span>
             }

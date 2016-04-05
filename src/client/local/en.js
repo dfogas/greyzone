@@ -76,7 +76,7 @@ const ENGLISH = {
           hireAgent: 'Confirm'
         },
         placeholder: `Here, list of your agents is displayed. It might be so that
-          you'll need to hire some specialist. You do so by means of form on the left.
+          you'll need to hire some specialist. You do that by means of form on the left.
           There is a cap on number of agents that you can have.
           This cap can be expanded by upgrading agents' training facilities in Enhancement
           section. Go have a look there too.`,
@@ -152,59 +152,53 @@ const ENGLISH = {
       </ul>
     `,
     missionProgressHtml: `
-      <p>
-        In mission processing six-sided dice mechanism is used. Display of
-        probabilities of success is paid feature.
-        You go through the mission sequence by assigning agent from agents on
-        mission to each task and then proceed with action.
-        If the throw is not successfull you may try again after sacrificing one
-        of dies, which of course lowers your chances, to the
-        point where you have no chance of succeeding.
-        Desirable result is fulfillment of all tasks, in which case is mission successfull.
-        Certain agent's equipments have different effects on the flow of mission,
-        but to that later.
-      </p>
-      <hr />
-      <ul class='mission-progress'><h2>Mission progress</h2>
-        <li class='mission-progress'><em>drag&drop to equip your agents for the mission in Armory </em></li>
-        <li class='mission-progress'><em>Hit mission card to select it in Briefing</em></li>
-        <li class='mission-progress'><em>After Selecting Mission assign the agents by drag&drop to it</em></li>
-        <li class='mission-progress'><em>Task completion is check against agent's actions, actions depend on skill and luck</em></li>
-        <li class='mission-progress'><em>Down on your luck? Try clicking the equipment, maybe it'll do something.</em></li>
-        <li class='mission-progress'><em>Trashing your dice will enable rolling again.</em></li>
-        <li class='mission-progress'><em>DCP will save your ass, if things don't go as planned.</em></li>
-        <li class='mission-progress'><em>The only equipment hard to understand is WPAS, others should be piece of cake.</em></li>
-        <li class='mission-progress'><em>Initializing escape sequence will get you out of mission mode, but mission is fail.</em></li>
-        <li class='mission-progress'><em>MissionSuccess? Congrats, pick up your price and do another!</em></li>
+      <ul class='mission-progress'><h2>Gameplay</h2>
+        <li class='mission-progress'><em>By drag&drop equip your agents for the mission in Armory.</em></li>
+        <li class='mission-progress'><em>Hit mission card to select it in Briefing.</em></li>
+        <li class='mission-progress'><em>After selecting mission assign the agents by drag&drop</em></li>
+        <li class='mission-progress'><em>Go to mission screen.</em></li>
+        <li class='mission-progress'><em>Assign agent and start mission, you are in the mission mode now.</em></li>
+        <li class='mission-progress'><em>Six-sided dice mechanism is used, see below Actions.</em></li>
+        <li class='mission-progress'><em>Task completion is check against agent's actions.</em></li>
+        <li class='mission-progress'><em>Clicking the equipment of agent on task will trigger its effect.</em></li>
+        <li class='mission-progress'><em>Sacrificing one dice will enable rolling again.</em></li>
+        <li class='mission-progress'><em>Use Help on Equipments to learn about equipment effects.</em></li>
+        <li class='mission-progress'><em>MissionSuccess? Congrats, rewards automatically gained. Do another!</em></li>
+        <li class='mission-progress'><em>MissionFail? Some bad things may have happened to you...</em></li>
       </ul>
     `,
-    segmentsHtml: `<hr />
+    segmentsHtml: `
       <ul>
         <h2>Game segments</h2>
-        <li class='game-segments'>Command - overview of world with country stats for organization</li>
-        <li class='game-segments'>Dashboard - not being to fancy, gives you basic overview of current state of things</li>
-        <li class='game-segments'>Armory - you can equip your agents here for the mission, as well as check counts.</li>
-        <li class='game-segments'>Briefing - you can deploy your agents on the mission here and view current missions</li>
-        <li class='game-segments'>Mission - the main deal of game magic happens here, your success is made or lost</li>
+        <li class='game-segments'>Command - overview of world intended for multiplayer features</li>
+        <li class='game-segments'>Dashboard - basic overview and control of the game</li>
+        <li class='game-segments'>Armory - equip your agents for the mission, increasing their chances</li>
+        <li class='game-segments'>Briefing - overview of current missions and deploying of agents to missions</li>
+        <li class='game-segments'>Mission - the main deal of game magic happens there, your success made here</li>
       </ul>
     `,
-    terminologyHtml: `<hr />
+    terminologyHtml: `
       <ul class='terminology'>
         <h2>Terminology</h2>
         <li class='terminology'>
-          <em>Reputation - good or bad, used to measure the *quality* of your - service.</em>
+          <em>Organization - agents, missions and other game assets, that you manage</em>
         </li>
         <li class='terminology'>
-        <em>Obscurity - the nature of your enterprise requires you to be unnoticed
-        by traditional security forces and to avoid them.</em>
+          <em>Reputation - intended as measure of your success for comparison</em>
         </li>
         <li class='terminology'>
-          <em>Mission - consists of tasks, which constists of agent action requirements.
-          Rewards are given if successfully carried out, else losses are booked.</em>
+          <em>Obscurity - nature of your business require your organization to remain in shadow</em>
         </li>
         <li class='terminology'>
-          <em>Agent - professional or amateur, the guy who does heavy lifting,
-          risking his neck in the action</em>
+          <em>
+            Mission - consists of tasks, which constists of agent action requirements.
+          </em>
+        </li>
+        <li class='terminology'>
+          <em>Agent - having set of skills, she serves as mean to succeed in mission</em>
+        </li>
+        <li class='terminology'>
+          <em>Equipment - intended for agents, to be used at mission
         </li>
         <li class='terminology'>
           <em>Cash - dollar or ruble, yuan or peseta cash provides you with necessary liquidity.</em>

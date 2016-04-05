@@ -15,12 +15,15 @@ class MissionsWindow extends Component {
   }
 
   render() {
-    const {dashboard, enhancements, missions, missionspricelist} = this.props;
+    const {dashboard, enhancements, missionlog, missions, missionspricelist} = this.props;
     // const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
     const missionaccept = dashboard.getIn(['strategical', 'missionaccept']);
 
     return (
       <div id='MissionsWindow'>
+        <div id='MissionsWindowMessage'>
+          {missionlog}
+        </div>
         <MissionAcceptForm
           enhancements={enhancements}
           missionaccept={missionaccept}

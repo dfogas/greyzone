@@ -11,7 +11,7 @@ import AgentsList from './agents.list.react';
 class AgentsWindow extends Component {
 
   render() {
-    const {agentbeingfreed, agenthire, agents, agentspricelist, dashboard, log, options} = this.props;
+    const {agentbeingfreed, agenthire, agentlog, agents, agentspricelist, dashboard, options} = this.props;
 
     return (
       <div id='AgentsWindow'>
@@ -20,7 +20,7 @@ class AgentsWindow extends Component {
           agentspricelist={agentspricelist}
           />
         <div id='AgentsWindowMessage'>
-          {log}
+          {agentlog}
         </div>
         <AgentsList
           agentbeingfreed={agentbeingfreed}
@@ -36,10 +36,10 @@ class AgentsWindow extends Component {
 AgentsWindow.propTypes = {
   agentbeingfreed: React.PropTypes.instanceOf(immutable.Map),
   agenthire: React.PropTypes.instanceOf(immutable.Map),
+  agentlog: React.PropTypes.string,
   agents: React.PropTypes.instanceOf(immutable.List),
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
-  log: React.PropTypes.string,
   options: React.PropTypes.instanceOf(immutable.Map)
 };
 

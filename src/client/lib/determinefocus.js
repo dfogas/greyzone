@@ -16,7 +16,7 @@ function determineFocus(rewards) {
     focus.special = true;
 
   if (keys.indexOf('gameCash') !== -1)
-    focus.money = true;
+    focus.cash = true;
 
   if (keys.indexOf('gameContacts') !== -1)
     focus.contacts = true;
