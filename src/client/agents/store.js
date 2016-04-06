@@ -105,22 +105,22 @@ export const dispatchToken = register(({action, data}) => {
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank - TODO: check whether it is already implemented
   if (action === agentActions.getRank) {
     const agents = jsonapiCursor(['agents']);
-    if ((data.get('operationsSkill') + (data.get('electronicsSkill') + (data.get('stealthSkill')))) < trainingtable[data.get('rank')].statstotal)
+    if (data.skill)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), getRandomSkill()], randomskill => randomskill + 1);
+          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.agent.get('name'))), data.skill], skill => skill + 1);
       });
 
-    if (data.get('equipmentSlots') < trainingtable[data.get('rank')].slots)
+    if (data.equipment)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'equipmentSlots'], val => val + 1)
-          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'equipments'], val => val.push(immutable.fromJS({name: ''})));
+          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.agent.get('name'))), 'equipmentSlots'], val => val + 1)
+          .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.agent.get('name'))), 'equipments'], val => val.push(immutable.fromJS({name: ''})));
       });
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.get('name'))), 'rank'], rank => parseInt(rank, 10) + 1);
+        .updateIn(['agents', agents.indexOf(agents.find(agent => agent.get('name') === data.agent.get('name'))), 'rank'], rank => parseInt(rank, 10) + 1);
     });
   }
 

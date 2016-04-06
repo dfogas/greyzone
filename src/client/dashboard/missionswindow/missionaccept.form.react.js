@@ -8,6 +8,10 @@ import {msg} from '../../intl/store';
 import DropDown from 'react-dropdown-w-react13';
 
 class MissionAcceptForm extends Component {
+  changeOption(e) {
+    dashboardActions.changeMissionOption(e.target.name, e.target.checked);
+  }
+
   getForm() {
     return this.props.missionaccept ? this.props.missionaccept.get('form') : null;
   }
@@ -15,7 +19,7 @@ class MissionAcceptForm extends Component {
   onFormSubmit(e) {
     e.preventDefault();
     const fields = this.getForm().get('fields').toJS();
-    dashboardActions.acceptMission(fields.tier, fields.focus, fields.country);
+    dashboardActions.acceptMission(fields.tier, fields.focus, fields.country, {avoidfatals: fields.avoidfatals});
     dashboardActions.clearMissionAcceptFields(fields.rank);
   }
 
@@ -72,6 +76,14 @@ class MissionAcceptForm extends Component {
               ]}
               value={form.getIn(['fields', 'country']) || 'In Country ...'}
             />
+            <label htmlFor='AvoidFatalsCheck'>Avoid Fatals</label>
+            <input
+              checked={form.getIn(['fields', 'avoidfatals'])}
+              id='AvoidFatalsCheck'
+              name='avoidfatals'
+              onClick={(e) => this.changeOption(e)}
+              type='checkbox'
+              />
             <button
               id='MissionAcceptButton'
               type='submit'>{msg('dashboard.strategical.missionaccept.button.acceptMission')}</button>

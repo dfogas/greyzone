@@ -1,7 +1,7 @@
 import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
-import {jsonapiCursor} from '../state';
+import {contestCursor, jsonapiCursor} from '../state';
 import cconfig from '../client.config';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
@@ -58,6 +58,12 @@ export const dispatchToken = register(({action, data}) => {
           .update('gameContacts', val => val - data.message.price.contacts);
       });
   }
+
+  if (action === dashboardActions.changeMissionOption)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', data.name], data.value);
+    });
 
   if (action === dashboardActions.changeOption)
     jsonapiCursor(jsonapi => {
@@ -167,6 +173,13 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['components', 'dashboard', 'index'], data.message);
     });
+
+  if (action === dashboardActions.refreshStandings) {
+    console.log(data);
+    contestCursor(() => {
+      return immutable.fromJS(data);
+    });
+  }
 
   if (action === dashboardActions.showTip)
     jsonapiCursor(jsonapi => {

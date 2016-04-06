@@ -2,6 +2,7 @@
 import Promise from 'bluebird';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
+import 'isomorphic-fetch';
 import cconfig from '../client.config';
 import Agent from '../../server/lib/greyzone/agents.generator';
 import MissionsList from '../../server/lib/greyzone/missions.list';
@@ -12,6 +13,7 @@ import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
 import capabilityCheck from '../lib/capabilitycheck';
 import checkArmory from '../lib/checkarmory';
+import isFatal from '../lib/isfatal';
 import determineFocus from '../lib/determinefocus';
 import leadershipCheck from '../lib/leadershipcheck';
 import maxAgentsCheck from '../lib/maxagentscheck';
@@ -20,14 +22,17 @@ import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
 
-export function acceptMission(tier, focus, country) {
+/* Number, String, String, Object */
+export function acceptMission(tier, focus, country, options) {
+  console.log('Avoid Fatals: ' + options.avoidfatals);
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const missions = jsonapiCursor(['missions']);
   const operationsnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
   const modifiedMissionsList = xmissioncheck(operationsnames, MissionsList);
   const focusedModifiedMissionsList = focus !== 'random' && focus !== 'special' && focus !== 'multiplayer' ? modifiedMissionsList.filter(mission => determineFocus(mission.rewards)[focus]) : modifiedMissionsList;
-  const missionsPerTier = focusedModifiedMissionsList.filter(mission => mission.tier === parseInt(tier, 10));
+  const optionedMissionList = options.avoidfatals ? focusedModifiedMissionsList.filter(mission => !isFatal(mission.losses)) : focusedModifiedMissionsList;
+  const missionsPerTier = optionedMissionList.filter(mission => mission.tier === parseInt(tier, 10));
   let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
   if (country !== 'random')
     randomMission.inCountry = country;
@@ -65,6 +70,13 @@ export function buyEnhancement({target}) {
 export function buyStatus({target}) {
   const status = StatusesList.filter(status => status.name === target.parentNode.childNodes[0].innerHTML)[0];
   dispatch(buyStatus, {message: status});
+}
+
+export function changeMissionOption(name, value) {
+  const promise = new Promise((resolve, reject) => {
+    resolve({name, value});
+  });
+  dispatch(changeMissionOption, promise);
 }
 
 export function changeOption(name, value) {
@@ -116,34 +128,22 @@ export function logMissionsWindow(message) {
   dispatch(logMissionsWindow, {message});
 }
 
-export function newUserAppendState(email, organization) {
+export function pointerChange(whereto) {
+  dispatch(pointerChange, {message: whereto});
+}
+
+export function refreshStandings() {
   const api = process.env.NODE_ENV === 'production' ?
     cconfig.dnsprod + '/api/v1/' :
     cconfig.dnsdevel + '/api/v1/';
-  fetch(api + 'users', {
-    method: 'GET',
-    headers: {'Content-type': 'application/json'}
-  })
-    .then((res) => {
-      if (res.status >= 400)
-        throw new Error('Bad server response.');
-      return res.json();
-    })
-    .then((users) => {
-      let userId = users.filter(user => user.username === email).map(user => user._id);
-      return userId[0];
-    })
-    .then((userId) => {
-      fetch(api + 'players', {
-        method: 'POST',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify({userId: userId, name: organization})
-      });
+  var promise = fetch(api + 'contest/')
+    .then((response) => {
+      if (response.status >= 400)
+        throw new Error('Bad response from the server.');
+      return response.json();
     });
-}
 
-export function pointerChange(whereto) {
-  dispatch(pointerChange, {message: whereto});
+  dispatch(refreshStandings, promise);
 }
 
 export function saveAgent(agent) {
@@ -177,6 +177,7 @@ setToString('dashboard', {
   bookMissionPrice,
   buyEnhancement,
   buyStatus,
+  changeMissionOption,
   changeOption,
   clearAgentHireFields,
   clearMissionAcceptFields,
@@ -184,8 +185,8 @@ setToString('dashboard', {
   log,
   logAgentsWindow,
   logMissionsWindow,
-  newUserAppendState,
   pointerChange,
+  refreshStandings,
   saveAgent,
   showTip,
   updateFormField,

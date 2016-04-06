@@ -6,7 +6,6 @@ import immutable from 'immutable';
 
 class OptionsWindow extends Component {
   changeOption(e) {
-    e.preventDefault();
     dashboardActions.changeOption(e.target.name, e.target.checked);
   }
 
@@ -15,13 +14,13 @@ class OptionsWindow extends Component {
     const tutorial = options.get('tutorial');
     const multiplayer = options.get('multiplayer');
     const tipsenable = options.get('tipsenable');
+    const debug = options.get('debug');
     return (
       <div id='OptionsWindow'>
-        <form action=''>
-          <input checked={multiplayer} name='multiplayer' onClick={e => this.changeOption(e)} type='checkbox'>Multiplayer</input>
-          <input checked={tutorial} name='tutorial' onClick={e => this.changeOption(e)} type='checkbox'>Tutorial</input>
-          <input checked={tipsenable} name='tipsenable' onClick={e => this.changeOption(e)} type='checkbox'>Tips</input>
-        </form>
+        <label><input checked={multiplayer} name='multiplayer' onChange={e => this.changeOption(e)} type='checkbox' />Multiplayer</label>
+        <label><input checked={tutorial} name='tutorial' onChange={e => this.changeOption(e)} type='checkbox' />Tutorial</label>
+        <label><input checked={tipsenable} name='tipsenable' onChange={e => this.changeOption(e)} type='checkbox' />Tips</label>
+        <label><input checked={debug} name='debug' onChange={e=> this.changeOption(e)} type='checkbox' />Debug Mode</label>
       </div>
     );
   }

@@ -1,0 +1,1 @@
+import agentRankup from '../agentrankup';

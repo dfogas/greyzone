@@ -1,5 +1,6 @@
 import './gemini-scrollbar.css';
 import './contestwindow.styl';
+import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,6 +11,7 @@ class ContestWindow extends Component {
   refreshContest() {
     // TODO:
     console.log('Refreshing players\s standings...'); // eslint-disable-line no-console
+    dashboardActions.refreshStandings();
   }
 
   render() {

@@ -1,7 +1,9 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
-import leadershipCheck from '../lib/leadershipcheck';
+import leadershipcheck from '../lib/leadershipcheck';
+import agentRankup from '../lib/agentrankup';
+import trainingtable from '../../server/lib/greyzone/trainingtable';
 
 export function toArmory(agent) {
   dispatch(toArmory, {message: agent});
@@ -46,8 +48,11 @@ export function equip(obj) {
 export function getRank(agent) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  if (leadershipCheck(agent.get('rank'), enhancementnames))
-    dispatch(getRank, agent);
+  console.log(agentRankup(trainingtable, 7, agent));
+  if (leadershipcheck(agent.get('rank'), enhancementnames))
+    dispatch(getRank, agentRankup(trainingtable, 7, agent));
+  else
+    dispatch(logArmory, {message: 'You must upgrade your training facility to train agent further.'});
 }
 
 // export function goFree() {

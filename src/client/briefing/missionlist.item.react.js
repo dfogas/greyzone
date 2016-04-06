@@ -8,6 +8,7 @@ import MissionClock from './mission.clock.react';
 class MissionListItem extends Component {
   missionPass() {
     const {mission} = this.props;
+    missionActions.agentsAreBackFromMission();
     missionActions.passOnMission(mission);
     missionActions.setDefault();
   }

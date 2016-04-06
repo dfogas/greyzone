@@ -20,7 +20,7 @@ let Agent = function(character, rank) {
     stealthSkill += 3;
 
   for (let i = 6; i < trainingtable[rank - 1].statstotal; i += 1) {
-    let randomSkill = getRandomSkill();
+    let randomSkill = getRandomSkill(7, {operationsSkill, electronicsSkill, stealthSkill});
     if (randomSkill === 'operationsSkill')
       operationsSkill += 1;
     if (randomSkill === 'electronicsSkill')

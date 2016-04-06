@@ -13,6 +13,7 @@ import passport from 'passport';
 
 // controllers
 import auth from './controllers/auth';
+import contest from './controllers/contest';
 import player from './controllers/player';
 import user from './controllers/user';
 
@@ -43,6 +44,7 @@ app.use(cors()); // what does it do?
 
 // route index(es)
 app.use('/auth', auth);
+app.use('/contest', contest);
 app.use('/users', user);
 app.use('/players', player);
 

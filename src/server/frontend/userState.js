@@ -48,13 +48,7 @@ export default function userState() {
             '3': 1000,
             '4': 5000,
             '5': 10000,
-            '6': 50000,
-            '7': 100000,
-            '8': 500000,
-            '9': 1000000,
-            '10': 5500000,
-            '11': 10000000,
-            '12': 55000000
+            '6': 50000
           },
           missionsPriceList: {
             '1': {cash: 0, contacts: 3},
@@ -87,7 +81,7 @@ export default function userState() {
       countrystats: []
     };
 
-    fetch(api + 'players/')
+    fetch(api + 'contest/')
       .then((response) => {
         if (response.status >= 400)
           throw new Error('Bad server response.');
