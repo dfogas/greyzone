@@ -26,27 +26,27 @@ router.route('/')
     });
   });
 
-router.route('/')
-  .get((req, res) => {
-    Player.find((err, players) => {
-      if (err)
-        res.send(err);
-
-      res.send(players);
-    });
-  });
-
-router.route('/:player_id')
-  .get((req, res) => {
-    Player.findOne({
-      _id: req.params.player_id
-    }, function(err, player) {
-      if (err)
-        res.send(err);
-
-      res.send(player);
-    });
-  });
+// router.route('/')
+//   .get((req, res) => {
+//     Player.find((err, players) => {
+//       if (err)
+//         res.send(err);
+//
+//       res.send(players);
+//     });
+//   });
+//
+// router.route('/:player_id')
+//   .get((req, res) => {
+//     Player.findOne({
+//       _id: req.params.player_id
+//     }, function(err, player) {
+//       if (err)
+//         res.send(err);
+//
+//       res.send(player);
+//     });
+//   });
 
 router.route('/:player_id')
   .put((req, res) => {
@@ -66,14 +66,14 @@ router.route('/:player_id')
     );
   });
 
-router.route('/:player_id')
-  .delete((req, res) => {
-    Player.remove({}, function(err) {
-      if (err)
-        res.send(err);
-
-      res.json({message: 'Player deleted'});
-    });
-  });
+// router.route('/:player_id')
+//   .delete((req, res) => {
+//     Player.remove({}, function(err) {
+//       if (err)
+//         res.send(err);
+//
+//       res.json({message: 'Player deleted'});
+//     });
+//   });
 
 export default router;

@@ -124,49 +124,10 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === authActions.login) {
-    const {email} = data;
-    const api = process.env.NODE_ENV === 'production' ?
-      cconfig.dnsprod + '/api/v1/' :
-      cconfig.dnsdevel + '/api/v1/';
-
-    fetch(api + 'users/')
-      .then((response) => {
-        if (response.status >= 400)
-          throw new Error('Bad response from server.');
-        return response.json();
-      })
-      .then((json) => {
-        var user = json.filter(function(user) {
-          return user.username === email;
-        });
-        return user[0];
-      })
-      .then((user) => {
-        const {
-          _id
-        } = user;
-        fetch(api + 'players/')
-          .then((response) => {
-            if (response.status >= 400)
-              throw new Error('Bad response from server.');
-            return response.json();
-          })
-          .then((json) => {
-            var player = json.filter((player) => {
-              return _id === player.userId;
-            });
-            return player[0];
-          })
-          .then((player) => {
-            jsonapiCursor(jsonapi => {
-              const newjsonapi = immutable.fromJS(player);
-              jsonapi = newjsonapi;
-              return jsonapi;
-            });
-          });
-      });
-  }
+  if (action === authActions.login)
+    jsonapiCursor(() => {
+      return immutable.fromJS(data);
+    });
 
   if (action === dashboardActions.pointerChange)
     jsonapiCursor(jsonapi => {

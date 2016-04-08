@@ -6,22 +6,23 @@ import classnames from 'classnames';
 
 class Dice extends Component {
   drag(ev) {
-    const {diceindex, dicetype, value} = this.props;
-    ev.dataTransfer.setData('text', JSON.stringify({diceindex: diceindex, dicetype: dicetype, value: value}));
+    const {diceindex, dicetype, dicekey, name} = this.props;
+    ev.dataTransfer.setData('text', JSON.stringify({diceindex: diceindex, dicetype: dicetype, dicekey: dicekey, name: name}));
+    // console.log(JSON.stringify({diceindex: diceindex, dicetype: dicetype, dicekey: dicekey, name: name}));
   }
 
   render() {
-    const {diceindex, dicetype, key, value} = this.props;
+    const {diceindex, dicekey, dicetype, key, name} = this.props;
 
     return (
       <div
-        className={classnames('dice', dicetype, value)}
+        className={classnames('dice', dicetype, name)}
         diceindex={diceindex}
         dicetype={dicetype}
         draggable={true}
-        key={key}
         onDragStart={this.drag.bind(this)}
-        value={value}
+        name={name}
+        key={key}
         />
     );
   }
@@ -31,7 +32,7 @@ Dice.propTypes = {
   diceindex: React.PropTypes.number.isRequired,
   dicetype: React.PropTypes.string.isRequired,
   key: React.PropTypes.string,
-  value: React.PropTypes.string.isRequired
+  name: React.PropTypes.string.isRequired
 };
 
 export default Dice;

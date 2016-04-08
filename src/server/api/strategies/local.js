@@ -19,8 +19,10 @@ passport.use(new Strategy({
   },
   (req, username, password, done) => {
     User.findOne({username: req.user ? req.user.username : username}, (err, user) => {
-      if (err)
-          done(err);
+      if (err) {
+        console.log('local' + err.message);
+        done(err);
+      }
 
       if (!user)
         return done(null, false, {message: 'Incorrect username.'});

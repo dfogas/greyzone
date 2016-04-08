@@ -8,7 +8,7 @@ class NotFound extends Component {
   render() {
     return (
       <DocumentTitle title={msg('notFound.title')}>
-        <div className="notfound-page">
+        <div className="notfound-page" style={{color: 'silver'}}>
           <h1>{msg('notFound.header')}</h1>
           <p>{msg('notFound.message')}</p>
         </div>

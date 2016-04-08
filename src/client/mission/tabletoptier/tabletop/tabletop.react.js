@@ -38,9 +38,13 @@ class TableTop extends Component {
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const missionStarted = activemission.get('started');
-    const dicesthrown = actiondices.toJS().map(action => action.name);
-    const remainingdices = actiondices.toJS().map(action => action.type);
+    const dicesthrown = actiondices.map(action => action.get('name'));
+    const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey')})));
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
+//
+    // console.log(actiondices.toJS());
+    // console.log(remainingdices.toJS());
+    // console.log(dicesthrown.toJS());
 
     return (
       <div
@@ -52,14 +56,15 @@ class TableTop extends Component {
           isActual={true}
           title={activemission.get('title')}
           />
-        {agentontask && remainingdices.length ?
+        {agentontask && remainingdices.size ?
           remainingdices.map((dice, i) => {
             return (
               <Dice
                 diceindex={i}
-                dicetype={dice}
-                key={uuid() + 'dice'}
-                value={dicesthrown[i]}
+                dicekey={dice.get('dicekey')}
+                dicetype={dice.get('type')}
+                key={uuid()}
+                name={dicesthrown.get(i)}
                 />
             );
           }) : <div id="MissionStartStatus">Mission has not started yet.</div>

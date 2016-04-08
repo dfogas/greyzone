@@ -18,13 +18,13 @@ import determineFocus from '../lib/determinefocus';
 import leadershipCheck from '../lib/leadershipcheck';
 import maxAgentsCheck from '../lib/maxagentscheck';
 import maxMissionsCheck from '../lib/maxmissionscheck';
+import noDoubleAgents from '../lib/nodoubleagents';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
 
 /* Number, String, String, Object */
 export function acceptMission(tier, focus, country, options) {
-  console.log('Avoid Fatals: ' + options.avoidfatals);
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const missions = jsonapiCursor(['missions']);
   const operationsnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
@@ -95,7 +95,7 @@ export function clearMissionAcceptFields() {
 }
 
 export function hireAgent(specialist, rank) {
-  const agent = Agent(specialist, rank);
+  const agent = noDoubleAgents(jsonapiCursor(['agents']).toJS(), rank, specialist);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
   const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
   const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (checkArmory() ? 1 : 0);
@@ -103,6 +103,8 @@ export function hireAgent(specialist, rank) {
   const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
   const agentPrice = agentPriceList[rank];
   const gameCash = jsonapiCursor(['gameCash']);
+
+  console.log(agent);
 
   if (agentPrice > gameCash)
     dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});

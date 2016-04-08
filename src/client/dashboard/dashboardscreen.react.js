@@ -144,7 +144,7 @@ class DashboardScreen extends Component {
             <AchievementsWindow
               achievements={achievements}
               />}
-          {dashPointer === 'options' &&
+          {dashPointer === 'options' && options.get('debug') &&
             <button
               className='set-default-button'
               onClick={this.setDefaultMission}

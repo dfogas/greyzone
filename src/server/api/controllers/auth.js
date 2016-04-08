@@ -24,14 +24,19 @@ passport.deserializeUser((id, done) => {
 });
 
 router.route('/login')
-  .post(localAuthenticator, (req, res, next) => {
-    // res.status(200).end();
-    // simulate DB checks
-    // wihout it -> WRONG PASSWORD on login
-    setTimeout(() => {
-      res.status(200).end();
-    }, 1000);
-
+  .post(localAuthenticator, (req, res) => {
+    const {email} = req.body;
+    User.findOne({username: email}, function(err, user) {
+      if (err)
+        throw new Error(err);
+      else
+        Player.findOne({userId: user._id}, function(err, player) {
+          if (err)
+            throw new Error(err);
+          else
+            res.json(player);
+        });
+    });
   });
 
 router.route('/signup')

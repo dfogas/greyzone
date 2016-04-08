@@ -46,21 +46,21 @@ export const dispatchToken = register(({action, data}) => {
     if (data.equipment.get('name') === msg('equipments.operations.0.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'operations', name: 'fail'}))
+          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'operations', name: 'fail', dicekey: uuid() + 'hiredgun'}))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
     if (data.equipment.get('name') === msg('equipments.electronics.0.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'electronics', name: 'fail'}))
+          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'electronics', name: 'fail', dicekey: uuid() + 'handykit'}))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
     if (data.equipment.get('name') === msg('equipments.stealth.0.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'stealth', name: 'fail'}))
+          .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], actiondices.push({type: 'stealth', name: 'fail', dicekey: uuid() + 'fakepassports'}))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 

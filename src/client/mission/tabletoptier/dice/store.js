@@ -12,7 +12,7 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(actdices.map(dice => dicethrow(dice.type))))
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(actdices.map(dice => dicethrow(dice.type, dice.dicekey))))
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], true);
     });
   }
@@ -20,8 +20,8 @@ export const dispatchToken = register(({action, data}) => {
   if (action === actions.create)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .updateIn(['activemission', 'mission', 'currenttask', 'actiondices'], val => val.push({type: data.dicetype, name: data.value}))
-        .setIn(['activemission', 'equipmenteffects', 'actionchoose'], null);
+      .updateIn(['activemission', 'mission', 'currenttask', 'actiondices'], val => val.push(immutable.fromJS({type: data.dicetype, name: data.name, key: data.key})))
+      .setIn(['activemission', 'equipmenteffects', 'actionchoose'], null);
     });
 
   if (action === actions.remove)
@@ -31,7 +31,7 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
     });
 
-  if (action === actions.roll)
-    dicethrow(data.message.type);
+  // if (action === actions.roll)
+  //   dicethrow(data.message.type);
 
 });

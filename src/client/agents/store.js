@@ -4,6 +4,7 @@ import immutable from 'immutable';
 import getRandomSkill from '../lib/getrandomskill';
 import trainingtable from '../../server/lib/greyzone/trainingtable';
 import dayandtime from '../lib/dayandtime';
+import uuid from '../lib/guid';
 
 import * as agentActions from './actions';
 
@@ -49,13 +50,13 @@ export const dispatchToken = register(({action, data}) => {
     // is remaining dices set? - PROBLEM: what if mission changes?
     if (taskhasOperations > -1)
       for (i = 0; i < agentontask.get('operationsSkill'); i += 1)
-        actdices.push({type: 'operations', name: 'fail'});
+        actdices.push({type: 'operations', name: 'fail', dicekey: uuid() + 'dice'});
     if (taskhasElectronics > -1)
       for (i = 0; i < agentontask.get('electronicsSkill'); i += 1)
-        actdices.push({type: 'electronics', name: 'fail'});
+        actdices.push({type: 'electronics', name: 'fail', dicekey: uuid() + 'dice'});
     if (taskhasStealth > -1)
       for (i = 0; i < agentontask.get('stealthSkill'); i += 1)
-        actdices.push({type: 'stealth', name: 'fail'});
+        actdices.push({type: 'stealth', name: 'fail', dicekey: uuid() + 'dice'});
 
     jsonapiCursor(jsonapi => {
       return jsonapi

@@ -4,6 +4,7 @@ import {ValidationError} from '../lib/validation';
 import {dispatch} from '../dispatcher';
 import {validate} from '../validation';
 import {msg} from '../intl/store';
+import cconfig from '../client.config';
 
 export function login(fields) {
   const promise = validateForm(fields) // Promise, because we don't know whether fields are valid.
@@ -30,24 +31,26 @@ function validateForm(fields) {
 }
 
 function validateCredentials(fields) {
-  return new Promise((resolve, reject) => {
+  const api = process.env.NODE_ENV === 'production' ?
+    cconfig.dnsprod + '/api/v1/' :
+    cconfig.dnsdevel + '/api/v1/';
 
-    // For real usage, consider matthew-andrews/isomorphic-fetch.
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/v1/auth/login', true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-
-    // TODO: Show how to handle different password/username server errors.
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState !== 4) return;
-      if (xhr.status === 200)
-        resolve(fields);
+  return fetch(api + 'auth/login', {
+      method: 'POST',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify(fields)
+    })
+    .then(response => {
+      let error;
+      if (response.ok)
+        return response.json();
+      if (response.status === 401)
+        error = new ValidationError(msg('auth.form.wrongPassword'), 'password');
       else
-        reject(new ValidationError(msg('auth.form.wrongPassword'), 'password'));
-    };
-
-    xhr.send(JSON.stringify(fields));
-  });
+        error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    });
 }
 
 export function loginError(error) {

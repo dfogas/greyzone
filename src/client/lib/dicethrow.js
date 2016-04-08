@@ -1,4 +1,4 @@
-export default function dicethrow(type) {
+export default function dicethrow(type, dicekey) {
   var diceThrowResult;
   var result;
   switch (type) {
@@ -41,5 +41,5 @@ export default function dicethrow(type) {
       else
         diceThrowResult = 'fail';
   }
-  return {type: type, name: diceThrowResult};
+  return {type: type, name: diceThrowResult, dicekey: dicekey};
 }
