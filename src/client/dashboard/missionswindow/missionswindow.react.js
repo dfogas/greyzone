@@ -52,7 +52,7 @@ class MissionsWindow extends Component {
 }
 
 MissionsWindow.propTypes = {
-  agentbeingsaved: React.Proptypes.instanceOf(immutable.Map),
+  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
   enhancements: React.PropTypes.instanceOf(immutable.List),
   missionlog: React.PropTypes.string,
