@@ -1,4 +1,5 @@
 import * as missionActions from './actions';
+import * as briefingActions from '../briefing/actions';
 import {jsonapiCursor} from '../state';
 import {register} from '../dispatcher';
 import immutable from 'immutable';
@@ -88,10 +89,11 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.checkFatalities) {
-    const results = jsonapiCursor(['activemission', 'losses']).toJS();
+    const results = data.results.toJS();
     const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
     const activemission = jsonapiCursor(['activemission']);
-    if (results.agentImprisoned)
+    const agentbeingsaved = jsonapiCursor(['agentbeingsaved']);
+    if (results.agentImprisoned && agentontask)
       jsonapiCursor(jsonapi => {
         return jsonapi
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'prison'], true)
@@ -99,13 +101,22 @@ export const dispatchToken = register(({action, data}) => {
             dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Agent ' + agentontask.get('name') + ' was caught in ' + activemission.get('inCountry') + '.'
           ));
       });
-    if (results.agentKilled)
+    if (results.agentKilled && agentontask)
       jsonapiCursor(jsonapi => {
         return jsonapi
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'KIA'], true)
           .update('log', val => val.unshift(
             dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Agent ' + agentontask.get('name') + ' was killed in ' + activemission.get('inCountry') + '.'
           ));
+      });
+    if (results.agentFreed && agentbeingsaved)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .update('agents', val => val.unshift(agentbeingsaved.set('prison', false)))
+          .update('log', val => val.unshift(
+            dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Agent ' + agentbeingsaved.get('name') + ' was freed from prison .'
+          ))
+          .set('agentbeingsaved', null);
       });
   }
 
@@ -200,7 +211,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === missionActions.passOnMission)
+  if (action === briefingActions.passMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('missions', val => val.delete(val.indexOf(data.message)));
@@ -219,16 +230,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['missions'], val => val.delete(completedmission));
-    });
-  }
-
-  if (action === missionActions.select) {
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    // if (data.message) - TODO: Why is this check here?
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .update('agents', val => val.concat(agentsonmission))
-        .set('activemission', data.message ? immutable.fromJS(defaultActiveMission).mergeDeep(data.message) : immutable.fromJS(defaultActiveMission));
     });
   }
 

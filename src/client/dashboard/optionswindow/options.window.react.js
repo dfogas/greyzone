@@ -4,9 +4,15 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
+import DebugWindow from './debug.window.react';
+
 class OptionsWindow extends Component {
   changeOption(e) {
     dashboardActions.changeOption(e.target.name, e.target.checked);
+  }
+
+  sanitize() {
+    dashboardActions.sanitizeAgents();
   }
 
   render() {
@@ -21,6 +27,9 @@ class OptionsWindow extends Component {
         <label><input checked={tutorial} name='tutorial' onChange={e => this.changeOption(e)} type='checkbox' />Tutorial</label>
         <label><input checked={tipsenable} name='tipsenable' onChange={e => this.changeOption(e)} type='checkbox' />Tips</label>
         <label><input checked={debug} name='debug' onChange={e=> this.changeOption(e)} type='checkbox' />Debug Mode</label>
+        <DebugWindow
+          debug={debug}
+          />
       </div>
     );
   }

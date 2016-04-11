@@ -21,6 +21,7 @@ import '../intl/store';
 import '../agents/store';
 import '../agents/scrollbar/store';
 import '../auth/store';
+import '../briefing/store';
 import '../dashboard/store';
 import '../mission/tabletoptier/dice/store';
 import '../equipments/store';

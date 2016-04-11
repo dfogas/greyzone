@@ -14,23 +14,23 @@ class ActionChoose extends Component {
       <div className='action-choose'>
         {actionchoose === 'operations' &&
           <div>
-            <Dice dicetype='operations' dicekey={uuid() + 'actionchoose'} name='pursuit' />
-            <Dice dicetype='operations' dicekey={uuid() + 'actionchoose'} name='close_combat' />
-            <Dice dicetype='operations' dicekey={uuid() + 'actionchoose'} name='hit' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' name='pursuit' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' name='close_combat' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' name='hit' />
           </div>
         }
         {actionchoose === 'electronics' &&
           <div>
-            <Dice dicetype='electronics' dicekey={uuid() + 'actionchoose'} name='decipher' />
-            <Dice dicetype='electronics' dicekey={uuid() + 'actionchoose'} name='monitor' />
-            <Dice dicetype='electronics' dicekey={uuid() + 'actionchoose'} name='tap' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' name='decipher' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' name='monitor' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' name='tap' />
           </div>
         }
         {actionchoose === 'stealth' &&
           <div>
-            <Dice dicetype='stealth' dicekey={uuid() + 'actionchoose'} name='hide' />
-            <Dice dicetype='stealth' dicekey={uuid() + 'actionchoose'} name='infiltrate' />
-            <Dice dicetype='stealth' dicekey={uuid() + 'actionchoose'} name='puppet' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' name='hide' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' name='infiltrate' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' name='puppet' />
           </div>
         }
       </div>

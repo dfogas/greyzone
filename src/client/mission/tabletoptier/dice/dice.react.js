@@ -12,7 +12,7 @@ class Dice extends Component {
   }
 
   render() {
-    const {diceindex, dicekey, dicetype, key, name} = this.props;
+    const {diceindex, dicetype, key, name} = this.props;
 
     return (
       <div
@@ -20,9 +20,9 @@ class Dice extends Component {
         diceindex={diceindex}
         dicetype={dicetype}
         draggable={true}
-        onDragStart={this.drag.bind(this)}
-        name={name}
         key={key}
+        name={name}
+        onDragStart={this.drag.bind(this)}
         />
     );
   }
@@ -30,6 +30,7 @@ class Dice extends Component {
 
 Dice.propTypes = {
   diceindex: React.PropTypes.number.isRequired,
+  dicekey: React.PropTypes.string,
   dicetype: React.PropTypes.string.isRequired,
   key: React.PropTypes.string,
   name: React.PropTypes.string.isRequired

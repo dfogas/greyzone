@@ -11,7 +11,7 @@ import AgentsList from './agents.list.react';
 class AgentsWindow extends Component {
 
   render() {
-    const {agentbeingfreed, agenthire, agentlog, agents, agentspricelist, dashboard, options} = this.props;
+    const {agentbeingsaved, agenthire, agentlog, agents, agentspricelist, dashboard, options} = this.props;
 
     return (
       <div id='AgentsWindow'>
@@ -23,7 +23,7 @@ class AgentsWindow extends Component {
           {agentlog}
         </div>
         <AgentsList
-          agentbeingfreed={agentbeingfreed}
+          agentbeingsaved={agentbeingsaved}
           agents={agents}
           dashboard={dashboard}
           options={options}

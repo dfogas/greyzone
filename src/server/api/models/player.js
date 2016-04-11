@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 var PlayerSchema = new Schema({
   achievements: [Schema.Types.Mixed],
   activemission: Schema.Types.Mixed,
+  agentbeingsaved: Schema.Types.Mixed,
   agentinarmory: Schema.Types.Mixed,
   agents: [Schema.Types.Mixed],
   components: Schema.Types.Mixed,

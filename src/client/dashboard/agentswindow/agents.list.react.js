@@ -13,7 +13,7 @@ class AgentsList extends Component {
   }
 
   render() {
-    const {agentbeingfreed, agents, dashboard, options} = this.props;
+    const {agentbeingsaved, agents, dashboard, options} = this.props;
 
     if (!agents.size || dashboard.getIn(['strategical', 'agenthire', 'tip']))
       return (
@@ -31,14 +31,17 @@ class AgentsList extends Component {
       <div id="AgentsList">
         <table>
           <tbody>
-            {agents.map(agent => {
-              return (
-                <AgentsListRecord
-                  agent={agent}
-                  agentbeingfreed={agentbeingfreed}
-                  />
+            {agents
+              .filter(agent => agent !== null)
+              .map(agent => {
+                return (
+                  <AgentsListRecord
+                    agent={agent}
+                    agentbeingsaved={agentbeingsaved}
+                    />
               );
-            })}
+              })
+            }
           </tbody>
         </table>
         {options.get('tipsenable') && <button
@@ -50,7 +53,7 @@ class AgentsList extends Component {
 }
 
 AgentsList.propTypes = {
-  agentbeingfreed: React.PropTypes.instanceOf(immutable.Map),
+  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
   options: React.PropTypes.instanceOf(immutable.Map)

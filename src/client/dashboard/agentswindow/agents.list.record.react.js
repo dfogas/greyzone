@@ -19,8 +19,8 @@ class AgentListRecord extends Component {
   }
 
   render() {
-    const {agent, agentbeingfreed} = this.props;
-    const isFreed = agentbeingfreed ? agent.get('name') === agentbeingfreed.get('name') : false;
+    const {agent, agentbeingsaved} = this.props;
+    const isFreed = agentbeingsaved ? agent.get('name') === agentbeingsaved.get('name') : false;
 
     const classString = classnames('agent-list-record', agent.get('specialist'));
 
@@ -54,7 +54,7 @@ class AgentListRecord extends Component {
 
 AgentListRecord.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map),
-  agentbeingfreed: React.PropTypes.instanceOf(immutable.Map)
+  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentListRecord;

@@ -1,7 +1,7 @@
 /* Smart */
 import './dashboardscreen.styl';
 // import * as dashboardActions from './actions';
-import * as missionActions from '../mission/actions';
+// import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -43,11 +43,6 @@ class DashboardScreen extends Component {
       animate(playerWindowDiv, 'top', 'px', 0, -150, 500);
     if (playerWindowDiv.style.top === '-150px')
       animate(playerWindowDiv, 'top', 'px', -150, 0, 500);
-  }
-
-  setDefaultMission() {
-    missionActions.agentsAreBackFromMission();
-    missionActions.setDefault();
   }
 
   render() {
@@ -92,12 +87,14 @@ class DashboardScreen extends Component {
         <div id='DashboardContent'>
           {dashPointer === 'strategical' &&
             <PlayersWindow
+              enhancements={enhancementsowned}
               gameCash={jsonapi.get('gameCash')}
               gameContacts={jsonapi.get('gameContacts')}
               name={jsonapi.get('name')}
             />}
           {dashPointer === 'strategical' &&
             <MissionsWindow
+              agentbeingsaved={jsonapi.get('agentbeingsaved')}
               dashboard={dashboard}
               enhancements={enhancementsowned}
               missionlog={jsonapi.getIn(['dashboard', 'missionswindow', 'message'])}
@@ -106,7 +103,7 @@ class DashboardScreen extends Component {
             />}
           {dashPointer === 'strategical' &&
             <AgentsWindow
-              agentbeingfreed={jsonapi.get('agentbeingfreed')}
+              agentbeingsaved={jsonapi.get('agentbeingsaved')}
               agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
               agentlog={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
               agents={totalagents}
@@ -144,12 +141,6 @@ class DashboardScreen extends Component {
             <AchievementsWindow
               achievements={achievements}
               />}
-          {dashPointer === 'options' && options.get('debug') &&
-            <button
-              className='set-default-button'
-              onClick={this.setDefaultMission}
-            >Set Default Mission</button>
-          }
           {/*<button
             className='hide-show-button'
             onClick={this.hidePlayersWindow}

@@ -1,26 +1,16 @@
 import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
-import getRandomSkill from '../lib/getrandomskill';
-import trainingtable from '../../server/lib/greyzone/trainingtable';
+// import getRandomSkill from '../lib/getrandomskill';
+// import trainingtable from '../../server/lib/greyzone/trainingtable';
 import dayandtime from '../lib/dayandtime';
 import uuid from '../lib/guid';
 
-import * as agentActions from './actions';
+import * as agentsActions from './actions';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === agentActions.assignMission) {
-    let agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    let agents = jsonapiCursor(['agents']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(data.message))
-        .setIn(['agents'], agents.delete(agents.indexOf(data.message)));
-    });
-  }
-
-  if (action === agentActions.toArmory) {
+  if (action === agentsActions.toArmory) {
     const agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -29,7 +19,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === agentActions.assignTask) {
+  if (action === agentsActions.assignTask) {
     const agentontask = data.message;
     const actiondices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']);
     const taskscompleted = jsonapiCursor(['activemission', 'taskscompleted']);
@@ -67,21 +57,21 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === agentActions.backFromArmory)
+  if (action === agentsActions.backFromArmory)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('agents', val => val.push(data.message))
         .set('agentinarmory', null);
     });
 
-  if (action === agentActions.backtoRoster)
+  if (action === agentsActions.backtoRoster)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('agents', val => val.push(data.message))
         .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.message)));
     });
 
-  if (action === agentActions.dismissAgent)
+  if (action === agentsActions.dismissAgent)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('log', val => val.unshift(
@@ -92,7 +82,7 @@ export const dispatchToken = register(({action, data}) => {
         .update('agents', val => val.delete(val.indexOf(data.message)));
     });
 
-  if (action === agentActions.equip) {
+  if (action === agentsActions.equip) {
     const equipments = jsonapiCursor(['equipments']);
     const stockindex = equipments.indexOf(equipments.find(equipment => equipment.get('name') === data.get('name')));
     if (equipments.getIn([stockindex, 'quantity']) > 0)
@@ -104,7 +94,7 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank - TODO: check whether it is already implemented
-  if (action === agentActions.getRank) {
+  if (action === agentsActions.getRank) {
     const agents = jsonapiCursor(['agents']);
     if (data.skill)
       jsonapiCursor(jsonapi => {
@@ -125,7 +115,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === agentActions.incurETA) {
+  if (action === agentsActions.incurETA) {
     const agentETA = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA']);
     if (agentETA + 10 * 60 * 1000 <= Date.now())
       jsonapiCursor(jsonapi => {
@@ -141,7 +131,7 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  if (action === agentActions.logArmory) {
+  if (action === agentsActions.logArmory) {
     data = data.message || data;
     jsonapiCursor(jsonapi => {
       return jsonapi

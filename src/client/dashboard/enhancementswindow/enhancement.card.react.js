@@ -1,3 +1,4 @@
+import './enhancement.card.styl';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
@@ -28,24 +29,25 @@ class EnhancementCard extends Component {
     return (
       <div
         className={'enhancement-card' + (owned ? ' owned' : '')}
+        id={enhancement.get('name').replace(/\s+/g, '')}
         onMouseLeave={(e) => {if (!owned) this.unfocusEnhancement(e); }}
         onMouseOver={(e) => {if (!owned) this.focusEnhancement(e); }}
         >
         <div
           onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
           >{enhancement.get('name')}</div>
-        {owned &&
+        {true &&
           <div><em>{description}</em></div>}
         {owned &&
           <div><small>Owned</small></div>}
         {!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
-          >${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}</div>}
-        {!owned &&
+          >${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
+        {/*!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
-          >{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
+          >{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>*/}
         {!owned && <button
           className='enhancement-buy-button'
           onClick={dashboardActions.buyEnhancement}>

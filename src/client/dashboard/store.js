@@ -20,16 +20,19 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.bookMissionPrice) {
-    const gameCash = jsonapiCursor(['gameCash']);
-    const gameContacts = jsonapiCursor(['gameContacts']);
-    if (gameCash >= data.message.get('cash') && gameContacts >= data.message.get('contacts'))
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .update('gameContacts', val => val - data.message.get('contacts'))
-          .update('gameCash', val => val - data.message.get('cash'));
-      });
-  }
+  if (action === dashboardActions.bookMissionPrice)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('gameContacts', val => val - data.message.get('contacts'))
+        .update('gameCash', val => val - data.message.get('cash'));
+    });
+
+  if (action === dashboardActions.bookPrisonBreakMissionPrice)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('gameContacts', val => val - data.message.get('contacts'))
+        .update('gameCash', val => val - data.message.get('cash'));
+    });
 
   if (action === dashboardActions.buyEnhancement) {
     const gameCash = jsonapiCursor(['gameCash']);
@@ -135,12 +138,36 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['components', 'dashboard', 'index'], data.message);
     });
 
-  if (action === dashboardActions.refreshStandings) {
-    console.log(data);
+  if (action === dashboardActions.prisonBreakMission)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('missions', val => val.unshift(data.missionwETA));
+    });
+
+  if (action === dashboardActions.refreshStandings)
     contestCursor(() => {
       return immutable.fromJS(data);
     });
-  }
+
+  if (action === dashboardActions.sanitizeAgents)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('agents', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
+        .updateIn(['activemission', 'agentsonmission'], val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'));
+    });
+
+  if (action === dashboardActions.sanitizeMissions)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('missions', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'));
+    });
+
+  if (action === dashboardActions.saveAgent)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('agentbeingsaved', immutable.fromJS(data.agent))
+        .update('agents', val => val.delete(val.indexOf(data.agent)));
+    });
 
   if (action === dashboardActions.showTip)
     jsonapiCursor(jsonapi => {

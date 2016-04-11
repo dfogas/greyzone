@@ -1,5 +1,5 @@
 import './agentassignment.styl';
-import * as actions from '../../agents/actions';
+import * as briefingActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import AgentCard from '../../agents/agentcard/agentcard.react';
@@ -11,7 +11,7 @@ class AgentAssignment extends Component {
     ev.preventDefault();
     var data = ev.dataTransfer.getData('text');
 
-    actions.assignMission(agents.find(agent => agent.get('name') === data));
+    briefingActions.assignMission(agents.find(agent => agent.get('name') === data));
   }
 
   allowDrop(ev) {

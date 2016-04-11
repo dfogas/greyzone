@@ -1,11 +1,12 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-// import {jsonapiCursor} from '../state';
+import {jsonapiCursor} from '../state';
 
 /*it should transfer agent from task to agents on mission
   used 3 times*/
 export function agentIsBackFromTask() {
-  dispatch(agentIsBackFromTask, {});
+  if (jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']))
+    dispatch(agentIsBackFromTask, {});
 }
 
 export function agentLockedToTask() {
@@ -36,8 +37,8 @@ export function bookRewards(mission) {
 
 /* check whether there is agentImprisoned or
   agentKilled */
-export function checkFatalities() {
-  dispatch(checkFatalities, {});
+export function checkFatalities(results) {
+  dispatch(checkFatalities, {results});
 }
 
 export function clearTask() {
@@ -76,22 +77,9 @@ export function organizationMissionDone() {
   dispatch(organizationMissionDone, {});
 }
 
-/*finds passed mission within player's missions and removes it*/
-export function passOnMission(mission) {
-  dispatch(passOnMission, {message: mission});
-}
-
 /*finds activemission in missions and removes it*/
 export function removeCompletedMission() {
   dispatch(removeCompletedMission, {});
-}
-
-/*passed mission is merged to become a activemission*/
-export function select(mission) {
-  if (mission && mission.get('ETA') - Date.now() <= 0)
-    dispatch(passOnMission, {message: mission});
-  else
-    dispatch(select, {message: mission});
 }
 
 export function setDefault(mission) {
@@ -130,9 +118,7 @@ setToString('mission', {
   fail,
   log,
   organizationMissionDone,
-  passOnMission,
   removeCompletedMission,
-  select,
   setDefault,
   start,
   success

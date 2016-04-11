@@ -1,8 +1,12 @@
 /* Number [String] -> Boolean
-  checks number of agents against max missions allowed by capability enhancement
+  checks current number of missions against max missions allowed by capability enhancement
 */
+import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 
-function maxAgentsCheck(size, enhancementnames) {
+//TODO: implement SPoC
+const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
+
+function maxMissionsCheck(size, enhancementnames) {
   if (size + 1 <= 4 && enhancementnames.indexOf('Operation I.') !== -1)
     return true;
   if (size + 1 <= 6 && enhancementnames.indexOf('Operation II.') !== -1)
@@ -17,4 +21,4 @@ function maxAgentsCheck(size, enhancementnames) {
     return false;
 }
 
-export default maxAgentsCheck;
+export default maxMissionsCheck;

@@ -64,6 +64,7 @@ class AgentScrollBar extends Component {
         style={style}
       >
         {agents
+          .filter(agent => agent !== null)
           .filter(agent => agent.get('prison') !== true)
           .filter(agent => agent.get('KIA') !== true)
           .map((agent, i) => {

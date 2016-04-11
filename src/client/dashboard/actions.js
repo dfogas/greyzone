@@ -2,59 +2,56 @@
 import Promise from 'bluebird';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import 'isomorphic-fetch';
+import immutable from 'immutable';
 import cconfig from '../client.config';
 import Agent from '../../server/lib/greyzone/agents.generator';
 import MissionsList from '../../server/lib/greyzone/missions.list';
-import randomInt from '../lib/getrandomint';
-import xmissioncheck from '../lib/xmissioncheck';
-
-import {gameCursor} from '../state';
-import {jsonapiCursor} from '../state';
-import capabilityCheck from '../lib/capabilitycheck';
-import checkArmory from '../lib/checkarmory';
-import isFatal from '../lib/isfatal';
-import determineFocus from '../lib/determinefocus';
-import leadershipCheck from '../lib/leadershipcheck';
-import maxAgentsCheck from '../lib/maxagentscheck';
-import maxMissionsCheck from '../lib/maxmissionscheck';
-import noDoubleAgents from '../lib/nodoubleagents';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/status.list';
 
+import {gameCursor} from '../state';
+import {jsonapiCursor} from '../state';
+import missionAccept from '../lib/missionaccept';
+import capabilityCheck from '../lib/capabilitycheck';
+import checkArmory from '../lib/checkarmory';
+import leadershipCheck from '../lib/leadershipcheck';
+import maxAgentsCheck from '../lib/maxagentscheck';
+import maxMissionsCheck from '../lib/maxmissionscheck';
+import noDoubleAgents from '../lib/nodoubleagents';
+import randomInt from '../lib/getrandomint';
+import xmissioncheck from '../lib/xmissioncheck';
+
 /* Number, String, String, Object */
 export function acceptMission(tier, focus, country, options) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
+  const mission = missionAccept(tier, focus, country, options, enhancements, CountryList, MissionsList);
   const missions = jsonapiCursor(['missions']);
-  const operationsnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
-  const modifiedMissionsList = xmissioncheck(operationsnames, MissionsList);
-  const focusedModifiedMissionsList = focus !== 'random' && focus !== 'special' && focus !== 'multiplayer' ? modifiedMissionsList.filter(mission => determineFocus(mission.rewards)[focus]) : modifiedMissionsList;
-  const optionedMissionList = options.avoidfatals ? focusedModifiedMissionsList.filter(mission => !isFatal(mission.losses)) : focusedModifiedMissionsList;
-  const missionsPerTier = optionedMissionList.filter(mission => mission.tier === parseInt(tier, 10));
-  let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
-  if (country !== 'random')
-    randomMission.inCountry = country;
-  else
-    randomMission.inCountry = CountryList[randomInt(0, CountryList.length - 1)].name;
-  randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
 
-  console.log(capabilitynames);
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
     dispatch(logMissionsWindow, {message: 'Upgrade your capability enhancement for higher tier missions.'});
   else if (!maxMissionsCheck(missions.size, capabilitynames))
     dispatch(logMissionsWindow, {message: 'Missions limit reached, pass on some missions to accept new ones.'});
   else {
-    dispatch(acceptMission, {mission: randomMission});
+    dispatch(acceptMission, {mission});
     dispatch(logMissionsWindow, {message: 'New mission has been accepted.'});
   }
 }
 
 export function bookMissionPrice(tier) {
-  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', JSON.stringify(tier)]);
+  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList']).get(tier);
 
   dispatch(bookMissionPrice, {message: missionPrice});
+}
+
+export function bookPrisonBreakMissionPrice(agentbeingsaved) {
+  dispatch(bookPrisonBreakMissionPrice, {
+    message: immutable.fromJS({
+      cash: agentbeingsaved.get('rank') * 1000,
+      contacts: agentbeingsaved.get('rank') * 10
+    })
+  });
 }
 
 export function buyEnhancement({target}) {
@@ -134,6 +131,14 @@ export function pointerChange(whereto) {
   dispatch(pointerChange, {message: whereto});
 }
 
+export function prisonBreakMission() {
+  const enhancements = jsonapiCursor(['enhancements']);
+  const operationsnames = enhancements.filter(enh => enh.get('type') === 'operationsscope').map(enh => enh.get('name'));
+  const mission = immutable.fromJS(xmissioncheck(operationsnames, MissionsList).filter(mission => mission.title === 'Prison Break' && mission.tier === randomInt(3, 5))[0]);
+  const missionwETA = mission.set('ETA', Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000));
+  dispatch(prisonBreakMission, {missionwETA});
+}
+
 export function refreshStandings() {
   const api = process.env.NODE_ENV === 'production' ?
     cconfig.dnsprod + '/api/v1/' :
@@ -148,11 +153,21 @@ export function refreshStandings() {
   dispatch(refreshStandings, promise);
 }
 
+export function sanitizeAgents() {
+  dispatch(sanitizeAgents, {});
+}
+
+export function sanitizeMissions() {
+  dispatch(sanitizeMissions, {});
+}
+
 export function saveAgent(agent) {
   const enhancements = jsonapiCursor(['enhancements']);
-  const enhancementnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
+  const enhancementnames = enhancements.filter(enh => enh.get('type') === 'operationsscope').map(enh => enh.get('name'));
   if (enhancementnames.indexOf(`We Got the Power`) === -1)
     dispatch(logAgentsWindow, `Buy enhancement 'We Got the Power first.'`);
+  else if (jsonapiCursor(['agentBeingSaved']))
+    dispatch(logAgentsWindow, `There is currently agent being saved, save her first then, you may choose another one.`);
   else {
     dispatch(saveAgent, {agent});
     dispatch(logAgentsWindow, `Agent ` + agent.get('name') + ` should be freed by next Prison Break mission.`);
@@ -177,6 +192,7 @@ export function upgradeEnhancement(enhancement) {
 setToString('dashboard', {
   acceptMission,
   bookMissionPrice,
+  bookPrisonBreakMissionPrice,
   buyEnhancement,
   buyStatus,
   changeMissionOption,
@@ -188,7 +204,10 @@ setToString('dashboard', {
   logAgentsWindow,
   logMissionsWindow,
   pointerChange,
+  prisonBreakMission,
   refreshStandings,
+  sanitizeAgents,
+  sanitizeMissions,
   saveAgent,
   showTip,
   updateFormField,

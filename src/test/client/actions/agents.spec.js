@@ -1,12 +1,6 @@
 import * as agentActions from 'client/agents/actions';
 import {expect} from 'chai';
 
-describe('assignMission ', () => {
-  it('is defined', () => {
-    expect(agentActions.assignMission).to.exist;
-  });
-});
-
 describe('assignTask ', () => {
   it('is defined', () => {
     expect(agentActions.assignTask).to.exist;

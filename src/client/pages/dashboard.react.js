@@ -1,3 +1,4 @@
+import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -9,10 +10,12 @@ import requireAuth from '../auth/requireauth.react';
 import {msg} from '../intl/store';
 
 class Dashboard extends Component {
+
   render() {
     // const {viewer: {email}} = this.props;
     const {contest, game, jsonapi, locales, pendingActions, viewer} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
+    const options = jsonapi.get('options');
 
     return (
       <DocumentTitle title={msg('dashboard.title')}>

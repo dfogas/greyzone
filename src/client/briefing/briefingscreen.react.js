@@ -1,4 +1,4 @@
-import './briefing.styl';
+import './briefingscreen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import DocumentTitle from 'react-document-title';
@@ -17,6 +17,7 @@ class BriefingScreen extends Component {
   render() {
     const {jsonapi, pendingActions} = this.props;
     const agents = jsonapi.get('agents');
+    const briefingmessage = jsonapi.getIn(['briefing', 'message']);
 
     return (
       <DocumentTitle title={msg('briefing.title')}>
@@ -44,6 +45,9 @@ class BriefingScreen extends Component {
             jsonapi={jsonapi}
             pendingActions={pendingActions}
             />
+          <div id='BriefingMessage'>
+            Message: {briefingmessage}
+          </div>
         </div>
       </DocumentTitle>
     );

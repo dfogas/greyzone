@@ -9,12 +9,6 @@ export function toArmory(agent) {
   dispatch(toArmory, {message: agent});
 }
 
-export function assignMission(agent) {
-  /* pokud je agent unavený např. z předchozí mise */
-  if (agent.get('ETA') - Date.now() < 0)
-    dispatch(assignMission, {message: agent});
-}
-
 export function assignTask(agent) {
   // fairly complicated action resolve in agents/store
   // basically it finds out what is current task and which action types it has
@@ -48,20 +42,12 @@ export function equip(obj) {
 export function getRank(agent) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  console.log(agentRankup(trainingtable, 7, agent));
+  // console.log(agentRankup(trainingtable, 7, agent));
   if (leadershipcheck(agent.get('rank'), enhancementnames))
     dispatch(getRank, agentRankup(trainingtable, 7, agent));
   else
     dispatch(logArmory, {message: 'You must upgrade your training facility to train agent further.'});
 }
-
-// export function goFree() {
-//   dispatch(goFree, {message: 'run free!'});
-// }
-//
-// export function goToPrison() {
-//   dispatch(goToPrison, {message: 'in prison!'});
-// }
 
 export function incurETA(agent) {
   dispatch(incurETA, {message: agent});
@@ -73,7 +59,6 @@ export function logArmory(message) {
 
 setToString('agents', {
   toArmory,
-  assignMission,
   assignTask,
   backFromArmory,
   backtoRoster,

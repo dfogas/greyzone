@@ -46,7 +46,7 @@ const EnhancementList = [
     },
     type: 'capability'
   }, {
-    description: 'Accept Tier 3 and campaign missions',
+    description: 'Accept Tier 4 and campaign missions',
     name: 'Higher Level',
     prerequisites: [{
       name: 'Good Label',
@@ -208,7 +208,7 @@ const EnhancementList = [
     },
     type: 'toys'
   }, {
-    description: 'New mission - Catch Serial Killer',
+    description: 'Mission Catch Serial Killer',
     name: 'Deputy of Law',
     prerequisites: [{
       name: 'Good Label',
@@ -220,7 +220,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Next On the Blacklist',
+    description: 'Mission Next On the Blacklist',
     name: 'Puppeteering FBI',
     prerequisites: [{
       name: 'Good Label',
@@ -239,7 +239,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Assasination',
+    description: 'Mission Assasination',
     name: 'Augean Stables',
     prerequisites: [{
       name: 'Good Label',
@@ -257,7 +257,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Bank Robbery',
+    description: 'Mission Bank Robbery',
     name: 'Nostalgia',
     prerequisites: [{
       name: 'Good Label',
@@ -269,7 +269,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New Mission - An Old Debt',
+    description: 'Mission An Old Debt',
     name: 'Side Quest',
     prerequisites: [{
       name: 'Good Label',
@@ -281,7 +281,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New Mission - Prison Break',
+    description: 'Mission Prison Break',
     name: 'We Got the Power',
     prerequisites: [{
       name: 'Good Label',
@@ -293,7 +293,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New Mission - Protect Witness',
+    description: 'Mission Protect Witness',
     name: 'Repaying the favors',
     prerequisites: [{
       name: 'Good Label',
@@ -305,7 +305,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New Mission - A Friend in Inner Circle',
+    description: 'Mission In Inner Circle',
     name: 'Gala in Opera house',
     prerequisites: [{
       name: 'Good Label',
@@ -317,7 +317,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Private Collection',
+    description: 'Mission Private Collection',
     name: 'Boy with an Apple',
     prerequisites: [{
       name: 'Good Label',
@@ -329,7 +329,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Destroy Evidence',
+    description: 'Mission Destroy Evidence',
     name: 'You can\'t see me',
     prerequisites: [{
       name: 'Good Label',
@@ -341,7 +341,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Industrial Espionage',
+    description: 'Mission Industrial Espionage',
     name: 'WS intriques',
     prerequisites: [{
       name: 'Good Label',
@@ -353,7 +353,7 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'New mission - Secret Investigation',
+    description: 'Mission Secret Investigation',
     name: 'Playing Detective',
     prerequisites: [{
       name: 'Good Label',

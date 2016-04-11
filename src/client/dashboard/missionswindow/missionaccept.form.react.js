@@ -3,6 +3,7 @@ import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
+import maxMissionsCount from '../../lib/maxmissionscount';
 import {msg} from '../../intl/store';
 
 import DropDown from 'react-dropdown-w-react13';
@@ -20,6 +21,7 @@ class MissionAcceptForm extends Component {
     e.preventDefault();
     const fields = this.getForm().get('fields').toJS();
     dashboardActions.acceptMission(fields.tier, fields.focus, fields.country, {avoidfatals: fields.avoidfatals});
+    dashboardActions.bookMissionPrice(fields.tier);
     dashboardActions.clearMissionAcceptFields(fields.rank);
   }
 
@@ -42,7 +44,7 @@ class MissionAcceptForm extends Component {
                 {value: '2', name: 'tier', label: 'Tier 2'},
                 {value: '3', name: 'tier', label: 'Tier 3'},
                 {value: '4', name: 'tier', label: 'Tier 4'},
-                {value: '5', name: 'tier', label: 'Tier 5'},
+                {value: '5', name: 'tier', label: 'Tier 5'}
               ]}
               value={form.getIn(['fields', 'tier']) || 'Tier...'}
             />
@@ -93,6 +95,9 @@ class MissionAcceptForm extends Component {
           {(missionspricelist.getIn([form.getIn(['fields', 'tier']), 'cash']) || '0') + '\u{1f4b0}'}
           <br />
           {(missionspricelist.getIn([form.getIn(['fields', 'tier']), 'contacts']) || '0') + '\u{1f575}'}
+        </div>
+        <div id='DashboardTotalMissionCounter'>
+          {missions.size}/{maxMissionsCount(enhancements)}
         </div>
       </div>
     );
