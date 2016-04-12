@@ -87,6 +87,10 @@ export function clearAgentHireFields() {
   dispatch(clearAgentHireFields, {});
 }
 
+export function clearLog() {
+  dispatch(clearLog, {});
+}
+
 export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
 }
@@ -101,8 +105,6 @@ export function hireAgent(specialist, rank) {
   const agentPrice = agentPriceList[rank];
   const gameCash = jsonapiCursor(['gameCash']);
 
-  console.log(agent);
-
   if (agentPrice > gameCash)
     dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
   else if (!maxAgentsCheck(totalAgents, capabilityNames))
@@ -113,6 +115,12 @@ export function hireAgent(specialist, rank) {
     dispatch(hireAgent, {agent, agentPrice});
     dispatch(logAgentsWindow, {message: 'New agent recruited.'});
   }
+}
+
+export function loadLog() {
+  const log = immutable.fromJS(localStorage.getItem(['ghoststruggle', 'log']).split(','));
+
+  dispatch(loadLog, {log});
 }
 
 export function log(message) {
@@ -174,6 +182,12 @@ export function saveAgent(agent) {
   }
 }
 
+export function saveLog() {
+  const log = jsonapiCursor(['log']).toJS();
+
+  localStorage.setItem(['ghoststruggle', 'log'], log);
+}
+
 export function showTip(destination) {
   dispatch(showTip, {destination});
 }
@@ -198,8 +212,10 @@ setToString('dashboard', {
   changeMissionOption,
   changeOption,
   clearAgentHireFields,
+  clearLog,
   clearMissionAcceptFields,
   hireAgent,
+  loadLog,
   log,
   logAgentsWindow,
   logMissionsWindow,
