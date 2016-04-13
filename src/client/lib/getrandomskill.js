@@ -7,7 +7,7 @@ var getRandomSkill = function(max, skills) {
     throw new TypeError('Number expected, ' + (typeof max) + ' passed.');
   if (typeof skills !== 'object')
     throw new TypeError('JS object expected, ' + (typeof skills) + ' passed.');
-  let random = Math.random();
+  var random = Math.random();
 
   if (skills.operationsSkill + 1 > max) {
     if (random <= 0.5)
@@ -34,4 +34,4 @@ var getRandomSkill = function(max, skills) {
   }
 };
 
-export default getRandomSkill;
+module.exports = getRandomSkill;

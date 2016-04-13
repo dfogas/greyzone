@@ -19,7 +19,7 @@ class AgentListRecord extends Component {
   }
 
   render() {
-    const {agent, agentbeingsaved} = this.props;
+    const {agent, agentbeingsaved, debug} = this.props;
     const isFreed = agentbeingsaved ? agent.get('name') === agentbeingsaved.get('name') : false;
 
     const classString = classnames('agent-list-record', agent.get('specialist'));
@@ -34,7 +34,7 @@ class AgentListRecord extends Component {
         <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
         <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
         <td>
-          {agent.get('prison') &&
+          {(agent.get('prison') || debug) &&
             <button
               className='agent-dismiss-button'
               onClick={this.dismissAgent.bind(this)}

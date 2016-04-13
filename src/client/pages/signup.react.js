@@ -13,6 +13,7 @@ class SignUp extends Component {
     return (
       <DocumentTitle title={msg('auth.signup.title')}>
         <div className="signup-page">
+          <Link to='intro'><button id='SignupToIntro'>About</button></Link>
           <Link to='login'><button id='SignupToLogin'>Back To Login</button></Link>
           <SignupMessage />
           <SignUpForm {...this.props} />

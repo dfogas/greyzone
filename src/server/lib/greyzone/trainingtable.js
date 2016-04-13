@@ -13,4 +13,4 @@ const trainingtable = [
   {rank: 12, xp: 4000, slots: 3, statstotal: 16}
 ];
 
-export default trainingtable;
+module.exports = trainingtable;

@@ -8,18 +8,10 @@ import runSequence from 'run-sequence';
 import webpackBuild from './webpack/build';
 import webpackDevServer from './webpack/devserver';
 import yargs from 'yargs';
-import {server as karmaServer} from 'karma';
 
 const args = yargs
   .alias('p', 'production')
   .argv;
-
-const runKarma = ({singleRun}, done) => {
-  karmaServer.start({
-    configFile: path.join(__dirname, 'karma.conf.js'), // eslint-disable-line no-undef
-    singleRun: singleRun
-  }, done);
-};
 
 gulp.task('env', () => {
   const env = args.production ? 'production' : 'development';
@@ -46,27 +38,17 @@ gulp.task('eslint', () => {
   .pipe(eslint.failOnError());
 });
 
-gulp.task('karma-ci', (done) => {
-  runKarma({singleRun: true}, done);
-});
-
-gulp.task('karma-dev', (done) => {
-  runKarma({singleRun: false}, done);
-});
-
 gulp.task('test', (done) => {
   // Run test tasks serially, because it doesn't make sense to build when tests
   // are not passing, and it doesn't make sense to run tests, if lint has failed.
   // Gulp deps aren't helpful, because we want to run tasks without deps as well.
-  runSequence('eslint', 'karma-ci', 'build-webpack-production', done);
+  runSequence('eslint', 'build-webpack-production', done);
 });
 
 gulp.task('apitest', () => {
   return gulp.src('./src/test/server/api/*.*', {read: false})
     // gulp-mocha needs filepaths so you can't have any plugins before it
-    .pipe(mocha(
-      // {reporter: 'nyan'}
-    ));
+    .pipe(mocha({reporter: 'base'}));
 });
 
 gulp.task('api', (done) => {
@@ -79,5 +61,5 @@ gulp.task('default', (done) => {
   if (args.production)
     runSequence('server', done);
   else
-    runSequence('server', /*'karma-dev',*/ done);
+    runSequence('server', done);
 });

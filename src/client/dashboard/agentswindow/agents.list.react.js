@@ -14,6 +14,7 @@ class AgentsList extends Component {
 
   render() {
     const {agentbeingsaved, agents, dashboard, options} = this.props;
+    const debug = options.get('debug');
 
     if (!agents.size || dashboard.getIn(['strategical', 'agenthire', 'tip']))
       return (
@@ -38,8 +39,9 @@ class AgentsList extends Component {
                   <AgentsListRecord
                     agent={agent}
                     agentbeingsaved={agentbeingsaved}
+                    debug={debug}
                     />
-              );
+                );
               })
             }
           </tbody>

@@ -12,12 +12,13 @@ import StatusesList from '../../server/lib/greyzone/status.list';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
-import missionAccept from '../lib/missionaccept';
+import allAgents from '../lib/allagents';
 import capabilityCheck from '../lib/capabilitycheck';
 import checkArmory from '../lib/checkarmory';
 import leadershipCheck from '../lib/leadershipcheck';
 import maxAgentsCheck from '../lib/maxagentscheck';
 import maxMissionsCheck from '../lib/maxmissionscheck';
+import missionAccept from '../lib/missionaccept';
 import noDoubleAgents from '../lib/nodoubleagents';
 import randomInt from '../lib/getrandomint';
 import xmissioncheck from '../lib/xmissioncheck';
@@ -96,7 +97,7 @@ export function clearMissionAcceptFields() {
 }
 
 export function hireAgent(specialist, rank) {
-  const agent = noDoubleAgents(jsonapiCursor(['agents']).toJS(), rank, specialist);
+  const agent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), rank, specialist);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
   const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
   const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (checkArmory() ? 1 : 0);

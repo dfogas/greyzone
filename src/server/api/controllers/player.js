@@ -5,26 +5,24 @@ import playerdefaults from '../../lib/playerdefaults';
 
 const router = express.Router();
 
-router.route('/')
-  .post((req, res) => {
-    // TODO: check missing next in parameters
-    console.log('saving to database');
-
-    playerdefaults.name = req.body.name;
-    playerdefaults.userId = req.body.userId ? req.body.userId : req.user._id; // ?!
-    var player = new Player(playerdefaults);
-
-    player.save((err) => {
-      if (err)
-        res.send(err);
-      else
-        res.json({
-          // data: player,
-          message: 'player added to player roster',
-          name: player.name
-        });
-    });
-  });
+// router.route('/')
+//   .post((req, res) => {
+//
+//     playerdefaults.name = req.body.name;
+//     playerdefaults.userId = req.body.userId ? req.body.userId : req.user._id;
+//     var player = new Player(playerdefaults);
+//
+//     player.save((err) => {
+//       if (err)
+//         res.send(err);
+//       else
+//         res.json({
+//           // data: player,
+//           message: 'player added to player roster',
+//           name: player.name
+//         });
+//     });
+//   });
 
 // router.route('/')
 //   .get((req, res) => {

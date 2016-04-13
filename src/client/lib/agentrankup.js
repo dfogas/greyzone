@@ -1,14 +1,20 @@
-import getRandomSkill from './getrandomskill';
+const getRandomSkill = require('./getrandomskill');
 
-/* Object(TrainingTable) Number Immutable.Map(Agent) => Object(rankupSpecs) */
+/* Object(TrainingTable) Number Immutable.Map(Agent) => Object(rankupSpecs)
+  it determines whether agent should get equipment or statSkill up and control
+  that maxSkill is not overstepped (passed to getRandomSkill)
+*/
 
 function agentRankup(trainingtable, maxSkill, agent) {
-  let ruo = {agent};
-  const {operationsSkill, electronicsSkill, stealthSkill} = {
-    operationsSkill: agent.get('operationsSkill'),
-    electronicsSkill: agent.get('electronicsSkill'),
-    stealthSkill: agent.get('stealthSkill')
-  };
+  var ruo = {agent};
+  // const {operationsSkill, electronicsSkill, stealthSkill} = {
+  //   operationsSkill: agent.get('operationsSkill'),
+  //   electronicsSkill: agent.get('electronicsSkill'),
+  //   stealthSkill: agent.get('stealthSkill')
+  // };
+  const operationsSkill = agent.get('operationsSkill');
+  const electronicsSkill = agent.get('electronicsSkill');
+  const stealthSkill = agent.get('stealthSkill');
   //decide whether to add skill or equipment slot (both is possible)
   if (agent.get('equipmentSlots') < trainingtable[agent.get('rank')].slots)
     ruo.equipment = true;
@@ -18,4 +24,5 @@ function agentRankup(trainingtable, maxSkill, agent) {
   return ruo;
 }
 
-export default agentRankup;
+// export default agentRankup;
+module.exports = agentRankup;

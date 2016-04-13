@@ -40,6 +40,10 @@ class App extends Component {
   }
 
   pollStateToPersistance() {
+    // TODO: if polling then
+    // 1st stage - poll only if changes
+    // 2nd stage - poll only changes
+    // 3rd stage - possibly completely replace w/ websockets
     const api = process.env.NODE_ENV === 'production' ?
       cconfig.dnsprod + '/api/v1/' :
       cconfig.dnsdevel + '/api/v1/';

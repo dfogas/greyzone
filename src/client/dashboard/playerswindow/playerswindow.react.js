@@ -30,12 +30,6 @@ class PlayersWindow extends Component {
           <span className='gameContacts-counter'>
             Contacts: {gameContacts}
           </span>
-          {/*<button
-            className='buy10Contacts'
-            onClick={this.buyContacts}
-            >
-            Buy 10 contacts for 1,000$
-          </button>*/}
         </div>
         <div id='PlayerOperationsCapability'>
           Operations: {topLevelOps(enhancements)}
