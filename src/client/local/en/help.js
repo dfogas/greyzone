@@ -1,5 +1,5 @@
 const help = {
-  actionsHtml: `
+  actions: `
     <ul class='list-of-actions'><h2>Actions</h2>
       <li class='list-of-actions pursuit'><em>pursuit - escape or pursue in the true Bond fashion</em></li>
       <li class='list-of-actions hit'><em>hit - dispose of, put to sleep, send your regards ...</em></li>
@@ -22,7 +22,7 @@ const help = {
       Each dice has 2/6 probability of improv result of appropriate skill and 1/6 probability of fail result.
     </p>
   `,
-  equipmentsHtml: `
+  equipments: `
     <h2>Listing of agents equipments</h2>
     <ul>
       <ul class='equipment-tier operations'>
@@ -42,7 +42,9 @@ const help = {
       </ul>
     </ul>
   `,
-  missionProgressHtml: `
+  introduction: `After reading links in Introduction group, you have the idea of
+    what you are doing, but how. Reading this section should help you.`,
+  missionProgress: `
     <ul class='mission-progress'><h2>Gameplay</h2>
       <li class='mission-progress'><em>By drag&drop equip your agents for the mission in Armory.</em></li>
       <li class='mission-progress'><em>Hit mission card to select it in Briefing.</em></li>
@@ -58,7 +60,7 @@ const help = {
       <li class='mission-progress'><em>MissionFail? Some bad things may have happened to you...</em></li>
     </ul>
   `,
-  segmentsHtml: `
+  segments: `
     <ul>
       <h2>Game segments</h2>
       <li class='game-segments'>Command - overview of world intended for multiplayer features</li>
@@ -68,7 +70,7 @@ const help = {
       <li class='game-segments'>Mission - the main deal of game magic happens there, your success made here</li>
     </ul>
   `,
-  terminologyHtml: `
+  terminology: `
     <ul class='terminology'>
       <h2>Terminology</h2>
       <li class='terminology'>
@@ -98,8 +100,7 @@ const help = {
         <em>Contacts - having the links to people in right places is vital, for your operation.</em>
       </li>
     </ul>
-  `,
-  title: 'HelpPage'
+  `
 };
 
 export default help;

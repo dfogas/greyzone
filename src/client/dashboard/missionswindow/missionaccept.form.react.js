@@ -61,7 +61,7 @@ class MissionAcceptForm extends Component {
                 {value: 'special', name: 'focus', label: 'Something Special?'},
                 {value: 'multiplayer', name: 'focus', label: 'TBD'}
               ]}
-              value={form.getIn(['fields', 'focus']) || 'What you wanna get?'}
+              value={form.getIn(['fields', 'focus']) || `What you're after?`}
             />
             <DropDown
               baseClassName='country'

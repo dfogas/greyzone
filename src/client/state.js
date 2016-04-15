@@ -29,6 +29,7 @@ export const appState = new State(initialState, function(key, value) {
   }
 });
 
+export const aboutCursor = appState.cursor(['about']);
 export const authCursor = appState.cursor(['auth']);
 export const contestCursor = appState.cursor(['contest']);
 export const gameCursor = appState.cursor(['game']);

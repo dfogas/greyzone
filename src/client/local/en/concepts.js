@@ -17,6 +17,9 @@ const concepts = {
     for personal gain, a term for which cracker might be more appropriate word,
     because it implies more correctly breaking and entering nature of such activities,
     nevertheless the skillset is useful for goverment intelligence agencies as well`,
+  introduction: `concepts of game are somewhat aligned to reality of our world,
+    giving the game the desired background for imagination, feel free to read them
+    for general insight, but do not take them too seriously`,
   lawenforcement: `cornerstone of state existence, controlled violence to make
     the agreed norms of behaviour enforcable - as for the reality it
     differs throughout the countries, more often than not subject to current

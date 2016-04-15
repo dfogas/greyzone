@@ -30,9 +30,9 @@ class AgentListRecord extends Component {
         <td>Rank {agent.get('rank')}</td>
         <td>{agent.get('experience')} XP</td>
         <td>{agent.get('prison') ? 'In Prison' : isFreed ? 'Being Rescued' : agent.get('ETA') < Date.now() ? 'Available' : 'Tired'}</td>
-        <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('operationsSkill')}</td>
-        <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
-        <td style={{color: 'black', fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
+        <td style={{fontWeight: 'bold'}}>{agent.get('operationsSkill')}</td>
+        <td style={{fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
+        <td style={{fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
         <td>
           {(agent.get('prison') || debug) &&
             <button

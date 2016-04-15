@@ -21,7 +21,7 @@ import LogWindow from './logwindow/log.window.react.js';
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
 import DashboardToCommand from '../navs/dashboardtocommand.react';
-import DashboardToHelp from '../navs/dashboardtohelp.react';
+import DashboardToIntro from '../navs/dashboardtointro.react';
 import DashboardToMission from '../navs/dashboardtomission.react';
 import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
@@ -70,7 +70,7 @@ class DashboardScreen extends Component {
         {!jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToBriefing />}
         <DashboardToCommand />
-        <DashboardToHelp />
+        <DashboardToIntro />
         {jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToMission />}
         <AchievementPointer />

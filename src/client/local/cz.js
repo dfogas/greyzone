@@ -54,9 +54,6 @@ const CZECH = {
   command: {
     title: 'Velitelství'
   },
-  confirmations: {
-    cancelEdit: `Máte neuložené změny. Chcete je opravdu zrušit?`
-  },
   dashboard: {
     title: 'Nástěnka'
   },

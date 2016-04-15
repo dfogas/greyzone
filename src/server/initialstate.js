@@ -4,11 +4,15 @@ const initialLocale = 'en';
 
 export default {
   // Each key represents one app feature/store.
+  about: {
+    group: `introduction`,
+    item: `introduction`
+  },
   auth: {
     data: null,
     form: null,
-    lprecover: {message: ''},
-    reauthentication: {message: ''}
+    lprecover: {message: ``},
+    reauthentication: {message: ``}
   },
   i18n: {
     formats: {},
@@ -17,7 +21,7 @@ export default {
   },
   posts: {
     newPost: {
-      text: ''
+      text: ``
     },
     list: [
     ]

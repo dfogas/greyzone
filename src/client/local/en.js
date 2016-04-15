@@ -1,5 +1,6 @@
-import helpMsg from './en/help.js';
-import introMsg from './en/intro.js';
+import helpMsg from './en/help';
+import introMsg from './en/intro';
+import conceptsMsg from './en/concepts';
 
 const ENGLISH = {
   app: {
@@ -69,9 +70,7 @@ const ENGLISH = {
   command: {
     title: 'Command Center'
   },
-  confirmations: {
-    cancelEdit: `You have unsaved changes. Are you sure you want to cancel them?`
-  },
+  concepts: conceptsMsg,
   dashboard: {
     strategical: {
       agenthire: {
@@ -158,6 +157,7 @@ const ENGLISH = {
   support: {
     title: 'SupportPage'
   },
+  title: `Ghost Struggle`,
   tutorial: {
     agentinarmory: `Agent here can be given equipment.`,
     agentonmission: `Drag agent here and the mission can start.`,

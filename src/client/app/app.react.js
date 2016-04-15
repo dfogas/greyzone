@@ -23,6 +23,7 @@ import '../agents/scrollbar/store';
 import '../auth/store';
 import '../briefing/store';
 import '../dashboard/store';
+import '../introduction/store';
 import '../mission/tabletoptier/dice/store';
 import '../equipments/store';
 import '../mission/store';
@@ -59,6 +60,7 @@ class App extends Component {
 
   getState() {
     return {
+      about: state.aboutCursor(),
       auth: state.authCursor(),
       contest: state.contestCursor(),
       game: state.gameCursor(),

@@ -1,17 +1,177 @@
-#IntroScreen
+#IntroScreenWrapper
   position absolute
   left 50%
-  margin-left -500px
-  width 1000px
+  margin-left -600px
+  width 1200px
+  height 800px
   border 1px solid silver
   border-radius 1em
+
+#IntroScreen
+  position absolute
+  left 200px
+  width 999px
+  height 799px
+  border 1px solid silver
+  border-top-right-radius 1em
+  border-bottom-right-radius 1em
   text-align center
   padding 5px
   color silver
+  overflow-x hidden
+
+#IntroHelpActions
+  ul
+    margin-left 5px
+    display block
+    li
+      background-image url('../../../assets/img/bullets/bullet-bullet-point-45.png')
+      background-repeat no-repeat
+      background-size 70px 70px
+      background-position 0px center
+      display block
+      height 70px
+      margin 4px
+      padding-left 80px
+      padding-top 5px
+      padding-bottom 5px
+    li.pursuit
+      background-image url('../../../assets/img/missions/actions/pursuit.jpg')
+    li.hit
+      background-image url('../../../assets/img/missions/actions/hit.jpg')
+    li.close_combat
+      background-image url('../../../assets/img/missions/actions/close_combat.jpg')
+    li.decipher
+      background-image url('../../../assets/img/missions/actions/decipher.jpg')
+    li.tap
+      background-image url('../../../assets/img/missions/actions/tap.jpg')
+    li.monitor
+      background-image url('../../../assets/img/missions/actions/monitor.jpg')
+    li.puppet
+      background-image url('../../../assets/img/missions/actions/puppet.jpg')
+    li.infiltrate
+      background-image url('../../../assets/img/missions/actions/infiltrate.jpg')
+    li.hide
+      background-image url('../../../assets/img/missions/actions/hide.jpg')
+    li.improvAll
+      background-image url('../../../assets/img/missions/actions/improv_all_colors.jpg')
+    li.failAll
+      background-image url('../../../assets/img/missions/actions/fail_all_colors.jpg')
+
+    li.improv.operations
+      background-image url('../../../assets/img/missions/actions/improv_op.jpg')
+    li.improv.electronics
+      background-image url('../../../assets/img/missions/actions/improv_el.jpg')
+    li.improv.stealth
+      background-image url('../../../assets/img/missions/actions/improv_st.jpg')
+
+  p
+    padding 10px
+
+#IntroHelpEquipments
+  ul
+    margin-left 5px
+    li
+      background-image url('../../../assets/img/bullets/bullet-bullet-point-45.png')
+      background-repeat no-repeat
+      background-position 0px center
+      display block
+      margin 4px
+      padding-left 55px
+      padding-top 5px
+      padding-bottom 5px
+    li.agent-equipment
+      background-image url('../../../assets/img/equipments/equipment_icon_256.png')
+      background-repeat no-repeat
+      background-position 0px center
+      background-size 55px 55px
+      display block
+      height 55px
+    li.agent-equipment.HiredGun
+      background-image url('../../../assets/img/equipments/hired_gun_256.png')
+      background-color red
+    li.agent-equipment.HeavyArms
+      background-image url('../../../assets/img/equipments/heavy_arms_256.png')
+      background-color red
+    li.agent-equipment.ProtectiveGear
+      background-image url('../../../assets/img/equipments/protective_gear_256.png')
+      background-color red
+    li.agent-equipment.HandyKit
+      background-image url('../../../assets/img/equipments/electronics_kit_256.png')
+      background-color aqua
+      color silver
+    li.agent-equipment.CustomTools
+      background-image url('../../../assets/img/equipments/custom_tools_196.png')
+      background-color aqua
+      color silver
+    li.agent-equipment.WPAS
+      background-image url('../../../assets/img/equipments/WPAS_256.png')
+      background-color aqua
+      color silver
+    li.agent-equipment.FakePassports
+      background-image url('../../../assets/img/equipments/passports_256.png')
+      background-color black
+    li.agent-equipment.DrugsControl
+      background-image url('../../../assets/img/equipments/drugs_control_256.png')
+      background-color black
+    li.agent-equipment.DCP
+      background-image url('../../../assets/img/equipments/damage_control_256.png')
+      background-color black
+
+  p
+    padding 10px
+
+#IntroHelpMissionProgress
+  ul
+    margin-left 5px
+    li
+      background-image url('../../../assets/img/bullets/bullet-bullet-point-45.png')
+      background-repeat no-repeat
+      background-position 0px center
+      display block
+      margin 4px
+      padding-left 55px
+      padding-top 5px
+      padding-bottom 5px
+
+  p
+    padding 10px
+
+#IntroHelpSegments
+  ul
+    margin-left 5px
+    li
+      background-image url('../../../assets/img/bullets/bullet-bullet-point-45.png')
+      background-repeat no-repeat
+      background-position 0px center
+      display block
+      margin 4px
+      padding-left 55px
+      padding-top 5px
+      padding-bottom 5px
+
+  p
+    padding 10px
+
+#IntroHelpTerminology
+  ul
+    margin-left 5px
+    li
+      background-image url('../../../assets/img/bullets/bullet-bullet-point-45.png')
+      background-repeat no-repeat
+      background-position 0px center
+      display block
+      margin 4px
+      padding-left 55px
+      padding-top 5px
+      padding-bottom 5px
+
+  p
+    padding 10px
 
 #IntroToLogin
   position absolute
-  top 30px
+  bottom 30px
   left 100px
   background-color silver
   color black
@@ -19,12 +179,33 @@
 #IntroSidebar
   position absolute
   width 200px
-  left 250px
+  left 0px
+  border-top-left-radius 1em
+  border-bottom-left-radius 1em
   border 1px solid white
   color white
 
+  .intro-links-group
+    display block
+    padding-left 0.5em
+
 .game-concept-link
   display block
+  padding-left 1em
+  left -100px
+  color black
+  background-color silver
+
+.game-help-link
+  display block
+  padding-left 1em
+  left -100px
+  color black
+  background-color silver
+
+.game-intro-link
+  display block
+  padding-left 1em
   left -100px
   color black
   background-color silver

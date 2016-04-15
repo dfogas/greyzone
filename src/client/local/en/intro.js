@@ -1,5 +1,50 @@
 const intro = {
-  overviewHtml: `
+  end: `
+    <p>
+      That's about it - you start, you play, you finish, earlier or later
+      for the fun of playing as long as you'll like. Enjoy it.
+    </p>
+  `,
+  features: `
+    <h2>Game Features</h2>
+    <p>
+      GhostStruggle is a multiplayer web game designed with intention
+      to provide interesting playing mechanism with emphasis on functionality, first,
+      and then on beauty, second.
+      As it seems that perfection is achieved only when there's nothing left to
+      take away rather than still adding new features, it strives to keep only
+      necessary features for core game mechanisms and keep all other bullshit away.
+    </p>
+    <p>
+      It is designed as commercial product, but emphasis being on playability
+      and employing your brain, not on serving you fancy content and draining your
+      credit card for overpriced collection pieces.
+    </p>
+  `,
+  gameplay: `
+    <p>
+      You direct organization in strategical AND tactical sense
+      by managing its resources and staying hidden from official probing,
+      while upholding respectable reputation for potential clients of yours.
+      To fullfill this objective you hire agents, equip them with tools for their job,
+      assign them to missions and with rewards for success enhance organization
+      to higher levels, with agents getting better along the way as well.
+    </p>
+    <p>
+      With new missions new possibilities open but the inherent nature of
+      your enterprise is filled with dangers as well, so be aware
+      that your game might come quickly to an end, if you mismanage or
+      simply risk too much at once and have bad luck.
+    </p>
+    <p>
+      Custom campaigns are here to challenge you to reach for achievements and
+      provide a bit of story and destiny choosing.
+      Higher level also opens up multiplayer, where you compete with other players
+      on global level, giving you possibility to directly hit them with your crew,
+      but you may also stick single player only.
+    </p>
+  `,
+  introduction: `
     <h2>Introduction</h2>
     <p>
       Does a man choose his profession, or does profession choose a man?
@@ -29,22 +74,8 @@ const intro = {
       organization doing this here and that over there - Al Pacino style,
       fully visualizing it right now ...
     </p>
-
-    <h3>Game Features</h3>
-    <p>
-      GhostStruggle is a multiplayer web game designed with intention
-      to provide interesting playing mechanism with emphasis on functionality, first,
-      and then on beauty, second.
-      As it seems that perfection is achieved only when there's nothing left to
-      take away rather than still adding new features, it strives to keep only
-      necessary features for core game mechanisms and keep all other bullshit away.
-    </p>
-    <p>
-      It is designed as commercial product, but emphasis being on playability
-      and employing your brain, not on serving you fancy content and draining your
-      credit card for overpriced collection pieces.
-    </p>
-
+  `,
+  signup: `
     <h3>What is it and how do I play it?</h3>
     <p>
       By signup to GhostStruggle game you become a head of illegal organization,
@@ -57,33 +88,7 @@ const intro = {
       After signup, you log in and the game pretty much guides you through its
       interface then, though I strongly recommend reading help page as well.
     </p>
-    <p>
-      You direct organization in strategical AND tactical sense
-      by managing its resources and staying hidden from official probing,
-      while upholding respectable reputation.
-      To fullfill this objective you hire agents, equip them with tools for their job,
-      assign them to missions and with rewards for success enhance organization
-      to higher levels, with agents getting better along the way as well.
-    </p>
-    <p>
-      With new missions new possibilities open but the inherent nature of
-      your enterprise is filled with dangers as well, so be aware
-      that your game might come quickly to an end, if you mismanage or
-      simply risk too much at once and have bad luck.
-    </p>
-    <p>
-      Custom campaigns are here to challenge you to reach for achievements and
-      provide a bit of story and destiny choosing.
-      Higher level also opens up multiplayer, where you compete with other players
-      on global level, giving you possibility to directly hit them with your crew,
-      but you may also stick single player only.
-    </p>
-    <p>
-      That's about it - you start, you play, you finish, earlier or later
-      for the fun of playing as long as you'll like. Enjoy it.
-    </p>
-  `,
-  title: 'About Ghost Struggle'
+  `
 };
 
 export default intro;
