@@ -82,6 +82,8 @@ router.route('/verify')
     // req.query Davide
     NotVerified.findById(id, (err, notverified) => {
       if (err)
+        res.send(err);
+      else if (!notverified)
         res.json({
           notfound: 'Record not found.'
         });

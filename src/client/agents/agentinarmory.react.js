@@ -35,9 +35,10 @@ class AgentInArmory extends Component {
         id="AgentInArmory"
         onDragOver={this.allowDrop.bind(this)}
         onDrop={this.drop.bind(this)}>
-        {!!agentinarmory &&
+        {agentinarmory &&
           <AgentCard
             agent={agentinarmory}
+            equipments={jsonapi.get('equipments')}
             isShowcased={true}
           />
         }

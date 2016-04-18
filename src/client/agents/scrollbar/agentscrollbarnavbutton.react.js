@@ -8,17 +8,17 @@ import React from 'react';
 import classnames from 'classnames';
 
 class AgentScrollBarNavButton extends Component {
-  scrollleft() {
-    const {isBriefing, isMission} = this.props;
-    const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
-    scrollbarActions.scrollLeft(context);
-  }
-
-  scrollright() {
-    const {isBriefing, isMission} = this.props;
-    const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
-    scrollbarActions.scrollRight(context);
-  }
+  // scrollleft() {
+  //   const {isBriefing, isMission} = this.props;
+  //   const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
+  //   scrollbarActions.scrollLeft(context);
+  // }
+  //
+  // scrollright() {
+  //   const {isBriefing, isMission} = this.props;
+  //   const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
+  //   scrollbarActions.scrollRight(context);
+  // }
 
   render() {
     const orientation = this.props.data.orientation;
@@ -27,13 +27,18 @@ class AgentScrollBarNavButton extends Component {
       'on-mission': this.props.isMission
     });
 
+    // onClick={orientation === 'left' ? this.scrollleft.bind(this) : this.scrollright.bind(this)}
     return (
       <div
         className={classString}
-        onClick={orientation === 'left' ? this.scrollleft.bind(this) : this.scrollright.bind(this)}
+        onClick={this.forward.bind(this)}
       >
       </div>
     );
+  }
+
+  forward() {
+    this.props.parentCallback();
   }
 }
 

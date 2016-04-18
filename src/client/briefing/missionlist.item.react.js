@@ -16,6 +16,7 @@ class MissionListItem extends Component {
 
   selectMission() {
     const {mission} = this.props;
+    missionActions.agentsAreBackFromMission();
     briefingActions.selectMission(mission);
   }
 

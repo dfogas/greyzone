@@ -4,6 +4,7 @@ import randomInt from './getrandomint';
 import xmissioncheck from './xmissioncheck';
 import determineFocus from './determinefocus';
 import isFatal from './isfatal';
+import uuid from './guid';
 
 function missionAccept(tier, focus, country, options, enhancements, countryList, missionsList) {
   const operationsnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
@@ -19,6 +20,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
   else
     randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
   randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
+  randomMission.id = uuid() + 'gzm';
 
   return randomMission;
 }

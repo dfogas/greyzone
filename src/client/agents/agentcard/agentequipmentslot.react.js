@@ -14,23 +14,23 @@ class AgentEquipmentSlot extends Component {
   }
 
   drop(ev) {
-    // const equipmentsnames = ['Hired Gun', 'Heavy Equipment', 'Protective Gear', 'Heavy Kit', 'Customized Tools', 'Weak Points Analysis Software', 'Fake Passports', 'Drugs Control', 'Damage Control Protocol'];
-    const {equipmentindex} = this.props;
+    const {equipmentindex, equipments} = this.props;
     ev.preventDefault();
     var message = ev.dataTransfer.getData('text');
+    var tag = equipments.find(eq => eq.get('name') === message).get('tag');
     if (ev)
-      agentActions.equip(immutable.fromJS({index: equipmentindex, name: message}));
+      agentActions.equip(immutable.fromJS({index: equipmentindex, name: message, tag: tag}));
   }
 
   equipmentUse() {
-    const {agent, equipment, equipmentindex} = this.props;
+    const {agent, agentequipment, equipmentindex} = this.props;
 
-    equipmentActions.use(agent, {equipment: equipment, equipmentindex: equipmentindex});
-    agentActions.incurETA(agent);
+    equipmentActions.use(agent, {agentequipment, equipmentindex});
+    agentActions.setETA(agent, agentequipment);
   }
 
   render() {
-    const {agentindex, equipment, equipmentindex} = this.props;
+    const {agentindex, agentequipment, equipments, equipmentindex} = this.props;
 
     var classString = ' ';
     if (this.props.isMission)
@@ -39,7 +39,7 @@ class AgentEquipmentSlot extends Component {
     if (this.props.isShowcased)
       classString += ' showcased';
 
-    classString += ' ' + equipment.get('name').replace(/\s+/g, '');
+    classString += ' ' + agentequipment.get('name').replace(/\s+/g, '');
     return (
       <div
         agentindex={agentindex}
@@ -55,7 +55,7 @@ class AgentEquipmentSlot extends Component {
         <div
           className={'agent-equipment-description-placeholder' + classString}
           >
-          {equipment.get('name') ? equipment.get('name') : msg('tutorial.equipmentslot')}
+          {agentequipment.get('name') ? agentequipment.get('name') : msg('tutorial.equipmentslot')}
         </div>
       </div>
     );

@@ -29,17 +29,23 @@ export function passMission(mission) {
 /*passed mission is merged to become a activemission*/
 export function selectMission(mission) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-  if (mission && mission.get('ETA') - Date.now() <= 0)
-    dispatch(passMission, {message: mission});
-  else if (agentontask)
+  if (agentontask)
     dispatch(logBriefing, {message: 'Agent is on task, remove her from there before selecting new mission.'});
-  else
-    dispatch(selectMission, {message: mission});
+  else if (mission && mission.get('ETA') - Date.now() <= 0) {
+    dispatch(passMission, {message: mission});
+    dispatch(setDefaultAfterExpired, {});
+  }
+  else dispatch(selectMission, {message: mission});
+}
+
+export function setDefaultAfterExpired() {
+  dispatch(setDefaultAfterExpired, {});
 }
 
 setToString('briefing', {
   assignMission,
   logBriefing,
   passMission,
-  selectMission
+  selectMission,
+  setDefaultAfterExpired
 });

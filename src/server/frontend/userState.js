@@ -42,6 +42,7 @@ export default function userState() {
       globals: {
         agentsforhire: [],
         constants: {
+          achievements: AchievementList,
           agentsPriceList: {
             '1': 100,
             '2': 550,
@@ -59,10 +60,21 @@ export default function userState() {
           },
           started: 1452338437180
         },
-        achievements: AchievementList,
         countries: CountryList,
         enhancements: EnhancementList,
         options: OptionsList,
+        features: {
+          paid: {
+            equipments: {
+              ETAdelay: 60*5*1000
+            }
+          },
+          unpaid: {
+            equipments: {
+              ETAdelay: 60*10*1000
+            }
+          }
+        },
         statuses: StatusList
       }
     };

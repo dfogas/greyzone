@@ -8,7 +8,7 @@ export const dispatchToken = register(({action, data}) => {
     // See how user store can handle auth action.
     case authActions.login:
       usersCursor(users => {
-        return users.set('viewer', data);
+        return users.set('viewer', data.name);
       });
       break;
 

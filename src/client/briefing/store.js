@@ -33,11 +33,15 @@ export const dispatchToken = register(({action, data}) => {
     // if (data.message) - TODO: Why is this check here?
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('agents', val => val.concat(agentsonmission))
         .set('activemission', data.message ? immutable.fromJS(defaultActiveMission).mergeDeep(data.message) : immutable.fromJS(defaultActiveMission));
     });
   }
 
+  if (action === briefingActions.setDefaultAfterExpired)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('activemission', immutable.fromJS(defaultActiveMission));
+    });
   // if (action === agentsActions.saveAgent)
   //   jsonapiCursor(jsonapi => {
   //     return jsonapi

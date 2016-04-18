@@ -23,14 +23,52 @@ export function scrollRight(context) {
   if (context === 'armory' && agentscrollbar > -((agents.size - 3)) * 265)
     dispatch(scrollRight, {context, agentscrollbar});
 
-  if (context === 'briefing' && agentscrollbar > -((agents.size - 3) * 265))
+  else if (context === 'briefing' && agentscrollbar > -((agents.size - 3) * 265))
     dispatch(scrollRight, {context, agentscrollbar});
 
-  if (context === 'mission' && agentscrollbar > -((agentsonmission.size - 1) * 265))
+  else if (context === 'mission' && agentscrollbar > -((agentsonmission.size - 1) * 265))
     dispatch(scrollRight, {context, agentscrollbar});
+}
+
+export function slideLeft(context) {
+  const agentscrollbar = jsonapiCursor(['components', 'agentscrollbar', context, 'left']) || 0;
+  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  const agents = jsonapiCursor(['agents']);
+  const agentCardWidth = 264;
+  const shift = 8;
+  var totalShift = 0;
+
+  if (context === 'armory' && agentscrollbar < 0)
+    var slider = setInterval(function (){totalShift += shift; dispatch(slideLeft, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider);}, 4);
+
+  else if (context === 'briefing' && agentscrollbar < 0)
+    var slider = setInterval(function (){totalShift += shift; dispatch(slideLeft, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider);}, 4);
+
+  else if (context === 'mission' && agentscrollbar < 0)
+    var slider = setInterval(function (){totalShift += shift; dispatch(slideLeft, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider);}, 4);
+}
+
+export function slideRight(context) {
+  const agentscrollbar = jsonapiCursor(['components', 'agentscrollbar', context, 'left']) || 0;
+  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  const agents = jsonapiCursor(['agents']);
+  const agentCardWidth = 264;
+  const shift = 8;
+  var totalShift = 0;
+
+  if (context === 'armory' && agentscrollbar > -((agents.size - 3)) * 265)
+    var slider = setInterval(function (){totalShift += shift; dispatch(slideRight, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider);}, 4);
+
+  else if (context === 'briefing' && agentscrollbar > -((agents.size - 3) * 265))
+    var slider = setInterval(function (){totalShift += shift; dispatch(slideRight, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider);}, 4);
+
+  else if (context === 'mission' && agentscrollbar > -((agentsonmission.size - 1) * 265))
+    var slider = setInterval(function (){totalShift += shift; dispatch(slideRight, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider);}, 4);
 }
 
 setToString('scrollbar', {
   scrollLeft,
-  scrollRight
+  scrollRight,
+  slideLeft,
+  slideRight
 });

@@ -2,6 +2,7 @@
   Dumb Component
 */
 import './agentscrollbarwithnavbuttons.styl';
+import * as scrollbarActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,6 +12,23 @@ import AgentScrollBar from './agentscrollbar.react';
 import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
 
 class AgentScrollBarWithNavButtons extends Component {
+  scrollleft() {
+    const {isBriefing, isMission, jsonapi} = this.props;
+    const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
+    if (jsonapi.getIn(['options', 'animations']))
+      scrollbarActions.slideLeft(context);
+    else
+      scrollbarActions.scrollLeft(context);
+  }
+
+  scrollright() {
+    const {isBriefing, isMission, jsonapi} = this.props;
+    const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
+    if (jsonapi.getIn(['options', 'animations']))
+      scrollbarActions.slideRight(context);
+    else
+      scrollbarActions.scrollRight(context);
+  }
 
   render() {
     const {isBriefing, isMission, jsonapi} = this.props;
@@ -29,6 +47,7 @@ class AgentScrollBarWithNavButtons extends Component {
           data={{orientation: 'left'}}
           isBriefing={this.props.isBriefing}
           isMission={this.props.isMission}
+          parentCallback={this.scrollleft.bind(this)}
           />
         <div className={classString}>
           <AgentScrollBar
@@ -45,6 +64,7 @@ class AgentScrollBarWithNavButtons extends Component {
           data={{orientation: 'right'}}
           isBriefing={this.props.isBriefing}
           isMission={this.props.isMission}
+          parentCallback={this.scrollright.bind(this)}
           />
       </div>
     );

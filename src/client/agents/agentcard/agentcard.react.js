@@ -25,7 +25,7 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, agentindex, key} = this.props;
+    const {agent, agentindex, equipments, key} = this.props;
     const rankup = shouldHaveRank(agent.get('experience')) >= agent.get('rank') ? true : false;
 
     const classString = classnames(
@@ -35,7 +35,7 @@ class AgentCard extends Component {
       }
     );
     if (agent)
-      var equipments = agent.get('equipments');
+      var agentequipments = agent.get('equipments');
 
     return (
       <li
@@ -78,12 +78,13 @@ class AgentCard extends Component {
           name={agent.get('name')}
           />
         {
-          equipments.map((equipment, i) => {
+          agentequipments.map((agentequipment, i) => {
             return (
               <AgentEquipmentSlot
                 agent={agent}
                 agentindex={agentindex}
-                equipment={equipment}
+                agentequipment={agentequipment}
+                equipments={equipments}
                 equipmentindex={i}
                 isMission={this.props.isMission}
                 isShowcased={this.props.isShowcased}
@@ -104,6 +105,7 @@ AgentCard.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map),
   agentindex: React.PropTypes.number,
   data: React.PropTypes.object,
+  equipments: React.PropTypes.instanceOf(immutable.List),
   isAgents: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,

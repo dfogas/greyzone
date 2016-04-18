@@ -1,8 +1,12 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
-import leadershipcheck from '../lib/leadershipcheck';
+import {gameCursor} from '../state';
+
+import actionDices from '../lib/actiondices';
+import agentIncurDelay from '../lib/agentincurdelay';
 import agentRankup from '../lib/agentrankup';
+import leadershipcheck from '../lib/leadershipcheck';
 import trainingtable from '../../server/lib/greyzone/trainingtable';
 
 export function toArmory(agent) {
@@ -10,10 +14,10 @@ export function toArmory(agent) {
 }
 
 export function assignTask(agent) {
-  // fairly complicated action resolve in agents/store
-  // basically it finds out what is current task and which action types it has
-  // then adds dices to tabletop
-  dispatch(assignTask, {message: agent});
+  const currenttask = jsonapiCursor(['activemission', 'tasks', jsonapiCursor(['activemission', 'taskscompleted']).size]);
+  const dices = actionDices(agent, currenttask);
+
+  dispatch(assignTask, {agent, dices});
 }
 
 export function backFromArmory(agent) {
@@ -29,11 +33,11 @@ export function dismissAgent(agent) {
   dispatch(dismissAgent, {message: agent});
 }
 
-export function equip(obj) {
+export function equip(equipment) {
   // TODO: napsat líp
-  const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(obj.get('name')) !== -1;
+  const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(equipment.get('name')) !== -1;
   if (!hasAlready) {
-    dispatch(equip, obj);
+    dispatch(equip, equipment);
     dispatch(logArmory, {message: 'Agent equipped.'});
   }
   else dispatch(logArmory, {message: 'Agent has this equipment already.'});
@@ -49,12 +53,17 @@ export function getRank(agent) {
     dispatch(logArmory, {message: 'You must upgrade your training facility to train agent further.'});
 }
 
-export function incurETA(agent) {
-  dispatch(incurETA, {message: agent});
-}
 
 export function logArmory(message) {
   dispatch(logArmory, {message});
+}
+
+export function setETA(agent, equipment) {
+  console.log(equipment);
+  const delay = gameCursor(['globals', 'features', 'unpaid', 'equipments', 'ETAdelay']);
+  const agentsETA = agentIncurDelay(agent, equipment, delay);
+
+  dispatch(setETA, {agentsETA});
 }
 
 setToString('agents', {
@@ -67,6 +76,6 @@ setToString('agents', {
   getRank,
   // goFree,
   // goToPrison,
-  incurETA,
-  logArmory
+  logArmory,
+  setETA
 });
