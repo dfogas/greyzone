@@ -8,6 +8,7 @@ class DebugWindow extends Component {
   sanitize() {
     dashboardActions.sanitizeAgents();
     dashboardActions.sanitizeMissions();
+    dashboardActions.sanitizeDashboardPointer();
   }
 
   setDefaultMission() {

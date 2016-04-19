@@ -11,6 +11,7 @@ class MissionEndButton extends Component {
     missionActions.removeCompletedMission();
     missionActions.agentsAreBackFromMission();
     missionActions.setDefault();
+    window.history.back();
   }
 
   render() {

@@ -133,18 +133,26 @@ router.route('/lprecover')
       email: email
     });
 
-    newLPRecover.save((err, lpw) => {
+
+    User.findOne({username: email}, (err, user) => {
       if (err)
         res.send(err);
+      else if (!user)
+        res.send('No such user in the database.');
       else
-        transporter.sendMail(lostpassword(lpw.recoverhash, lpw.email), (err) => {
+        newLPRecover.save((err, lpw) => {
           if (err)
-            res.send(err);
+          res.send(err);
           else
+          transporter.sendMail(lostpassword(lpw.recoverhash, lpw.email), (err) => {
+            if (err)
+            res.send(err);
+            else
             res.json({
               message: 'Message for lost password recovery was sent to ' + lpw.email + '.',
               email: lpw.email
             });
+          });
         });
     });
   });

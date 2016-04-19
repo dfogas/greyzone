@@ -5,14 +5,15 @@ import immutable from 'immutable';
 import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
 import AgentsTier from './agentstier/agentstier.react';
+import MissionResultsWindow from './results/window.react';
 import MissionToBriefingButton from '../navs/missiontobriefing.react';
 import MissionToDashboardButton from '../navs/missiontodashboard.react';
-
 
 class MissionTrackingScreen extends Component {
   render() {
     const {jsonapi} = this.props;
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
+    const missionResult = jsonapi.getIn(['activemission', 'result']);
 
     return (
       <div id='MissionTrackingScreen'>
@@ -29,6 +30,8 @@ class MissionTrackingScreen extends Component {
           <MissionToBriefingButton />}
         {!missionStarted &&
           <MissionToDashboardButton />}
+        {missionStarted && missionResult &&
+          <MissionResultsWindow />}
       </div>
     );
   }

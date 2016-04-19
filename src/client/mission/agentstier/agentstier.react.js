@@ -10,7 +10,6 @@ import EscapeButton from './buttons/escapebutton.react';
 import EscapeProtocol from './buttons/escapeprotocol.react';
 import LockedDiceContainer from './buttons/lockeddicecontainer.react';
 import SuccessButton from './buttons/successbutton.react';
-import MissionEndButton from './buttons/missionendbutton.react';
 import BackToMissionButton from './buttons/backtomission.react';
 
 class AgentsTier extends Component {
@@ -43,8 +42,6 @@ class AgentsTier extends Component {
           <BackToMissionButton
             agentlock={activemission.getIn(['mission', 'currenttask', 'agentlock'])}
           />}
-        {activemission.get('result') &&
-          <MissionEndButton/>}
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
           <LockedDiceContainer activemission={activemission}/>}
         {isLastTaskDone && !missionResult && missionStarted &&

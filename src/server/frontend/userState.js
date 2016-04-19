@@ -16,6 +16,7 @@ import 'isomorphic-fetch';
 import AchievementList from '../lib/greyzone/achievement.list';
 import CountryList from '../lib/greyzone/country.list';
 import EnhancementList from '../lib/greyzone/enhancement.list';
+import EquipmentList from '../lib/greyzone/equipments.list';
 import OptionsList from '../lib/greyzone/options.list';
 import StatusList from '../lib/greyzone/status.list';
 
@@ -40,9 +41,9 @@ export default function userState() {
         {name: 'Event no. 1', target: 'target_id'}
       ],
       globals: {
+        achievements: AchievementList,
         agentsforhire: [],
         constants: {
-          achievements: AchievementList,
           agentsPriceList: {
             '1': 100,
             '2': 550,
@@ -62,6 +63,7 @@ export default function userState() {
         },
         countries: CountryList,
         enhancements: EnhancementList,
+        equipments: EquipmentList,
         options: OptionsList,
         features: {
           paid: {
