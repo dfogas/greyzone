@@ -85,7 +85,9 @@ class DashboardScreen extends Component {
         {dashPointer === 'options' &&
           <LanguageSelect locales={this.props.locales}/>}
         <div id='DashboardContent'>
-          {dashPointer === 'strategical' &&
+          {(dashPointer === 'strategical' || dashPointer === 'enhancements' ||
+            dashPointer === 'statuses' || dashPointer === 'achievements' ||
+            dashPointer === 'options') &&
             <PlayersWindow
               enhancements={enhancementsowned}
               gameCash={jsonapi.get('gameCash')}

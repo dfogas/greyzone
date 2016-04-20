@@ -6,9 +6,8 @@ import React from 'react';
 
 class DebugWindow extends Component {
   sanitize() {
-    dashboardActions.sanitizeAgents();
-    dashboardActions.sanitizeMissions();
-    dashboardActions.sanitizeDashboardPointer();
+    dashboardActions.sanitizeAgents(); // checks for null or undefined
+    dashboardActions.sanitizeMissions(); // check for null or undefined
   }
 
   setDefaultMission() {
@@ -22,16 +21,21 @@ class DebugWindow extends Component {
 
     return (
       <div id='DebugWindow'>
-        {debug && <button
-          id='SanitizeStateButton'
-          onClick={this.sanitize}>
-          Sanitize State
-        </button>}
-        {debug &&
-          <button
-            id='SetDefaultMissionButton'
-            onClick={this.setDefaultMission}
-          >Set Default Mission</button>}
+        <form>
+          <fieldset>
+            <legend>Debug Window</legend>
+          {debug && <button
+            id='SanitizeStateButton'
+            onClick={this.sanitize}>
+            Sanitize State
+          </button>}
+          {debug &&
+            <button
+              id='SetDefaultMissionButton'
+              onClick={this.setDefaultMission}
+            >Set Default Mission</button>}
+          </fieldset>
+        </form>
       </div>
     );
   }
