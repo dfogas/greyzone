@@ -2,19 +2,27 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 
-/*it should transfer agent from task to agents on mission
-  used 3 times*/
+export function agentFreed(agent) {
+  dispatch(agentFreed, {agent});
+}
+
+export function agentImprisoned(agent) {
+  dispatch(agentImprisoned, {agent});
+}
+
 export function agentIsBackFromTask() {
   if (jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']))
     dispatch(agentIsBackFromTask, {});
+}
+
+export function agentKilled(agent) {
+  dispatch(agentKilled, {agent});
 }
 
 export function agentLockedToTask() {
   dispatch(agentLockedToTask, {});
 }
 
-/* fires for all agents on mission after result is determined
-  extracts information from active mission and stores it in List within agent struct*/
 export function agentMissionDone(index) {
   dispatch(agentMissionDone, {message: index});
 }
@@ -35,10 +43,19 @@ export function bookRewards(mission) {
   dispatch(bookRewards, {message: mission});
 }
 
-/* check whether there is agentImprisoned or
-  agentKilled */
 export function checkFatalities(results) {
-  dispatch(checkFatalities, {results});
+  const resultsToJs = results.toJS();
+  const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+  if (results.agentImprisoned)
+    dispatch(agentImprisoned, {agent: agentontask});
+  if (results.agentKilled) {
+    const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')]);
+    const storage = storagejson ? JSON.parse(storagejson) : [];
+    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], storage.concat(JSON.stringify(agentontask.toJS())));
+    dispatch(agentKilled, {agent: agentontask});
+  }
+  if (results.agentFreed)
+    dispatch(agentFreed, {agent: jsonapiCursor(['agentbeingsaved'])});
 }
 
 export function clearTask() {
@@ -74,7 +91,22 @@ export function log(message) {
 /* fires after mission result is determined (success or fail)
   extracts information from active mission and stores it in List within player struct*/
 export function organizationMissionDone() {
-  dispatch(organizationMissionDone, {});
+  const activemission = jsonapiCursor(['activemission']);
+  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+  const agentsmissionall = agentontask ? agentsonmission.concat(agentontask) : agentsonmission;
+  const missionDone = {
+    title: activemission.get('title'),
+    timeDone: Date.now(),
+    tier: activemission.get('tier'),
+    result: activemission.get('result'),
+    inCountry: activemission.get('inCountry'),
+    agents: agentsmissionall.toJS().map(agent => agent.id)
+  };
+  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions']);
+  const storage = storagejson ? JSON.parse(storagejson) : [];
+
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions'], storage.concat(JSON.stringify(missionDone)));
 }
 
 /*finds activemission in missions and removes it*/
@@ -102,7 +134,10 @@ export function success() {
 */
 
 setToString('mission', {
+  agentFreed,
+  agentImprisoned,
   agentIsBackFromTask,
+  agentKilled,
   agentLockedToTask,
   agentMissionDone,
   agentOnTaskGetsExperienceForCompletingTask,

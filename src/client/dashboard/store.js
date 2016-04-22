@@ -5,6 +5,7 @@ import {contestCursor, jsonapiCursor} from '../state';
 import cconfig from '../client.config';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
+import playerdefaults from '../../server/lib/playerdefaults';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -95,6 +96,13 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'country'], 'random');
     });
 
+  if (action === dashboardActions.displayGameEndStatistics)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['options', 'gameend', 'statistics'], true)
+        .setIn(['statistics'], data);
+    });
+
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
     const agent = data.agent;
@@ -108,6 +116,11 @@ export const dispatchToken = register(({action, data}) => {
         ));
     });
   }
+
+  if (action === dashboardActions.loadGame)
+    jsonapiCursor(jsonapi => {
+      return immutable.fromJS(data);
+    });
 
   if (action === dashboardActions.loadLog)
     jsonapiCursor(jsonapi => {
@@ -161,6 +174,12 @@ export const dispatchToken = register(({action, data}) => {
       return immutable.fromJS(data);
     });
 
+  if (action === dashboardActions.retireGame)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('gameend', 'retirement');
+    });
+
   if (action === dashboardActions.sanitizeAgents)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -185,6 +204,14 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['dashboard', 'strategical', data.destination, 'tip'], val => val === true ? val = false : val = true);
+    });
+
+  if (action === dashboardActions.startNewGame)
+    jsonapiCursor(jsonapi => {
+      return immutable.fromJS(playerdefaults)
+        .set('_id', data.userId)
+        .set('name', data.name)
+        .set('gameend', null);
     });
 
   if (action === dashboardActions.updateFormField)

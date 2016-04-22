@@ -30,6 +30,10 @@ export function backtoRoster(agent) {
 }
 
 export function dismissAgent(agent) {
+  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
+  const storage = storagejson ? JSON.parse(storagejson) : [];
+
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], storage.concat(JSON.stringify(agent.toJS())));
   dispatch(dismissAgent, {message: agent});
 }
 

@@ -90,6 +90,7 @@ router.route('/verify')
       else if (hash === notverified.activationhash) {
         var newUser = new User({
           password: notverified.password,
+          registered: Date.now(),
           username: notverified.username
         });
 

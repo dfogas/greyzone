@@ -64,6 +64,7 @@ var playerdefaults = {
     Mission('Money channelling', 1, (24 * 60 * 60 * 1000))
   ],
   missionsDone: [],
+  started: Date.now(),
   statuses: [],
   options: {
     multiplayer: false,

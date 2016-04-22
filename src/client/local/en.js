@@ -1,6 +1,7 @@
 import helpMsg from './en/help';
 import introMsg from './en/intro';
 import conceptsMsg from './en/concepts';
+import endsMsg from './en/ends';
 
 const ENGLISH = {
   app: {
@@ -109,6 +110,7 @@ const ENGLISH = {
       {name: 'DCP'}
     ]
   },
+  ends: endsMsg,
   help: helpMsg,
   introduction: introMsg,
   login: {

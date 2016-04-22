@@ -1,8 +1,8 @@
 import './statuses.window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
-import R from 'ramda';
 import immutable from 'immutable';
+import R from 'ramda';
 
 import StatusCard from './status.card.react';
 

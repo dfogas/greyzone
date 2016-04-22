@@ -21,6 +21,7 @@ import maxMissionsCheck from '../lib/maxmissionscheck';
 import missionAccept from '../lib/missionaccept';
 import noDoubleAgents from '../lib/nodoubleagents';
 import randomInt from '../lib/getrandomint';
+import R from 'ramda';
 import xmissioncheck from '../lib/xmissioncheck';
 
 /* Number, String, String, Object */
@@ -30,11 +31,15 @@ export function acceptMission(tier, focus, country, options) {
   const missions = jsonapiCursor(['missions']);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
 
+  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
+  const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
+
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
     dispatch(logMissionsWindow, {message: 'Upgrade your capability enhancement for higher tier missions.'});
   else if (!maxMissionsCheck(missions.size, capabilitynames))
     dispatch(logMissionsWindow, {message: 'Missions limit reached, pass on some missions to accept new ones.'});
   else {
+    localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents'], storage.concat(JSON.stringify([mission])));
     dispatch(acceptMission, {mission});
     dispatch(logMissionsWindow, {message: 'New mission has been accepted.'});
   }
@@ -96,6 +101,16 @@ export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
 }
 
+export function displayGameEndStatistics() {
+  // TODO: calls to localStorage and passes results to store
+
+  const jsonmissions = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
+  const missionstorage = jsonmissions ? JSON.parse(jsonmissions) : [];
+  const jsonagents = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents']);
+  const agentstorage = jsonagents ? JSON.parse(jsonagents) : [];
+  dispatch(displayGameEndStatistics, {});
+}
+
 export function hireAgent(specialist, rank) {
   const agent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), rank, specialist);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
@@ -106,6 +121,9 @@ export function hireAgent(specialist, rank) {
   const agentPrice = agentPriceList[rank];
   const gameCash = jsonapiCursor(['gameCash']);
 
+  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents', 'all']);
+  const storage = typeof storagejson === 'number' ? [] : storagejson ? storagejson : [];
+
   if (agentPrice > gameCash)
     dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
   else if (!maxAgentsCheck(totalAgents, capabilityNames))
@@ -113,13 +131,23 @@ export function hireAgent(specialist, rank) {
   else if (!leadershipCheck(rank - 1, leadershipNames))
     dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
   else {
+    localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents', 'all'], storage.concat(JSON.stringify([agent])));
     dispatch(hireAgent, {agent, agentPrice});
     dispatch(logAgentsWindow, {message: 'New agent recruited.'});
   }
 }
 
+export function loadGame() {
+  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save1']);
+  const storage = storagejson ? JSON.parse(storagejson) : null;
+  if (storage)
+    dispatch(loadGame, storage);
+}
+
 export function loadLog() {
-  const log = immutable.fromJS(localStorage.getItem(['ghoststruggle', 'log']).split(','));
+  const userId = jsonapiCursor(['_id']);
+  const organization = jsonapiCursor(['name']);
+  const log = immutable.fromJS(localStorage.getItem(['ghoststruggle', userId, organization, 'log']).split(','));
 
   dispatch(loadLog, {log});
 }
@@ -162,6 +190,10 @@ export function refreshStandings() {
   dispatch(refreshStandings, promise);
 }
 
+export function retireGame() {
+  dispatch(retireGame, {});
+}
+
 export function sanitizeAgents() {
   dispatch(sanitizeAgents, {});
 }
@@ -183,14 +215,27 @@ export function saveAgent(agent) {
   }
 }
 
+export function saveGame(jsonapi) {
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save1'], JSON.stringify(jsonapi.toJS()));
+}
+
 export function saveLog() {
   const log = jsonapiCursor(['log']).toJS();
+  const userId = jsonapiCursor(['_id']);
+  const organization = jsonapiCursor(['name']);
 
-  localStorage.setItem(['ghoststruggle', 'log'], log);
+  const storagejson = localStorage.getItem(['ghoststruggle', userId, organization, 'log']);
+  const storage = storagejson ? storagejson.split(',') : [];
+
+  localStorage.setItem(['ghoststruggle', userId, organization, 'log'], R.uniq(storage.concat(log)));
 }
 
 export function showTip(destination) {
   dispatch(showTip, {destination});
+}
+
+export function startNewGame(userId, name) {
+  dispatch(startNewGame, {userId, name});
 }
 
 export function updateFormField({name, value}, context) {
@@ -215,18 +260,23 @@ setToString('dashboard', {
   clearAgentHireFields,
   clearLog,
   clearMissionAcceptFields,
+  displayGameEndStatistics,
   hireAgent,
   loadLog,
+  loadGame,
   log,
   logAgentsWindow,
   logMissionsWindow,
   pointerChange,
   prisonBreakMission,
   refreshStandings,
+  retireGame,
   sanitizeAgents,
   sanitizeMissions,
   saveAgent,
+  saveGame,
   showTip,
+  startNewGame,
   updateFormField,
   upgradeEnhancement
 });

@@ -13,7 +13,7 @@ class OptionsWindow extends Component {
   }
 
   render() {
-    const {options} = this.props;
+    const {jsonapi, options} = this.props;
     const tutorial = options.get('tutorial');
     const multiplayer = options.get('multiplayer');
     const tipsenable = options.get('tipsenable');
@@ -34,7 +34,9 @@ class OptionsWindow extends Component {
           </fieldset>
         </form>
         {!multiplayer &&
-          <OptionsGameWindow />}
+          <OptionsGameWindow
+            jsonapi={jsonapi}
+            />}
         <DebugWindow
           debug={debug}
           />

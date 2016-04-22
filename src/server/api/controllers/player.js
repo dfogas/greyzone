@@ -57,9 +57,11 @@ router.route('/:player_id')
         if (err)
           res.send(err);
 
-        res.json({
-          message: JSON.stringify(raw)
-        });
+        else
+          res.json({
+            message: 'state successfully updated', 
+            body: JSON.stringify(raw)
+          });
       }
     );
   });

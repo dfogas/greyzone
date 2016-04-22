@@ -12,6 +12,7 @@ var PlayerSchema = new Schema({
   dashboard: Schema.Types.Mixed,
   enhancements: [Schema.Types.Mixed],
   equipments: [Schema.Types.Mixed],
+  gameend: String,
   gameCash: {
     type: Number,
     min: 0
@@ -30,6 +31,7 @@ var PlayerSchema = new Schema({
   },
   options: Schema.Types.Mixed,
   organization: Schema.Types.Mixed,
+  started: Number,
   statuses: [Schema.Types.Mixed],
   userId: String,
   title: {

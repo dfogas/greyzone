@@ -12,7 +12,8 @@ var UserSchema = new mongoose.Schema({
     required: true,
     type: String,
     unique: false
-  }
+  },
+  registered: Number
 });
 
 // Execute before each user.save() call

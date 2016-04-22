@@ -7,20 +7,19 @@ import immutable from 'immutable';
 class OptionsGameWindow extends Component {
   loadGame() {
     // alert('Game loaded. Single player only.');
+    dashboardActions.loadGame();
   }
 
-  retire() {
+  retireGame() {
     // alert('Retired. Organization ends. Should be available after certain missions and certain cash. Probably as one achievement.');
+    dashboardActions.retireGame();
   }
 
   saveGame() {
     // alert('Game for current organization saved. Single player only.');
     // should save to WebStorage
-  }
-
-  startNewGame() {
-    // alert('Are you sure Yes/No. New Game started. Started in single player. No two multiplayer games allowed.');
-    // should
+    const {jsonapi} = this.props;
+    dashboardActions.saveGame(jsonapi);
   }
 
   render() {
@@ -28,9 +27,8 @@ class OptionsGameWindow extends Component {
       <div id="OptionsGameWindow">
         <fieldset>
           <legend>Game Window</legend>
-          <button id='RetireButton' onClick={this.retire}>Retire</button>
-          <button id='StartAnewButton' onClick={this.startNewGame}>New game</button>
-          <button id='SaveGameButton' onClick={this.saveGame}>Save game</button>
+          <button id='RetireButton' onClick={this.retireGame}>Retire</button>
+          <button id='SaveGameButton' onClick={this.saveGame.bind(this)}>Save game</button>
           <button id='LoadGameButton' onClick={this.loadGame}>Load game</button>
         </fieldset>
       </div>

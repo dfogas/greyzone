@@ -9,8 +9,6 @@ import GeminiScrollbar from 'react-gemini-scrollbar';
 
 class ContestWindow extends Component {
   refreshContest() {
-    // TODO:
-    console.log('Refreshing players\s standings...'); // eslint-disable-line no-console
     dashboardActions.refreshStandings();
   }
 

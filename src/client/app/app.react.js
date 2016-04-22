@@ -48,14 +48,17 @@ class App extends Component {
     const api = process.env.NODE_ENV === 'production' ?
       cconfig.dnsprod + '/api/v1/' :
       cconfig.dnsdevel + '/api/v1/';
-    const playerId = this.state.jsonapi.get('_id');
+    const userId = this.state.jsonapi.get('_id');
     const jsonapi = this.state.jsonapi.toJS();
     if (this.state.jsonapi.get('name') !== 'Default')
-      fetch(api + 'players/' + playerId, {
+      fetch(api + 'players/' + userId, {
         method: 'PUT',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(jsonapi)
       });
+      // .then((response) => {
+      //   console.log(response);
+      // });
   }
 
   getState() {

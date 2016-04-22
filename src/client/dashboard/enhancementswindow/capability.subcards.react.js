@@ -25,6 +25,21 @@ class CapabilitySubCards extends Component {
     dashboardActions.log(dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Upgraded ' + name + ' to ' + nextlevel.name + '.');
   }
 
+  focusEnhancement(e) {
+    e.preventDefault();
+    e.target.style.opacity = 1;
+  }
+
+  unfocusEnhancement(e) {
+    e.preventDefault();
+    e.target.style.opacity = 0.5;
+  }
+
+  unfocusParentEnhancement(e) {
+    e.preventDefault();
+    e.target.parentNode.style.opacity = 0.5;
+  }
+
   render() {
     const {capability} = this.props;
     const enhancement = capability.filter(enh => enh.get('name') === 'Top Class').get(0) ||
@@ -45,7 +60,11 @@ class CapabilitySubCards extends Component {
       name === 'Higher Level' ? capabilityList[4] : null);
     const hasMaxed = enhancement.get('name') === 'Top Class';
     return (
-      <div id='CapabilitySubCards'>
+      <div
+        id='CapabilitySubCards'
+        onMouseOver={(e) => this.focusEnhancement(e)}
+        onMouseLeave={(e) => this.unfocusEnhancement(e)}
+        >
         <div className='capability-enhancement-card owned'>
           <div>{name}</div>
           <div>{description}</div>

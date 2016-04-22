@@ -2,8 +2,9 @@ import generateName from './name.generator';
 import generateCountry from './origin.generator';
 import generateImage from './image.generator';
 import generateEquipments from './generateequipments';
-import trainingtable from './trainingtable';
 import getRandomSkill from '../../../client/lib/getrandomskill';
+import trainingtable from './trainingtable';
+import uuid from '../../../client/lib/guid';
 
 let Agent = function(character, rank) {
   let operationsSkill = 1,
@@ -30,6 +31,7 @@ let Agent = function(character, rank) {
   }
 
   return {
+    id: uuid() + character,
     name: generateName('greyzone'),
     originCountry: generateCountry(),
     imgsrc: generateImage(character),

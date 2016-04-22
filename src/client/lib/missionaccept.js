@@ -1,4 +1,4 @@
-/* tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) missionList([Mission]), countryList([Country])) */
+/* tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) missionList([Mission]), countryList([Country])) -> JSObject(Mission) */
 
 import randomInt from './getrandomint';
 import xmissioncheck from './xmissioncheck';

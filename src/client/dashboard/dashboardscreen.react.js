@@ -1,7 +1,5 @@
 /* Smart */
 import './dashboardscreen.styl';
-// import * as dashboardActions from './actions';
-// import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -16,7 +14,8 @@ import CountryStatsWindow from './countrieswindow/countrystatswindow.react';
 import ContestWindow from './contestwindow/contestwindow.react';
 import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
-import LogWindow from './logwindow/log.window.react.js';
+import LogWindow from './logwindow/log.window.react';
+import EndGameWindow from './endgame.window.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -67,6 +66,15 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
+        {jsonapi.get('gameend') &&
+          <EndGameWindow
+            countrystats={jsonapi.get('countrystats')}
+            name={jsonapi.get('name')}
+            options={jsonapi.get('options')}
+            started={jsonapi.get('started')}
+            statistics={jsonapi.get('statistics')}
+            userId={jsonapi.get('_id')}
+            />}
         {!jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToBriefing />}
         <DashboardToCommand />
@@ -119,6 +127,7 @@ class DashboardScreen extends Component {
               />}
           {dashPointer === 'options' &&
             <OptionsWindow
+              jsonapi={jsonapi}
               options={options}
               />}
           {dashPointer === 'strategical' &&

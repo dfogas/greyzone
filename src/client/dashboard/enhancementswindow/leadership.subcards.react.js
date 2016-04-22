@@ -25,6 +25,21 @@ class LeadershipSubCards extends Component {
     dashboardActions.log(dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Upgraded ' + name + ' to ' + nextlevel.name + '.');
   }
 
+  focusEnhancement(e) {
+    e.preventDefault();
+    e.target.style.opacity = 1;
+  }
+
+  unfocusEnhancement(e) {
+    e.preventDefault();
+    e.target.style.opacity = 0.5;
+  }
+
+  unfocusParentEnhancement(e) {
+    e.preventDefault();
+    e.target.parentNode.style.opacity = 0.5;
+  }
+
   render() {
     const {leadership} = this.props;
     const enhancement = leadership.filter(enh => enh.get('name') === 'Focus Training II.').get(0) ||
@@ -45,7 +60,11 @@ class LeadershipSubCards extends Component {
       name === 'Focus Training I.' ? leadershipList[4] : null);
     const hasMaxed = enhancement.get('name') === 'Focus Training II.';
     return (
-      <div id='LeadershipSubCards'>
+      <div
+        id='LeadershipSubCards'
+        onMouseOver={(e) => this.focusEnhancement(e)}
+        onMouseLeave={(e) => this.unfocusEnhancement(e)}
+        >
         <div
           className='leadership-enhancement-card owned'
           >
