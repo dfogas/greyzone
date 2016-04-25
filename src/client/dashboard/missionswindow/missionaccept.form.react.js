@@ -26,7 +26,7 @@ class MissionAcceptForm extends Component {
   }
 
   render() {
-    const {enhancements, missions, missionaccept, missionspricelist} = this.props;
+    const {enhancements, missions, missionspricelist} = this.props;
     const defaultform = {fields: {tier: '', focus: '', country: ''}};
     const form = this.getForm() || immutable.fromJS(defaultform);
 

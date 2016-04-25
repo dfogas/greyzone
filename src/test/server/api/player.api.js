@@ -1,8 +1,8 @@
 process.env.NODE_ENV = 'apitest';
 
+
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import mongoose from 'mongoose';
 
 import server from '../../../server/main';
 import Player from '../../../server/api/models/player';
@@ -41,7 +41,7 @@ describe('Players', function() {
   //       done();
   //     });
   // });
-  // 
+  //
   // it('should add a SINGLE player on /api/v1/players POST', function(done) {
   //   chai.request(server)
   //     .post('/api/v1/players/')

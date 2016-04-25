@@ -15,13 +15,12 @@ class AgentHireForm extends Component {
   onFormSubmit(e) {
     e.preventDefault();
     const fields = this.getForm().get('fields').toJS();
-    console.log(fields);
     dashboardActions.hireAgent(fields.specialist, fields.rank);
     dashboardActions.clearAgentHireFields();
   }
 
   render() {
-    const {agenthire, agentspricelist} = this.props;
+    const {agentspricelist} = this.props;
     const form = this.getForm();
     return (
       <div id='AgentHireForm'>

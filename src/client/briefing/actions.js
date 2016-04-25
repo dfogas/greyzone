@@ -1,6 +1,7 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
+import immutable from 'immutable';
 
 export function assignMission(agent) {
   /* pokud je agent unavený např. z předchozí mise */
@@ -17,6 +18,14 @@ export function assignMission(agent) {
     dispatch(assignMission, {message: agent});
 }
 
+export function bookLosses(mission) {
+  dispatch(bookLosses, {mission});
+}
+
+export function checkFatalities(mission) {
+  dispatch(checkFatalities, {mission});
+}
+
 export function logBriefing(message) {
   dispatch(logBriefing, message);
 }
@@ -24,6 +33,16 @@ export function logBriefing(message) {
 /*finds passed mission within player's missions and removes it*/
 export function passMission(mission) {
   dispatch(passMission, {message: mission});
+  if (mission.get('forcefail')) {
+    dispatch(bookLosses, {mission});
+    dispatch(checkFatalities, {mission});
+  }
+}
+
+export function pushGameMission(mission) {
+  const missions = jsonapiCursor(['missions']);
+  if (missions.indexOf(immutable.fromJS(mission)) === -1)
+    dispatch(pushGameMission, {mission});
 }
 
 /*passed mission is merged to become a activemission*/
@@ -34,6 +53,10 @@ export function selectMission(mission) {
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
     dispatch(passMission, {message: mission});
     dispatch(setDefaultAfterExpired, {});
+    if (mission.get('forcefail')) {
+      dispatch(bookLosses, {mission});
+      dispatch(checkFatalities, {mission});
+    }
   }
   else dispatch(selectMission, {message: mission});
 }
@@ -44,8 +67,11 @@ export function setDefaultAfterExpired() {
 
 setToString('briefing', {
   assignMission,
+  bookLosses,
+  checkFatalities,
   logBriefing,
   passMission,
+  pushGameMission,
   selectMission,
   setDefaultAfterExpired
 });

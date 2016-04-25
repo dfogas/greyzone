@@ -28,6 +28,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === briefingActions.pushGameMission)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('missions', val => val.unshift(immutable.fromJS(data.mission)));
+    });
+
   if (action === briefingActions.selectMission) {
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
     // if (data.message) - TODO: Why is this check here?

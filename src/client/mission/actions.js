@@ -36,22 +36,21 @@ export function agentsAreBackFromMission() {
 }
 
 export function bookLosses(mission) {
-  dispatch(bookLosses, {message: mission});
+  dispatch(bookLosses, {mission});
 }
 
 export function bookRewards(mission) {
-  dispatch(bookRewards, {message: mission});
+  dispatch(bookRewards, {mission});
 }
 
 export function checkFatalities(results) {
-  const resultsToJs = results.toJS();
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   if (results.agentImprisoned)
     dispatch(agentImprisoned, {agent: agentontask});
   if (results.agentKilled) {
     const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')]);
     const storage = storagejson ? JSON.parse(storagejson) : [];
-    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], storage.concat(JSON.stringify(agentontask.toJS())));
+    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], storage.concat(JSON.stringify([agentontask.toJS()])));
     dispatch(agentKilled, {agent: agentontask});
   }
   if (results.agentFreed)
@@ -70,8 +69,8 @@ export function completeTask(task) {
   dispatch(completeTask, {message: task});
 }
 
-export function controldamage() {
-  dispatch(controldamage, {});
+export function controldamage(mission) {
+  dispatch(controldamage, {mission});
 }
 
 export function end() {
@@ -106,7 +105,7 @@ export function organizationMissionDone() {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
 
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions'], storage.concat(JSON.stringify(missionDone)));
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions'], storage.concat(JSON.stringify([missionDone])));
 }
 
 /*finds activemission in missions and removes it*/

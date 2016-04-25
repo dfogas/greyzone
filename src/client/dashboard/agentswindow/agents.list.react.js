@@ -1,5 +1,4 @@
 import './agents.list.styl';
-import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -8,12 +7,9 @@ import {msg} from '../../intl/store';
 import AgentsListRecord from './agents.list.record.react';
 
 class AgentsList extends Component {
-  agentHireTip() {
-    dashboardActions.showTip('agenthire');
-  }
 
   render() {
-    const {agentbeingsaved, agents, dashboard, options} = this.props;
+    const {agentbeingsaved, agents, agentsinroster, dashboard, options} = this.props;
     const debug = options.get('debug');
 
     if (!agents.size || dashboard.getIn(['strategical', 'agenthire', 'tip']))
@@ -39,6 +35,7 @@ class AgentsList extends Component {
                   <AgentsListRecord
                     agent={agent}
                     agentbeingsaved={agentbeingsaved}
+                    agentsinroster={agentsinroster}
                     debug={debug}
                     />
                 );
@@ -46,9 +43,6 @@ class AgentsList extends Component {
             }
           </tbody>
         </table>
-        {options.get('tipsenable') && <button
-          id='AgentHireTip'
-          onClick={this.agentHireTip}>Tip</button>}
       </div>
     );
   }
@@ -57,6 +51,7 @@ class AgentsList extends Component {
 AgentsList.propTypes = {
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
+  agentsinroster: React.PropTypes.instanceOf(immutable.List),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
   options: React.PropTypes.instanceOf(immutable.Map)
 };

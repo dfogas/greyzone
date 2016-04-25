@@ -68,21 +68,18 @@ export default function userState() {
         features: {
           paid: {
             equipments: {
-              ETAdelay: 60*5*1000
+              ETAdelay: 60 * 5 * 1000
             }
           },
           unpaid: {
             equipments: {
-              ETAdelay: 60*10*1000
+              ETAdelay: 60 * 10 * 1000
             }
           }
         },
         statuses: StatusList
       }
     };
-
-    //TODO: api call to agentsforhire, need to set-up database first (probably) and controller&model also (surely)
-    // also api call to missionstoaccept for the same reason as agents for hire
 
     req.userState.jsonapi = {
       name: 'Default',

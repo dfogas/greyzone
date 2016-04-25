@@ -33,7 +33,7 @@ export function dismissAgent(agent) {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
 
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], storage.concat(JSON.stringify(agent.toJS())));
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], storage.concat(JSON.stringify([agent.toJS()])));
   dispatch(dismissAgent, {message: agent});
 }
 
@@ -63,7 +63,6 @@ export function logArmory(message) {
 }
 
 export function setETA(agent, equipment) {
-  console.log(equipment);
   const delay = gameCursor(['globals', 'features', 'unpaid', 'equipments', 'ETAdelay']);
   const agentsETA = agentIncurDelay(agent, equipment, delay);
 

@@ -4,6 +4,7 @@ import React from 'react';
 import Component from '../components/component.react';
 import {msg} from '../intl/store';
 import {FormattedHTMLMessage} from 'react-intl';
+import immutable from 'immutable';
 import capitalLetter from '../lib/capitalletter';
 
 class IntroScreen extends Component {
@@ -72,5 +73,8 @@ class IntroScreen extends Component {
   }
 }
 
+IntroScreen.propTypes = {
+  about: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default IntroScreen;

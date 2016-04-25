@@ -31,7 +31,10 @@ class MissionTrackingScreen extends Component {
         {!missionStarted &&
           <MissionToDashboardButton />}
         {missionStarted && missionResult &&
-          <MissionResultsWindow />}
+          <MissionResultsWindow
+            activemission={jsonapi.get('activemission')}
+            agentbeingsaved={jsonapi.get('agentbeingsaved')}
+            />}
       </div>
     );
   }

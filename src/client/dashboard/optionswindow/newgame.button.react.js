@@ -1,7 +1,6 @@
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
-import immutable from 'immutable';
 
 class NewGameButton extends Component {
   startNewGame() {
@@ -10,7 +9,6 @@ class NewGameButton extends Component {
   }
 
   render() {
-    const {userId, name} = this.props;
     return (
       <button
         id='StartAnewButton'
@@ -18,5 +16,10 @@ class NewGameButton extends Component {
     );
   }
 }
+
+NewGameButton.propTypes = {
+  name: React.PropTypes.string,
+  userId: React.PropTypes.string
+};
 
 export default NewGameButton;

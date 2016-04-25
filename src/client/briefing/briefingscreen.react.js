@@ -1,4 +1,5 @@
 import './briefingscreen.styl';
+import * as briefingActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import DocumentTitle from 'react-document-title';
@@ -14,10 +15,18 @@ import MissionsListTable from './missionlist.table.react';
 import ToMission from '../navs/tomission.react';
 
 class BriefingScreen extends Component {
+  pushGameMission(mission) {
+    briefingActions.pushGameMission(mission);
+  }
+
   render() {
     const {jsonapi, pendingActions} = this.props;
     const agents = jsonapi.get('agents');
     const briefingmessage = jsonapi.getIn(['briefing', 'message']);
+
+    socket.on('new mission', (gamemission) => {
+      this.pushGameMission(gamemission);
+    });
 
     return (
       <DocumentTitle title={msg('briefing.title')}>

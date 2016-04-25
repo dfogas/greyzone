@@ -15,7 +15,7 @@ class EndGameWindow extends Component {
   }
 
   render() {
-    const {countrystats, name, options, started, statistics, userId} = this.props;
+    const {countrystats, name, options, started, userId} = this.props;
     return (
       <div id="EndGameWindow">
         You ended the game with
@@ -41,7 +41,6 @@ class EndGameWindow extends Component {
             countrystats={countrystats}
             name={name}
             started={started}
-            statistics={statistics}
             userId={userId}
             />
           }

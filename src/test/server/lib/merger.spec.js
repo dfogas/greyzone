@@ -1,7 +1,7 @@
 import chai, {expect} from 'chai';
 import chaiImmutable from 'chai-immutable';
 import immutable from 'immutable';
-import merger from 'server/lib/merger';
+import merger from '../../../server/lib/merger';
 
 chai.use(chaiImmutable);
 

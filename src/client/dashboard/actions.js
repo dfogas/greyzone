@@ -230,10 +230,6 @@ export function saveLog() {
   localStorage.setItem(['ghoststruggle', userId, organization, 'log'], R.uniq(storage.concat(log)));
 }
 
-export function showTip(destination) {
-  dispatch(showTip, {destination});
-}
-
 export function startNewGame(userId, name) {
   dispatch(startNewGame, {userId, name});
 }
@@ -275,7 +271,6 @@ setToString('dashboard', {
   sanitizeMissions,
   saveAgent,
   saveGame,
-  showTip,
   startNewGame,
   updateFormField,
   upgradeEnhancement

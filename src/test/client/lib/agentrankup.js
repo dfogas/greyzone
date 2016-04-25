@@ -11,7 +11,7 @@ chai.use(chaiImmutable);
 
 const agentRankup = require('../../../client/lib/agentrankup');
 
-const agent_1 = immutable.fromJS({
+const agentOne = immutable.fromJS({
   'imgsrc' : '../../assets/img/agents/spy/spy3_128.png',
   'KIA' : false,
   'equipments' : [
@@ -40,8 +40,8 @@ const agent_1 = immutable.fromJS({
 describe('Agent Rankup', () => {
 
   it('should give agent appropriate upgrade', () => {
-    expect(agentRankup(trainingtable, 7, agent_1).equipment).to.be.undefined;
-    expect(agentRankup(trainingtable, 7, agent_1).skill).to.be.a('string');
+    expect(agentRankup(trainingtable, 7, agentOne).equipment).to.be.undefined;
+    expect(agentRankup(trainingtable, 7, agentOne).skill).to.be.a('string');
   });
 
 });

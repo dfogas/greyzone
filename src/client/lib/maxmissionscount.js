@@ -5,10 +5,10 @@
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 
 //TODO: implement SPoC
-const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
+// const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
 
 function maxMissionsCount(enhancements) {
-  const enhancementnames = enhancements.filter(enh => enh.get('type') === 'capability').map(enh => enh.get('name')).toJS(); 
+  const enhancementnames = enhancements.filter(enh => enh.get('type') === 'capability').map(enh => enh.get('name')).toJS();
   if (enhancementnames.indexOf('Top Class') !== -1)
     return 12;
   if (enhancementnames.indexOf('Higher Level') !== -1)

@@ -82,10 +82,10 @@ class AgentCard extends Component {
             return (
               <AgentEquipmentSlot
                 agent={agent}
-                agentindex={agentindex}
                 agentequipment={agentequipment}
-                equipments={equipments}
+                agentindex={agentindex}
                 equipmentindex={i}
+                equipments={equipments}
                 isMission={this.props.isMission}
                 isShowcased={this.props.isShowcased}
                 key={uuid() + i}

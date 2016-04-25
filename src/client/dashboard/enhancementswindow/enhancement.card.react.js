@@ -8,20 +8,9 @@ import immutable from 'immutable';
 
 class EnhancementCard extends Component {
 
-  focusEnhancement(e) {
-    e.preventDefault();
-    e.target.style.opacity = 1;
-  }
+  focusEnhancement(e) {}
 
-  unfocusEnhancement(e) {
-    e.preventDefault();
-    e.target.style.opacity = 0.5;
-  }
-
-  unfocusParentEnhancement(e) {
-    e.preventDefault();
-    e.target.parentNode.style.opacity = 0.5;
-  }
+  unfocusEnhancement(e) {}
 
   render() {
     const {enhancement, owned} = this.props;
@@ -33,17 +22,13 @@ class EnhancementCard extends Component {
         onMouseLeave={(e) => {if (!owned) this.unfocusEnhancement(e); }}
         onMouseOver={(e) => {if (!owned) this.focusEnhancement(e); }}
         >
-        <div
-          onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
-          >{enhancement.get('name')}</div>
+        <div>{enhancement.get('name')}</div>
         {true &&
           <div><em>{description}</em></div>}
         {owned &&
           <div><small>Owned</small></div>}
         {!owned &&
-          <div
-            onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
-          >${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
+          <div>${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
         {/*!owned &&
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}

@@ -48,7 +48,7 @@ const help = {
       Operative - operations(red), Technician - electronics(green), Spy - stealth(yellow).
       If that is the case chance of backfiring(agent will incur fatigue and will not be
       able to be assigned to next mission until she recovers) is 25%, else it is 50% and
-      chance of equipment not working is 10% and 20% respectively. 
+      chance of equipment not working is 10% and 20% respectively.
     </p>
   `,
   introduction: `After reading links in Introduction group, you have the idea of

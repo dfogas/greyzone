@@ -2,7 +2,6 @@ import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
 import * as authActions from '../auth/actions';
 import {contestCursor, jsonapiCursor} from '../state';
-import cconfig from '../client.config';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
 import playerdefaults from '../../server/lib/playerdefaults';
@@ -198,12 +197,6 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .set('agentbeingsaved', immutable.fromJS(data.agent))
         .update('agents', val => val.delete(val.indexOf(data.agent)));
-    });
-
-  if (action === dashboardActions.showTip)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .updateIn(['dashboard', 'strategical', data.destination, 'tip'], val => val === true ? val = false : val = true);
     });
 
   if (action === dashboardActions.startNewGame)

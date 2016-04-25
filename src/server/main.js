@@ -7,7 +7,9 @@ import morgan from 'morgan';
 import {Server} from 'http';
 // import fs from 'fs';
 import ioServer from 'socket.io';
+import Mission from './lib/greyzone/mission.generator';
 
+// related to SSH certificate
 // const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
 // const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
 // const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
@@ -28,7 +30,12 @@ const io = ioServer(server);
 
 io.on('connection', (socket) => {
   console.log('user has connected');
+  socket.on('mission', function(msg) {
+    console.log(msg);
+    socket.emit('new mission', Mission('Desinformation', 2, 10 * 60 * 1000, true));
+  });
 });
+
 
 app.use(config.apipath, api);
 
@@ -54,4 +61,4 @@ server.listen(config.port, () => {
 });
 
 // necessity for server API test hook
-module.exports = app;
+export default app;

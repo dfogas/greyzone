@@ -14,7 +14,7 @@ class SuccessButton extends Component {
 
     if (tasks.size === taskscompleted.size) {
       missionActions.checkFatalities(activemission.get('rewards'));
-      missionActions.bookRewards();
+      missionActions.bookRewards(activemission);
       missionActions.success();
       for (var i = 0; i < agentsonmission.size; i += 1)
         missionActions.agentMissionDone(i);

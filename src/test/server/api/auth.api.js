@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'apitest';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
-import server from '../../../server/main';
+// import server from '../../../server/main';
 
 chai.use(chaiHttp);
 

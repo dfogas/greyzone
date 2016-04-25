@@ -4,7 +4,7 @@
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 
 //TODO: implement SPoC
-const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
+// const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
 
 function maxMissionsCheck(size, enhancementnames) {
   if (size + 1 <= 4 && enhancementnames.indexOf('Operation I.') !== -1)

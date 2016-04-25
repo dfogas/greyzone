@@ -43,9 +43,6 @@ router.route('/signup')
   .post((req, res) => {
     const {email, organization, password} = req.body;
 
-    // TODO: Change it to NotVerified with added hash for verification
-    // TODO: password hash should not be visible in REST API
-
     let notverified = new NotVerified({
       username: email,
       password: password,
@@ -53,26 +50,44 @@ router.route('/signup')
       activationhash: uuid()
     });
 
-    notverified.save((err, newrecord) => {
+    // TODO: check if it exists in not verifieds if so resend the activationhash email
+
+    NotVerified.findOne({username: email}, (err, unverified) => {
       if (err)
-        res.json('DB saving error: ' + err);
-      else {
+        throw new Error('Error finding unverified user');
+      else if (unverified)
         transporter.sendMail(verifier(
-          newrecord._id,
-          notverified.activationhash,
-          email
+          unverified._id,
+          unverified.activationhash,
+          unverified.username
         ), function(err, info) {
           if (err)
             console.log('Sending mail Error: ' + err.message);
           else
-            console.log('New sign up mail message has been sent.');
+            console.log('Repeated sign up mail message has been sent.');
         });
-        res.json({
-          message: 'New not-verified user.',
-          _id: newrecord._id,
-          activationhash: newrecord.activationhash
+      else
+        notverified.save((err, newrecord) => {
+          if (err)
+            res.json('DB saving error: ' + err);
+          else {
+            transporter.sendMail(verifier(
+              newrecord._id,
+              notverified.activationhash,
+              email
+            ), function(err, info) {
+              if (err)
+                console.log('Sending mail Error: ' + err.message);
+              else
+                console.log('New sign up mail message has been sent.');
+            });
+            res.json({
+              message: 'New not-verified user.',
+              _id: newrecord._id,
+              activationhash: newrecord.activationhash
+            });
+          }
         });
-      }
     });
   });
 

@@ -52,6 +52,7 @@ class DashboardScreen extends Component {
     const statusestotal = game.getIn(['globals', 'statuses']);
     const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
 
+    const agentsinroster = jsonapi.get('agents');
     const allagents = jsonapi.get('agents').concat(jsonapi.getIn(['activemission', 'agentsonmission']));
     const agentinarmory = jsonapi.get('agentinarmory');
     const countrystats = jsonapi.get('countrystats');
@@ -72,7 +73,6 @@ class DashboardScreen extends Component {
             name={jsonapi.get('name')}
             options={jsonapi.get('options')}
             started={jsonapi.get('started')}
-            statistics={jsonapi.get('statistics')}
             userId={jsonapi.get('_id')}
             />}
         {!jsonapi.getIn(['activemission', 'started']) &&
@@ -117,6 +117,7 @@ class DashboardScreen extends Component {
               agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
               agentlog={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
               agents={totalagents}
+              agentsinroster={agentsinroster}
               agentspricelist={agentspricelist}
               dashboard={dashboard}
               options={options}

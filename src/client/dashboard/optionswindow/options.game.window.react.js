@@ -36,4 +36,8 @@ class OptionsGameWindow extends Component {
   }
 }
 
+OptionsGameWindow.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
+
 export default OptionsGameWindow;
