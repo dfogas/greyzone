@@ -3,6 +3,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
+import uuid from '../lib/guid';
 
 import MissionListItem from './missionlist.item.react';
 
@@ -13,6 +14,7 @@ class MissionsListTable extends Component {
     const missionlist = missions.map(mission => {
       return (
         <MissionListItem
+          key={uuid() + 'missionlist'}
           mission={mission}
           />
       );
@@ -23,11 +25,11 @@ class MissionsListTable extends Component {
         <table>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Region</th>
-              <th>Tier</th>
-              <th>ETA</th>
-              <th>Pass</th>
+              <th>{msg('briefing.missionlist.headers.title')}</th>
+              <th>{msg('briefing.missionlist.headers.region')}</th>
+              <th>{msg('briefing.missionlist.headers.tier')}</th>
+              <th>{msg('briefing.missionlist.headers.ETA')}</th>
+              <th>{msg('briefing.missionlist.headers.pass')}</th>
             </tr>
           </thead>
           <tbody>

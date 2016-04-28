@@ -4,7 +4,7 @@ import immutable from 'immutable';
 // import getRandomSkill from '../lib/getrandomskill';
 // import trainingtable from '../../server/lib/greyzone/trainingtable';
 import dayandtime from '../lib/dayandtime';
-import uuid from '../lib/guid';
+// import uuid from '../lib/guid';
 
 import * as agentsActions from './actions';
 
@@ -47,10 +47,10 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - ' +
-          'Agent ' + data.message.get('specialist') + ' ' + data.message.get('name') + ' has been left to rot in prison.'
+          'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been left to rot in prison.'
         ))
         .setIn(['dashboard', 'agentswindow', 'message'], 'Agent left in prison.')
-        .update('agents', val => val.delete(val.indexOf(data.message)));
+        .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
   if (action === agentsActions.equip) {
@@ -63,6 +63,17 @@ export const dispatchToken = register(({action, data}) => {
           .updateIn(['equipments', stockindex, 'quantity'], val => val - 1);
       });
   }
+
+  if (action === agentsActions.honorAgent)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('log', val => val.unshift(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - ' +
+          'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been honored in her death.'
+        ))
+        .setIn(['dashboard', 'agentswindow', 'message'], 'Agent has been honored.')
+        .update('agents', val => val.delete(val.indexOf(data.agent)));
+    });
 
   // Implemnted, but needs testing and expanding for equipments&equipmentSlots, rank - TODO: check whether it is already implemented
   if (action === agentsActions.getRank) {

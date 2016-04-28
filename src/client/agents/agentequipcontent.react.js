@@ -38,6 +38,8 @@ class AgentEquipContent extends Component {
         <AgentScrollBarWithNavButtons
           agents={jsonapi.get('agents')}
           isAgents={true}
+          isBriefing={false}
+          isMission={false}
           jsonapi={jsonapi}
           />
         <div id='ArmoryGameCashCounter'>

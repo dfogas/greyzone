@@ -2,9 +2,9 @@
   checks capabilityEnhancements and returns number of max missions
 */
 
-import EnhancementList from '../../server/lib/greyzone/enhancement.list';
-
 //TODO: implement SPoC
+// import EnhancementList from '../../server/lib/greyzone/enhancement.list';
+
 // const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
 
 function maxMissionsCount(enhancements) {

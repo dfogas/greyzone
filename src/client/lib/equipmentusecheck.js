@@ -9,10 +9,13 @@ function equipmentUseCheck(agent, equipment) {
     (agentclass === 'operative' && equipmenttype === 'O') ||
     (agentclass === 'technician' && equipmenttype === 'E') ||
     (agentclass === 'spy' && equipmenttype === 'S')
-  )
-    return Math.random() > 0.10;
-  else
-    return Math.random() > 0.20;
+  ) {
+    let useCheck = Math.random() > 0.10;
+    return useCheck;
+  } else {
+    let useCheck = Math.random() > 0.90;
+    return useCheck;
+  }
 }
 
 export default equipmentUseCheck;

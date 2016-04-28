@@ -4,6 +4,7 @@ import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import uuid from '../../lib/guid';
 
 import GeminiScrollbar from 'react-gemini-scrollbar';
 
@@ -20,7 +21,10 @@ class ContestWindow extends Component {
       }, 0));
     const contestoverview = contestsortedbytotalrep.map(contestant => {
       return (
-        <tr className='contestant-stat'>
+        <tr
+          className='contestant-stat'
+          key={uuid() + 'contestentry'}
+          >
           <td>{contestant.get('name')}</td>
           <td>{contestant.get('countrystats').reduce((prev, curr) => {
             return curr.get('reputation') * curr.get('obscurity') + prev;

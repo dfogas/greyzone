@@ -1,6 +1,7 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
+import immutable from 'immutable';
 
 export function agentFreed(agent) {
   dispatch(agentFreed, {agent});
@@ -45,12 +46,13 @@ export function bookRewards(mission) {
 
 export function checkFatalities(results) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+  results = results || immutable.fromJS({});
   if (results.agentImprisoned)
     dispatch(agentImprisoned, {agent: agentontask});
   if (results.agentKilled) {
     const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')]);
     const storage = storagejson ? JSON.parse(storagejson) : [];
-    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], storage.concat(JSON.stringify([agentontask.toJS()])));
+    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], JSON.stringify(storage.concat([agentontask.toJS()])));
     dispatch(agentKilled, {agent: agentontask});
   }
   if (results.agentFreed)
@@ -105,7 +107,7 @@ export function organizationMissionDone() {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
 
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions'], storage.concat(JSON.stringify([missionDone])));
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions'], JSON.stringify(storage.concat([missionDone])));
 }
 
 /*finds activemission in missions and removes it*/

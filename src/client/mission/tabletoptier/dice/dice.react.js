@@ -3,6 +3,7 @@ import './dice.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
+import uuid from '../../../lib/guid';
 
 class Dice extends Component {
   drag(ev) {
@@ -12,7 +13,7 @@ class Dice extends Component {
   }
 
   render() {
-    const {diceindex, dicetype, key, name} = this.props;
+    const {diceindex, dicetype, name} = this.props;
 
     return (
       <div
@@ -20,7 +21,7 @@ class Dice extends Component {
         diceindex={diceindex}
         dicetype={dicetype}
         draggable={true}
-        key={key}
+        key={uuid() + 'dice'}
         name={name}
         onDragStart={this.drag.bind(this)}
         />
@@ -29,7 +30,7 @@ class Dice extends Component {
 }
 
 Dice.propTypes = {
-  diceindex: React.PropTypes.number.isRequired,
+  diceindex: React.PropTypes.number,
   dicekey: React.PropTypes.string,
   dicetype: React.PropTypes.string.isRequired,
   key: React.PropTypes.string,

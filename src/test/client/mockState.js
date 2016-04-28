@@ -170,7 +170,7 @@ var state = {
     'title': 'Next on the Blacklist'
   }, {
     'inCountry': 'China',
-    'title': 'Set-up operation'
+    'title': 'Laying Low'
   }, {
     'inCountry': 'Russia',
     'title': 'Desinformation'

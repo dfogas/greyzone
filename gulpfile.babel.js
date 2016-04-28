@@ -3,7 +3,7 @@ import eslint from 'gulp-eslint';
 import gulp from 'gulp';
 import makeWebpackConfig from './webpack/makeconfig';
 import mocha from 'gulp-mocha';
-import path from 'path';
+// import path from 'path';
 import runSequence from 'run-sequence';
 import webpackBuild from './webpack/build';
 import webpackDevServer from './webpack/devserver';

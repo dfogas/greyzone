@@ -3,6 +3,7 @@ import Component from '../../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
 import classnames from 'classnames';
+import uuid from '../../../lib/guid';
 
 // import classnames from 'classnames';
 import MissionResult from './missionresult.react';
@@ -36,6 +37,7 @@ class MissionResultList extends Component {
                   isLoss={true}
                   isSpecial={this.props.isSpecial}
                   isTask={this.props.isTask}
+                  key={uuid() + 'loss'}
                   loss={losses.get(losskey)}
                   losskey={losskey}
                 />
@@ -48,6 +50,7 @@ class MissionResultList extends Component {
                   isReward={this.props.isReward}
                   isSpecial={this.props.isSpecial}
                   isTask={this.props.isTask}
+                  key={uuid() + 'reward'}
                   reward={rewards.get(rewardkey)}
                   rewardkey={rewardkey}
                 />);

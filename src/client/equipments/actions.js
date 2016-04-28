@@ -1,3 +1,4 @@
+/* eslint curly: 1 */
 /*Equipment Actions*/
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
@@ -22,7 +23,7 @@ export function logMissionFromEquipments(message) {
 }
 
 export function noeffect(agentequipmentandindex) {
-  dispatch(noeffect, {agentequipmentandindex});
+  dispatch(noeffect, agentequipmentandindex);
 }
 
 export function sell(equipment) {
@@ -38,10 +39,10 @@ export function sell(equipment) {
 
 export function use(agent, agentequipmentandindex) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-  if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment))
+  if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) {
     if (agent.get('name') === agentontask.get('name'))
       dispatch(use, agentequipmentandindex);
-  else {
+  } else {
     dispatch(noeffect, agentequipmentandindex);
     dispatch(logMissionFromEquipments, {message: `Darn it! It didn't work!`});
   }

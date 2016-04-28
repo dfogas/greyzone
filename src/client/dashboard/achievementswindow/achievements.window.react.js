@@ -2,6 +2,7 @@ import './achievements.window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import uuid from '../../lib/guid';
 
 class AchievementsWindow extends Component {
   render() {
@@ -10,7 +11,10 @@ class AchievementsWindow extends Component {
       <div id='AchievementsWindow'>
         {achievements.map(achievement => {
           return (
-            <div className='achievement-card'>
+            <div
+              className='achievement-card'
+              key={uuid() + 'achievement'}
+              >
               {achievement.get('name')}
             </div>
           );

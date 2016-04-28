@@ -4,7 +4,6 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import immutable from 'immutable';
 import cconfig from '../client.config';
-import Agent from '../../server/lib/greyzone/agents.generator';
 import MissionsList from '../../server/lib/greyzone/missions.list';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
@@ -31,18 +30,21 @@ export function acceptMission(tier, focus, country, options) {
   const missions = jsonapiCursor(['missions']);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
 
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
-  const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
+  // const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
+  // const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
 
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
     dispatch(logMissionsWindow, {message: 'Upgrade your capability enhancement for higher tier missions.'});
   else if (!maxMissionsCheck(missions.size, capabilitynames))
     dispatch(logMissionsWindow, {message: 'Missions limit reached, pass on some missions to accept new ones.'});
   else {
-    localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents'], storage.concat(JSON.stringify([mission])));
     dispatch(acceptMission, {mission});
     dispatch(logMissionsWindow, {message: 'New mission has been accepted.'});
   }
+}
+
+export function badEndDiscovered() {
+  dispatch(badEndDiscovered, {});
 }
 
 export function bookMissionPrice(tier) {
@@ -103,12 +105,18 @@ export function clearMissionAcceptFields() {
 
 export function displayGameEndStatistics() {
   // TODO: calls to localStorage and passes results to store
+  const userId = jsonapiCursor(['userId']);
+  const name = jsonapiCursor(['name']);
 
-  const jsonmissions = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
-  const missionstorage = jsonmissions ? JSON.parse(jsonmissions) : [];
-  const jsonagents = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents']);
-  const agentstorage = jsonagents ? JSON.parse(jsonagents) : [];
-  dispatch(displayGameEndStatistics, {});
+  const jsonmissions = localStorage.getItem(['ghoststruggle', userId, name, 'missions']);
+  const missions = jsonmissions ? JSON.parse(jsonmissions) : [];
+  const jsonagents = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'all']);
+  const agentsall = jsonagents ? JSON.parse(jsonagents) : [];
+  const jsonagentsleft = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'leftinprison']);
+  const agentsleft = jsonagentsleft ? JSON.parse(jsonagentsleft) : [];
+  const jsonagentskilled = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'killed']);
+  const agentskilled = jsonagentskilled ? JSON.parse(jsonagentskilled) : [];
+  dispatch(displayGameEndStatistics, {agentsall, agentsleft, agentskilled, missions});
 }
 
 export function hireAgent(specialist, rank) {
@@ -121,8 +129,8 @@ export function hireAgent(specialist, rank) {
   const agentPrice = agentPriceList[rank];
   const gameCash = jsonapiCursor(['gameCash']);
 
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents', 'all']);
-  const storage = typeof storagejson === 'number' ? [] : storagejson ? storagejson : [];
+  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'all']);
+  const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
 
   if (agentPrice > gameCash)
     dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
@@ -131,7 +139,7 @@ export function hireAgent(specialist, rank) {
   else if (!leadershipCheck(rank - 1, leadershipNames))
     dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
   else {
-    localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'agents', 'all'], storage.concat(JSON.stringify([agent])));
+    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'all'], JSON.stringify(storage.concat([agent])));
     dispatch(hireAgent, {agent, agentPrice});
     dispatch(logAgentsWindow, {message: 'New agent recruited.'});
   }
@@ -247,6 +255,7 @@ export function upgradeEnhancement(enhancement) {
 
 setToString('dashboard', {
   acceptMission,
+  badEndDiscovered,
   bookMissionPrice,
   bookPrisonBreakMissionPrice,
   buyEnhancement,

@@ -11,7 +11,7 @@ class DashboardToMission extends Component {
         <button
           className='ingame-nav-button'
           id='DashboardToMission'
-          >To Mission</button>
+          >{msg('navs.dashboardtomission')}</button>
       </Link>
     );
   }

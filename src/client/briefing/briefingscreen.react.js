@@ -24,7 +24,7 @@ class BriefingScreen extends Component {
     const agents = jsonapi.get('agents');
     const briefingmessage = jsonapi.getIn(['briefing', 'message']);
 
-    socket.on('new mission', (gamemission) => {
+    socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
       this.pushGameMission(gamemission);
     });
 

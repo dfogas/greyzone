@@ -20,6 +20,11 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === dashboardActions.badEndDiscovered)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.set('gameend', 'discovered');
+    });
+
   if (action === dashboardActions.bookMissionPrice)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -99,7 +104,7 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['options', 'gameend', 'statistics'], true)
-        .setIn(['statistics'], data);
+        .setIn(['statistics'], immutable.fromJS(data));
     });
 
   if (action === dashboardActions.hireAgent) {

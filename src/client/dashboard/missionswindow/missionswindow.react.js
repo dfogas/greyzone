@@ -17,7 +17,6 @@ class MissionsWindow extends Component {
       dashboardActions.bookPrisonBreakMissionPrice(agentbeingsaved);
     } else
     dashboardActions.logMissionsWindow({message: 'Prison Break mission already in place, finish it first.'});
-
   }
 
   render() {
@@ -40,8 +39,8 @@ class MissionsWindow extends Component {
           <div id="PrisonBreakMission">
             <button
               id='PrisonBreakMissionButton'
-              onClick={this.prisonBreakMission.bind(this)}>Prison Break!</button>
-            There is agent waiting to be rescued from prison.
+              onClick={this.prisonBreakMission.bind(this)}>{msg('dashboard.strategical.special.prisonbreak.button')}</button>
+            {msg('dashboard.strategical.special.prisonbreak.text')}
             {agentbeingsaved.get('rank') * 1000 + '\u{1f4b0}'}
             {agentbeingsaved.get('rank') * 10 + '\u{1f575}'}
           </div>}

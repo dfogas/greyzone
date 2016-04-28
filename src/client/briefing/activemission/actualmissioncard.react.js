@@ -31,6 +31,7 @@ class ActualMissionCard extends Component {
           activemission={activemission}
           agents={agents}
           assignmentindex={i}
+          key={uuid() + 'assignment'}
           />
       );
 

@@ -3,6 +3,7 @@ import './tasktier.styl';
 import Component from '../../components/component.react';
 import immutable from 'immutable';
 import React from 'react';
+import uuid from '../../lib/guid';
 
 import Task from '../missioncard/tasks/task.react';
 import MissionResultList from '../missioncard/results/missionresultlist.react';
@@ -20,6 +21,7 @@ class TaskTier extends Component {
             <Task
               isCurrent={activemission.get('taskscompleted').size === i}
               isMission={true}
+              key={uuid() + 'missiontask'}
               task={task}
               />
           );

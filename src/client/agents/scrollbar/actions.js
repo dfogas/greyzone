@@ -54,7 +54,7 @@ export function slideRight(context) {
   const agentCardWidth = 264;
   const shift = 8;
   var totalShift = 0;
-  var slider
+  var slider;
 
   if (context === 'armory' && agentscrollbar > -((agents.size - 3)) * 265)
     slider = setInterval(function() {totalShift += shift; dispatch(slideRight, {context, agentscrollbar, shift}); if (totalShift >= agentCardWidth) clearInterval(slider); }, 30);

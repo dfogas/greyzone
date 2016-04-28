@@ -3,6 +3,7 @@ import Component from '../../components/component.react.js';
 import React from 'react';
 import R from 'ramda';
 import immutable from 'immutable';
+import uuid from '../../lib/guid';
 
 import CapabilitySubCards from './capability.subcards.react';
 import LeadershipSubCards from './leadership.subcards.react';
@@ -32,6 +33,7 @@ class EnhancementsWindow extends Component {
           return (
             <EnhancementCard
               enhancement={enhancement}
+              key={uuid() + 'toysowned'}
               owned={true}
               />
           );
@@ -40,6 +42,7 @@ class EnhancementsWindow extends Component {
           return (
             <EnhancementCard
               enhancement={enhancement}
+              key={uuid() + 'operationsscopeowned'}
               owned={true}
               />
           );
@@ -48,6 +51,7 @@ class EnhancementsWindow extends Component {
           return (
             <EnhancementCard
               enhancement={enhancement}
+              key={uuid() + 'toys'}
               owned={false}
               />
           );
@@ -56,6 +60,7 @@ class EnhancementsWindow extends Component {
           return (
             <EnhancementCard
               enhancement={enhancement}
+              key={uuid() + 'operationsscope'}
               owned={false}
               />
           );

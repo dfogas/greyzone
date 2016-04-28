@@ -43,7 +43,7 @@ class PlayersWindow extends Component {
 }
 
 PlayersWindow.propTypes = {
-  enhancements: React.PropTypes.string,
+  enhancements: React.PropTypes.object,
   gameCash: React.PropTypes.number,
   gameContacts: React.PropTypes.number,
   name: React.PropTypes.string

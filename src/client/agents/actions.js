@@ -33,8 +33,8 @@ export function dismissAgent(agent) {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
 
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], storage.concat(JSON.stringify([agent.toJS()])));
-  dispatch(dismissAgent, {message: agent});
+  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], JSON.stringify(storage.concat([agent.toJS()])));
+  dispatch(dismissAgent, {agent});
 }
 
 export function equip(equipment) {
@@ -57,6 +57,9 @@ export function getRank(agent) {
     dispatch(logArmory, {message: 'You must upgrade your training facility to train agent further.'});
 }
 
+export function honorAgent(agent) {
+  dispatch(honorAgent, {agent});
+}
 
 export function logArmory(message) {
   dispatch(logArmory, {message});
@@ -79,6 +82,7 @@ setToString('agents', {
   getRank,
   // goFree,
   // goToPrison,
+  honorAgent,
   logArmory,
   setETA
 });

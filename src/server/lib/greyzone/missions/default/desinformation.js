@@ -9,12 +9,10 @@ const Desinformation = [{
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 8,
-      obscurity: 0.1
+      gameContacts: 25
     },
     losses: {
-      agentImprisoned: true,
-      gameContacts: 3
+      obscurity: 0.05
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -27,12 +25,10 @@ const Desinformation = [{
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 24,
-      obscurity: 0.15
+      gameContacts: 100
     },
     losses: {
-      agentImprisoned: true,
-      gameContacts: 9
+      obscurity: 0.2
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -46,12 +42,10 @@ const Desinformation = [{
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 48,
-      obscurity: 0.2
+      gameContacts: 400
     },
     losses: {
-      agentImprisoned: true,
-      gameContacts: 18
+      obscurity: 0.8
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
@@ -75,26 +69,26 @@ const Desinformation = [{
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
     tier: 4
-  }, {
-    title: 'Desinformation',
-    tasks: [
-      [puppet, improv_st, improv_st],
-      [decipher, hide, improv_el],
-      [improv_op],
-      [puppet, improv_st, improv_st]
-    ],
-    inCountry: '',
-    rewards: {
-      gameContacts: 96,
-      obscurity: 0.3
-    },
-    losses: {
-      agentImprisoned: true,
-      gameContacts: 36
-    },
-    imgsrc: 'marceullus.jpg',
-    agentLimit: 1,
-    tier: 5
+  // }, {
+  //   title: 'Desinformation',
+  //   tasks: [
+  //     [puppet, improv_st, improv_st],
+  //     [decipher, hide, improv_el],
+  //     [improv_op],
+  //     [puppet, improv_st, improv_st]
+  //   ],
+  //   inCountry: '',
+  //   rewards: {
+  //     gameContacts: 96,
+  //     obscurity: 0.3
+  //   },
+  //   losses: {
+  //     agentImprisoned: true,
+  //     gameContacts: 36
+  //   },
+  //   imgsrc: 'marceullus.jpg',
+  //   agentLimit: 1,
+  //   tier: 5
   }];
 
 export default Desinformation;

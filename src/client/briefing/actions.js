@@ -2,6 +2,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+import pickAgentForFatal from '../lib/pickagentforfatal';
 
 export function assignMission(agent) {
   /* pokud je agent unavený např. z předchozí mise */
@@ -22,8 +23,19 @@ export function bookLosses(mission) {
   dispatch(bookLosses, {mission});
 }
 
-export function checkFatalities(mission) {
-  dispatch(checkFatalities, {mission});
+export function checkFatalities(results) {
+  /* results is JSObject */
+  results = results.results || results || immutable.fromJS({});
+  const agentfatalindex = pickAgentForFatal(jsonapiCursor(['agents']));
+  if (agentfatalindex !== -1) {
+    const agentfatal = jsonapiCursor(['agents']).get(agentfatalindex);
+    if (results.agentKilled) {
+      const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')]);
+      const storage = storagejson ? JSON.parse(storagejson) : [];
+      localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], JSON.stringify(storage.concat([agentfatal.toJS()])));
+    }
+    dispatch(checkFatalities, {results, agentfatal});
+  }
 }
 
 export function logBriefing(message) {
@@ -35,7 +47,7 @@ export function passMission(mission) {
   dispatch(passMission, {message: mission});
   if (mission.get('forcefail')) {
     dispatch(bookLosses, {mission});
-    dispatch(checkFatalities, {mission});
+    checkFatalities({results: mission.get('losses').toJS()});
   }
 }
 
@@ -55,10 +67,10 @@ export function selectMission(mission) {
     dispatch(setDefaultAfterExpired, {});
     if (mission.get('forcefail')) {
       dispatch(bookLosses, {mission});
-      dispatch(checkFatalities, {mission});
+      checkFatalities({results: mission.get('losses').toJS()});
     }
   }
-  else dispatch(selectMission, {message: mission});
+  else dispatch(selectMission, {mission});
 }
 
 export function setDefaultAfterExpired() {

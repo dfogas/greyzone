@@ -6,7 +6,6 @@ import immutable from 'immutable';
 import defaultActiveMission from '../lib/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bookobscurity';
-import randomInt from '../lib/getrandomint';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -73,7 +72,7 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.bookLosses || action === briefingActions.bookLosses) {
-    const results = data.mission.get('losses').toJS();
+    const results = data.mission.get('losses') ? data.mission.get('losses').toJS() : {};
     const countrystats = jsonapiCursor(['countrystats']);
     const missioncountryname = data.mission.get('inCountry');
     const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
@@ -88,7 +87,7 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.bookRewards) {
-    const results = data.mission.get('rewards').toJS();
+    const results = data.mission.get('rewards') ? data.mission.get('rewards').toJS() : {};
     const countrystats = jsonapiCursor(['countrystats']);
     const missioncountryname = data.mission.get('inCountry');
     const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
@@ -102,19 +101,19 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === briefingActions.checkFatalities) {
-    const results = data.mission.get('losses').toJS();
-    const agents = jsonapiCursor(['agents']).filter(agent => agent.get('prison') !== true);
+    const results = data.results;
+    const agents = jsonapiCursor(['agents']);
 
-    if (Object.keys(results).indexOf('agentImprisoned') !== -1 && agents.size > 0)
+    if (Object.keys(results).indexOf('agentImprisoned') !== -1)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['agents', agents.indexOf(agents.find(agent => agent.get('prison') === false)), 'prison'], true)
+          .setIn(['agents', agents.indexOf(data.agentfatal), 'prison'], true)
           .setIn(['briefing', 'message'], 'Agent has been imprisoned, by mission that was a threat to you and went unnoticed by yourself.');
       });
-    if (Object.keys(results).indexOf('agentKilled') !== -1 && agents.size > 0)
+    if (Object.keys(results).indexOf('agentKilled') !== -1)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['agents', agents.indexOf(agents.find(agent => agent.get('prison') === false)), 'KIA'], true)
+          .setIn(['agents', agents.indexOf(data.agentfatal), 'KIA'], true)
           .setIn(['briefing', 'message'], 'Agent has been killed, by mission that was a threat to you and went unnoticed by yourself.');
       });
   }

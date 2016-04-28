@@ -13,6 +13,11 @@ class AgentListRecord extends Component {
     agentsActions.dismissAgent(agent);
   }
 
+  honorAgent() {
+    const {agent} = this.props;
+    agentsActions.honorAgent(agent);
+  }
+
   saveAgent() {
     const {agent} = this.props;
     dashboardActions.saveAgent(agent);
@@ -29,7 +34,10 @@ class AgentListRecord extends Component {
         <td>{agent.get('name')}</td>
         <td>Rank {agent.get('rank')}</td>
         <td>{agent.get('experience')} XP</td>
-        <td>{agent.get('prison') ? 'In Prison' : isFreed ? 'Being Rescued' : agent.get('ETA') < Date.now() ? 'Available' : 'Tired'}</td>
+        <td>{
+            agent.get('prison') ? msg('dashboard.strategical.agentslist.status.prison') :
+            isFreed ? msg('dashboard.strategical.agentslist.status.rescued') :
+            agent.get('ETA') < Date.now() ? msg('dashboard.strategical.agentslist.status.available') : msg('dashboard.strategical.agentslist.status.tired')}</td>
         <td style={{fontWeight: 'bold'}}>{agent.get('operationsSkill')}</td>
         <td style={{fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
         <td style={{fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
@@ -38,14 +46,21 @@ class AgentListRecord extends Component {
             <button
               className='agent-dismiss-button'
               onClick={this.dismissAgent.bind(this)}
-              style={{backgroundColor: 'silver'}}>Let</button>}
+              style={{backgroundColor: 'silver'}}>{msg('dashboard.strategical.agentslist.manage.leaveinprison')}</button>}
         </td>
         <td>
           {agent.get('prison') &&
             <button
               className='agent-save-button'
               onClick={this.saveAgent.bind(this)}
-              style={{backgroundColor: 'gold'}}>Save</button>}
+              style={{backgroundColor: 'gold'}}>{msg('dashboard.strategical.agentslist.manage.rescue')}</button>}
+        </td>
+        <td>
+          {agent.get('KIA') &&
+            <button
+              className='agent-honor-button'
+              onClick={this.honorAgent.bind(this)}
+              style={{backgroundColor: 'black'}}>{msg('dashboard.strategical.agentslist.manage.honor')}</button>}
         </td>
       </tr>
     );

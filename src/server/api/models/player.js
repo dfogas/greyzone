@@ -32,6 +32,7 @@ var PlayerSchema = new Schema({
   options: Schema.Types.Mixed,
   organization: Schema.Types.Mixed,
   started: Number,
+  statistics: Schema.Types.Mixed,
   statuses: [Schema.Types.Mixed],
   userId: String,
   title: {

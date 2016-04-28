@@ -5,7 +5,6 @@ import * as diceActions from '../dice/actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import uuid from '../../../lib/guid';
 import canCompleteTask from '../../../lib/cancompletetask';
 
 import ProbabilityBar from './probabilitybar.react';
@@ -63,7 +62,6 @@ class TableTop extends Component {
                 diceindex={i}
                 dicekey={dice.get('dicekey')}
                 dicetype={dice.get('type')}
-                key={uuid()}
                 name={dicesthrown.get(i)}
                 />
             );

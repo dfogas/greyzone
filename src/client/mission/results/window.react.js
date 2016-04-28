@@ -2,6 +2,9 @@ import './window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import uuid from '../../lib/guid';
+import {msg} from '../../intl/store';
+
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
 
 class MissionResultsWindow extends Component {
@@ -9,8 +12,8 @@ class MissionResultsWindow extends Component {
   render() {
     const {activemission, agentbeingsaved} = this.props;
     const result = activemission.get('result');
-    const rewardsjs = activemission.get('rewards').toJS();
-    const lossesjs = activemission.get('losses').toJS();
+    const rewardsjs = activemission.get('rewards') ? activemission.get('rewards').toJS() : {};
+    const lossesjs = activemission.get('losses') ? activemission.get('losses').toJS() : {};
 
     return (
       <div
@@ -26,16 +29,15 @@ class MissionResultsWindow extends Component {
               <ul>
                 {Object.keys(rewardsjs).map(key => {
                   return (
-                    <li>{`${key} : ${rewardsjs[key]}`}</li>
+                    <li key={uuid() + 'missionreward'}>{`${key} : ${rewardsjs[key]}`}</li>
                   );
                 })}
-              </ul>
-              }
+              </ul>}
             {result === 'fail' &&
               <ul>Results of the mission:
                 {Object.keys(lossesjs).map(key => {
                   return (
-                    <li>{`${key} : ${lossesjs[key]}`}</li>
+                    <li key={uuid() + 'missionloss'}>{`${key} : ${lossesjs[key]}`}</li>
                   );
                 })}
               </ul>}
@@ -47,7 +49,7 @@ class MissionResultsWindow extends Component {
               <li>Agent has been imprisoned.</li>}
             {result === 'success' && Object.keys(rewardsjs).indexOf('agentKilled') !== -1 &&
               <li>Agent has been killed.</li>}
-            {result === 'fail' && Object.keys(lossesjs).indexOf('agentImprisoned') !== -1 &&
+            {result === 'fail' && Object.keys(lossesjs).indexOf('agentKilled') !== -1 &&
               <li>Agent has been killed.</li>}
           </p>
           <p>

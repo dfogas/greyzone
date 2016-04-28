@@ -29,7 +29,7 @@ class Briefing extends Component {
 Briefing.propTypes = {
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  viewer: React.PropTypes.object
+  viewer: React.PropTypes.string
 };
 
 export default Briefing;

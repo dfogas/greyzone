@@ -6,6 +6,7 @@ import {msg} from '../intl/store';
 import {FormattedHTMLMessage} from 'react-intl';
 import immutable from 'immutable';
 import capitalLetter from '../lib/capitalletter';
+import uuid from '../lib/guid';
 
 class IntroScreen extends Component {
   viewGroup(group) {
@@ -31,6 +32,7 @@ class IntroScreen extends Component {
               return (
                 <div
                   className='game-concept-link'
+                  key={uuid() + 'concept'}
                   onClick={(e) => this.viewItem(gc)}>{gc}</div>
               );
             })}
@@ -40,10 +42,11 @@ class IntroScreen extends Component {
             >Introduction
           </div>
           {about.get('group') === 'introduction' &&
-            Object.keys(msg('introduction').toJS()).map(intro => {
+            Object.keys(msg('intro').toJS()).map(intro => {
               return (
                 <div
                   className='game-intro-link'
+                  key={uuid() + 'introduction'}
                   onClick={(e) => this.viewItem(intro)}>{intro}</div>
               );
             })}
@@ -57,6 +60,7 @@ class IntroScreen extends Component {
               return (
                 <div
                   className='game-help-link'
+                  key={uuid() + 'help'}
                   onClick={(e) => this.viewItem(help)}>{help}</div>
               );
             })}

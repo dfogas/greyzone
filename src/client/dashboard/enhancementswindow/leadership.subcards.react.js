@@ -47,8 +47,6 @@ class LeadershipSubCards extends Component {
     return (
       <div
         id='LeadershipSubCards'
-        onMouseLeave={(e) => this.unfocusEnhancement(e)}
-        onMouseOver={(e) => this.focusEnhancement(e)}
         >
         <div
           className='leadership-enhancement-card owned'

@@ -2,24 +2,26 @@ import './countrystatswindow.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import uuid from '../../lib/guid';
 
 class CountryStatsWindow extends Component {
   render() {
     const countrystats = this.props.countrystats.map(countrystat => {
       return (
-        <tbody>
-          <tr className='country-stat'>
-            <td className='country-name-dashboard'>
-              {countrystat.get('name')}&nbsp;
-            </td>
-            <td className='country-stat-reputation-dashboard'>
-              {countrystat.get('reputation')}&nbsp;
-            </td>
-            <td className='country-stat-obscurity-dashboard'>
-              {Math.round10((countrystat.get('obscurity')), -1)}&nbsp;
-            </td>
-          </tr>
-        </tbody>
+        <tr
+          className='country-stat'
+          key={uuid() + 'countrystat'}
+          >
+          <td className='country-name-dashboard'>
+            {countrystat.get('name')}&nbsp;
+          </td>
+          <td className='country-stat-reputation-dashboard'>
+            {countrystat.get('reputation')}&nbsp;
+          </td>
+          <td className='country-stat-obscurity-dashboard'>
+            {Math.round10((countrystat.get('obscurity')), -1)}&nbsp;
+          </td>
+        </tr>
       );
     });
 
@@ -33,7 +35,9 @@ class CountryStatsWindow extends Component {
               <th>Obscurity</th>
             </tr>
           </thead>
-          {countrystats}
+          <tbody>
+            {countrystats}
+          </tbody>
         </table>
       </div>
     );

@@ -25,10 +25,6 @@ class CapabilitySubCards extends Component {
     dashboardActions.log(dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Upgraded ' + name + ' to ' + nextlevel.name + '.');
   }
 
-  focusEnhancement(e) {}
-
-  unfocusEnhancement(e) {}
-
   render() {
     const {capability} = this.props;
     const enhancement = capability.filter(enh => enh.get('name') === 'Top Class').get(0) ||
@@ -51,8 +47,6 @@ class CapabilitySubCards extends Component {
     return (
       <div
         id='CapabilitySubCards'
-        onMouseLeave={(e) => this.unfocusEnhancement(e)}
-        onMouseOver={(e) => this.focusEnhancement(e)}
         >
         <div className='capability-enhancement-card owned'>
           <div>{name}</div>

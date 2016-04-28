@@ -14,23 +14,23 @@ class ActionChoose extends Component {
       <div className='action-choose'>
         {actionchoose === 'operations' &&
           <div>
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' name='pursuit' />
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' name='close_combat' />
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' name='hit' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' key={uuid() + 'actionchoose'} name='pursuit' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' key={uuid() + 'actionchoose'} name='close_combat' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='operations' key={uuid() + 'actionchoose'} name='hit' />
           </div>
         }
         {actionchoose === 'electronics' &&
           <div>
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' name='decipher' />
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' name='monitor' />
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' name='tap' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' key={uuid() + 'actionchoose'} name='decipher' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' key={uuid() + 'actionchoose'} name='monitor' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='electronics' key={uuid() + 'actionchoose'} name='tap' />
           </div>
         }
         {actionchoose === 'stealth' &&
           <div>
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' name='hide' />
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' name='infiltrate' />
-            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' name='puppet' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' key={uuid() + 'actionchoose'} name='hide' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' key={uuid() + 'actionchoose'} name='infiltrate' />
+            <Dice dicekey={uuid() + 'actionchoose'} dicetype='stealth' key={uuid() + 'actionchoose'} name='puppet' />
           </div>
         }
       </div>

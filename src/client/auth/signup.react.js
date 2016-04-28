@@ -1,6 +1,6 @@
 import './signup.styl';
 import * as authActions from './actions';
-import cconfig from '../client.config';
+// import cconfig from '../client.config';
 import Component from '../components/component.react';
 import React from 'react';
 import exposeRouter from '../components/exposerouter.react';

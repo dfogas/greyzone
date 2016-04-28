@@ -8,6 +8,7 @@ import {Server} from 'http';
 // import fs from 'fs';
 import ioServer from 'socket.io';
 import Mission from './lib/greyzone/mission.generator';
+import checkDiscovered from './lib/greyzone/checkdiscovered';
 
 // related to SSH certificate
 // const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
@@ -28,16 +29,21 @@ const app = express();
 const server = Server(app);
 const io = ioServer(server);
 
+app.use(config.apipath, api);
+
 io.on('connection', (socket) => {
   console.log('user has connected');
   socket.on('mission', function(msg) {
     console.log(msg);
-    socket.emit('new mission', Mission('Desinformation', 2, 10 * 60 * 1000, true));
+    if (Math.random() > 0.5) {
+      console.log('Agents spotted. Dispatching Discovered! mission.');
+      socket.emit('new mission', Mission('Discovered!', 3, 10 * 60 * 1000, true));
+    }
   });
+
+  setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
 });
 
-
-app.use(config.apipath, api);
 
 if (!config.isProduction)
   app.use(morgan('dev'));

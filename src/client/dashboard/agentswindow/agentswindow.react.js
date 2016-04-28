@@ -3,7 +3,6 @@ import './agentswindow.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../../intl/store';
 
 import AgentHireForm from './agenthire.form.react';
 import AgentsList from './agents.list.react';
@@ -16,6 +15,7 @@ class AgentsWindow extends Component {
     return (
       <div id='AgentsWindow'>
         <AgentHireForm
+          agenthire={agenthire}
           agentspricelist={agentspricelist}
           />
         <div id='AgentsWindowMessage'>
@@ -23,7 +23,6 @@ class AgentsWindow extends Component {
         </div>
         <AgentsList
           agentbeingsaved={agentbeingsaved}
-          agenthire={agenthire}
           agents={agents}
           agentsinroster={agentsinroster}
           dashboard={dashboard}
@@ -40,7 +39,7 @@ AgentsWindow.propTypes = {
   agenthire: React.PropTypes.instanceOf(immutable.Map),
   agentlog: React.PropTypes.string,
   agents: React.PropTypes.instanceOf(immutable.List),
-  agentsinroster: React.PropTypes.instanceOf(immutable.Map),
+  agentsinroster: React.PropTypes.instanceOf(immutable.List),
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
   options: React.PropTypes.instanceOf(immutable.Map)

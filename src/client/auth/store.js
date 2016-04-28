@@ -8,7 +8,6 @@ export const dispatchToken = register(({action, data}) => {
     case authActions.loginError:
       authCursor(auth => {
         const error = data;
-        console.log('Login Error: ' + data);
         return auth.setIn(['form', 'error'], error);
       });
       break;

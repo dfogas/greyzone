@@ -1,4 +1,3 @@
-import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -14,7 +13,6 @@ class Dashboard extends Component {
   render() {
     const {contest, game, jsonapi, locales, pendingActions, viewer} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
-    const options = jsonapi.get('options');
 
     return (
       <DocumentTitle title={msg('dashboard.title')}>
@@ -44,7 +42,7 @@ Dashboard.propTypes = {
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   locales: React.PropTypes.string,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  viewer: React.PropTypes.object
+  viewer: React.PropTypes.string
 };
 
 export default requireAuth(Dashboard);

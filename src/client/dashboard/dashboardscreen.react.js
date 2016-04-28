@@ -1,5 +1,6 @@
 /* Smart */
 import './dashboardscreen.styl';
+import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -35,6 +36,10 @@ import StatusesPointer from './pointers/statuses.pointer.react';
 import StrategicalPointer from './pointers/strategical.pointer.react';
 
 class DashboardScreen extends Component {
+  badEndDiscovered() {
+    dashboardActions.badEndDiscovered();
+  }
+
   hidePlayersWindow() {
     /* ANTIPATTERN: direct DOM manipulation*/
     const playerWindowDiv = document.querySelector('#PlayersWindow');
@@ -65,14 +70,22 @@ class DashboardScreen extends Component {
     const statusesowned = jsonapi.get('statuses');
     const totalagents = agentinarmory ? allagents.unshift(agentinarmory) : allagents;
 
+    socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
+      console.log(discovered);
+      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
+        this.badEndDiscovered();
+    });
+
     return (
       <div id='DashboardScreen'>
         {jsonapi.get('gameend') &&
           <EndGameWindow
             countrystats={jsonapi.get('countrystats')}
+            gameend={jsonapi.get('gameend')}
             name={jsonapi.get('name')}
             options={jsonapi.get('options')}
             started={jsonapi.get('started')}
+            statistics={jsonapi.get('statistics')}
             userId={jsonapi.get('_id')}
             />}
         {!jsonapi.getIn(['activemission', 'started']) &&
@@ -169,7 +182,7 @@ DashboardScreen.propTypes = {
   game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   locales: React.PropTypes.string,
-  viewer: React.PropTypes.object
+  viewer: React.PropTypes.string
 };
 
 export default DashboardScreen;

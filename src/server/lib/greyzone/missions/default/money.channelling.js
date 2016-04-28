@@ -10,11 +10,10 @@ const MoneyChannelling = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: 400
+    gameCash: 1000
   },
   losses: {
-    obscurity: 0.1,
-    reputation: 100
+    gameContacts: 10
   },
   imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
@@ -28,11 +27,10 @@ const MoneyChannelling = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: 2400
+    gameCash: 5000
   },
   losses: {
-    obscurity: 0.1,
-    reputation: 100
+    gameContacts: 50
   },
   imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
@@ -47,53 +45,52 @@ const MoneyChannelling = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: 12000
+    gameCash: 25000
   },
   losses: {
-    obscurity: 0.1,
-    reputation: 100
+    gameContacts: 250
   },
   imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
   tier: 3
-}, {
-  title: 'Money channelling',
-  tasks: [
-    [tap, monitor, improv_el],
-    [puppet, puppet, tap, improv_el],
-    [decipher, decipher, improv_el],
-    [puppet, improv_st]
-  ],
-  inCountry: '',
-  rewards: {
-    gameCash: 60000
-  },
-  losses: {
-    obscurity: 0.1,
-    reputation: 100
-  },
-  imgsrc: 'Sagesse.jpg',
-  agentLimit: 3,
-  tier: 4
-}, {
-  title: 'Money channelling',
-  tasks: [
-    [tap, monitor, improv_el, improv_el],
-    [puppet, puppet, tap, improv_el],
-    [decipher, decipher, improv_el],
-    [infiltrate, puppet, improv_st]
-  ],
-  inCountry: '',
-  rewards: {
-    gameCash: 360000
-  },
-  losses: {
-    obscurity: 0.1,
-    reputation: 100
-  },
-  imgsrc: 'Sagesse.jpg',
-  agentLimit: 3,
-  tier: 5
+// }, {
+//   title: 'Money channelling',
+//   tasks: [
+//     [tap, monitor, improv_el],
+//     [puppet, puppet, tap, improv_el],
+//     [decipher, decipher, improv_el],
+//     [puppet, improv_st]
+//   ],
+//   inCountry: '',
+//   rewards: {
+//     gameCash: 60000
+//   },
+//   losses: {
+//     obscurity: 0.1,
+//     reputation: 100
+//   },
+//   imgsrc: 'Sagesse.jpg',
+//   agentLimit: 3,
+//   tier: 4
+// }, {
+//   title: 'Money channelling',
+//   tasks: [
+//     [tap, monitor, improv_el, improv_el],
+//     [puppet, puppet, tap, improv_el],
+//     [decipher, decipher, improv_el],
+//     [infiltrate, puppet, improv_st]
+//   ],
+//   inCountry: '',
+//   rewards: {
+//     gameCash: 360000
+//   },
+//   losses: {
+//     obscurity: 0.1,
+//     reputation: 100
+//   },
+//   imgsrc: 'Sagesse.jpg',
+//   agentLimit: 3,
+//   tier: 5
 }];
 
 export default MoneyChannelling;

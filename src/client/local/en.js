@@ -1,7 +1,10 @@
-import helpMsg from './en/help';
-import introMsg from './en/intro';
-import conceptsMsg from './en/concepts';
-import endsMsg from './en/ends';
+import authMsg from './en/auth.msg';
+import conceptsMsg from './en/concepts.msg';
+import dashboardMsg from './en/dashboard.msg';
+import endsMsg from './en/ends.msg';
+import gameendsMsg from './en/gameends.msg';
+import helpMsg from './en/help.msg';
+import introMsg from './en/intro.msg';
 
 const ENGLISH = {
   app: {
@@ -10,52 +13,17 @@ const ENGLISH = {
   armory: {
     title: 'Armory'
   },
-  auth: {
-    form: {
-      button: {
-        login: 'Login',
-        signup: 'Sign up'
-      },
-      hint: '',
-      invalidPassword: 'Invalid Password chosen',
-      legend: {
-        login: 'Log In',
-        signup: 'Sign Up'
-      },
-      placeholder: {
-        email: 'your@email.com',
-        organization: 'Organization e.g. Spectre',
-        password: 'password'
-      },
-      wrongPassword: 'Wrong password'
-    },
-    logout: {
-      button: 'Logout'
-    },
-    lprecover: {
-      title: 'Recover Lost Password',
-      placeholder: 'Email',
-      message: 'Fill in email for which you want to recover password',
-      legend: 'Password Recover',
-      button: 'Send'
-    },
-    reauthentication: {
-      title: 'Revalidating signup',
-      placeholder: {
-        email: 'Email',
-        password: 'New password'
-      },
-      legend: 'Set Up New Password',
-      button: 'Confirm'
-    },
-    signup: {
-      button: 'Back To Login',
-      complete: 'Signup completed',
-      title: 'Sign Up'
-    },
-    title: 'Login'
-  },
+  auth: authMsg,
   briefing: {
+    missionlist: {
+      headers: {
+        ETA: 'ETA',
+        pass: 'Pass',
+        region: 'Region',
+        tier: 'Tier',
+        title: 'Title'
+      }
+    },
     title: 'Briefing Room'
   },
   buttons: {
@@ -72,27 +40,7 @@ const ENGLISH = {
     title: 'Command Center'
   },
   concepts: conceptsMsg,
-  dashboard: {
-    strategical: {
-      agenthire: {
-        button: {
-          hireAgent: 'Confirm'
-        },
-        placeholder: `Here, list of your agents is displayed. It might be so that
-          you'll need to hire some specialist. You do that by means of form on the left.
-          There is a cap on number of agents that you can have.
-          This cap can be expanded by upgrading agents' training facilities in Enhancement
-          section. Go have a look there too.`,
-        title: 'Hire Agent'
-      },
-      missionaccept: {
-        button: {
-          acceptMission: 'Accept'
-        }
-      }
-    },
-    title: 'Dashboard(protected)'
-  },
+  dashboard: dashboardMsg,
   equipments: {
     electronics: [
       {name: 'Handy Kit'},
@@ -111,6 +59,7 @@ const ENGLISH = {
     ]
   },
   ends: endsMsg,
+  gameends: gameendsMsg,
   help: helpMsg,
   introduction: introMsg,
   login: {
@@ -140,6 +89,9 @@ const ENGLISH = {
       end: 'Finish Mission',
       success: 'Mission Accomplished!'
     }
+  },
+  navs: {
+    dashboardtomission: 'ToMission'
   },
   notFound: {
     continueMessage: 'Continue here please.',

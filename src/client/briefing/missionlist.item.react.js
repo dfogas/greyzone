@@ -37,8 +37,7 @@ class MissionListItem extends Component {
             <button
               className='mission-pass'
               onClick={this.missionPass.bind(this)}
-              >Pass
-            </button>
+              >Pass</button>
           }
         </td>
       </tr>

@@ -2,9 +2,7 @@ import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
 
-import * as agentsActions from '../agents/actions';
 import * as briefingActions from './actions';
-
 import defaultActiveMission from '../lib/defaultactivemission';
 
 export const dispatchToken = register(({action, data}) => {
@@ -18,7 +16,6 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['agents'], agents.delete(agents.indexOf(data.message)));
     });
   }
-
 
   if (action === briefingActions.logBriefing) {
     data = data.message || data;
@@ -34,23 +31,15 @@ export const dispatchToken = register(({action, data}) => {
         .update('missions', val => val.unshift(immutable.fromJS(data.mission)));
     });
 
-  if (action === briefingActions.selectMission) {
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    // if (data.message) - TODO: Why is this check here?
+  if (action === briefingActions.selectMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .set('activemission', data.message ? immutable.fromJS(defaultActiveMission).mergeDeep(data.message) : immutable.fromJS(defaultActiveMission));
+        .set('activemission', data.mission ? immutable.fromJS(defaultActiveMission).mergeDeep(data.mission) : immutable.fromJS(defaultActiveMission));
     });
-  }
 
   if (action === briefingActions.setDefaultAfterExpired)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .set('activemission', immutable.fromJS(defaultActiveMission));
     });
-  // if (action === agentsActions.saveAgent)
-  //   jsonapiCursor(jsonapi => {
-  //     return jsonapi
-  //     .set('agentbeingfreed', data.agent);
-  //   });
 });

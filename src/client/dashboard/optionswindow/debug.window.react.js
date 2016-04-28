@@ -5,7 +5,8 @@ import Component from '../../components/component.react';
 import React from 'react';
 
 class DebugWindow extends Component {
-  sanitize() {
+  sanitize(e) {
+    e.preventDefault();
     dashboardActions.sanitizeAgents(); // checks for null or undefined
     dashboardActions.sanitizeMissions(); // check for null or undefined
   }
@@ -26,8 +27,8 @@ class DebugWindow extends Component {
             <legend>Debug Window</legend>
           {debug && <button
             id='SanitizeStateButton'
-            onClick={this.sanitize}>
-            Sanitize State
+            onClick={(e) => this.sanitize(e)}>
+            Sanitize Agents&Missions
           </button>}
           {debug &&
             <button

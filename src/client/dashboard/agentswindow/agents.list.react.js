@@ -3,6 +3,7 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
+import uuid from '../../lib/guid';
 
 import AgentsListRecord from './agents.list.record.react';
 
@@ -37,6 +38,7 @@ class AgentsList extends Component {
                     agentbeingsaved={agentbeingsaved}
                     agentsinroster={agentsinroster}
                     debug={debug}
+                    key={uuid() + 'agentslist'}
                     />
                 );
               })

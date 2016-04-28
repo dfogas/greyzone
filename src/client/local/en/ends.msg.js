@@ -53,6 +53,12 @@ const ends = {
     Not the wisest of moves as your prying opponents will have only little
     work to find you and mine you for information that they might use.
     For now you might enjoy the sun and hope that they'll leave you alone.
+  `,
+  discovered: `
+    Your actions were too noisy and it wasn't long till your organization
+    was noticed and sacrificed on the altar of good public service.
+    Tough luck, but you managed to squeazed yourself out of it in time,
+    perhaps you may try your luck again.
   `
 };
 
