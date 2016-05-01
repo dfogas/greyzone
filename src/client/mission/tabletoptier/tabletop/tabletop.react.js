@@ -7,7 +7,7 @@ import React from 'react';
 import immutable from 'immutable';
 import canCompleteTask from '../../../lib/cancompletetask';
 
-import ProbabilityBar from './probabilitybar.react';
+import ProbabilityBar from './probability.bar.react';
 import Dice from '../dice/dice.react';
 import MissionTitle from '../../missioncard/missiontitle.react';
 import ActionButton from './buttons/actionbutton.react';
@@ -36,10 +36,10 @@ class TableTop extends Component {
     const {activemission} = this.props;
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
-    const missionStarted = activemission.get('started');
-    const dicesthrown = actiondices.map(action => action.get('name'));
-    const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey')})));
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
+    const dicesthrown = actiondices.map(action => action.get('name'));
+    const missionStarted = activemission.get('started');
+    const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey')})));
 //
     // console.log(actiondices.toJS());
     // console.log(remainingdices.toJS());
@@ -67,7 +67,9 @@ class TableTop extends Component {
             );
           }) : <div id="MissionStartStatus">Mission has not started yet.</div>
         }
-        <ProbabilityBar />
+        <ProbabilityBar
+          activemission={activemission}
+          />
         {currenttask &&
           canCompleteTask(currenttask.toJS(), actiondices.toJS()) &&
           missionStarted &&

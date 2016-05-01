@@ -11,15 +11,15 @@ const BankRobbery = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: 100000,
-    reputation: 100
+    gameCash: 1000000,
+    reputation: 250
   },
   losses: {
     agentImprisoned: true,
-    obscurity: 0.3,
-    gameContacts: 10
+    obscurity: 1,
+    gameContacts: 1000
   },
-  imgsrc: '',
+  imgsrc: 'bank_robbery_tb.jpg',
   agentLimit: 3,
   tier: 3
 }, {
@@ -32,15 +32,16 @@ const BankRobbery = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: 200000,
-    reputation: 200
+    gameCash: 3000000,
+    reputation: 2000,
+    obscurity: -1
   },
   losses: {
     agentImprisoned: true,
-    obscurity: 0.35,
-    gameContacts: 15
+    obscurity: 2,
+    gameContacts: 500
   },
-  imgsrc: '',
+  imgsrc: 'bank_robbery_tb.jpg',
   agentLimit: 3,
   tier: 4
 }, {
@@ -51,15 +52,16 @@ const BankRobbery = [{
     [pursuit, pursuit, improv_op],
     [hide, hide, improv_st]
   ],
-  inCountry: '',
+  inCountry: 'bank_robbery_tb.jpg',
   rewards: {
-    gameCash: 300000,
-    reputation: 300
+    gameCash: 7500000,
+    reputation: 1000,
+    obscurity: -2
   },
   losses: {
     agentImprisoned: true,
-    obscurity: 0.4,
-    gameContacts: 23
+    obscurity: 3,
+    gameContacts: 2000
   },
   imgsrc: '',
   agentLimit: 3,

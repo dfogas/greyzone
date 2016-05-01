@@ -19,7 +19,8 @@ class MissionResultsWindow extends Component {
       <div
         id="MissionResultsWindow">
           <p>
-            {`Mission ${activemission.get('title')}
+            {
+              `Mission ${activemission.get('title')}
               in ${activemission.get('inCountry')}
               has been a ${activemission.get('result')}.`
             }
@@ -54,7 +55,7 @@ class MissionResultsWindow extends Component {
           </p>
           <p>
             {result === 'success' && Object.keys(rewardsjs).indexOf('agentFreed') !== -1 &&
-              <li>Agent {agentbeingsaved.get('name')} freed from prison!</li>}
+              <li>Agent freed from prison!</li>}
             {result === 'success' && Object.keys(rewardsjs).indexOf('agentLoyal') !== -1 &&
               <li>Agent changed loyalty to you.</li>}
             {result === 'fail' && Object.keys(lossesjs).indexOf('agentLoyal') !== -1 &&
@@ -63,7 +64,9 @@ class MissionResultsWindow extends Component {
               <li>You stole yourself an Art Piece!</li>}
           </p>
           <p>Click button to return to previous screen (i.e. Briefing or possibly Dashboard).</p>
-          <MissionEndButton />
+          <MissionEndButton
+            missiontitle={activemission.get('title')}
+            />
       </div>
     );
   }

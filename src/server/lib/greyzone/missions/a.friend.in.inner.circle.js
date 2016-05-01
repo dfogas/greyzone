@@ -10,12 +10,11 @@ const AFriendInInnerCircle = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: -20000,
-    gameContacts: 100
+    gameContacts: 1500
   },
   losses: {
-    gameCash: 5000,
-    reputation: 300
+    gameCash: 30000,
+    reputation: 1500
   },
   imgsrc: '',
   agentLimit: 2,
@@ -30,12 +29,13 @@ const AFriendInInnerCircle = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: -60000,
-    gameContacts: 200
+    gameContacts: 4500,
+    obscurity: 1.5
   },
   losses: {
-    gameCash: 10000,
-    reputation: 500
+    gameCash: 90000,
+    obscurity: 0.5,
+    reputation: 3000
   },
   imgsrc: '',
   agentLimit: 2,
@@ -50,12 +50,14 @@ const AFriendInInnerCircle = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: -150000,
-    gameContacts: 300
+    gameContacts: 6000,
+    obscurity: 1.5,
+    agentFreed: true
   },
   losses: {
-    gameCash: 25000,
-    reputation: 900
+    gameCash: 300000,
+    reputation: 3000,
+    obscurity: 1.5
   },
   imgsrc: '',
   agentLimit: 2,

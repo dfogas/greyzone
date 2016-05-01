@@ -13,7 +13,7 @@ function equipmentUseCheck(agent, equipment) {
     let useCheck = Math.random() > 0.10;
     return useCheck;
   } else {
-    let useCheck = Math.random() > 0.90;
+    let useCheck = Math.random() > 0.20;
     return useCheck;
   }
 }

@@ -48,7 +48,7 @@ const ends = {
     The punishment that you delivered to those that harmed you and those near to you
     may give you sense of fulfilment of your purpose though.
   `,
-  prematureretirement: `
+  retirement: `
     In a rush you decide to disappear and leave everything behind.
     Not the wisest of moves as your prying opponents will have only little
     work to find you and mine you for information that they might use.

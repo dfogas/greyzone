@@ -70,11 +70,18 @@ class DashboardScreen extends Component {
     const statusesowned = jsonapi.get('statuses');
     const totalagents = agentinarmory ? allagents.unshift(agentinarmory) : allagents;
 
-    socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
-      console.log(discovered);
-      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
+
+    setInterval(() => {
+      console.log('checking for discovered');
+      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 3)
         this.badEndDiscovered();
-    });
+    }, 12 * 60 * 1000);
+    // TODO: I met some unexpected behaviour, read how exactly websockets work
+    // socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
+    //   console.log(countrystats.toJS());
+    //   if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
+    //     this.badEndDiscovered();
+    // });
 
     return (
       <div id='DashboardScreen'>

@@ -34,14 +34,13 @@ app.use(config.apipath, api);
 io.on('connection', (socket) => {
   console.log('user has connected');
   socket.on('mission', function(msg) {
-    console.log(msg);
-    if (Math.random() > 0.5) {
-      console.log('Agents spotted. Dispatching Discovered! mission.');
+    if (msg.missiontitle !== 'Discovered!' && Math.random() > 0.5) {
+      console.log('Agents spotted. New Mission in Briefing room - Discovered!');
       socket.emit('new mission', Mission('Discovered!', 3, 10 * 60 * 1000, true));
     }
   });
 
-  setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
+  // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
 });
 
 

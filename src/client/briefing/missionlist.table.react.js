@@ -30,6 +30,7 @@ class MissionsListTable extends Component {
               <th>{msg('briefing.missionlist.headers.tier')}</th>
               <th>{msg('briefing.missionlist.headers.ETA')}</th>
               <th>{msg('briefing.missionlist.headers.pass')}</th>
+              <th>{msg('briefing.missionlist.headers.specials')}</th>
             </tr>
           </thead>
           <tbody>

@@ -21,7 +21,7 @@ var playerdefaults = {
   achievements: [],
   activemission: defaultActiveMission,
   agents: [],
-  countrystats: playerCountryStats(CountryList, 0, 1),
+  countrystats: playerCountryStats(CountryList, 0, 3),
   components: {
     dashboard: {
       index: 'strategical'

@@ -40,6 +40,9 @@ class MissionListItem extends Component {
               >Pass</button>
           }
         </td>
+        <td>
+          {mission.get('forcefail') ? 'forced' : 'none'}
+        </td>
       </tr>
     );
   }

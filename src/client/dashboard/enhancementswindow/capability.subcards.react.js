@@ -51,7 +51,8 @@ class CapabilitySubCards extends Component {
         <div className='capability-enhancement-card owned'>
           <div>{name}</div>
           <div>{description}</div>
-          <div>Upgrade to {nextlevel.name}</div>
+          {!hasMaxed &&
+              <div>Upgrade to {nextlevel.name}</div>}
           <div>
              For {!hasMaxed &&
               '$' + formatMoney(nextlevel.price.cash, 0, '.', ',')}

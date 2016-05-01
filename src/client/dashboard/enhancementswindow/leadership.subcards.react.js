@@ -53,7 +53,8 @@ class LeadershipSubCards extends Component {
           >
           <div>{name}</div>
           <div>{description}</div>
-          <div>Upgrades to {nextlevel.name}</div>
+          {!hasMaxed &&
+            <div>Upgrades to {nextlevel.name}</div>}
           <div>
             For {!hasMaxed &&
               '$' + formatMoney(nextlevel.price.cash, 0, '.', ',')}

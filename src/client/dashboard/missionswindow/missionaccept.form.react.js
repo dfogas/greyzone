@@ -22,7 +22,7 @@ class MissionAcceptForm extends Component {
     const fields = this.getForm().get('fields').toJS();
     dashboardActions.acceptMission(fields.tier, fields.focus, fields.country, {avoidfatals: fields.avoidfatals});
     dashboardActions.bookMissionPrice(fields.tier);
-    dashboardActions.clearMissionAcceptFields(fields.rank);
+    dashboardActions.clearMissionAcceptFields();
   }
 
   render() {
@@ -68,7 +68,7 @@ class MissionAcceptForm extends Component {
               name='country'
               onChange={option => dashboardActions.updateFormField(option, 'missionaccept')}
               options={[
-                {value: 'random', name: 'country', label: 'Any'},
+                {value: 'random', name: 'country', label: 'random'},
                 {value: 'US', name: 'country', label: 'US'},
                 {value: 'West Europe', name: 'country', label: 'West Europe'},
                 {value: 'Russia', name: 'country', label: 'Russia'},
@@ -86,9 +86,9 @@ class MissionAcceptForm extends Component {
               onClick={(e) => this.changeOption(e)}
               type='checkbox'
               />
-            <button
+            {form.getIn(['fields', 'tier']) && <button
               id='MissionAcceptButton'
-              type='submit'>{msg('dashboard.strategical.missionaccept.button.acceptMission')}</button>
+              type='submit'>{msg('dashboard.strategical.missionaccept.button.acceptMission')}</button>}
           </fieldset>
         </form>
         <div id='MissionAcceptPriceTag'>

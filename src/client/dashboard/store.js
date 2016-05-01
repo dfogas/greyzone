@@ -25,6 +25,11 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi.set('gameend', 'discovered');
     });
 
+  if (action === dashboardActions.badEndRich)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.set('gameend', 'richanddiscovered');
+    });
+
   if (action === dashboardActions.bookMissionPrice)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -95,7 +100,6 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.clearMissionAcceptFields)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'tier'], null)
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'focus'], 'random')
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'country'], 'random');
     });
@@ -105,6 +109,12 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['options', 'gameend', 'statistics'], true)
         .setIn(['statistics'], immutable.fromJS(data));
+    });
+
+  if (action === dashboardActions.goodEndRich)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('gameend', 'richandhidden');
     });
 
   if (action === dashboardActions.hireAgent) {

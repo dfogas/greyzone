@@ -8,7 +8,8 @@ import * as missionActions from '../../actions';
 class MissionEndButton extends Component {
   end() {
     // var socket = io.connect('http://localhost');
-    socket.emit('mission', 'Mission has been ended'); // eslint-disable-line no-undef
+    const {missiontitle} = this.props;
+    socket.emit('mission', {missiontitle}); // eslint-disable-line no-undef
     missionActions.end();
     missionActions.removeCompletedMission();
     missionActions.agentsAreBackFromMission();

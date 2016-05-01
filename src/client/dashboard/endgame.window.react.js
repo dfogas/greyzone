@@ -19,15 +19,23 @@ class EndGameWindow extends Component {
     return (
       <div id="EndGameWindow">
         You ended the game with
-        {' ' +
+        {' '}
+        {
           countrystats.reduce((prev, curr) => {
-            return -curr.get('reputation') * curr.get('obscurity') + prev;
-          }, 0)
+            return curr.get('reputation') * curr.get('obscurity') + prev;
+          }, 0) +
+          (gameend === 'richandhidden' ? 50000 : 0)
         } total score.
         Your game end is:
+          {gameend === 'retirement' ? 'Given Up' : ''}
+          {gameend === 'discovered' ? 'Betrayed' : ''}
+          {gameend === 'richanddiscovered' ? 'Rich But Not For Long' : ''}
+          {gameend === 'richandhidden' ? 'Rich and Covered' : ''}
         <p>
-          {gameend === 'retirement' && msg('ends.prematureretirement')}
+          {gameend === 'retirement' && msg('ends.retirement')}
           {gameend === 'discovered' && msg('ends.discovered')}
+          {gameend === 'richanddiscovered' && msg('ends.richanddiscovered')}
+          {gameend === 'richandhidden' && msg ('ends.richandhidden')}
         </p>
         <NewGameButton
           name={name}

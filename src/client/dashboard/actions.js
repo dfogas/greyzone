@@ -47,6 +47,10 @@ export function badEndDiscovered() {
   dispatch(badEndDiscovered, {});
 }
 
+export function badEndRich() {
+  dispatch(badEndRich, {});
+}
+
 export function bookMissionPrice(tier) {
   const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList']).get(tier);
 
@@ -145,6 +149,10 @@ export function hireAgent(specialist, rank) {
   }
 }
 
+export function goodEndRich() {
+  dispatch(goodEndRich, {});
+}
+
 export function loadGame() {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save1']);
   const storage = storagejson ? JSON.parse(storagejson) : null;
@@ -199,7 +207,12 @@ export function refreshStandings() {
 }
 
 export function retireGame() {
-  dispatch(retireGame, {});
+  if (jsonapiCursor(['statuses']).size > 10 && jsonapiCursor(['countrystats']).toJS().reduce((prev, curr) => {return prev + curr.obscurity;}, 0) < 9)
+      dispatch(badEndRich, {});
+  else if (jsonapiCursor(['statuses']).size > 11)
+    dispatch(goodEndRich, {});
+  else
+    dispatch(retireGame, {});
 }
 
 export function sanitizeAgents() {
@@ -256,6 +269,7 @@ export function upgradeEnhancement(enhancement) {
 setToString('dashboard', {
   acceptMission,
   badEndDiscovered,
+  badEndRich,
   bookMissionPrice,
   bookPrisonBreakMissionPrice,
   buyEnhancement,
@@ -266,6 +280,7 @@ setToString('dashboard', {
   clearLog,
   clearMissionAcceptFields,
   displayGameEndStatistics,
+  goodEndRich,
   hireAgent,
   loadLog,
   loadGame,

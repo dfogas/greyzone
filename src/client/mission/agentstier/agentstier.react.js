@@ -19,7 +19,7 @@ class AgentsTier extends Component {
     const activemission = jsonapi.get('activemission');
     const activetasks = jsonapi.getIn(['activemission', 'tasks']);
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
-    const isLastTaskDone = taskscompleted.size === activetasks.size && taskscompleted.size !== 0;
+    const isLastTaskDone = taskscompleted.size >= activetasks.size && taskscompleted.size !== 0;
     const isDefaultMission = jsonapi.getIn(['activemission', 'title']) === 'Default Mission';
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);

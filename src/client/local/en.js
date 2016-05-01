@@ -20,6 +20,7 @@ const ENGLISH = {
         ETA: 'ETA',
         pass: 'Pass',
         region: 'Region',
+        specials: 'Specials',
         tier: 'Tier',
         title: 'Title'
       }
