@@ -117,9 +117,12 @@ export function updateFormField({target: {name, value}}) {
 
 export function signup(fields) {
   // promise, because we don't know whether fields are valid
-  const promise = validateForm(fields)
+  const promise = validateSignupForm(fields)
     .then(() => {
       return saveCredentials(fields);
+    })
+    .then(() => {
+      signupError(new ValidationError({message: `Authentication email sent. Check your mailbox.`}));
     })
     .catch(error => {
       signupError(error);
@@ -127,6 +130,18 @@ export function signup(fields) {
     });
 
   return promise;
+}
+
+function validateSignupForm(fields) {
+  // Validate function is just wrapper for node-validator providing promise api,
+  // so we can mix client sync and server async validations easily.
+  return validate(fields)
+    // Of course we can add another validation method.
+    .prop('email').required().email()
+    .prop('password').required().simplePassword()
+    /* TODO: validation of 'organization' prop */
+    .prop('organization').required().organization()
+    .promise;
 }
 
 function saveCredentials(fields) {
@@ -149,6 +164,7 @@ function saveCredentials(fields) {
 }
 
 export function signupError(error) {
+  console.log(error);
   dispatch(signupError, error);
 }
 
@@ -197,5 +213,6 @@ setToString('auth', {
   reauthenticateError,
   redirectToLogin,
   signup,
+  signupError,
   updateFormField
 });

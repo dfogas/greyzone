@@ -1,9 +1,13 @@
-/* eslint no-unused-expressions: 1 */
+/* eslint no-unused-expressions: 1, no-undefined: 1 */
 /* ImmutableList(dices) ImmutableList(actions) -> Number(Probability) */
 import oneInSix from './oneinsix';
 import twoInSix from './twoinsix';
 
 function probabilityOfSuccess(dices, actions) {
+  if (typeof actions === undefined)
+    return 0;
+  if (typeof dices === undefined)
+    return 0;
   let operations, electronics, stealth;
   let operationsnames, electronicsnames, stealthnames;
   let opcount, elcount, stcount;
@@ -44,7 +48,7 @@ function probabilityOfSuccess(dices, actions) {
 
   probabilities.length === 0 ? [0, 0] : probabilities;
 
-  return probabilities.reduce((prev, curr) => prev * curr);
+  return probabilities.reduce((prev, curr) => {return prev * curr;}, 1);
 }
 
 export default probabilityOfSuccess;

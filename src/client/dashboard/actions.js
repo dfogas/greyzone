@@ -139,7 +139,7 @@ export function hireAgent(specialist, rank) {
   if (agentPrice > gameCash)
     dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
   else if (!maxAgentsCheck(totalAgents, capabilityNames))
-    dispatch(logAgentsWindow, {message: 'Max agents reached already. Dismiss an agent if you want to hire new one.'});
+    dispatch(logAgentsWindow, {message: 'Max agents reached already. Dismiss an agent if you want to hire new one or upgrade operations if possible.'});
   else if (!leadershipCheck(rank - 1, leadershipNames))
     dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
   else {
@@ -251,6 +251,10 @@ export function saveLog() {
   localStorage.setItem(['ghoststruggle', userId, organization, 'log'], R.uniq(storage.concat(log)));
 }
 
+export function selectAgentOnDisplay(agent) {
+  dispatch(selectAgentOnDisplay, {agent});
+}
+
 export function startNewGame(userId, name) {
   dispatch(startNewGame, {userId, name});
 }
@@ -295,6 +299,7 @@ setToString('dashboard', {
   sanitizeMissions,
   saveAgent,
   saveGame,
+  selectAgentOnDisplay,
   startNewGame,
   updateFormField,
   upgradeEnhancement

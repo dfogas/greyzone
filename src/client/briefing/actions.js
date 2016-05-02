@@ -3,6 +3,7 @@ import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import pickAgentForFatal from '../lib/pickagentforfatal';
+import obscurityMissionCheck from '../lib/obscuritymissioncheck';
 
 export function assignMission(agent) {
   /* pokud je agent unavený např. z předchozí mise */
@@ -59,7 +60,9 @@ export function pushGameMission(mission) {
 
 /*passed mission is merged to become a activemission*/
 export function selectMission(mission) {
+  const activemission = jsonapiCursor(['activemission']);
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+  const countrystats = jsonapiCursor(['countrystats']);
   if (agentontask)
     dispatch(logBriefing, {message: 'Agent is on task, remove her from there before selecting new mission.'});
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
@@ -70,7 +73,12 @@ export function selectMission(mission) {
       checkFatalities({results: mission.get('losses').toJS()});
     }
   }
-  else dispatch(selectMission, {mission});
+  else {
+    if (!obscurityMissionCheck(mission, countrystats))
+      dispatch(logBriefing, {message: `The selected mission will not start, because either success or failure in the mission would bring obscurity in the country under 0.`});
+
+    dispatch(selectMission, {mission});
+  }
 }
 
 export function setDefaultAfterExpired() {

@@ -15,7 +15,7 @@ const Discovered = [{
   losses: {
     agentImprisoned: true
   },
-  imgsrc: '',
+  imgsrc: 'discovered_tb.jpg',
   agentLimit: 1,
   tier: 3
 }, {
@@ -32,7 +32,7 @@ const Discovered = [{
   losses: {
     agentImprisoned: true
   },
-  imgsrc: '',
+  imgsrc: 'discovered_tb.jpg',
   agentLimit: 1,
   tier: 4
 }, {
@@ -50,7 +50,7 @@ const Discovered = [{
   losses: {
     agentImprisoned: true
   },
-  imgsrc: '',
+  imgsrc: 'discovered_tb.jpg',
   agentLimit: 1,
   tier: 5
 }];

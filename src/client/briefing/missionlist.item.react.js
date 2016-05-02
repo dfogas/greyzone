@@ -21,9 +21,9 @@ class MissionListItem extends Component {
   }
 
   render() {
-    const {mission} = this.props;
+    const {isSelected, mission} = this.props;
     return (
-      <tr>
+      <tr className={isSelected ? 'selected' : ''}>
         <td onClick={this.selectMission.bind(this)}>{mission.get('title')}</td>
         <td>{mission.get('inCountry')}</td>
         <td>{mission.get('tier')}</td>

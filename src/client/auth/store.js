@@ -21,8 +21,8 @@ export const dispatchToken = register(({action, data}) => {
 
     case authActions.signupError:
       authCursor(auth => {
-        const {name, value} = data;
-        return auth.setIn(['form', 'fields', name], value);
+        const error = data;
+        return auth.setIn(['form', 'error'], error);
       });
       break;
 

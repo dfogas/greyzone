@@ -190,6 +190,12 @@ export const dispatchToken = register(({action, data}) => {
         .update('log', val => val.unshift(data.message));
     });
 
+  if (action === missionActions.logMission)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'log'], data.message);
+    });
+
   if (action === briefingActions.passMission)
     jsonapiCursor(jsonapi => {
       return jsonapi

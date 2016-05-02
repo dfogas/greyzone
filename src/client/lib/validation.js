@@ -99,4 +99,16 @@ export default class Validation {
     return `Password must contain at least ${minLength} characters.`;
   }
 
+  organization() {
+    return this.custom((value, prop) => {
+      const maxLength = 16;
+      const minLength = 3;
+      if (value.length >= minLength && value.length <= maxLength) return;
+      throw new ValidationError(
+        `Organization must be from ${minLength} to ${maxLength} characters`,
+        prop
+      );
+    });
+  }
+
 }

@@ -4,10 +4,17 @@ import React from 'react';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
 import {msg} from '../../intl/store';
+import $ from 'jquery';
 
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
 
 class MissionResultsWindow extends Component {
+  vszuuut() {
+    // console.log('vžút');
+    // console.log(React.findDOMNode(this));
+    // Works!
+    $(React.findDOMNode(this)).hide().slideDown().show();
+  }
 
   render() {
     const {activemission, agentbeingsaved} = this.props;
@@ -17,7 +24,8 @@ class MissionResultsWindow extends Component {
 
     return (
       <div
-        id="MissionResultsWindow">
+        id="MissionResultsWindow"
+        onClick={this.vszuuut.bind(this)}>
           <p>
             {
               `Mission ${activemission.get('title')}

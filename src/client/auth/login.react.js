@@ -60,6 +60,7 @@ class Login extends Component {
             />
             <br />
             <span><Link to='lprecover'>Forgotten password?</Link></span>
+            <br />
             {form.error &&
               <span className="error-message">{form.error.message}</span>
             }

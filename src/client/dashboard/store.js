@@ -214,6 +214,12 @@ export const dispatchToken = register(({action, data}) => {
         .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
+  if (action === dashboardActions.selectAgentOnDisplay)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'agentondisplay'], data.agent);
+    });
+
   if (action === dashboardActions.startNewGame)
     jsonapiCursor(jsonapi => {
       return immutable.fromJS(playerdefaults)

@@ -9,11 +9,12 @@ import MissionListItem from './missionlist.item.react';
 
 class MissionsListTable extends Component {
   render() {
-    const {missions} = this.props;
+    const {activemission, missions} = this.props;
 
     const missionlist = missions.map(mission => {
       return (
         <MissionListItem
+          isSelected={mission.get('id') === activemission.get('id')}
           key={uuid() + 'missionlist'}
           mission={mission}
           />

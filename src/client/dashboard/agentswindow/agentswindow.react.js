@@ -6,11 +6,13 @@ import immutable from 'immutable';
 
 import AgentHireForm from './agenthire.form.react';
 import AgentsList from './agents.list.react';
+import AgentOnDisplay from './agentondisplay.react';
 
 class AgentsWindow extends Component {
 
   render() {
     const {agentbeingsaved, agenthire, agentlog, agents, agentsinroster, agentspricelist, dashboard, options} = this.props;
+    const agentondisplay = dashboard.get('agentondisplay');
 
     return (
       <div id='AgentsWindow'>
@@ -23,11 +25,16 @@ class AgentsWindow extends Component {
         </div>
         <AgentsList
           agentbeingsaved={agentbeingsaved}
+          agentondisplay={agentondisplay}
           agents={agents}
           agentsinroster={agentsinroster}
           dashboard={dashboard}
           options={options}
           />
+        {agentondisplay &&
+          <AgentOnDisplay
+            agentondisplay={agentondisplay}
+            />}
       </div>
     );
   }

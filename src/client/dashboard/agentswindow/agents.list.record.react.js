@@ -23,14 +23,24 @@ class AgentListRecord extends Component {
     dashboardActions.saveAgent(agent);
   }
 
+  selectAgentOnDisplay() {
+    const {agent} = this.props;
+    dashboardActions.selectAgentOnDisplay(agent);
+  }
+
   render() {
-    const {agent, agentbeingsaved, agentsinroster, debug} = this.props;
+    const {agent, agentbeingsaved, agentondisplay, agentsinroster, debug} = this.props;
     const isFreed = agentbeingsaved ? agent.get('name') === agentbeingsaved.get('name') : false;
 
-    const classString = classnames('agent-list-record', agent.get('specialist'));
+    const isOnDisplay = agent.get('id') === agentondisplay.get('id');
+    const classString = classnames('agent-list-record', agent.get('specialist'), {
+      'on-display': isOnDisplay
+    });
 
     return (
-      <tr className={classString}>
+      <tr
+        className={classString}
+        onClick={this.selectAgentOnDisplay.bind(this)}>
         <td>{agent.get('name')}</td>
         <td>Rank {agent.get('rank')}</td>
         <td>{agent.get('experience')} XP</td>

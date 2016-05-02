@@ -16,7 +16,7 @@ function agentIncurDelay(agent, equipment, delay) {
     else if (isBackfire)
       return agent.get('ETA') + delay;
     else
-      return Date.now();
+      return agent.get('ETA');
   } else {
     const isBackfire = Math.random() > 0.5 ? false : true;
     if (isBackfire && agent.get('ETA') + delay < Date.now())

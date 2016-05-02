@@ -38,6 +38,7 @@ class BriefingScreen extends Component {
           <div id='BriefingMissionShiftRight'></div>
           <div id='BriefingMissionShiftLeft'></div>
           <MissionsListTable
+            activemission={jsonapi.get('activemission')}
             missions={jsonapi.get('missions')}
             />
           <BriefingInCountry

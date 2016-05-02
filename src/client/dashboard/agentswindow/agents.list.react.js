@@ -10,20 +10,8 @@ import AgentsListRecord from './agents.list.record.react';
 class AgentsList extends Component {
 
   render() {
-    const {agentbeingsaved, agents, agentsinroster, dashboard, options} = this.props;
+    const {agentbeingsaved, agents, agentsinroster, agentondisplay, dashboard, options} = this.props;
     const debug = options.get('debug');
-
-    if (!agents.size || dashboard.getIn(['strategical', 'agenthire', 'tip']))
-      return (
-        <div id="AgentsList">
-          <span id="DashboardAgentsListPlaceholder">
-            {msg('dashboard.strategical.agenthire.placeholder')}
-          </span>
-          <button
-            id='AgentHireTip'
-            onClick={this.agentHireTip}>Tip</button>
-        </div>
-      );
 
     return (
       <div id="AgentsList">
@@ -36,6 +24,7 @@ class AgentsList extends Component {
                   <AgentsListRecord
                     agent={agent}
                     agentbeingsaved={agentbeingsaved}
+                    agentondisplay={agentondisplay}
                     agentsinroster={agentsinroster}
                     debug={debug}
                     key={uuid() + 'agentslist'}

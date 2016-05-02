@@ -18,7 +18,7 @@ const PrisonBreak = [{
     gameCash: 10000,
     obscurity: 0.25
   },
-  imgsrc: '',
+  imgsrc: 'prison_break_tb.jpg',
   agentLimit: 3,
   tier: 3
 }, {
@@ -38,7 +38,7 @@ const PrisonBreak = [{
     gameCash: 15000,
     obscurity: 0.35
   },
-  imgsrc: '',
+  imgsrc: 'prison_break_tb.jpg',
   agentLimit: 3,
   tier: 4
 }, {
@@ -58,7 +58,7 @@ const PrisonBreak = [{
     gameCash: 25000,
     obscurity: 0.45
   },
-  imgsrc: '',
+  imgsrc: 'prison_break_tb.jpg',
   agentLimit: 3,
   tier: 5
 }];

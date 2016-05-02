@@ -22,7 +22,7 @@ class SignUp extends Component {
     const fields = this.getForm().fields.toJS();
     // const {email, organization} = fields;
     authActions.signup(fields).catch(focusInvalidField(this));
-    this.redirectAfterSignup();
+    // this.redirectAfterSignup();
   }
 
   redirectAfterSignup() {
@@ -61,6 +61,7 @@ class SignUp extends Component {
             />
             <br />
             <button type="submit">{msg('auth.form.button.signup')}</button>
+            <br />
             {form.error &&
               <span className="error-message">{form.error.message}</span>
             }

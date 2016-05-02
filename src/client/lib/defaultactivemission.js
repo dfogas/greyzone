@@ -1,10 +1,10 @@
 const defaultActiveMission = {
-  title: 'Default Mission',
+  title: 'Quiet before the Storm',
   tasks: [],
   inCountry: '',
   rewards: {},
   losses: {},
-  agentLimit: 1,
+  agentLimit: 0,
   agentsonmission: [],
   taskscompleted: [],
   mission: {

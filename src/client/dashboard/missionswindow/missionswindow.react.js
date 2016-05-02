@@ -7,6 +7,7 @@ import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
 import MissionAcceptForm from './missionaccept.form.react';
+import DashboardMissionsList from './dashboard.missions.list.react';
 
 class MissionsWindow extends Component {
   prisonBreakMission() {
@@ -40,10 +41,13 @@ class MissionsWindow extends Component {
             <button
               id='PrisonBreakMissionButton'
               onClick={this.prisonBreakMission.bind(this)}>{msg('dashboard.strategical.special.prisonbreak.button')}</button>
-            {msg('dashboard.strategical.special.prisonbreak.text')}
             {agentbeingsaved.get('rank') * 1000 + '\u{1f4b0}'}
             {agentbeingsaved.get('rank') * 10 + '\u{1f575}'}
           </div>}
+        {missions.size !== 0 &&
+          <DashboardMissionsList
+            missions={missions}
+            />}
       </div>
     );
   }

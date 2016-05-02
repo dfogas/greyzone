@@ -2,6 +2,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+import obscurityMissionCheck from '../lib/obscuritymissioncheck';
 
 export function agentFreed(agent) {
   dispatch(agentFreed, {agent});
@@ -89,6 +90,10 @@ export function log(message) {
   dispatch(log, {message}); // still enhanced literal? Probably yes.
 }
 
+export function logMission(message) {
+  dispatch(logMission, {message});
+}
+
 /* fires after mission result is determined (success or fail)
   extracts information from active mission and stores it in List within player struct*/
 export function organizationMissionDone() {
@@ -121,7 +126,13 @@ export function setDefault(mission) {
 
 /*sets activemission.started true*/
 export function start() {
-  dispatch(start, {});
+  const activemission = jsonapiCursor(['activemission']);
+  const countrystats = jsonapiCursor(['countrystats']);
+
+  if (obscurityMissionCheck(activemission, countrystats))
+    dispatch(start, {});
+  else
+    dispatch(logMission, {message: `Obscurity is too low.`});
 }
 
 /* sets activemission result to 'success'
@@ -153,6 +164,7 @@ setToString('mission', {
   end,
   fail,
   log,
+  logMission,
   organizationMissionDone,
   removeCompletedMission,
   setDefault,
