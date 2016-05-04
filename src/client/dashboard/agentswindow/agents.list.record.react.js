@@ -31,8 +31,8 @@ class AgentListRecord extends Component {
   render() {
     const {agent, agentbeingsaved, agentondisplay, agentsinroster, debug} = this.props;
     const isFreed = agentbeingsaved ? agent.get('name') === agentbeingsaved.get('name') : false;
+    const isOnDisplay = agentondisplay ? agent.get('id') === agentondisplay.get('id') : false;
 
-    const isOnDisplay = agent.get('id') === agentondisplay.get('id');
     const classString = classnames('agent-list-record', agent.get('specialist'), {
       'on-display': isOnDisplay
     });

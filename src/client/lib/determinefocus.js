@@ -16,16 +16,20 @@ function determineFocus(rewards) {
     focus.special = true;
 
   if (keys.indexOf('gameCash') !== -1)
-    focus.cash = true;
+    if (rewards.gameCash > 0)
+      focus.cash = true;
 
   if (keys.indexOf('gameContacts') !== -1)
-    focus.contacts = true;
+    if (rewards.gameContacts > 0)
+      focus.contacts = true;
 
   if (keys.indexOf('reputation') !== -1)
-    focus.reputation = true;
+    if (rewards.reputation > 0)
+      focus.reputation = true;
 
   if (keys.indexOf('obscurity') !== -1)
-    focus.obscurity = true;
+    if (rewards.obscurity > 0)
+      focus.obscurity = true;
 
   // TODO: Do not forget about multiplayer
 

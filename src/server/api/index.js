@@ -24,7 +24,7 @@ mongoose.connect(config.datastorage, function(err, res) {
   if (err)
     console.log('Error connecting to database.' + err);
   else
-    console.log('Connected to database: ' + config.datastorage);
+    console.log('Connected to database: ' + config.dataserverlog);
 }); // establish database Mongo connection
 
 

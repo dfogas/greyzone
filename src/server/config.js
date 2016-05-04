@@ -8,6 +8,12 @@ nconf.env('__');
 var config = {
   apipath: '/api/v1',
   appLocales: ['en', 'cz'],
+  dataserverlog: process.env.NODE_ENV === 'production' ?
+    'ds00000.mlab.com' :
+    process.env.NODE_ENV ?
+    'mongodb://localhost:27017/mbase' :
+    // for API test
+    'mongodb://localhost:27017/mtest',
   datastorage: process.env.NODE_ENV === 'production' ?
     'mongodb://admin:' + passwords.mbase + '@ds055852.mlab.com:55852/mbase' :
     process.env.NODE_ENV ?
@@ -17,7 +23,7 @@ var config = {
   defaultLocale: 'en',
   dns: process.env.NODE_ENV === 'production' ? 'http://www.ghoststruggle.com' :
     'http://localhost:8000',
-  googleAnalyticsId: 'UA-XXXXXXX-X',
+  googleAnalyticsId: 'UA-77300811-1',
   isProduction: process.env.NODE_ENV === 'production',
   piping: {
     // Ignore webpack custom loaders on server. TODO: Reuse index.js config.
