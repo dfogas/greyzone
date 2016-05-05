@@ -121,9 +121,14 @@ export function signup(fields) {
     .then(() => {
       return saveCredentials(fields);
     })
-    .then(() => {
-      signupError(new ValidationError({message: `Authentication email sent. Check your mailbox.`}));
-    })
+    // .then(() => {
+    //   signupError(new ValidationError({
+    //     message: `
+    //       Authentication email sent. Check your mailbox.
+    //       For better feedback on delivery do not close this window.
+    //     `
+    //   }));
+    // })
     .catch(error => {
       signupError(error);
       throw error;
@@ -153,10 +158,21 @@ function saveCredentials(fields) {
     xhr.onreadystatechange = () => {
       // TODO: figure out this API, put comment here
       if (xhr.readyState !== 4) return;
-      if (xhr.status === 200)
+      // console.log(JSON.parse(xhr.responseText));
+      if (JSON.parse(xhr.responseText).description === `New Signup`)
         resolve(fields);
-      else
-        reject(new ValidationError(msg('auth.form.invalidPassword'), 'password'));
+      else if (JSON.parse(xhr.responseText).description === `Repeated Signup`) {
+        signupError(new ValidationError({
+            message: `
+              Authentication email has been resent. Check your mailbox,
+              possibly a spam folder, due to overzealous spam filters.
+            `
+          }));
+        resolve(fields);
+      } else {
+        const error = JSON.parse(xhr.responseText).message || `Unhandled signup Error.`;
+        reject(new ValidationError(error, 'password'));
+      }
     };
 
     xhr.send(JSON.stringify(fields));
@@ -164,7 +180,6 @@ function saveCredentials(fields) {
 }
 
 export function signupError(error) {
-  console.log(error);
   dispatch(signupError, error);
 }
 

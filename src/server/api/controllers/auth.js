@@ -50,45 +50,73 @@ router.route('/signup')
       activationhash: uuid()
     });
 
-    // TODO: check if it exists in not verifieds if so resend the activationhash email
-
-    NotVerified.findOne({username: email}, (err, unverified) => {
+    // TODO: check if User is registered already
+    User.findOne({username: email}, (err, user) => {
       if (err)
-        throw new Error('Error finding unverified user');
-      else if (unverified)
-        transporter.sendMail(verifier(
-          unverified._id,
-          unverified.activationhash,
-          unverified.username
-        ), function(err, info) {
-          if (err)
-            console.log('Sending mail Error: ' + err.message);
-          else
-            console.log('Repeated sign up mail message has been sent.');
+        res.json({
+          message: err
+        });
+      else if (user)
+        res.json({
+          description: `User exists`,
+          message: `User already exists and is verified. Use forgotten password link.`
         });
       else
-        notverified.save((err, newrecord) => {
+        NotVerified.findOne({username: email}, (err, unverified) => {
           if (err)
-            res.json('DB saving error: ' + err);
-          else {
+            res.json({message: 'Error finding unverified'});
+          else if (unverified)
             transporter.sendMail(verifier(
-              newrecord._id,
-              notverified.activationhash,
-              email
+              unverified._id,
+              unverified.activationhash,
+              unverified.username
             ), function(err, info) {
-              if (err)
+              if (err) {
                 console.log('Sending mail Error: ' + err.message);
+                res.json({
+                  description: `Send mail Error`,
+                  message: `Encountered error when trying to send an email: ` + err
+                });
+              } else {
+                console.log('Repeated sign up mail message sent.');
+                res.json({
+                  description: `Repeated Signup`,
+                  message: `Repeated sign up mail message sent.`
+                });
+              }
+            });
+          else
+            notverified.save((err, newrecord) => {
+              if (err)
+                res.json({
+                  message: 'DB saving error: ' + err
+                });
               else
-                console.log('New sign up mail message has been sent.');
+                transporter.sendMail(verifier(
+                  newrecord._id,
+                  notverified.activationhash,
+                  email
+                ), function(err, info) {
+                  if (err) {
+                    console.log('Sending mail Error: ' + err.message);
+                    res.json({
+                      description: `Send mail Error`,
+                      message: `Encountered error when trying to send an email` + err
+                    });
+                  } else {
+                    console.log('New sign up mail message has been sent.');
+                    res.json({
+                      description: `New Signup`,
+                      message: `New authentication email message has been sent.`,
+                      _id: newrecord._id,
+                      activationhash: newrecord.activationhash
+                    });
+                  }
+                });
             });
-            res.json({
-              message: 'New not-verified user.',
-              _id: newrecord._id,
-              activationhash: newrecord.activationhash
-            });
-          }
         });
     });
+
   });
 
 router.route('/verify')

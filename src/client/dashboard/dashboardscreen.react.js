@@ -17,6 +17,7 @@ import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
 import LogWindow from './logwindow/log.window.react';
 import EndGameWindow from './endgame.window.react';
+import WelcomeWindow from './welcome.window.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -85,6 +86,7 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
+        <WelcomeWindow />
         {jsonapi.get('gameend') &&
           <EndGameWindow
             countrystats={jsonapi.get('countrystats')}
@@ -101,7 +103,7 @@ class DashboardScreen extends Component {
         <DashboardToIntro />
         {jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToMission />}
-        <AchievementPointer />
+        {/*<AchievementPointer />*/}
         <ContestPointer />
         <EnhancementsPointer />
         <LogPointer />

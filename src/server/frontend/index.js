@@ -3,7 +3,7 @@ import compression from 'compression';
 import config from '../config';
 import esteHeaders from '../lib/estemiddleware';
 import express from 'express';
-import favicon from 'serve-favicon';
+// import favicon from 'serve-favicon';
 var render;
 import userState from './userState';
 
@@ -17,8 +17,9 @@ if (process.env.NODE_ENV) {
   app.use(esteHeaders());
 
   app.use(compression());
-  app.use(favicon('assets/img/favicon.ico'));
-  // TODO: Move to CDN.
+  // TODO: better favicon, logo, everything
+  // app.use(favicon('assets/img/favicon.ico'));
+  // TODO: Move assets to CDN.
   app.use('/build', express.static('build'));
   app.use('/assets', express.static('assets'));
   app.use(userState());

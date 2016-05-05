@@ -42,7 +42,7 @@ class IntroScreen extends Component {
             >Introduction
           </div>
           {about.get('group') === 'introduction' &&
-            Object.keys(msg('intro').toJS()).map(intro => {
+            Object.keys(msg('introduction').toJS()).map(intro => {
               return (
                 <div
                   className='game-intro-link'

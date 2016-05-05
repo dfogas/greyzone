@@ -42,6 +42,40 @@ const ENGLISH = {
   },
   concepts: conceptsMsg,
   dashboard: dashboardMsg,
+  developers: {
+    button: `Ok, I have read the notice`,
+    notice: `
+      <h1>Developers notice</h1>
+      <h2>Ghost Struggle version Zero</h2>
+      <p>
+        This game is still before production.
+        You can play it, but weird shit might happen, and also you might lose your game saves.
+        Also game assets(pictures, texts and other) are too lacking yet.
+        So play and enjoy the experience, but bear that in mind.
+
+        Current ends are:
+        <ul>Bad Ends:
+          <li>Given Up</li>
+          <li>Betrayed</li>
+          <li>Rich, But Not For Long</li>
+        </ul>
+        <ul>Good Ends:
+          <li>Rich and Covered</li>
+        </ul>
+      </p>
+      <p>
+        Recommended is reading Gameplay/Introduction section of About/Help before starting of your game.
+      </p>
+      <h3>Disclaimer</h3>
+      <p>
+        Until further notice, I declare Ghost Struggle game a work of art, in order to avoid copyright infringment of used pictures etc.
+        and I do not charge anything for it.
+      </p>
+      <p>
+        <em>Warning: Game might include some depictions and hints of violence and/or suggestive scenes, so if that is something you are offended by then do not play it.</em>
+      </p>
+    `
+  },
   equipments: {
     electronics: [
       {name: 'Handy Kit'},
