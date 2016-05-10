@@ -31,6 +31,7 @@ class BriefingScreen extends Component {
     return (
       <DocumentTitle title={msg('briefing.title')}>
         <div id='BriefingScreen'>
+          <div id='BriefingScreenLabel'>{msg('briefing.screen.label')}</div>
           <ActiveMission
             activemission={jsonapi.get('activemission')}
             agents={agents}

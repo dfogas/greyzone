@@ -21,6 +21,7 @@ class IntroScreen extends Component {
     const {about} = this.props;
     return (
       <div id="IntroScreenWrapper">
+        <div id="IntroScreenLabel">{msg('introduction.screen.label')}</div>
         <div id='IntroSidebar'>
           <div
             className='intro-links-group'

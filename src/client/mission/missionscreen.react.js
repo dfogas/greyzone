@@ -2,6 +2,8 @@ import './missionscreen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../intl/store';
+
 import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
 import AgentsTier from './agentstier/agentstier.react';
@@ -17,6 +19,7 @@ class MissionTrackingScreen extends Component {
 
     return (
       <div id='MissionTrackingScreen'>
+        <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>
         <TaskTier
           activemission={jsonapi.get('activemission')}
           />

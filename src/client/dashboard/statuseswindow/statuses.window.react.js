@@ -4,6 +4,7 @@ import React from 'react';
 import immutable from 'immutable';
 import R from 'ramda';
 import uuid from '../../lib/guid';
+import {msg} from '../../intl/store';
 
 import StatusCard from './status.card.react';
 
@@ -13,6 +14,7 @@ class StatusesWindow extends Component {
     const statusesnotowned = immutable.fromJS(R.without(owned.toJS(), statuses.toJS()));
     return (
       <div id='StatusesWindow'>
+        <div id='StatusesWindowLabel'>{msg('dashboard.statuses.window.label')}</div>
         <div id='StatusesFilmBand'>
           {owned.map((status) => {
             return (

@@ -208,18 +208,18 @@ const EnhancementList = [
     },
     type: 'toys'
   }, {
-    description: 'Mission Catch Serial Killer',
-    name: 'Deputy of Law',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
-  }, {
+  //   description: 'Mission Catch Serial Killer',
+  //   name: 'Deputy of Law',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
+  // }, {
     description: 'Mission Next On the Blacklist',
     name: 'Puppeteering FBI',
     prerequisites: [{
@@ -239,24 +239,24 @@ const EnhancementList = [
     },
     type: 'operationsscope'
   }, {
-    description: 'Mission Assasination',
-    name: 'Augean Stables',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }, {
-      name: '',
-      criteria: {
-        obscurity: 2
-      },
-      type: 'countrystat'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
-  }, {
+  //   description: 'Mission Assasination',
+  //   name: 'Augean Stables',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }, {
+  //     name: '',
+  //     criteria: {
+  //       obscurity: 2
+  //     },
+  //     type: 'countrystat'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
+  // }, {
     description: 'Mission Bank Robbery',
     name: 'Nostalgia',
     prerequisites: [{
@@ -340,30 +340,30 @@ const EnhancementList = [
       contacts: 100
     },
     type: 'operationsscope'
-  }, {
-    description: 'Mission Industrial Espionage',
-    name: 'WS intriques',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
-  }, {
-    description: 'Mission Secret Investigation',
-    name: 'Playing Detective',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
+  // }, {
+  //   description: 'Mission Industrial Espionage',
+  //   name: 'WS intriques',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
+  // }, {
+  //   description: 'Mission Secret Investigation',
+  //   name: 'Playing Detective',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
   }
 ];
 

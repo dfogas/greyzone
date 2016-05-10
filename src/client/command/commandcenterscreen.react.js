@@ -17,6 +17,7 @@ class CommandCenterScreen extends Component {
 
     return (
       <div id='CommandCenterScreen'>
+        <div id='CommandCenterScreenLabel'>{msg('command.screen.label')}</div>
         {!isLoggedIn &&
           <Link to='login'>
             <button className='login-button'>

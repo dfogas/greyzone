@@ -75,6 +75,9 @@ const intro = {
       fully visualizing it right now ...
     </p>
   `,
+  screen: {
+    label: `About/Help/Introduction`
+  },
   signup: `
     <h3>What is it and how do I play it?</h3>
     <p>

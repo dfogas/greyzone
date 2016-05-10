@@ -1,4 +1,12 @@
 const dashboardMsg = {
+  enhancements: {
+    window: {
+      label: `Enhancements`
+    }
+  },
+  screen: {
+    label: 'Dashboard'
+  },
   strategical: {
     agenthire: {
       button: {
@@ -41,7 +49,12 @@ const dashboardMsg = {
       }
     }
   },
-  title: 'Dashboard(protected)'
+  statuses: {
+    window: {
+      label: `Statuses`
+    }
+  },
+  title: 'Dashboard'
 };
 
 export default dashboardMsg;

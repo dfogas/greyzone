@@ -4,6 +4,7 @@ import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import {msg} from '../intl/store';
 import animate from '../lib/animate';
 
 import PlayersWindow from './playerswindow/playerswindow.react';
@@ -17,7 +18,6 @@ import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
 import LogWindow from './logwindow/log.window.react';
 import EndGameWindow from './endgame.window.react';
-import WelcomeWindow from './welcome.window.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -71,7 +71,6 @@ class DashboardScreen extends Component {
     const statusesowned = jsonapi.get('statuses');
     const totalagents = agentinarmory ? allagents.unshift(agentinarmory) : allagents;
 
-
     setInterval(() => {
       console.log('checking for discovered');
       if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 3)
@@ -86,7 +85,9 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
-        <WelcomeWindow />
+        <div
+          id='DashboardScreenLabel'
+          >{msg('dashboard.screen.label')}</div>
         {jsonapi.get('gameend') &&
           <EndGameWindow
             countrystats={jsonapi.get('countrystats')}

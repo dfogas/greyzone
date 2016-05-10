@@ -10,13 +10,11 @@ const DestroyEvidence = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 0.5,
-    gameContacts: 23
+    obscurity: 1
   },
   losses: {
     agentImprisoned: true,
-    reputation: 300,
-    obscurity: 0.2
+    reputation: 500
   },
   imgsrc: '',
   agentLimit: 2,
@@ -31,12 +29,12 @@ const DestroyEvidence = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 0.75,
-    gameContacts: 47
+    obscurity: 1.75,
+    gameContacts: 1000
   },
   losses: {
     agentImprisoned: true,
-    reputation: 500,
+    reputation: 1500,
     obscurity: 0.25
   },
   imgsrc: '',
@@ -52,12 +50,12 @@ const DestroyEvidence = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 1,
-    gameContacts: 90
+    obscurity: 2.5,
+    gameContacts:2500
   },
   losses: {
     agentImprisoned: true,
-    reputation: 750,
+    reputation: 3750,
     obscurity: 0.35
   },
   imgsrc: '',

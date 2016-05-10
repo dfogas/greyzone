@@ -11,6 +11,9 @@ const ENGLISH = {
     madeByHtml: `Este v9.2 from <a href="https://twitter.com/steida">steida</a>`
   },
   armory: {
+    screen: {
+      label: `Armory`
+    },
     title: 'Armory'
   },
   auth: authMsg,
@@ -25,6 +28,9 @@ const ENGLISH = {
         title: 'Title'
       }
     },
+    screen: {
+      label: 'Briefing Room'
+    },
     title: 'Briefing Room'
   },
   buttons: {
@@ -38,6 +44,9 @@ const ENGLISH = {
     confirmMission: 'Confirm Mission Accept'
   },
   command: {
+    screen: {
+      label: `Command/Multiplayer`
+    },
     title: 'Command Center'
   },
   concepts: conceptsMsg,
@@ -116,14 +125,17 @@ const ENGLISH = {
     forum: 'Forum'
   },
   mission: {
-    title: 'Mission',
     buttons: {
       backtomission: 'Back',
       dcp: 'Control Damage',
       escapesequence: 'Initiate Escape Sequence',
       end: 'Finish Mission',
       success: 'Mission Accomplished!'
-    }
+    },
+    screen: {
+      label: `Mission`
+    },
+    title: 'Mission'
   },
   navs: {
     dashboardtomission: 'ToMission'

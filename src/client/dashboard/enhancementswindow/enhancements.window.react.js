@@ -3,6 +3,7 @@ import Component from '../../components/component.react.js';
 import React from 'react';
 import R from 'ramda';
 import immutable from 'immutable';
+import {msg} from '../../intl/store';
 import uuid from '../../lib/guid';
 
 import CapabilitySubCards from './capability.subcards.react';
@@ -24,7 +25,8 @@ class EnhancementsWindow extends Component {
     const operationsscopenotowned = immutable.fromJS(R.without(operationsscopeowned.toJS(), operationsscope.toJS()));
 
     return (
-      <div id='EnhancementWindow'>
+      <div id='EnhancementsWindow'>
+        <div id='EnhancementsWindowLabel'>{msg('dashboard.enhancements.window.label')}</div>
         <CapabilitySubCards
           capability={capabilityowned} />
         <LeadershipSubCards

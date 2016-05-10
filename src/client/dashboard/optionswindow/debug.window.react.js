@@ -3,6 +3,7 @@ import * as dashboardActions from '../actions';
 import * as missionActions from '../../mission/actions';
 import Component from '../../components/component.react';
 import React from 'react';
+import {Link} from 'react-router';
 
 class DebugWindow extends Component {
   sanitize(e) {
@@ -28,13 +29,15 @@ class DebugWindow extends Component {
           {debug && <button
             id='SanitizeStateButton'
             onClick={(e) => this.sanitize(e)}>
-            Sanitize Agents&Missions
+            Heal Agents&Missions
           </button>}
           {debug &&
             <button
               id='SetDefaultMissionButton'
               onClick={this.setDefaultMission}
             >Set Default Mission</button>}
+          {debug &&
+            <Link to='lab'><button id='DashboardDebugOptionsToLab'>To Lab</button></Link>}
           </fieldset>
         </form>
       </div>
