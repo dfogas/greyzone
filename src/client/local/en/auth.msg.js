@@ -43,7 +43,7 @@ const authMsg = {
     emailSent: `Authentication email sent. Check your mailbox. For better feedback on delivery do not close this window.`,
     title: 'Sign Up'
   },
-  title: 'Login'
+  title: 'Ghost Struggle - Login'
 };
 
 export default authMsg;

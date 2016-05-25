@@ -6,6 +6,7 @@ import {msg} from '../intl/store';
 import {Link} from 'react-router';
 
 import LoginMessage from '../auth/login.message.react';
+import GSSigil from '../app/gs.sigil.react';
 
 class Login extends Component {
 
@@ -13,8 +14,13 @@ class Login extends Component {
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
-          <Link to='signup'><button id='LoginToSignup'>Sign Up</button></Link>
-          <Link to='intro'><button id='LoginToIntro'>About</button></Link>
+          <Link to='signup'>
+            <button id='LoginToSignup'>Sign Up</button>
+          </Link>
+          <Link to='intro'>
+            <button id='LoginToIntro'>About</button>
+          </Link>
+          <GSSigil />
           <LoginMessage />
           <LoginForm {...this.props} />
         </div>

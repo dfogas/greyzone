@@ -6,7 +6,8 @@ const profilePics = {
     '../../assets/img/agents/operative/operative3_128.png',
     '../../assets/img/agents/operative/operative4_128.png',
     '../../assets/img/agents/operative/operative5_128.png',
-    '../../assets/img/agents/operative/operative6_128.png'
+    '../../assets/img/agents/operative/operative6_128.png',
+    '../../assets/img/agents/operative/operative7_128.png'
   ],
   spy: [
     '../../assets/img/agents/spy/spy0_128.png',

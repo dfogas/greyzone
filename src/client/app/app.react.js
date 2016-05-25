@@ -4,14 +4,13 @@
 */
 import './app.styl';
 import '../navs/navs.styl';
-// import config from '../../server/config';
+// import config from '../../server/config'; //I think that this breaks the app
 import cconfig from '../client.config';
 import * as state from '../state';
 import Component from '../components/component.react';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
-// import immutable from 'immutable';
 import 'isomorphic-fetch';
 
 // import Footer from './footer.react';
