@@ -86,6 +86,11 @@ export default function userState() {
       title: 'DefaultTitle',
       gameCash: 0,
       gameContacts: 0,
+      components: {
+        login: {
+          devnotice: true
+        }
+      },
       missions: [],
       agents: [],
       equipments: [],

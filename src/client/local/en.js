@@ -151,7 +151,7 @@ const ENGLISH = {
     emptyList: 'Empty List'
   },
   signup: {
-    message: `<p>Here you are going to create the name of your organization.
+    message: `<p>Here, you are going to create the name of your organization.
       On the email will be sent message with the link to activate a game account.
       After clicking it and you can log in and can start scheming.</p>`
   },

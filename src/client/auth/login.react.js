@@ -40,7 +40,7 @@ class Login extends Component {
           <fieldset disabled={pendingActions.has(authActions.login.toString())}>
             <legend>{msg('auth.form.legend.login')}</legend>
             <input
-              autoFocus
+              id="LoginFormFieldEmail"
               name="email"
               onChange={authActions.updateFormField}
               placeholder={msg('auth.form.placeholder.email')}

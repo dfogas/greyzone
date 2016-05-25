@@ -5,12 +5,14 @@ import React from 'react';
 import {msg} from '../intl/store';
 import {Link} from 'react-router';
 
-import LoginMessage from '../auth/login.message.react';
 import GSSigil from '../app/gs.sigil.react';
+import LoginMessage from '../auth/login.message.react';
+import WelcomeWindow from '../dashboard/welcome.window.react';
 
 class Login extends Component {
 
   render() {
+    const {jsonapi} = this.props;
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
@@ -23,6 +25,8 @@ class Login extends Component {
           <GSSigil />
           <LoginMessage />
           <LoginForm {...this.props} />
+          {jsonapi.getIn(['components', 'login', 'devnotice']) &&
+            <WelcomeWindow />}
         </div>
       </DocumentTitle>
     );
