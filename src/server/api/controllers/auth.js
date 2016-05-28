@@ -33,8 +33,10 @@ router.route('/login')
         Player.findOne({userId: user._id}, function(err, player) {
           if (err)
             throw new Error(err);
-          else
+          else {
+            player.paying = user.paying;
             res.json(player);
+          }
         });
     });
   });
@@ -134,7 +136,11 @@ router.route('/verify')
         var newUser = new User({
           password: notverified.password,
           registered: Date.now(),
-          username: notverified.username
+          username: notverified.username,
+          paying: {
+            collector: false,
+            revenge: false
+          }
         });
 
         newUser.save((err, user) => {

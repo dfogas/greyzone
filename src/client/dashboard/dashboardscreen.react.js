@@ -7,7 +7,7 @@ import immutable from 'immutable';
 import {msg} from '../intl/store';
 import animate from '../lib/animate';
 
-import PlayersWindow from './playerswindow/playerswindow.react';
+import PlayersWindow from './playerswindow/players.window.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
 import StatusesWindow from './statuseswindow/statuses.window.react';
 import OptionsWindow from './optionswindow/options.window.react';
@@ -18,6 +18,8 @@ import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
 import LogWindow from './logwindow/log.window.react';
 import EndGameWindow from './endgame.window.react';
+import ScreenPlastic from '../tutorial/screen.plastic.react';
+import PlayerAgentChoose from '../tutorial/choose.class.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -39,15 +41,6 @@ import StrategicalPointer from './pointers/strategical.pointer.react';
 class DashboardScreen extends Component {
   badEndDiscovered() {
     dashboardActions.badEndDiscovered();
-  }
-
-  hidePlayersWindow() {
-    /* ANTIPATTERN: direct DOM manipulation*/
-    const playerWindowDiv = document.querySelector('#PlayersWindow');
-    if (playerWindowDiv.style.top === '0px' || playerWindowDiv.style.top === '')
-      animate(playerWindowDiv, 'top', 'px', 0, -150, 500);
-    if (playerWindowDiv.style.top === '-150px')
-      animate(playerWindowDiv, 'top', 'px', -150, 0, 500);
   }
 
   render() {
@@ -85,6 +78,10 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
+        {!jsonapi.get('self') &&
+          <ScreenPlastic />}
+        {!jsonapi.get('self') &&
+          <PlayerAgentChoose />}
         <div
           id='DashboardScreenLabel'
           >{msg('dashboard.screen.label')}</div>
@@ -123,7 +120,9 @@ class DashboardScreen extends Component {
               enhancements={enhancementsowned}
               gameCash={jsonapi.get('gameCash')}
               gameContacts={jsonapi.get('gameContacts')}
+              jsonapi={jsonapi}
               name={jsonapi.get('name')}
+              self={jsonapi.get('self')}
             />}
           {dashPointer === 'strategical' &&
             <MissionsWindow
@@ -176,10 +175,6 @@ class DashboardScreen extends Component {
             <AchievementsWindow
               achievements={achievements}
               />}
-          {/*<button
-            className='hide-show-button'
-            onClick={this.hidePlayersWindow}
-            >hide/show</button>*/}
         </div>
       </div>
     );

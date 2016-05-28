@@ -18,6 +18,7 @@ class MissionAcceptForm extends Component {
   }
 
   onFormSubmit(e) {
+    console.log(e);
     e.preventDefault();
     const fields = this.getForm().get('fields').toJS();
     dashboardActions.acceptMission(fields.tier, fields.focus, fields.country, {avoidfatals: fields.avoidfatals});

@@ -121,14 +121,6 @@ export function signup(fields) {
     .then(() => {
       return saveCredentials(fields);
     })
-    // .then(() => {
-    //   signupError(new ValidationError({
-    //     message: `
-    //       Authentication email sent. Check your mailbox.
-    //       For better feedback on delivery do not close this window.
-    //     `
-    //   }));
-    // })
     .catch(error => {
       signupError(error);
       throw error;

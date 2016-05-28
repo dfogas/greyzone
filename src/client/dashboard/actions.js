@@ -88,13 +88,6 @@ export function changeMissionOption(name, value) {
   dispatch(changeMissionOption, promise);
 }
 
-export function changeOption(name, value) {
-  const promise = new Promise((resolve, reject) => {
-    resolve({name, value});
-  });
-  dispatch(changeOption, promise);
-}
-
 export function clearAgentHireFields() {
   dispatch(clearAgentHireFields, {});
 }
@@ -153,13 +146,6 @@ export function goodEndRich() {
   dispatch(goodEndRich, {});
 }
 
-export function loadGame() {
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save1']);
-  const storage = storagejson ? JSON.parse(storagejson) : null;
-  if (storage)
-    dispatch(loadGame, storage);
-}
-
 export function loadLog() {
   const userId = jsonapiCursor(['_id']);
   const organization = jsonapiCursor(['name']);
@@ -178,6 +164,14 @@ export function logAgentsWindow(message) {
 
 export function logMissionsWindow(message) {
   dispatch(logMissionsWindow, {message});
+}
+
+export function playerDoesNotGoOnMissions() {
+  dispatch(playerDoesNotGoOnMissions, {});
+}
+
+export function playerGoesOnMissions() {
+  dispatch(playerGoesOnMissions, {});
 }
 
 export function pointerChange(whereto) {
@@ -236,10 +230,6 @@ export function saveAgent(agent) {
   }
 }
 
-export function saveGame(jsonapi) {
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save1'], JSON.stringify(jsonapi.toJS()));
-}
-
 export function saveLog() {
   const log = jsonapiCursor(['log']).toJS();
   const userId = jsonapiCursor(['_id']);
@@ -253,10 +243,6 @@ export function saveLog() {
 
 export function selectAgentOnDisplay(agent) {
   dispatch(selectAgentOnDisplay, {agent});
-}
-
-export function startNewGame(userId, name) {
-  dispatch(startNewGame, {userId, name});
 }
 
 export function updateFormField({name, value}, context) {
@@ -279,7 +265,6 @@ setToString('dashboard', {
   buyEnhancement,
   buyStatus,
   changeMissionOption,
-  changeOption,
   clearAgentHireFields,
   clearLog,
   clearMissionAcceptFields,
@@ -287,10 +272,11 @@ setToString('dashboard', {
   goodEndRich,
   hireAgent,
   loadLog,
-  loadGame,
   log,
   logAgentsWindow,
   logMissionsWindow,
+  playerDoesNotGoOnMissions,
+  playerGoesOnMissions,
   pointerChange,
   prisonBreakMission,
   refreshStandings,
@@ -298,9 +284,7 @@ setToString('dashboard', {
   sanitizeAgents,
   sanitizeMissions,
   saveAgent,
-  saveGame,
   selectAgentOnDisplay,
-  startNewGame,
   updateFormField,
   upgradeEnhancement
 });

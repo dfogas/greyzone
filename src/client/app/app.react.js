@@ -23,6 +23,7 @@ import '../agents/scrollbar/store';
 import '../auth/store';
 import '../briefing/store';
 import '../components/store';
+import '../dashboard/optionswindow/store';
 import '../dashboard/store';
 import '../introduction/store';
 import '../mission/tabletoptier/dice/store';
@@ -30,6 +31,7 @@ import '../equipments/store';
 import '../mission/store';
 import '../users/store';
 import '../support/store';
+import '../tutorial/store';
 
 //libs
 import '../lib/decimalrounding';

@@ -14,6 +14,7 @@ import defaultActiveMission from '../../client/lib/defaultactivemission';
 var playerdefaults = {
   name: '',
   title: 'Novice',
+  self: null,
   gameCash: 50000,
   gameContacts: 500,
   agentinarmory: null,
@@ -68,7 +69,6 @@ var playerdefaults = {
   statuses: [],
   options: {
     multiplayer: false,
-    tipsenable: true,
     tutorial: true
   }
 };

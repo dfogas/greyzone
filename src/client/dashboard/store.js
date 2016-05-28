@@ -78,12 +78,6 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', data.name], data.value);
     });
 
-  if (action === dashboardActions.changeOption)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['options', data.name], data.value);
-    });
-
   if (action === dashboardActions.clearAgentHireFields)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -131,11 +125,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.loadGame)
-    jsonapiCursor(jsonapi => {
-      return immutable.fromJS(data);
-    });
-
   if (action === dashboardActions.loadLog)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -166,9 +155,17 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === authActions.login)
-    jsonapiCursor(() => {
-      return immutable.fromJS(data);
+  if (action === dashboardActions.playerDoesNotGoOnMissions)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('self', jsonapiCursor(['agents']).find(agent => agent.get('id') === jsonapiCursor(['self', 'id'])))
+        .update('agents', val => val.delete(jsonapiCursor(['agents']).indexOf(jsonapiCursor(['agents']).find(agent => agent.get('id') === jsonapiCursor(['self', 'id'])))));
+    });
+
+  if (action === dashboardActions.playerGoesOnMissions)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('agents', val => val.push(jsonapiCursor(['self'])));
     });
 
   if (action === dashboardActions.pointerChange)
@@ -218,14 +215,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'agentondisplay'], data.agent);
-    });
-
-  if (action === dashboardActions.startNewGame)
-    jsonapiCursor(jsonapi => {
-      return immutable.fromJS(playerdefaults)
-        .set('_id', data.userId)
-        .set('name', data.name)
-        .set('gameend', null);
     });
 
   if (action === dashboardActions.updateFormField)

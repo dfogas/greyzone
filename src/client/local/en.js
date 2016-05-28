@@ -5,6 +5,7 @@ import endsMsg from './en/ends.msg';
 import gameendsMsg from './en/gameends.msg';
 import helpMsg from './en/help.msg';
 import introMsg from './en/intro.msg';
+import tutorialMsg from './en/tutorial.msg';
 
 const ENGLISH = {
   app: {
@@ -159,11 +160,7 @@ const ENGLISH = {
     title: 'SupportPage'
   },
   title: `Ghost Struggle`,
-  tutorial: {
-    agentinarmory: `Agent here can be given equipment.`,
-    agentonmission: `Drag agent here and the mission can start.`,
-    equipmentslot: `Drag icon here.`
-  },
+  tutorial: tutorialMsg,
   validation: {
     email: `Email address is not valid.`,
     password: `Password must contain at least {minLength} characters.`,

@@ -1,6 +1,7 @@
 import * as authActions from './actions';
-import {authCursor} from '../state';
+import {authCursor, jsonapiCursor} from '../state';
 import {register} from '../dispatcher';
+import immutable from 'immutable';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -54,6 +55,12 @@ export const dispatchToken = register(({action, data}) => {
         return auth
           .setIn(['form', 'error'], null)
           .setIn(['reauthentication', 'message'], 'Password changed.');
+      });
+      break;
+
+    case authActions.login:
+      jsonapiCursor(() => {
+        return immutable.fromJS(data);
       });
       break;
   }

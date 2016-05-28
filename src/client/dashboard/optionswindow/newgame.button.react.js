@@ -1,11 +1,11 @@
-import * as dashboardActions from '../actions';
+import * as optionsActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 
 class NewGameButton extends Component {
   startNewGame() {
     const {userId, name} = this.props;
-    dashboardActions.startNewGame(userId, name);
+    optionsActions.startNewGame(userId, name);
   }
 
   render() {

@@ -1,3 +1,5 @@
+/* String(AgentClass) Number(AgentRank) -> JS Object(Agent) */
+
 import generateName from './name.generator';
 import generateCountry from './origin.generator';
 import generateImage from './image.generator';

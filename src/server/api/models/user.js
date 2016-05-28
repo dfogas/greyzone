@@ -13,7 +13,8 @@ var UserSchema = new mongoose.Schema({
     type: String,
     unique: false
   },
-  registered: Number
+  registered: Number,
+  paying: mongoose.Schema.Types.Mixed
 });
 
 // Execute before each user.save() call
