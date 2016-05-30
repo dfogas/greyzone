@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {hit, close_combat, puppet, improv_st, pursuit, improv_op, monitor} from '../actions';
+import {hit, close_combat, puppet, improv_st, pursuit, improv_op} from '../actions';
 
 const DemonstrationOfPower = [{
     title: 'Demonstration of power',

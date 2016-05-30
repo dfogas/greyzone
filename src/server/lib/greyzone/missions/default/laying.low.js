@@ -1,5 +1,5 @@
 /*eslint camelcase: 0*/
-import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate, puppet} from '../actions';
+import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate} from '../actions';
 
 const LayingLow = [{
   title: 'Laying Low',

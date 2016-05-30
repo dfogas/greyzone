@@ -20,6 +20,8 @@ import LogWindow from './logwindow/log.window.react';
 import EndGameWindow from './endgame.window.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
+import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
+import CampaignIntro from '../tutorial/campaign.intro.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -78,10 +80,23 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
-        {!jsonapi.get('self') &&
+        {(!jsonapi.get('self') || !jsonapi.getIn(['campaigns', 'selection', 'done']))&&
           <ScreenPlastic />}
         {!jsonapi.get('self') &&
           <PlayerAgentChoose />}
+        {!jsonapi.getIn(['campaigns', 'selection', 'done']) &&
+          <PlayerCampaignChoose
+            campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}
+            />}
+        {(jsonapi.getIn(['campaigns', 'campaigns']) && (typeof jsonapi.getIn(['campaigns', 'campaigns']).toJS()) === 'object') &&
+          Object.keys(jsonapi.getIn(['campaigns', 'campaigns']).toJS()).map(campaign => {
+            if (!jsonapi.getIn(['campaigns', 'campaigns', campaign, 'intro', 'viewed']) && jsonapi.getIn(['campaigns', 'campaigns', campaign, 'selected']))
+              return (
+                <CampaignIntro
+                  campaign={jsonapi.getIn(['campaigns', 'campaigns', campaign])}
+                  />
+              );
+          })}
         <div
           id='DashboardScreenLabel'
           >{msg('dashboard.screen.label')}</div>

@@ -1,4 +1,5 @@
 import authMsg from './en/auth.msg';
+import campaignsMsg from './en/campaigns.msg';
 import conceptsMsg from './en/concepts.msg';
 import dashboardMsg from './en/dashboard.msg';
 import endsMsg from './en/ends.msg';
@@ -44,6 +45,7 @@ const ENGLISH = {
     missionAccept: 'Ask for a Mission',
     confirmMission: 'Confirm Mission Accept'
   },
+  campaigns: campaignsMsg,
   command: {
     screen: {
       label: `Command/Multiplayer`

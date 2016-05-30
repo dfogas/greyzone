@@ -8,10 +8,27 @@ import topLevelOps from '../../lib/toplevelops';
 import topLevelTraining from '../../lib/topleveltraining';
 import uuid from '../../lib/guid';
 import allAgents from '../../lib/allagents';
+import $ from 'jquery';
+import {msg} from '../../intl/store';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
 
 class PlayersWindow extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.showHelpMessage);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+  }
+
+  showHelpMessage(e) {
+    if (e.keyCode === 72 && $('#DashboardTutorial').html())
+      $('#DashboardTutorial').remove();
+    else if (e.keyCode === 72)
+      $('#DashboardScreen').append(msg('tutorial.dashboardScreen'));
+  }
+
   playerDoesNotGoOnMissions() {
     dashboardActions.playerDoesNotGoOnMissions(); //
   }
@@ -72,7 +89,9 @@ PlayersWindow.propTypes = {
   enhancements: React.PropTypes.object,
   gameCash: React.PropTypes.number,
   gameContacts: React.PropTypes.number,
-  name: React.PropTypes.string
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
+  name: React.PropTypes.string,
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default PlayersWindow;

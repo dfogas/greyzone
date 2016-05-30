@@ -5,6 +5,7 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
+import $ from 'jquery';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import ActiveMission from './activemission/activemission.react';
@@ -13,9 +14,27 @@ import BriefingToDashboard from '../navs/briefingtodashboard.react';
 import BriefingToArmory from '../navs/briefingtoarmory.react';
 import MissionsListTable from './missionlist.table.react';
 import ToMission from '../navs/tomission.react';
+import MissionShiftLeft from './shift.left.react';
+import MissionShiftRight from './shift.right.react';
 
 class BriefingScreen extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+  }
+
+  showHelpMessage(e) {
+    if (e.keyCode === 72 && $('#BriefingTutorial').html())
+      $('#BriefingTutorial').remove(); //
+    else if (e.keyCode === 72)
+      $('#BriefingScreen').append(msg('tutorial.briefingScreen'));
+  }
+
   pushGameMission(mission) {
+    // puts game pushed mission on top of mission list
     briefingActions.pushGameMission(mission);
   }
 
@@ -36,8 +55,15 @@ class BriefingScreen extends Component {
             activemission={jsonapi.get('activemission')}
             agents={agents}
             />
-          <div id='BriefingMissionShiftRight'></div>
-          <div id='BriefingMissionShiftLeft'></div>
+          <MissionShiftLeft
+            activemission={jsonapi.get('activemission')}
+            missions={jsonapi.get('missions')}
+            />
+          <MissionShiftRight
+            activemission={jsonapi.get('activemission')}
+            missions={jsonapi.get('missions')}
+            />
+          /*TODO: Add shifts */
           <MissionsListTable
             activemission={jsonapi.get('activemission')}
             missions={jsonapi.get('missions')}

@@ -51,15 +51,17 @@ const help = {
       chance of equipment not working is 10% and 20% respectively.
     </p>
   `,
-  introduction: `After reading links in Introduction group, you have the idea of
-    what you are doing, but how. Reading this section should help you.`,
+  introduction: `
+    After reading links in Introduction group, you have the idea of
+    what you are doing, but how. Reading this section should help you.
+  `,
   missionProgress: `
     <ul class='mission-progress'><h2>Gameplay</h2>
-      <li class='mission-progress'><em>By drag&drop equip your agents for the mission in Armory.</em></li>
-      <li class='mission-progress'><em>Hit mission card to select it in Briefing.</em></li>
-      <li class='mission-progress'><em>After selecting mission assign the agents by drag&drop</em></li>
+      <li class='mission-progress'><em>By drag&drop icons equip your agents for the mission in Armory.</em></li>
+      <li class='mission-progress'><em>Hit mission title to select it in Briefing.</em></li>
+      <li class='mission-progress'><em>After selecting mission assign the agents by drag&drop them to designated spots.</em></li>
       <li class='mission-progress'><em>Go to mission screen.</em></li>
-      <li class='mission-progress'><em>Assign agent and start mission, you are in the mission mode now.</em></li>
+      <li class='mission-progress'><em>Assign agent and click start mission, you are in the mission mode now.</em></li>
       <li class='mission-progress'><em>Six-sided dice mechanism is used, see below Actions.</em></li>
       <li class='mission-progress'><em>Task completion is check against agent's actions.</em></li>
       <li class='mission-progress'><em>Clicking the equipment of agent on task will trigger its effect.</em></li>
@@ -67,6 +69,7 @@ const help = {
       <li class='mission-progress'><em>Use Help on Equipments to learn about equipment effects.</em></li>
       <li class='mission-progress'><em>MissionSuccess? Congrats, rewards automatically gained. Do another!</em></li>
       <li class='mission-progress'><em>MissionFail? Some bad things may have happened to you...</em></li>
+      <li class='mission-progress'><em>Wash, rinse, repeat - till you reach one of game ends.</em></li>
     </ul>
   `,
   segments: `
@@ -76,7 +79,7 @@ const help = {
       <li class='game-segments'>Dashboard - basic overview and control of the game</li>
       <li class='game-segments'>Armory - equip your agents for the mission, increasing their chances</li>
       <li class='game-segments'>Briefing - overview of current missions and deploying of agents to missions</li>
-      <li class='game-segments'>Mission - the main deal of game magic happens there, your success made here</li>
+      <li class='game-segments'>Mission - the main deal of game magic happens there, your success or failure is made here</li>
     </ul>
   `,
   terminology: `

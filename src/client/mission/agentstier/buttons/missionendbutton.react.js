@@ -29,4 +29,8 @@ class MissionEndButton extends Component {
   }
 }
 
+MissionEndButton.propTypes = {
+  missiontitle: React.PropTypes.string
+};
+
 export default MissionEndButton;

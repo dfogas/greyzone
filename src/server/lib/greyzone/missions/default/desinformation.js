@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {puppet, improv_st, decipher, hide, improv_el, improv_op} from '../actions';
+import {puppet, improv_st, decipher, hide, improv_op} from '../actions';
 
 const Desinformation = [{
     title: 'Desinformation',

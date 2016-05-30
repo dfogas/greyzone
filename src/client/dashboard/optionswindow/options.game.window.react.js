@@ -1,5 +1,4 @@
 import './options.game.window.styl';
-import * as componentsActions from '../../components/actions';
 import * as dashboardActions from '../actions';
 import * as optionsActions from './actions';
 import Component from '../../components/component.react';
@@ -30,7 +29,7 @@ class OptionsGameWindow extends Component {
   }
 
   retireGame() {
-    // alert('Retired. Organization ends. Should be available after certain missions and certain cash. Probably as one achievement.'); 
+    // alert('Retired. Organization ends. Should be available after certain missions and certain cash. Probably as one achievement.');
     dashboardActions.retireGame();
   }
 

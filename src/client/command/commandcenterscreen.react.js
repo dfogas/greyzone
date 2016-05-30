@@ -4,12 +4,27 @@ import React from 'react';
 import immutable from 'immutable';
 import {Link} from 'react-router';
 import {msg} from '../intl/store';
+import $ from 'jquery';
 
 import MainScreen from './mainscreen.react';
 import CommandToDashboard from '../navs/commandtodashboard.react.js';
 import CommandToBriefing from '../navs/commandtobriefing.react.js';
 
 class CommandCenterScreen extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+  }
+
+  showHelpMessage(e) {
+    if (e.keyCode === 72 && $('#CommandTutorial').html())
+      $('#CommandTutorial').remove();
+    else if (e.keyCode === 72)
+      $('#CommandCenterScreen').append(msg('tutorial.commandScreen'));
+  }
 
   render() {
     const {jsonapi, viewer} = this.props;

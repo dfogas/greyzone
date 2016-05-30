@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {tap, monitor, improv_el, puppet, decipher, infiltrate, improv_st} from '../actions';
+import {tap, monitor, improv_el, puppet, decipher, improv_st} from '../actions';
 
 const MoneyChannelling = [{
   title: 'Money channelling',

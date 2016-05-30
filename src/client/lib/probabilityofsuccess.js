@@ -4,9 +4,9 @@ import oneInSix from './oneinsix';
 import twoInSix from './twoinsix';
 
 function probabilityOfSuccess(dices, actions) {
-  if (typeof actions === undefined)
+  if (typeof actions === 'undefined')
     return 0;
-  if (typeof dices === undefined)
+  if (typeof dices === 'undefined')
     return 0;
   let operations, electronics, stealth;
   let operationsnames, electronicsnames, stealthnames;
@@ -29,7 +29,7 @@ function probabilityOfSuccess(dices, actions) {
     stealthnames = stealth.map(action => action.name);
     stcount = dices.filter(dice => dice.type === 'stealth').length;
     for (let i = 0; i < stealthnames.length; i += 1)
-      stealthnames[i] === 'improv' ? probabilities.push(twoInSix(stcount - i,stcount - i - 1)) : probabilities.push(oneInSix(stcount - i,stcount - i - 1));
+      stealthnames[i] === 'improv' ? probabilities.push(twoInSix(stcount - i, stcount - i - 1)) : probabilities.push(oneInSix(stcount - i, stcount - i - 1));
   }
 
   if (electronics) {
@@ -48,7 +48,7 @@ function probabilityOfSuccess(dices, actions) {
 
   probabilities.length === 0 ? [0, 0] : probabilities;
 
-  return probabilities.reduce((prev, curr) => {return prev * curr;}, 1);
+  return probabilities.reduce((prev, curr) => {return prev * curr; }, 1);
 }
 
 export default probabilityOfSuccess;

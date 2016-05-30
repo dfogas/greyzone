@@ -6,6 +6,7 @@ import immutable from 'immutable';
 
 import DebugWindow from './debug.window.react';
 import OptionsGameWindow from './options.game.window.react';
+import CampaignsActive from './campaigns.active.react';
 
 class OptionsWindow extends Component {
   changeOption(ev) {
@@ -37,6 +38,9 @@ class OptionsWindow extends Component {
             <label><input checked={soundeffects} name='soundeffects' onChange={(e) => this.changeOption(e)} type='checkbox' />Sound Effects</label>
           </fieldset>
         </form>
+        <CampaignsActive
+          campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}
+          />
         <div id='PayingWindow'>
           <fieldset>
             <legend>Paying Status</legend>

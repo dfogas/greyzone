@@ -6,7 +6,6 @@ import * as tutorialActions from './actions';
 
 class AgentChoose extends Component {
   playerChooseAgent(e) {
-    console.log(e.target.getAttribute('name'));
     tutorialActions.playerChoseAgentClass(e.target.getAttribute('name'));
   }
 

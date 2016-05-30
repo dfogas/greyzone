@@ -116,6 +116,11 @@ export function updateFormField({target: {name, value}}) {
 }
 
 export function signup(fields) {
+  signupError(new ValidationError({
+    message: `
+      Processing request
+    `
+  }));
   // promise, because we don't know whether fields are valid
   const promise = validateSignupForm(fields)
     .then(() => {
@@ -151,15 +156,20 @@ function saveCredentials(fields) {
       // TODO: figure out this API, put comment here
       if (xhr.readyState !== 4) return;
       // console.log(JSON.parse(xhr.responseText));
-      if (JSON.parse(xhr.responseText).description === `New Signup`)
+      if (JSON.parse(xhr.responseText).description === `New Signup`) {
         resolve(fields);
-      else if (JSON.parse(xhr.responseText).description === `Repeated Signup`) {
         signupError(new ValidationError({
-            message: `
-              Authentication email has been resent. Check your mailbox,
-              possibly a spam folder, due to overzealous spam filters.
-            `
-          }));
+          message: `
+            Authentication email has been sent to your mailbox.
+          `
+        }));
+      } else if (JSON.parse(xhr.responseText).description === `Repeated Signup`) {
+        signupError(new ValidationError({
+          message: `
+            Authentication email has been resent. Check your mailbox,
+            possibly a spam folder, due to overzealous spam filters.
+          `
+        }));
         resolve(fields);
       } else {
         const error = JSON.parse(xhr.responseText).message || `Unhandled signup Error.`;

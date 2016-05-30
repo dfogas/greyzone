@@ -201,7 +201,7 @@ export function refreshStandings() {
 }
 
 export function retireGame() {
-  if (jsonapiCursor(['statuses']).size > 10 && jsonapiCursor(['countrystats']).toJS().reduce((prev, curr) => {return prev + curr.obscurity;}, 0) < 9)
+  if (jsonapiCursor(['statuses']).size > 10 && jsonapiCursor(['countrystats']).toJS().reduce((prev, curr) => {return prev + curr.obscurity; }, 0) < 9)
       dispatch(badEndRich, {});
   else if (jsonapiCursor(['statuses']).size > 11)
     dispatch(goodEndRich, {});

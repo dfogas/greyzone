@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {decipher, improv_el, tap, close_combat, improv_op, pursuit, infiltrate} from '../actions';
+import {decipher, improv_el, tap, close_combat, improv_op, pursuit} from '../actions';
 
 const PokerTable = [{
     title: 'Poker Table',

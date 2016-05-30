@@ -32,9 +32,9 @@ export function sell(equipment) {
   const equipmentinstock = equipments.filter(e => e.get('name') === equipment.get('name')).get(0).toJS();
 
   if (equipmentinstock.quantity >= 1)
-  dispatch(sell, equipment);
+    dispatch(sell, equipment);
   else
-  return;
+    return;
 }
 
 export function use(agent, agentequipmentandindex) {

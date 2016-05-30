@@ -4,6 +4,7 @@ import LoginForm from '../auth/login.react';
 import React from 'react';
 import {msg} from '../intl/store';
 import {Link} from 'react-router';
+import immutable from 'immutable';
 
 import GSSigil from '../app/gs.sigil.react';
 import LoginMessage from '../auth/login.message.react';
@@ -33,5 +34,9 @@ class Login extends Component {
   }
 
 }
+
+Login.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default Login;
