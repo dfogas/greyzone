@@ -2,6 +2,8 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+import allAgents from '../lib/allagents';
+import maxAgentsCheck from '../lib/maxagentscheck';
 import obscurityMissionCheck from '../lib/obscuritymissioncheck';
 
 export function agentFreed(agent) {
@@ -128,11 +130,14 @@ export function setDefault(mission) {
 export function start() {
   const activemission = jsonapiCursor(['activemission']);
   const countrystats = jsonapiCursor(['countrystats']);
+  const enhancementnames = jsonapiCursor(['enhancements']).map(enh => enh.get('name')).toJS();
 
-  if (obscurityMissionCheck(activemission, countrystats))
-    dispatch(start, {});
-  else
+  if (!obscurityMissionCheck(activemission, countrystats))
     dispatch(logMission, {message: `Obscurity is too low.`});
+  else if (!maxAgentsCheck(allAgents(jsonapiCursor()).size, enhancementnames) && Object.keys(activemission.get('rewards')).indexOf('AgentRecruited') !== -1)
+    dispatch(logMission, {message: `Upgrade capbility/operations to hire more agents.`});
+  else
+    dispatch(start, {});
 }
 
 /* sets activemission result to 'success'

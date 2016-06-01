@@ -5,7 +5,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import animate from '../lib/animate';
+import allAgents from '../lib/allagents';
 
 import PlayersWindow from './playerswindow/players.window.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
@@ -45,6 +45,36 @@ class DashboardScreen extends Component {
     dashboardActions.badEndDiscovered();
   }
 
+  badEndKilled() {
+    dashboardActions.badEndKilled();
+  }
+
+  badEndLeftInPrison() {
+    dashboardActions.badEndLeftInPrison();
+  }
+
+  componentDidMount() {
+    const {jsonapi} = this.props;
+    const paying = jsonapi.get('paying');
+    const isPaying = paying ?
+      Object.keys(paying).reduce((prev, curr, index, array) => {
+        return paying[curr] || prev;
+      }, false) : false;
+
+    // checky na zabitého či uvězněného hráče enda
+    if (jsonapi.get('agents').filter(agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 && !isPaying) // neplatící hráč nemá šanci se osvobodit, i když má loayálního agenta
+      this.badEndLeftInPrison();
+    if (
+      jsonapi.get('agents').filter(
+        agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 &&  // player's agent is in agent's roster and has prison status true
+          allAgents(jsonapi).filter(agent => agent.get('loyalty') === 'loyal').size === 0 // no agent of organization is loyal
+    )
+      this.badEndLeftInPrison();
+
+    if (jsonapi.get('agents').filter(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0) // player's agent is in agents roster and has KIA status true
+      this.badEndKilled();
+  }
+
   render() {
     const {contest, game, jsonapi} = this.props;
     const achievements = game.getIn(['globals', 'achievements']);
@@ -80,7 +110,7 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
-        {(!jsonapi.get('self') || !jsonapi.getIn(['campaigns', 'selection', 'done']))&&
+        {(!jsonapi.get('self') || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
           <ScreenPlastic />}
         {!jsonapi.get('self') &&
           <PlayerAgentChoose />}
@@ -158,6 +188,7 @@ class DashboardScreen extends Component {
               agentspricelist={agentspricelist}
               dashboard={dashboard}
               options={options}
+              self={jsonapi.get('self')}
             />}
           {dashPointer === 'log' &&
             <LogWindow
@@ -185,6 +216,7 @@ class DashboardScreen extends Component {
             <EnhancementsWindow
               enhancements={enhancementstotal}
               owned={enhancementsowned}
+              paying={jsonapi.get('paying')}
               />}
           {(dashPointer === 'achievements') &&
             <AchievementsWindow

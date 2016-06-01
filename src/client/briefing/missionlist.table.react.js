@@ -44,6 +44,7 @@ class MissionsListTable extends Component {
 }
 
 MissionsListTable.propTypes = {
+  activemission: React.PropTypes.instanceOf(immutable.Map),
   missions: React.PropTypes.instanceOf(immutable.List)
 };
 

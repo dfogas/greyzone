@@ -11,7 +11,7 @@ import AgentOnDisplay from './agentondisplay.react';
 class AgentsWindow extends Component {
 
   render() {
-    const {agentbeingsaved, agenthire, agentlog, agents, agentsinroster, agentspricelist, dashboard, options} = this.props;
+    const {agentbeingsaved, agenthire, agentlog, agents, agentsinroster, agentspricelist, dashboard, options, self} = this.props;
     const agentondisplay = dashboard.get('agentondisplay');
 
     return (
@@ -28,8 +28,8 @@ class AgentsWindow extends Component {
           agentondisplay={agentondisplay}
           agents={agents}
           agentsinroster={agentsinroster}
-          dashboard={dashboard}
           options={options}
+          self={self}
           />
         {agentondisplay &&
           <AgentOnDisplay
@@ -49,7 +49,8 @@ AgentsWindow.propTypes = {
   agentsinroster: React.PropTypes.instanceOf(immutable.List),
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
-  options: React.PropTypes.instanceOf(immutable.Map)
+  options: React.PropTypes.instanceOf(immutable.Map),
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentsWindow;

@@ -20,7 +20,6 @@ import maxMissionsCheck from '../lib/maxmissionscheck';
 import missionAccept from '../lib/missionaccept';
 import noDoubleAgents from '../lib/nodoubleagents';
 import randomInt from '../lib/getrandomint';
-import R from 'ramda';
 import xmissioncheck from '../lib/xmissioncheck';
 
 /* Number, String, String, Object */
@@ -45,6 +44,14 @@ export function acceptMission(tier, focus, country, options) {
 
 export function badEndDiscovered() {
   dispatch(badEndDiscovered, {});
+}
+
+export function badEndKilled() {
+  dispatch(badEndKilled, {});
+}
+
+export function badEndLeftInPrison() {
+  dispatch(badEndLeftInPrison, {});
 }
 
 export function badEndRich() {
@@ -90,10 +97,6 @@ export function changeMissionOption(name, value) {
 
 export function clearAgentHireFields() {
   dispatch(clearAgentHireFields, {});
-}
-
-export function clearLog() {
-  dispatch(clearLog, {});
 }
 
 export function clearMissionAcceptFields() {
@@ -144,14 +147,6 @@ export function hireAgent(specialist, rank) {
 
 export function goodEndRich() {
   dispatch(goodEndRich, {});
-}
-
-export function loadLog() {
-  const userId = jsonapiCursor(['_id']);
-  const organization = jsonapiCursor(['name']);
-  const log = immutable.fromJS(localStorage.getItem(['ghoststruggle', userId, organization, 'log']).split(','));
-
-  dispatch(loadLog, {log});
 }
 
 export function log(message) {
@@ -230,17 +225,6 @@ export function saveAgent(agent) {
   }
 }
 
-export function saveLog() {
-  const log = jsonapiCursor(['log']).toJS();
-  const userId = jsonapiCursor(['_id']);
-  const organization = jsonapiCursor(['name']);
-
-  const storagejson = localStorage.getItem(['ghoststruggle', userId, organization, 'log']);
-  const storage = storagejson ? storagejson.split(',') : [];
-
-  localStorage.setItem(['ghoststruggle', userId, organization, 'log'], R.uniq(storage.concat(log)));
-}
-
 export function selectAgentOnDisplay(agent) {
   dispatch(selectAgentOnDisplay, {agent});
 }
@@ -259,6 +243,8 @@ export function upgradeEnhancement(enhancement) {
 setToString('dashboard', {
   acceptMission,
   badEndDiscovered,
+  badEndKilled,
+  badEndLeftInPrison,
   badEndRich,
   bookMissionPrice,
   bookPrisonBreakMissionPrice,
@@ -266,12 +252,10 @@ setToString('dashboard', {
   buyStatus,
   changeMissionOption,
   clearAgentHireFields,
-  clearLog,
   clearMissionAcceptFields,
   displayGameEndStatistics,
   goodEndRich,
   hireAgent,
-  loadLog,
   log,
   logAgentsWindow,
   logMissionsWindow,

@@ -103,7 +103,7 @@ export const dispatchToken = register(({action, data}) => {
     if (data.agentequipment.get('name') === msg('equipments.operations.2.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .updateIn(['activemission', 'mission', 'currenttask', 'diceslock'], val => false)
+          .setIn(['activemission', 'equipmenteffects', 'protectivegear'], true)
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 

@@ -1,5 +1,5 @@
 import './log.window.styl';
-import * as dashboardActions from '../actions';
+import * as logActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
@@ -8,15 +8,15 @@ import uuid from '../../lib/guid';
 
 class LogWindow extends Component {
   clearLog() {
-    dashboardActions.clearLog();
+    logActions.clearLog();
   }
 
   loadLog() {
-    dashboardActions.loadLog();
+    logActions.loadLog();
   }
 
   saveLog() {
-    dashboardActions.saveLog();
+    logActions.saveLog();
   }
 
   render() {

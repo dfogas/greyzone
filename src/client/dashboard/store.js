@@ -1,10 +1,8 @@
 import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
-import * as authActions from '../auth/actions';
 import {contestCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
-import playerdefaults from '../../server/lib/playerdefaults';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -23,6 +21,16 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.badEndDiscovered)
     jsonapiCursor(jsonapi => {
       return jsonapi.set('gameend', 'discovered');
+    });
+
+  if (action === dashboardActions.badEndKilled)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.set('gameend', 'killed');
+    });
+
+  if (action === dashboardActions.badEndLeftInPrison)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.set('gameend', 'leftinprison');
     });
 
   if (action === dashboardActions.badEndRich)
@@ -85,12 +93,6 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'agenthire', 'form', 'fields', 'specialist'], null);
     });
 
-  if (action === dashboardActions.clearLog)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .set('log', immutable.fromJS(Array(0)));
-    });
-
   if (action === dashboardActions.clearMissionAcceptFields)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -124,12 +126,6 @@ export const dispatchToken = register(({action, data}) => {
         ));
     });
   }
-
-  if (action === dashboardActions.loadLog)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .set('log', data.log);
-    });
 
   if (action === dashboardActions.log) {
     data = data.message || data;

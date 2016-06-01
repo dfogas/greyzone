@@ -1,4 +1,5 @@
 /* ImmutableMap(Agent) ImmutableList -> JSArray */
+/* použito při assignování agenta k tasku */
 import uuid from './guid';
 
 function actionDices(agent, task) {

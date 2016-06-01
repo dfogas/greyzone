@@ -20,8 +20,14 @@ export const dispatchToken = register(({action, data}) => {
   if (action === actions.create)
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .updateIn(['activemission', 'mission', 'currenttask', 'actiondices'], val => val.push(immutable.fromJS({type: data.dicetype, name: data.name, key: data.key})))
+      .updateIn(['activemission', 'mission', 'currenttask', 'actiondices'], val => val.push(immutable.fromJS({type: data.dicetype, name: data.name, key: data.key, rollable: false})))
       .setIn(['activemission', 'equipmenteffects', 'actionchoose'], null);
+    });
+
+  if (action === actions.protectiveGearEffectFizzle)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'equipmenteffects', 'protectivegear'], false);
     });
 
   if (action === actions.remove)
@@ -31,7 +37,18 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], false);
     });
 
-  // if (action === actions.roll)
-  //   dicethrow(data.message.type);
+  if (action === actions.roll) {
+    const actiondices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices', actiondices.indexOf(actiondices.find(dice => dice.get('dicekey') === data.dice.get('dicekey')))], immutable.fromJS(dicethrow(data.dice.get('type'), data.dice.get('dicekey'))));
+    });
+  }
+
+  if (action === actions.selectForReroll)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['activemission', 'mission', 'currenttask', 'actiondices', data.index, 'rollable'], val => !val);
+    });
 
 });

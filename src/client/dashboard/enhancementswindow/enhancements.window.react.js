@@ -12,7 +12,7 @@ import EnhancementCard from './enhancement.card.react';
 
 class EnhancementsWindow extends Component {
   render() {
-    const {enhancements, owned} = this.props;
+    const {enhancements, owned, paying} = this.props;
     const capabilityowned = owned.filter(enhancement => enhancement.get('type') === 'capability');
     const leadershipowned = owned.filter(enhancement => enhancement.get('type') === 'leadership');
     const toysowned = owned.filter(enhancement => enhancement.get('type') === 'toys');
@@ -37,6 +37,7 @@ class EnhancementsWindow extends Component {
               enhancement={enhancement}
               key={uuid() + 'toysowned'}
               owned={true}
+              paying={paying}
               />
           );
         })}
@@ -55,6 +56,7 @@ class EnhancementsWindow extends Component {
               enhancement={enhancement}
               key={uuid() + 'toys'}
               owned={false}
+              paying={paying}
               />
           );
         })}
@@ -74,7 +76,8 @@ class EnhancementsWindow extends Component {
 
 EnhancementsWindow.propTypes = {
   enhancements: React.PropTypes.instanceOf(immutable.List),
-  owned: React.PropTypes.instanceOf(immutable.List)
+  owned: React.PropTypes.instanceOf(immutable.List),
+  paying: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default EnhancementsWindow;

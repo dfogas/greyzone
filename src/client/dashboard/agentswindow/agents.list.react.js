@@ -1,4 +1,3 @@
-import './agents.list.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,7 +9,7 @@ import AgentsListRecord from './agents.list.record.react';
 class AgentsList extends Component {
 
   render() {
-    const {agentbeingsaved, agents, agentsinroster, agentondisplay, dashboard, options} = this.props;
+    const {agentbeingsaved, agents, agentsinroster, agentondisplay, options, self} = this.props;
     const debug = options.get('debug');
 
     return (
@@ -28,6 +27,7 @@ class AgentsList extends Component {
                     agentsinroster={agentsinroster}
                     debug={debug}
                     key={uuid() + 'agentslist'}
+                    self={self}
                     />
                 );
               })
@@ -41,10 +41,11 @@ class AgentsList extends Component {
 
 AgentsList.propTypes = {
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
+  agentondisplay: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
   agentsinroster: React.PropTypes.instanceOf(immutable.List),
-  dashboard: React.PropTypes.instanceOf(immutable.Map),
-  options: React.PropTypes.instanceOf(immutable.Map)
+  options: React.PropTypes.instanceOf(immutable.Map),
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentsList;

@@ -5,6 +5,7 @@ import React from 'react';
 // import animate from '../../lib/animate';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
+import isExclusiveEnhancement from '../../lib/exclusiveenhancement';
 
 class EnhancementCard extends Component {
 
@@ -15,6 +16,11 @@ class EnhancementCard extends Component {
   render() {
     const {enhancement, owned} = this.props;
     const description = enhancement.get('description');
+    const paying = this.props.paying ? this.props.paying.toJS() : null;
+    const isPaying = paying ?
+      Object.keys(paying).reduce((prev, curr) => {
+        return paying[curr] || prev;
+      }, false) : false;
     return (
       <div
         className={'enhancement-card' + (owned ? ' owned' : '')}
@@ -33,7 +39,7 @@ class EnhancementCard extends Component {
           <div
             onMouseLeave= {(e) => {if (!owned) this.unfocusParentEnhancement(e); }}
           >{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>*/}
-        {!owned && <button
+        {!owned && ((isExclusiveEnhancement(enhancement) && isPaying) || !isExclusiveEnhancement(enhancement)) && <button
           className='enhancement-buy-button'
           onClick={dashboardActions.buyEnhancement}>
           Buy
@@ -45,7 +51,8 @@ class EnhancementCard extends Component {
 
 EnhancementCard.propTypes = {
   enhancement: React.PropTypes.instanceOf(immutable.Map),
-  owned: React.PropTypes.bool
+  owned: React.PropTypes.bool,
+  paying: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default EnhancementCard;

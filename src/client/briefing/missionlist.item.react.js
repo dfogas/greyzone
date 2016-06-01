@@ -49,6 +49,7 @@ class MissionListItem extends Component {
 }
 
 MissionListItem.propTypes = {
+  isSelected: React.PropTypes.bool,
   mission: React.PropTypes.instanceOf(immutable.Map)
 };
 

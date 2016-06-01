@@ -6,6 +6,7 @@ import immutable from 'immutable';
 import defaultActiveMission from '../lib/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bookobscurity';
+import Agent from '../../server/lib/greyzone/agents.generator';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -58,7 +59,7 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'experience'],
-          // přidej mu zkušenost
+          // přidej mu zkušenost, gah
           val => val + 15);
     });
 
@@ -98,6 +99,11 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val + results.reputation : val)
         .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? bookObscurity(val, results.obscurity) : val);
     });
+    if (Object.keys(results).indexOf('agentRecruited') !== -1)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .update('agents', val => val.push(immutable.fromJS(Agent(data.mission.getIn(['rewards', 'character']), data.mission.get() <= 3 ? data.mission.get('tier') + 1 : data.mission.get('tier') + 2))));
+      });
   }
 
   if (action === briefingActions.checkFatalities) {

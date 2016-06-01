@@ -32,6 +32,13 @@ class TableTop extends Component {
     diceActions.create(dice);
   }
 
+  protectiveGearUse() {
+    const {activemission} = this.props;
+    const selecteddices = activemission.getIn(['mission', 'currenttask', 'actiondices']).filter(dice => dice.get('rollable'));
+
+    diceActions.protectiveGearUse(selecteddices);
+  }
+
   render() {
     const {activemission} = this.props;
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
@@ -39,7 +46,8 @@ class TableTop extends Component {
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
     const dicesthrown = actiondices.map(action => action.get('name'));
     const missionStarted = activemission.get('started');
-    const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey')})));
+    const protectivegear = activemission.getIn(['equipmenteffects', 'protectivegear']);
+    const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey'), rollable: dice.get('rollable')})));
 //
     // console.log(actiondices.toJS());
     // console.log(remainingdices.toJS());
@@ -63,6 +71,7 @@ class TableTop extends Component {
                 dicekey={dice.get('dicekey')}
                 dicetype={dice.get('type')}
                 name={dicesthrown.get(i)}
+                rollable={dice.get('rollable')}
                 />
             );
           }) : <div id="MissionStartStatus">Mission has not started yet.</div>
@@ -80,6 +89,8 @@ class TableTop extends Component {
             type='button'
             value='CompleteTask'
             />}
+        {protectivegear &&
+          <button id='ProtectiveGearButton' onClick={this.protectiveGearUse.bind(this)}>Use P.G.</button>}
         {agentontask &&
           <ActionButton
             agentlock={activemission.getIn(['mission', 'currenttask', 'agentlock'])}

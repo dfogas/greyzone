@@ -23,6 +23,7 @@ import '../agents/scrollbar/store';
 import '../auth/store';
 import '../briefing/store';
 import '../components/store';
+import '../dashboard/logwindow/store';
 import '../dashboard/optionswindow/store';
 import '../dashboard/store';
 import '../introduction/store';

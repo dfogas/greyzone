@@ -31,11 +31,15 @@ class EndGameWindow extends Component {
           {gameend === 'discovered' ? 'Betrayed' : ''}
           {gameend === 'richanddiscovered' ? 'Rich But Not For Long' : ''}
           {gameend === 'richandhidden' ? 'Rich and Covered' : ''}
+          {gameend === 'leftinprison' ? 'Left to Rot' : ''}
+          {gameend === 'killed' ? 'KIA' : ''}
         <p>
           {gameend === 'retirement' && msg('ends.retirement')}
           {gameend === 'discovered' && msg('ends.discovered')}
           {gameend === 'richanddiscovered' && msg('ends.richanddiscovered')}
-          {gameend === 'richandhidden' && msg ('ends.richandhidden')}
+          {gameend === 'richandhidden' && msg('ends.richandhidden')}
+          {gameend === 'leftinprison' && msg('ends.leftinprison')}
+          {gameend === 'killed' && msg('ends.killed')}
         </p>
         <NewGameButton
           name={name}

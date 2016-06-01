@@ -72,8 +72,7 @@ export function selectMission(mission) {
       dispatch(bookLosses, {mission});
       checkFatalities({results: mission.get('losses').toJS()});
     }
-  }
-  else {
+  } else {
     if (!obscurityMissionCheck(mission, countrystats))
       dispatch(logBriefing, {message: `The selected mission will not start, because either success or failure in the mission would bring obscurity in the country under 0.`});
 

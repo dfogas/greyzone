@@ -25,7 +25,7 @@ class WelcomeWindow extends Component {
     $(React.findDOMNode(this))
       .hide(400, () => {
         componentsActions.devNoticeToggle();
-        $("#LoginFormFieldEmail").focus();
+        $('#LoginFormFieldEmail').focus();
       });
   }
 
@@ -51,6 +51,8 @@ class WelcomeWindow extends Component {
             <li>Given Up</li>
             <li>Betrayed</li>
             <li>Rich, But Not For Long</li>
+            <li>Left in Prison</li>
+            <li>Killed</li>
           </ul>
           <ul>Good Ends:
             <li>Rich and Covered</li>

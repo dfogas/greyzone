@@ -182,6 +182,7 @@ const EnhancementList = [
     type: 'toys'
   }, {
     description: 'Protective Gear equipment can be purchased',
+    exclusive: true,
     name: 'Stork Ind.',
     prerequisites:[],
     price: {
@@ -191,6 +192,7 @@ const EnhancementList = [
     type: 'toys'
   }, {
     description: 'WPAS equipment can be purchased',
+    exclusive: true,
     name: 'Army Level Crypto',
     prerequisites: [],
     price: {
@@ -200,6 +202,7 @@ const EnhancementList = [
     type: 'toys'
   }, {
     description: 'DCP equipment can be purchased',
+    exclusive: true,
     name: 'Cleaning Service',
     prerequisites: [],
     price: {

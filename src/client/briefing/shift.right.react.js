@@ -11,7 +11,6 @@ class ShiftRight extends Component {
   }
 
   render() {
-    const {activemission} = this.props;
     return (
       <div
         id='BriefingMissionShiftRight'

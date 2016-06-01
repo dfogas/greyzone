@@ -14,7 +14,10 @@ var UserSchema = new mongoose.Schema({
     unique: false
   },
   registered: Number,
-  paying: mongoose.Schema.Types.Mixed
+  paying: {
+    collector: Boolean,
+    revenge: Boolean
+  }
 });
 
 // Execute before each user.save() call

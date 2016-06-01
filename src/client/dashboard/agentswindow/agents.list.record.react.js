@@ -29,7 +29,7 @@ class AgentListRecord extends Component {
   }
 
   render() {
-    const {agent, agentbeingsaved, agentondisplay, agentsinroster, debug} = this.props;
+    const {agent, agentbeingsaved, agentondisplay, agentsinroster, debug, self} = this.props;
     const isFreed = agentbeingsaved ? agent.get('name') === agentbeingsaved.get('name') : false;
     const isOnDisplay = agentondisplay ? agent.get('id') === agentondisplay.get('id') : false;
 
@@ -52,7 +52,7 @@ class AgentListRecord extends Component {
         <td style={{fontWeight: 'bold'}}>{agent.get('electronicsSkill')}</td>
         <td style={{fontWeight: 'bold'}}>{agent.get('stealthSkill')}</td>
         <td>
-          {(agent.get('prison') || debug) && (agentsinroster.indexOf(agent) !== -1) &&
+          {(agent.get('prison') || debug) && (agentsinroster.indexOf(agent) !== -1) && (agent.get('id') !== self.get('id')) &&
             <button
               className='agent-dismiss-button'
               onClick={this.dismissAgent.bind(this)}
@@ -80,8 +80,10 @@ class AgentListRecord extends Component {
 AgentListRecord.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map),
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
+  agentondisplay: React.PropTypes.instanceOf(immutable.Map),
   agentsinroster: React.PropTypes.instanceOf(immutable.List),
-  debug: React.PropTypes.bool
+  debug: React.PropTypes.bool,
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentListRecord;

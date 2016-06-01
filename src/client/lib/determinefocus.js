@@ -15,6 +15,9 @@ function determineFocus(rewards) {
   if (keys.indexOf('agentLoyal') !== -1)
     focus.special = true;
 
+  if (keys.indexOf('agentRecruited') !== -1)
+    focus.special = true;
+
   if (keys.indexOf('gameCash') !== -1)
     if (rewards.gameCash > 0)
       focus.cash = true;

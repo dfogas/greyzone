@@ -59,6 +59,16 @@ const ends = {
     was noticed and sacrificed on the altar of good public service.
     Tough luck, but you managed to squeazed yourself out of it in time,
     perhaps you may try your luck again.
+  `,
+  leftinprison: `
+    Your actions in the past did not elicit proper loyalty in your agents
+    and so you are now left in prison for life, as nobody has come to your
+    rescue. Next time you play watch for your agents loyalty, so that they
+    come to your help when needed.
+  `,
+  killed: `
+    You have been killed. Game ends. Please be more mindful of your actions
+    next time so that such gruesome end doesn't meet you in your next game.
   `
 };
 

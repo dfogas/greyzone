@@ -12,11 +12,17 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['options', data.name], data.value);
     });
 
-  if (action === optionsActions.changePaying)
+  if (action === optionsActions.changePaying) {
+    // terrible hack follows, hai
+    // TODO: fully implement paying functionality
+    let paying = jsonapiCursor(['paying']) ? jsonapiCursor(['paying']).toJS() : {};
+    const campaignname = data.name;
+    paying[campaignname] = data.value;
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['paying', data.name], data.value);
+        .set('paying', immutable.fromJS(paying));
     });
+  }
 
   if (action === optionsActions.loadGame)
     jsonapiCursor(jsonapi => {
