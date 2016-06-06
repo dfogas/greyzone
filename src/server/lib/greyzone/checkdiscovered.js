@@ -1,3 +1,7 @@
+/* Co totak funkce dělá?
+  aha checkuje jestli zemí s obscuritou rovnou nule je více než 2
+  */
+
 import Player from '../../api/models/player';
 
 function checkDiscovered(socket) {

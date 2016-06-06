@@ -10,12 +10,15 @@ import TableTopMessage from './tabletop/tabletop.message.react';
 
 class TableTopTier extends Component {
   render() {
-    const {activemission} = this.props;
+    const {activemission, tutorial} = this.props;
 
     return (
       <div id='TableTopTier'>
         <span id='MissionInCountry'>in {activemission.get('inCountry')}</span>
-        <TableTop activemission={activemission} />
+        <TableTop
+          activemission={activemission}
+          tutorial={tutorial}
+          />
         <TableTopMessage missionlog={activemission.get('log')}/>
         <DiceBin activemission={activemission} />
       </div>
@@ -24,7 +27,8 @@ class TableTopTier extends Component {
 }
 
 TableTopTier.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map)
+  activemission: React.PropTypes.instanceOf(immutable.Map),
+  tutorial: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default TableTopTier;

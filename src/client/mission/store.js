@@ -3,7 +3,7 @@ import * as briefingActions from '../briefing/actions';
 import {jsonapiCursor} from '../state';
 import {register} from '../dispatcher';
 import immutable from 'immutable';
-import defaultActiveMission from '../lib/defaultactivemission';
+import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bookobscurity';
 import Agent from '../../server/lib/greyzone/agents.generator';

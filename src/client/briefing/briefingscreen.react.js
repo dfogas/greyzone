@@ -44,7 +44,15 @@ class BriefingScreen extends Component {
     const briefingmessage = jsonapi.getIn(['briefing', 'message']);
 
     socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
-      this.pushGameMission(gamemission);
+      const countrystats = jsonapi.get('countrystats');
+      const countrystat = jsonapi.getIn(['countrystats', countrystats.indexOf(countrystats.find(countrystat => countrystat.get('name') === gamemission.inCountry))]);
+      console.log('checking for obscurity save');
+      if (Math.random() < (1 / 1 + countrystat.get(['obscurity'])) && gamemission.title === 'Discovered!')
+        this.pushGameMission(gamemission);
+      else if (gamemission.title !== 'Discovered!')
+        this.pushGameMission(gamemission);
+      else
+        console.log('saved by obscurity');
     });
 
     return (

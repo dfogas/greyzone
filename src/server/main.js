@@ -5,23 +5,23 @@ import frontend from './frontend';
 import morgan from 'morgan';
 // import {Server} from 'https';
 import {Server} from 'http';
-// import fs from 'fs';
+import fs from 'fs';
 import ioServer from 'socket.io';
 import Mission from './lib/greyzone/mission.generator';
 import checkDiscovered from './lib/greyzone/checkdiscovered';
 
 // related to SSH certificate
-// const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
-// const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
+const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
+const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
 // const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
 //
-// const options = {
-//   key: gskey,
-//   cert: gscert
-//   ca: gsca,
-//   requestCert: false,
-//   rejectUnauthorized: false
-// };
+const options = {
+  key: gskey,
+  cert: gscert,
+  // ca: gsca,
+  requestCert: false,
+  rejectUnauthorized: false
+};
 
 const app = express();
 // const server = process.env.NODE_ENV === 'development' ? Server(app) : secureServer(options, app);
@@ -34,9 +34,12 @@ app.use(config.apipath, api);
 io.on('connection', (socket) => {
   console.log('user has connected');
   socket.on('mission', function(msg) {
-    if (msg.missiontitle !== 'Discovered!' && Math.random() > 0.5) {
+
+    if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
       console.log('Agents spotted. New Mission in Briefing room - Discovered!');
-      socket.emit('new mission', Mission('Discovered!', 3, 10 * 60 * 1000, true));
+      let mission = Mission('Discovered!', 3, 10 * 60 * 1000, true);
+      mission.inCountry = msg.inCountry;
+      socket.emit('new mission', mission);
     }
   });
 

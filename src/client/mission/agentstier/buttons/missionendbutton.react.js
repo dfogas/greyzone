@@ -3,14 +3,19 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import {msg} from '../../../intl/store';
 import * as missionActions from '../../actions';
+import * as tutorialActions from '../../../tutorial/actions';
+import immutable from 'immutable';
 // var io = require('socket.io-client');
 
 class MissionEndButton extends Component {
   end() {
     // var socket = io.connect('http://localhost');
-    const {missiontitle} = this.props;
-    socket.emit('mission', {missiontitle}); // eslint-disable-line no-undef
+    const {mission, tutorial} = this.props;
+    const missionjs = mission.toJS();
+    socket.emit('mission', missionjs); // eslint-disable-line no-undef
     missionActions.end();
+    if (tutorial && !tutorial.getIn(['firstmission', 'done']))
+      tutorialActions.firstMissionDone();
     missionActions.removeCompletedMission();
     missionActions.agentsAreBackFromMission();
     missionActions.setDefault();
@@ -30,7 +35,8 @@ class MissionEndButton extends Component {
 }
 
 MissionEndButton.propTypes = {
-  missiontitle: React.PropTypes.string
+  mission: React.PropTypes.instanceOf(immutable.Map),
+  tutorial: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default MissionEndButton;

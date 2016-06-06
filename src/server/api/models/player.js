@@ -45,7 +45,8 @@ var PlayerSchema = new Schema({
     type: String,
     unique: false,
     required: true
-  }
+  },
+  tutorial: Schema.Types.Mixed
 });
 
 var Player = mongoose.model('Player', PlayerSchema);

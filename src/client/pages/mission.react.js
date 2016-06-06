@@ -1,4 +1,4 @@
-import MissionTrackingScreen from '../mission/missionscreen.react';
+import MissionTrackingScreen from '../mission/mission.screen.react';
 import DocumentTitle from 'react-document-title';
 import Component from '../components/component.react';
 import React from 'react';

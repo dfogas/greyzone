@@ -3,7 +3,7 @@ import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
 
 import * as briefingActions from './actions';
-import defaultActiveMission from '../lib/defaultactivemission';
+import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 
 export const dispatchToken = register(({action, data}) => {
 

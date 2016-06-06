@@ -18,6 +18,20 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['campaigns', 'selection', 'done'], true);
     });
 
+  if (action === tutorialActions.firstMissionSetup) {
+    console.log(data.mission.toJS());
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .set('activemission', immutable.fromJS(data.mission));
+    });
+  }
+
+  if (action === tutorialActions.firstMissionDone)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['tutorial', 'firstmission', 'done'], true);
+    });
+
   if (action === tutorialActions.playerChoseAgentClass)
     jsonapiCursor(jsonapi => {
       return jsonapi

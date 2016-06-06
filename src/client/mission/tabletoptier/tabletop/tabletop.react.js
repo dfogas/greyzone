@@ -40,7 +40,7 @@ class TableTop extends Component {
   }
 
   render() {
-    const {activemission} = this.props;
+    const {activemission, tutorial} = this.props;
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
@@ -103,7 +103,8 @@ class TableTop extends Component {
 }
 
 TableTop.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map)
+  activemission: React.PropTypes.instanceOf(immutable.Map),
+  tutorial: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default TableTop;

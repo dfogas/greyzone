@@ -1,11 +1,14 @@
 /* Smart */
-import './dashboardscreen.styl';
-import * as dashboardActions from '../dashboard/actions';
+import './dashboard.screen.styl';
+import * as dashboardActions from './actions';
+// import * as missionActions from '../mission/actions';
+import * as tutorialActions from '../tutorial/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
+import {Link} from 'react-router';
 
 import PlayersWindow from './playerswindow/players.window.react';
 import AgentsWindow from './agentswindow/agentswindow.react';
@@ -41,20 +44,10 @@ import StatusesPointer from './pointers/statuses.pointer.react';
 import StrategicalPointer from './pointers/strategical.pointer.react';
 
 class DashboardScreen extends Component {
-  badEndDiscovered() {
-    dashboardActions.badEndDiscovered();
-  }
-
-  badEndKilled() {
-    dashboardActions.badEndKilled();
-  }
-
-  badEndLeftInPrison() {
-    dashboardActions.badEndLeftInPrison();
-  }
 
   componentDidMount() {
     const {jsonapi} = this.props;
+    const countrystats = jsonapi.get('countrystats');
     const paying = jsonapi.get('paying');
     const isPaying = paying ?
       Object.keys(paying).reduce((prev, curr, index, array) => {
@@ -69,10 +62,32 @@ class DashboardScreen extends Component {
         agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 &&  // player's agent is in agent's roster and has prison status true
           allAgents(jsonapi).filter(agent => agent.get('loyalty') === 'loyal').size === 0 // no agent of organization is loyal
     )
-      this.badEndLeftInPrison();
+      dashboardActions.badEndLeftInPrison();
 
     if (jsonapi.get('agents').filter(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0) // player's agent is in agents roster and has KIA status true
-      this.badEndKilled();
+      dashboardActions.badEndKilled();
+
+    setInterval(() => {
+      console.log('checking for discovered');
+      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 3)
+        dashboardActions.badEndDiscovered();
+    }, 12 * 60 * 1000);
+    // TODO: I met some unexpected behaviour, read how exactly websockets work
+    // socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
+    //   console.log(countrystats.toJS());
+    //   if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
+    //     this.badEndDiscovered();
+    // });
+  }
+
+  componentWillReceiveProps() {
+    const {jsonapi} = this.props;
+
+    if (jsonapi.getIn(['campaigns', 'selection', 'done']) && !jsonapi.getIn(['tutorial', 'firstmission', 'done']))
+      tutorialActions.firstMissionSetup();
+    // else
+    //   // just placeholder
+    //   console.log('selection of campaigns not done yet.'); 
   }
 
   render() {
@@ -95,18 +110,6 @@ class DashboardScreen extends Component {
     const options = jsonapi.get('options');
     const statusesowned = jsonapi.get('statuses');
     const totalagents = agentinarmory ? allagents.unshift(agentinarmory) : allagents;
-
-    setInterval(() => {
-      console.log('checking for discovered');
-      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 3)
-        this.badEndDiscovered();
-    }, 12 * 60 * 1000);
-    // TODO: I met some unexpected behaviour, read how exactly websockets work
-    // socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
-    //   console.log(countrystats.toJS());
-    //   if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
-    //     this.badEndDiscovered();
-    // });
 
     return (
       <div id='DashboardScreen'>
@@ -203,6 +206,8 @@ class DashboardScreen extends Component {
             <CountryStatsWindow
               countrystats={countrystats}
             />}
+          {dashPointer === 'options' &&
+            <Link to='payments'><button id='ToPayments'>Buy</button></Link>}
           {dashPointer === 'contest' &&
             <ContestWindow
               contest={contest}

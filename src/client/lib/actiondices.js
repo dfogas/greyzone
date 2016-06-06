@@ -1,4 +1,4 @@
-/* ImmutableMap(Agent) ImmutableList -> JSArray */
+/* ImmutableMap(Agent) ImmutableList(Task) -> JSArray(Dices) */
 /* použito při assignování agenta k tasku */
 import uuid from './guid';
 

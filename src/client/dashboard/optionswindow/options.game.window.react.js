@@ -8,24 +8,15 @@ import $ from 'jquery';
 
 class OptionsGameWindow extends Component {
   loadGameOne() {
-    // alert('Game loaded. Single player only.');
     optionsActions.loadGame(1);
-    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Game 1 has been loaded.</div>');
-    $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
   }
 
   loadGameTwo() {
-    // alert('Game loaded. Single player only.');
     optionsActions.loadGame(2);
-    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Game 2 has been loaded.</div>');
-    $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
   }
 
   loadGameThree() {
-    // alert('Game loaded. Single player only.');
     optionsActions.loadGame(3);
-    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Game 3 has been loaded.</div>');
-    $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
   }
 
   retireGame() {
@@ -34,28 +25,19 @@ class OptionsGameWindow extends Component {
   }
 
   saveGameOne() {
-    // alert('Game for current organization saved. Single player only.');
     // should save to WebStorage
     const {jsonapi} = this.props;
     optionsActions.saveGame(jsonapi, 1);
-    $('#OptionsWindow').append('<div id=\'SaveGameMessage\'>Game 1 has been saved.</div>');
-    $('#SaveGameMessage').hide(3000, () => $('#SaveGameMessage').remove());
   }
 
   saveGameTwo() {
-    // alert('Game for current organization saved to WebStorage. Single player only.');
     const {jsonapi} = this.props;
     optionsActions.saveGame(jsonapi, 2);
-    $('#OptionsWindow').append('<div id=\'SaveGameMessage\'>Game 2 has been saved.</div>');
-    $('#SaveGameMessage').hide(3000, () => $('#SaveGameMessage').remove());
   }
 
   saveGameThree() {
-    // alert('Game for current organization saved to WebStorage. Single player only.');
     const {jsonapi} = this.props;
     optionsActions.saveGame(jsonapi, 3);
-    $('#OptionsWindow').append('<div id=\'SaveGameMessage\'>Game 3 has been saved.</div>');
-    $('#SaveGameMessage').hide(3000, () => $('#SaveGameMessage').remove());
   }
 
   render() {

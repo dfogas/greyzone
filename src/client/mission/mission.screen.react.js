@@ -26,6 +26,7 @@ class MissionTrackingScreen extends Component {
       $('#MissionTutorial').remove();
     else if (e.keyCode === 72)
       $('#MissionTrackingScreen').append(msg('tutorial.missionScreen'));
+    //..
   }
 
   render() {
@@ -41,6 +42,7 @@ class MissionTrackingScreen extends Component {
           />
         <TableTopTier
           activemission={jsonapi.get('activemission')}
+          tutorial={jsonapi.get('tutorial')}
           />
         <AgentsTier
           jsonapi={jsonapi}
@@ -53,6 +55,7 @@ class MissionTrackingScreen extends Component {
           <MissionResultsWindow
             activemission={jsonapi.get('activemission')}
             agentbeingsaved={jsonapi.get('agentbeingsaved')}
+            tutorial={jsonapi.get('tutorial')}
             />}
       </div>
     );

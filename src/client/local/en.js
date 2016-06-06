@@ -149,6 +149,9 @@ const ENGLISH = {
     message: 'The link may be broken, or the page may have been removed.',
     title: 'Page Not Found'
   },
+  payments: {
+    title: 'Payments'
+  },
   posts: {
     newPostPlaceholder: 'What is on your mind?',
     emptyList: 'Empty List'

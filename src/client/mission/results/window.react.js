@@ -17,7 +17,7 @@ class MissionResultsWindow extends Component {
   }
 
   render() {
-    const {activemission, agentbeingsaved} = this.props;
+    const {activemission, agentbeingsaved, tutorial} = this.props;
     const result = activemission.get('result');
     const rewardsjs = activemission.get('rewards') ? activemission.get('rewards').toJS() : {};
     const lossesjs = activemission.get('losses') ? activemission.get('losses').toJS() : {};
@@ -73,7 +73,8 @@ class MissionResultsWindow extends Component {
           </p>
           <p>Click button to return to previous screen (i.e. Briefing or possibly Dashboard).</p>
           <MissionEndButton
-            missiontitle={activemission.get('title')}
+            mission={activemission}
+            tutorial={tutorial}
             />
       </div>
     );
@@ -82,7 +83,8 @@ class MissionResultsWindow extends Component {
 
 MissionResultsWindow.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map)
+  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
+  tutorial: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default MissionResultsWindow;

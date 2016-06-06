@@ -3,7 +3,7 @@ import React from 'react';
 import immutable from 'immutable';
 
 import DocumentTitle from 'react-document-title';
-import DashboardScreen from '../dashboard/dashboardscreen.react';
+import DashboardScreen from '../dashboard/dashboard.screen.react';
 import DashboardToMission from '../navs/dashboardtomission.react.js';
 import requireAuth from '../auth/requireauth.react';
 import {msg} from '../intl/store';

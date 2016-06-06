@@ -9,7 +9,7 @@ import equipmentsList from './greyzone/equipments.list';
 import playerEquipments from './greyzone/playerequipments';
 import playerCountryStats from './greyzone/playercountrystats';
 import dayandtime from '../../client/lib/dayandtime';
-import defaultActiveMission from '../../client/lib/defaultactivemission';
+import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 
 var playerdefaults = {
   name: '',
@@ -70,6 +70,11 @@ var playerdefaults = {
   options: {
     multiplayer: false,
     tutorial: true
+  },
+  tutorial: {
+    firstmission: {
+      done: false
+    }
   }
 };
 
