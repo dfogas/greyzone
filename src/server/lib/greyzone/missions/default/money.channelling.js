@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {tap, monitor, improv_el, puppet, decipher, improv_st} from '../actions';
 
+const tag = 'moneychannelling';
+
 const MoneyChannelling = [{
   title: 'Money channelling',
   tasks: [
@@ -17,7 +19,8 @@ const MoneyChannelling = [{
   },
   imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
-  tier: 1
+  tier: 1,
+  tag: tag
 }, {
   title: 'Money channelling',
   tasks: [
@@ -34,7 +37,8 @@ const MoneyChannelling = [{
   },
   imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
-  tier: 2
+  tier: 2,
+  tag: tag
 }, {
   title: 'Money channelling',
   tasks: [
@@ -52,7 +56,8 @@ const MoneyChannelling = [{
   },
   imgsrc: 'Sagesse.jpg',
   agentLimit: 3,
-  tier: 3
+  tier: 3,
+  tag: tag
 // }, {
 //   title: 'Money channelling',
 //   tasks: [

@@ -43,6 +43,10 @@ export function logBriefing(message) {
   dispatch(logBriefing, message);
 }
 
+export function missionTextToggle() {
+  dispatch(missionTextToggle, {});
+}
+
 /*finds passed mission within player's missions and removes it*/
 export function passMission(mission) {
   dispatch(passMission, {message: mission});
@@ -72,12 +76,11 @@ export function selectMission(mission) {
       dispatch(bookLosses, {mission});
       checkFatalities({results: mission.get('losses').toJS()});
     }
-  } else {
-    if (!obscurityMissionCheck(mission, countrystats))
-      dispatch(logBriefing, {message: `The selected mission will not start, because either success or failure in the mission would bring obscurity in the country under 0.`});
-
-    dispatch(selectMission, {mission});
-  }
+  } else if (!obscurityMissionCheck(mission, countrystats))
+    dispatch(logBriefing, {
+      message: `The selected mission will not start, because either success or failure in the mission would bring obscurity in the country under 0.`
+    });
+  else dispatch(selectMission, {mission});
 }
 
 export function setDefaultAfterExpired() {
@@ -89,6 +92,7 @@ setToString('briefing', {
   bookLosses,
   checkFatalities,
   logBriefing,
+  missionTextToggle,
   passMission,
   pushGameMission,
   selectMission,

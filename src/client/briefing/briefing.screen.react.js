@@ -1,4 +1,4 @@
-import './briefingscreen.styl';
+import './briefing.screen.styl';
 import * as briefingActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -8,7 +8,7 @@ import {msg} from '../intl/store';
 import $ from 'jquery';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
-import ActiveMission from './activemission/activemission.react';
+import ActiveMission from './activemission/active.mission.react';
 import BriefingInCountry from './briefing.incountry.react';
 import BriefingToDashboard from '../navs/briefingtodashboard.react';
 import BriefingToArmory from '../navs/briefingtoarmory.react';
@@ -62,6 +62,7 @@ class BriefingScreen extends Component {
           <ActiveMission
             activemission={jsonapi.get('activemission')}
             agents={agents}
+            components={jsonapi.get('components')}
             />
           <MissionShiftLeft
             activemission={jsonapi.get('activemission')}

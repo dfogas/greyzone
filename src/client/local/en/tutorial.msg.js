@@ -17,7 +17,7 @@ const TutorialMsg = {
   dashboardScreen: `<div id='DashboardTutorial'><h2>Dashboard Help</h2>Dashboard is the overview of all important points of the game.<br />
     On the right there is navigation menu to change to one of dashboard screen.<br />
     There is a contextual and event-reaction-based help as well.<br />
-    Navigational buttons enable you to go to other screens, that have their tutorials as well.</div>`,
+    Navigational buttons enable you to go to other screens, that have their 'h' keypress helps as well.</div>`,
   equipmentslot: `Drag icon here.`,
   missionScreen: `<div id='MissionTutorial'><h2>Mission Help</h2>Mission screen is divided to three parts.
     Left side of the screen is where the tasks for mission are displayed and that is first part named TaskTier.

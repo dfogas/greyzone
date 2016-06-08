@@ -1,3 +1,4 @@
+import './agent.profile.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
 

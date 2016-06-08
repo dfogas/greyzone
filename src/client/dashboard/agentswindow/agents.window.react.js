@@ -1,5 +1,5 @@
 /* Dumb Component */
-import './agentswindow.styl';
+import './agents.window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';

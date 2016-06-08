@@ -22,7 +22,8 @@ const defaultActiveMission = {
     actionchoose: null,
     damageprotocol: false
   },
-  started: false
+  started: false,
+  tag: 'quietbeforestorm'
 };
 
 export default defaultActiveMission;

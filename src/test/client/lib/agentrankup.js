@@ -12,7 +12,7 @@ chai.use(chaiImmutable);
 const agentRankup = require('../../../client/lib/agentrankup');
 
 const agentOne = immutable.fromJS({
-  'imgsrc' : '../../assets/img/agents/spy/spy3_128.png',
+  'imgsrc' : '../../assets/img/agents/spy/spy3_128.jpg',
   'KIA' : false,
   'equipments' : [
     {

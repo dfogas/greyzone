@@ -6,6 +6,7 @@ import endsMsg from './en/ends.msg';
 import gameendsMsg from './en/gameends.msg';
 import helpMsg from './en/help.msg';
 import introMsg from './en/intro.msg';
+import missionDescriptionsMsg from './en/mission.description.msg';
 import tutorialMsg from './en/tutorial.msg';
 
 const ENGLISH = {
@@ -135,6 +136,7 @@ const ENGLISH = {
       end: 'Finish Mission',
       success: 'Mission Accomplished!'
     },
+    descriptions: missionDescriptionsMsg,
     screen: {
       label: `Mission`
     },

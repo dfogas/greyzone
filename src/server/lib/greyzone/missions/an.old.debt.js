@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {infiltrate, improv_op, close_combat, hit, improv_st} from './actions';
 
+const tag = 'anolddebt';
+
 const AnOldDebt = [{
   title: 'An Old Debt',
   tasks: [
@@ -19,7 +21,8 @@ const AnOldDebt = [{
   },
   imgsrc: '',
   agentLimit: 1,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'An Old Debt',
   tasks: [
@@ -38,7 +41,8 @@ const AnOldDebt = [{
   },
   imgsrc: '',
   agentLimit: 1,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'An Old Debt',
   tasks: [
@@ -58,7 +62,8 @@ const AnOldDebt = [{
   },
   imgsrc: '',
   agentLimit: 1,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default AnOldDebt;

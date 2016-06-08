@@ -25,6 +25,13 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === briefingActions.missionTextToggle)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['components', 'briefing', 'missionthumbnail', 'text'], val => !val);
+    });
+
+
   if (action === briefingActions.pushGameMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -34,7 +41,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === briefingActions.selectMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .set('activemission', data.mission ? immutable.fromJS(defaultActiveMission).mergeDeep(data.mission) : immutable.fromJS(defaultActiveMission));
+      .set('activemission', data.mission ? immutable.fromJS(defaultActiveMission).mergeDeep(data.mission) : immutable.fromJS(defaultActiveMission));
     });
 
   if (action === briefingActions.setDefaultAfterExpired)

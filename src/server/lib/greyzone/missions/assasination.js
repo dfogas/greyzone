@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {infiltrate, improv_st, improv_op, tap, hit, hide} from './actions';
 
+const tag = 'assasination';
+
 const Assasination = [{
   title: 'Assasination',
   tasks: [
@@ -21,7 +23,8 @@ const Assasination = [{
   },
   imgsrc: '',
   agentLimit: 1,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Assasination',
   tasks: [
@@ -42,7 +45,8 @@ const Assasination = [{
   },
   imgsrc: '',
   agentLimit: 1,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Assasination',
   tasks: [
@@ -64,7 +68,8 @@ const Assasination = [{
   },
   imgsrc: '',
   agentLimit: 1,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default Assasination;

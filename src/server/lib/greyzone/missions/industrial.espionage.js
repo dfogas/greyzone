@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {decipher, improv_el, puppet, improv_st, tap, monitor, infiltrate} from './actions';
 
+const tag = 'industrialespionage';
+
 const IndustrialEspionage = [{
   title: 'Industrial Espionage',
   tasks: [
@@ -19,7 +21,8 @@ const IndustrialEspionage = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Industrial Espionage',
   tasks: [
@@ -39,7 +42,8 @@ const IndustrialEspionage = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Industrial Espionage',
   tasks: [
@@ -59,7 +63,8 @@ const IndustrialEspionage = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default IndustrialEspionage;

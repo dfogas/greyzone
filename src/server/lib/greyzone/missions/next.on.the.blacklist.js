@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {puppet, infiltrate, improv_st, tap, decipher, improv_el, pursuit, hit, improv_op} from './actions';
 
+const tag = 'nextontheblacklist';
+
 const NextOnTheBlacklist = [{
   title: 'Next on the Blacklist',
   tasks: [
@@ -19,7 +21,8 @@ const NextOnTheBlacklist = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Next on the Blacklist',
   tasks: [
@@ -39,7 +42,8 @@ const NextOnTheBlacklist = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Next on the Blacklist',
   tasks: [
@@ -59,7 +63,8 @@ const NextOnTheBlacklist = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default NextOnTheBlacklist;

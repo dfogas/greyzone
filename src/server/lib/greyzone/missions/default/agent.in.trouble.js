@@ -1,18 +1,9 @@
 /* eslint camelcase: 0 */
 import {tap, monitor, improv_el, improv_op, improv_st, pursuit, close_combat, hide} from '../actions';
 
-function character() {
-  let chance = Math.round();
+const tag = 'agentintrouble';
 
-  if (chance < 0.333)
-    return 'operative';
-  else if (chance < 0.667)
-    return 'technician';
-  else
-    return 'spy';
-}
-
-const AgentInTrouble = [{
+let AgentInTrouble = [{
   title: 'Agent In Trouble',
   tasks: [
     [tap, monitor, improv_el],
@@ -21,8 +12,7 @@ const AgentInTrouble = [{
   inCountry: '',
   rewards: {
     agentRecruited: true,
-    gameCash: -2000,
-    character: character()
+    gameCash: -2000
   },
   losses: {
     gameCash: 1000,
@@ -30,7 +20,8 @@ const AgentInTrouble = [{
   },
   imgsrc: 'chinese.jpg',
   agentLimit: 2,
-  tier: 1
+  tier: 1,
+  tag: tag
 }, {
   title: 'Agent In Trouble',
   tasks: [
@@ -41,8 +32,7 @@ const AgentInTrouble = [{
   inCountry: '',
   rewards: {
     agentRecruited: true,
-    gameCash: -4000,
-    character: character()
+    gameCash: -4000
   },
   losses: {
     gameContacts: 50,
@@ -50,7 +40,8 @@ const AgentInTrouble = [{
   },
   imgsrc: 'chinese.jpg',
   agentLimit: 2,
-  tier: 2
+  tier: 2,
+  tag: tag
 }, {
   title: 'Agent In Trouble',
   tasks: [
@@ -62,7 +53,6 @@ const AgentInTrouble = [{
   rewards: {
     agentRecruited: true,
     gameCash: -6000,
-    character: character()
   },
   losses: {
     gameContacts: 75,
@@ -70,7 +60,8 @@ const AgentInTrouble = [{
   },
   imgsrc: 'chinese.jpg',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Agent In Trouble',
   tasks: [
@@ -82,8 +73,7 @@ const AgentInTrouble = [{
   inCountry: '',
   rewards: {
     agentRecruited: true,
-    gameCash: -50000,
-    character: character()
+    gameCash: -50000
   },
   losses: {
     gameContacts: 175,
@@ -91,7 +81,8 @@ const AgentInTrouble = [{
   },
   imgsrc: 'chinese.jpg',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Agent In Trouble',
   tasks: [
@@ -103,8 +94,7 @@ const AgentInTrouble = [{
   inCountry: '',
   rewards: {
     agentRecruited: true,
-    gameCash: -100000,
-    character: character()
+    gameCash: -100000
   },
   losses: {
     gameContacts: 375,
@@ -112,7 +102,8 @@ const AgentInTrouble = [{
   },
   imgsrc: 'chinese.jpg',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default AgentInTrouble;

@@ -1,8 +1,10 @@
 /* eslint camelcase: 0 */
 import {decipher, tap, improv_st, hit, improv_op, close_combat, hide, monitor} from './actions';
 
-const ProtectWitness = [{
-  title: 'Protect Witness',
+const tag = 'silencewitness';
+
+const SilenceWitness = [{
+  title: 'Silence Witness',
   tasks: [
     [decipher, decipher],
     [close_combat, improv_op, hide],
@@ -20,9 +22,10 @@ const ProtectWitness = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
-  title: 'Protect Witness',
+  title: 'Silence Witness',
   tasks: [
     [monitor, monitor, monitor],
     [close_combat, improv_op, hide, improv_st],
@@ -41,9 +44,10 @@ const ProtectWitness = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
-  title: 'Protect Witness',
+  title: 'Silence Witness',
   tasks: [
     [monitor, monitor, monitor, tap],
     [close_combat, improv_op, hide, improv_st],
@@ -62,7 +66,8 @@ const ProtectWitness = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
-export default ProtectWitness;
+export default SilenceWitness;

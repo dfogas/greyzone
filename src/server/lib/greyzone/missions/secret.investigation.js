@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {hide, improv_st, infiltrate, puppet, monitor, tap, pursuit, improv_op, close_combat, hit} from './actions';
 
+const tag = 'secretinvestigation';
+
 const SecretInvestigation = [{
   title: 'Secret Investigation',
   tasks: [
@@ -22,7 +24,8 @@ const SecretInvestigation = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Secret Investigation',
   tasks: [
@@ -44,7 +47,8 @@ const SecretInvestigation = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Secret Investigation',
   tasks: [
@@ -66,7 +70,8 @@ const SecretInvestigation = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default SecretInvestigation;

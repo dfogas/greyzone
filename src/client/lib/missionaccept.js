@@ -6,10 +6,21 @@ import determineFocus from './determinefocus';
 import isFatal from './isfatal';
 import uuid from './guid';
 
+
+function character(chance) {
+  console.log('chance is ' + chance);
+  if (chance < 0.333)
+    return 'operative';
+  else if (chance < 0.667)
+    return 'technician';
+  else
+    return 'spy';
+}
+
 function missionAccept(tier, focus, country, options, enhancements, countryList, missionsList) {
   const operationsnames = enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name);
   const modifiedMissionsList = xmissioncheck(operationsnames, missionsList);
-  const focusedModifiedMissionsList = focus !== 'random' && focus !== 'special' && focus !== 'multiplayer' ?
+  const focusedModifiedMissionsList = focus !== 'random' && focus !== 'multiplayer' ?
     modifiedMissionsList.filter(mission => determineFocus(mission.rewards)[focus]) :
     modifiedMissionsList;
   const optionedMissionList = options.avoidfatals ? focusedModifiedMissionsList.filter(mission => !isFatal(mission.losses)) : focusedModifiedMissionsList;
@@ -21,6 +32,8 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
   randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
   randomMission.id = uuid() + 'gzm';
+  if (randomMission.tag === 'agentintrouble')
+    randomMission.rewards.character = character(Math.random());
 
   return randomMission;
 }

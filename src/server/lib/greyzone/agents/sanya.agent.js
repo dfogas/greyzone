@@ -7,7 +7,8 @@ const Sanya = {
   electronicsSkill: 1,
   equipmentSlots: 2,
   equipments: [
-    EquipmentList[6]
+    EquipmentList[6],
+    EquipmentList[0]
   ],
   experience: 100,
   id: uuid() + 'operative',

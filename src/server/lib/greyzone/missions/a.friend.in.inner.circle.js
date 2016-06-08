@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {decipher, close_combat, infiltrate, tap, improv_op, improv_st, puppet} from './actions';
 
+const tag = 'afriendininnercircle';
+
 const AFriendInInnerCircle = [{
   title: 'A Friend in Inner Circle',
   tasks: [
@@ -18,7 +20,8 @@ const AFriendInInnerCircle = [{
   },
   imgsrc: 'inner_circle_tb.jpg',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'A Friend in Inner Circle',
   tasks: [
@@ -39,7 +42,8 @@ const AFriendInInnerCircle = [{
   },
   imgsrc: 'inner_circle_tb.jpg',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'A Friend in Inner Circle',
   tasks: [
@@ -61,7 +65,8 @@ const AFriendInInnerCircle = [{
   },
   imgsrc: 'inner_circle_tb.jpg',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default AFriendInInnerCircle;

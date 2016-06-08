@@ -1,6 +1,8 @@
 /*eslint camelcase: 0*/
 import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate} from '../actions';
 
+const tag = 'layinglow';
+
 const LayingLow = [{
   title: 'Laying Low',
   tasks: [
@@ -17,7 +19,8 @@ const LayingLow = [{
   },
   imgsrc: 'godfather_free_youtube.jpg',
   agentLimit: 3,
-  tier: 1
+  tier: 1,
+  tag: tag
 }, {
   title: 'Laying Low',
   tasks: [
@@ -34,7 +37,8 @@ const LayingLow = [{
   },
   imgsrc: 'godfather_free_youtube.jpg',
   agentLimit: 3,
-  tier: 2
+  tier: 2,
+  tag: tag
 }, {
   title: 'Laying Low',
   tasks: [
@@ -52,7 +56,8 @@ const LayingLow = [{
   },
   imgsrc: 'godfather_free_youtube.jpg',
   agentLimit: 3,
-  tier: 3
+  tier: 3,
+  tag: tag
 // }, {
 //   title: 'Laying Low',
 //   tasks: [

@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {decipher, improv_el, tap, close_combat, improv_op, pursuit} from '../actions';
 
+const tag = 'pokertable';
+
 const PokerTable = [{
     title: 'Poker Table',
     tasks: [
@@ -16,7 +18,8 @@ const PokerTable = [{
     },
     imgsrc: 'poker_table.jpg',
     agentLimit: 2,
-    tier: 1
+    tier: 1,
+    tag: tag
   }, {
     title: 'Poker Table',
     tasks: [
@@ -33,7 +36,8 @@ const PokerTable = [{
     },
     imgsrc: 'poker_table.jpg',
     agentLimit: 2,
-    tier: 2
+    tier: 2,
+    tag: tag
   }, {
     title: 'Poker Table',
     tasks: [
@@ -50,7 +54,8 @@ const PokerTable = [{
     },
     imgsrc: 'poker_table.jpg',
     agentLimit: 2,
-    tier: 3
+    tier: 3,
+    tag: tag
   // }, {
   //   title: 'Laying Low',
   //   tasks: [

@@ -1,4 +1,6 @@
-/* [Number] Number Min Max -> Number */
+/* [Number] Number Min Max -> Number
+  pick from interval of numbers the number which is not reserved
+*/
 
 function reservedPick(reserved, pick, min, max) {
   if (reserved.length === max + 1)

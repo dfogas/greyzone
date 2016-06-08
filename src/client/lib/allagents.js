@@ -1,6 +1,7 @@
 /*
   State(Immutable.Map) -> AgentsList(Immutable.List)
   returns all agents of organizations regardless of their position in state structure
+  does not check for self
 */
 
 function checkThenConcat(item) {

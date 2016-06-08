@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {monitor, tap, decipher, puppet, infiltrate, hide, improv_el, improv_st} from '../actions';
 
+const tag = 'connectionsmap';
+
 const ConnectionsMap = [{
     title: 'Connections Map',
     tasks: [
@@ -17,7 +19,8 @@ const ConnectionsMap = [{
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
-    tier: 1
+    tier: 1,
+    tag: tag
   }, {
     title: 'Connections Map',
     tasks: [
@@ -34,7 +37,8 @@ const ConnectionsMap = [{
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
-    tier: 2
+    tier: 2,
+    tag: tag
   }, {
     title: 'Connections Map',
     tasks: [
@@ -52,7 +56,8 @@ const ConnectionsMap = [{
     },
     imgsrc: 'chinese.jpg',
     agentLimit: 3,
-    tier: 3
+    tier: 3,
+    tag: tag
   // }, {
   //   title: 'Connections Map',
   //   tasks: [

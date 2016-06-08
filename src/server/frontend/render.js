@@ -58,6 +58,7 @@ function getPageHtml(Handler, appState) {
   const appScriptSrc = config.isProduction
     ? '/build/app.js?v=' + config.version
     : '//localhost:8888/build/app.js';
+  const urlServer = config.isProduction ? 'https://www.ghoststruggle.com' : 'http://localhost:8000';
 
   // Serialize app state for client.
   let scriptHtml = `
@@ -87,9 +88,18 @@ function getPageHtml(Handler, appState) {
     </script>`;
 
   scriptHtml += `
+    <audio autoplay controls loop>
+      <source src='http://localhost:8000/assets/audio/NorthSea.ogg' type='audio/ogg'>
+    </audio>
+  `;
+
+  scriptHtml += `
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io();
+      var URL_SERVER;
+      URL_SERVER = '${urlServer}';
+      var socket = io.connect(URL_SERVER);
+      console.log('socket is' + socket);
     </script>`;
 
   const title = DocumentTitle.rewind();

@@ -24,8 +24,8 @@ import IndustrialEspionage from '../../server/lib/greyzone/missions/industrial.e
 import NextOnTheBlacklist from '../../server/lib/greyzone/missions/next.on.the.blacklist';
 import PrisonBreak from '../../server/lib/greyzone/missions/prison.break';
 import PrivateCollection from '../../server/lib/greyzone/missions/private.collection';
-import ProtectWitness from '../../server/lib/greyzone/missions/protect.witness';
 import SecretInvestigation from '../../server/lib/greyzone/missions/secret.investigation';
+import SilenceWitness from '../../server/lib/greyzone/missions/silence.witness'; // not implemented
 
 // Array -> Array
 function xmissioncheck(enhancementsnames, MissionsList) {
@@ -43,8 +43,6 @@ function xmissioncheck(enhancementsnames, MissionsList) {
     missionsList = missionsList.concat(AnOldDebt);
   if (enhancementsnames.indexOf('We Got the Power') !== -1)
     missionsList = missionsList.concat(PrisonBreak);
-  if (enhancementsnames.indexOf('Repaying the favors') !== -1)
-    missionsList = missionsList.concat(ProtectWitness);
   if (enhancementsnames.indexOf('Gala in Opera house') !== -1)
     missionsList = missionsList.concat(AFriendInInnerCircle);
   if (enhancementsnames.indexOf('Boy with an Apple') !== -1)
@@ -55,6 +53,8 @@ function xmissioncheck(enhancementsnames, MissionsList) {
     missionsList = missionsList.concat(IndustrialEspionage);
   if (enhancementsnames.indexOf('Playing Detective') !== -1)
     missionsList = missionsList.concat(SecretInvestigation);
+  if (enhancementsnames.indexOf('Repaying the favors') !== -1)
+    missionsList = missionsList.concat(SilenceWitness);
   return missionsList;
 }
 

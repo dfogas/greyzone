@@ -38,7 +38,7 @@ class PlayersWindow extends Component {
   }
 
   render() {
-    const {gameCash, gameContacts, enhancements, jsonapi, name, self} = this.props;
+    const {gameCash, gameContacts, enhancements, jsonapi, name, self} = this.props; 
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
     return (
       <div id='PlayersWindow'>
@@ -79,6 +79,9 @@ class PlayersWindow extends Component {
         </div>
         <div id='PlayerAgentsLeadership'>
           Agents: {topLevelTraining(enhancements)}
+        </div>
+        <div id='PlayerHelpHint'>
+          Press 'h' for help
         </div>
       </div>
     );

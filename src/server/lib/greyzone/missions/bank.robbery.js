@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {decipher, monitor, tap, improv_el, hit, close_combat, improv_op, improv_st, pursuit, hide} from './actions';
 
+const tag = 'bankrobbery';
+
 const BankRobbery = [{
   title: 'Bank Robbery',
   tasks: [
@@ -21,7 +23,8 @@ const BankRobbery = [{
   },
   imgsrc: 'bank_robbery_tb.jpg',
   agentLimit: 3,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Bank Robbery',
   tasks: [
@@ -43,7 +46,8 @@ const BankRobbery = [{
   },
   imgsrc: 'bank_robbery_tb.jpg',
   agentLimit: 3,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Bank Robbery',
   tasks: [
@@ -65,7 +69,8 @@ const BankRobbery = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default BankRobbery;

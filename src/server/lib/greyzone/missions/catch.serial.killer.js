@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {tap, decipher, close_combat, improv_op, improv_st, puppet, pursuit, infiltrate} from './actions';
 
+const tag = 'catchserialkiller';
+
 const CatchSerialKiller = [{
   title: 'Catch Serial Killer',
   tasks: [
@@ -21,7 +23,8 @@ const CatchSerialKiller = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Catch Serial Killer',
   tasks: [
@@ -42,7 +45,8 @@ const CatchSerialKiller = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Catch Serial Killer',
   tasks: [
@@ -63,7 +67,8 @@ const CatchSerialKiller = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default CatchSerialKiller;

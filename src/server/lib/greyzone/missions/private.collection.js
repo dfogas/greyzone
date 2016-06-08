@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {pursuit, improv_op, monitor, puppet, hide, improv_st, tap, improv_el, infiltrate} from './actions';
 
+const tag = 'privatecollection';
+
 const PrivateCollection = [{
   title: 'Private Collection',
   tasks: [
@@ -19,7 +21,8 @@ const PrivateCollection = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Private Collection',
   tasks: [
@@ -39,7 +42,8 @@ const PrivateCollection = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Private Collection',
   tasks: [
@@ -59,7 +63,8 @@ const PrivateCollection = [{
   },
   imgsrc: '',
   agentLimit: 3,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default PrivateCollection;

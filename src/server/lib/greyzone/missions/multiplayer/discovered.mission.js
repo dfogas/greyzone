@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {hide, improv_st, pursuit, improv_op, decipher, puppet} from '../actions';
 
+const tag = 'discovered';
+
 const Discovered = [{
   title: 'Discovered!',
   tasks: [
@@ -17,7 +19,8 @@ const Discovered = [{
   },
   imgsrc: 'discovered_tb.jpg',
   agentLimit: 1,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Discovered!',
   tasks: [
@@ -34,7 +37,8 @@ const Discovered = [{
   },
   imgsrc: 'discovered_tb.jpg',
   agentLimit: 1,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Discovered!',
   tasks: [
@@ -52,7 +56,8 @@ const Discovered = [{
   },
   imgsrc: 'discovered_tb.jpg',
   agentLimit: 1,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default Discovered;

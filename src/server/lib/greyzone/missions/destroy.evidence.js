@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {infiltrate, improv_st, improv_op, improv_el, monitor, tap, decipher} from './actions';
 
+const tag = 'destroyevidence';
+
 const DestroyEvidence = [{
   title: 'Destroy Evidence',
   tasks: [
@@ -18,7 +20,8 @@ const DestroyEvidence = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Destroy Evidence',
   tasks: [
@@ -39,7 +42,8 @@ const DestroyEvidence = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Destroy Evidence',
   tasks: [
@@ -60,7 +64,8 @@ const DestroyEvidence = [{
   },
   imgsrc: '',
   agentLimit: 2,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default DestroyEvidence;

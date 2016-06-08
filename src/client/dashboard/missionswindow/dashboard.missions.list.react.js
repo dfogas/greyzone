@@ -4,6 +4,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import dayandtime from '../../lib/dayandtime';
+import determiningIcon from '../../lib/determiningicon';
 
 class DashboardMissionsList extends Component {
   render() {
@@ -19,7 +20,10 @@ class DashboardMissionsList extends Component {
             <th>Country</th>
             <th>Specials</th>
             <th>ETA</th>
+            <th>Rewards</th>
+            <th>Losses</th>
           </thead>
+          <tbody>
           {missions.map(mission => {
             const ETAtime = (mission.get('ETA') - new Date().getTime() > 0) ? (mission.get('ETA') - new Date().getTime()) : 0;
             const hours = Math.floor(ETAtime / (60 * 60 * 1000));
@@ -32,9 +36,20 @@ class DashboardMissionsList extends Component {
                 <td>{mission.get('forcefail') ? 'forced' : 'none'}</td>
                 <td>{ETAtime === 0 ? 'Expired' :
                   hours + ':' + Math.floor(minutes / 10) + '' + (minutes % 10)}</td>
+                <td>{Object.keys(mission.get('rewards').toJS()).map(reward => {
+                  return (
+                    <span>{determiningIcon(reward)}</span>
+                  );
+                })}</td>
+                <td>{Object.keys(mission.get('losses').toJS()).map(loss => {
+                  return (
+                    <span>{determiningIcon(loss)}</span>
+                  );
+                })}</td>
               </tr>
             );
           })}
+          </tbody>
         </table>
       </div>
     );

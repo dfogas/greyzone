@@ -13,7 +13,7 @@ const allAgents = require('../../../client/lib/allagents');
 
 const jsonapi = immutable.fromJS({
   agentbeingsaved: {
-    'imgsrc' : '../../assets/img/agents/spy/spy3_128.png',
+    'imgsrc' : '../../assets/img/agents/spy/spy3_128.jpg',
     'KIA' : false,
     'equipments' : [
       {
@@ -39,7 +39,7 @@ const jsonapi = immutable.fromJS({
   },
   agents: [
     {
-      'imgsrc' : '../../assets/img/agents/operative/operative4_128.png',
+      'imgsrc' : '../../assets/img/agents/operative/operative4_128.jpg',
       'KIA' : false,
       'equipments' : [
         {
@@ -62,7 +62,7 @@ const jsonapi = immutable.fromJS({
       'ETA' : 1460376593652,
       'electronicsSkill' : 3
     }, {
-      'imgsrc' : '../../assets/img/agents/technician/technician3_128.png',
+      'imgsrc' : '../../assets/img/agents/technician/technician3_128.jpg',
       'KIA' : false,
       'equipments' : [
         {
@@ -85,7 +85,7 @@ const jsonapi = immutable.fromJS({
       'ETA' : 1460310362247,
       'electronicsSkill' : 4
     }, {
-      'imgsrc' : '../../assets/img/agents/spy/spy4_128.png',
+      'imgsrc' : '../../assets/img/agents/spy/spy4_128.jpg',
       'KIA' : false,
       'equipments' : [
         {
@@ -110,7 +110,7 @@ const jsonapi = immutable.fromJS({
     }
   ],
   agentinarmory: {
-    'imgsrc' : '../../assets/img/agents/spy/spy1_128.png',
+    'imgsrc' : '../../assets/img/agents/spy/spy1_128.jpg',
       'KIA' : false,
       'equipments' : [{
         'name' : 'Heavy Arms'
@@ -134,7 +134,7 @@ const jsonapi = immutable.fromJS({
     activemission: {
       agentsonmission: [
         {
-          'imgsrc' : '../../assets/img/agents/technician/technician4_128.png',
+          'imgsrc' : '../../assets/img/agents/technician/technician4_128.jpg',
           'KIA' : false,
           'equipments' : [
             {
@@ -157,7 +157,7 @@ const jsonapi = immutable.fromJS({
           'ETA' : 1460319995460,
           'electronicsSkill' : 6
         }, {
-          'imgsrc' : '../../assets/img/agents/technician/technician2_128.png',
+          'imgsrc' : '../../assets/img/agents/technician/technician2_128.jpg',
           'KIA' : false,
           'equipments' : [
             {
@@ -184,7 +184,7 @@ const jsonapi = immutable.fromJS({
       mission: {
         currenttask: {
           agentontask: {
-            'imgsrc' : '../../assets/img/agents/technician/technician1_128.png',
+            'imgsrc' : '../../assets/img/agents/technician/technician1_128.jpg',
             'KIA' : false,
             'equipments' : [{
               'name' : ''

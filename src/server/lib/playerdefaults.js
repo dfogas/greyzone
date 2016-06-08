@@ -24,6 +24,11 @@ var playerdefaults = {
   agents: [],
   countrystats: playerCountryStats(CountryList, 0, 3),
   components: {
+    briefing: {
+      missionthumbnail: {
+        text: false
+      }
+    },
     dashboard: {
       index: 'strategical'
     }

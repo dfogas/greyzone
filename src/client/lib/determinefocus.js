@@ -1,5 +1,5 @@
 /*
-  [Rewards] => {FocusBools}
+  JsArray[Rewards] => JSObject{FocusBools}
 */
 
 function determineFocus(rewards) {

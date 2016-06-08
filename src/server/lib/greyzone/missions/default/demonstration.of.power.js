@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {hit, close_combat, puppet, improv_st, pursuit, improv_op} from '../actions';
 
+const tag = 'demonstrationofpower';
+
 const DemonstrationOfPower = [{
     title: 'Demonstration of power',
     tasks: [
@@ -16,7 +18,8 @@ const DemonstrationOfPower = [{
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 2,
-    tier: 1
+    tier: 1,
+    tag: tag
   }, {
     title: 'Demonstration of power',
     tasks: [
@@ -33,7 +36,8 @@ const DemonstrationOfPower = [{
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 2,
-    tier: 2
+    tier: 2,
+    tag: tag
   }, {
     title: 'Demonstration of power',
     tasks: [
@@ -50,7 +54,8 @@ const DemonstrationOfPower = [{
     },
     imgsrc: 'Heat-Movie.jpg',
     agentLimit: 2,
-    tier: 3
+    tier: 3,
+    tag: tag
   // }, {
   //   title: 'Demonstration of power',
   //   tasks: [

@@ -9,7 +9,7 @@ import shouldHaveRank from '../../lib/shouldhaverank';
 import uuid from '../../lib/guid';
 
 import AgentStatCounter from './agentstatcounter.react';
-import AgentProfile from './agentprofile.react';
+import AgentProfile from './agent.profile.react';
 import AgentEquipmentSlot from './agentequipmentslot.react';
 import AgentClock from './agent.clock.react';
 

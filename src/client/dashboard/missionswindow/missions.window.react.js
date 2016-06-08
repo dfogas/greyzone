@@ -1,5 +1,5 @@
 /* Smart Component */
-import './missionswindow.styl';
+import './missions.window.styl';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';

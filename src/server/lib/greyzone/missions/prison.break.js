@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {hide, improv_st, infiltrate, decipher, tap, improv_el, close_combat, improv_op, pursuit} from './actions';
 
+const tag = 'prisonbreak';
+
 const PrisonBreak = [{
   title: 'Prison Break',
   tasks: [
@@ -20,7 +22,8 @@ const PrisonBreak = [{
   },
   imgsrc: 'prison_break_tb.jpg',
   agentLimit: 3,
-  tier: 3
+  tier: 3,
+  tag: tag
 }, {
   title: 'Prison Break',
   tasks: [
@@ -40,7 +43,8 @@ const PrisonBreak = [{
   },
   imgsrc: 'prison_break_tb.jpg',
   agentLimit: 3,
-  tier: 4
+  tier: 4,
+  tag: tag
 }, {
   title: 'Prison Break',
   tasks: [
@@ -60,7 +64,8 @@ const PrisonBreak = [{
   },
   imgsrc: 'prison_break_tb.jpg',
   agentLimit: 3,
-  tier: 5
+  tier: 5,
+  tag: tag
 }];
 
 export default PrisonBreak;

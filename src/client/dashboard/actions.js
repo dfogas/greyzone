@@ -120,7 +120,9 @@ export function displayGameEndStatistics() {
 }
 
 export function hireAgent(specialist, rank) {
-  const agent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), rank, specialist);
+  const self = jsonapiCursor(['self']);
+  const agents = allAgents(jsonapiCursor()).indexOf(self) !== -1 ? allAgents(jsonapiCursor()).push(self) : allAgents(jsonapiCursor());
+  const agent = noDoubleAgents(agents.toJS(), rank, specialist);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
   const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
   const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (checkArmory() ? 1 : 0);

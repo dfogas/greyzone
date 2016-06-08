@@ -11,10 +11,10 @@ import allAgents from '../lib/allagents';
 import {Link} from 'react-router';
 
 import PlayersWindow from './playerswindow/players.window.react';
-import AgentsWindow from './agentswindow/agentswindow.react';
+import AgentsWindow from './agentswindow/agents.window.react';
 import StatusesWindow from './statuseswindow/statuses.window.react';
 import OptionsWindow from './optionswindow/options.window.react';
-import MissionsWindow from './missionswindow/missionswindow.react';
+import MissionsWindow from './missionswindow/missions.window.react';
 import CountryStatsWindow from './countrieswindow/countrystatswindow.react';
 import ContestWindow from './contestwindow/contestwindow.react';
 import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
@@ -87,7 +87,7 @@ class DashboardScreen extends Component {
       tutorialActions.firstMissionSetup();
     // else
     //   // just placeholder
-    //   console.log('selection of campaigns not done yet.'); 
+    //   console.log('selection of campaigns not done yet.');
   }
 
   render() {

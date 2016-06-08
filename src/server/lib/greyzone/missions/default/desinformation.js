@@ -1,6 +1,8 @@
 /* eslint camelcase: 0 */
 import {puppet, improv_st, decipher, hide, improv_op} from '../actions';
 
+const tag = 'desinformation';
+
 const Desinformation = [{
     title: 'Desinformation',
     tasks: [
@@ -16,7 +18,8 @@ const Desinformation = [{
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
-    tier: 1
+    tier: 1,
+    tag: tag
   }, {
     title: 'Desinformation',
     tasks: [
@@ -32,7 +35,8 @@ const Desinformation = [{
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
-    tier: 2
+    tier: 2,
+    tag: tag
   }, {
     title: 'Desinformation',
     tasks: [
@@ -49,7 +53,8 @@ const Desinformation = [{
     },
     imgsrc: 'marceullus.jpg',
     agentLimit: 1,
-    tier: 3
+    tier: 3,
+    tag: tag
   // }, {
   //   title: 'Desinformation',
   //   tasks: [

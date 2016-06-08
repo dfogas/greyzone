@@ -1,7 +1,7 @@
 /*
   Dumb Component
 */
-import './actualmissioncard.styl';
+import './actual.missioncard.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,12 +11,12 @@ import MissionTitle from '../../mission/missioncard/missiontitle.react';
 import Task from '../../mission/missioncard/tasks/task.react';
 import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
 import AgentAssignment from './agentassignment.react';
-import MissionThumbnail from './missionthumbnail.react';
+import MissionThumbnail from './mission.thumbnail.react';
 // import MissionClock from './mission.clock.react';
 
 class ActualMissionCard extends Component {
   render() {
-    const {activemission, agents} = this.props;
+    const {activemission, agents, components} = this.props;
     const agentlimit = activemission.get('agentLimit');
     const tasks = activemission.get('tasks');
     const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
@@ -50,6 +50,8 @@ class ActualMissionCard extends Component {
       <div className={'mission-card actual'}>
         <MissionThumbnail
           imgsrc={imgsrc}
+          missiontag={activemission.get('tag')}
+          thumbnailtext={components.getIn(['briefing', 'missionthumbnail', 'text'])}
           />
         <div id='ActualMissionTasks'>
           {actualmissiontasks}
@@ -81,7 +83,8 @@ class ActualMissionCard extends Component {
 
 ActualMissionCard.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  agents: React.PropTypes.instanceOf(immutable.List)
+  agents: React.PropTypes.instanceOf(immutable.List),
+  components: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default ActualMissionCard;

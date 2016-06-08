@@ -1,4 +1,4 @@
-import BriefingScreen from '../briefing/briefingscreen.react';
+import BriefingScreen from '../briefing/briefing.screen.react';
 import DocumentTitle from 'react-document-title';
 import Component from '../components/component.react';
 import React from 'react';

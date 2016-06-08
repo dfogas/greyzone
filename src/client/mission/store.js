@@ -7,6 +7,8 @@ import defaultActiveMission from '../../server/lib/greyzone/missions/default/def
 import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bookobscurity';
 import Agent from '../../server/lib/greyzone/agents.generator';
+import noDoubleAgents from '../lib/nodoubleagents';
+import allAgents from '../lib/allagents';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -102,7 +104,7 @@ export const dispatchToken = register(({action, data}) => {
     if (Object.keys(results).indexOf('agentRecruited') !== -1)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .update('agents', val => val.push(immutable.fromJS(Agent(data.mission.getIn(['rewards', 'character']), data.mission.get() <= 3 ? data.mission.get('tier') + 1 : data.mission.get('tier') + 2))));
+          .update('agents', val => val.push(immutable.fromJS(noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get() <= 3 ? data.mission.get('tier') + 1 : data.mission.get('tier') + 2, data.mission.getIn(['rewards', 'character'])))));
       });
   }
 

@@ -3,12 +3,23 @@ import * as dicesActions from '../../dice/actions';
 import * as missionActions from '../../../actions';
 import Component from '../../../../components/component.react.js';
 import React from 'react';
+import $ from 'jquery';
+import Sound from '../../../../lib/sound';
 
 class ActionButton extends Component {
   action() {
     const {agentlock, diceslock, missionStarted} = this.props;
-    if (!missionStarted)
+    // POC: sound effect
+    let mySound = new Sound('http://localhost:8000/assets/audio/airwrench.mp3');
+    if (!missionStarted) {
+      $('#TableTop').append('<div id=\'MissionStartMessage\'>Mission Started</div>');
+      $('#MissionStartMessage').hide().fadeIn(200);
+      $('#MissionStartMessage').fadeOut(1000, () => $('#MissionStartMessage').remove());
       missionActions.start();
+      mySound.play();
+      missionActions.agentLockedToTask();
+    }
+
 
     if (!diceslock && missionStarted)
       dicesActions.rollAll();

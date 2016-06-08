@@ -3,8 +3,8 @@ import config from './config';
 import express from 'express';
 import frontend from './frontend';
 import morgan from 'morgan';
-// import {Server} from 'https';
-import {Server} from 'http';
+import https from 'https';
+import http from 'http';
 import fs from 'fs';
 import ioServer from 'socket.io';
 import Mission from './lib/greyzone/mission.generator';
@@ -24,9 +24,7 @@ const options = {
 };
 
 const app = express();
-// const server = process.env.NODE_ENV === 'development' ? Server(app) : secureServer(options, app);
-// const server = Server(options, app); https Server
-const server = Server(app);
+const server = process.env.NODE_ENV === 'development' ? http.createServer(app) : https.createServer(options, app); // can't test production before deployment, anyway, beat it
 const io = ioServer(server);
 
 app.use(config.apipath, api);
