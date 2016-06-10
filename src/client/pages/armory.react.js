@@ -3,7 +3,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 
-import ArmoryScreen from '../agents/armoryscreen.react';
+import ArmoryScreen from '../agents/armory.screen.react';
 import DocumentTitle from 'react-document-title';
 
 class Armory extends Component {

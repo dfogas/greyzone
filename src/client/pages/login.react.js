@@ -1,3 +1,4 @@
+import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import DocumentTitle from 'react-document-title';
 import LoginForm from '../auth/login.react';
@@ -9,6 +10,7 @@ import immutable from 'immutable';
 import GSSigil from '../app/gs.sigil.react';
 import LoginMessage from '../auth/login.message.react';
 import WelcomeWindow from '../dashboard/welcome.window.react';
+import ABigScreen from '../introduction/a.big.screen.react';
 
 class Login extends Component {
 
@@ -20,14 +22,22 @@ class Login extends Component {
           <Link to='signup'>
             <button id='LoginToSignup'>Sign Up</button>
           </Link>
-          <Link to='intro'>
-            <button id='LoginToIntro'>About</button>
+          <Link to='about'>
+            <button id='LoginToIntro'>Introduction</button>
           </Link>
           <GSSigil />
           <LoginMessage />
           <LoginForm {...this.props} />
+          <button
+            id='LoginDevNoticeButton'
+            onClick={(e) => componentsActions.devNoticeToggle()}>Developers notice</button>
+          <button
+            id='LoginBigScreenButton'
+            onClick={(e) => componentsActions.bigScreenToggle()}>Big Screen</button>
           {jsonapi.getIn(['components', 'login', 'devnotice']) &&
             <WelcomeWindow />}
+          {jsonapi.getIn(['components', 'login', 'bigscreen']) &&
+            <ABigScreen />}
         </div>
       </DocumentTitle>
     );

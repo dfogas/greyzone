@@ -3,7 +3,7 @@ import config from './config';
 import express from 'express';
 import frontend from './frontend';
 import morgan from 'morgan';
-import https from 'https';
+// import https from 'https';
 import http from 'http';
 import fs from 'fs';
 import ioServer from 'socket.io';
@@ -15,35 +15,17 @@ const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
 const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
 // const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
 //
-const options = {
-  key: gskey,
-  cert: gscert,
-  // ca: gsca,
-  requestCert: false,
-  rejectUnauthorized: false
-};
+// const options = {
+//   key: gskey,
+//   cert: gscert,
+//   // ca: gsca,
+//   requestCert: false,
+//   rejectUnauthorized: false
+// };
 
 const app = express();
-const server = process.env.NODE_ENV === 'development' ? http.createServer(app) : https.createServer(options, app); // can't test production before deployment, anyway, beat it
-const io = ioServer(server);
 
 app.use(config.apipath, api);
-
-io.on('connection', (socket) => {
-  console.log('user has connected');
-  socket.on('mission', function(msg) {
-
-    if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
-      console.log('Agents spotted. New Mission in Briefing room - Discovered!');
-      let mission = Mission('Discovered!', 3, 10 * 60 * 1000, true);
-      mission.inCountry = msg.inCountry;
-      socket.emit('new mission', mission);
-    }
-  });
-
-  // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
-});
-
 
 if (!config.isProduction)
   app.use(morgan('dev'));
@@ -61,9 +43,29 @@ app.use((err, req, res, next) => {
   res.status(500).send('500: ' + msg);
 });
 
+// const server = process.env.NODE_ENV === 'development' ? http.createServer(app) : https.createServer(options, app); // can't test production before deployment, anyway, beat it
+const server = http.createServer(app);
+const io = ioServer(server);
+
+io.on('connection', (socket) => {
+  console.log('user has connected');
+  socket.on('mission', function(msg) {
+
+    if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
+      console.log('Agents spotted. New Mission in Briefing room - Discovered!');
+      let mission = Mission('Discovered!', 3, 10 * 60 * 1000, true);
+      mission.inCountry = msg.inCountry;
+      socket.emit('new mission', mission);
+    }
+  });
+
+  // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
+});
+
 // ..aAand running server
 server.listen(config.port, () => {
   console.log('Server started at port %s', config.port);
+  // TODO: přidat check na https server
 });
 
 // necessity for server API test hook

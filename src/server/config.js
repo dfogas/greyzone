@@ -9,7 +9,7 @@ var config = {
   apipath: '/api/v1',
   appLocales: ['en', 'cz'],
   dataserverlog: process.env.NODE_ENV === 'production' ?
-    'ds00000.mlab.com' :
+    'ds055852.mlab.com' :
     process.env.NODE_ENV ?
     'mongodb://localhost:27017/mbase' :
     // for API test
@@ -21,7 +21,7 @@ var config = {
     // for API test
     'mongodb://localhost:27017/mtest',
   defaultLocale: 'en',
-  dns: process.env.NODE_ENV === 'production' ? 'http://www.ghoststruggle.com' :
+  dns: process.env.NODE_ENV === 'production' ? 'http://www.ghostsstruggle.com' :
     'http://localhost:8000',
   googleAnalyticsId: 'UA-77300811-1',
   isProduction: process.env.NODE_ENV === 'production',

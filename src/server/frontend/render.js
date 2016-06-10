@@ -99,7 +99,6 @@ function getPageHtml(Handler, appState) {
       var URL_SERVER;
       URL_SERVER = '${urlServer}';
       var socket = io.connect(URL_SERVER);
-      console.log('socket is' + socket);
     </script>`;
 
   const title = DocumentTitle.rewind();

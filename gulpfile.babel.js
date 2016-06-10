@@ -11,6 +11,7 @@ import yargs from 'yargs';
 
 const args = yargs
   .alias('p', 'production')
+  // .alias('d', 'deployment')
   .argv;
 
 gulp.task('env', () => {

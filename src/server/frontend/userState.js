@@ -4,6 +4,9 @@
 
   here should not go player state but the whole game state as
   game property
+
+  fetch calls are possible, though, I have a suspicion that
+  they slow down loading of the page
 */
 
 import config from '../config';
@@ -88,7 +91,8 @@ export default function userState() {
       gameContacts: 0,
       components: {
         login: {
-          devnotice: true
+          bigscreen: true,
+          devnotice: false
         }
       },
       missions: [],

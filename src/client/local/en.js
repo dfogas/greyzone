@@ -10,6 +10,20 @@ import missionDescriptionsMsg from './en/mission.description.msg';
 import tutorialMsg from './en/tutorial.msg';
 
 const ENGLISH = {
+  about: {
+    message: `<p>Ghost Struggle is a non-trivial, non-clicker game for aspiring masterminds, that simply works.</p>
+      <p>Theme is - contemporary world of hidden organizations, illegal, in their actions not always
+      criminal, though.</p>
+      <p> Designed with Player experience in mind, intended to be played repeatedly and while there
+      are some scripted sequences, <br />the game should through its mechanisms introduce new story each time
+      that it is played.</p>
+      <p>Game is playable freely but with some features not avaiable to not-paying players.</p>
+      <p>The game itself is dependent on random events and is quite hard to finish - successfully finish, <br />bad ends are abundant.</p>
+      <p>There are purchaseable expansions to game labeled as campaings, that expand gameplay
+      significantly.</p>
+      <p>Interaction with other players will be possible in later stages.</p>`,
+    title: `About the game`
+  },
   app: {
     madeByHtml: `Este v9.2 from <a href="https://twitter.com/steida">steida</a>`
   },
@@ -77,7 +91,7 @@ const ENGLISH = {
         </ul>
       </p>
       <p>
-        Recommended is reading Gameplay/Introduction section of About/Help before starting of your game.
+        Recommended is reading Gameplay/Introduction section of About/Help before starting of your game, which is available once you log in.
       </p>
       <h3>Disclaimer</h3>
       <p>

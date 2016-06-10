@@ -1,4 +1,4 @@
-import './armoryscreen.styl';
+import './armory.screen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';

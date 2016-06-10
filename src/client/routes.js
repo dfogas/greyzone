@@ -4,7 +4,7 @@ import NotFound from './pages/notfound.react';
 import React from 'react';
 import {DefaultRoute, NotFoundRoute, Route} from 'react-router';
 
-// that's mine
+import About from './pages/about.react';
 import Armory from './pages/armory.react';
 import Briefing from './pages/briefing.react';
 import Command from './pages/command.react';
@@ -24,6 +24,7 @@ export default (
     <DefaultRoute handler={Dashboard} name="dashboard" />
     <NotFoundRoute handler={NotFound} name="not-found" />
     <Route handler={Login} name="login" />
+    <Route handler={About} name="about" />
     <Route handler={Armory} name="armory" />
     <Route handler={Briefing} name="briefing" />
     <Route handler={Command} name="command" />
