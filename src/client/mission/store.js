@@ -104,7 +104,7 @@ export const dispatchToken = register(({action, data}) => {
     if (Object.keys(results).indexOf('agentRecruited') !== -1)
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .update('agents', val => val.push(immutable.fromJS(noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get() <= 3 ? data.mission.get('tier') + 1 : data.mission.get('tier') + 2, data.mission.getIn(['rewards', 'character'])))));
+          .update('agents', val => val.push(immutable.fromJS(noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get('tier'), data.mission.getIn(['rewards', 'character'])))));
       });
   }
 

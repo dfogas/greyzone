@@ -15,6 +15,7 @@ import 'isomorphic-fetch';
 
 // import Footer from './footer.react';
 // import Menu from './menu.react';
+import BackgroundMusic from './background.music.react';
 
 // Remember to import all app stores here.
 import '../intl/store';
@@ -93,8 +94,10 @@ class App extends Component {
 
   render() {
     React.initializeTouchEvents(true);
+
     return (
       <div className="page">
+        <BackgroundMusic />
         {/*<Menu viewer={this.state.viewer} />*/}
         {/*<Menu
           locales={this.state.i18n.get('locales')}

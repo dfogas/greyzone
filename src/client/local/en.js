@@ -14,7 +14,7 @@ const ENGLISH = {
     message: `<p>Ghost Struggle is a non-trivial, non-clicker game for aspiring masterminds, that simply works.</p>
       <p>Theme is - contemporary world of hidden organizations, illegal, in their actions not always
       criminal, though.</p>
-      <p> Designed with Player experience in mind, intended to be played repeatedly and while there
+      <p> Designed with player experience in mind, intended to be played repeatedly and while there
       are some scripted sequences, <br />the game should through its mechanisms introduce new story each time
       that it is played.</p>
       <p>Game is playable freely but with some features not avaiable to not-paying players.</p>

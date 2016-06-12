@@ -100,6 +100,14 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'country'], 'random');
     });
 
+  if (action === dashboardActions.dashboardIntroToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'strategical', 'intro']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .setIn(['dashboard', 'strategical', 'intro'], !toggle);
+    });
+  }
+
   if (action === dashboardActions.displayGameEndStatistics)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -207,10 +215,30 @@ export const dispatchToken = register(({action, data}) => {
         .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
+  if (action === dashboardActions.selectAgent)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'agentondisplay'], data.agent);
+    });
+
   if (action === dashboardActions.selectAgentOnDisplay)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'agentondisplay'], data.agent);
+    });
+
+  if (action === dashboardActions.statusesIntroToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'statuses', 'intro']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'statuses', 'intro'], !toggle);
+    });
+  }
+
+  if (action === dashboardActions.statusTierSelect)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'statuses', 'tierdisplayed'], data.tier);
     });
 
   if (action === dashboardActions.updateFormField)

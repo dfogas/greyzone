@@ -8,6 +8,7 @@ import agentIncurDelay from '../lib/agentincurdelay';
 import agentRankup from '../lib/agentrankup';
 import leadershipcheck from '../lib/leadershipcheck';
 import trainingtable from '../../server/lib/greyzone/trainingtable';
+import $ from 'jquery';
 
 export function toArmory(agent) {
   dispatch(toArmory, {message: agent});
@@ -42,9 +43,9 @@ export function equip(equipment) {
   const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(equipment.get('name')) !== -1;
   if (!hasAlready) {
     dispatch(equip, equipment);
-    dispatch(logArmory, {message: 'Agent equipped.'});
+    logArmory('Agent equipped.');
   }
-  else dispatch(logArmory, {message: 'Agent has this equipment already.'});
+  else logArmory('Agent already has this equipment.');
 }
 
 export function getRank(agent) {
@@ -54,7 +55,7 @@ export function getRank(agent) {
   if (leadershipcheck(agent.get('rank'), enhancementnames))
     dispatch(getRank, agentRankup(trainingtable, 7, agent));
   else
-    dispatch(logArmory, {message: 'You must upgrade your training facility to train agent further.'});
+    logArmory('Upgrade training facility.');
 }
 
 export function honorAgent(agent) {
@@ -62,7 +63,10 @@ export function honorAgent(agent) {
 }
 
 export function logArmory(message) {
-  dispatch(logArmory, {message});
+  // divné checky ale hláška s povyšováním může být i v Briefingu, tož tak TODO:
+  $('#ArmoryScreen').append(`<div id='ArmoryMessage'>${message}</div>`);
+  $('#ArmoryMessage').hide().fadeIn(400);
+  $('#ArmoryMessage').fadeOut(1200, () => $('#ArmoryMessage').remove());
 }
 
 export function setETA(agent, equipment) {

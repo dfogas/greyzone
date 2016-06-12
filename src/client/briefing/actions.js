@@ -4,6 +4,7 @@ import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import pickAgentForFatal from '../lib/pickagentforfatal';
 import obscurityMissionCheck from '../lib/obscuritymissioncheck';
+import $ from 'jquery';
 
 export function assignMission(agent) {
   /* pokud je agent unavený např. z předchozí mise */
@@ -13,9 +14,9 @@ export function assignMission(agent) {
   const activemissionlimit = jsonapiCursor(['activemission', 'agentLimit']);
 
   if (totalmissionagents === activemissionlimit)
-    dispatch(logBriefing, {message: 'Mission agent limit already reached.'});
+    logBriefing('Mission agent limit already reached.');
   else if (agent.get('ETA') - Date.now() > 0)
-    dispatch(logBriefing, {message: 'Agent is tired from previous mission and can\'t be assigned to mission until later.'});
+    logBriefing('Agent is tired.');
   else
     dispatch(assignMission, {message: agent});
 }
@@ -40,7 +41,9 @@ export function checkFatalities(results) {
 }
 
 export function logBriefing(message) {
-  dispatch(logBriefing, message);
+  $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);
+  $('#BriefingMessage').hide().fadeIn(400);
+  $('#BriefingMessage').fadeOut(1200, () => $('#BriefingMessage').remove());
 }
 
 export function missionTextToggle() {
@@ -68,18 +71,18 @@ export function selectMission(mission) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const countrystats = jsonapiCursor(['countrystats']);
   if (agentontask)
-    dispatch(logBriefing, {message: 'Agent is on task, remove her from there before selecting new mission.'});
+    logBriefing('Agent is on task, move her back.');
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
     dispatch(passMission, {message: mission});
-    dispatch(setDefaultAfterExpired, {});
+    logBriefing('Time expired.', () => {
+      dispatch(setDefaultAfterExpired, {});
+    });
     if (mission.get('forcefail')) {
       dispatch(bookLosses, {mission});
       checkFatalities({results: mission.get('losses').toJS()});
     }
   } else if (!obscurityMissionCheck(mission, countrystats))
-    dispatch(logBriefing, {
-      message: `The selected mission will not start, because either success or failure in the mission would bring obscurity in the country under 0.`
-    });
+    logBriefing(`Mission won't start, obscurity is not high enough.`);
   else dispatch(selectMission, {mission});
 }
 

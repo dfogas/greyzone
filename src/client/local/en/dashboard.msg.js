@@ -32,6 +32,12 @@ const dashboardMsg = {
         tired: 'Tired'
       }
     },
+    intro: {
+      miyako: `Boss, I prepared this interface for you, so that you can manage our operations
+        effectively. Let me know, when I can do anything else for you.`,
+      sanya: `Hey, so this is where you - brainiac - keep things organized. Cool,
+        wake me up when you got something figured out...`
+    },
     log: {
       clear: 'Clear Log',
       load: 'Load Log',
@@ -42,6 +48,18 @@ const dashboardMsg = {
         acceptMission: 'Accept'
       }
     },
+    missionresult: {
+      fail: {
+        operative: ``,
+        technician: ``,
+        spy: ``
+      },
+      success: {
+        operative: ``,
+        technician: ``,
+        spy: `<div `
+      }
+    },
     special: {
       prisonbreak: {
         button: 'Prison Break!',
@@ -50,6 +68,17 @@ const dashboardMsg = {
     }
   },
   statuses: {
+    intro: {
+      textHtml: `
+        A group of wealthy and classy people passes you by. A memory of how you spent
+        sucking up to your rich peers passes your mind.
+        Since you have much wider range of capabilities now, you wonder,
+        how much of this 'dolce vita' life can you claim for yourself
+        without giving yourself up to legal enforcement.
+        It didn't take you long to realize, that this is something you always
+        wanted...
+      `
+    },
     window: {
       label: `Statuses`
     }

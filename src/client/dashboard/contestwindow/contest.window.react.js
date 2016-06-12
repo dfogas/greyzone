@@ -1,5 +1,5 @@
 import './gemini-scrollbar.css';
-import './contestwindow.styl';
+import './contest.window.styl';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';

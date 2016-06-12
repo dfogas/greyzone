@@ -7,6 +7,8 @@ import immutable from 'immutable';
 import AgentHireForm from './agenthire.form.react';
 import AgentsList from './agents.list.react';
 import AgentOnDisplay from './agentondisplay.react';
+import AgentShiftLeft from './shift.left.react';
+import AgentShiftRight from './shift.right.react';
 
 class AgentsWindow extends Component {
 
@@ -16,10 +18,10 @@ class AgentsWindow extends Component {
 
     return (
       <div id='AgentsWindow'>
-        <AgentHireForm
+        {/*<AgentHireForm
           agenthire={agenthire}
           agentspricelist={agentspricelist}
-          />
+          />*/}
         <div id='AgentsWindowMessage'>
           {agentlog}
         </div>
@@ -31,10 +33,18 @@ class AgentsWindow extends Component {
           options={options}
           self={self}
           />
+        <AgentShiftLeft
+          agentondisplay={agentondisplay}
+          agents={agents}
+          />
         {agentondisplay &&
           <AgentOnDisplay
             agentondisplay={agentondisplay}
             />}
+        <AgentShiftRight
+          agentondisplay={agentondisplay}
+          agents={agents}
+          />
       </div>
     );
   }

@@ -16,7 +16,7 @@ class About extends Component {
             onClick={(e) => window.history.back()}>Back</button>
         </div>
       </DocumentTitle>
-    )
+    );
   }
 }
 

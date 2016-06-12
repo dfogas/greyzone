@@ -1,4 +1,4 @@
-import './countrystatswindow.styl';
+import './countrystats.window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';

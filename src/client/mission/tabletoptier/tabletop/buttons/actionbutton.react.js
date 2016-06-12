@@ -20,7 +20,6 @@ class ActionButton extends Component {
       missionActions.agentLockedToTask();
     }
 
-
     if (!diceslock && missionStarted)
       dicesActions.rollAll();
 

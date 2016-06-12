@@ -7,7 +7,7 @@ import cconfig from '../client.config';
 import MissionsList from '../../server/lib/greyzone/missions.list';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
-import StatusesList from '../../server/lib/greyzone/status.list';
+import StatusesList from '../../server/lib/greyzone/statuses.list';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
@@ -101,6 +101,10 @@ export function clearAgentHireFields() {
 
 export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
+}
+
+export function dashboardIntroToggle() {
+  dispatch(dashboardIntroToggle, {});
 }
 
 export function displayGameEndStatistics() {
@@ -227,8 +231,20 @@ export function saveAgent(agent) {
   }
 }
 
+export function selectAgent(agent) {
+  dispatch(selectAgent, {agent});
+}
+
 export function selectAgentOnDisplay(agent) {
   dispatch(selectAgentOnDisplay, {agent});
+}
+
+export function statusesIntroToggle() {
+  dispatch(statusesIntroToggle, {});
+}
+
+export function statusTierSelect(tier) {
+  dispatch(statusTierSelect, {tier});
 }
 
 export function updateFormField({name, value}, context) {
@@ -255,6 +271,7 @@ setToString('dashboard', {
   changeMissionOption,
   clearAgentHireFields,
   clearMissionAcceptFields,
+  dashboardIntroToggle,
   displayGameEndStatistics,
   goodEndRich,
   hireAgent,
@@ -270,7 +287,10 @@ setToString('dashboard', {
   sanitizeAgents,
   sanitizeMissions,
   saveAgent,
+  selectAgent,
   selectAgentOnDisplay,
+  statusesIntroToggle,
+  statusTierSelect,
   updateFormField,
   upgradeEnhancement
 });

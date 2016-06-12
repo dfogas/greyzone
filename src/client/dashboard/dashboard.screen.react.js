@@ -15,8 +15,8 @@ import AgentsWindow from './agentswindow/agents.window.react';
 import StatusesWindow from './statuseswindow/statuses.window.react';
 import OptionsWindow from './optionswindow/options.window.react';
 import MissionsWindow from './missionswindow/missions.window.react';
-import CountryStatsWindow from './countrieswindow/countrystatswindow.react';
-import ContestWindow from './contestwindow/contestwindow.react';
+import CountryStatsWindow from './countrieswindow/countrystats.window.react';
+import ContestWindow from './contestwindow/contest.window.react';
 import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
 import LogWindow from './logwindow/log.window.react';
@@ -25,6 +25,7 @@ import ScreenPlastic from '../tutorial/screen.plastic.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
 import CampaignIntro from '../tutorial/campaign.intro.react';
+import StrategicalIntro from './strategical.intro.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -35,7 +36,6 @@ import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
 
 // pointers
-import AchievementPointer from './pointers/achievements.pointer.react';
 import ContestPointer from './pointers/contest.pointer.react';
 import EnhancementsPointer from './pointers/enhancements.pointer.react';
 import LogPointer from './pointers/log.pointer.react';
@@ -145,16 +145,18 @@ class DashboardScreen extends Component {
             />}
         {!jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToBriefing />}
+        {!dashboard.getIn(['strategical', 'intro']) &&
+          <StrategicalIntro
+            jsonapi={jsonapi}
+            />}
         <DashboardToCommand />
         <DashboardToIntro />
-        {jsonapi.getIn(['activemission', 'started']) &&
-          <DashboardToMission />}
-        {/*<AchievementPointer />*/}
         <ContestPointer />
         <EnhancementsPointer />
         <LogPointer />
         <OptionsPointer />
-        <StatusesPointer />
+        {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
+          <StatusesPointer />}
         <StrategicalPointer />
         {isLoggedIn &&
           <Logout />}
@@ -212,8 +214,9 @@ class DashboardScreen extends Component {
             <ContestWindow
               contest={contest}
             />}
-          {dashPointer === 'statuses' &&
+          {dashPointer === 'statuses' && jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
             <StatusesWindow
+              dashboard={jsonapi.get('dashboard')}
               owned={statusesowned}
               statuses={statusestotal}
             />}

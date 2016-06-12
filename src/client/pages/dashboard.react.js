@@ -5,6 +5,7 @@ import immutable from 'immutable';
 import DocumentTitle from 'react-document-title';
 import DashboardScreen from '../dashboard/dashboard.screen.react';
 import DashboardToMission from '../navs/dashboardtomission.react.js';
+import MissionTalk from '../dashboard/missiontalk/mission.talk.react';
 import requireAuth from '../auth/requireauth.react';
 import {msg} from '../intl/store';
 
@@ -29,6 +30,10 @@ class Dashboard extends Component {
         <div className="dashboard-page">
           <div id='DashboardScreen'>
             <DashboardToMission />
+            <MissionTalk
+              activemission={jsonapi.get('activemission')}
+              self={jsonapi.get('self')}
+              />
           </div>
         </div>}
       </DocumentTitle>

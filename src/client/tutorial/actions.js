@@ -35,7 +35,7 @@ export function firstMissionSetup() {
       .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(immutable.fromJS(Miyako), FirstMission.getIn(['tasks', 0]))))
       .setIn(['rewards', 'character'], self.get('specialist') === 'spy' ? 'operative' : 'spy');
 
-  mission = mission.set('started', true);
+  mission = mission.set('started', true).set('tier', 3);
   dispatch(firstMissionSetup, {mission});
 }
 

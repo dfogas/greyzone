@@ -21,7 +21,7 @@ import CountryList from '../lib/greyzone/country.list';
 import EnhancementList from '../lib/greyzone/enhancement.list';
 import EquipmentList from '../lib/greyzone/equipments.list';
 import OptionsList from '../lib/greyzone/options.list';
-import StatusList from '../lib/greyzone/status.list';
+import StatusList from '../lib/greyzone/statuses.list';
 
 export default function userState() {
 

@@ -26,7 +26,7 @@ class BigScreen extends Component {
         tabIndex='1'>
         <div id='ABigScreenContinueMessage'>Press 'Enter' to continue</div>
       </div>
-    )
+    );
   }
 }
 

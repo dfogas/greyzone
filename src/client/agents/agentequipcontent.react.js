@@ -67,7 +67,7 @@ class AgentEquipContent extends Component {
           equipments={equipmentsstealth}
           stock='stealth'
           />
-        <div id='ArmoryMessage'>
+        <div id='ArmoryLogMessage'>
           Message : {armorymessage}
         </div>
       </div>

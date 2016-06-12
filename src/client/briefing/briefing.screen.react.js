@@ -92,9 +92,9 @@ class BriefingScreen extends Component {
             jsonapi={jsonapi}
             pendingActions={pendingActions}
             />
-          <div id='BriefingMessage'>
-            Message: {briefingmessage}
-          </div>
+          {/*<div id='BriefingLogMessage'>
+            Message:  {briefingmessage}
+          </div>*/}
         </div>
       </DocumentTitle>
     );
