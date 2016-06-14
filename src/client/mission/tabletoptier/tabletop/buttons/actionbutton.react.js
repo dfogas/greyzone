@@ -10,7 +10,7 @@ class ActionButton extends Component {
   action() {
     const {agentlock, diceslock, missionStarted} = this.props;
     // POC: sound effect
-    let mySound = new Sound('http://localhost:8000/assets/audio/airwrench.mp3');
+    let mySound = new Sound('http://localhost:8000/assets/audio/MissionStart.mp3');
     if (!missionStarted) {
       $('#TableTop').append('<div id=\'MissionStartMessage\'>Mission Started</div>');
       $('#MissionStartMessage').hide().fadeIn(200);

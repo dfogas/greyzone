@@ -2,6 +2,7 @@
 /*Equipment Actions*/
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
+import Sound from '../lib/sound';
 import {jsonapiCursor} from '../state';
 
 import equipmentUseCheck from '../lib/equipmentusecheck';
@@ -40,8 +41,12 @@ export function sell(equipment) {
 export function use(agent, agentequipmentandindex) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) {
-    if (agent.get('name') === agentontask.get('name'))
+    if (agent.get('name') === agentontask.get('name')) {
+      let mySound = new Sound('http://localhost:8000/assets/audio/airwrench.mp3');
+      if (agentequipmentandindex.agentequipment.name === 'Custom Tools')
+        mySound.play();
       dispatch(use, agentequipmentandindex);
+    }
   } else {
     dispatch(noeffect, agentequipmentandindex);
     dispatch(logMissionFromEquipments, {message: `Darn it! It didn't work!`});
