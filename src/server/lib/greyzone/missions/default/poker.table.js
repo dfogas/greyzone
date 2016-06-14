@@ -16,7 +16,7 @@ const PokerTable = [{
     losses: {
       gameCash: 2500
     },
-    imgsrc: 'poker_table.jpg',
+    imgsrc: 'PokerTable.jpg',
     agentLimit: 2,
     tier: 1,
     tag: tag
@@ -34,7 +34,7 @@ const PokerTable = [{
     losses: {
       gameCash: 12500
     },
-    imgsrc: 'poker_table.jpg',
+    imgsrc: 'PokerTable.jpg',
     agentLimit: 2,
     tier: 2,
     tag: tag
@@ -52,7 +52,7 @@ const PokerTable = [{
     losses: {
       gameCash: 62500
     },
-    imgsrc: 'poker_table.jpg',
+    imgsrc: 'PokerTable.jpg',
     agentLimit: 2,
     tier: 3,
     tag: tag

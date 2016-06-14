@@ -18,7 +18,7 @@ let AgentInTrouble = [{
     gameCash: 1000,
     gameContacts: 25
   },
-  imgsrc: 'chinese.jpg',
+  imgsrc: 'AgentInTrouble.jpg',
   agentLimit: 2,
   tier: 1,
   tag: tag
@@ -38,7 +38,7 @@ let AgentInTrouble = [{
     gameContacts: 50,
     gameCash: 2000
   },
-  imgsrc: 'chinese.jpg',
+  imgsrc: 'AgentInTrouble.jpg',
   agentLimit: 2,
   tier: 2,
   tag: tag
@@ -58,7 +58,7 @@ let AgentInTrouble = [{
     gameContacts: 75,
     gameCash: 3000
   },
-  imgsrc: 'chinese.jpg',
+  imgsrc: 'AgentInTrouble.jpg',
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -79,7 +79,7 @@ let AgentInTrouble = [{
     gameContacts: 175,
     gameCash: 25000
   },
-  imgsrc: 'chinese.jpg',
+  imgsrc: 'AgentInTrouble.jpg',
   agentLimit: 2,
   tier: 4,
   tag: tag
@@ -100,7 +100,7 @@ let AgentInTrouble = [{
     gameContacts: 375,
     gameCash: 50000
   },
-  imgsrc: 'chinese.jpg',
+  imgsrc: 'AgentInTrouble.jpg',
   agentLimit: 2,
   tier: 5,
   tag: tag

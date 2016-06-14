@@ -17,7 +17,7 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 2500
     },
-    imgsrc: 'chinese.jpg',
+    imgsrc: 'ConnectionsMap.jpg',
     agentLimit: 3,
     tier: 1,
     tag: tag
@@ -35,7 +35,7 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 12500
     },
-    imgsrc: 'chinese.jpg',
+    imgsrc: 'ConnectionsMap.jpg',
     agentLimit: 3,
     tier: 2,
     tag: tag
@@ -54,7 +54,7 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 62500
     },
-    imgsrc: 'chinese.jpg',
+    imgsrc: 'ConnectionsMap.jpg',
     agentLimit: 3,
     tier: 3,
     tag: tag

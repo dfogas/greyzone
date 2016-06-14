@@ -19,7 +19,7 @@ const AnOldDebt = [{
     agentKilled: true,
     reputation: 250
   },
-  imgsrc: '',
+  imgsrc: 'OldDebt.jpg',
   agentLimit: 1,
   tier: 3,
   tag: tag
@@ -30,7 +30,7 @@ const AnOldDebt = [{
     [hit, hit, close_combat],
     [improv_st, improv_st, infiltrate]
   ],
-  inCountry: '',
+  inCountry: 'OldDebt.jpg',
   rewards: {
     agentLoyal: true,
     gameContacts: 50
@@ -51,7 +51,7 @@ const AnOldDebt = [{
     [improv_st, improv_st, infiltrate],
     [hit, improv_op]
   ],
-  inCountry: '',
+  inCountry: 'OldDebt.jpg',
   rewards: {
     agentLoyal: true,
     gameContacts: 75

@@ -16,7 +16,7 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 200
     },
-    imgsrc: 'Heat-Movie.jpg',
+    imgsrc: 'DemonstrationOfPower.jpg',
     agentLimit: 2,
     tier: 1,
     tag: tag
@@ -34,7 +34,7 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 400
     },
-    imgsrc: 'Heat-Movie.jpg',
+    imgsrc: 'DemonstrationOfPower.jpg',
     agentLimit: 2,
     tier: 2,
     tag: tag
@@ -52,7 +52,7 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 1000
     },
-    imgsrc: 'Heat-Movie.jpg',
+    imgsrc: 'DemonstrationOfPower.jpg',
     agentLimit: 2,
     tier: 3,
     tag: tag

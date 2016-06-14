@@ -21,7 +21,7 @@ const BankRobbery = [{
     obscurity: 1,
     gameContacts: 1000
   },
-  imgsrc: 'bank_robbery_tb.jpg',
+  imgsrc: 'BankRobbery.jpg',
   agentLimit: 3,
   tier: 3,
   tag: tag
@@ -44,7 +44,7 @@ const BankRobbery = [{
     obscurity: 2,
     gameContacts: 500
   },
-  imgsrc: 'bank_robbery_tb.jpg',
+  imgsrc: 'BankRobbery.jpg',
   agentLimit: 3,
   tier: 4,
   tag: tag
@@ -56,7 +56,7 @@ const BankRobbery = [{
     [pursuit, pursuit, improv_op],
     [hide, hide, improv_st]
   ],
-  inCountry: 'bank_robbery_tb.jpg',
+  inCountry: 'BankRobbery.jpg',
   rewards: {
     gameCash: 7500000,
     reputation: 1000,

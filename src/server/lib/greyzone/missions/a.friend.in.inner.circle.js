@@ -18,7 +18,7 @@ const AFriendInInnerCircle = [{
     gameCash: 30000,
     reputation: 1500
   },
-  imgsrc: 'inner_circle_tb.jpg',
+  imgsrc: 'InnerCircle.jpg',
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -40,7 +40,7 @@ const AFriendInInnerCircle = [{
     obscurity: 0.5,
     reputation: 3000
   },
-  imgsrc: 'inner_circle_tb.jpg',
+  imgsrc: 'InnerCircle.jpg',
   agentLimit: 2,
   tier: 4,
   tag: tag
@@ -63,7 +63,7 @@ const AFriendInInnerCircle = [{
     reputation: 3000,
     obscurity: 1.5
   },
-  imgsrc: 'inner_circle_tb.jpg',
+  imgsrc: 'InnerCircle.jpg',
   agentLimit: 2,
   tier: 5,
   tag: tag

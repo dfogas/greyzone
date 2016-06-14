@@ -16,7 +16,7 @@ const Desinformation = [{
     losses: {
       obscurity: 0.05
     },
-    imgsrc: 'marceullus.jpg',
+    imgsrc: 'Desinformation.jpg',
     agentLimit: 1,
     tier: 1,
     tag: tag
@@ -33,7 +33,7 @@ const Desinformation = [{
     losses: {
       obscurity: 0.2
     },
-    imgsrc: 'marceullus.jpg',
+    imgsrc: 'Desinformation.jpg',
     agentLimit: 1,
     tier: 2,
     tag: tag
@@ -51,7 +51,7 @@ const Desinformation = [{
     losses: {
       obscurity: 0.8
     },
-    imgsrc: 'marceullus.jpg',
+    imgsrc: 'Desinformation.jpg',
     agentLimit: 1,
     tier: 3,
     tag: tag

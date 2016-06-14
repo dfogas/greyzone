@@ -17,7 +17,7 @@ const LayingLow = [{
   losses: {
     reputation: 50
   },
-  imgsrc: 'godfather_free_youtube.jpg',
+  imgsrc: 'LayingLow.jpg',
   agentLimit: 3,
   tier: 1,
   tag: tag
@@ -35,7 +35,7 @@ const LayingLow = [{
   losses: {
     reputation: 250
   },
-  imgsrc: 'godfather_free_youtube.jpg',
+  imgsrc: 'LayingLow.jpg',
   agentLimit: 3,
   tier: 2,
   tag: tag
@@ -54,7 +54,7 @@ const LayingLow = [{
   losses: {
     reputation: 1000
   },
-  imgsrc: 'godfather_free_youtube.jpg',
+  imgsrc: 'LayingLow.jpg',
   agentLimit: 3,
   tier: 3,
   tag: tag

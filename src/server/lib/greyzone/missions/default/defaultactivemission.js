@@ -23,7 +23,8 @@ const defaultActiveMission = {
     damageprotocol: false
   },
   started: false,
-  tag: 'quietbeforestorm'
+  tag: 'quietbeforestorm',
+  imgsrc: 'BeforeStorm.jpg'
 };
 
 export default defaultActiveMission;

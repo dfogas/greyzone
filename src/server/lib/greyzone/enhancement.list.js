@@ -223,25 +223,25 @@ const EnhancementList = [
   //   },
   //   type: 'operationsscope'
   // }, {
-    description: 'Mission Next On the Blacklist',
-    name: 'Puppeteering FBI',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }, {
-      name: '',
-      criteria: {
-        class: 'spy',
-        rank: 10
-      },
-      type: 'agent'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
-  }, {
+  //   description: 'Mission Next On the Blacklist',
+  //   name: 'Puppeteering FBI',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }, {
+  //     name: '',
+  //     criteria: {
+  //       class: 'spy',
+  //       rank: 10
+  //     },
+  //     type: 'agent'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
+  // }, {
   //   description: 'Mission Assasination',
   //   name: 'Augean Stables',
   //   prerequisites: [{
@@ -295,18 +295,18 @@ const EnhancementList = [
       contacts: 100
     },
     type: 'operationsscope'
-  }, {
-    description: 'Mission Protect Witness',
-    name: 'Repaying the favors',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
+  // }, {
+  //   description: 'Mission Silence Witness',
+  //   name: 'Repaying the favors',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
   }, {
     description: 'Mission In Inner Circle',
     name: 'Gala in Opera house',
@@ -319,18 +319,18 @@ const EnhancementList = [
       contacts: 100
     },
     type: 'operationsscope'
-  }, {
-    description: 'Mission Private Collection',
-    name: 'Boy with an Apple',
-    prerequisites: [{
-      name: 'Good Label',
-      type: 'enhancement'
-    }],
-    price: {
-      cash: 10000,
-      contacts: 100
-    },
-    type: 'operationsscope'
+  // }, {
+  //   description: 'Mission Private Collection',
+  //   name: 'Boy with an Apple',
+  //   prerequisites: [{
+  //     name: 'Good Label',
+  //     type: 'enhancement'
+  //   }],
+  //   price: {
+  //     cash: 10000,
+  //     contacts: 100
+  //   },
+  //   type: 'operationsscope'
   }, {
     description: 'Mission Destroy Evidence',
     name: 'You can\'t see me',

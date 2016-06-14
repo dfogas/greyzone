@@ -17,7 +17,7 @@ const MoneyChannelling = [{
   losses: {
     gameContacts: 10
   },
-  imgsrc: 'Sagesse.jpg',
+  imgsrc: 'MoneyChannelling.jpg',
   agentLimit: 3,
   tier: 1,
   tag: tag
@@ -35,7 +35,7 @@ const MoneyChannelling = [{
   losses: {
     gameContacts: 50
   },
-  imgsrc: 'Sagesse.jpg',
+  imgsrc: 'MoneyChannelling.jpg',
   agentLimit: 3,
   tier: 2,
   tag: tag
@@ -54,7 +54,7 @@ const MoneyChannelling = [{
   losses: {
     gameContacts: 250
   },
-  imgsrc: 'Sagesse.jpg',
+  imgsrc: 'MoneyChannelling.jpg',
   agentLimit: 3,
   tier: 3,
   tag: tag
