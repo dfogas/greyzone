@@ -1,4 +1,4 @@
-import './actions.styl';
+import './action.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';

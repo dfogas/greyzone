@@ -9,6 +9,11 @@ import immutable from 'immutable';
 import classnames from 'classnames';
 
 class StatusCard extends Component {
+  buyStatus() {
+    const {status} = this.props;
+    dashboardActions.buyStatus(status);
+  }
+
   focusStatus(e) {
     e.preventDefault();
     e.target.style.opacity = 1;
@@ -58,7 +63,7 @@ class StatusCard extends Component {
         <br />
         {!owned && <button
           className='status-buy-button'
-          onClick={dashboardActions.buyStatus}
+          onClick={this.buyStatus.bind(this)}
           >Buy</button>}
       </div>
     );

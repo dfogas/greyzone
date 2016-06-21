@@ -79,6 +79,18 @@ const dashboardMsg = {
         wanted...
       `
     },
+    tier1: `
+      <div id='StatusesTierComplete'>Some text relating to the completion of tier.</div>
+    `,
+    tier2: `
+      <div id='StatusesTierComplete'>Some text relating to the completion of tier.</div>
+    `,
+    tier3: `
+      <div id='StatusesTierComplete'>Some text relating to the completion of tier.</div>
+    `,
+    tier4: `
+      <div id='StatusesTierComplete'>Some text relating to the completion of tier.</div>
+    `,
     window: {
       label: `Statuses`
     }

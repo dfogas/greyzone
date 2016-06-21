@@ -1,5 +1,6 @@
 /* eslint camelcase: 0 */
 import {tap, monitor, improv_el, puppet, decipher, improv_st} from '../actions';
+import randomInt from '../../../../../client/lib/getrandomint';
 
 const tag = 'moneychannelling';
 
@@ -33,7 +34,7 @@ const MoneyChannelling = [{
     gameCash: 5000
   },
   losses: {
-    gameContacts: 50
+    gameContacts: 25
   },
   imgsrc: 'MoneyChannelling.jpg',
   agentLimit: 3,
@@ -49,7 +50,7 @@ const MoneyChannelling = [{
   ],
   inCountry: '',
   rewards: {
-    gameCash: 25000
+    gameCash: 50000
   },
   losses: {
     gameContacts: 250

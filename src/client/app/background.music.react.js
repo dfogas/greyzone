@@ -9,7 +9,7 @@ class BackgroundMusic extends Component {
 
   render() {
     return (
-      <audio id='BackgroundMusic' controls autoPlay>
+      <audio id='BackgroundMusic' controls autoPlay loop>
         <source src='http://localhost:8000/assets/audio/NorthSea.ogg' type='audio/ogg' />
       </audio>
     );

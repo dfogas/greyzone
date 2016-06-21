@@ -20,17 +20,20 @@ class LockedDiceContainer extends Component {
 
   render() {
     const {activemission} = this.props;
-    const lockeddice = activemission.getIn(['equipmenteffects', 'lockeddice']);
+    const lockeddice = activemission.getIn(['equipmenteffects', 'lockeddice']).get(0);
+    console.log(activemission.toJS());
+    console.log(lockeddice);
     return (
       <div
         className='locked-dice-container'
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
-        {!!lockeddice &&
+        {lockeddice &&
           <Dice
-            dicetype={lockeddice.length ? lockeddice[0].dicetype : 'stealth'}
-            value={lockeddice.length ? lockeddice[0].value : 'fail'}
+            dicetype={lockeddice.get('dicetype')}
+            dicekey={lockeddice.get('dicekey')}
+            name={lockeddice.get('name')}
             />}
       </div>
     );

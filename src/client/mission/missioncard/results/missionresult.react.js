@@ -18,8 +18,8 @@ class MissionResult extends Component {
 
     return (
       <div className={classString}>
-        {loss && determiningIcon(losskey) + ' : ' + loss}
-        {reward && determiningIcon(rewardkey) + ' : ' + reward}
+        {loss && (determiningIcon(losskey)) + String(loss).replace(/000000$/, 'M').replace(/000$/, 'k').replace("true", '')}
+        {reward && (determiningIcon(rewardkey)) + String(reward).replace(/000000$/, 'M').replace(/000$/, 'k').replace("true", '')}
       </div>
     );
   }

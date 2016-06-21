@@ -18,7 +18,7 @@ const DestroyEvidence = [{
     agentImprisoned: true,
     reputation: 500
   },
-  imgsrc: 'DestroyEvidence',
+  imgsrc: 'DestroyEvidence.jpg',
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -40,7 +40,7 @@ const DestroyEvidence = [{
     reputation: 1500,
     obscurity: 0.25
   },
-  imgsrc: 'DestroyEvidence',
+  imgsrc: 'DestroyEvidence.jpg',
   agentLimit: 2,
   tier: 4,
   tag: tag
@@ -62,7 +62,7 @@ const DestroyEvidence = [{
     reputation: 3750,
     obscurity: 0.35
   },
-  imgsrc: 'DestroyEvidence',
+  imgsrc: 'DestroyEvidence.jpg',
   agentLimit: 2,
   tier: 5,
   tag: tag

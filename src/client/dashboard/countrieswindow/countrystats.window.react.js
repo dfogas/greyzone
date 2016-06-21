@@ -19,7 +19,7 @@ class CountryStatsWindow extends Component {
             {countrystat.get('reputation')}&nbsp;
           </td>
           <td className='country-stat-obscurity-dashboard'>
-            {Math.round10((countrystat.get('obscurity')), -1)}&nbsp;
+            {Math.round10((countrystat.get('obscurity')), -2)}&nbsp;
           </td>
         </tr>
       );

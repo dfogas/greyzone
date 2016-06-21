@@ -69,15 +69,13 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === dashboardActions.buyStatus) {
-    const gameCash = jsonapiCursor(['gameCash']);
-    const gameContacts = jsonapiCursor(['gameContacts']);
-    if (gameCash >= data.message.price.cash && gameContacts >= data.message.price.contacts)
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .update('statuses', val => val.push(immutable.fromJS(data.message)))
-          .update('gameCash', val => val - data.message.price.cash)
-          .update('gameContacts', val => val - data.message.price.contacts);
-      });
+    console.log(data.status.toJS());
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .update('statuses', val => val.push(immutable.fromJS(data.status)))
+      .update('gameCash', val => val - data.status.getIn(['price', 'cash']))
+      .update('gameContacts', val => val - data.status.getIn(['price', 'contacts']));
+    });
   }
 
   if (action === dashboardActions.changeMissionOption)
@@ -176,12 +174,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['components', 'dashboard', 'index'], data.message);
-    });
-
-  if (action === dashboardActions.prisonBreakMission)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .update('missions', val => val.unshift(data.missionwETA));
     });
 
   if (action === dashboardActions.refreshStandings)

@@ -29,6 +29,7 @@ class TableTop extends Component {
   drop(ev) {
     ev.preventDefault();
     var dice = JSON.parse(ev.dataTransfer.getData('text'));
+    console.log(dice);
     diceActions.create(dice);
   }
 

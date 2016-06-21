@@ -11,6 +11,7 @@ import StatusesList from '../../server/lib/greyzone/statuses.list';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
+import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 import capabilityCheck from '../lib/capabilitycheck';
 import checkArmory from '../lib/checkarmory';
@@ -19,8 +20,9 @@ import maxAgentsCheck from '../lib/maxagentscheck';
 import maxMissionsCheck from '../lib/maxmissionscheck';
 import missionAccept from '../lib/missionaccept';
 import noDoubleAgents from '../lib/nodoubleagents';
-import randomInt from '../lib/getrandomint';
+import getRandomInt from '../lib/getrandomint';
 import xmissioncheck from '../lib/xmissioncheck';
+import $ from 'jquery';
 
 /* Number, String, String, Object */
 export function acceptMission(tier, focus, country, options) {
@@ -42,6 +44,13 @@ export function acceptMission(tier, focus, country, options) {
   }
 }
 
+export function agentRecruitMission() {
+  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
+  const mission = missionAccept(operationstier, 'agent', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
+}
+
 export function badEndDiscovered() {
   dispatch(badEndDiscovered, {});
 }
@@ -56,6 +65,13 @@ export function badEndLeftInPrison() {
 
 export function badEndRich() {
   dispatch(badEndRich, {});
+}
+
+export function bankRobberyMission() {
+  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
+  const mission = missionAccept(operationstier, 'bank', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
 }
 
 export function bookMissionPrice(tier) {
@@ -83,9 +99,21 @@ export function buyEnhancement({target}) {
     dispatch(buyEnhancement, {message: enhancement});
 }
 
-export function buyStatus({target}) {
-  const status = StatusesList.filter(status => status.name === target.parentNode.childNodes[0].innerHTML)[0];
-  dispatch(buyStatus, {message: status});
+export function buyStatus(status) {
+  const statusesall = gameCursor(['globals', 'statuses']);
+  const alltieritems = statusesall.filter(item => item.get('tier') === status.get('tier'));
+  const statuses = jsonapiCursor(['statuses']);
+  const tieritems = statuses.filter(item => item.get('tier') === status.get('tier'));
+  console.log('buy status');
+
+  if (jsonapiCursor(['gameCash']) >= status.getIn(['price', 'cash']) && jsonapiCursor(['gameContacts']) >= status.getIn(['price', 'contacts'])) {
+    dispatch(buyStatus, {status});
+    if (tieritems.size + 1 === alltieritems.size) {
+      $('#StatusesWindow').append(msg('dashboard.statuses.tier' + status.get('tier')));
+      $('#StatusesTierComplete').append(`<button>Ok</button>`);
+      $('#StatusesTierComplete button').click(() => $('#StatusesTierComplete').remove());
+    }
+  }
 }
 
 export function changeMissionOption(name, value) {
@@ -180,11 +208,10 @@ export function pointerChange(whereto) {
 }
 
 export function prisonBreakMission() {
-  const enhancements = jsonapiCursor(['enhancements']);
-  const operationsnames = enhancements.filter(enh => enh.get('type') === 'operationsscope').map(enh => enh.get('name'));
-  const mission = immutable.fromJS(xmissioncheck(operationsnames, MissionsList).filter(mission => mission.title === 'Prison Break' && mission.tier === randomInt(3, 5))[0]);
-  const missionwETA = mission.set('ETA', Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000));
-  dispatch(prisonBreakMission, {missionwETA});
+  const operationstier = getRandomInt(3, 5);
+  const mission = missionAccept(operationstier, 'prison', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
 }
 
 export function refreshStandings() {
@@ -264,6 +291,7 @@ setToString('dashboard', {
   badEndKilled,
   badEndLeftInPrison,
   badEndRich,
+  bankRobberyMission,
   bookMissionPrice,
   bookPrisonBreakMissionPrice,
   buyEnhancement,
@@ -281,7 +309,6 @@ setToString('dashboard', {
   playerDoesNotGoOnMissions,
   playerGoesOnMissions,
   pointerChange,
-  prisonBreakMission,
   refreshStandings,
   retireGame,
   sanitizeAgents,

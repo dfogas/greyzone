@@ -58,7 +58,7 @@ const BankRobbery = [{
   ],
   inCountry: 'BankRobbery.jpg',
   rewards: {
-    gameCash: 7500000,
+    gameCash: 6000000,
     reputation: 1000,
     obscurity: -2
   },

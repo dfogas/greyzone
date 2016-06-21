@@ -21,6 +21,7 @@ class Dice extends Component {
   render() {
     const {diceindex, dicetype, name} = this.props;
 
+    console.log(dicetype + ' ' + name);
     return (
       <div
         className={classnames('dice', dicetype, name, {'rollable': this.props.rollable})}

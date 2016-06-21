@@ -1,4 +1,5 @@
 import * as briefingActions from './actions';
+import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -7,6 +8,7 @@ class ShiftLeft extends Component {
   missionShiftLeft() {
     const {activemission, missions} = this.props;
     const activemissionindex = missions.indexOf(missions.find(mission => mission.get('id') === activemission.get('id')));
+    missionActions.agentsAreBackFromMission();
     briefingActions.selectMission(missions.get(activemissionindex === 0 ? missions.size - 1 : activemissionindex - 1));
   }
 

@@ -12,8 +12,7 @@ const AnOldDebt = [{
   ],
   inCountry: '',
   rewards: {
-    agentLoyal: true,
-    gameContacts: 25
+    agentLoyal: true
   },
   losses: {
     agentKilled: true,
@@ -32,8 +31,7 @@ const AnOldDebt = [{
   ],
   inCountry: 'OldDebt.jpg',
   rewards: {
-    agentLoyal: true,
-    gameContacts: 50
+    agentLoyal: true
   },
   losses: {
     agentKilled: true,
@@ -53,8 +51,7 @@ const AnOldDebt = [{
   ],
   inCountry: 'OldDebt.jpg',
   rewards: {
-    agentLoyal: true,
-    gameContacts: 75
+    agentLoyal: true
   },
   losses: {
     agentKilled: true,

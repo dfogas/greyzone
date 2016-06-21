@@ -11,6 +11,14 @@ export default function determiningIcon(resultkey) {
     return '\u{1f575}';
   if (resultkey === 'obscurity')
     return '\u{1f441}';
+  if (resultkey === 'agentKilled')
+    return '\u{1f480}';
+  if (resultkey === 'character')
+    return '\u{1f481}';
+  if (resultkey === 'agentLoyal')
+    return '\u{1f486}';
+  if (resultkey === 'agentFreed')
+    return '\u{1f483}';
   else
     return '\u{1f631}';
 }

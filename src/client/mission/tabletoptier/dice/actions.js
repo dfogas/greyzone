@@ -3,9 +3,10 @@ import setToString from '../../../lib/settostring';
 import {jsonapiCursor} from '../../../state';
 
 export function create(dice) {
+  const lockeddicekey = jsonapiCursor(['activemission', 'equipmenteffects', 'lockeddice', 0, 'dicekey']);
   const dicekeys = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']).toJS().map(dice => dice.dicekey);
   const debugswitch = jsonapiCursor(['options', 'debug']);
-  if (dicekeys.indexOf(dice.dicekey) === -1 || debugswitch)
+  if (dicekeys.indexOf(dice.dicekey) === -1 || debugswitch || lockeddicekey === dice.dicekey)
     dispatch(create, dice);
 }
 

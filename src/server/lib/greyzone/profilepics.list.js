@@ -10,11 +10,8 @@ const profilePics = {
     '../../assets/img/agents/spy/spy5_128.jpg'
   ],
   technician: [
-    // '../../assets/img/agents/technician/technician0_128.png',
-    // '../../assets/img/agents/technician/technician1_128.png',
+    '../../assets/img/agents/technician/technician1_128.jpg',
     '../../assets/img/agents/technician/technician2_128.jpg',
-    // '../../assets/img/agents/technician/technician3_128.png',
-    // '../../assets/img/agents/technician/technician4_128.png',
     '../../assets/img/agents/technician/miyako_128.jpg'
   ]
 };

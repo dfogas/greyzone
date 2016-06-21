@@ -5,6 +5,7 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
+import formatMoney from '../lib/formatmoney';
 import $ from 'jquery';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
@@ -72,12 +73,12 @@ class BriefingScreen extends Component {
             activemission={jsonapi.get('activemission')}
             missions={jsonapi.get('missions')}
             />
-          /*TODO: Add shifts */
           <MissionsListTable
             activemission={jsonapi.get('activemission')}
             missions={jsonapi.get('missions')}
             />
           <BriefingInCountry
+            countrystats={jsonapi.getIn(['countrystats'])}
             inCountry={jsonapi.getIn(['activemission', 'inCountry'])}
             />
           <BriefingToDashboard />
@@ -95,6 +96,15 @@ class BriefingScreen extends Component {
           {/*<div id='BriefingLogMessage'>
             Message:  {briefingmessage}
           </div>*/}
+          <div id='BriefingLiquidResources'>
+            <span className='gameCash-counter'>
+              Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
+            </span>
+            <br />
+            <span className='gameContacts-counter'>
+              Contacts: {jsonapi.get('gameContacts')}
+            </span>
+          </div>
         </div>
       </DocumentTitle>
     );

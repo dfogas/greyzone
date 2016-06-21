@@ -10,6 +10,14 @@ import MissionAcceptForm from './missionaccept.form.react';
 import DashboardMissionsList from './dashboard.missions.list.react';
 
 class MissionsWindow extends Component {
+  agentMission() {
+    dashboardActions.agentRecruitMission();
+  }
+
+  bankMission() {
+    dashboardActions.bankRobberyMission();
+  }
+
   prisonBreakMission() {
     const {agentbeingsaved, missions} = this.props;
     const missionstitles = missions.map(mission => mission.get('title'));
@@ -24,6 +32,7 @@ class MissionsWindow extends Component {
     const {agentbeingsaved, dashboard, enhancements, missionlog, missions, missionspricelist} = this.props;
     // const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
     const missionaccept = dashboard.getIn(['strategical', 'missionaccept']);
+    const canhasbank = enhancements.find(enh => enh.get('name') === 'Nostalgia');
 
     return (
       <div id='MissionsWindow'>
@@ -48,6 +57,13 @@ class MissionsWindow extends Component {
           <DashboardMissionsList
             missions={missions}
             />}
+        <button
+          id='RecruitAgentButton'
+          onClick={this.agentMission}>Search For Agent</button>
+        {canhasbank &&
+          <button
+            id='RobBankButton'
+            onClick={this.bankMission}>Do the bank</button>}
       </div>
     );
   }

@@ -51,6 +51,10 @@ class MissionResultsWindow extends Component {
                 })}
               </ul>}
           </p>
+          {result === 'success' &&
+            <p>has been gained.</p>}
+          {result === 'fail' &&
+            <p>has been lost.</p>}
           <p>Fatal Consequences of Mission:
             {result === 'success' && Object.keys(rewardsjs).indexOf('agentImprisoned') !== -1 &&
               <li>Agent has been imprisoned.</li>}

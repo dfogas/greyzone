@@ -11,7 +11,7 @@ import tutorialMsg from './en/tutorial.msg';
 
 const ENGLISH = {
   about: {
-    message: `<p>Ghost Struggle is a non-trivial, non-clicker game for aspiring masterminds, that simply works.</p>
+    message: `<p>"Ghost Struggle" is a non-trivial, non-clicker game for aspiring masterminds, that simply works.</p>
       <p>Theme is - contemporary world of hidden organizations, illegal, in their actions not always
       criminal, though.</p>
       <p> Designed with player experience in mind, intended to be played repeatedly and while there
@@ -79,27 +79,35 @@ const ENGLISH = {
         You can play it, but weird shit might happen, and also you might lose your game saves.
         Also game assets(pictures, texts and other) are too lacking yet.
         So play and enjoy the experience, but bear that in mind.
+      </p>
 
-        Current ends are:
+      <p>
+        <h2>Game Ends</h2>
         <ul>Bad Ends:
           <li>Given Up</li>
           <li>Betrayed</li>
           <li>Rich, But Not For Long</li>
+          <li>Left in Prison</li>
+          <li>Killed</li>
         </ul>
         <ul>Good Ends:
           <li>Rich and Covered</li>
         </ul>
       </p>
       <p>
-        Recommended is reading Gameplay/Introduction section of About/Help before starting of your game, which is available once you log in.
+        Recommended is reading Gameplay/Introduction section of About/Help before starting of your game.
       </p>
       <h3>Disclaimer</h3>
       <p>
-        Until further notice, I declare Ghost Struggle game a work of art, in order to avoid copyright infringment of used pictures etc.
-        and I do not charge anything for it.
+        All graphic assets are original, but may be based on actually existing people or movie/game characters.
       </p>
       <p>
-        <em>Warning: Game might include some depictions and hints of violence and/or suggestive scenes, so if that is something you are offended by then do not play it.</em>
+        You may buy full access to the game in the options menu, when in game (including campaigns).
+      </p>
+      <p>
+        <em>
+          Warning: Game might include some depictions and hints of violence and suggestive scenes,
+          so if that is something you are offended by then do not play it.</em>
       </p>
     `
   },
