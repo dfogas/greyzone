@@ -27,8 +27,7 @@ const app = express();
 
 app.use(config.apipath, api);
 
-if (!config.isProduction)
-  app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 // Load react-js frontend. i.e. rendering logic, eats everything
 if (process.env.NODE_ENV)
