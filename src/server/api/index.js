@@ -14,8 +14,9 @@ import passport from 'passport';
 // controllers
 import auth from './controllers/auth';
 import contest from './controllers/contest';
+import paypal from './controllers/paypal';
 import player from './controllers/player';
-import user from './controllers/user';
+// import user from './controllers/user';
 
 // Create general-purpose API sub-app
 const app = express();
@@ -45,8 +46,9 @@ app.use(cors()); // what does it do?
 // route index(es)
 app.use('/auth', auth);
 app.use('/contest', contest);
-app.use('/users', user);
+app.use('/paypal', paypal);
 app.use('/players', player);
+// app.use('/users', user);
 
 app.on('mount', () => {
   console.log('Api is available at %s', app.mountpath);

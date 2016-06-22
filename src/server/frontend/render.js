@@ -87,12 +87,6 @@ function getPageHtml(Handler, appState) {
 
     </script>`;
 
-  /*scriptHtml += `
-    <audio autoplay controls loop>
-      <source src='http://localhost:8000/assets/audio/NorthSea.ogg' type='audio/ogg'>
-    </audio>
-  `;*/
-
   scriptHtml += `
     <script src="/socket.io/socket.io.js"></script>
     <script>

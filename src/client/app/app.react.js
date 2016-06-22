@@ -55,12 +55,14 @@ class App extends Component {
       cconfig.dnsdevel + '/api/v1/';
     const userId = this.state.jsonapi.get('_id');
     const jsonapi = this.state.jsonapi.toJS();
-    if (this.state.jsonapi.get('name') !== 'Default')
+    if (this.state.jsonapi.get('name') !== 'Default') {
+      console.log('polling to persistance');
       fetch(api + 'players/' + userId, {
         method: 'PUT',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(jsonapi)
       });
+    }
       // .then((response) => {
       //   console.log(response);
       // });

@@ -14,15 +14,33 @@ class ChooseCampaign extends Component {
   }
 
   render() {
-    const {campaigns} = this.props;
+    const {campaigns, paying} = this.props;
+    const isPaying = paying ?
+      Object.keys(paying).reduce((prev, curr, index, array) => {
+        return paying[curr] || prev;
+      }, false) : false;
 
     return (
       <div id='ChooseCampaign'>
         <fieldset>
           <legend>Choose Campaigns</legend>
-          <label><input checked={campaigns ? campaigns.getIn(['dolcevita', 'selected']) : false} name='dolcevita' onChange={(e) => this.toggleCampaign(e)} type='checkbox' />Dolce Vita</label>
-          <label><input checked={campaigns ? campaigns.getIn(['collector', 'selected']) : false} name='collector' onChange={(e) => this.toggleCampaign(e)} type='checkbox' />Collector</label>
-          <label><input checked={campaigns ? campaigns.getIn(['revenge', 'selected']) : false} name='revenge' onChange={(e) => this.toggleCampaign(e)} type='checkbox' />Revenge</label>
+          <label>
+            <input
+              checked={campaigns ? campaigns.getIn(['dolcevita', 'selected']) : false}
+              name='dolcevita' onChange={(e) => this.toggleCampaign(e)}
+              type='checkbox' />Dolce Vita</label>
+          <label>
+            <input
+              checked={campaigns ? campaigns.getIn(['collector', 'selected']) : false}
+              disabled={isPaying}
+              name='collector' onChange={(e) => this.toggleCampaign(e)}
+              type='checkbox' />Collector</label>
+          <label>
+            <input
+              checked={campaigns ? campaigns.getIn(['revenge', 'selected']) : false}
+              disabled={isPaying}
+              name='revenge' onChange={(e) => this.toggleCampaign(e)}
+              type='checkbox' />Revenge</label>
         </fieldset>
         <button onClick={this.confirmCampaignsSelection}>Confirm</button>
       </div>

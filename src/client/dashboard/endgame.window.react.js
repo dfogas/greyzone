@@ -15,7 +15,10 @@ class EndGameWindow extends Component {
   }
 
   render() {
-    const {countrystats, gameend, name, options, started, statistics, userId} = this.props;
+    const {jsonapi, name, options, statistics} = this.props;
+    const countrystats = jsonapi.get('countrystats');
+    const gameend = jsonapi.get('gameend');
+
     return (
       <div id="EndGameWindow">
         You ended the game with
@@ -43,7 +46,7 @@ class EndGameWindow extends Component {
         </p>
         <NewGameButton
           name={name}
-          userId={userId}
+          userId={jsonapi.get('userId')}
           />
         <button
           id="DisplayStatistics"
@@ -53,9 +56,9 @@ class EndGameWindow extends Component {
           <StatisticsWindow
             countrystats={countrystats}
             name={name}
-            started={started}
+            started={jsonapi.get('started')}
             statistics={statistics}
-            userId={userId}
+            userId={jsonapi.get('userId')}
             />
           }
       </div>
@@ -64,13 +67,10 @@ class EndGameWindow extends Component {
 }
 
 EndGameWindow.propTypes = {
-  countrystats: React.PropTypes.instanceOf(immutable.List),
-  gameend: React.PropTypes.string,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   name: React.PropTypes.string,
   options: React.PropTypes.instanceOf(immutable.Map),
-  started: React.PropTypes.number,
-  statistics: React.PropTypes.instanceOf(immutable.Map),
-  userId: React.PropTypes.string
+  statistics: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default EndGameWindow;

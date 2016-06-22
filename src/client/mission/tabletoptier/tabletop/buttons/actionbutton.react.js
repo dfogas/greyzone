@@ -5,12 +5,13 @@ import Component from '../../../../components/component.react.js';
 import React from 'react';
 import $ from 'jquery';
 import Sound from '../../../../lib/sound';
+import cconfig from '../../../../client.config';
 
 class ActionButton extends Component {
   action() {
     const {agentlock, diceslock, missionStarted} = this.props;
-    // POC: sound effect
-    let mySound = new Sound('http://localhost:8000/assets/audio/MissionStart.mp3');
+    const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
+    let mySound = new Sound(url + '/assets/audio/MissionStart.mp3');
     if (!missionStarted) {
       $('#TableTop').append('<div id=\'MissionStartMessage\'>Mission Started</div>');
       $('#MissionStartMessage').hide().fadeIn(200);

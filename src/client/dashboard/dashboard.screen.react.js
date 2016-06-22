@@ -10,18 +10,9 @@ import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 import {Link} from 'react-router';
 
-import PlayersWindow from './playerswindow/players.window.react';
-import AgentsWindow from './agentswindow/agents.window.react';
-import StatusesWindow from './statuseswindow/statuses.window.react';
-import OptionsWindow from './optionswindow/options.window.react';
-import MissionsWindow from './missionswindow/missions.window.react';
-import CountryStatsWindow from './countrieswindow/countrystats.window.react';
-import ContestWindow from './contestwindow/contest.window.react';
-import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
-import AchievementsWindow from './achievementswindow/achievements.window.react';
-import LogWindow from './logwindow/log.window.react';
-import EndGameWindow from './endgame.window.react';
+import DashboardContent from './dashboard.content.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
+import EndGameWindow from './endgame.window.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
 import CampaignIntro from '../tutorial/campaign.intro.react';
@@ -92,24 +83,9 @@ class DashboardScreen extends Component {
 
   render() {
     const {contest, game, jsonapi} = this.props;
-    const achievements = game.getIn(['globals', 'achievements']);
-    const agentspricelist = game.getIn(['globals', 'constants', 'agentsPriceList']);
-    const enhancementstotal = game.getIn(['globals', 'enhancements']);
-    const statusestotal = game.getIn(['globals', 'statuses']);
-    const missionspricelist = game.getIn(['globals', 'constants', 'missionsPriceList']);
-
-    const agentsinroster = jsonapi.get('agents');
     const allagents = jsonapi.get('agents').concat(jsonapi.getIn(['activemission', 'agentsonmission']));
-    const agentinarmory = jsonapi.get('agentinarmory');
-    const countrystats = jsonapi.get('countrystats');
-    const dashboard = jsonapi.get('dashboard');
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
-    const enhancementsowned = jsonapi.get('enhancements');
     const isLoggedIn = !!this.props.viewer;
-    const missions = jsonapi.get('missions');
-    const options = jsonapi.get('options');
-    const statusesowned = jsonapi.get('statuses');
-    const totalagents = agentinarmory ? allagents.unshift(agentinarmory) : allagents;
 
     return (
       <div id='DashboardScreen'>
@@ -120,6 +96,7 @@ class DashboardScreen extends Component {
         {!jsonapi.getIn(['campaigns', 'selection', 'done']) &&
           <PlayerCampaignChoose
             campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}
+            paying={jsonapi.get('paying')}
             />}
         {(jsonapi.getIn(['campaigns', 'campaigns']) && (typeof jsonapi.getIn(['campaigns', 'campaigns']).toJS()) === 'object') &&
           Object.keys(jsonapi.getIn(['campaigns', 'campaigns']).toJS()).map(campaign => {
@@ -135,20 +112,15 @@ class DashboardScreen extends Component {
           >{msg('dashboard.screen.label')}</div>
         {jsonapi.get('gameend') &&
           <EndGameWindow
-            countrystats={jsonapi.get('countrystats')}
-            gameend={jsonapi.get('gameend')}
+            jsonapi={jsonapi}
             name={jsonapi.get('name')}
             options={jsonapi.get('options')}
-            started={jsonapi.get('started')}
             statistics={jsonapi.get('statistics')}
-            userId={jsonapi.get('_id')}
             />}
         {!jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToBriefing />}
-        {!dashboard.getIn(['strategical', 'intro']) &&
-          <StrategicalIntro
-            jsonapi={jsonapi}
-            />}
+        {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) &&
+          <StrategicalIntro jsonapi={jsonapi}/>}
         <DashboardToCommand />
         <DashboardToIntro />
         <ContestPointer />
@@ -158,79 +130,13 @@ class DashboardScreen extends Component {
         {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
           <StatusesPointer />}
         <StrategicalPointer />
-        {isLoggedIn &&
-          <Logout />}
+        {isLoggedIn && <Logout />}
         {dashPointer === 'options' &&
           <LanguageSelect locales={this.props.locales}/>}
-        <div id='DashboardContent'>
-          {(dashPointer === 'strategical' || dashPointer === 'enhancements' ||
-            dashPointer === 'statuses' || dashPointer === 'achievements' ||
-            dashPointer === 'options') &&
-            <PlayersWindow
-              enhancements={enhancementsowned}
-              gameCash={jsonapi.get('gameCash')}
-              gameContacts={jsonapi.get('gameContacts')}
-              jsonapi={jsonapi}
-              name={jsonapi.get('name')}
-              self={jsonapi.get('self')}
-            />}
-          {dashPointer === 'strategical' &&
-            <MissionsWindow
-              agentbeingsaved={jsonapi.get('agentbeingsaved')}
-              dashboard={dashboard}
-              enhancements={enhancementsowned}
-              missionlog={jsonapi.getIn(['dashboard', 'missionswindow', 'message'])}
-              missions={missions}
-              missionspricelist={missionspricelist}
-            />}
-          {dashPointer === 'strategical' &&
-            <AgentsWindow
-              agentbeingsaved={jsonapi.get('agentbeingsaved')}
-              agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
-              agentlog={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
-              agents={totalagents}
-              agentsinroster={agentsinroster}
-              agentspricelist={agentspricelist}
-              dashboard={dashboard}
-              options={options}
-              self={jsonapi.get('self')}
-            />}
-          {dashPointer === 'log' &&
-            <LogWindow
-              log={jsonapi.get('log')}
-              />}
-          {dashPointer === 'options' &&
-            <OptionsWindow
-              jsonapi={jsonapi}
-              options={options}
-              />}
-          {dashPointer === 'strategical' &&
-            <CountryStatsWindow
-              countrystats={countrystats}
-            />}
-          {dashPointer === 'options' &&
-            <Link to='payments'><button id='ToPayments'>Buy</button></Link>}
-          {dashPointer === 'contest' &&
-            <ContestWindow
-              contest={contest}
-            />}
-          {dashPointer === 'statuses' && jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
-            <StatusesWindow
-              dashboard={jsonapi.get('dashboard')}
-              owned={statusesowned}
-              statuses={statusestotal}
-            />}
-          {(dashPointer === 'enhancements') &&
-            <EnhancementsWindow
-              enhancements={enhancementstotal}
-              owned={enhancementsowned}
-              paying={jsonapi.get('paying')}
-              />}
-          {(dashPointer === 'achievements') &&
-            <AchievementsWindow
-              achievements={achievements}
-              />}
-        </div>
+        <DashboardContent
+          game={game}
+          jsonapi={jsonapi}
+          />
       </div>
     );
   }

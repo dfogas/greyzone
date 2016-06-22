@@ -15,13 +15,13 @@ const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
 const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
 // const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
 //
-// const options = {
-//   key: gskey,
-//   cert: gscert,
-//   // ca: gsca,
-//   requestCert: false,
-//   rejectUnauthorized: false
-// };
+const options = {
+  key: gskey,
+  cert: gscert,
+  // ca: gsca,
+  // requestCert: false,
+  // rejectUnauthorized: false
+};
 
 const app = express();
 
@@ -43,8 +43,8 @@ app.use((err, req, res, next) => {
   res.status(500).send('500: ' + msg);
 });
 
-// const server = process.env.NODE_ENV === 'development' ? http.createServer(app) : https.createServer(options, app); // can't test production before deployment, anyway, beat it
-const server = http.createServer(app);
+const server = process.env.NODE_ENV === 'production' ? https.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
+// const server = http.createServer(app);
 const io = ioServer(server);
 
 io.on('connection', (socket) => {

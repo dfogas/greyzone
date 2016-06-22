@@ -21,7 +21,7 @@ var config = {
     // for API test
     'mongodb://localhost:27017/mtest',
   defaultLocale: 'en',
-  dns: process.env.NODE_ENV === 'production' ? 'http://www.ghoststruggle.com' :
+  dns: process.env.NODE_ENV === 'production' ? 'https://www.ghoststruggle.com' :
     'http://localhost:8000',
   googleAnalyticsId: 'UA-77300811-1',
   isProduction: process.env.NODE_ENV === 'production',
