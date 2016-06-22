@@ -87,13 +87,13 @@ function getPageHtml(Handler, appState) {
 
     </script>`;
 
-  scriptHtml += `
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var URL_SERVER;
-      URL_SERVER = '${urlServer}';
-      var socket = io.connect(URL_SERVER);
-    </script>`;
+  // scriptHtml += `
+  //   <script src="/socket.io/socket.io.js"></script>
+  //   <script>
+  //     var URL_SERVER;
+  //     URL_SERVER = '${urlServer}';
+  //     var socket = io.connect(URL_SERVER);
+  //   </script>`;
 
   const title = DocumentTitle.rewind();
 
