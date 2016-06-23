@@ -3,27 +3,34 @@ import config from './config';
 import express from 'express';
 import frontend from './frontend';
 import morgan from 'morgan';
-import https from 'https';
 import http from 'http';
 import Mission from './lib/greyzone/mission.generator';
-import fs from 'fs';
+// import https from 'https';
+// import fs from 'fs';
 // import ioServer from 'socket.io';
 // import checkDiscovered from './lib/greyzone/checkdiscovered';
 
 // related to SSH certificate
-const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
-const gskey = fs.readFileSync('1508390/gs.key');
-const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
-//
-const options = {
-  key: gskey,
-  cert: gscert,
-  ca: gsca,
-  // requestCert: false,
-  // rejectUnauthorized: false
-};
+// const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
+// const gskey = fs.readFileSync('1508390/gs.key');
+// const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
+// //
+// const options = {
+//   key: gskey,
+//   cert: gscert,
+//   ca: gsca,
+//   // requestCert: false,
+//   // rejectUnauthorized: false
+// };
 
 const app = express();
+
+if (config.isProduction)
+  app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https')
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    return next();
+  });
 
 app.use(config.apipath, api);
 
@@ -43,8 +50,8 @@ app.use((err, req, res, next) => {
 });
 
 // production fork
-const server = process.env.NODE_ENV === 'production' ? https.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
-// const server = http.createServer(app);
+// const server = process.env.NODE_ENV === 'production' ? https.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
+const server = http.createServer(app);
 // const io = ioServer(server);
 //
 // io.on('connection', (socket) => {
