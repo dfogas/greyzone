@@ -3,7 +3,7 @@ import config from './config';
 import express from 'express';
 import frontend from './frontend';
 import morgan from 'morgan';
-import https from 'https';
+// import https from 'https';
 import http from 'http';
 import fs from 'fs';
 // import ioServer from 'socket.io';
@@ -11,17 +11,17 @@ import Mission from './lib/greyzone/mission.generator';
 // import checkDiscovered from './lib/greyzone/checkdiscovered';
 
 // related to SSH certificate
-const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
-const gskey = fs.readFileSync('1508390/www.ghoststruggle.com.key');
+// const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
+// const gskey = fs.readFileSync('1508390/gs.key');
 // const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
 //
-const options = {
-  key: gskey,
-  cert: gscert,
-  // ca: gsca,
-  // requestCert: false,
-  // rejectUnauthorized: false
-};
+// const options = {
+//   key: gskey,
+//   cert: gscert,
+//   // ca: gsca,
+//   // requestCert: false,
+//   // rejectUnauthorized: false
+// };
 
 const app = express();
 
@@ -42,7 +42,8 @@ app.use((err, req, res, next) => {
   res.status(500).send('500: ' + msg);
 });
 
-const server = process.env.NODE_ENV === 'production' ? https.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
+// production fork
+const server = process.env.NODE_ENV === 'production' ? http.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
 // const io = ioServer(server);
 //
 // io.on('connection', (socket) => {
