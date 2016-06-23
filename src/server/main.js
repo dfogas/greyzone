@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
 });
 
 // production fork
-const server = process.env.NODE_ENV === 'production' ? http.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
+const server = process.env.NODE_ENV === 'production' ? http.createServer(app) : http.createServer(app); // can't test production before deployment, anyway, beat it
 // const io = ioServer(server);
 //
 // io.on('connection', (socket) => {
