@@ -38,13 +38,14 @@ class PlayersWindow extends Component {
   }
 
   render() {
-    const {gameCash, gameContacts, enhancements, jsonapi, name, self} = this.props; 
+    const {jsonapi} = this.props;
+    const self = jsonapi.get('self');
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
     return (
       <div id='PlayersWindow'>
         <div id='PlayerLabel'>
           <div id='PlayerName'>
-            {name}
+            {jsonapi.get('name')}
           </div>
         </div>
         <div id='PlayerAgentCard'>
@@ -67,18 +68,18 @@ class PlayersWindow extends Component {
             >Dont go on Missions</button>}
         <div id='PlayerLiquidResources'>
           <span className='gameCash-counter'>
-            Cash: {formatMoney(gameCash, 0, '.', ',')}$
+            Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
           </span>
           <br />
           <span className='gameContacts-counter'>
-            Contacts: {gameContacts}
+            Contacts: {jsonapi.get('gameContacts')}
           </span>
         </div>
         <div id='PlayerOperationsCapability'>
-          Operations: {topLevelOps(enhancements)}
+          Operations: {topLevelOps(jsonapi.get('enhancements'))}
         </div>
         <div id='PlayerAgentsLeadership'>
-          Agents: {topLevelTraining(enhancements)}
+          Agents: {topLevelTraining(jsonapi.get('enhancements'))}
         </div>
         <div id='PlayerHelpHint'>
           Press 'h' for help
@@ -89,12 +90,7 @@ class PlayersWindow extends Component {
 }
 
 PlayersWindow.propTypes = {
-  enhancements: React.PropTypes.object,
-  gameCash: React.PropTypes.number,
-  gameContacts: React.PropTypes.number,
-  jsonapi: React.PropTypes.instanceOf(immutable.Map),
-  name: React.PropTypes.string,
-  self: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default PlayersWindow;

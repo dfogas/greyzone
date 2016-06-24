@@ -9,7 +9,7 @@ import AgentsListRecord from './agents.list.record.react';
 class AgentsList extends Component {
 
   render() {
-    const {agentbeingsaved, agents, agentsinroster, agentondisplay, options, self} = this.props;
+    const {agentbeingsaved, agents, agentondisplay, options, self} = this.props;
     const debug = options.get('debug');
 
     return (
@@ -24,7 +24,6 @@ class AgentsList extends Component {
                     agent={agent}
                     agentbeingsaved={agentbeingsaved}
                     agentondisplay={agentondisplay}
-                    agentsinroster={agentsinroster}
                     debug={debug}
                     key={uuid() + 'agentslist'}
                     self={self}
@@ -43,7 +42,6 @@ AgentsList.propTypes = {
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   agentondisplay: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
-  agentsinroster: React.PropTypes.instanceOf(immutable.List),
   options: React.PropTypes.instanceOf(immutable.Map),
   self: React.PropTypes.instanceOf(immutable.Map)
 };

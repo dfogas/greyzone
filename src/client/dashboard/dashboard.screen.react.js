@@ -134,6 +134,7 @@ class DashboardScreen extends Component {
         {dashPointer === 'options' &&
           <LanguageSelect locales={this.props.locales}/>}
         <DashboardContent
+          contest={contest}
           game={game}
           jsonapi={jsonapi}
           />

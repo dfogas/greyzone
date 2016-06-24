@@ -7,6 +7,7 @@ import immutable from 'immutable';
 import {msg} from '../../intl/store';
 
 import MissionAcceptForm from './missionaccept.form.react';
+import MercuryNetwork from './mercury.network.react';
 import DashboardMissionsList from './dashboard.missions.list.react';
 
 class MissionsWindow extends Component {
@@ -29,22 +30,20 @@ class MissionsWindow extends Component {
   }
 
   render() {
-    const {agentbeingsaved, dashboard, enhancements, missionlog, missions, missionspricelist} = this.props;
+    const {agentbeingsaved, enhancements, jsonapi, missions, missionspricelist} = this.props;
     // const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
-    const missionaccept = dashboard.getIn(['strategical', 'missionaccept']);
+    const missionaccept = jsonapi.get('dashboard').getIn(['strategical', 'missionaccept']);
     const canhasbank = enhancements.find(enh => enh.get('name') === 'Nostalgia');
 
     return (
       <div id='MissionsWindow'>
-        <div id='MissionsWindowMessage'>
-          {missionlog}
-        </div>
-        <MissionAcceptForm
+        {/*<MissionAcceptForm
           enhancements={enhancements}
           missionaccept={missionaccept}
           missions={missions}
           missionspricelist={missionspricelist}
-          />
+          />*/}
+        <MercuryNetwork />
         {agentbeingsaved &&
           <div id="PrisonBreakMission">
             <button
@@ -72,9 +71,7 @@ class MissionsWindow extends Component {
 
 MissionsWindow.propTypes = {
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
-  dashboard: React.PropTypes.instanceOf(immutable.Map),
   enhancements: React.PropTypes.instanceOf(immutable.List),
-  missionlog: React.PropTypes.string,
   missions: React.PropTypes.instanceOf(immutable.List),
   missionspricelist: React.PropTypes.instanceOf(immutable.Map)
 };

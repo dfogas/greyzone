@@ -52,7 +52,7 @@ let AgentInTrouble = [{
   inCountry: '',
   rewards: {
     agentRecruited: true,
-    gameCash: -6000,
+    gameCash: -6000
   },
   losses: {
     gameContacts: 75,

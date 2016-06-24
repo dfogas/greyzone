@@ -116,6 +116,13 @@ export function buyStatus(status) {
   }
 }
 
+export function cashFocusMission() {
+  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
+  const mission = missionAccept(operationstier, 'cash', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
+}
+
 export function changeMissionOption(name, value) {
   const promise = new Promise((resolve, reject) => {
     resolve({name, value});
@@ -129,6 +136,13 @@ export function clearAgentHireFields() {
 
 export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
+}
+
+export function contactsFocusMission() {
+  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
+  const mission = missionAccept(operationstier, 'contacts', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
 }
 
 export function dashboardIntroToggle() {
@@ -195,6 +209,13 @@ export function logMissionsWindow(message) {
   dispatch(logMissionsWindow, {message});
 }
 
+export function obscurityFocusMission() {
+  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
+  const mission = missionAccept(operationstier, 'obscurity', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
+}
+
 export function playerDoesNotGoOnMissions() {
   dispatch(playerDoesNotGoOnMissions, {});
 }
@@ -226,6 +247,13 @@ export function refreshStandings() {
     });
 
   dispatch(refreshStandings, promise);
+}
+
+export function reputationFocusMission() {
+  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
+  const mission = missionAccept(operationstier, 'reputation', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+
+  dispatch(acceptMission, {mission});
 }
 
 export function retireGame() {
@@ -296,6 +324,8 @@ setToString('dashboard', {
   bookPrisonBreakMissionPrice,
   buyEnhancement,
   buyStatus,
+  cashFocusMission,
+  contactsFocusMission,
   changeMissionOption,
   clearAgentHireFields,
   clearMissionAcceptFields,
@@ -306,10 +336,12 @@ setToString('dashboard', {
   log,
   logAgentsWindow,
   logMissionsWindow,
+  obscurityFocusMission,
   playerDoesNotGoOnMissions,
   playerGoesOnMissions,
   pointerChange,
   refreshStandings,
+  reputationFocusMission,
   retireGame,
   sanitizeAgents,
   sanitizeMissions,
