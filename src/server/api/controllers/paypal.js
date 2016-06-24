@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route('/receive')
   .post((req, res) => {
-    console.log(req.json());
+    console.log(JSON.stringify(req.body));
   });
 
 export default router;
