@@ -11,6 +11,7 @@ import GSSigil from '../app/gs.sigil.react';
 import LoginMessage from '../auth/login.message.react';
 import WelcomeWindow from '../dashboard/welcome.window.react';
 import ABigScreen from '../introduction/a.big.screen.react';
+import BackgroundMusic from '../app/background.music.react';
 
 class Login extends Component {
 
@@ -19,6 +20,7 @@ class Login extends Component {
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
+          <BackgroundMusic />
           <Link to='signup'>
             <button id='LoginToSignup'>Sign Up</button>
           </Link>

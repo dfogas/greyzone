@@ -107,7 +107,8 @@ const ENGLISH = {
       <p>
         <em>
           Warning: Game might include some depictions and hints of violence and suggestive scenes,
-          so if that is something you are offended by then do not play it.</em>
+          so if that is something you are offended by then do not play it.
+        </em>
       </p>
     `
   },
@@ -174,6 +175,9 @@ const ENGLISH = {
     title: 'Page Not Found'
   },
   payments: {
+    sent: {
+      title: 'Payment Sent'
+    },
     title: 'Payments'
   },
   posts: {
