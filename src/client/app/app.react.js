@@ -52,7 +52,7 @@ class App extends Component {
     const api = process.env.NODE_ENV === 'production' ?
       cconfig.dnsprod + '/api/v1/' :
       cconfig.dnsdevel + '/api/v1/';
-    const userId = this.state.jsonapi.get('_id');
+    const userId = this.state.jsonapi.get('userId');
     const jsonapi = this.state.jsonapi.toJS();
     if (this.state.jsonapi.get('name') !== 'Default') {
       console.log('polling to persistance');

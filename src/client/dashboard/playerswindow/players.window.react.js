@@ -4,14 +4,14 @@ import Component from '../../components/component.react';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
-import topLevelOps from '../../lib/toplevelops';
-import topLevelTraining from '../../lib/topleveltraining';
 import uuid from '../../lib/guid';
 import allAgents from '../../lib/allagents';
 import $ from 'jquery';
 import {msg} from '../../intl/store';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
+import PlayerAgentsLeadership from './player.agents.leadership.react';
+import PlayerOperationsCapability from './player.operations.capability.react';
 
 class PlayersWindow extends Component {
   componentDidMount() {
@@ -75,13 +75,13 @@ class PlayersWindow extends Component {
             Contacts: {jsonapi.get('gameContacts')}
           </span>
         </div>
-        <div id='PlayerOperationsCapability'>
-          Operations: {topLevelOps(jsonapi.get('enhancements'))}
-        </div>
-        <div id='PlayerAgentsLeadership'>
-          Agents: {topLevelTraining(jsonapi.get('enhancements'))}
-        </div>
+        <PlayerOperationsCapability
+          jsonapi={jsonapi} />
+        <PlayerAgentsLeadership
+          jsonapi={jsonapi} />
         <div id='PlayerHelpHint'>
+          Click items to interact
+          <br />
           Press 'h' for help
         </div>
       </div>

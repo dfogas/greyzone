@@ -21,9 +21,7 @@ class DashboardContent extends Component {
     const allagents = allAgents(jsonapi);
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     return (
-      <div
-        id='DashboardContent'
-        >
+      <div id='DashboardContent'>
         {['strategical', 'enhancements', 'statuses', 'achievements', 'options'].indexOf(dashPointer) !== -1 &&
           <PlayersWindow
             jsonapi={jsonapi}
@@ -40,7 +38,6 @@ class DashboardContent extends Component {
           <AgentsWindow
             jsonapi={jsonapi}
             agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
-            agentlog={jsonapi.getIn(['dashboard', 'agentswindow', 'message'])}
             agents={allagents}
             agentspricelist={game.getIn(['globals', 'constants', 'agentsPriceList'])}
             dashboard={jsonapi.get('dashboard')}

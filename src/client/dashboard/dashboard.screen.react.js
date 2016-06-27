@@ -17,6 +17,8 @@ import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
 import CampaignIntro from '../tutorial/campaign.intro.react';
 import StrategicalIntro from './strategical.intro.react';
+import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
+import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
 
 // buttons, selects
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
@@ -89,6 +91,24 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
+        <div
+          id='DashboardScreenLabel'
+          >{msg('dashboard.screen.label')}</div>
+        <DashboardContent
+          contest={contest}
+          game={game}
+          jsonapi={jsonapi}
+          />
+        {jsonapi.getIn(['dashboard', 'operationsUpgradeDialog']) &&
+          <OperationsUpgradeDialog
+            enhancements={jsonapi.get('enhancements')}
+            list={game.getIn(['globals', 'enhancements'])}
+            />}
+        {jsonapi.getIn(['dashboard', 'trainingUpgradeDialog']) &&
+          <TrainingUpgradeDialog
+            enhancements={jsonapi.get('enhancements')}
+            list={game.getIn(['globals', 'enhancements'])}
+            />}
         {(!jsonapi.get('self') || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
           <ScreenPlastic />}
         {!jsonapi.get('self') &&
@@ -107,37 +127,24 @@ class DashboardScreen extends Component {
                   />
               );
           })}
-        <div
-          id='DashboardScreenLabel'
-          >{msg('dashboard.screen.label')}</div>
         {jsonapi.get('gameend') &&
-          <EndGameWindow
-            jsonapi={jsonapi}
-            name={jsonapi.get('name')}
-            options={jsonapi.get('options')}
-            statistics={jsonapi.get('statistics')}
-            />}
+          <EndGameWindow jsonapi={jsonapi} />}
         {!jsonapi.getIn(['activemission', 'started']) &&
           <DashboardToBriefing />}
         {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) &&
           <StrategicalIntro jsonapi={jsonapi}/>}
         <DashboardToCommand />
         <DashboardToIntro />
+        {isLoggedIn && <Logout />}
         <ContestPointer />
-        <EnhancementsPointer />
+        {jsonapi.getIn(['options', 'debug']) && <EnhancementsPointer />}
         <LogPointer />
         <OptionsPointer />
         {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
           <StatusesPointer />}
         <StrategicalPointer />
-        {isLoggedIn && <Logout />}
         {dashPointer === 'options' &&
           <LanguageSelect locales={this.props.locales}/>}
-        <DashboardContent
-          contest={contest}
-          game={game}
-          jsonapi={jsonapi}
-          />
       </div>
     );
   }

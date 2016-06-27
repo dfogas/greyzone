@@ -33,6 +33,19 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     randomMission = modifiedMissionsList.find(mission => mission.title === 'Bank Robbery' && mission.tier === tier);
   if (focus === 'prison')
     randomMission = modifiedMissionsList.find(mission => mission.title === 'Prison Break' && mission.tier === tier);
+  if (focus === 'olddebt')
+    randomMission = modifiedMissionsList.find(mission => mission.title === 'An Old Debt' && mission.tier === tier);
+  if (focus === 'rattedout') {
+    randomMission = modifiedMissionsList.find(mission => mission.title === 'Discovered!' && (mission.tier === (tier || 3)));
+    randomMission.ETA = Date.now() + (10 * 60 * 1000);
+    randomMission.forcefail = true;
+  }
+  if (focus === 'evidence')
+    randomMission = modifiedMissionsList.find(mission => mission.tag === 'destroyevidence' && (mission.tier === (tier || 3)));
+  if (focus === 'killrat')
+    randomMission = modifiedMissionsList.find(mission => mission.tag === 'silencewitness' && (mission.tier === (tier || 3)));
+  if (focus === 'innercircle')
+    randomMission = modifiedMissionsList.find(mission => mission.tag === 'afriendininnercircle' && (mission.tier === (tier || 3)));
   if (country !== 'random')
     randomMission.inCountry = country;
   else

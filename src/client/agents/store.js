@@ -7,6 +7,7 @@ import dayandtime from '../lib/dayandtime';
 // import uuid from '../lib/guid';
 
 import * as agentsActions from './actions';
+import * as dashboardActions from '../dashboard/actions';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -49,7 +50,7 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.message)));
     });
 
-  if (action === agentsActions.dismissAgent)
+  if (action === dashboardActions.dismissAgent)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('log', val => val.unshift(

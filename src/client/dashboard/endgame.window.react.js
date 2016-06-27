@@ -15,9 +15,12 @@ class EndGameWindow extends Component {
   }
 
   render() {
-    const {jsonapi, name, options, statistics} = this.props;
+    const {jsonapi} = this.props;
     const countrystats = jsonapi.get('countrystats');
     const gameend = jsonapi.get('gameend');
+    const name = jsonapi.get('name');
+    const options = jsonapi.get('options');
+    const statistics = jsonapi.get('statistics');
 
     return (
       <div id="EndGameWindow">

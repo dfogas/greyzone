@@ -21,7 +21,8 @@ const Miyako = {
   prison: false,
   rank: '3',
   specialist: 'technician',
-  stealthSkill: 1
+  stealthSkill: 1,
+  personality: 'SJ'
 };
 
 export default Miyako;

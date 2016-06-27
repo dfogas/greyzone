@@ -1,3 +1,4 @@
+import agentsMsg from './en/agent.msg';
 import authMsg from './en/auth.msg';
 import campaignsMsg from './en/campaigns.msg';
 import conceptsMsg from './en/concepts.msg';
@@ -24,6 +25,7 @@ const ENGLISH = {
       <p>Interaction with other players will be possible in later stages.</p>`,
     title: `About the game`
   },
+  agents: agentsMsg,
   app: {
     madeByHtml: `Este v9.2 from <a href="https://twitter.com/steida">steida</a>`
   },

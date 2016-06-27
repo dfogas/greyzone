@@ -19,14 +19,29 @@ class MissionsWindow extends Component {
     dashboardActions.bankRobberyMission();
   }
 
+  oldDebtMission() {
+    dashboardActions.oldDebtMission();
+  }
+
+  destroyEvidenceMission() {
+    dashboardActions.destroyEvidenceMission();
+  }
+
+  innerCircleMission() {
+    dashboardActions.innerCircleMission();
+  }
+
   prisonBreakMission() {
     const {agentbeingsaved, missions} = this.props;
     const missionstitles = missions.map(mission => mission.get('title'));
     if (missionstitles.indexOf('Prison Break') === -1) {
       dashboardActions.prisonBreakMission();
       dashboardActions.bookPrisonBreakMissionPrice(agentbeingsaved);
-    } else
-    dashboardActions.logMissionsWindow({message: 'Prison Break mission already in place, finish it first.'});
+    } else dashboardActions.flashDashboard('Prison Break mission already in place.');
+  }
+
+  silenceWitnessMission() {
+    dashboardActions.silenceWitnessMission();
   }
 
   render() {
@@ -34,16 +49,26 @@ class MissionsWindow extends Component {
     // const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
     const missionaccept = jsonapi.get('dashboard').getIn(['strategical', 'missionaccept']);
     const canhasbank = enhancements.find(enh => enh.get('name') === 'Nostalgia');
+    const payolddebt = enhancements.find(enh => enh.get('name') === 'Side Quest');
+    const purgeevidence = enhancements.find(enh => enh.get('name') === 'You can\'t see me');
+    const silencerat = enhancements.find(enh => enh.get('name') === 'Repaying the favor');
+    const innercircle = enhancements.find(enh => enh.get('name') === 'Gala in Opera house');
+    const debug = jsonapi.getIn(['options', 'debug']);
 
     return (
       <div id='MissionsWindow'>
-        {/*<MissionAcceptForm
-          enhancements={enhancements}
-          missionaccept={missionaccept}
-          missions={missions}
-          missionspricelist={missionspricelist}
-          />*/}
-        <MercuryNetwork />
+        <button
+          id='RecruitAgentButton'
+          onClick={this.agentMission}>Search For Agent</button>
+        {!debug &&
+          <MercuryNetwork />}
+        {debug &&
+          <MissionAcceptForm
+            enhancements={enhancements}
+            missionaccept={missionaccept}
+            missions={missions}
+            missionspricelist={missionspricelist}
+          />}
         {agentbeingsaved &&
           <div id="PrisonBreakMission">
             <button
@@ -56,13 +81,26 @@ class MissionsWindow extends Component {
           <DashboardMissionsList
             missions={missions}
             />}
-        <button
-          id='RecruitAgentButton'
-          onClick={this.agentMission}>Search For Agent</button>
         {canhasbank &&
           <button
             id='RobBankButton'
             onClick={this.bankMission}>Do the bank</button>}
+        {payolddebt &&
+          <button
+            id='OldDebtButton'
+            onClick={this.oldDebtMission}>Pay Old debt</button>}
+        {purgeevidence &&
+          <button
+            id='PurgeEvidenceButton'
+            onClick={this.destroyEvidenceMission}>Purge Evidence</button>}
+        {silencerat &&
+          <button
+            id='SilenceRatButton'
+            onClick={this.silenceWitnessMission}>Silence Rat</button>}
+        {innercircle &&
+          <button
+            id='InnerCircleButton'
+            onClick={this.innerCircleMission}>Inner Circle</button>}
       </div>
     );
   }

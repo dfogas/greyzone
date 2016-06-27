@@ -3,47 +3,25 @@ import Component from '../../components/component.react.js';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
+import currentLevelLdr from '../../lib/currentlevelldr';
+import nextLevelLdr from '../../lib/nextlevelldr';
 import dayandtime from '../../lib/dayandtime';
 
 import EnhancementList from '../../../server/lib/greyzone/enhancement.list';
 
 class LeadershipSubCards extends Component {
   upgradeLeadership() {
-    const {leadership} = this.props;
-    const enhancement = leadership.filter(enh => enh.get('name') === 'Focus Training II.').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Focus Training I.').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Training Grounds').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Crash Course').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Basic Training').get(0);
-    const name = enhancement.get('name');
-    const leadershipList = EnhancementList.filter(enh => enh.type === 'leadership');
-    const nextlevel = (name === 'Basic Training' ? leadershipList[1] :
-      name === 'Crash Course' ? leadershipList[2] :
-      name === 'Training Grounds' ? leadershipList[3] :
-      name === 'Focus Training I.' ? leadershipList[4] : null);
+    const {enhancements, list} = this.props;
+    const enhancement = currentLevelLdr(enhancements);
+    const nextlevel = nextLevelLdr(enhancements, list);
     dashboardActions.upgradeEnhancement(nextlevel);
-    dashboardActions.log(dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Upgraded ' + name + ' to ' + nextlevel.name + '.');
+    dashboardActions.log(dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Upgraded ' + enhancement.get('name') + ' to ' + nextlevel.get('name') + '.');
   }
 
   render() {
-    const {leadership} = this.props;
-    const enhancement = leadership.filter(enh => enh.get('name') === 'Focus Training II.').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Focus Training I.').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Training Grounds').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Crash Course').get(0) ||
-      leadership.filter(enh => enh.get('name') === 'Basic Training').get(0);
-    const name = enhancement.get('name');
-    const leadershipList = EnhancementList.filter(enh => enh.type === 'leadership');
-    const currentlevel = (name === 'Basic Training' ? leadershipList[0] :
-      name === 'Crash Course' ? leadershipList[1] :
-      name === 'Training Grounds' ? leadershipList[2] :
-      name === 'Focus Training I.' ? leadershipList[3] : leadershipList[4]);
-    const description = currentlevel.description;
-    const nextlevel = (name === 'Basic Training' ? leadershipList[1] :
-      name === 'Crash Course' ? leadershipList[2] :
-      name === 'Training Grounds' ? leadershipList[3] :
-      name === 'Focus Training I.' ? leadershipList[4] : null);
-    const hasMaxed = enhancement.get('name') === 'Focus Training II.';
+    const {enhancements, list} = this.props;
+    const enhancement = currentLevelLdr(enhancements);
+    const nextlevel = nextLevelLdr(enhancements, list);
     return (
       <div
         id='LeadershipSubCards'
@@ -51,22 +29,22 @@ class LeadershipSubCards extends Component {
         <div
           className='leadership-enhancement-card owned'
           >
-          <div>{name}</div>
-          <div>{description}</div>
-          {!hasMaxed &&
-            <div>Upgrades to {nextlevel.name}</div>}
+          <div>{enhancement.get('name')}</div>
+          <div>{enhancement.get('description')}</div>
+          {nextlevel &&
+            <div>Upgrades to {nextlevel.get('name')}</div>}
           <div>
-            For {!hasMaxed &&
-              '$' + formatMoney(nextlevel.price.cash, 0, '.', ',')}
-            {!hasMaxed && '\u{1f575}'}
-            {!hasMaxed && nextlevel.price.contacts}
+            For {nextlevel &&
+              '$' + formatMoney(nextlevel.getIn(['price', 'cash']), 0, '.', ',')}
+            {nextlevel && '\u{1f575}'}
+            {nextlevel && nextlevel.getIn(['price', 'contacts'])}
           </div>
-          {!hasMaxed &&
+          {nextlevel &&
             <button
               id='UpgradeLeaderhipEnhancement'
               onClick={this.upgradeLeadership.bind(this)}
               >Upgrade</button>}
-          {hasMaxed &&
+          {!nextlevel &&
             'Max Level reached!'}
         </div>
       </div>
@@ -75,7 +53,8 @@ class LeadershipSubCards extends Component {
 }
 
 LeadershipSubCards.propTypes = {
-  leadership: React.PropTypes.instanceOf(immutable.List)
+  enhancements: React.PropTypes.instanceOf(immutable.List),
+  list: React.PropTypes.instanceOf(immutable.List)
 };
 
 export default LeadershipSubCards;

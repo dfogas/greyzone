@@ -10,7 +10,7 @@ router.route('/:player_id')
       // TODO: rewrite through findById and save combination
       // we need params _id here else only 1st record from parent collection is updated
       // Model.update(criteria, doc, options, callback)
-      {_id: req.params.player_id}, {$set: req.body}, {overwrite: true, upsert: true}, (err, raw) => {
+      {userId: req.params.player_id}, {$set: req.body}, {overwrite: true, upsert: true}, (err, raw) => {
         if (err)
           res.send(err);
 

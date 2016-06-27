@@ -72,10 +72,9 @@ class AgentCard extends Component {
           skillname="stealth"
           />
         <AgentProfile
-          imgsrc={agent.get('imgsrc')}
+          agent={agent}
           isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
-          name={agent.get('name')}
           />
         {
           agentequipments.map((agentequipment, i) => {

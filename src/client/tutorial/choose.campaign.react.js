@@ -16,10 +16,11 @@ class ChooseCampaign extends Component {
   render() {
     const {campaigns, paying} = this.props;
     const isPaying = paying ?
-      Object.keys(paying).reduce((prev, curr, index, array) => {
+      Object.keys(paying.toJS()).reduce((prev, curr) => {
         return paying[curr] || prev;
       }, false) : false;
 
+    console.log(isPaying);
     return (
       <div id='ChooseCampaign'>
         <fieldset>
@@ -32,13 +33,13 @@ class ChooseCampaign extends Component {
           <label>
             <input
               checked={campaigns ? campaigns.getIn(['collector', 'selected']) : false}
-              disabled={isPaying}
+              disabled={!isPaying}
               name='collector' onChange={(e) => this.toggleCampaign(e)}
               type='checkbox' />Collector</label>
           <label>
             <input
               checked={campaigns ? campaigns.getIn(['revenge', 'selected']) : false}
-              disabled={isPaying}
+              disabled={!isPaying}
               name='revenge' onChange={(e) => this.toggleCampaign(e)}
               type='checkbox' />Revenge</label>
         </fieldset>

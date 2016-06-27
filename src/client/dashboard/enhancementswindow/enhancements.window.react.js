@@ -13,8 +13,6 @@ import EnhancementCard from './enhancement.card.react';
 class EnhancementsWindow extends Component {
   render() {
     const {enhancements, owned, paying} = this.props;
-    const capabilityowned = owned.filter(enhancement => enhancement.get('type') === 'capability');
-    const leadershipowned = owned.filter(enhancement => enhancement.get('type') === 'leadership');
     const toysowned = owned.filter(enhancement => enhancement.get('type') === 'toys');
     const operationsscopeowned = owned.filter(enhancement => enhancement.get('type') === 'operationsscope');
 
@@ -28,9 +26,11 @@ class EnhancementsWindow extends Component {
       <div id='EnhancementsWindow'>
         <div id='EnhancementsWindowLabel'>{msg('dashboard.enhancements.window.label')}</div>
         <CapabilitySubCards
-          capability={capabilityowned} />
+          enhancements={owned}
+          list={enhancements} />
         <LeadershipSubCards
-          leadership={leadershipowned} />
+          enhancements={owned}
+          list={enhancements} />
         {toysowned.map((enhancement) => {
           return (
             <EnhancementCard

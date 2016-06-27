@@ -14,6 +14,7 @@
 const EnhancementList = [
   {
     description: 'Accept Tier 1 Missions',
+    level: 1,
     name: 'Operation I.',
     prerequisites: [],
     price: {
@@ -23,6 +24,7 @@ const EnhancementList = [
     type: 'capability'
   }, {
     description: 'Accept Tier 2 Missions',
+    level: 2,
     name: 'Operation II.',
     prerequisites: [{
       name: 'Operation I.',
@@ -35,6 +37,7 @@ const EnhancementList = [
     type: 'capability'
   }, {
     description: 'Accept Tier 3 Missions',
+    level: 3,
     name: 'Good Label',
     prerequisites: [{
       name: 'Operation II.',
@@ -47,6 +50,7 @@ const EnhancementList = [
     type: 'capability'
   }, {
     description: 'Accept Tier 4 and campaign missions',
+    level: 4,
     name: 'Higher Level',
     prerequisites: [{
       name: 'Good Label',
@@ -59,6 +63,7 @@ const EnhancementList = [
     type: 'capability'
   }, {
     description: 'Accept Tier 5 Missions',
+    level: 5,
     name: 'Top Class',
     prerequisites: [{
       name: 'Higher Level',
@@ -71,6 +76,7 @@ const EnhancementList = [
     type: 'capability'
   }, {
     description: 'Hire and Train Agents up to Rank 3',
+    level: 1,
     name: 'Basic Training',
     prerequisites: [],
     price: {
@@ -80,6 +86,7 @@ const EnhancementList = [
     type: 'leadership'
   }, {
     description: 'Hire and Train Agents up to Rank 6',
+    level: 2,
     name: 'Crash Course',
     prerequisites: [{
       name: 'Basic Training',
@@ -92,6 +99,7 @@ const EnhancementList = [
     type: 'leadership'
   }, {
     description: 'Hire and Train Agents Up to Rank 8',
+    level: 3,
     name: 'Training Grounds',
     prerequisites: [{
       name: 'Crash Course',
@@ -104,6 +112,7 @@ const EnhancementList = [
     type: 'leadership'
   }, {
     description: 'Hire and Train Agents Up to Rank 10. Some special agents may offer you their services.',
+    level: 4,
     name: 'Focus Training I.',
     prerequisites: [{
       name: 'Training Grounds',
@@ -116,6 +125,7 @@ const EnhancementList = [
     type: 'leadership'
   }, {
     description: 'Hire and Train Agents Up to Rank 12. Special Missions required for such promotion.',
+    level: 5,
     name: 'Focus Training II.',
     prerequisites: [{
       name: 'Focus Training I.',
@@ -295,18 +305,18 @@ const EnhancementList = [
       contacts: 100
     },
     type: 'operationsscope'
-  // }, {
-  //   description: 'Mission Silence Witness',
-  //   name: 'Repaying the favors',
-  //   prerequisites: [{
-  //     name: 'Good Label',
-  //     type: 'enhancement'
-  //   }],
-  //   price: {
-  //     cash: 10000,
-  //     contacts: 100
-  //   },
-  //   type: 'operationsscope'
+  }, {
+    description: 'Mission Silence Witness',
+    name: 'Repaying the favor',
+    prerequisites: [{
+      name: 'Good Label',
+      type: 'enhancement'
+    }],
+    price: {
+      cash: 10000,
+      contacts: 100
+    },
+    type: 'operationsscope'
   }, {
     description: 'Mission In Inner Circle',
     name: 'Gala in Opera house',

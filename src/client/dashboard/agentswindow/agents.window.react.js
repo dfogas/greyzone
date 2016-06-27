@@ -13,7 +13,7 @@ import AgentShiftRight from './shift.right.react';
 class AgentsWindow extends Component {
 
   render() {
-    const {agenthire, agentlog, agents, agentspricelist, dashboard, options, jsonapi, self} = this.props;
+    const {agenthire, agents, agentspricelist, dashboard, options, jsonapi, self} = this.props;
     const agentondisplay = dashboard.get('agentondisplay');
 
     return (
@@ -22,9 +22,6 @@ class AgentsWindow extends Component {
           agenthire={agenthire}
           agentspricelist={agentspricelist}
           />*/}
-        <div id='AgentsWindowMessage'>
-          {agentlog}
-        </div>
         <AgentsList
           agentbeingsaved={jsonapi.get('agentbeingsaved')}
           agentondisplay={agentondisplay}
@@ -52,7 +49,6 @@ class AgentsWindow extends Component {
 AgentsWindow.propTypes = {
   agentbeingfreed: React.PropTypes.instanceOf(immutable.Map),
   agenthire: React.PropTypes.instanceOf(immutable.Map),
-  agentlog: React.PropTypes.string,
   agents: React.PropTypes.instanceOf(immutable.List),
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   dashboard: React.PropTypes.instanceOf(immutable.Map),

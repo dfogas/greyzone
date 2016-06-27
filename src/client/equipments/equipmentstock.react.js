@@ -8,7 +8,7 @@ import uuid from '../lib/guid';
 class EquipmentStock extends Component {
 
   render() {
-    const {enhancements, equipments, stock} = this.props;
+    const {enhancements, equipments, jsonapi, list, paying, stock} = this.props;
     let filteredenhancements;
     if (stock === 'operations')
       filteredenhancements = enhancements.filter(enh => enh.get('name') === 'Locals' || enh.get('name') === 'Arms Dealer' || enh.get('name') === 'Stork Ind.');
@@ -20,18 +20,19 @@ class EquipmentStock extends Component {
     var classString = ' ' + stock;
     return (
       <div className={'equipment-stock' + classString}>
-        {
-          equipments.map(equipment => {
-            return (
-              <EquipmentItem
-                enhancements={filteredenhancements}
-                equipment={equipment}
-                key={uuid() + 'eqstock'}
-                stock={stock}
-              />
-            );
-          })
-        }
+        {equipments.map(equipment => {
+          return (
+            <EquipmentItem
+              enhancements={filteredenhancements}
+              equipment={equipment}
+              jsonapi={jsonapi}
+              key={uuid() + 'eqstock'}
+              list={list}
+              paying={paying}
+              stock={stock}
+            />
+          );
+        })}
       </div>
     );
   }
@@ -40,6 +41,7 @@ class EquipmentStock extends Component {
 EquipmentStock.propTypes = {
   enhancements: React.PropTypes.instanceOf(immutable.List),
   equipments: React.PropTypes.instanceOf(immutable.List),
+  paying: React.PropTypes.instanceOf(immutable.Map),
   stock: React.PropTypes.string
 };
 

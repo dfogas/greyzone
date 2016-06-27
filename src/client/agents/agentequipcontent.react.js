@@ -9,7 +9,7 @@ import formatMoney from '../lib/formatmoney';
 import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
 import EquipmentStock from '../equipments/equipmentstock.react';
-// import Task from '../mission/missioncard/tasks/task.react';
+import FacilityUpgradeDialog from './facility.upgrade.dialog.react';
 
 class AgentEquipContent extends Component {
   agentInArmoryToMission() {
@@ -29,14 +29,15 @@ class AgentEquipContent extends Component {
   }
 
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
     const armorymessage = jsonapi.getIn(['armory', 'message']);
 
     const equipments = jsonapi.get('equipments');
-    const equipmentsoperations = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'O').toList();
-    const equipmentselectronics = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'E').toList();
-    const equipmentsstealth = equipments.toSeq().filter(equipment => equipment.get('tag').charAt(2) === 'S').toList();
+    // POI: there was toSeq used for lazy evaluation, wonder was it any good doing there?
+    const equipmentsoperations = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'O');
+    const equipmentselectronics = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'E');
+    const equipmentsstealth = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'S');
 
     return (
       <div id='AgentEquipContent'>
@@ -50,35 +51,45 @@ class AgentEquipContent extends Component {
         <div id='ArmoryGameCashCounter'>
           Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
         </div>
+        <AgentInArmory jsonapi={jsonapi} />
+        <EquipmentStock
+          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+          equipments={equipmentsoperations}
+          jsonapi={jsonapi}
+          list={game.getIn(['globals', 'enhancements'])}
+          paying={jsonapi.get('paying')}
+          stock='operations'
+          />
+        <EquipmentStock
+          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+          equipments={equipmentselectronics}
+          jsonapi={jsonapi}
+          list={game.getIn(['globals', 'enhancements'])}
+          paying={jsonapi.get('paying')}
+          stock='electronics'
+          />
+        <EquipmentStock
+          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+          equipments={equipmentsstealth}
+          jsonapi={jsonapi}
+          list={game.getIn(['globals', 'enhancements'])}
+          paying={jsonapi.get('paying')}
+          stock='stealth'
+          />
+        <div id='ArmoryLogMessage'>
+          Message : {armorymessage}
+        </div>
         {agentinarmory && <button
           id='BackFromArmory'
           onClick={this.backFromArmory.bind(this)}>Back</button>}
         {agentinarmory && <button
           id='UnequipAll'
           onClick={this.unequipAll.bind(this)}>Unequip</button>}
-        <AgentInArmory jsonapi={jsonapi} />
         {agentinarmory &&
           <button
             id='AgentInArmoryToMission'
             onClick={this.agentInArmoryToMission.bind(this)}>To Mission</button>}
-        <EquipmentStock
-          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
-          equipments={equipmentsoperations}
-          stock='operations'
-          />
-        <EquipmentStock
-          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
-          equipments={equipmentselectronics}
-          stock='electronics'
-          />
-        <EquipmentStock
-          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
-          equipments={equipmentsstealth}
-          stock='stealth'
-          />
-        <div id='ArmoryLogMessage'>
-          Message : {armorymessage}
-        </div>
+
       </div>
     );
   }

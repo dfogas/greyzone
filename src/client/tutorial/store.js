@@ -18,13 +18,11 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['campaigns', 'selection', 'done'], true);
     });
 
-  if (action === tutorialActions.firstMissionSetup) {
-    console.log(data.mission.toJS());
+  if (action === tutorialActions.firstMissionSetup)
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .set('activemission', immutable.fromJS(data.mission));
+        .set('activemission', immutable.fromJS(data.mission));
     });
-  }
 
   if (action === tutorialActions.firstMissionDone)
     jsonapiCursor(jsonapi => {

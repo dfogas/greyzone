@@ -55,15 +55,16 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.buyEnhancement) {
     const gameCash = jsonapiCursor(['gameCash']);
     const gameContacts = jsonapiCursor(['gameContacts']);
-    if (gameCash >= data.message.price.cash && gameContacts >= data.message.price.contacts)
+    const price = data.enhancement.get('price');
+    if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .update('enhancements', val => val.push(immutable.fromJS(data.message)))
-          .update('gameCash', val => val - data.message.price.cash)
-          .update('gameContacts', val => val - data.message.price.contacts)
+          .update('enhancements', val => val.push(data.enhancement))
+          .update('gameCash', val => val - price.get('cash'))
+          .update('gameContacts', val => val - price.get('contacts'))
           .update('log', val => val.unshift(
             dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-              ' - Enhancement ' + data.message.name + ' for your organization bought.'
+              ' - Enhancement ' + data.enhancement.get('name') + ' for your organization bought.'
           ));
       });
   }
@@ -113,6 +114,18 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['statistics'], immutable.fromJS(data));
     });
 
+  if (action === dashboardActions.facilityUpgradeDialog)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'facilityUpgradeDialog'], data.enhancement.get('name'));
+    });
+
+  if (action === dashboardActions.facilityUpgradeDialogClose)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'facilityUpgradeDialog'], null);
+    });
+
   if (action === dashboardActions.goodEndRich)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -154,6 +167,14 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'missionswindow', 'message'], data);
+    });
+  }
+
+  if (action === dashboardActions.operationsUpgradeDialogToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'operationsUpgradeDialog']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'operationsUpgradeDialog'], !toggle);
     });
   }
 
@@ -233,6 +254,14 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'statuses', 'tierdisplayed'], data.tier);
     });
 
+  if (action === dashboardActions.trainingUpgradeDialogToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'trainingUpgradeDialog']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'trainingUpgradeDialog'], !toggle);
+    });
+  }
+
   if (action === dashboardActions.updateFormField)
     jsonapiCursor(jsonapi => {
       const {context, name, value} = data;
@@ -242,12 +271,13 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.upgradeEnhancement) {
     const gameCash = jsonapiCursor(['gameCash']);
     const gameContacts = jsonapiCursor(['gameContacts']);
-    if (gameCash >= data.enhancement.price.cash && gameContacts >= data.enhancement.price.contacts)
+    const price = data.enhancement.get('price');
+    if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .update('enhancements', val => val.push(immutable.fromJS(data.enhancement)))
-          .update('gameCash', val => val - data.enhancement.price.cash)
-          .update('gameContacts', val => val - data.enhancement.price.contacts);
+          .update('enhancements', val => val.push(data.enhancement))
+          .update('gameCash', val => val - price.get('cash'))
+          .update('gameContacts', val => val - price.get('contacts'));
       });
   }
 

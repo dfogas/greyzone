@@ -8,13 +8,14 @@ import DocumentTitle from 'react-document-title';
 
 class Armory extends Component {
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
 
     return (
       <DocumentTitle title={msg('armory.title')}>
         {!missionstarted && <div className='armory-page'>
           <ArmoryScreen
+            game={game}
             jsonapi={jsonapi}
             />
         </div>}

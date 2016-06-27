@@ -31,7 +31,7 @@ export function firstMissionSetup() {
   else
     mission = FirstMission
       .setIn(['mission', 'currenttask', 'agentontask'], immutable.fromJS(Miyako))
-      .update('agentsonmission', val => val.push(self))
+      .update('agentsonmission', val => val.push(self.set('equipments', immutable.fromJS([EquipmentList[0], EquipmentList[6]]))))
       .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(immutable.fromJS(Miyako), FirstMission.getIn(['tasks', 0]))))
       .setIn(['rewards', 'character'], self.get('specialist') === 'spy' ? 'operative' : 'spy');
 

@@ -10,7 +10,7 @@ import classnames from 'classnames';
 class AgentListRecord extends Component {
   dismissAgent() {
     const {agent} = this.props;
-    agentsActions.dismissAgent(agent);
+    dashboardActions.dismissAgent(agent);
   }
 
   honorAgent() {

@@ -2,16 +2,19 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import {gameCursor} from '../state';
+import {msg} from '../intl/store';
 
 import actionDices from '../lib/actiondices';
 import agentIncurDelay from '../lib/agentincurdelay';
 import agentRankup from '../lib/agentrankup';
+import agentTalk from '../lib/agenttalk';
 import leadershipcheck from '../lib/leadershipcheck';
 import trainingtable from '../../server/lib/greyzone/trainingtable';
 import $ from 'jquery';
 
 export function toArmory(agent) {
-  dispatch(toArmory, {message: agent});
+  if (agent)
+    dispatch(toArmory, {message: agent});
 }
 
 export function agentInArmoryAssignMission(agent) {
@@ -28,6 +31,31 @@ export function agentInArmoryAssignMission(agent) {
     dispatch(agentInArmoryAssignMission, {agent});
 }
 
+export function agentTalking(agent) {
+  const self = jsonapiCursor(['self']);
+  if ($('#ArmoryScreen').html()) {
+    console.log('armory talk');
+    $('#ArmoryScreen').append(() => msg('agents.talk.' + agentTalk(agent, self)));
+    $('#AgentTalk').append(`<button>Close</button>`);
+    $('#AgentTalk button').click(() => $('#AgentTalk').remove());
+  } else if ($('#BriefingScreen').html()) {
+    console.log('briefing talk');
+    $('#BriefingScreen').append(msg('agents.talk.' + agentTalk(agent, self)));
+    $('#AgentTalk').append(`<button>Close</button>`);
+    $('#AgentTalk button').click(() => $('#AgentTalk').remove());
+  } else if ($('#DashboardScreen').html()) {
+    console.log('dashboard talk');
+    $('#DashboardScreen').append(msg('agents.talk.' + agentTalk(agent, self)));
+    $('#AgentTalk').append(`<button>Close</button>`);
+    $('#AgentTalk button').click(() => $('#AgentTalk').remove());
+  } else {
+    console.log('mission talk');
+    $('#TableTop').append('<div id=\'MissionStartMessage\'>Busy</div>');
+    $('#MissionStartMessage').hide().fadeIn(200);
+    $('#MissionStartMessage').fadeOut(1000, () => $('#MissionStartMessage').remove());
+  }
+}
+
 export function assignTask(agent) {
   const currenttask = jsonapiCursor(['activemission', 'tasks', jsonapiCursor(['activemission', 'taskscompleted']).size]);
   const dices = actionDices(agent, currenttask);
@@ -42,14 +70,6 @@ export function backFromArmory(agent) {
 export function backtoRoster(agent) {
   /* agent se vrací z týmu přípravujícího se na misi zpět do agentů čekajících */
   dispatch(backtoRoster, {message: agent});
-}
-
-export function dismissAgent(agent) {
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
-  const storage = storagejson ? JSON.parse(storagejson) : [];
-
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], JSON.stringify(storage.concat([agent.toJS()])));
-  dispatch(dismissAgent, {agent});
 }
 
 export function equip(equipment) {
@@ -99,10 +119,10 @@ export function setETA(agent, equipment) {
 setToString('agents', {
   toArmory,
   agentInArmoryAssignMission,
+  agentTalking,
   assignTask,
   backFromArmory,
   backtoRoster,
-  dismissAgent,
   equip,
   getRank,
   // goFree,

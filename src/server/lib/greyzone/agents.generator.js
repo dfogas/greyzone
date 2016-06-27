@@ -5,6 +5,7 @@ import generateCountry from './origin.generator';
 import generateImage from './image.generator';
 import generateEquipments from './generateequipments';
 import getRandomSkill from '../../../client/lib/getrandomskill';
+import personality from './personality';
 import trainingtable from './trainingtable';
 import uuid from '../../../client/lib/guid';
 
@@ -49,7 +50,8 @@ let Agent = function(character, rank) {
     experience: trainingtable[rank - 1].xp,
     rank: rank,
     equipmentSlots: trainingtable[rank - 1].slots,
-    ETA: 0
+    ETA: 0,
+    personality: personality()
   };
 };
 

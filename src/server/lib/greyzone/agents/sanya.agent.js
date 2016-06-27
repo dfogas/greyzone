@@ -21,7 +21,8 @@ const Sanya = {
   prison: false,
   rank: '3',
   specialist: 'operative',
-  stealthSkill: 3
+  stealthSkill: 3,
+  personality: 'SP'
 };
 
 export default Sanya;
