@@ -32,8 +32,9 @@ class TrainingUpgradeDialog extends Component {
         <br />
         Do you want to proceed with upgrade?
         <br />
-        <button onClick={this.upgradeEnhancement.bind(this)}>Yes</button>
-        <button onClick={(e) => dashboardActions.trainingUpgradeDialogToggle()}>No</button>
+        <br />
+        <button id='TrainingUpgradeYes' onClick={this.upgradeEnhancement.bind(this)}>Yes</button>
+        <button id='TrainingUpgradeNo' onClick={(e) => dashboardActions.trainingUpgradeDialogToggle()}>No</button>
       </div>
     );
   }

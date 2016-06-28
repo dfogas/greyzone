@@ -74,13 +74,18 @@ const dashboardMsg = {
         sucking up to your rich peers passes your mind.
         Since you have much wider range of capabilities now, you wonder,
         how much of this 'dolce vita' life can you claim for yourself
-        without giving yourself up to legal enforcement.
+        without giving yourself away to legal enforcement.
         It didn't take you long to realize, that this is something you always
         wanted...
       `
     },
     tier1: `
-      <div id='StatusesTierComplete'>Some text relating to the completion of tier.</div>
+      <div id='StatusesTierComplete'>
+        You have enjoyed plenty of sea, sand and snow, filling you with joy and
+        satisfaction. Until you meet some douchebags talking about some posh
+        sporting events, cars, golf, hunting ... You feel left aside once more.
+        Perhaps some more cash spent in that direction would mean fulfillment again.
+      </div>
     `,
     tier2: `
       <div id='StatusesTierComplete'>Some text relating to the completion of tier.</div>

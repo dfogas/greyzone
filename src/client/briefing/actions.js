@@ -14,9 +14,9 @@ export function assignMission(agent) {
   const activemissionlimit = jsonapiCursor(['activemission', 'agentLimit']);
 
   if (totalmissionagents === activemissionlimit)
-    logBriefing('Mission agent limit already reached.');
+    flashBriefing('Mission agent limit already reached.');
   else if (agent.get('ETA') - Date.now() > 0)
-    logBriefing('Agent is tired.');
+    flashBriefing('Agent is tired.');
   else
     dispatch(assignMission, {message: agent});
 }
@@ -40,7 +40,7 @@ export function checkFatalities(results) {
   }
 }
 
-export function logBriefing(message) {
+export function flashBriefing(message) {
   $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);
   $('#BriefingMessage').hide().fadeIn(400);
   $('#BriefingMessage').fadeOut(1200, () => $('#BriefingMessage').remove());
@@ -52,7 +52,10 @@ export function missionTextToggle() {
 
 /*finds passed mission within player's missions and removes it*/
 export function passMission(mission) {
+  const reputationloss = (-100 * mission.get('tier'));
+  const inCountry = mission.get('inCountry') || 'US';
   dispatch(passMission, {message: mission});
+  reputationImpact(inCountry, reputationloss);
   if (mission.get('forcefail')) {
     dispatch(bookLosses, {mission});
     checkFatalities({results: mission.get('losses').toJS()});
@@ -65,16 +68,21 @@ export function pushGameMission(mission) {
     dispatch(pushGameMission, {mission});
 }
 
+export function reputationImpact(country, impact) {
+  flashBriefing(`${impact} reputation in ${country}`);
+  dispatch(reputationImpact, {country, impact});
+}
+
 /*passed mission is merged to become a activemission*/
 export function selectMission(mission) {
   const activemission = jsonapiCursor(['activemission']);
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const countrystats = jsonapiCursor(['countrystats']);
   if (agentontask)
-    logBriefing('Agent is on task, move her back.');
+    flashBriefing('Agent is on task, move her back.');
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
     dispatch(passMission, {message: mission});
-    logBriefing('Time expired.', () => {
+    flashBriefing('Time expired.', () => {
       dispatch(setDefaultAfterExpired, {});
     });
     if (mission.get('forcefail')) {
@@ -82,7 +90,7 @@ export function selectMission(mission) {
       checkFatalities({results: mission.get('losses').toJS()});
     }
   } else if (!obscurityMissionCheck(mission, countrystats))
-    logBriefing(`Mission won't start, obscurity is not high enough.`);
+    flashBriefing(`Mission won't start, obscurity is not high enough.`);
   else dispatch(selectMission, {mission});
 }
 
@@ -94,10 +102,11 @@ setToString('briefing', {
   assignMission,
   bookLosses,
   checkFatalities,
-  logBriefing,
+  flashBriefing,
   missionTextToggle,
   passMission,
   pushGameMission,
+  reputationImpact,
   selectMission,
   setDefaultAfterExpired
 });

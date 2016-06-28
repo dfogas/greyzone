@@ -84,6 +84,22 @@ const agents = {
           of a trail behind us.</div>`
       }
     },
+    prisonbreak: {
+      acknowledgement: {
+        button: `Good!`,
+        text: `Mission Prison Break is available`
+      },
+      choice: {
+        button1: `Let's do that`,
+        button2: `Maybe later`,
+        text: `After some planning and surprise action, we can proceed with an escape plan
+          for the agent now in custody.`
+      },
+      dialog: {
+        button: `What can be done?`,
+        text: `Someone fucked up, or had a bad luck and now rots in prison.`
+      }
+    },
     silencewitness: {
       acknowledgement: {
         button: `Ok`,

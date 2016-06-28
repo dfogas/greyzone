@@ -112,7 +112,7 @@ export function buyStatus(status) {
       $('#StatusesTierComplete').append(`<button>Ok</button>`);
       $('#StatusesTierComplete button').click(() => $('#StatusesTierComplete').remove());
     }
-  }
+  } else flashDashboard(`You're short on cash!`);
 }
 
 export function cashFocusMission() {
@@ -189,7 +189,9 @@ export function displayGameEndStatistics() {
 }
 
 export function facilityUpgradeDialog(enhancement) {
-  dispatch(facilityUpgradeDialog, {enhancement});
+  const enhancements = jsonapiCursor(['enhancements']);
+  if (enhancements.indexOf(enhancement) === -1)
+    dispatch(facilityUpgradeDialog, {enhancement});
 }
 
 export function facilityUpgradeDialogClose(enhancement) {
@@ -336,13 +338,15 @@ export function sanitizeMissions() {
 export function saveAgent(agent) {
   const enhancements = jsonapiCursor(['enhancements']);
   const enhancementnames = enhancements.filter(enh => enh.get('type') === 'operationsscope').map(enh => enh.get('name'));
-  if (enhancementnames.indexOf(`We Got the Power`) === -1)
+  if (enhancementnames.indexOf(`We Got the Power`) === -1) {
+    flashDashboard(`Buy enhancement 'We Got the Power first.'`);
     dispatch(logAgentsWindow, `Buy enhancement 'We Got the Power first.'`);
+  }
   else if (jsonapiCursor(['agentBeingSaved']))
     dispatch(logAgentsWindow, `There is currently agent being saved, save her first then, you may choose another one.`);
   else {
     dispatch(saveAgent, {agent});
-    dispatch(logAgentsWindow, `Agent ` + agent.get('name') + ` should be freed by next Prison Break mission.`);
+    flashDashboard(`Agent ` + agent.get('name') + ` should be freed by next Prison Break mission.`);
   }
 }
 

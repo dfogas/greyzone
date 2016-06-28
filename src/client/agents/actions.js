@@ -24,25 +24,33 @@ export function agentInArmoryAssignMission(agent) {
   const activemissionlimit = jsonapiCursor(['activemission', 'agentLimit']);
 
   if (totalmissionagents === activemissionlimit)
-    logArmory('Mission agent limit already reached.');
+    flashArmory('Mission agent limit already reached.');
   else if (agent.get('ETA') - Date.now() > 0)
-    logArmory('Agent is tired.');
-  else
+    flashArmory('Agent is tired.');
+  else {
+    flashArmory('Agent assigned to mission.');
     dispatch(agentInArmoryAssignMission, {agent});
+  }
 }
 
 export function agentTalking(agent) {
   const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
+  const enhancements = jsonapiCursor(['enhancements']);
 
-  if (jsonapiCursor(['self']).get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents'].filter(agent => agent.get('prison').size)))
+  if (
+    (goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')) ||
+    (jsonapiCursor(['agentbeingsaved']) && goodlabel)
+  )
+    dispatch(enhancementTalk, {message: 'prisonbreak'});
+  else if (jsonapiCursor(['self']).get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
     dispatch(enhancementTalk, {message: 'silencewitness'});
-  else if (agent.get('specialist') && goodlabel && agent.get('MissionsDone').size > 10)
+  else if (agent.get('specialist') && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
     dispatch(enhancementTalk, {message: 'destroyevidence'});
-  else if (agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal')
+  else if (agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal' && !enhancements.find(enh => enh.get('missiontag') === 'afriendininnercircle'))
     dispatch(enhancementTalk, {message: 'afriendininnercircle'});
-  else if (agent.get('personality') === 'SP' && goodlabel)
+  else if (agent.get('personality') === 'SP' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'bankrobbery'))
     dispatch(enhancementTalk, {message: 'bankrobbery'});
-  else if (agent.get('loyalty') !== 'loyal' && goodlabel)
+  else if (agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt'))
     dispatch(enhancementTalk, {message: 'anolddebt'});
   else
     invokeAgentTalk(jsonapiCursor(), agent);
@@ -65,7 +73,7 @@ export function backtoRoster(agent) {
 }
 
 export function buyEnhancement(missiontag) {
-  const list = gameCursor(['globals', 'constants']);
+  const list = gameCursor(['globals', 'enhancements']);
   const enhancement = list.find(enh => enh.get('missiontag') === missiontag);
 
   dispatch(buyEnhancement, {enhancement});
@@ -92,9 +100,9 @@ export function equip(equipment) {
   const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(equipment.get('name')) !== -1;
   if (!hasAlready) {
     dispatch(equip, equipment);
-    logArmory('Agent equipped.');
+    flashArmory('Agent equipped.');
   }
-  else logArmory('Agent already has this equipment.');
+  else flashArmory('Agent already has this equipment.');
 }
 
 export function getRank(agent) {
@@ -102,17 +110,17 @@ export function getRank(agent) {
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
   // console.log(agentRankup(trainingtable, 7, agent));
   if (leadershipcheck(agent.get('rank'), enhancementnames)) {
-    logArmory('Agent Rank Gained.');
+    flashArmory('Agent Rank Gained.');
     dispatch(getRank, agentRankup(trainingtable, 7, agent));
   }
-  else logArmory('Upgrade training facility.');
+  else flashArmory('Upgrade training facility.');
 }
 
 export function honorAgent(agent) {
   dispatch(honorAgent, {agent});
 }
 
-export function logArmory(message) {
+export function flashArmory(message) {
   $('#ArmoryScreen').append(`<div id='ArmoryMessage'>${message}</div>`);
   $('#ArmoryMessage').hide().fadeIn(400);
   $('#ArmoryMessage').fadeOut(1200, () => $('#ArmoryMessage').remove());
@@ -148,6 +156,6 @@ setToString('agents', {
   // goFree,
   // goToPrison,
   honorAgent,
-  logArmory,
+  flashArmory,
   setETA
 });

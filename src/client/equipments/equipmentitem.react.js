@@ -37,8 +37,7 @@ class EquipmentItem extends Component {
         className='equipment-item'
         id={equipment.get('name').replace(/\s+/g, '')}
         key={key}
-        onClick={this.upgradeDialog.bind(this)}
-        >
+        onClick={this.upgradeDialog.bind(this)}>
         <EquipmentStockItem
           available={isAvailable}
           equipment={equipment}

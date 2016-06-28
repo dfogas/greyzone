@@ -38,6 +38,14 @@ export const dispatchToken = register(({action, data}) => {
         .update('missions', val => val.unshift(immutable.fromJS(data.mission)));
     });
 
+  if (action === briefingActions.reputationImpact) {
+    const countrystats = jsonapiCursor(['countrystats']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['countrystats', countrystats.indexOf(countrystats.find(cs => cs.get('name') === data.country)), 'reputation'], val => val + data.impact);
+    });
+  }
+
   if (action === briefingActions.selectMission)
     jsonapiCursor(jsonapi => {
       return jsonapi

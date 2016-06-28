@@ -224,6 +224,7 @@ export const dispatchToken = register(({action, data}) => {
         .update('missions', val => val.delete(val.indexOf(data.message)));
     });
 
+
   if (action === missionActions.removeCompletedMission) {
     const activemission = jsonapiCursor(['activemission']);
     const missions = jsonapiCursor(['missions']);
