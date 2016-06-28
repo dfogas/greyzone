@@ -2,7 +2,7 @@
 
 function agentTalk(agent, self) {
   const tired = agent.get('ETA') - Date.now() > 0;
-  console.log('tired: ' + tired);
+  // console.log('tired: ' + tired);
   if ((agent.get('id') === self.get('id')) && tired)
     return 'tired.self';
   else if (agent.get('personality') === 'SP' && tired)

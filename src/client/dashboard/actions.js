@@ -104,7 +104,6 @@ export function buyStatus(status) {
   const alltieritems = statusesall.filter(item => item.get('tier') === status.get('tier'));
   const statuses = jsonapiCursor(['statuses']);
   const tieritems = statuses.filter(item => item.get('tier') === status.get('tier'));
-  console.log('buy status');
 
   if (jsonapiCursor(['gameCash']) >= status.getIn(['price', 'cash']) && jsonapiCursor(['gameContacts']) >= status.getIn(['price', 'contacts'])) {
     dispatch(buyStatus, {status});
@@ -201,7 +200,6 @@ export function flashDashboard(message) {
   $('#DashboardScreen').append(`<div id='DashboardMessage'>${message}</div>`);
   $('#DashboardMessage').hide().fadeIn(400);
   $('#DashboardMessage').fadeOut(1200, () => $('#DashboardMessage').remove());
-  console.log('flash Dashboard');
 }
 
 export function hireAgent(specialist, rank) {

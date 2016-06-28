@@ -20,7 +20,6 @@ class ChooseCampaign extends Component {
         return paying[curr] || prev;
       }, false) : false;
 
-    console.log(isPaying);
     return (
       <div id='ChooseCampaign'>
         <fieldset>
@@ -50,7 +49,8 @@ class ChooseCampaign extends Component {
 }
 
 ChooseCampaign.propTypes = {
-  campaigns: React.PropTypes.instanceOf(immutable.Map)
+  campaigns: React.PropTypes.instanceOf(immutable.Map),
+  paying: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default ChooseCampaign;

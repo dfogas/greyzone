@@ -50,6 +50,41 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.message)));
     });
 
+  if (action === agentsActions.buyEnhancement) {
+    const gameCash = jsonapiCursor(['gameCash']);
+    const gameContacts = jsonapiCursor(['gameContacts']);
+    const price = data.enhancement.get('price');
+    if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts'))
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .update('enhancements', val => val.push(data.enhancement))
+      .update('gameCash', val => val - price.get('cash'))
+      .update('gameContacts', val => val - price.get('contacts'))
+      .update('log', val => val.unshift(
+        dayandtime(Date.now(), new Date().getTimezoneOffset()) +
+        ' - Enhancement ' + data.enhancement.get('name') + ' for your organization bought.'
+      ));
+    });
+  }
+
+  if (action === agentsActions.choiceToAcknowledgement)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'enhancementtalkindex'], 'acknowledgement');
+    });
+
+  if (action === agentsActions.closeEnhancementTalk)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'enhancementtalk'], null);
+    });
+
+  if (action === agentsActions.dialogToChoice)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'enhancementtalkindex'], 'choice');
+    });
+
   if (action === dashboardActions.dismissAgent)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -59,6 +94,13 @@ export const dispatchToken = register(({action, data}) => {
         ))
         .setIn(['dashboard', 'agentswindow', 'message'], 'Agent left in prison.')
         .update('agents', val => val.delete(val.indexOf(data.agent)));
+    });
+
+  if (action === agentsActions.enhancementTalk)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'enhancementtalk'], data.message)
+        .setIn(['dashboard', 'enhancementtalkindex'], 'dialog');
     });
 
   if (action === agentsActions.equip) {

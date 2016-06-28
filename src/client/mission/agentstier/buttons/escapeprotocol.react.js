@@ -9,13 +9,15 @@ import * as missionActions from '../../actions';
 class EscapeProtocol extends Component {
   controldamage() {
     const {activemission} = this.props;
+    const agentsonmission = activemission.get('agentsonmission');
+    const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     missionActions.controldamage(activemission);
+    missionActions.agentMissionDone(agentontask);
     missionActions.agentIsBackFromTask();
     missionActions.clearTabletop();
     missionActions.fail();
-    const agentsonmission = activemission('agentsonmission');
-    for (var i = 0; i < agentsonmission.size + 1; i += 1)
-      missionActions.agentMissionDone(i);
+    for (var i = 0; i < agentsonmission.size; i += 1)
+      missionActions.agentMissionDone(agentsonmission.get(i));
     missionActions.organizationMissionDone();
   }
 

@@ -10,14 +10,15 @@ import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 import {Link} from 'react-router';
 
+import CampaignIntro from '../tutorial/campaign.intro.react';
 import DashboardContent from './dashboard.content.react';
-import ScreenPlastic from '../tutorial/screen.plastic.react';
 import EndGameWindow from './endgame.window.react';
+import EnhancementTalk from '../agents/agenttalk/enhancement.talk.react';
+import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
-import CampaignIntro from '../tutorial/campaign.intro.react';
+import ScreenPlastic from '../tutorial/screen.plastic.react';
 import StrategicalIntro from './strategical.intro.react';
-import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
 import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
 
 // buttons, selects
@@ -99,6 +100,15 @@ class DashboardScreen extends Component {
           game={game}
           jsonapi={jsonapi}
           />
+        <DashboardToCommand />
+        <DashboardToIntro />
+        <ContestPointer />
+        <LogPointer />
+        <OptionsPointer />
+        <StrategicalPointer />
+        {jsonapi.getIn(['dashboard', 'enhancementtalk']) &&
+          <EnhancementTalk
+            jsonapi={jsonapi} />}
         {jsonapi.getIn(['dashboard', 'operationsUpgradeDialog']) &&
           <OperationsUpgradeDialog
             enhancements={jsonapi.get('enhancements')}
@@ -133,16 +143,10 @@ class DashboardScreen extends Component {
           <DashboardToBriefing />}
         {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) &&
           <StrategicalIntro jsonapi={jsonapi}/>}
-        <DashboardToCommand />
-        <DashboardToIntro />
         {isLoggedIn && <Logout />}
-        <ContestPointer />
         {jsonapi.getIn(['options', 'debug']) && <EnhancementsPointer />}
-        <LogPointer />
-        <OptionsPointer />
         {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
           <StatusesPointer />}
-        <StrategicalPointer />
         {dashPointer === 'options' &&
           <LanguageSelect locales={this.props.locales}/>}
       </div>

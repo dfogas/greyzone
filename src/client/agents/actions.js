@@ -7,7 +7,7 @@ import {msg} from '../intl/store';
 import actionDices from '../lib/actiondices';
 import agentIncurDelay from '../lib/agentincurdelay';
 import agentRankup from '../lib/agentrankup';
-import agentTalk from '../lib/agenttalk';
+import invokeAgentTalk from '../lib/invokeagenttalk';
 import leadershipcheck from '../lib/leadershipcheck';
 import trainingtable from '../../server/lib/greyzone/trainingtable';
 import $ from 'jquery';
@@ -32,28 +32,20 @@ export function agentInArmoryAssignMission(agent) {
 }
 
 export function agentTalking(agent) {
-  const self = jsonapiCursor(['self']);
-  if ($('#ArmoryScreen').html()) {
-    console.log('armory talk');
-    $('#ArmoryScreen').append(() => msg('agents.talk.' + agentTalk(agent, self)));
-    $('#AgentTalk').append(`<button>Close</button>`);
-    $('#AgentTalk button').click(() => $('#AgentTalk').remove());
-  } else if ($('#BriefingScreen').html()) {
-    console.log('briefing talk');
-    $('#BriefingScreen').append(msg('agents.talk.' + agentTalk(agent, self)));
-    $('#AgentTalk').append(`<button>Close</button>`);
-    $('#AgentTalk button').click(() => $('#AgentTalk').remove());
-  } else if ($('#DashboardScreen').html()) {
-    console.log('dashboard talk');
-    $('#DashboardScreen').append(msg('agents.talk.' + agentTalk(agent, self)));
-    $('#AgentTalk').append(`<button>Close</button>`);
-    $('#AgentTalk button').click(() => $('#AgentTalk').remove());
-  } else {
-    console.log('mission talk');
-    $('#TableTop').append('<div id=\'MissionStartMessage\'>Busy</div>');
-    $('#MissionStartMessage').hide().fadeIn(200);
-    $('#MissionStartMessage').fadeOut(1000, () => $('#MissionStartMessage').remove());
-  }
+  const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
+
+  if (jsonapiCursor(['self']).get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents'].filter(agent => agent.get('prison').size)))
+    dispatch(enhancementTalk, {message: 'silencewitness'});
+  else if (agent.get('specialist') && goodlabel && agent.get('MissionsDone').size > 10)
+    dispatch(enhancementTalk, {message: 'destroyevidence'});
+  else if (agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal')
+    dispatch(enhancementTalk, {message: 'afriendininnercircle'});
+  else if (agent.get('personality') === 'SP' && goodlabel)
+    dispatch(enhancementTalk, {message: 'bankrobbery'});
+  else if (agent.get('loyalty') !== 'loyal' && goodlabel)
+    dispatch(enhancementTalk, {message: 'anolddebt'});
+  else
+    invokeAgentTalk(jsonapiCursor(), agent);
 }
 
 export function assignTask(agent) {
@@ -70,6 +62,29 @@ export function backFromArmory(agent) {
 export function backtoRoster(agent) {
   /* agent se vrací z týmu přípravujícího se na misi zpět do agentů čekajících */
   dispatch(backtoRoster, {message: agent});
+}
+
+export function buyEnhancement(missiontag) {
+  const list = gameCursor(['globals', 'constants']);
+  const enhancement = list.find(enh => enh.get('missiontag') === missiontag);
+
+  dispatch(buyEnhancement, {enhancement});
+}
+
+export function choiceToAcknowledgement() {
+  dispatch(choiceToAcknowledgement, {});
+}
+
+export function closeEnhancementTalk() {
+  dispatch(closeEnhancementTalk, {});
+}
+
+export function dialogToChoice() {
+  dispatch(dialogToChoice, {});
+}
+
+export function enhancementTalk(message) {
+  dispatch(enhancementTalk, message);
 }
 
 export function equip(equipment) {
@@ -123,6 +138,11 @@ setToString('agents', {
   assignTask,
   backFromArmory,
   backtoRoster,
+  buyEnhancement,
+  choiceToAcknowledgement,
+  closeEnhancementTalk,
+  dialogToChoice,
+  enhancementTalk,
   equip,
   getRank,
   // goFree,

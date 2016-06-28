@@ -28,7 +28,7 @@ class TaskTier extends Component {
         })}
         <br />
         <MissionResultList
-          activemissiontitle={activemission.get('name')}
+          activemissiontitle={activemission.get('title')}
           isLoss={true}
           isTask={true}
           losses={activemission.get('losses')}

@@ -17,7 +17,7 @@ class SuccessButton extends Component {
       missionActions.bookRewards(activemission);
       missionActions.success();
       for (var i = 0; i < agentsonmission.size; i += 1)
-        missionActions.agentMissionDone(i);
+        missionActions.agentMissionDone(agentsonmission.get(i));
       missionActions.organizationMissionDone();
     }
   }

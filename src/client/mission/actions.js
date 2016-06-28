@@ -27,8 +27,11 @@ export function agentLockedToTask() {
   dispatch(agentLockedToTask, {});
 }
 
-export function agentMissionDone(index) {
-  dispatch(agentMissionDone, {message: index});
+export function agentMissionDone(agent) {
+  const activemission = jsonapiCursor(['activemission']);
+  const activemissionId = activemission.get('id');
+  if (agent.get('missionsDone').indexOf(activemissionId) === -1)
+    dispatch(agentMissionDone, {message: activemissionId, agent: agent});
 }
 
 export function agentOnTaskGetsExperienceForCompletingTask() {

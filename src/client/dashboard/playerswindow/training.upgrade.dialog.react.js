@@ -39,4 +39,9 @@ class TrainingUpgradeDialog extends Component {
   }
 }
 
+TrainingUpgradeDialog.propTypes = {
+  enhancements: React.PropTypes.instanceOf(immutable.Map),
+  list: React.PropTypes.instanceOf(immutable.List)
+};
+
 export default TrainingUpgradeDialog;

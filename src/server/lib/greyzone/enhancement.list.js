@@ -271,6 +271,7 @@ const EnhancementList = [
   //   type: 'operationsscope'
   // }, {
     description: 'Mission Bank Robbery',
+    missiontag: 'bankrobbery',
     name: 'Nostalgia',
     prerequisites: [{
       name: 'Good Label',
@@ -283,6 +284,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'Mission An Old Debt',
+    missiontag: 'anolddebt',
     name: 'Side Quest',
     prerequisites: [{
       name: 'Good Label',
@@ -295,6 +297,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'Mission Prison Break',
+    missiontag: 'prisonbreak',
     name: 'We Got the Power',
     prerequisites: [{
       name: 'Good Label',
@@ -307,6 +310,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'Mission Silence Witness',
+    missiontag: 'silencewitness',
     name: 'Repaying the favor',
     prerequisites: [{
       name: 'Good Label',
@@ -319,6 +323,7 @@ const EnhancementList = [
     type: 'operationsscope'
   }, {
     description: 'Mission In Inner Circle',
+    missiontag: 'afriendininnercircle',
     name: 'Gala in Opera house',
     prerequisites: [{
       name: 'Good Label',
@@ -343,6 +348,7 @@ const EnhancementList = [
   //   type: 'operationsscope'
   }, {
     description: 'Mission Destroy Evidence',
+    missiontag: 'destroyevidence',
     name: 'You can\'t see me',
     prerequisites: [{
       name: 'Good Label',

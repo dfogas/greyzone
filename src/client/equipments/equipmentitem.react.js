@@ -29,8 +29,7 @@ class EquipmentItem extends Component {
   }
 
   render() {
-    const {enhancements, equipment, jsonapi, key, list, paying, stock} = this.props;
-    const enhancementnames = enhancements.map(enh => enh.get('name'));
+    const {enhancements, equipment, jsonapi, key, list, paying} = this.props;
     const enhancement = equipmentEnhancement(equipment, list);
     const isAvailable = toyIsAvailable(enhancements, equipment);
     return (
@@ -79,6 +78,8 @@ EquipmentItem.propTypes = {
   enhancements: React.PropTypes.instanceOf(immutable.List),
   equipment: React.PropTypes.instanceOf(immutable.Map),
   key: React.PropTypes.string,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
+  list: React.PropTypes.instanceOf(immutable.List),
   stock: React.PropTypes.string
 };
 

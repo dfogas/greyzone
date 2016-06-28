@@ -25,6 +25,7 @@ class Armory extends Component {
 }
 
 Armory.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired
 };

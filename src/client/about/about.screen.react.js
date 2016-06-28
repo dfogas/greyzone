@@ -4,7 +4,7 @@ import React from 'react';
 import {FormattedHTMLMessage} from 'react-intl';
 import {msg} from '../intl/store';
 
-class AboutMessage extends Component { 
+class AboutMessage extends Component {
   render() {
     return (
       <div id='AboutScreen'>

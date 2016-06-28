@@ -53,7 +53,7 @@ function xmissioncheck(enhancementsnames, MissionsList) {
     missionsList = missionsList.concat(IndustrialEspionage);
   if (enhancementsnames.indexOf('Playing Detective') !== -1)
     missionsList = missionsList.concat(SecretInvestigation);
-  if (enhancementsnames.indexOf('Repaying the favors') !== -1)
+  if (enhancementsnames.indexOf('Repaying the favor') !== -1)
     missionsList = missionsList.concat(SilenceWitness);
   return missionsList;
 }

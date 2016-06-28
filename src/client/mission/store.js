@@ -57,6 +57,20 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'agentlock'], true);
     });
 
+  if (action === missionActions.agentMissionDone) {
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    if (jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']))
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'missionsDone'], val => val.push(data.message));
+      });
+    else
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['activemission', 'agentsonmission', agentsonmission.indexOf(data.agent), 'missionsDone'], val => val.push(data.message));
+      });
+  }
+
   if (action === missionActions.agentOnTaskGetsExperienceForCompletingTask)
     jsonapiCursor(jsonapi => {
       return jsonapi

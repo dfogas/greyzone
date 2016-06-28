@@ -41,6 +41,8 @@ class EquipmentStock extends Component {
 EquipmentStock.propTypes = {
   enhancements: React.PropTypes.instanceOf(immutable.List),
   equipments: React.PropTypes.instanceOf(immutable.List),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
+  list: React.PropTypes.instanceOf(immutable.List),
   paying: React.PropTypes.instanceOf(immutable.Map),
   stock: React.PropTypes.string
 };

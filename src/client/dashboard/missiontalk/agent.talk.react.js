@@ -1,5 +1,6 @@
 import Component from '../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 
 class AgentTalk extends Component {
   render() {
@@ -12,5 +13,10 @@ class AgentTalk extends Component {
     );
   }
 }
+
+AgentTalk.propTypes = {
+  agent: React.PropTypes.instanceOf(immutable.Map),
+  talk: React.PropTypes.string
+};
 
 export default AgentTalk;

@@ -69,15 +69,13 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  if (action === dashboardActions.buyStatus) {
-    console.log(data.status.toJS());
+  if (action === dashboardActions.buyStatus)
     jsonapiCursor(jsonapi => {
       return jsonapi
       .update('statuses', val => val.push(immutable.fromJS(data.status)))
       .update('gameCash', val => val - data.status.getIn(['price', 'cash']))
       .update('gameContacts', val => val - data.status.getIn(['price', 'contacts']));
     });
-  }
 
   if (action === dashboardActions.changeMissionOption)
     jsonapiCursor(jsonapi => {

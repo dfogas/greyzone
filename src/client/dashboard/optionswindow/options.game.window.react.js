@@ -4,7 +4,6 @@ import * as optionsActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import $ from 'jquery';
 
 class OptionsGameWindow extends Component {
   loadGameOne() {
