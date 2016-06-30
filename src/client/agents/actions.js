@@ -37,10 +37,7 @@ export function agentTalking(agent) {
   const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
   const enhancements = jsonapiCursor(['enhancements']);
 
-  if (
-    (goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')) ||
-    (jsonapiCursor(['agentbeingsaved']) && goodlabel)
-  )
+  if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
     dispatch(enhancementTalk, {message: 'prisonbreak'});
   else if (jsonapiCursor(['self']).get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
     dispatch(enhancementTalk, {message: 'silencewitness'});

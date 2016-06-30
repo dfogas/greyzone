@@ -18,6 +18,7 @@ var playerdefaults = {
   gameCash: 50000,
   gameContacts: 500,
   agentinarmory: null,
+  agentbeingsaved: null,
   timestarted: Date.now(),
   achievements: [],
   activemission: defaultActiveMission,
@@ -71,7 +72,7 @@ var playerdefaults = {
   ],
   missionsDone: [],
   paying: {
-    
+
   },
   started: Date.now(),
   statuses: [],

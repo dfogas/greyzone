@@ -43,12 +43,13 @@ class AgentScrollBarWithNavButtons extends Component {
 
     return (
       <div className={classString} id='AgentScrollBarWithNavButtons' >
-        <AgentScrollBarNavButton
-          data={{orientation: 'left'}}
-          isBriefing={this.props.isBriefing}
-          isMission={this.props.isMission}
-          parentCallback={this.scrollleft.bind(this)}
-          />
+        {(jsonapi.get('agents').size > 3 || isMission) &&
+          <AgentScrollBarNavButton
+            data={{orientation: 'left'}}
+            isBriefing={this.props.isBriefing}
+            isMission={this.props.isMission}
+            parentCallback={this.scrollleft.bind(this)}
+            />}
         <div className={classString}>
           <AgentScrollBar
             agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
@@ -60,12 +61,13 @@ class AgentScrollBarWithNavButtons extends Component {
             style={agentsbstyletojs}
             />
         </div>
-        <AgentScrollBarNavButton
-          data={{orientation: 'right'}}
-          isBriefing={this.props.isBriefing}
-          isMission={this.props.isMission}
-          parentCallback={this.scrollright.bind(this)}
-          />
+        {(jsonapi.get('agents').size > 3 || isMission) &&
+          <AgentScrollBarNavButton
+            data={{orientation: 'right'}}
+            isBriefing={this.props.isBriefing}
+            isMission={this.props.isMission}
+            parentCallback={this.scrollright.bind(this)}
+            />}
       </div>
     );
   }

@@ -24,7 +24,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
   const focusedModifiedMissionsList = focus !== 'random' && focus !== 'multiplayer' ?
     modifiedMissionsList.filter(mission => determineFocus(mission.rewards)[focus]) :
     modifiedMissionsList;
-  const optionedMissionList = options.avoidfatals ? focusedModifiedMissionsList.filter(mission => !isFatal(mission.losses)) : focusedModifiedMissionsList;
+  const optionedMissionList = options.avoidfatals ? focusedModifiedMissionsList.filter(mission => !isFatal(mission.losses, mission.rewards)) : focusedModifiedMissionsList;
   const missionsPerTier = optionedMissionList.filter(mission => mission.tier === parseInt(tier, 10));
   let randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
   if (focus === 'agent')

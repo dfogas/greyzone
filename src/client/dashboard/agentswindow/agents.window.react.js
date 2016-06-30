@@ -15,6 +15,7 @@ class AgentsWindow extends Component {
   render() {
     const {agenthire, agents, agentspricelist, dashboard, options, jsonapi, self} = this.props;
     const agentondisplay = dashboard.get('agentondisplay');
+    const debug = jsonapi.get(['options', 'debug']);
 
     return (
       <div id='AgentsWindow'>
@@ -22,21 +23,22 @@ class AgentsWindow extends Component {
           agenthire={agenthire}
           agentspricelist={agentspricelist}
           />*/}
-        <AgentsList
-          agentbeingsaved={jsonapi.get('agentbeingsaved')}
-          agentondisplay={agentondisplay}
-          agents={agents}
-          options={options}
-          self={self}
-          />
+        {debug &&
+          <AgentsList
+            agentbeingsaved={jsonapi.get('agentbeingsaved')}
+            agentondisplay={agentondisplay}
+            agents={agents}
+            options={options}
+            self={self}
+            />}
         <AgentShiftLeft
           agentondisplay={agentondisplay}
           agents={agents}
           />
-        {agentondisplay &&
-          <AgentOnDisplay
-            agentondisplay={agentondisplay}
-            />}
+        <AgentOnDisplay
+          agentondisplay={agentondisplay}
+          agents={agents}
+          />
         <AgentShiftRight
           agentondisplay={agentondisplay}
           agents={agents}

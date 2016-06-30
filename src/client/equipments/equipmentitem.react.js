@@ -48,6 +48,9 @@ class EquipmentItem extends Component {
           price={equipment.get('price')}
           quantity={equipment.get('quantity')}
           />
+        <div className='equipment-count'>
+          {equipment.get('quantity')}
+        </div>
         {jsonapi.getIn(['dashboard', 'facilityUpgradeDialog']) === enhancement.get('name') &&
           <FacilityUpgradeDialog
             enhancement={enhancement}

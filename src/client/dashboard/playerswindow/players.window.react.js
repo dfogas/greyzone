@@ -48,14 +48,15 @@ class PlayersWindow extends Component {
             {jsonapi.get('name')}
           </div>
         </div>
-        <div id='PlayerAgentCard'>
-          {self &&
-            <AgentCard
-              agent={self}
-              equipments={self.get('equipments')}
-              key={uuid() + 'playeragent'}
-            />}
-        </div>
+        {!playerAgentIsActive &&
+          <div id='PlayerAgentCard'>
+            {self &&
+              <AgentCard
+                agent={self}
+                equipments={self.get('equipments')}
+                key={uuid() + 'playeragent'}
+              />}
+          </div>}
         {!playerAgentIsActive &&
           <button
             id='PlayerAgentActionableButton'

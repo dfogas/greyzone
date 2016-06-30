@@ -1,6 +1,7 @@
 import './window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
+import isFatal from '../../lib/isfatal';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
 import {msg} from '../../intl/store';
@@ -19,6 +20,8 @@ class MissionResultsWindow extends Component {
   render() {
     const {activemission, agentbeingsaved, tutorial} = this.props;
     const result = activemission.get('result');
+    const rewards = activemission.get('rewards');
+    const losses = activemission.get('losses');
     const rewardsjs = activemission.get('rewards') ? activemission.get('rewards').toJS() : {};
     const lossesjs = activemission.get('losses') ? activemission.get('losses').toJS() : {};
 
@@ -36,17 +39,17 @@ class MissionResultsWindow extends Component {
           <p>
             {result === 'success' &&
               <ul>
-                {Object.keys(rewardsjs).map(key => {
+                {rewards.keySeq().map(key => {
                   return (
-                    <li key={uuid() + 'missionreward'}>{`${key} : ${rewardsjs[key]}`}</li>
+                    <li key={uuid() + 'missionreward'}>{`${key} : ${rewards.get(key)}`}</li>
                   );
                 })}
               </ul>}
             {result === 'fail' &&
               <ul>Results of the mission:
-                {Object.keys(lossesjs).map(key => {
+                {losses.keySeq().map(key => {
                   return (
-                    <li key={uuid() + 'missionloss'}>{`${key} : ${lossesjs[key]}`}</li>
+                    <li key={uuid() + 'missionloss'}>{`${key} : ${losses.get(key)}`}</li>
                   );
                 })}
               </ul>}
@@ -55,16 +58,17 @@ class MissionResultsWindow extends Component {
             <p>has been gained.</p>}
           {result === 'fail' &&
             <p>has been lost.</p>}
-          <p>Fatal Consequences of Mission:
-            {result === 'success' && Object.keys(rewardsjs).indexOf('agentImprisoned') !== -1 &&
-              <li>Agent has been imprisoned.</li>}
-            {result === 'fail' && Object.keys(lossesjs).indexOf('agentImprisoned') !== -1 &&
-              <li>Agent has been imprisoned.</li>}
-            {result === 'success' && Object.keys(rewardsjs).indexOf('agentKilled') !== -1 &&
-              <li>Agent has been killed.</li>}
-            {result === 'fail' && Object.keys(lossesjs).indexOf('agentKilled') !== -1 &&
-              <li>Agent has been killed.</li>}
-          </p>
+          {isFatal(losses, rewards) &&
+            <p>Fatal Consequences of Mission:
+              {rewards.keySeq().filter(key => key === 'agentImprisoned').size &&
+                <li>Agent has been imprisoned.</li>}
+              {Object.keys(lossesjs).indexOf('agentImprisoned') !== -1 &&
+                <li>Agent has been imprisoned.</li>}
+              {Object.keys(rewardsjs).indexOf('agentKilled') !== -1 &&
+                <li>Agent has been killed.</li>}
+              {Object.keys(lossesjs).indexOf('agentKilled') !== -1 &&
+                <li>Agent has been killed.</li>}
+            </p>}
           <p>
             {result === 'success' && Object.keys(rewardsjs).indexOf('agentFreed') !== -1 &&
               <li>Agent freed from prison!</li>}

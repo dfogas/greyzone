@@ -7,8 +7,8 @@ import http from 'http';
 import Mission from './lib/greyzone/mission.generator';
 // import https from 'https';
 // import fs from 'fs';
-// import ioServer from 'socket.io';
-// import checkDiscovered from './lib/greyzone/checkdiscovered';
+import ioServer from 'socket.io';
+import checkDiscovered from './lib/greyzone/checkdiscovered';
 
 // related to SSH certificate
 // const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
@@ -52,22 +52,22 @@ app.use((err, req, res, next) => {
 // production fork
 // const server = process.env.NODE_ENV === 'production' ? https.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
 const server = http.createServer(app);
-// const io = ioServer(server);
-//
-// io.on('connection', (socket) => {
-//   console.log('user has connected');
-//   socket.on('mission', function(msg) {
-//
-//     if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
-//       console.log('Agents spotted. New Mission in Briefing room - Discovered!');
-//       let mission = Mission('Discovered!', 3, 10 * 60 * 1000, true);
-//       mission.inCountry = msg.inCountry;
-//       socket.emit('new mission', mission);
-//     }
-//   });
-//
-//   // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
-// });
+const io = ioServer(server);
+
+io.on('connection', (socket) => {
+  console.log('user has connected');
+  socket.on('mission', function(msg) {
+
+    if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
+      console.log('Agents spotted. New Mission in Briefing room - Discovered!');
+      let mission = Mission('Discovered!', 3, 10 * 60 * 1000, true);
+      mission.inCountry = msg.inCountry;
+      socket.emit('new mission', mission);
+    }
+  });
+
+  setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
+});
 
 // ..aAand running server
 server.listen(config.port, () => {

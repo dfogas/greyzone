@@ -131,11 +131,11 @@ const agents = {
     self: `<div id='AgentTalk'>I should do something ... better think it through first.</div>`,
     soldiery: `<div id='AgentTalk'>Yes boss? I stand ready.</div>`,
     tired: {
-      cheeky: `<div id='AgentTalk'>Not in the shape - nor mood, really.</div>`,
-      evasive: `<div id='AgentTalk'>Excuse me!</div>`,
-      intimate: `<div id='AgentTalk'>Sorry, boss. I need to tank fuel.</div>`,
-      self: `<div id='AgentTalk'>The last mission was more difficult than I expected ...</div>`,
-      soldiery: `<div id='AgentTalk'>Of course, just let me catch a breath!</div>`
+      cheeky: `<div id='AgentTalk'>(Tired)Not in the shape - nor mood, really.</div>`,
+      evasive: `<div id='AgentTalk'>(Tired)Excuse me!</div>`,
+      intimate: `<div id='AgentTalk'>(Tired)Sorry, boss. I need to tank fuel.</div>`,
+      self: `<div id='AgentTalk'>(Tired)The last mission was more difficult than I expected ...</div>`,
+      soldiery: `<div id='AgentTalk'>(Tired)Of course, just let me catch a breath!</div>`
     }
   }
 };
