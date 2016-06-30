@@ -5,6 +5,7 @@ import isFatal from '../../lib/isfatal';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
 import {msg} from '../../intl/store';
+import icon from '../../lib/determiningicon';
 import $ from 'jquery';
 
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
@@ -18,12 +19,18 @@ class MissionResultsWindow extends Component {
   }
 
   render() {
-    const {activemission, agentbeingsaved, tutorial} = this.props;
+    const {jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
+    const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const result = activemission.get('result');
     const rewards = activemission.get('rewards');
     const losses = activemission.get('losses');
-    const rewardsjs = activemission.get('rewards') ? activemission.get('rewards').toJS() : {};
-    const lossesjs = activemission.get('losses') ? activemission.get('losses').toJS() : {};
+    const results = losses.merge(rewards);
+    const tutorial = jsonapi.get('tutorial');
+
+    // console.log('Fatal: ' + isFatal(losses, rewards));
+    // console.log('Agent Recruited: ' + rewards.keySeq().filter(key => key === 'agentRecruited').toList().size);
+    // console.log(rewards.keySeq().size);
 
     return (
       <div
@@ -37,49 +44,47 @@ class MissionResultsWindow extends Component {
             }
           </p>
           <p>
+            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
+              `${icon('gameCash')}${jsonapi.get('gameCash')}`}
+            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
+              `  ${icon('gameContacts')}${jsonapi.get('gameContacts')}`}
+          </p>
+          <p>
             {result === 'success' &&
               <ul>
                 {rewards.keySeq().map(key => {
                   return (
-                    <li key={uuid() + 'missionreward'}>{`${key} : ${rewards.get(key)}`}</li>
+                    <li key={uuid() + 'missionreward'}>{`${icon(key)}${rewards.get(key)}`} has been gained.</li>
                   );
                 })}
               </ul>}
             {result === 'fail' &&
-              <ul>Results of the mission:
+              <ul>Results of Mission:
                 {losses.keySeq().map(key => {
                   return (
-                    <li key={uuid() + 'missionloss'}>{`${key} : ${losses.get(key)}`}</li>
+                    <li key={uuid() + 'missionloss'}>{`${icon(key)}${losses.get(key)}`} has been lost.</li>
                   );
                 })}
               </ul>}
           </p>
-          {result === 'success' &&
-            <p>has been gained.</p>}
-          {result === 'fail' &&
-            <p>has been lost.</p>}
-          {isFatal(losses, rewards) &&
-            <p>Fatal Consequences of Mission:
-              {rewards.keySeq().filter(key => key === 'agentImprisoned').size &&
-                <li>Agent has been imprisoned.</li>}
-              {Object.keys(lossesjs).indexOf('agentImprisoned') !== -1 &&
-                <li>Agent has been imprisoned.</li>}
-              {Object.keys(rewardsjs).indexOf('agentKilled') !== -1 &&
-                <li>Agent has been killed.</li>}
-              {Object.keys(lossesjs).indexOf('agentKilled') !== -1 &&
-                <li>Agent has been killed.</li>}
-            </p>}
-          <p>
-            {result === 'success' && Object.keys(rewardsjs).indexOf('agentFreed') !== -1 &&
-              <li>Agent freed from prison!</li>}
-            {result === 'success' && Object.keys(rewardsjs).indexOf('agentLoyal') !== -1 &&
-              <li>Agent changed loyalty to you.</li>}
-            {result === 'fail' && Object.keys(lossesjs).indexOf('agentLoyal') !== -1 &&
-              <li>Agent changed loyalty to you.</li>}
-            {result === 'success' && Object.keys(rewardsjs).indexOf('artPieceGained') !== -1 &&
-              <li>You stole yourself an Art Piece!</li>}
-          </p>
-          <p>Click button to return to previous screen (i.e. Briefing or possibly Dashboard).</p>
+          {rewards.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0 &&
+            <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
+          {losses.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0 &&
+            <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
+          {rewards.keySeq().filter(key => key === 'agentKilled').toList().size !== 0 &&
+            <li className='mission-result-fatal'>Agent has been killed.</li>}
+          {losses.keySeq().filter(key => key === 'agentKilled').toList().size !== 0 &&
+            <li className='mission-result-fatal'>Agent has been killed.</li>}
+          {rewards.keySeq().filter(key => key === 'agentRecruited').toList().size !== 0 &&
+            <li className='mission-result-fatal'>Agent has been recruited.</li>}
+          {rewards.keySeq().filter(key => key === 'agentFreed').toList().size !== 0 &&
+            <li>Agent freed from prison!</li>}
+          {rewards.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0 &&
+            <li>Agent changed loyalty to you.</li>}
+          {losses.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0&&
+            <li>Agent changed loyalty to you.</li>}
+          {rewards.keySeq().filter(key => key === 'artPieceGained').toList().size !== 0 &&
+            <li>You stole yourself an Art Piece!</li>}
           <MissionEndButton
             mission={activemission}
             tutorial={tutorial}

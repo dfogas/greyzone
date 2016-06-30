@@ -2,9 +2,9 @@ import './agent.profile.styl';
 import * as agentsActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
-import $ from 'jquery';
-import {msg} from '../../intl/store';
 import agentTalk from '../../lib/agenttalk';
+import {msg} from '../../intl/store';
+import immutable from 'immutable';
 
 class AgentProfile extends Component {
   agentTalk() {
@@ -14,7 +14,7 @@ class AgentProfile extends Component {
 
   render() {
     //data cache placeholder
-    const {agent} = this.props;
+    const {agent, self} = this.props;
     let formattedImg;
     var classString = '';
 
@@ -30,7 +30,7 @@ class AgentProfile extends Component {
           onClick={this.agentTalk.bind(this)}>
           <img draggable='false' src={formattedImg} />
           </div>
-        <div className={'agent-label' + classString}>{agent.get('name')}</div>
+        <div className={'agent-label' + classString}>{agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}</div>
       </div>
     );
   }
@@ -38,7 +38,8 @@ class AgentProfile extends Component {
 
 AgentProfile.propTypes = {
   imgsrc: React.PropTypes.string,
-  isShowcased: React.PropTypes.bool
+  isShowcased: React.PropTypes.bool,
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentProfile;

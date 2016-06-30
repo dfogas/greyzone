@@ -14,7 +14,7 @@ class AgentOnDisplay extends Component {
   }
 
   render() {
-    const {agentondisplay} = this.props;
+    const {agentondisplay, self, trainingtable} = this.props;
     return (
       <div
         id='AgentOnDisplay'
@@ -27,6 +27,8 @@ class AgentOnDisplay extends Component {
           <AgentCard
             agent={agentondisplay}
             isShowcased={true}
+            self={self}
+            trainingtable={trainingtable}
             />}
       </div>
     );
@@ -34,7 +36,9 @@ class AgentOnDisplay extends Component {
 }
 
 AgentOnDisplay.propTypes = {
-  agentondisplay: React.PropTypes.instanceOf(immutable.Map)
+  agentondisplay: React.PropTypes.instanceOf(immutable.Map),
+  agents: React.PropTypes.instanceOf(immutable.List),
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentOnDisplay;

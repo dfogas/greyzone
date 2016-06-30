@@ -25,8 +25,9 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, agentindex, equipments, key} = this.props;
+    const {agent, agentindex, equipments, key, self, trainingtable} = this.props;
     const rankup = shouldHaveRank(agent.get('experience')) >= agent.get('rank') ? true : false;
+    const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
 
     const classString = classnames(
       'agent-card', {
@@ -45,14 +46,9 @@ class AgentCard extends Component {
         isMission={this.props.isMission}
         key={key}
         onDragStart={this.drag}>
-        {rankup && this.props.isAgents &&
-          <input
-            className='agent-rankup-button'
-            onClick={this.agentGetRank.bind(this)}
-            type='button'
-            value={msg('buttons.agentRankUp')}
-            />
-        }
+        <AgentClock
+          agent={agent}
+          />
         <AgentStatCounter
           isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
@@ -75,9 +71,11 @@ class AgentCard extends Component {
           agent={agent}
           isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
+          self={self}
           />
-        {
-          agentequipments.map((agentequipment, i) => {
+        {trainingtable &&
+          <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
+        {agentequipments.map((agentequipment, i) => {
             return (
               <AgentEquipmentSlot
                 agent={agent}
@@ -90,11 +88,14 @@ class AgentCard extends Component {
                 key={uuid() + i}
               />
             );
-          })
-        }
-        <AgentClock
-          agent={agent}
-          />
+          })}
+        {rankup && this.props.isAgents &&
+          <input
+            className='agent-rankup-button'
+            onClick={this.agentGetRank.bind(this)}
+            type='button'
+            value={msg('buttons.agentRankUp')}
+            />}
       </li>
     );
   }
@@ -108,7 +109,8 @@ AgentCard.propTypes = {
   isAgents: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
-  key: React.PropTypes.string
+  key: React.PropTypes.string,
+  self: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentCard;

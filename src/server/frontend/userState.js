@@ -22,6 +22,7 @@ import EnhancementList from '../lib/greyzone/enhancement.list';
 import EquipmentList from '../lib/greyzone/equipments.list';
 import OptionsList from '../lib/greyzone/options.list';
 import StatusList from '../lib/greyzone/statuses.list';
+import TrainingTable from '../lib/greyzone/trainingtable';
 
 export default function userState() {
 
@@ -80,7 +81,8 @@ export default function userState() {
             }
           }
         },
-        statuses: StatusList
+        statuses: StatusList,
+        trainingtable: TrainingTable
       }
     };
 

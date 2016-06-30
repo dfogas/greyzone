@@ -36,10 +36,11 @@ export function agentInArmoryAssignMission(agent) {
 export function agentTalking(agent) {
   const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
   const enhancements = jsonapiCursor(['enhancements']);
+  const self = jsonapiCursor(['self']);
 
   if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
     dispatch(enhancementTalk, {message: 'prisonbreak'});
-  else if (jsonapiCursor(['self']).get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
+  else if (self.get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
     dispatch(enhancementTalk, {message: 'silencewitness'});
   else if (agent.get('specialist') && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
     dispatch(enhancementTalk, {message: 'destroyevidence'});
@@ -47,7 +48,7 @@ export function agentTalking(agent) {
     dispatch(enhancementTalk, {message: 'afriendininnercircle'});
   else if (agent.get('personality') === 'SP' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'bankrobbery'))
     dispatch(enhancementTalk, {message: 'bankrobbery'});
-  else if (agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt'))
+  else if (agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
     dispatch(enhancementTalk, {message: 'anolddebt'});
   else
     invokeAgentTalk(jsonapiCursor(), agent);

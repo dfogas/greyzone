@@ -1,4 +1,4 @@
-import './missionscreen.styl';
+import './mission.screen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -53,9 +53,7 @@ class MissionTrackingScreen extends Component {
           <MissionToDashboardButton />}
         {missionStarted && missionResult &&
           <MissionResultsWindow
-            activemission={jsonapi.get('activemission')}
-            agentbeingsaved={jsonapi.get('agentbeingsaved')}
-            tutorial={jsonapi.get('tutorial')}
+            jsonapi={jsonapi}
             />}
       </div>
     );

@@ -67,11 +67,11 @@ class DashboardScreen extends Component {
         dashboardActions.badEndDiscovered();
     }, 12 * 60 * 1000);
     // TODO: I met some unexpected behaviour, read how exactly websockets work
-    // socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
-    //   console.log(countrystats.toJS());
-    //   if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
-    //     this.badEndDiscovered();
-    // });
+    socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
+      console.log(countrystats.toJS());
+      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
+        this.badEndDiscovered();
+    });
   }
 
   componentWillReceiveProps() {

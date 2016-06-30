@@ -13,9 +13,11 @@ import AgentShiftRight from './shift.right.react';
 class AgentsWindow extends Component {
 
   render() {
-    const {agenthire, agents, agentspricelist, dashboard, options, jsonapi, self} = this.props;
+    const {agenthire, agents, dashboard, options, jsonapi, game} = this.props;
+    const agentspricelist = game.getIn(['globals', 'constants', 'agentsPriceList']);
     const agentondisplay = dashboard.get('agentondisplay');
     const debug = jsonapi.get(['options', 'debug']);
+    const self = jsonapi.get('self');
 
     return (
       <div id='AgentsWindow'>
@@ -38,6 +40,8 @@ class AgentsWindow extends Component {
         <AgentOnDisplay
           agentondisplay={agentondisplay}
           agents={agents}
+          self={self}
+          trainingtable={game.getIn(['globals', 'trainingtable'])}
           />
         <AgentShiftRight
           agentondisplay={agentondisplay}

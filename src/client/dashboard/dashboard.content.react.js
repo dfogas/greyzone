@@ -38,11 +38,10 @@ class DashboardContent extends Component {
           <AgentsWindow
             agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
             agents={allagents}
-            agentspricelist={game.getIn(['globals', 'constants', 'agentsPriceList'])}
             dashboard={jsonapi.get('dashboard')}
+            game={game}
             jsonapi={jsonapi}
             options={jsonapi.get('options')}
-            self={jsonapi.get('self')}
           />}
         {dashPointer === 'log' &&
           <LogWindow

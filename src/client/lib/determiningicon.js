@@ -1,5 +1,5 @@
 /*
-  String -> Unicode char
+  String -> UnicodeChar
 */
 
 export default function determiningIcon(resultkey) {

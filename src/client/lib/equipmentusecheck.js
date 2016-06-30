@@ -5,6 +5,7 @@
 function equipmentUseCheck(agent, equipment) {
   const agentclass = agent.get('specialist');
   const equipmenttype = equipment.get('tag').slice(2);
+  console.log(equipment.toJS());
   if (
     (agentclass === 'operative' && equipmenttype === 'O') ||
     (agentclass === 'technician' && equipmenttype === 'E') ||

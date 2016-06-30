@@ -19,20 +19,24 @@ class OperationsUpgradeDialog extends Component {
     const {enhancements, list} = this.props;
     const enhancement = currentLevelOps(enhancements);
     const nextlevel = nextLevelOps(enhancements, list);
+
     return (
       <div id='OperationsUpgradeDialog'>
-        Current operations level is: {enhancement.get('name')}
+        <u>Operations</u>
         <br />
-        Next operations level is: {nextlevel ? nextlevel.get('name') : enhancement.get('name')}
+        Current level is: {enhancement.get('name')}
+        <br />
+        Next level is: {nextlevel ? nextlevel.get('name') : enhancement.get('name')}
         <br />
         Costs to upgrade: {nextlevel &&
          '$' + formatMoney(nextlevel.getIn(['price', 'cash']), 0, '.', ',')}
-        {nextlevel && '\u{1f575}' + nextlevel.getIn(['price', 'contacts'])}}
+        {nextlevel && '\u{1f575}' + nextlevel.getIn(['price', 'contacts'])}
         <br />
-        Do you want to proceed with upgrade?
+        Upgrade?
         <br />
-        <button onClick={this.upgradeEnhancement.bind(this)}>Yes</button>
-        <button onClick={(e) => dashboardActions.operationsUpgradeDialogToggle()}>No</button>
+        <br />
+        <button id='OperationsUpgradeYes' onClick={this.upgradeEnhancement.bind(this)}>Yes</button>
+        <button id='OperationsUpgradeNo' onClick={(e) => dashboardActions.operationsUpgradeDialogToggle()}>No</button>
       </div>
     );
   }

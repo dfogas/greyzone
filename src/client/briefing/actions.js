@@ -1,10 +1,12 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
-import immutable from 'immutable';
 import pickAgentForFatal from '../lib/pickagentforfatal';
 import obscurityMissionCheck from '../lib/obscuritymissioncheck';
+import Sound from '../lib/sound';
+import cconfig from '../client.config';
 import $ from 'jquery';
+import immutable from 'immutable';
 
 export function assignMission(agent) {
   /* pokud je agent unavený např. z předchozí mise */
@@ -78,6 +80,7 @@ export function selectMission(mission) {
   const activemission = jsonapiCursor(['activemission']);
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const countrystats = jsonapiCursor(['countrystats']);
+  const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   if (agentontask)
     flashBriefing('Agent is on task, move her back.');
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
@@ -91,7 +94,17 @@ export function selectMission(mission) {
     }
   } else if (!obscurityMissionCheck(mission, countrystats))
     flashBriefing(`Mission won't start, obscurity is not high enough.`);
-  else dispatch(selectMission, {mission});
+  else {
+    let laylowSound = new Sound(url + '/assets/audio/LayingLow.ogg');
+    let pokerTableSound = new Sound(url + '/assets/audio/PokerTable.ogg');
+    if (mission.get('title') === 'Laying Low') {
+      laylowSound.play();
+    }
+    if (mission.get('title') === 'Poker Table') {
+      pokerTableSound.play();
+    }
+    dispatch(selectMission, {mission});
+  }
 }
 
 export function setDefaultAfterExpired() {

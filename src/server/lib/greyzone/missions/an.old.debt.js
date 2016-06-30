@@ -19,7 +19,7 @@ const AnOldDebt = [{
     reputation: 250
   },
   imgsrc: 'OldDebt.jpg',
-  agentLimit: 1,
+  agentLimit: 2,
   tier: 3,
   tag: tag
 }, {
@@ -38,7 +38,7 @@ const AnOldDebt = [{
     reputation: 500
   },
   imgsrc: 'OldDebt.jpg',
-  agentLimit: 1,
+  agentLimit: 2,
   tier: 4,
   tag: tag
 }, {
@@ -58,7 +58,7 @@ const AnOldDebt = [{
     reputation: 750
   },
   imgsrc: 'OldDebt.jpg',
-  agentLimit: 1,
+  agentLimit: 2,
   tier: 5,
   tag: tag
 }];
