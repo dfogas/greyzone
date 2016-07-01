@@ -2,9 +2,12 @@
 import {puppet, improv_st, decipher, hide, improv_op} from '../actions';
 
 const tag = 'desinformation';
+const title = 'Desinformation';
+const imgsrc = 'Desinformation.jpg';
+const sound = 'Desinformation.ogg';
 
 const Desinformation = [{
-    title: 'Desinformation',
+    title: title,
     tasks: [
       [puppet, improv_st],
       [decipher, hide]
@@ -16,12 +19,13 @@ const Desinformation = [{
     losses: {
       obscurity: 0.05
     },
-    imgsrc: 'Desinformation.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 1,
     tier: 1,
     tag: tag
   }, {
-    title: 'Desinformation',
+    title: title,
     tasks: [
       [puppet, improv_st, improv_st],
       [decipher, hide]
@@ -33,12 +37,13 @@ const Desinformation = [{
     losses: {
       obscurity: 0.2
     },
-    imgsrc: 'Desinformation.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 1,
     tier: 2,
     tag: tag
   }, {
-    title: 'Desinformation',
+    title: title,
     tasks: [
       [puppet, improv_st, improv_st],
       [decipher, hide],
@@ -51,7 +56,8 @@ const Desinformation = [{
     losses: {
       obscurity: 0.8
     },
-    imgsrc: 'Desinformation.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 1,
     tier: 3,
     tag: tag

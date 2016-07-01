@@ -2,9 +2,12 @@
 import {decipher, close_combat, infiltrate, tap, improv_op, improv_st, puppet} from './actions';
 
 const tag = 'afriendininnercircle';
+const title = 'A Friend in Inner Circle';
+const imgsrc = 'InnerCircle.jpg';
+const sound = 'InnerCircle.ogg';
 
 const AFriendInInnerCircle = [{
-  title: 'A Friend in Inner Circle',
+  title: title,
   tasks: [
     [infiltrate, puppet, puppet],
     [tap, tap, improv_op],
@@ -18,12 +21,13 @@ const AFriendInInnerCircle = [{
     gameCash: 30000,
     reputation: 1500
   },
-  imgsrc: 'InnerCircle.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 3,
   tag: tag
 }, {
-  title: 'A Friend in Inner Circle',
+  title: title,
   tasks: [
     [infiltrate, puppet, puppet],
     [tap, tap, improv_op, close_combat],
@@ -39,12 +43,13 @@ const AFriendInInnerCircle = [{
     gameCash: 90000,
     reputation: 3000
   },
-  imgsrc: 'InnerCircle.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 4,
   tag: tag
 }, {
-  title: 'A Friend in Inner Circle',
+  title: title,
   tasks: [
     [infiltrate, puppet, puppet, improv_st],
     [tap, tap, improv_op, close_combat],
@@ -61,7 +66,8 @@ const AFriendInInnerCircle = [{
     gameCash: 300000,
     reputation: 3000
   },
-  imgsrc: 'InnerCircle.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 5,
   tag: tag

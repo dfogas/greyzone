@@ -2,9 +2,12 @@
 import {tap, monitor, improv_el, improv_op, improv_st, pursuit, close_combat, hide} from '../actions';
 
 const tag = 'agentintrouble';
+const title = 'Agent In Trouble';
+const imgsrc = 'AgentInTrouble.jpg';
+const sound = 'AgentInTrouble.ogg';
 
 let AgentInTrouble = [{
-  title: 'Agent In Trouble',
+  title: title,
   tasks: [
     [tap, monitor, improv_el],
     [improv_op, improv_st]
@@ -18,12 +21,13 @@ let AgentInTrouble = [{
     gameCash: 1000,
     gameContacts: 25
   },
-  imgsrc: 'AgentInTrouble.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 1,
   tag: tag
 }, {
-  title: 'Agent In Trouble',
+  title: title,
   tasks: [
     [tap, monitor, improv_el],
     [improv_op, improv_st],
@@ -38,12 +42,13 @@ let AgentInTrouble = [{
     gameContacts: 50,
     gameCash: 2000
   },
-  imgsrc: 'AgentInTrouble.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 2,
   tag: tag
 }, {
-  title: 'Agent In Trouble',
+  title: title,
   tasks: [
     [tap, monitor, improv_el],
     [improv_op, improv_st, close_combat],
@@ -58,12 +63,13 @@ let AgentInTrouble = [{
     gameContacts: 75,
     gameCash: 3000
   },
-  imgsrc: 'AgentInTrouble.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 3,
   tag: tag
 }, {
-  title: 'Agent In Trouble',
+  title: title,
   tasks: [
     [tap, monitor, improv_el],
     [improv_op, improv_st, close_combat],
@@ -79,12 +85,13 @@ let AgentInTrouble = [{
     gameContacts: 175,
     gameCash: 25000
   },
-  imgsrc: 'AgentInTrouble.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 4,
   tag: tag
 }, {
-  title: 'Agent In Trouble',
+  title: title,
   tasks: [
     [tap, monitor, improv_el],
     [improv_op, improv_st, close_combat, hide],
@@ -100,7 +107,8 @@ let AgentInTrouble = [{
     gameContacts: 375,
     gameCash: 50000
   },
-  imgsrc: 'AgentInTrouble.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 5,
   tag: tag

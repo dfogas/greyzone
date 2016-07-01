@@ -2,9 +2,12 @@
 import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate} from '../actions';
 
 const tag = 'layinglow';
+const title = 'Laying Low';
+const imgsrc = 'LayingLow.jpg';
+const sound = 'LayingLow.ogg';
 
 const LayingLow = [{
-  title: 'Laying Low',
+  title: title,
   tasks: [
     [close_combat, hide],
     [hit, improv_op],
@@ -17,12 +20,13 @@ const LayingLow = [{
   losses: {
     reputation: 50
   },
-  imgsrc: 'LayingLow.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 3,
   tier: 1,
   tag: tag
 }, {
-  title: 'Laying Low',
+  title: title,
   tasks: [
     [close_combat, hide, improv_op],
     [hit, improv_op, hit],
@@ -35,12 +39,13 @@ const LayingLow = [{
   losses: {
     reputation: 250
   },
-  imgsrc: 'LayingLow.jpg',
+  imgsrc: imgsrc,
   agentLimit: 3,
+  sound: sound,
   tier: 2,
   tag: tag
 }, {
-  title: 'Laying Low',
+  title: title,
   tasks: [
     [close_combat, hide, improv_op],
     [improv_el, monitor],
@@ -54,7 +59,8 @@ const LayingLow = [{
   losses: {
     reputation: 1000
   },
-  imgsrc: 'LayingLow.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 3,
   tier: 3,
   tag: tag

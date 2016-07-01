@@ -76,19 +76,18 @@ class AgentCard extends Component {
         {trainingtable &&
           <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
         {agentequipments.map((agentequipment, i) => {
-            return (
-              <AgentEquipmentSlot
-                agent={agent}
-                agentequipment={agentequipment}
-                agentindex={agentindex}
-                equipmentindex={i}
-                equipments={equipments}
-                isMission={this.props.isMission}
-                isShowcased={this.props.isShowcased}
-                key={uuid() + i}
-              />
-            );
-          })}
+          return (
+            <AgentEquipmentSlot
+              agent={agent}
+              agentequipment={agentequipment}
+              agentindex={agentindex}
+              equipmentindex={i}
+              equipments={equipments}
+              isMission={this.props.isMission}
+              isShowcased={this.props.isShowcased}
+              key={uuid() + i}
+            />);
+        })}
         {rankup && this.props.isAgents &&
           <input
             className='agent-rankup-button'

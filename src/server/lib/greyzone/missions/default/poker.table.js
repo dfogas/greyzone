@@ -2,9 +2,12 @@
 import {decipher, improv_el, tap, close_combat, improv_op, pursuit} from '../actions';
 
 const tag = 'pokertable';
+const title = 'Poker Table';
+const imgsrc = 'PokerTable.jpg';
+const sound = 'PokerTable.ogg';
 
 const PokerTable = [{
-    title: 'Poker Table',
+    title: title,
     tasks: [
       [decipher, decipher, improv_el],
       [tap, improv_el]
@@ -16,12 +19,13 @@ const PokerTable = [{
     losses: {
       gameCash: 2500
     },
-    imgsrc: 'PokerTable.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 2,
     tier: 1,
     tag: tag
   }, {
-    title: 'Poker Table',
+    title: title,
     tasks: [
       [decipher, decipher, improv_el],
       [tap, improv_el, improv_op],
@@ -34,12 +38,13 @@ const PokerTable = [{
     losses: {
       gameCash: 12500
     },
-    imgsrc: 'PokerTable.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 2,
     tier: 2,
     tag: tag
   }, {
-    title: 'Poker Table',
+    title: title,
     tasks: [
       [decipher, decipher, improv_el],
       [tap, improv_el, close_combat],
@@ -52,7 +57,8 @@ const PokerTable = [{
     losses: {
       gameCash: 62500
     },
-    imgsrc: 'PokerTable.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 2,
     tier: 3,
     tag: tag

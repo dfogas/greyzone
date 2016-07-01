@@ -24,7 +24,8 @@ const defaultActiveMission = {
   },
   started: false,
   tag: 'quietbeforestorm',
-  imgsrc: 'BeforeStorm.jpg'
+  imgsrc: 'BeforeStorm.jpg',
+  sound: 'BeforeStorm.ogg'
 };
 
 export default defaultActiveMission;

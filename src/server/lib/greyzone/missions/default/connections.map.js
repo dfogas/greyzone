@@ -2,9 +2,12 @@
 import {monitor, tap, decipher, puppet, infiltrate, hide, improv_el, improv_st} from '../actions';
 
 const tag = 'connectionsmap';
+const title = 'Connections Map';
+const imgsrc = 'ConnectionsMap.jpg';
+const sound = 'ConnectionsMap.ogg';
 
 const ConnectionsMap = [{
-    title: 'Connections Map',
+    title: title,
     tasks: [
       [monitor, tap, decipher],
       [monitor],
@@ -17,12 +20,13 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 2500
     },
-    imgsrc: 'ConnectionsMap.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 3,
     tier: 1,
     tag: tag
   }, {
-    title: 'Connections Map',
+    title: title,
     tasks: [
       [monitor, tap, decipher],
       [monitor, improv_el, puppet],
@@ -35,12 +39,13 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 12500
     },
-    imgsrc: 'ConnectionsMap.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 3,
     tier: 2,
     tag: tag
   }, {
-    title: 'Connections Map',
+    title: title,
     tasks: [
       [monitor, tap, decipher],
       [monitor, tap, puppet],
@@ -54,7 +59,8 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 62500
     },
-    imgsrc: 'ConnectionsMap.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 3,
     tier: 3,
     tag: tag

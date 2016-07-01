@@ -2,9 +2,12 @@
 import {hit, close_combat, puppet, improv_st, pursuit, improv_op} from '../actions';
 
 const tag = 'demonstrationofpower';
+const title = 'Demonstration Of Power';
+const imgsrc = 'DemonstrationOfPower.jpg'
+const sound = 'DemonstrationOfPower.ogg';
 
 const DemonstrationOfPower = [{
-    title: 'Demonstration of power',
+    title: title,
     tasks: [
       [hit, hit, close_combat],
       [puppet, improv_st]
@@ -16,12 +19,13 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 200
     },
-    imgsrc: 'DemonstrationOfPower.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 2,
     tier: 1,
     tag: tag
   }, {
-    title: 'Demonstration of power',
+    title: title,
     tasks: [
       [hit, hit, close_combat],
       [puppet, improv_st],
@@ -34,12 +38,13 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 400
     },
-    imgsrc: 'DemonstrationOfPower.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 2,
     tier: 2,
     tag: tag
   }, {
-    title: 'Demonstration of power',
+    title: title,
     tasks: [
       [hit, hit, close_combat],
       [hit, puppet, improv_st],
@@ -52,7 +57,8 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 1000
     },
-    imgsrc: 'DemonstrationOfPower.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
     agentLimit: 2,
     tier: 3,
     tag: tag

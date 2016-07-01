@@ -3,9 +3,12 @@ import {tap, monitor, improv_el, puppet, decipher, improv_st} from '../actions';
 import randomInt from '../../../../../client/lib/getrandomint';
 
 const tag = 'moneychannelling';
+const title = 'Money channelling';
+const imgsrc = 'MoneyChannelling.jpg';
+const sound = 'MoneyChannelling.ogg';
 
 const MoneyChannelling = [{
-  title: 'Money channelling',
+  title: title,
   tasks: [
     [tap, monitor],
     [puppet, puppet, tap],
@@ -18,12 +21,13 @@ const MoneyChannelling = [{
   losses: {
     gameContacts: 10
   },
-  imgsrc: 'MoneyChannelling.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 3,
   tier: 1,
   tag: tag
 }, {
-  title: 'Money channelling',
+  title: title,
   tasks: [
     [tap, monitor, improv_el],
     [puppet, puppet, tap],
@@ -36,12 +40,13 @@ const MoneyChannelling = [{
   losses: {
     gameContacts: 25
   },
-  imgsrc: 'MoneyChannelling.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 3,
   tier: 2,
   tag: tag
 }, {
-  title: 'Money channelling',
+  title: title,
   tasks: [
     [tap, decipher, improv_el],
     [puppet, puppet, tap],
@@ -55,7 +60,8 @@ const MoneyChannelling = [{
   losses: {
     gameContacts: 250
   },
-  imgsrc: 'MoneyChannelling.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 3,
   tier: 3,
   tag: tag

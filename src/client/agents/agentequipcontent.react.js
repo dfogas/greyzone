@@ -31,7 +31,6 @@ class AgentEquipContent extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
-    const armorymessage = jsonapi.getIn(['armory', 'message']);
 
     const equipments = jsonapi.get('equipments');
     // POI: there was toSeq used for lazy evaluation, wonder was it any good doing there?
@@ -76,9 +75,6 @@ class AgentEquipContent extends Component {
           paying={jsonapi.get('paying')}
           stock='stealth'
           />
-        <div id='ArmoryLogMessage'>
-          Message : {armorymessage}
-        </div>
         {agentinarmory && <button
           id='BackFromArmory'
           onClick={this.backFromArmory.bind(this)}>Back</button>}

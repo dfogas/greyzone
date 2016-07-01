@@ -95,14 +95,8 @@ export function selectMission(mission) {
   } else if (!obscurityMissionCheck(mission, countrystats))
     flashBriefing(`Mission won't start, obscurity is not high enough.`);
   else {
-    let laylowSound = new Sound(url + '/assets/audio/LayingLow.ogg');
-    let pokerTableSound = new Sound(url + '/assets/audio/PokerTable.ogg');
-    if (mission.get('title') === 'Laying Low') {
-      laylowSound.play();
-    }
-    if (mission.get('title') === 'Poker Table') {
-      pokerTableSound.play();
-    }
+    let missionSound = new Sound(url + '/assets/audio/' + mission.get('sound'));
+    missionSound.play();
     dispatch(selectMission, {mission});
   }
 }

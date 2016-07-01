@@ -30,7 +30,12 @@ class PlayersWindow extends Component {
   }
 
   playerDoesNotGoOnMissions() {
-    dashboardActions.playerDoesNotGoOnMissions(); //
+    const {jsonapi} = this.props;
+    const agents = jsonapi.get('agents');
+    const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
+    const agentondisplayindex = agents.indexOf(agents.find(agent => agent.get('id') === agentondisplay.get('id')));
+    dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+    dashboardActions.playerDoesNotGoOnMissions();
   }
 
   playerGoesOnMissions() {
@@ -65,7 +70,7 @@ class PlayersWindow extends Component {
         {(self ? jsonapi.get('agents').find(agent => agent.get('id') === self.get('id')) : false) &&
           <button
             id='PlayerAgentActionableButton'
-            onClick={this.playerDoesNotGoOnMissions}
+            onClick={this.playerDoesNotGoOnMissions.bind(this)}
             >Dont go on Missions</button>}
         <div id='PlayerLiquidResources'>
           <span className='gameCash-counter'>
