@@ -3,13 +3,13 @@ import {hit, close_combat, puppet, improv_st, pursuit, improv_op} from '../actio
 
 const tag = 'demonstrationofpower';
 const title = 'Demonstration Of Power';
-const imgsrc = 'DemonstrationOfPower.jpg'
+const imgsrc = 'DemonstrationOfPower.jpg';
 const sound = 'DemonstrationOfPower.ogg';
 
 const DemonstrationOfPower = [{
     title: title,
     tasks: [
-      [hit, hit, close_combat],
+      [hit, improv_op, close_combat],
       [puppet, improv_st]
     ],
     inCountry: '',

@@ -12,7 +12,7 @@ class MissionEndButton extends Component {
     // var socket = io.connect('http://localhost');
     const {mission, tutorial} = this.props;
     const missionjs = mission.toJS();
-    // socket.emit('mission', missionjs); // eslint-disable-line no-undef
+    socket.emit('mission', missionjs); // eslint-disable-line no-undef
     missionActions.end();
     if (tutorial && !tutorial.getIn(['firstmission', 'done']))
       tutorialActions.firstMissionDone();

@@ -57,6 +57,7 @@ const io = ioServer(server);
 io.on('connection', (socket) => {
   console.log('user has connected');
   socket.on('mission', function(msg) {
+    console.log('mission socket event');
 
     if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
       console.log('Agents spotted. New Mission in Briefing room - Discovered!');
