@@ -23,7 +23,7 @@ var playerdefaults = {
   achievements: [],
   activemission: defaultActiveMission,
   agents: [],
-  countrystats: playerCountryStats(CountryList, 0, 3),
+  countrystats: playerCountryStats(CountryList, 0, 1),
   components: {
     briefing: {
       missionthumbnail: {

@@ -2,9 +2,12 @@
 import {infiltrate, improv_st, improv_op, improv_el, monitor, tap, decipher} from './actions';
 
 const tag = 'destroyevidence';
+const title = 'Destroy Evidence';
+const imgsrc = 'DestroyEvidence.jpg';
+const sound = 'DestroyEvidence.ogg';
 
 const DestroyEvidence = [{
-  title: 'Destroy Evidence',
+  title: title,
   tasks: [
     [infiltrate, infiltrate, improv_st],
     [improv_st, improv_el, improv_op],
@@ -18,12 +21,13 @@ const DestroyEvidence = [{
     agentImprisoned: true,
     reputation: 500
   },
-  imgsrc: 'DestroyEvidence.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 3,
   tag: tag
 }, {
-  title: 'Destroy Evidence',
+  title: title,
   tasks: [
     [infiltrate, infiltrate, improv_st],
     [improv_st, improv_op, improv_op, improv_el],
@@ -40,12 +44,13 @@ const DestroyEvidence = [{
     reputation: 1500,
     obscurity: 0.25
   },
-  imgsrc: 'DestroyEvidence.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 4,
   tag: tag
 }, {
-  title: 'Destroy Evidence',
+  title: title,
   tasks: [
     [infiltrate, infiltrate, improv_st],
     [improv_st, improv_op, improv_op, improv_el],
@@ -62,7 +67,8 @@ const DestroyEvidence = [{
     reputation: 3750,
     obscurity: 0.35
   },
-  imgsrc: 'DestroyEvidence.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 2,
   tier: 5,
   tag: tag

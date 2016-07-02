@@ -42,7 +42,7 @@ export function agentTalking(agent) {
     dispatch(enhancementTalk, {message: 'prisonbreak'});
   else if (self.get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
     dispatch(enhancementTalk, {message: 'silencewitness'});
-  else if (agent.get('specialist') && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
+  else if (agent.get('specialist') === 'technician' && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
     dispatch(enhancementTalk, {message: 'destroyevidence'});
   else if (agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal' && !enhancements.find(enh => enh.get('missiontag') === 'afriendininnercircle'))
     dispatch(enhancementTalk, {message: 'afriendininnercircle'});
@@ -103,6 +103,18 @@ export function equip(equipment) {
   else flashArmory('Agent already has this equipment.');
 }
 
+export function flashArmory(message) {
+  $('#ArmoryScreen').append(`<div id='ArmoryMessage'>${message}</div>`);
+  $('#ArmoryMessage').hide().fadeIn(300);
+  $('#ArmoryMessage').fadeOut(700, () => $('#ArmoryMessage').remove());
+  // může být i v BriefingScreenu
+  if ($('#BriefingScreen')) {
+    $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);
+    $('#BriefingMessage').hide().fadeIn(400);
+    $('#BriefingMessage').fadeOut(1200, () => $('#BriefingMessage').remove());
+  }
+}
+
 export function getRank(agent) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
@@ -116,18 +128,6 @@ export function getRank(agent) {
 
 export function honorAgent(agent) {
   dispatch(honorAgent, {agent});
-}
-
-export function flashArmory(message) {
-  $('#ArmoryScreen').append(`<div id='ArmoryMessage'>${message}</div>`);
-  $('#ArmoryMessage').hide().fadeIn(400);
-  $('#ArmoryMessage').fadeOut(1200, () => $('#ArmoryMessage').remove());
-  // může být i v BriefingScreenu
-  if ($('#BriefingScreen')) {
-    $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);
-    $('#BriefingMessage').hide().fadeIn(400);
-    $('#BriefingMessage').fadeOut(1200, () => $('#BriefingMessage').remove());
-  }
 }
 
 export function setETA(agent, equipment) {

@@ -7,11 +7,12 @@ import '../navs/navs.styl';
 // import config from '../../server/config'; //I think that this breaks the app
 import cconfig from '../client.config';
 import * as state from '../state';
+import 'isomorphic-fetch';
+import pollingStateToPersistence from '../lib/pollingstate';
 import Component from '../components/component.react';
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
-import 'isomorphic-fetch';
 
 // import Footer from './footer.react';
 // import Menu from './menu.react';
@@ -45,26 +46,11 @@ class App extends Component {
   }
 
   pollStateToPersistance() {
-    // TODO: if polling then
-    // 1st stage - poll only if changes
-    // 2nd stage - poll only changes
-    // 3rd stage - possibly completely replace w/ websockets
-    const api = process.env.NODE_ENV === 'production' ?
+    const nodeEnv = process.env.NODE_ENV === 'production' ?
       cconfig.dnsprod + '/api/v1/' :
       cconfig.dnsdevel + '/api/v1/';
-    const userId = this.state.jsonapi.get('userId');
-    const jsonapi = this.state.jsonapi.toJS();
-    if (this.state.jsonapi.get('name') !== 'Default') {
-      console.log('polling to persistance');
-      fetch(api + 'players/' + userId, {
-        method: 'PUT',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(jsonapi)
-      });
-    }
-      // .then((response) => {
-      //   console.log(response);
-      // });
+
+    pollingStateToPersistence(this.state.jsonapi, nodeEnv);
   }
 
   getState() {

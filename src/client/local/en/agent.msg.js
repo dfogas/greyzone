@@ -24,8 +24,8 @@ const agents = {
     anolddebt: {
       acknowledgement: {
         button: `Ok`,
-        text: `<div id='EnhancementTalkAcknowledgement'>Ok, agents may call
-          for our help now, and we may gain their loyalty, which is crucial.</div>`
+        text: `<div id='EnhancementTalkAcknowledgement'>Mission An Old Debt has become
+          available.</div>`
       },
       choice: {
         button1: `Yes`,
@@ -72,8 +72,8 @@ const agents = {
       choice: {
         button1: `Do it!`,
         button2: `Not now`,
-        text: `<div id='EnhancementTalkChoice'>If we hope to survive long
-          - short story - I can get access to some stores having physical and
+        text: `<div id='EnhancementTalkChoice'>If we hope to survive long, then ...
+          short story - I can get access to some stores having physical and
           electronic evidence about our doings. With a little bit of resource
           I can tap into them and leave nothing but a trail of smoke as I make them disappear
           So what do you thing?</div>`
