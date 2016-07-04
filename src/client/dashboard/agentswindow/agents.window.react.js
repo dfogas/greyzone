@@ -39,6 +39,7 @@ class AgentsWindow extends Component {
           />
         <AgentOnDisplay
           agentondisplay={agentondisplay}
+          agentbeingsaved={jsonapi.get('agentbeingsaved')}
           agents={agents}
           self={self}
           trainingtable={game.getIn(['globals', 'trainingtable'])}

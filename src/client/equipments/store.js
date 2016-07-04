@@ -40,6 +40,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === equipmentsActions.lockDice)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'equipmenteffects', 'lockeddice'], immutable.fromJS(data));
+    });
+
   if (action === equipmentsActions.noeffect)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -122,10 +128,4 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  if (action === equipmentsActions.lockDice)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['activemission', 'equipmenteffects', 'lockeddice'], new Array(data));
-        // TODO: remove dice from dicesthrown or rather actiondices
-    });
 });

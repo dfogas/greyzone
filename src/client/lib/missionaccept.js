@@ -1,5 +1,5 @@
 /*
-  tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) missionList([Mission]), countryList([Country])) -> JSObject(Mission)
+  tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) ImmutableList(missions), countryList([Country])) -> JSObject(Mission)
   options mohou být forcefail, randomizeresults
 */
 
@@ -20,7 +20,7 @@ function character(chance) {
 }
 
 function missionAccept(tier, focus, country, options, enhancements, countryList, missionsList) {
-  const modifiedMissionsList = xmissioncheck(enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name), missionsList);
+  const modifiedMissionsList = xmissioncheck(enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name), missionsList.toJS());
   const focusedModifiedMissionsList = focus !== 'random' && focus !== 'multiplayer' ?
     modifiedMissionsList.filter(mission => determineFocus(mission.rewards)[focus]) :
     modifiedMissionsList;

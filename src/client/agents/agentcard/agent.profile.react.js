@@ -14,7 +14,8 @@ class AgentProfile extends Component {
 
   render() {
     //data cache placeholder
-    const {agent, self} = this.props;
+    const {agent, agentbeingsaved, self} = this.props;
+    const beingsaved = agentbeingsaved ? agentbeingsaved.get('id') === agent.get('id') : false;
     let formattedImg;
     var classString = '';
 
@@ -27,10 +28,14 @@ class AgentProfile extends Component {
       <div className={'agent-profile' + classString}>
         <div
           className={'agent-picture' + classString}
-          onClick={this.agentTalk.bind(this)}>
-          <img draggable='false' src={formattedImg} />
-          </div>
-        <div className={'agent-label' + classString}>{agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}</div>
+          onClick={this.agentTalk.bind(this)}><img draggable='false' src={formattedImg} /></div>
+        <div className={'agent-label' + classString}>
+          {agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}
+        </div>
+        {(agent.get('prison') && !beingsaved) &&
+          <div className='in-prison-label'>In Prison</div>}
+        {beingsaved &&
+          <div className='being-saved-label'>Rescuing</div>}
       </div>
     );
   }

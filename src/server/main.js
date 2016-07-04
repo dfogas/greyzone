@@ -56,6 +56,8 @@ const io = ioServer(server);
 
 io.on('connection', (socket) => {
   console.log('user has connected');
+
+
   socket.on('mission', function(msg) {
     console.log('mission socket event');
 
@@ -67,8 +69,9 @@ io.on('connection', (socket) => {
     }
   });
 
-  setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
+  // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
 });
+
 
 // ..aAand running server
 server.listen(config.port, () => {

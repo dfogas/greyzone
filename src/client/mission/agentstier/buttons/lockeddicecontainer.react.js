@@ -20,9 +20,8 @@ class LockedDiceContainer extends Component {
 
   render() {
     const {activemission} = this.props;
-    const lockeddice = activemission.getIn(['equipmenteffects', 'lockeddice']).get(0);
-    // console.log(activemission.toJS());
-    // console.log(lockeddice);
+    const lockeddice = activemission.getIn(['equipmenteffects', 'lockeddice']);
+
     return (
       <div
         className='locked-dice-container'

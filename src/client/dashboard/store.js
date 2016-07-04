@@ -195,6 +195,13 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['components', 'dashboard', 'index'], data.message);
     });
 
+  if (action === dashboardActions.postponeRescue)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('agentbeingsaved', null)
+        .update('agents', val => val.push(data.agent));
+    });
+
   if (action === dashboardActions.refreshStandings)
     contestCursor(() => {
       return immutable.fromJS(data);

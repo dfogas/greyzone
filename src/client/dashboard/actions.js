@@ -4,7 +4,6 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import immutable from 'immutable';
 import cconfig from '../client.config';
-import MissionsList from '../../server/lib/greyzone/missions.list';
 import CountryList from '../../server/lib/greyzone/country.list';
 import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 import StatusesList from '../../server/lib/greyzone/statuses.list';
@@ -27,7 +26,8 @@ import $ from 'jquery';
 /* Number, String, String, Object */
 export function acceptMission(tier, focus, country, options) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const mission = missionAccept(tier, focus, country, options, enhancements, CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(tier, focus, country, options, enhancements, CountryList, missionsList);
   const missions = jsonapiCursor(['missions']);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
 
@@ -46,7 +46,8 @@ export function acceptMission(tier, focus, country, options) {
 
 export function agentRecruitMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'agent', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'agent', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Agent Mission`);
   dispatch(acceptMission, {mission});
@@ -70,7 +71,8 @@ export function badEndRich() {
 
 export function bankRobberyMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'bank', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'bank', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   dispatch(acceptMission, {mission});
 }
@@ -117,7 +119,8 @@ export function buyStatus(status) {
 
 export function cashFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'cash', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'cash', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Cash Mission!`);
   dispatch(acceptMission, {mission});
@@ -140,7 +143,8 @@ export function clearMissionAcceptFields() {
 
 export function contactsFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'contacts', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'contacts', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Contacts Mission!`);
   dispatch(acceptMission, {mission});
@@ -152,7 +156,8 @@ export function dashboardIntroToggle() {
 
 export function destroyEvidenceMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'evidence', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'evidence', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Destroy Evidence Mission!`);
   dispatch(acceptMission, {mission});
@@ -162,14 +167,14 @@ export function dismissAgent(agent) {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const revengemission = missionAccept(operationstier, 'rattedout', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const revengemission = missionAccept(operationstier, 'rattedout', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], JSON.stringify(storage.concat([agent.toJS()])));
   dispatch(dismissAgent, {agent});
-  if (agent.get('loyalty') !== 'loyal') {
-    flashDashboard(`I will speak!`);
+  flashDashboard(`Agent left to rot in prison!`);
+  if (agent.get('loyalty') !== 'loyal')
     dispatch(acceptMission, {mission: revengemission});
-  }
 }
 
 export function displayGameEndStatistics() {
@@ -238,7 +243,8 @@ export function goodEndRich() {
 
 export function innerCircleMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'innercircle', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'innercircle', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Inner Circle Mission`);
   dispatch(acceptMission, {mission});
@@ -258,7 +264,8 @@ export function logMissionsWindow(message) {
 
 export function obscurityFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'obscurity', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'obscurity', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Obscurity Mission!`);
   dispatch(acceptMission, {mission});
@@ -266,7 +273,8 @@ export function obscurityFocusMission() {
 
 export function oldDebtMission() {
   const operationstier = getRandomInt(3, 5);
-  const mission = missionAccept(operationstier, 'olddebt', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'olddebt', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Old Debt Mission!`);
   dispatch(acceptMission, {mission});
@@ -288,9 +296,15 @@ export function pointerChange(whereto) {
   dispatch(pointerChange, {message: whereto});
 }
 
+export function postponeRescue(agent) {
+  flashDashboard(`Rescue postponed.`);
+  dispatch(postponeRescue, {agent});
+}
+
 export function prisonBreakMission() {
   const operationstier = getRandomInt(3, 5);
-  const mission = missionAccept(operationstier, 'prison', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'prison', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New PrisonBreak Mission!`);
   dispatch(acceptMission, {mission});
@@ -312,7 +326,8 @@ export function refreshStandings() {
 
 export function reputationFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const mission = missionAccept(operationstier, 'reputation', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'reputation', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Reputation Mission!`);
   dispatch(acceptMission, {mission});
@@ -360,7 +375,8 @@ export function selectAgentOnDisplay(agent) {
 
 export function silenceWitnessMission() {
   const operationstier = getRandomInt(3, 5);
-  const mission = missionAccept(operationstier, 'killrat', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, MissionsList);
+  const missionsList = gameCursor(['globals', 'missions']);
+  const mission = missionAccept(operationstier, 'killrat', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   dispatch(acceptMission, {mission});
 }
@@ -422,6 +438,7 @@ setToString('dashboard', {
   playerDoesNotGoOnMissions,
   playerGoesOnMissions,
   pointerChange,
+  postponeRescue,
   refreshStandings,
   reputationFocusMission,
   retireGame,

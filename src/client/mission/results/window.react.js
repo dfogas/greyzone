@@ -86,6 +86,7 @@ class MissionResultsWindow extends Component {
           {rewards.keySeq().filter(key => key === 'artPieceGained').toList().size !== 0 &&
             <li>You stole yourself an Art Piece!</li>}
           <MissionEndButton
+            jsonapi={jsonapi}
             mission={activemission}
             tutorial={tutorial}
             />

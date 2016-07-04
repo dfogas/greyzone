@@ -20,6 +20,7 @@ import AchievementList from '../lib/greyzone/achievement.list';
 import CountryList from '../lib/greyzone/country.list';
 import EnhancementList from '../lib/greyzone/enhancement.list';
 import EquipmentList from '../lib/greyzone/equipments.list';
+import MissionsList from '../lib/greyzone/missions.list';
 import OptionsList from '../lib/greyzone/options.list';
 import StatusList from '../lib/greyzone/statuses.list';
 import TrainingTable from '../lib/greyzone/trainingtable';
@@ -68,6 +69,7 @@ export default function userState() {
         countries: CountryList,
         enhancements: EnhancementList,
         equipments: EquipmentList,
+        missions: MissionsList,
         options: OptionsList,
         features: {
           paid: {

@@ -1,5 +1,6 @@
 import './agentcard.styl';
 import * as agentsActions from '../actions';
+import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
@@ -14,20 +15,32 @@ import AgentEquipmentSlot from './agentequipmentslot.react';
 import AgentClock from './agent.clock.react';
 
 class AgentCard extends Component {
+  drag(ev) {
+    ev.dataTransfer.setData('text', ev.target.id);
+  }
 
   agentGetRank() {
     const {agent, agentindex} = this.props;
     agentsActions.getRank(agent, agentindex);
   }
 
-  drag(ev) {
-    ev.dataTransfer.setData('text', ev.target.id);
-  }
+  // dismissAgent() {
+  //   const {agent} = this.props;
+  //   dashboardActions.dismissAgent(agent);
+  //   dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+  // }
+  //
+  // saveAgent() {
+  //   const {agent} = this.props;
+  //   dashboardActions.saveAgent(agent);
+  //   dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+  // }
 
   render() {
-    const {agent, agentindex, equipments, key, self, trainingtable} = this.props;
+    const {agent, agentbeingsaved, agentindex, equipments, key, self, trainingtable} = this.props;
     const rankup = shouldHaveRank(agent.get('experience')) >= agent.get('rank') ? true : false;
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
+    const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
 
     const classString = classnames(
       'agent-card', {
@@ -69,10 +82,23 @@ class AgentCard extends Component {
           />
         <AgentProfile
           agent={agent}
+          agentbeingsaved={agentbeingsaved}
           isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
           self={self}
           />
+        {(agent.get('prison') && !beingsaved) &&
+          <button
+            className='save-agent-button'
+            onClick={(e) => dashboardActions.saveAgent(agent)}>Save</button>}
+        {(agent.get('prison') && !beingsaved) &&
+          <button
+            className='dismiss-agent-button'
+            onClick={(e) => agentsActions.dismissAgent(agent)}>Dont Save</button>}
+        {(agent.get('prison') && beingsaved) &&
+          <button
+            className='dismiss-agent-button'
+            onClick={(e) => dashboardActions.postponeRescue(agent)}>Not now!</button>}
         {trainingtable &&
           <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
         {agentequipments.map((agentequipment, i) => {

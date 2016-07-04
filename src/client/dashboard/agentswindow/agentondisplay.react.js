@@ -14,7 +14,7 @@ class AgentOnDisplay extends Component {
   }
 
   render() {
-    const {agentondisplay, self, trainingtable} = this.props;
+    const {agentondisplay, agentbeingsaved, self, trainingtable} = this.props;
     return (
       <div
         id='AgentOnDisplay'
@@ -26,6 +26,7 @@ class AgentOnDisplay extends Component {
         {agentondisplay &&
           <AgentCard
             agent={agentondisplay}
+            agentbeingsaved={agentbeingsaved}
             isShowcased={true}
             self={self}
             trainingtable={trainingtable}

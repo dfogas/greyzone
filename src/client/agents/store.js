@@ -92,7 +92,6 @@ export const dispatchToken = register(({action, data}) => {
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - ' +
           'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been left to rot in prison.'
         ))
-        .setIn(['dashboard', 'agentswindow', 'message'], 'Agent left in prison.')
         .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
