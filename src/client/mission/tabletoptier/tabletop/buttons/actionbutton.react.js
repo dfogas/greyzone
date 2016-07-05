@@ -11,7 +11,7 @@ class ActionButton extends Component {
   action() {
     const {agentlock, diceslock, missionStarted} = this.props;
     const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
-    let mySound = new Sound(url + '/assets/audio/MissionStart.mp3');
+    let mySound = new Sound(url + '/assets/audio/MissionStart.ogg');
     if (!missionStarted) {
       $('#TableTop').append('<div id=\'MissionStartMessage\'>Mission Started</div>');
       $('#MissionStartMessage').hide().fadeIn(200);

@@ -8,7 +8,7 @@ import MoneyChannelling from './missions/default/money.channelling';
 import ReverseEngineering from './missions/default/poker.table';
 import LayingLow from './missions/default/laying.low';
 import AgentInTrouble from './missions/default/agent.in.trouble';
-import Discovered from './missions/multiplayer/discovered.mission';
+// import Discovered from './missions/multiplayer/discovered.mission';
 
 const MissionsList = []
   .concat(ConnectionsMap)
@@ -17,7 +17,7 @@ const MissionsList = []
   .concat(MoneyChannelling)
   .concat(ReverseEngineering)
   .concat(LayingLow)
-  .concat(AgentInTrouble)
-  .concat(Discovered);
+  // .concat(Discovered)
+  .concat(AgentInTrouble);
 
 export default MissionsList;

@@ -19,7 +19,7 @@ class AgentAssignment extends Component {
   }
 
   render() {
-    const {activemission, assignmentindex} = this.props;
+    const {activemission, assignmentindex, game, jsonapi} = this.props;
     const agentonmission = activemission.getIn(['agentsonmission', assignmentindex - 1]) || null;
 
     return (
@@ -32,7 +32,11 @@ class AgentAssignment extends Component {
         {!agentonmission &&
           <div className='assignment-text-placeholder'>Drag&Drop Agent here to assign her to mission.</div>}
         {agentonmission &&
-          <AgentCard agent={agentonmission} />}
+          <AgentCard
+            agent={agentonmission}
+            game={game}
+            jsonapi={jsonapi}
+            />}
       </div>
     );
   }

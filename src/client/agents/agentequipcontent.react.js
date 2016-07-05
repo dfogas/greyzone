@@ -42,6 +42,7 @@ class AgentEquipContent extends Component {
       <div id='AgentEquipContent'>
         <AgentScrollBarWithNavButtons
           agents={jsonapi.get('agents')}
+          game={game}
           isAgents={true}
           isBriefing={false}
           isMission={false}
@@ -50,7 +51,10 @@ class AgentEquipContent extends Component {
         <div id='ArmoryGameCashCounter'>
           Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
         </div>
-        <AgentInArmory jsonapi={jsonapi} />
+        <AgentInArmory
+          game={game}
+          jsonapi={jsonapi}
+          />
         <EquipmentStock
           enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
           equipments={equipmentsoperations}

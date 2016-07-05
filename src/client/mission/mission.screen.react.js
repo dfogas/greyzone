@@ -30,7 +30,7 @@ class MissionTrackingScreen extends Component {
   }
 
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);
 
@@ -45,6 +45,7 @@ class MissionTrackingScreen extends Component {
           tutorial={jsonapi.get('tutorial')}
           />
         <AgentsTier
+          game={game}
           jsonapi={jsonapi}
           />
         {!missionStarted &&

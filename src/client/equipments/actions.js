@@ -6,6 +6,7 @@ import Sound from '../lib/sound';
 import {jsonapiCursor} from '../state';
 import equipmentUseCheck from '../lib/equipmentusecheck';
 import cconfig from '../client.config';
+import equipmentSound from '../lib/equipmentsound';
 
 export function agentUnequip(agent) {
   dispatch(agentUnequip, agent);
@@ -39,13 +40,13 @@ export function sell(equipment) {
 }
 
 export function use(agent, agentequipmentandindex) {
+  /*immutableMap JSObject(holding immutableMap(agentequipment and number(equipmentindex))) */
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) {
     if (agent.get('name') === agentontask.get('name')) {
-      let mySound = new Sound(url + '/assets/audio/airwrench.mp3');
-      if (agentequipmentandindex.agentequipment.get('name') === 'Custom Tools')
-        mySound.play();
+      let mySound = new Sound(url + equipmentSound(agentequipmentandindex.agentequipment));
+      mySound.play();
       dispatch(use, agentequipmentandindex);
     }
   }

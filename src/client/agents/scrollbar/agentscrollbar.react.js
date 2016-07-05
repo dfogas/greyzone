@@ -48,7 +48,7 @@ class AgentScrollBar extends Component {
   }
 
   render() {
-    const {agents, isMission, style} = this.props;
+    const {agents, game, isMission, jsonapi, style} = this.props;
 
     if (!agents.size)
       return (
@@ -73,8 +73,10 @@ class AgentScrollBar extends Component {
               <AgentCard
                 agent={agent}
                 agentindex={i}
+                game={game}
                 isAgents={this.props.isAgents}
                 key={uuid() + agent.name}
+                jsonapi={jsonapi}
               />
             );
           })}

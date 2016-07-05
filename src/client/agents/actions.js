@@ -9,7 +9,6 @@ import agentIncurDelay from '../lib/agentincurdelay';
 import agentRankup from '../lib/agentrankup';
 import invokeAgentTalk from '../lib/invokeagenttalk';
 import leadershipcheck from '../lib/leadershipcheck';
-import trainingtable from '../../server/lib/greyzone/trainingtable';
 import $ from 'jquery';
 
 export function toArmory(agent) {
@@ -118,6 +117,7 @@ export function flashArmory(message) {
 export function getRank(agent) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const enhancementnames = enhancements.filter(enh => enh.type === 'leadership').map(enh => enh.name);
+  const trainingtable = gameCursor(['globals', 'trainingtable']);
   // console.log(agentRankup(trainingtable, 7, agent));
   if (leadershipcheck(agent.get('rank'), enhancementnames)) {
     flashArmory('Agent Rank Gained.');

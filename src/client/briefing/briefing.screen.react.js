@@ -35,7 +35,7 @@ class BriefingScreen extends Component {
   }
 
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {game, jsonapi, pendingActions} = this.props;
     const agents = jsonapi.get('agents');
     const briefingmessage = jsonapi.getIn(['briefing', 'message']);
 
@@ -47,6 +47,8 @@ class BriefingScreen extends Component {
             activemission={jsonapi.get('activemission')}
             agents={agents}
             components={jsonapi.get('components')}
+            game={game}
+            jsonapi={jsonapi}
             />
           <MissionShiftLeft
             activemission={jsonapi.get('activemission')}
@@ -71,6 +73,7 @@ class BriefingScreen extends Component {
             <ToMission />}
           <AgentScrollBarWithNavButtons
             isAgents={true}
+            game={game}
             isBriefing={true}
             isMission={false}
             jsonapi={jsonapi}

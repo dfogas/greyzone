@@ -95,7 +95,8 @@ export default function userState() {
       gameContacts: 0,
       components: {
         login: {
-          bigscreen: true,
+          bigscreen: {
+          },
           devnotice: false
         }
       },

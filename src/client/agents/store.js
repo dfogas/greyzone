@@ -2,7 +2,6 @@ import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
 // import getRandomSkill from '../lib/getrandomskill';
-// import trainingtable from '../../server/lib/greyzone/trainingtable';
 import dayandtime from '../lib/dayandtime';
 // import uuid from '../lib/guid';
 

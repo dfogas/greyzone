@@ -5,10 +5,18 @@ import {jsonapiCursor} from '../state';
 export const dispatchToken = register(({action, data}) => {
 
   if (action === componentsActions.bigScreenToggle) {
-    const toggle = jsonapiCursor(['components', 'login', 'bigscreen']);
+    const toggle = jsonapiCursor(['components', 'login', 'bigscreen', 'status']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['components', 'login', 'bigscreen'], !toggle);
+        .setIn(['components', 'login', 'bigscreen', 'status'], !toggle);
+    });
+  }
+
+  if (action === componentsActions.bigScreenZ) {
+    const zIndex = data.zIndex;
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'login', 'bigscreen', 'zIndex'], zIndex);
     });
   }
 

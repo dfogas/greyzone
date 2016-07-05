@@ -30,9 +30,9 @@ class LockedDiceContainer extends Component {
         >
         {lockeddice &&
           <Dice
-            dicetype={lockeddice.get('dicetype')}
-            dicekey={lockeddice.get('dicekey')}
-            name={lockeddice.get('name')}
+            dicetype={lockeddice ? lockeddice.get('dicetype') : ''}
+            dicekey={lockeddice ? lockeddice.get('dicekey') : ''}
+            name={lockeddice ? lockeddice.get('name') : ''}
             />}
       </div>
     );

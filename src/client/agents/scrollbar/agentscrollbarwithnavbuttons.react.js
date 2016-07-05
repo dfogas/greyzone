@@ -31,7 +31,7 @@ class AgentScrollBarWithNavButtons extends Component {
   }
 
   render() {
-    const {isBriefing, isMission, jsonapi} = this.props;
+    const {game, isBriefing, isMission, jsonapi} = this.props;
     const agentsbstyle = isBriefing ? jsonapi.getIn(['components', 'agentscrollbar', 'briefing']) :
       isMission ? jsonapi.getIn(['components', 'agentscrollbar', 'mission']) :
       jsonapi.getIn(['components', 'agentscrollbar', 'armory']);
@@ -54,6 +54,7 @@ class AgentScrollBarWithNavButtons extends Component {
           <AgentScrollBar
             agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
             className={classString}
+            game={game}
             isAgents={this.props.isAgents}
             isBriefing={isBriefing}
             isMission={isMission}

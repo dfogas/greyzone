@@ -8,7 +8,7 @@ import {msg} from '../intl/store';
 
 class Briefing extends Component {
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {game, jsonapi, pendingActions} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
 
     return (
@@ -16,6 +16,7 @@ class Briefing extends Component {
         <div className='briefing-page'>
           {!missionstarted &&
             <BriefingScreen
+              game={game}
               jsonapi={jsonapi}
               pendingActions={pendingActions}
               />

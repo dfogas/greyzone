@@ -15,13 +15,13 @@ import AgentEquipmentSlot from './agentequipmentslot.react';
 import AgentClock from './agent.clock.react';
 
 class AgentCard extends Component {
-  drag(ev) {
-    ev.dataTransfer.setData('text', ev.target.id);
-  }
-
   agentGetRank() {
     const {agent, agentindex} = this.props;
     agentsActions.getRank(agent, agentindex);
+  }
+
+  drag(ev) {
+    ev.dataTransfer.setData('text', ev.target.id);
   }
 
   // dismissAgent() {
@@ -37,8 +37,9 @@ class AgentCard extends Component {
   // }
 
   render() {
-    const {agent, agentbeingsaved, agentindex, equipments, key, self, trainingtable} = this.props;
-    const rankup = shouldHaveRank(agent.get('experience')) >= agent.get('rank') ? true : false;
+    const {agent, agentbeingsaved, agentindex, equipments, game, jsonapi, key, self} = this.props;
+    const trainingtable = game.getIn(['globals', 'trainingtable']);
+    const rankup = shouldHaveRank(agent.get('experience'), trainingtable) >= agent.get('rank') ? true : false;
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
 
@@ -127,13 +128,14 @@ class AgentCard extends Component {
 }
 
 AgentCard.propTypes = {
-  agent: React.PropTypes.instanceOf(immutable.Map),
+  agent: React.PropTypes.instanceOf(immutable.Map).isRequired,
   agentindex: React.PropTypes.number,
-  data: React.PropTypes.object,
   equipments: React.PropTypes.instanceOf(immutable.List),
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   isAgents: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   key: React.PropTypes.string,
   self: React.PropTypes.instanceOf(immutable.Map)
 };

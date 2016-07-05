@@ -9,12 +9,13 @@ import {msg} from '../intl/store';
 
 class Mission extends Component {
   render() {
-    const {jsonapi, pendingActions} = this.props;
+    const {game, jsonapi, pendingActions} = this.props;
 
     return (
       <DocumentTitle title={msg('mission.title')}>
         <div className='mission-page'>
           <MissionTrackingScreen
+            game={game}
             jsonapi={jsonapi}
             pendingActions={pendingActions}
             />

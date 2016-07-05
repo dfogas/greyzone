@@ -15,7 +15,7 @@ import BackToMissionButton from './buttons/backtomission.react';
 class AgentsTier extends Component {
 
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
     const activetasks = jsonapi.getIn(['activemission', 'tasks']);
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
@@ -29,14 +29,18 @@ class AgentsTier extends Component {
       <div id='AgentsTier'>
         <AgentScrollBarWithNavButtons
           agents={activemission.get('agentsonmission')}
+          game={game}
           isBriefing={false}
           isMission={true}
           jsonapi={jsonapi}
           />
-        <AgentOnMission activemission={activemission}/>
+        <AgentOnMission
+          activemission={activemission}
+          game={game}
+          jsonapi={jsonapi}
+          />
         {activemission.getIn(['equipmenteffects', 'actionchoose']) &&
-          <ActionChoose activemission={activemission}/>
-        }
+          <ActionChoose activemission={activemission}/>}
         {!activemission.getIn(['mission', 'currenttask', 'agentlock']) &&
           activemission.getIn(['mission', 'currenttask', 'agentontask']) &&
           <BackToMissionButton

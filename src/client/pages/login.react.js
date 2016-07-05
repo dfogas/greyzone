@@ -38,8 +38,10 @@ class Login extends Component {
             onClick={(e) => componentsActions.bigScreenToggle()}>Big Screen</button>
           {jsonapi.getIn(['components', 'login', 'devnotice']) &&
             <WelcomeWindow />}
-          {jsonapi.getIn(['components', 'login', 'bigscreen']) &&
-            <ABigScreen />}
+          {!jsonapi.getIn(['components', 'login', 'bigscreen', 'status']) &&
+            <ABigScreen
+              jsonapi={jsonapi}
+              />}
         </div>
       </DocumentTitle>
     );

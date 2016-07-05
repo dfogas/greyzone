@@ -16,7 +16,7 @@ import MissionThumbnail from './mission.thumbnail.react';
 
 class ActualMissionCard extends Component {
   render() {
-    const {activemission, agents, components} = this.props;
+    const {activemission, agents, components, game, jsonapi} = this.props;
     const agentlimit = activemission.get('agentLimit');
     const tasks = activemission.get('tasks');
     const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
@@ -31,6 +31,8 @@ class ActualMissionCard extends Component {
           activemission={activemission}
           agents={agents}
           assignmentindex={i}
+          game={game}
+          jsonapi={jsonapi}
           key={uuid() + 'assignment'}
           />
       );

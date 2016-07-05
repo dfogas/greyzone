@@ -27,7 +27,7 @@ class AgentInArmory extends Component {
   }
 
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
 
     return (
@@ -39,9 +39,10 @@ class AgentInArmory extends Component {
           <AgentCard
             agent={agentinarmory}
             equipments={jsonapi.get('equipments')}
+            game={game}
             isShowcased={true}
-          />
-        }
+            jsonapi={jsonapi}
+          />}
         {!agentinarmory &&
           <div id='AgentInArmoryStatus'>{msg('tutorial.agentinarmory')}</div>}
       </div>

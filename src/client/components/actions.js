@@ -5,6 +5,10 @@ export function bigScreenToggle() {
   dispatch(bigScreenToggle, {});
 }
 
+export function bigScreenZ(zIndex) {
+  dispatch(bigScreenZ, {zIndex});
+}
+
 export function devNoticeToggle() {
   // odstraní okno s Dev Notice z DOMu přes Reactí render funkci
   dispatch(devNoticeToggle, {});
@@ -12,5 +16,6 @@ export function devNoticeToggle() {
 
 setToString('components', {
   bigScreenToggle,
+  bigScreenZ,
   devNoticeToggle
 });

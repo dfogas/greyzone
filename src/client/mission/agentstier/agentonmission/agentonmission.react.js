@@ -9,7 +9,7 @@ import AgentCard from '../../../agents/agentcard/agentcard.react';
 class AgentOnMission extends Component {
 
   drop(ev) {
-    const {activemission} = this.props;
+    const {activemission, game, jsonapi} = this.props;
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agentsonmission = activemission.get('agentsonmission');
     const activetasks = activemission.get('tasks');
@@ -31,7 +31,7 @@ class AgentOnMission extends Component {
   }
 
   render() {
-    const {activemission} = this.props;
+    const {activemission, game, jsonapi} = this.props;
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const missionresult = activemission.get('result');
     const activetasks = activemission.get('tasks');
@@ -47,13 +47,17 @@ class AgentOnMission extends Component {
         {!!agentontask &&
           <AgentCard
            agent={agentontask}
+           game={game}
            isShowcased={true}
+           jsonapi={jsonapi}
            />
         }
         {!agentontask && (missionresult ? (!isLastTaskDone && !missionresult) || (isLastTaskDone && !missionresult) : !isLastTaskDone) &&
           <div id='AgentOnMissionStatus'>{msg('tutorial.agentonmission')}</div>}
         {!agentontask && (isLastTaskDone || missionresult) &&
-          <div id='AgentOnMissionStatus'>`You can't assign task to agent at the moment either because last task was completed or mission has failed before last task has been finished.`</div>}
+          <div id='AgentOnMissionStatus'>
+            `You can't assign task to agent at the moment either because last task was completed or mission has failed before last task has been finished.`
+          </div>}
       </div>
     );
   }

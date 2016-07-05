@@ -10,21 +10,29 @@ class BigScreen extends Component {
   }
 
   quickRead(e) {
-    if (e.keyCode === 13)
-      $(React.findDOMNode(this))
-        .hide(400, () => {
-          componentsActions.bigScreenToggle();
-          $('#LoginFormFieldEmail').focus();
-        });
+    // if (e.keyCode === 13)
+    //   $(React.findDOMNode(this))
+    //     .hide(400, () => {
+    //       componentsActions.bigScreenToggle();
+    //     });
+    if (e.keyCode === 13) {
+      componentsActions.bigScreenZ(-1);
+      $('#LoginFormFieldEmail').focus();
+    }
   }
 
   render() {
+    const {jsonapi} = this.props;
+    const zIndex = jsonapi.getIn(['components', 'login', 'bigscreen', 'zIndex']) || 1;
+
     return (
       <div
         id='ABigScreenIntro'
         onKeyDown={e => this.quickRead(e)}
+        style={{zIndex: zIndex}}
         tabIndex='1'>
-        <div id='ABigScreenContinueMessage'>Press 'Enter' to continue</div>
+        {zIndex !== -1 &&
+          <div id='ABigScreenContinueMessage'>Press 'Enter' to continue</div>}
       </div>
     );
   }

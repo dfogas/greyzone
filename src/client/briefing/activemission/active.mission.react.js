@@ -8,7 +8,7 @@ import ActualMissionCard from './actual.missioncard.react';
 
 class ActiveMission extends Component {
   render() {
-    const {activemission, agents, components} = this.props;
+    const {activemission, agents, components, game, jsonapi} = this.props;
 
     return (
       <div className='active-mission'>
@@ -16,7 +16,9 @@ class ActiveMission extends Component {
           activemission={activemission}
           agents={agents}
           components={components}
+          game={game}
           isActual={true}
+          jsonapi={jsonapi}
           />
       </div>
     );
