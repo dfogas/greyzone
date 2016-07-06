@@ -43,7 +43,7 @@ class PlayersWindow extends Component {
   }
 
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const self = jsonapi.get('self');
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
     return (
@@ -59,6 +59,8 @@ class PlayersWindow extends Component {
               <AgentCard
                 agent={self}
                 equipments={self.get('equipments')}
+                game={game}
+                jsonapi={jsonapi}
                 key={uuid() + 'playeragent'}
               />}
           </div>}

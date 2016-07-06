@@ -24,6 +24,7 @@ class DashboardContent extends Component {
       <div id='DashboardContent'>
         {['strategical', 'enhancements', 'statuses', 'achievements', 'options'].indexOf(dashPointer) !== -1 &&
           <PlayersWindow
+            game={game}
             jsonapi={jsonapi}
           />}
         {dashPointer === 'strategical' &&

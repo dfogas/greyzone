@@ -78,7 +78,8 @@ const ENGLISH = {
       <h2>Ghost Struggle version Zero</h2>
       <p>
         This game is still before production.
-        You can play it, but weird shit might happen, and also you might lose your game saves.
+        You can play it, as most of the game mechanisms are in place,
+        but weird shit might happen, and also you might lose your game saves.
         Also game assets(pictures, texts and other) are too lacking yet.
         So play and enjoy the experience, but bear that in mind.
       </p>
