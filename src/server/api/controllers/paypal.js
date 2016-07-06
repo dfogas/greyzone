@@ -16,7 +16,9 @@ router.route('/receive')
         throw Error(err);
       else
         console.log('payment was saved to db');
+        res.status(200).send();
     });
+
     /*
       here on a POST request from Paypal API
       it should state the id of the one who payed
