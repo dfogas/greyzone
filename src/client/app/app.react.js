@@ -5,7 +5,7 @@
 import './app.styl';
 import '../navs/navs.styl';
 // import config from '../../server/config'; //I think that this breaks the app
-import cconfig from '../client.config';
+// import cconfig from '../client.config';
 import * as state from '../state';
 import 'isomorphic-fetch';
 // import '../lib/io';
@@ -47,11 +47,7 @@ class App extends Component {
   }
 
   pollStateToPersistance() {
-    const nodeEnv = process.env.NODE_ENV === 'production' ?
-      cconfig.dnsprod + '/api/v1/' :
-      cconfig.dnsdevel + '/api/v1/';
-
-    pollingStateToPersistence(this.state.jsonapi, nodeEnv);
+    pollingStateToPersistence(this.state.jsonapi, process.env.NODE_ENV);
   }
 
   getState() {

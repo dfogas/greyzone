@@ -42,12 +42,12 @@ class EquipmentItem extends Component {
           available={isAvailable}
           equipment={equipment}
           />
-        <EquipmentStockCounter
+        {/*<EquipmentStockCounter
           available={isAvailable}
           name={equipment.get('name')}
           price={equipment.get('price')}
           quantity={equipment.get('quantity')}
-          />
+          />*/}
         <div className='equipment-count'>
           {equipment.get('quantity')}
         </div>
@@ -71,6 +71,10 @@ class EquipmentItem extends Component {
             type='button'
             value='Sell'
           />}
+        {equipment.get('heavy') &&
+          <div
+            className='heavy-equipment-tag'>Heavy</div>
+          }
       </div>
     );
   }

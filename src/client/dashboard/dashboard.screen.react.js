@@ -89,14 +89,14 @@ class DashboardScreen extends Component {
   render() {
     const {contest, game, jsonapi} = this.props;
     const allagents = jsonapi.get('agents').concat(jsonapi.getIn(['activemission', 'agentsonmission']));
-    const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
+    const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']) || 'default';
     const isLoggedIn = !!this.props.viewer;
 
     return (
       <div id='DashboardScreen'>
         <div
           id='DashboardScreenLabel'
-          >{msg('dashboard.screen.label')}</div>
+          >{msg('dashboard.screen.label.' + dashPointer)}</div>
         <DashboardContent
           contest={contest}
           game={game}

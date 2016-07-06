@@ -14,9 +14,10 @@ router.route('/receive')
     payment.save((err, item) => {
       if (err)
         throw Error(err);
-      else
+      else {
         console.log('payment was saved to db');
         res.status(200).send();
+      }
     });
 
     /*

@@ -5,7 +5,16 @@ const dashboardMsg = {
     }
   },
   screen: {
-    label: 'Dashboard'
+    label: {
+      achievements: 'Achievements',
+      contest: 'Contest',
+      default: 'Dashboard',
+      enhancements: 'Upgrades',
+      log: 'Log',
+      options: 'Options',
+      statuses: 'Campaign',
+      strategical: 'Dashboard'
+    }
   },
   strategical: {
     agenthire: {
