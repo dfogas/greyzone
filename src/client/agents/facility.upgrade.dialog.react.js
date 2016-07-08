@@ -19,9 +19,10 @@ class FacilityUpgradeDialog extends Component {
 
   render() {
     const {enhancement, owned, paying} = this.props;
-    const isPaying = paying ?
-      Object.keys(paying).reduce((prev, curr, index, array) => {
-        return paying[curr] || prev;
+    const paid = paying ? paying.toJS() : null;
+    const isPaying = paid ?
+      Object.keys(paid).reduce((prev, curr) => {
+        return paid[curr] || prev;
       }, false) : false;
     return (
       <div id='FacilityUpgradeDialog'>

@@ -12,7 +12,7 @@ const campaignsMsg = {
     text: `As already written in introduction, some more notice
       about Miyako and Sanya and possibly players background
       related to the chosen profession`
-  },
+  }
 };
 
 export default campaignsMsg;

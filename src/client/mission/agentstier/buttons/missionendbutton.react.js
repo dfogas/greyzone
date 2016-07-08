@@ -22,9 +22,9 @@ class MissionEndButton extends Component {
       var probability = Math.random();
       var border = 1 / (1 + countrystat.get('obscurity'));
       var chance = probability < border;
-      console.log('border is' + border);
-      console.log('probability is ' + probability);
-      console.log('chance is ' + chance);
+      // console.log('border is' + border);
+      // console.log('probability is ' + probability);
+      // console.log('chance is ' + chance);
       if (chance && gamemission.title === 'Discovered!')
         this.pushGameMission(gamemission);
       else if (gamemission.title !== 'Discovered!')
@@ -59,6 +59,7 @@ class MissionEndButton extends Component {
 }
 
 MissionEndButton.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   mission: React.PropTypes.instanceOf(immutable.Map),
   tutorial: React.PropTypes.instanceOf(immutable.Map)
 };

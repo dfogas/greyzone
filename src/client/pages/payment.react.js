@@ -1,7 +1,6 @@
 import DocumentTitle from 'react-document-title';
 import Component from '../components/component.react';
 import React from 'react';
-import immutable from 'immutable';
 import {msg} from '../intl/store';
 
 import PaymentForm from '../payments/payment.form.react';

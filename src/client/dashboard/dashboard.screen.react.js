@@ -25,7 +25,6 @@ import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react
 import DashboardToBriefing from '../navs/dashboardtobriefing.react';
 import DashboardToCommand from '../navs/dashboardtocommand.react';
 import DashboardToIntro from '../navs/dashboardtointro.react';
-import DashboardToMission from '../navs/dashboardtomission.react';
 import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
 
@@ -42,7 +41,7 @@ class DashboardScreen extends Component {
   componentDidMount() {
     const {jsonapi} = this.props;
     const countrystats = jsonapi.get('countrystats');
-    const paying = jsonapi.get('paying');
+    const paying = jsonapi.get('paying') ? jsonapi.get('paying').toJS() : null;
     const isPaying = paying ?
       Object.keys(paying).reduce((prev, curr, index, array) => {
         return paying[curr] || prev;
@@ -69,7 +68,7 @@ class DashboardScreen extends Component {
     // var socket = io.connect(window.location.href);
     // TODO: I met some unexpected behaviour, read how exactly websockets work
     socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
-      console.log(countrystats.toJS());
+      console.log(countrystats.toJS().map(cs => cs.get('obscurity')));
       if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
         this.badEndDiscovered();
     });

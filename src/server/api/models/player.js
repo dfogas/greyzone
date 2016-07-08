@@ -33,6 +33,7 @@ var PlayerSchema = new Schema({
   options: Schema.Types.Mixed,
   organization: Schema.Types.Mixed,
   paying: {
+    base: Boolean,
     collector: Boolean,
     revenge: Boolean
   },

@@ -9,7 +9,7 @@ import AgentCard from '../../../agents/agentcard/agentcard.react';
 class AgentOnMission extends Component {
 
   drop(ev) {
-    const {activemission, game, jsonapi} = this.props;
+    const {activemission} = this.props;
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agentsonmission = activemission.get('agentsonmission');
     const activetasks = activemission.get('tasks');
@@ -65,7 +65,8 @@ class AgentOnMission extends Component {
 
 AgentOnMission.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  agents: React.PropTypes.instanceOf(immutable.List)
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentOnMission;

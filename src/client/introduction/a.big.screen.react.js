@@ -2,6 +2,7 @@ import './a.big.screen.styl';
 import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 import $ from 'jquery';
 
 class BigScreen extends Component {
@@ -37,5 +38,9 @@ class BigScreen extends Component {
     );
   }
 }
+
+BigScreen.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default BigScreen;

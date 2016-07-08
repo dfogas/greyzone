@@ -49,8 +49,7 @@ export function use(agent, agentequipmentandindex) {
       mySound.play();
       dispatch(use, agentequipmentandindex);
     }
-  }
-  else {
+  } else {
     dispatch(noeffect, agentequipmentandindex);
     dispatch(logMissionFromEquipments, {message: `Darn it! It didn't work!`});
   }

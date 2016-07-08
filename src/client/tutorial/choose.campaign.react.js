@@ -15,11 +15,11 @@ class ChooseCampaign extends Component {
 
   render() {
     const {campaigns, paying} = this.props;
-    const isPaying = paying ?
-      Object.keys(paying.toJS()).reduce((prev, curr) => {
-        return paying[curr] || prev;
+    const paid = paying ? paying.toJS() : null;
+    const isPaying = paid ?
+      Object.keys(paid).reduce((prev, curr) => {
+        return paid[curr] || prev;
       }, false) : false;
-
     return (
       <div id='ChooseCampaign'>
         <fieldset>

@@ -32,9 +32,10 @@ export const dispatchToken = register(({action, data}) => {
   if (action === optionsActions.startNewGame)
     jsonapiCursor(jsonapi => {
       return immutable.fromJS(playerdefaults)
-        .set('userId', data.userId)
-        .set('name', data.name)
-        .set('gameend', null);
+        .set('userId', data.get('userId'))
+        .set('name', data.get('name'))
+        .set('gameend', null)
+        .set('paying', data.get('paying'));
     });
 
 });

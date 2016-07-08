@@ -7,6 +7,7 @@ import immutable from 'immutable';
 import DebugWindow from './debug.window.react';
 import OptionsGameWindow from './options.game.window.react';
 import CampaignsActive from './campaigns.active.react';
+import PayingWindow from './paying.window.react';
 
 class OptionsWindow extends Component {
   changeOption(ev) {
@@ -24,8 +25,6 @@ class OptionsWindow extends Component {
     const debug = options.get('debug');
     const animations = options.get('animations');
     const soundeffects = options.get('soundeffects');
-    const payingCollector = jsonapi.getIn(['paying', 'collector']);
-    const payingRevenge = jsonapi.getIn(['paying', 'revenge']);
     return (
       <div id='OptionsWindow'>
         <form className='options-form'>
@@ -41,13 +40,9 @@ class OptionsWindow extends Component {
         <CampaignsActive
           campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}
           />
-        <div id='PayingWindow'>
-          <fieldset>
-            <legend>Paying Status</legend>
-            <label><input checked={payingCollector} name='collector' onChange={(e) => this.changePaying(e)} type='checkbox' />Collector</label>
-            <label><input checked={payingRevenge} name='revenge' onChange={(e) => this.changePaying(e)} type='checkbox' />Revenge</label>
-          </fieldset>
-        </div>
+        <PayingWindow
+          paying={jsonapi.get('paying')}
+          />
         {!multiplayer &&
           <OptionsGameWindow
             jsonapi={jsonapi}

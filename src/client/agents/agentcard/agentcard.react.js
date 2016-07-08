@@ -37,7 +37,8 @@ class AgentCard extends Component {
   // }
 
   render() {
-    const {agent, agentbeingsaved, agentindex, equipments, game, jsonapi, key, self} = this.props;
+    const {agent, agentindex, equipments, game, jsonapi, key, self} = this.props;
+    const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
     const rankup = shouldHaveRank(agent.get('experience'), trainingtable) >= agent.get('rank') ? true : false;
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';

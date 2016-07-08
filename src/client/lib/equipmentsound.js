@@ -1,6 +1,5 @@
 /* ImmutableMap(Equipment) -> String(PathToSound) */
 
-import Sound from './sound';
 import {msg} from '../intl/store';
 
 function getEquipmentSound(equipment) {

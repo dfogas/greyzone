@@ -48,8 +48,7 @@ class EndGameWindow extends Component {
           {gameend === 'killed' && msg('ends.killed')}
         </p>
         <NewGameButton
-          name={name}
-          userId={jsonapi.get('userId')}
+          jsonapi={jsonapi}
           />
         <button
           id="DisplayStatistics"

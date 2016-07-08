@@ -2,6 +2,7 @@ import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
 import hashString from '../../lib/hashstring';
+import cconfig from '../../client.config';
 import $ from 'jquery';
 
 export function changeOption(name, value) {
@@ -12,7 +13,11 @@ export function changeOption(name, value) {
 }
 
 export function changePaying(name, value) {
-  dispatch(changePaying, {name, value});
+  const api = process.env.NODE_ENV === 'production' ?
+    cconfig.dnsprod :
+    cconfig.dnsdevel;
+  const userId = jsonapiCursor(['userId']);
+  location.href = `/create?userId=${userId}&name=${name}`;
 }
 
 export function loadGame(game) {
@@ -29,8 +34,8 @@ export function loadGame(game) {
   }
 }
 
-export function startNewGame(userId, name) {
-  dispatch(startNewGame, {userId, name});
+export function startNewGame(jsonapi) {
+  dispatch(startNewGame, jsonapi);
 }
 
 export function saveGame(jsonapi, game) {

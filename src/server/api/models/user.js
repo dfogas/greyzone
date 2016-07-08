@@ -15,6 +15,7 @@ var UserSchema = new mongoose.Schema({
   },
   registered: Number,
   paying: {
+    base: Boolean,
     collector: Boolean,
     revenge: Boolean
   }

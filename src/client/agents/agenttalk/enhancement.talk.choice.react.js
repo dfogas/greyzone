@@ -1,6 +1,7 @@
 import * as agentsActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import {FormattedHTMLMessage} from 'react-intl';
 
@@ -30,5 +31,9 @@ class EnhancementTalkChoice extends Component {
     );
   }
 }
+
+EnhancementTalkChoice.propTypes = {
+  dashboard: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default EnhancementTalkChoice;

@@ -30,13 +30,10 @@ router.route('/login')
       if (err)
         throw new Error(err);
       else
-        Player.findOne({userId: user._id}, function(err, player) {
+        Player.findOneAndUpdate({userId: user._id}, {$set: {paying: user.paying}}, {upsert: true, new: true}, function(err, player) {
           if (err)
             throw new Error(err);
-          else {
-            player.paying = user.paying;
-            res.json(player);
-          }
+          else res.json(player);
         });
     });
   });

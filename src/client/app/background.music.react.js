@@ -11,8 +11,14 @@ class BackgroundMusic extends Component {
   render() {
     const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
     return (
-      <audio id='BackgroundMusic' controls autoPlay loop>
-        <source src={url + '/assets/audio/NorthSea.ogg'} type='audio/ogg' />
+      <audio
+        autoPlay
+        controls
+        id='BackgroundMusic'
+        loop>
+        <source
+          src={url + '/assets/audio/NorthSea.ogg'}
+          type='audio/ogg' />
       </audio>
     );
   }

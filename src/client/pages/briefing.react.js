@@ -28,6 +28,7 @@ class Briefing extends Component {
 }
 
 Briefing.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired,
   viewer: React.PropTypes.string

@@ -1,7 +1,6 @@
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import {Link} from 'react-router';
 import allAgents from '../lib/allagents';
 
 import PlayersWindow from './playerswindow/players.window.react';
@@ -57,8 +56,8 @@ class DashboardContent extends Component {
           <CountryStatsWindow
             countrystats={jsonapi.get('countrystats')}
           />}
-        {dashPointer === 'options' &&
-          <Link to='payments'><button id='ToPayments'>Buy</button></Link>}
+        {/*dashPointer === 'options' &&
+          <Link to='payments'><button id='ToPayments'>Buy</button></Link>*/}
         {dashPointer === 'contest' &&
           <ContestWindow
             contest={contest}
