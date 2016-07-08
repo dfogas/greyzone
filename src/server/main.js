@@ -1,4 +1,5 @@
 import api from './api';
+import paypal from './paypal';
 import config from './config';
 import express from 'express';
 import frontend from './frontend';
@@ -32,6 +33,7 @@ if (config.isProduction)
     return next();
   });
 
+app.use('/', paypal);
 app.use(config.apipath, api);
 
 app.use(morgan('dev'));
@@ -57,15 +59,16 @@ const io = ioServer(server);
 io.on('connection', (socket) => {
   console.log('user has connected');
 
-
   socket.on('mission', function(msg) {
     console.log('mission socket event');
 
     if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
       console.log('Agents spotted. New Mission in Briefing room - Discovered!');
-      let mission = Mission('Discovered!', 3, 10 * 60 * 1000, true);
-      mission.inCountry = msg.inCountry;
-      socket.emit('new mission', mission);
+      if (msg.tier >= 3) {
+        let mission = Mission('Discovered!', msg.tier, 10 * 60 * 1000, true);
+        mission.inCountry = msg.inCountry;
+        socket.emit('new mission', mission);
+      } else console.log('Low tier for Discovered to proceed');
     }
   });
 
