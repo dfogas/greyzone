@@ -104,8 +104,9 @@ export function equip(equipment) {
 
 export function flashArmory(message) {
   $('#ArmoryScreen').append(`<div id='ArmoryMessage'>${message}</div>`);
-  $('#ArmoryMessage').hide().fadeIn(300);
-  $('#ArmoryMessage').fadeOut(700, () => $('#ArmoryMessage').remove());
+  $('#ArmoryMessage').hide().fadeIn(300, () => {
+    $('#ArmoryMessage').fadeOut(700, () => $('#ArmoryMessage').remove());
+  });
   // může být i v BriefingScreenu
   if ($('#BriefingScreen')) {
     $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);

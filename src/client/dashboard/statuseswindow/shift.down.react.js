@@ -19,4 +19,8 @@ class ShiftDown extends Component {
   }
 }
 
+ShiftDown.propTypes = {
+  tierdisplayed: React.PropTypes.number
+};
+
 export default ShiftDown;

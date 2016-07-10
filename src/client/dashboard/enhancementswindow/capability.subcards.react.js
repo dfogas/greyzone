@@ -48,7 +48,8 @@ class CapabilitySubCards extends Component {
 }
 
 CapabilitySubCards.propTypes = {
-  capability: React.PropTypes.instanceOf(immutable.List)
+  enhancements: React.PropTypes.instanceOf(immutable.List),
+  list: React.PropTypes.instanceOf(immutable.List)
 };
 
 export default CapabilitySubCards;

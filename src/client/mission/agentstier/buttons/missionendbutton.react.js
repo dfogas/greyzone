@@ -13,12 +13,10 @@ class MissionEndButton extends Component {
     const {jsonapi, mission, tutorial} = this.props;
     const missionjs = mission.toJS();
     socket.emit('mission', missionjs); // eslint-disable-line no-undef
-    socket.on('new mission', (err, gamemission) => { // eslint-disable-line no-undef
+    socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
       const countrystats = jsonapi.get('countrystats');
       const countrystat = jsonapi.getIn(['countrystats', countrystats.indexOf(countrystats.find(countrystat => countrystat.get('name') === gamemission.inCountry))]);
-      if (err)
-        console.log(err);
-      console.log('checking for obscurity save');
+      // console.log('checking for obscurity save');
       var probability = Math.random();
       var border = 1 / (1 + countrystat.get('obscurity'));
       var chance = probability < border;
@@ -30,7 +28,7 @@ class MissionEndButton extends Component {
       else if (gamemission.title !== 'Discovered!')
         this.pushGameMission(gamemission);
       else
-        console.log('saved by obscurity');
+        setTimeout(briefingActions.flashBriefing('saved by obscurity'), 1000);
     });
     missionActions.end();
     if (tutorial && !tutorial.getIn(['firstmission', 'done']))

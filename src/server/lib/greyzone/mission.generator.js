@@ -10,11 +10,12 @@ import uuid from '../../../client/lib/guid';
 
 function Mission(title, tier, ETA, forcefail) {
   let mission;
-  mission = MissionsList.concat(Discovered).filter(mission => mission.title === title && mission.tier === tier)[0];
+  mission = MissionsList.concat(Discovered).find(mission => mission.title === title && mission.tier === tier);
   mission.ETA = Date.now() + ETA;
   mission.inCountry = CountryList[randomint(0, CountryList.length - 1)].name;
   mission.id = uuid() + 'gzm';
-  if (forcefail) mission.forcefail = forcefail;
+  if (forcefail)
+    mission.forcefail = forcefail;
   return mission;
 }
 

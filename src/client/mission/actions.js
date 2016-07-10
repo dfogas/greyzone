@@ -125,7 +125,7 @@ export function removeCompletedMission() {
   dispatch(removeCompletedMission, {});
 }
 
-export function setDefault(mission) {
+export function setDefault() {
   dispatch(setDefault, {});
 }
 

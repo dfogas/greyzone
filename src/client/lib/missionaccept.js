@@ -50,7 +50,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     randomMission.inCountry = country;
   else
     randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
-  randomMission.ETA = Date.now() + (2 * 60 * 60 * 1000) + (10 * 60 * 1000);
+  randomMission.ETA = Date.now() + randomInt(1, 6) * (10 * 60 * 1000);
   randomMission.id = uuid() + 'gzm';
   if (randomMission.tag === 'agentintrouble')
     randomMission.rewards.character = character(Math.random());

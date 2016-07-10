@@ -1,6 +1,7 @@
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 
 class AgentShiftLeft extends Component {
   agentShiftLeft() {
@@ -18,5 +19,10 @@ class AgentShiftLeft extends Component {
     );
   }
 }
+
+AgentShiftLeft.propTypes = {
+  agents:React.PropTypes.instanceOf(immutable.List),
+  agentondisplay: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default AgentShiftLeft;

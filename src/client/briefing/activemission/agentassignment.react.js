@@ -45,7 +45,9 @@ class AgentAssignment extends Component {
 AgentAssignment.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
-  assignmentindex: React.PropTypes.number
+  assignmentindex: React.PropTypes.number,
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentAssignment;

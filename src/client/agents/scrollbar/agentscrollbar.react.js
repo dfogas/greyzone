@@ -27,7 +27,7 @@ class AgentScrollBar extends Component {
 
     // why is that condition there?
     if (!agents.size) {
-      // ANTIPATTERN: Direct DOM manipulation
+      // ANTIPATTERN: Direct DOM manipulation (Works So Well!)
       document.getElementById(data).className = classnames(document.getElementById(data).className, {showcased: false});
       var c = document.getElementById(data).children;
       var i, j;
@@ -75,8 +75,8 @@ class AgentScrollBar extends Component {
                 agentindex={i}
                 game={game}
                 isAgents={this.props.isAgents}
-                key={uuid() + agent.name}
                 jsonapi={jsonapi}
+                key={uuid() + agent.name}
               />
             );
           })}
@@ -89,6 +89,7 @@ AgentScrollBar.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
   data: React.PropTypes.array,
+  game: React.PropTypes.instanceOf(immutable.Map),
   isAgents: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map),

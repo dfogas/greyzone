@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {infiltrate, improv_op, close_combat, hit, improv_st} from './actions';
+import {infiltrate, improv_op, close_combat, hit, improv_st, decipher, improv_el} from './actions';
 
 const tag = 'anolddebt';
 const title = 'An Old Debt';
@@ -10,7 +10,7 @@ const AnOldDebt = [{
   title: title,
   tasks: [
     [infiltrate, improv_op, close_combat],
-    [hit, hit, close_combat],
+    [hit, decipher, improv_el],
     [improv_st, improv_st]
   ],
   inCountry: '',
@@ -30,7 +30,7 @@ const AnOldDebt = [{
   title: title,
   tasks: [
     [infiltrate, improv_op, close_combat],
-    [hit, hit, close_combat],
+    [hit, decipher, decipher],
     [improv_st, improv_st, infiltrate]
   ],
   inCountry: '',
@@ -50,7 +50,7 @@ const AnOldDebt = [{
   title: title,
   tasks: [
     [infiltrate, improv_op, close_combat],
-    [hit, hit, close_combat],
+    [hit, decipher, decipher, improv_el],
     [improv_st, improv_st, infiltrate],
     [hit, improv_op]
   ],

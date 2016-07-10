@@ -62,6 +62,7 @@ class AgentsTier extends Component {
 
 AgentsTier.propTypes = {
   agents: React.PropTypes.instanceOf(immutable.List),
+  game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

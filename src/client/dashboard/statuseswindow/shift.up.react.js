@@ -20,4 +20,8 @@ class ShiftUp extends Component {
   }
 }
 
+ShiftUp.propTypes = {
+  tierdisplayed: React.PropTypes.number
+};
+
 export default ShiftUp;

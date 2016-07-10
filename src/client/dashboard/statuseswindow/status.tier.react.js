@@ -14,8 +14,8 @@ class StatusTier extends Component {
         {tierstatuses.map(status => {
           return (
             <StatusCard
-              status={status}
               owned={!!statusesowned.find(statusowned => statusowned.get('name') === status.get('name'))}
+              status={status}
               />
           );
         })}

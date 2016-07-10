@@ -28,7 +28,9 @@ class ActiveMission extends Component {
 ActiveMission.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
-  components: React.PropTypes.instanceOf(immutable.Map)
+  components: React.PropTypes.instanceOf(immutable.Map),
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default ActiveMission;

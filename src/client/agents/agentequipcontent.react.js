@@ -5,6 +5,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import formatMoney from '../lib/formatmoney';
+import $ from 'jquery';
 
 import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';

@@ -2,6 +2,7 @@ import './strategical.intro.styl';
 import * as dashboardActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 
@@ -23,10 +24,14 @@ class StrategicalIntro extends Component {
           <img src={miyako.get('imgsrc')} />}
         <button
           id='StrategicalIntroShownButton'
-          onClick={(e) => dashboardActions.dashboardIntroToggle()}>I'll be right back</button>
+          onClick={(e) => dashboardActions.dashboardIntroToggle()}>I will be right back</button>
       </div>
     );
   }
 }
+
+StrategicalIntro.propTypes = {
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default StrategicalIntro;

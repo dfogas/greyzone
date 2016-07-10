@@ -44,17 +44,11 @@ class MissionResultsWindow extends Component {
             }
           </p>
           <p>
-            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
-              `${icon('gameCash')}${jsonapi.get('gameCash')}`}
-            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
-              `  ${icon('gameContacts')}${jsonapi.get('gameContacts')}`}
-          </p>
-          <p>
             {result === 'success' &&
               <ul>
                 {rewards.keySeq().map(key => {
                   return (
-                    <li key={uuid() + 'missionreward'}>{`${icon(key)}${rewards.get(key)}`} has been gained.</li>
+                    <li key={uuid() + 'missionreward'}>{`${icon(key)}${String(rewards.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}`} has been gained.</li>
                   );
                 })}
               </ul>}
@@ -62,18 +56,18 @@ class MissionResultsWindow extends Component {
               <ul>Results of Mission:
                 {losses.keySeq().map(key => {
                   return (
-                    <li key={uuid() + 'missionloss'}>{`${icon(key)}${losses.get(key)}`} has been lost.</li>
+                    <li key={uuid() + 'missionloss'}>{`${icon(key)}${String(losses.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}`} has been lost.</li>
                   );
                 })}
               </ul>}
           </p>
-          {rewards.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0 &&
+          {(result === 'success' && rewards.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0) &&
             <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
-          {losses.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0 &&
+          {(result === 'fail' && losses.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0) &&
             <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
-          {rewards.keySeq().filter(key => key === 'agentKilled').toList().size !== 0 &&
+          {(result === 'success' && rewards.keySeq().filter(key => key === 'agentKilled').toList().size !== 0) &&
             <li className='mission-result-fatal'>Agent has been killed.</li>}
-          {losses.keySeq().filter(key => key === 'agentKilled').toList().size !== 0 &&
+          {(result === 'fail' && losses.keySeq().filter(key => key === 'agentKilled').toList().size !== 0) &&
             <li className='mission-result-fatal'>Agent has been killed.</li>}
           {rewards.keySeq().filter(key => key === 'agentRecruited').toList().size !== 0 &&
             <li className='mission-result-fatal'>Agent has been recruited.</li>}
@@ -81,10 +75,17 @@ class MissionResultsWindow extends Component {
             <li>Agent freed from prison!</li>}
           {rewards.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0 &&
             <li>Agent changed loyalty to you.</li>}
-          {losses.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0&&
+          {losses.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0 &&
             <li>Agent changed loyalty to you.</li>}
           {rewards.keySeq().filter(key => key === 'artPieceGained').toList().size !== 0 &&
             <li>You stole yourself an Art Piece!</li>}
+          <p>
+            Your resources ATM are:
+            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
+              `${icon('gameCash')}${jsonapi.get('gameCash')}`}
+            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
+              `  ${icon('gameContacts')}${jsonapi.get('gameContacts')}`}
+          </p>
           <MissionEndButton
             jsonapi={jsonapi}
             mission={activemission}
@@ -96,9 +97,7 @@ class MissionResultsWindow extends Component {
 }
 
 MissionResultsWindow.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map),
-  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
-  tutorial: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default MissionResultsWindow;

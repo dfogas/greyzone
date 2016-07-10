@@ -54,8 +54,11 @@ export function missionTextToggle() {
 
 /*finds passed mission within player's missions and removes it*/
 export function passMission(mission) {
+  const activemission = jsonapiCursor(['activemission']);
   const reputationloss = (-100 * mission.get('tier'));
   const inCountry = mission.get('inCountry') || 'US';
+  if (mission.get('id') === activemission.get('id'))
+    setDefaultAfterExpired();
   dispatch(passMission, {message: mission});
   reputationImpact(inCountry, reputationloss);
   if (mission.get('forcefail')) {
@@ -84,10 +87,7 @@ export function selectMission(mission) {
   if (agentontask)
     flashBriefing('Agent is on task, move her back.');
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
-    dispatch(passMission, {message: mission});
-    flashBriefing('Time expired.', () => {
-      dispatch(setDefaultAfterExpired, {});
-    });
+    passMission(mission);
     if (mission.get('forcefail')) {
       dispatch(bookLosses, {mission});
       checkFatalities({results: mission.get('losses').toJS()});

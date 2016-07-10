@@ -16,7 +16,7 @@ class AgentsWindow extends Component {
     const {agenthire, agents, dashboard, game, jsonapi, options} = this.props;
     const agentspricelist = game.getIn(['globals', 'constants', 'agentsPriceList']);
     const agentondisplay = dashboard.get('agentondisplay');
-    const debug = jsonapi.get(['options', 'debug']);
+    const debug = jsonapi.getIn(['options', 'debug']);
     const self = jsonapi.get('self');
 
     return (
@@ -37,14 +37,14 @@ class AgentsWindow extends Component {
           agentondisplay={agentondisplay}
           agents={agents}
           />
-        <AgentOnDisplay
+        {!debug && <AgentOnDisplay
           agentondisplay={agentondisplay}
           agentbeingsaved={jsonapi.get('agentbeingsaved')}
           agents={agents}
           game={game}
           jsonapi={jsonapi}
           self={self}
-          />
+          />}
         <AgentShiftRight
           agentondisplay={agentondisplay}
           agents={agents}
