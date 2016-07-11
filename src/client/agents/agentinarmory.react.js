@@ -51,7 +51,8 @@ class AgentInArmory extends Component {
 }
 
 AgentInArmory.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default AgentInArmory;

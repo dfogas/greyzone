@@ -41,6 +41,8 @@ class AgentOnDisplay extends Component {
 AgentOnDisplay.propTypes = {
   agentondisplay: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   self: React.PropTypes.instanceOf(immutable.Map)
 };
 

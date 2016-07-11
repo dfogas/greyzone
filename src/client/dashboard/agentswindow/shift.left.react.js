@@ -21,8 +21,8 @@ class AgentShiftLeft extends Component {
 }
 
 AgentShiftLeft.propTypes = {
-  agents:React.PropTypes.instanceOf(immutable.List),
-  agentondisplay: React.PropTypes.instanceOf(immutable.Map)
+  agentondisplay: React.PropTypes.instanceOf(immutable.Map),
+  agents:React.PropTypes.instanceOf(immutable.List)
 };
 
 export default AgentShiftLeft;

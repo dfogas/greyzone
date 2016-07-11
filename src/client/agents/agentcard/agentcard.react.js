@@ -24,17 +24,23 @@ class AgentCard extends Component {
     ev.dataTransfer.setData('text', ev.target.id);
   }
 
-  // dismissAgent() {
-  //   const {agent} = this.props;
-  //   dashboardActions.dismissAgent(agent);
-  //   dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
-  // }
-  //
-  // saveAgent() {
-  //   const {agent} = this.props;
-  //   dashboardActions.saveAgent(agent);
-  //   dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
-  // }
+  dismissAgent() {
+    const {agent, jsonapi} = this.props;
+    const agents = jsonapi.get('agents');
+    const agentondisplay = jsonapi.get('agentondisplay');
+    const agentondisplayindex = agents.indexOf(agents.find(agent => agent.get('id') === agentondisplay.get('id')));
+    dashboardActions.dismissAgent(agent);
+    dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+  }
+
+  saveAgent() {
+    const {agent, jsonapi} = this.props;
+    const agents = jsonapi.get('agents');
+    const agentondisplay = jsonapi.get('agentondisplay');
+    const agentondisplayindex = agents.indexOf(agents.find(agent => agent.get('id') === agentondisplay.get('id')));
+    dashboardActions.saveAgent(agent);
+    dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+  }
 
   render() {
     const {agent, agentindex, equipments, game, jsonapi, key, self} = this.props;
@@ -93,7 +99,7 @@ class AgentCard extends Component {
           <button
             className='save-agent-button'
             onClick={(e) => dashboardActions.saveAgent(agent)}>Save</button>}
-        {(agent.get('prison') && !beingsaved) &&
+        {(agent.get('prison') && !beingsaved) && (self.get('id') !== agent.get('id')) &&
           <button
             className='dismiss-agent-button'
             onClick={(e) => agentsActions.dismissAgent(agent)}>Dont Save</button>}

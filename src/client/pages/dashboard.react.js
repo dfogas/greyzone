@@ -31,8 +31,8 @@ class Dashboard extends Component {
           <div id='DashboardScreen'>
             <DashboardToMission />
             <MissionTalk
-              activemission={jsonapi.get('activemission')}
-              self={jsonapi.get('self')}
+              game={game}
+              jsonapi={jsonapi}
               />
           </div>
         </div>}

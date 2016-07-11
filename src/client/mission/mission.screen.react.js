@@ -62,6 +62,7 @@ class MissionTrackingScreen extends Component {
 }
 
 MissionTrackingScreen.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

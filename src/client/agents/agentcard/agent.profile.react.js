@@ -42,6 +42,8 @@ class AgentProfile extends Component {
 }
 
 AgentProfile.propTypes = {
+  agent: React.PropTypes.instanceOf(immutable.Map),
+  agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   imgsrc: React.PropTypes.string,
   isShowcased: React.PropTypes.bool,
   self: React.PropTypes.instanceOf(immutable.Map)

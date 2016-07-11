@@ -8,6 +8,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
+import badEndsCheck from '../lib/badendscheck';
 import {Link} from 'react-router';
 
 import CampaignIntro from '../tutorial/campaign.intro.react';
@@ -40,38 +41,14 @@ class DashboardScreen extends Component {
 
   componentDidMount() {
     const {jsonapi} = this.props;
-    const countrystats = jsonapi.get('countrystats');
-    const paying = jsonapi.get('paying') ? jsonapi.get('paying').toJS() : null;
-    const isPaying = paying ?
-      Object.keys(paying).reduce((prev, curr, index, array) => {
-        return paying[curr] || prev;
-      }, false) : false;
 
-    // checky na zabitého či uvězněného hráče enda
-    if (jsonapi.get('agents').filter(agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 && !isPaying) // neplatící hráč nemá šanci se osvobodit, i když má loayálního agenta
-      this.badEndLeftInPrison();
-    if (
-      jsonapi.get('agents').filter(
-        agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 &&  // player's agent is in agent's roster and has prison status true
-          allAgents(jsonapi).filter(agent => agent.get('loyalty') === 'loyal').size === 0 // no agent of organization is loyal
-    )
-      dashboardActions.badEndLeftInPrison();
-
-    if (jsonapi.get('agents').filter(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0) // player's agent is in agents roster and has KIA status true
+    // checky na zabitého či uvězněného/objeveného hráče enda
+    if (badEndsCheck(jsonapi) === 'Killed') // player's agent is in agents roster and has KIA status true
       dashboardActions.badEndKilled();
-
-    setInterval(() => {
-      console.log('checking for discovered');
-      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 3)
-        dashboardActions.badEndDiscovered();
-    }, 12 * 60 * 1000);
-    // var socket = io.connect(window.location.href);
-    // TODO: I met some unexpected behaviour, read how exactly websockets work
-    socket.on('check discovered', (discovered) => { // eslint-disable-line no-undef
-      console.log(countrystats.toJS().map(cs => cs.get('obscurity')));
-      if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 2)
-        this.badEndDiscovered();
-    });
+    else if (badEndsCheck(jsonapi) === 'LeftInPrison') // neplatící hráč nemá šanci se osvobodit, i když má loayálního agenta
+      dashboardActions.badEndLeftInPrison();
+    else if (badEndsCheck(jsonapi) === 'Discovered')
+      dashboardActions.badEndDiscovered();
   }
 
   componentWillReceiveProps() {

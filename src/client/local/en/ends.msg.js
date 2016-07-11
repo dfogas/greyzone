@@ -62,6 +62,7 @@ const ends = {
   `,
   leftinprison: `
     Your actions in the past did not elicit proper loyalty in your agents
+    (or you are not paying player so the loyalty of your agents can't save you)
     and so you are now left in prison for life, as nobody has come to your
     rescue. Next time you play watch for your agents loyalty, so that they
     come to your help when needed.

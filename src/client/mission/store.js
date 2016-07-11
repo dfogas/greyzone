@@ -104,10 +104,13 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.bookRewards) {
+    // TODO: this should be done in actions ...
     const results = data.mission.get('rewards') ? data.mission.get('rewards').toJS() : {};
     const countrystats = jsonapiCursor(['countrystats']);
     const missioncountryname = data.mission.get('inCountry');
     const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    const agentBecominLoyal = agentsonmission.find(agent => agent.get('loyalty') === 'normal');
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
@@ -119,6 +122,11 @@ export const dispatchToken = register(({action, data}) => {
       jsonapiCursor(jsonapi => {
         return jsonapi
           .update('agents', val => val.push(immutable.fromJS(noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get('tier'), data.mission.getIn(['rewards', 'character'])))));
+      });
+    if (Object.keys(results).indexOf('agentLoyal') !== -1 && agentBecominLoyal)
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .updateIn(['activemission', 'agentsonmission', agentsonmission.indexOf(agentBecominLoyal)], val => val.set('loyalty', 'loyal'));
       });
   }
 

@@ -57,20 +57,20 @@ class EquipmentItem extends Component {
             owned={isAvailable}
             paying={paying}
             />}
-        {isAvailable &&
+        {/*isAvailable &&
           <input
             className='equipment-buy-btn'
             onClick={this.buy.bind(this)}
             type='button'
             value='Buy'
-          />}
-        {isAvailable &&
+          />*/}
+        {/*isAvailable &&
           <input
             className='equipment-sell-btn'
             onClick={this.sell.bind(this)}
             type='button'
             value='Sell'
-          />}
+          />*/}
         {equipment.get('heavy') &&
           <div
             className='heavy-equipment-tag'>Heavy</div>

@@ -2,13 +2,17 @@ import './mission.talk.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import checkThenConcat from '../../lib/checkthenconcat';
+import immutable from 'immutable';
 
 import AgentTalk from './agent.talk.react';
 import PlayerTalk from './player.talk.react';
 
 class MissionTalk extends Component {
   render() {
-    const {activemission, self} = this.props;
+    const {game, jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
+    const self = jsonapi.get('self');
+    const agentLimit = activemission.get('agentLimit');
     const agentsonmission = activemission.get('agentsonmission');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agents = agentsonmission.concat(checkThenConcat(agentontask));
@@ -16,11 +20,11 @@ class MissionTalk extends Component {
     const agentNotPlayer = agents.find(agent => agent.get('id') !== self.get('id'));
     return (
       <div className='mission-talk'>
-        {playerAgentOnMission && activemission.get('agentLimit') === 1 &&
+        {playerAgentOnMission && agentLimit === 1 &&
           <div className='player-talk'>
             Oh great, I got a mission to finish ... and I am alone on it.
           </div>}
-        {playerAgentOnMission && activemission.get('agentLimit') > 1 &&
+        {playerAgentOnMission && agentLimit > 1 &&
           <div className='mission-dialog'>
             <AgentTalk
               agent={agentNotPlayer}
@@ -31,15 +35,14 @@ class MissionTalk extends Component {
               talk={'Of course we do, lets get to it.'}
               />
           </div>}
-        {!playerAgentOnMission && activemission.get('agentLimit') === 1 &&
+        {!playerAgentOnMission && agentLimit === 1 &&
           <div className='agent-talk'>
             <AgentTalk
               agent={agentNotPlayer}
               talk={'I got to concentrate on this mission, I am alone here... Hopefully it works out.'}
               />
-            <img src={agentNotPlayer.get('imgsrc')} />
           </div>}
-        {!playerAgentOnMission && activemission.get('agentLimit') > 1 &&
+        {!playerAgentOnMission && agentLimit > 1 &&
           <div className='mission-dialog'>
             <AgentTalk
               agent={agentNotPlayer}
@@ -54,5 +57,10 @@ class MissionTalk extends Component {
     );
   }
 }
+
+MissionTalk.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default MissionTalk;

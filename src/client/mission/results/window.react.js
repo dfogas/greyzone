@@ -1,8 +1,9 @@
 import './window.styl';
 import Component from '../../components/component.react';
 import React from 'react';
-import isFatal from '../../lib/isfatal';
 import immutable from 'immutable';
+import missionWindowResults from '../../lib/missionwindowresults';
+import isFatal from '../../lib/isfatal';
 import uuid from '../../lib/guid';
 import {msg} from '../../intl/store';
 import icon from '../../lib/determiningicon';
@@ -22,6 +23,7 @@ class MissionResultsWindow extends Component {
     const {jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
+    const agentKIA = activemission.get('agentsonmission').find(agent => agent.get('KIA'));
     const result = activemission.get('result');
     const rewards = activemission.get('rewards');
     const losses = activemission.get('losses');
@@ -36,6 +38,10 @@ class MissionResultsWindow extends Component {
       <div
         id="MissionResultsWindow"
         onClick={this.vszuuut.bind(this)}>
+          {activemission.get('tag') === 'discovered' &&
+            <p>{
+              `${activemission.get('agentsonmission').get(0).get('name')} escaped the pursuers.`
+            }</p>}
           <p>
             {
               `Mission ${activemission.get('title')}
@@ -46,38 +52,30 @@ class MissionResultsWindow extends Component {
           <p>
             {result === 'success' &&
               <ul>
-                {rewards.keySeq().map(key => {
-                  return (
-                    <li key={uuid() + 'missionreward'}>{`${icon(key)}${String(rewards.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}`} has been gained.</li>
-                  );
-                })}
+                {missionWindowResults(jsonapi)}
               </ul>}
             {result === 'fail' &&
-              <ul>Results of Mission:
-                {losses.keySeq().map(key => {
-                  return (
-                    <li key={uuid() + 'missionloss'}>{`${icon(key)}${String(losses.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}`} has been lost.</li>
-                  );
-                })}
+              <ul>
+                {missionWindowResults(jsonapi)}
               </ul>}
           </p>
-          {(result === 'success' && rewards.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0) &&
+          {(result === 'success' && rewards.keySeq().find(key => key === 'agentImprisoned')) &&
             <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
-          {(result === 'fail' && losses.keySeq().filter(key => key === 'agentImprisoned').toList().size !== 0) &&
+          {(result === 'fail' && losses.keySeq().find(key => key === 'agentImprisoned')) &&
             <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
-          {(result === 'success' && rewards.keySeq().filter(key => key === 'agentKilled').toList().size !== 0) &&
-            <li className='mission-result-fatal'>Agent has been killed.</li>}
-          {(result === 'fail' && losses.keySeq().filter(key => key === 'agentKilled').toList().size !== 0) &&
-            <li className='mission-result-fatal'>Agent has been killed.</li>}
-          {rewards.keySeq().filter(key => key === 'agentRecruited').toList().size !== 0 &&
+          {(result === 'success' && rewards.keySeq().find(key => key === 'agentKilled')) &&
+            <li className='mission-result-fatal'>{`Agent ${agentKIA.get('name')} has been killed.`}</li>}
+          {(result === 'fail' && losses.keySeq().find(key => key === 'agentKilled')) &&
+            <li className='mission-result-fatal'>{`Agent ${agentKIA.get('name')} has been killed.`}</li>}
+          {(result === 'success' && rewards.keySeq().find(key => key === 'agentRecruited')) &&
             <li className='mission-result-fatal'>Agent has been recruited.</li>}
-          {rewards.keySeq().filter(key => key === 'agentFreed').toList().size !== 0 &&
-            <li>Agent freed from prison!</li>}
-          {rewards.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0 &&
+          {(result === 'success' && rewards.keySeq().find(key => key === 'agentFreed')) &&
+            <li>Agent freed from prison!!</li>}
+          {(result === 'success' && rewards.keySeq().find(key => key === 'agentLoyal')) &&
             <li>Agent changed loyalty to you.</li>}
-          {losses.keySeq().filter(key => key === 'agentLoyal').toList().size !== 0 &&
+          {(result === 'fail' && losses.keySeq().find(key => key === 'agentLoyal')) &&
             <li>Agent changed loyalty to you.</li>}
-          {rewards.keySeq().filter(key => key === 'artPieceGained').toList().size !== 0 &&
+          {(result === 'success' && rewards.keySeq().find(key => key === 'artPieceGained')) &&
             <li>You stole yourself an Art Piece!</li>}
           <p>
             Your resources ATM are:

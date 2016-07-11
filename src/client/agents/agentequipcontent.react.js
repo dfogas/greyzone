@@ -5,12 +5,10 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import formatMoney from '../lib/formatmoney';
-import $ from 'jquery';
 
 import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
 import EquipmentStock from '../equipments/equipmentstock.react';
-import FacilityUpgradeDialog from './facility.upgrade.dialog.react';
 
 class AgentEquipContent extends Component {
   agentInArmoryToMission() {
@@ -97,6 +95,7 @@ class AgentEquipContent extends Component {
 }
 
 AgentEquipContent.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

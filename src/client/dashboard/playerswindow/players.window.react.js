@@ -98,6 +98,7 @@ class PlayersWindow extends Component {
 }
 
 PlayersWindow.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

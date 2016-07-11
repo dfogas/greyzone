@@ -74,7 +74,6 @@ const ENGLISH = {
   developers: {
     button: `Ok, I have read the notice`,
     notice: `
-      <h1>Developers notice</h1>
       <h2>Ghost Struggle version Zero</h2>
       <p>
         This game is still before production.
@@ -88,7 +87,7 @@ const ENGLISH = {
         <h2>Game Ends</h2>
         <ul>Bad Ends:
           <li>Given Up</li>
-          <li>Betrayed</li>
+          <li>Discovered</li>
           <li>Rich, But Not For Long</li>
           <li>Left in Prison</li>
           <li>Killed</li>

@@ -41,6 +41,7 @@ class ArmoryScreen extends Component {
 }
 
 ArmoryScreen.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

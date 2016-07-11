@@ -80,7 +80,6 @@ export function reputationImpact(country, impact) {
 
 /*passed mission is merged to become a activemission*/
 export function selectMission(mission) {
-  const activemission = jsonapiCursor(['activemission']);
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const countrystats = jsonapiCursor(['countrystats']);
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;

@@ -18,7 +18,7 @@ const agents = {
       dialog: {
         button: `What would that be?`,
         text: `<div id='EnhancementTalkDialog'>Seeing how we're doing in our operations,
-          perpahs it is time, to let you in on something.</div>`
+          perhaps it is time, to let you in on something.</div>`
       }
     },
     anolddebt: {

@@ -60,6 +60,7 @@ AgentsWindow.propTypes = {
   agents: React.PropTypes.instanceOf(immutable.List),
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   dashboard: React.PropTypes.instanceOf(immutable.Map),
+  game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
   options: React.PropTypes.instanceOf(immutable.Map),
   self: React.PropTypes.instanceOf(immutable.Map)
