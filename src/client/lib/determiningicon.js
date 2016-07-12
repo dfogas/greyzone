@@ -1,5 +1,5 @@
 /*
-  String -> UnicodeChar
+  String -> UnicodeChar or String 
 */
 
 export default function determiningIcon(resultkey) {
@@ -19,6 +19,8 @@ export default function determiningIcon(resultkey) {
     return '\u{1f531}';
   if (resultkey === 'agentFreed')
     return '\u{1f483}';
+  if (resultkey === 'agentRecruited')
+    return 'Agent Recruitment';
   else
     return '\u{1f631}';
 }

@@ -39,7 +39,7 @@ export default (
     <Route handler={SignupComplete} name="signup/complete" />
     <Route handler={Support} name="support" />
     <Route handler={Support} name="forum" />
-    <Route handler={Payments} name="payments" />
-    <Route handler={PaymentSent} name="payments/sent" />
+    // <Route handler={Payments} name="payments" />
+    // <Route handler={PaymentSent} name="payments/sent" />
   </Route>
 );

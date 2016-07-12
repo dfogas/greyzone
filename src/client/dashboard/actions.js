@@ -400,8 +400,15 @@ export function updateFormField({name, value}, context) {
 }
 
 export function upgradeEnhancement(enhancement) {
-  if (enhancement)
+  const gameCash = jsonapiCursor(['gameCash']);
+  const gameContacts = jsonapiCursor(['gameContacts']);
+  const price = enhancement.get('price');
+  if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts') && enhancement)
     dispatch(upgradeEnhancement, {enhancement});
+  else if (gameCash <= price.get('cash'))
+    flashDashboard('Not enough Cash.');
+  else if (gameContacts <= price.get('contacts'))
+    flashDashboard('Not enough Contacts.');
 }
 
 setToString('dashboard', {

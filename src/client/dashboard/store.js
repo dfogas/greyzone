@@ -217,7 +217,8 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('agents', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
-        .updateIn(['activemission', 'agentsonmission'], val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'));
+        .updateIn(['activemission', 'agentsonmission'], val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
+        .update('agents', val => val.toSet().toList());
     });
 
   if (action === dashboardActions.sanitizeMissions)
@@ -274,16 +275,13 @@ export const dispatchToken = register(({action, data}) => {
     });
 
   if (action === dashboardActions.upgradeEnhancement) {
-    const gameCash = jsonapiCursor(['gameCash']);
-    const gameContacts = jsonapiCursor(['gameContacts']);
     const price = data.enhancement.get('price');
-    if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts'))
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .update('enhancements', val => val.push(data.enhancement))
-          .update('gameCash', val => val - price.get('cash'))
-          .update('gameContacts', val => val - price.get('contacts'));
-      });
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .update('enhancements', val => val.push(data.enhancement))
+      .update('gameCash', val => val - price.get('cash'))
+      .update('gameContacts', val => val - price.get('contacts'));
+    });
   }
 
 });

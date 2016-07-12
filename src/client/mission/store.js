@@ -6,7 +6,7 @@ import immutable from 'immutable';
 import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bookobscurity';
-import Agent from '../../server/lib/greyzone/agents.generator';
+// import Agent from '../../server/lib/greyzone/agents.generator';
 import noDoubleAgents from '../lib/nodoubleagents';
 import allAgents from '../lib/allagents';
 

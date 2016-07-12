@@ -1,4 +1,6 @@
-/* ImmutableMap(jsonapi)-> JS function expression */
+/* ImmutableMap(jsonapi)-> JS function expression
+  in order to make displaying results of mission composable
+*/
 
 import uuid from './guid';
 import icon from './determiningicon';
@@ -19,6 +21,8 @@ function missionWindowResults(jsonapi) {
       return 'expended';
     else if (typeof reward === 'boolean')
       return 'done';
+    else if (reward === 'spy' || reward === 'technician' || reward === 'operative')
+      return 'added to your agents';
     else
       return '...';
   };

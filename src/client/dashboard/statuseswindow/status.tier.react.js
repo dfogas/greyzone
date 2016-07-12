@@ -24,4 +24,10 @@ class StatusTier extends Component {
   }
 }
 
+StatusTier.propTypes = {
+  statuses: React.PropTypes.instanceOf(immutable.List),
+  statusesowned: React.PropTypes.instanceOf(immutable.List),
+  tierdisplayed: React.PropTypes.number
+};
+
 export default StatusTier;
