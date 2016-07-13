@@ -25,6 +25,7 @@ import $ from 'jquery';
 
 /* Number, String, String, Object */
 export function acceptMission(tier, focus, country, options) {
+  /* for purposes of accept mission form*/
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const missionsList = gameCursor(['globals', 'missions']);
   const mission = missionAccept(tier, focus, country, options, enhancements, CountryList, missionsList);
@@ -36,12 +37,23 @@ export function acceptMission(tier, focus, country, options) {
 
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
     dispatch(logMissionsWindow, {message: 'Upgrade your capability enhancement for higher tier missions.'});
-  else if (!maxMissionsCheck(missions.size, capabilitynames))
-    dispatch(logMissionsWindow, {message: 'Missions limit reached, pass on some missions to accept new ones.'});
+  else if (!maxMissionsCheck(jsonapiCursor()))
+    flashDashboard('Missions limit reached.');
   else {
     dispatch(acceptMission, {mission});
     flashDashboard(`New mission!`);
   }
+}
+
+function acceptSpecifiedMission(mission) {
+  const enhancements = jsonapiCursor(['enhancements']);
+  const capabilities = enhancements.filter(enh => enh.get('type') === 'capability').map(enh => enh.get('name'));
+  const missions = jsonapiCursor(['missions']);
+
+  if (!maxMissionsCheck(jsonapiCursor()))
+    flashDashboard('Missions limit reached.');
+  else
+    dispatch(acceptMission, {mission});
 }
 
 export function agentRecruitMission() {
@@ -50,7 +62,7 @@ export function agentRecruitMission() {
   const mission = missionAccept(operationstier, 'agent', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Agent Mission`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function badEndDiscovered() {
@@ -74,7 +86,7 @@ export function bankRobberyMission() {
   const missionsList = gameCursor(['globals', 'missions']);
   const mission = missionAccept(operationstier, 'bank', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function bookMissionPrice(tier) {
@@ -123,7 +135,7 @@ export function cashFocusMission() {
   const mission = missionAccept(operationstier, 'cash', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Cash Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function changeMissionOption(name, value) {
@@ -147,7 +159,7 @@ export function contactsFocusMission() {
   const mission = missionAccept(operationstier, 'contacts', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Contacts Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function dashboardIntroToggle() {
@@ -160,7 +172,7 @@ export function destroyEvidenceMission() {
   const mission = missionAccept(operationstier, 'evidence', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Destroy Evidence Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function dismissAgent(agent) {
@@ -226,7 +238,7 @@ export function hireAgent(specialist, rank) {
 
   if (agentPrice > gameCash)
     dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
-  else if (!maxAgentsCheck(totalAgents, capabilityNames))
+  else if (!maxAgentsCheck(jsonapiCursor()))
     dispatch(logAgentsWindow, {message: 'Max agents reached already. Dismiss an agent if you want to hire new one or upgrade operations if possible.'});
   else if (!leadershipCheck(rank - 1, leadershipNames))
     dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
@@ -247,7 +259,7 @@ export function innerCircleMission() {
   const mission = missionAccept(operationstier, 'innercircle', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Inner Circle Mission`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function log(message) {
@@ -268,7 +280,7 @@ export function obscurityFocusMission() {
   const mission = missionAccept(operationstier, 'obscurity', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Obscurity Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function oldDebtMission() {
@@ -277,7 +289,7 @@ export function oldDebtMission() {
   const mission = missionAccept(operationstier, 'olddebt', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Old Debt Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function operationsUpgradeDialogToggle() {
@@ -307,7 +319,7 @@ export function prisonBreakMission() {
   const mission = missionAccept(operationstier, 'prison', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New PrisonBreak Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function refreshStandings() {
@@ -330,7 +342,7 @@ export function reputationFocusMission() {
   const mission = missionAccept(operationstier, 'reputation', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Reputation Mission!`);
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function retireGame() {
@@ -378,7 +390,7 @@ export function silenceWitnessMission() {
   const missionsList = gameCursor(['globals', 'missions']);
   const mission = missionAccept(operationstier, 'killrat', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
-  dispatch(acceptMission, {mission});
+  acceptSpecifiedMission(mission);
 }
 
 export function statusesIntroToggle() {

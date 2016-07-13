@@ -1,4 +1,6 @@
-/* ImmutableMap(Agent) ImmutableMap(Agent) -> String */
+/* ImmutableMap(Agent) ImmutableMap(Agent) -> String
+   generuje dialogy s agenty (no spíše jednostranné prohlášení, zatím)
+*/
 
 function agentTalk(agent, self) {
   const tired = agent.get('ETA') - Date.now() > 0;

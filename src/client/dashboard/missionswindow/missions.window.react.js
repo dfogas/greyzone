@@ -46,7 +46,6 @@ class MissionsWindow extends Component {
 
   render() {
     const {agentbeingsaved, enhancements, jsonapi, missions, missionspricelist} = this.props;
-    // const capabilityEnhancements = enhancements.filter(enhancement => enhancement.get('type') === 'capability');
     const missionaccept = jsonapi.get('dashboard').getIn(['strategical', 'missionaccept']);
     const canhasbank = enhancements.find(enh => enh.get('name') === 'Nostalgia');
     const payolddebt = enhancements.find(enh => enh.get('name') === 'Side Quest');
@@ -59,7 +58,7 @@ class MissionsWindow extends Component {
       <div id='MissionsWindow'>
         <button
           id='RecruitAgentButton'
-          onClick={this.agentMission}>Search For Agent</button>
+          onClick={this.agentMission}>Find Agent</button>
         {!debug &&
           <MercuryNetwork />}
         {debug &&
@@ -73,9 +72,11 @@ class MissionsWindow extends Component {
           <div id="PrisonBreakMission">
             <button
               id='PrisonBreakMissionButton'
-              onClick={this.prisonBreakMission.bind(this)}>{msg('dashboard.strategical.special.prisonbreak.button')}</button>
-            {agentbeingsaved.get('rank') * 1000 + '\u{1f4b0}'}
-            {agentbeingsaved.get('rank') * 10 + '\u{1f575}'}
+              onClick={this.prisonBreakMission.bind(this)}
+              >{msg('dashboard.strategical.special.prisonbreak.button')}<br />
+              <span className='prisonbreak-mission-cost'>{'\u{1f4b0}' + agentbeingsaved.get('rank') * 1000}</span>
+              <span className='prisonbreak-mission-cost'>{'\u{1f575}' + agentbeingsaved.get('rank') * 10}</span>
+            </button>
           </div>}
         {missions.size !== 0 &&
           <DashboardMissionsList
@@ -96,7 +97,7 @@ class MissionsWindow extends Component {
         {silencerat &&
           <button
             id='SilenceRatButton'
-            onClick={this.silenceWitnessMission}>Silence Rat</button>}
+            onClick={this.silenceWitnessMission}>Silence Witness</button>}
         {innercircle &&
           <button
             id='InnerCircleButton'

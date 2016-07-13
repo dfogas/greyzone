@@ -1,24 +1,26 @@
 /* Number [String] -> Boolean
-  checks current number of missions against max missions allowed by capability enhancement
+  checks current number of missions against max missions allowed by capability enhancement if room for mission returns true
 */
-//TODO: implement SPoC
-// import EnhancementList from '../../server/lib/greyzone/enhancement.list';
 
-// const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
+var maxMissionsCheck = function(jsonapi) {
+  const size = jsonapi.get('missions').size;
+  const enhancements = jsonapi.get('enhancements').filter(enh => enh.get('type') === 'capability');
 
-function maxMissionsCheck(size, enhancementnames) {
-  if (size + 1 <= 4 && enhancementnames.indexOf('Operation I.') !== -1)
+  console.log(size);
+  console.log(enhancements.size);
+
+  if (size + 1 <= 4 && enhancements.size >= 1)
     return true;
-  if (size + 1 <= 6 && enhancementnames.indexOf('Operation II.') !== -1)
+  if (size + 1 <= 6 && enhancements.size >= 2)
     return true;
-  if (size + 1 <= 8 && enhancementnames.indexOf('Good Label') !== -1)
+  if (size + 1 <= 8 && enhancements.size >= 3)
     return true;
-  if (size + 1 <= 10 && enhancementnames.indexOf('Higher Level') !== -1)
+  if (size + 1 <= 10 && enhancements.size >= 4)
     return true;
-  if (size + 1 <= 12 && enhancementnames.indexOf('Top Class') !== -1)
+  if (size + 1 <= 12 && enhancements.size >= 5)
     return true;
   else
     return false;
-}
+};
 
 export default maxMissionsCheck;

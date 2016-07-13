@@ -1,3 +1,4 @@
+import cconfig from '../client.config';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
@@ -5,6 +6,8 @@ import immutable from 'immutable';
 import allAgents from '../lib/allagents';
 import maxAgentsCheck from '../lib/maxagentscheck';
 import obscurityMissionCheck from '../lib/obscuritymissioncheck';
+import Sound from '../lib/sound';
+import $ from 'jquery';
 
 export function agentFreed(agent) {
   dispatch(agentFreed, {agent});
@@ -24,7 +27,9 @@ export function agentKilled(agent) {
 }
 
 export function agentLockedToTask() {
-  dispatch(agentLockedToTask, {});
+  const missionStarted = jsonapiCursor(['activemission', 'started']);
+  if (missionStarted)
+    dispatch(agentLockedToTask, {});
 }
 
 export function agentMissionDone(agent) {
@@ -86,9 +91,15 @@ export function end() {
 }
 
 /* sets activemission result to 'fail'
-  and its started property to false */
+  and its started property to false  */
 export function fail() {
   dispatch(fail, {});
+}
+
+function flashMission(message) {
+  $('#TableTop').append(`<div id=\'MissionStartMessage\'>${message}</div>`);
+  $('#MissionStartMessage').hide().fadeIn(200);
+  $('#MissionStartMessage').fadeOut(1000, () => $('#MissionStartMessage').remove());
 }
 
 export function log(message) {
@@ -129,18 +140,26 @@ export function setDefault() {
   dispatch(setDefault, {});
 }
 
-/*sets activemission.started true*/
+/*sets activemission.started  true*/
 export function start() {
   const activemission = jsonapiCursor(['activemission']);
   const countrystats = jsonapiCursor(['countrystats']);
   const enhancementnames = jsonapiCursor(['enhancements']).map(enh => enh.get('name')).toJS();
+  const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
+  let mySound = new Sound(url + '/assets/audio/MissionStart.ogg');
+
+  console.log(!maxAgentsCheck(jsonapiCursor()));
+  console.log(activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1);
 
   if (!obscurityMissionCheck(activemission, countrystats))
-    dispatch(logMission, {message: `Obscurity is too low.`});
-  else if (!maxAgentsCheck(allAgents(jsonapiCursor()).size, enhancementnames) && Object.keys(activemission.get('rewards')).indexOf('AgentRecruited') !== -1)
-    dispatch(logMission, {message: `Upgrade capbility/operations to hire more agents.`});
-  else
+    flashMission(`Obscurity is too low.`);
+  else if (!maxAgentsCheck(jsonapiCursor()) && (activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1))
+    flashMission(`Upgrade operations for more agents.`);
+  else {
+    flashMission(`Mission Started`);
+    mySound.play();
     dispatch(start, {});
+  }
 }
 
 /* sets activemission result to 'success'
@@ -148,10 +167,6 @@ export function start() {
 export function success() {
   dispatch(success, {});
 }
-
-/*
-  TODO: get success probability
-*/
 
 setToString('mission', {
   agentFreed,

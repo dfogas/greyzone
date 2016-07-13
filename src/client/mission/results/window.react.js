@@ -38,9 +38,13 @@ class MissionResultsWindow extends Component {
       <div
         id="MissionResultsWindow"
         onClick={this.vszuuut.bind(this)}>
-          {activemission.get('tag') === 'discovered' &&
+          {activemission.get('tag') === 'discovered' && result === 'success' &&
             <p>{
               `${activemission.get('agentsonmission').get(0).get('name')} escaped the pursuers.`
+            }</p>}
+          {activemission.get('tag') === 'discovered' && result === 'fail' &&
+            <p>{
+              `${activemission.get('agentsonmission').get(0).get('name')} got caught.`
             }</p>}
           <p>
             {

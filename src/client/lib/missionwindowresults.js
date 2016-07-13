@@ -26,6 +26,16 @@ function missionWindowResults(jsonapi) {
     else
       return '...';
   };
+  const phrasingOfLosses = function(loss) {
+    if (typeof loss === 'number' && loss > 0)
+      return 'lost';
+    else if (typeof loss === 'number')
+      return 'salvaged';
+    else if (typeof loss === 'boolean')
+      return 'done';
+    else
+      return '...';
+  };
 
   if (result === 'success')
     return rewards.keySeq().map(key => {
@@ -41,14 +51,23 @@ function missionWindowResults(jsonapi) {
     return losses.keySeq().map(key => {
       if (key === 'reputation')
         return (
-          <li key={uuid() + 'missionloss'}>{`${icon(key)}${String(losses.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}`} has been lost.</li>
+          <li key={uuid() + 'missionloss'}>
+            {
+              `${icon(key)}${String(losses.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}
+              has been ` + phrasingOfLosses(losses.get(key)) + `.`
+            }
+          </li>
         );
     });
   else
     return losses.keySeq().map(key => {
       console.log('spravna vetev');
       return (
-        <li key={uuid() + 'missionloss'}>{`${icon(key)}${String(losses.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}`} has been lost.</li>
+        <li key={uuid() + 'missionloss'}>
+          {
+            `${icon(key)}${String(losses.get(key)).replace(/000000$/, 'M').replace(/000$/, 'k').replace('true', '')}
+            has been ` + phrasingOfLosses(losses.get(key)) + `.`
+          }</li>
       );
     });
 }
