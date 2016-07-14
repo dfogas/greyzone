@@ -18,9 +18,9 @@ export default function determiningIcon(resultkey) {
   if (resultkey === 'agentLoyal')
     return '\u{1f531}';
   if (resultkey === 'agentFreed')
-    return 'Agent freed';
+    return 'Free';
   if (resultkey === 'agentRecruited')
-    return 'Agent recruited';
+    return 'Recruit';
   else
     return '\u{1f631}';
 }

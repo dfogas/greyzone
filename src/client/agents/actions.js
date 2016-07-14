@@ -27,7 +27,7 @@ export function agentInArmoryAssignMission(agent) {
   else if (agent.get('ETA') - Date.now() > 0)
     flashArmory('Agent is tired.');
   else {
-    flashArmory('Agent assigned to mission.');
+    flashArmory('Assigned!');
     dispatch(agentInArmoryAssignMission, {agent});
   }
 }
@@ -65,7 +65,7 @@ export function backFromArmory(agent) {
 }
 
 export function backtoRoster(agent) {
-  /* agent se vrací z týmu přípravujícího se na misi zpět do agentů čekajících */
+  /* agent se vrací z týmu přípravujícího se na misi zpět do agentů čekajících  */
   dispatch(backtoRoster, {message: agent});
 }
 

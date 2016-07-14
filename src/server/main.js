@@ -1,3 +1,4 @@
+/* eslint curly: 1 */
 import api from './api';
 import paypal from './paypal';
 import config from './config';
@@ -62,14 +63,22 @@ io.on('connection', (socket) => {
   socket.on('mission', function(msg) {
     console.log('mission socket event');
 
-    if (msg.title !== 'Discovered!' && Math.random() > 0.5) {
-      console.log('Agents spotted. New Mission in Briefing room - Discovered!');
-      if (msg.tier >= 3) {
+    let discoveredchance = Math.random() > 0.5;
+    if (discoveredchance) {
+      if (msg.title !== 'Discovered!' && msg.tier >= 3) {
+        console.log('Agents spotted. New Mission in Briefing room - Discovered!');
         let mission = Mission('Discovered!', msg.tier, 10 * 60 * 1000, true);
         mission.inCountry = msg.inCountry;
         socket.emit('new mission', mission);
-      } else console.log('Low tier for Discovered to proceed');
-    }
+      } else {
+        if (msg.title !== 'Noticed!') {
+          console.log('Somebody started investigation related to your activities. New Mission in Briefing room - Noticed!');
+          let mission = Mission('Noticed!', msg.tier, 10 * 60 * 1000, true);
+          mission.inCountry = msg.inCountry;
+          socket.emit('new mission', mission);
+        }
+      }
+    } else console.log('Mission went smoothly.');
   });
 
   // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);

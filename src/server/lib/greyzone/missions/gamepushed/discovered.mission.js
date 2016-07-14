@@ -1,10 +1,13 @@
 /* eslint camelcase: 0 */
 import {hide, improv_st, pursuit, improv_op, decipher, puppet} from '../actions';
 
+const imgsrc = 'Discovered.jpg';
+const sound = 'Discovered.ogg';
 const tag = 'discovered';
+const title = 'Discovered!';
 
 const Discovered = [{
-  title: 'Discovered!',
+  title: title,
   tasks: [
     [hide, improv_st],
     [puppet, hide, improv_op],
@@ -17,12 +20,13 @@ const Discovered = [{
   losses: {
     agentImprisoned: true
   },
-  imgsrc: 'Discovered.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 1,
   tier: 3,
   tag: tag
 }, {
-  title: 'Discovered!',
+  title: title,
   tasks: [
     [hide, improv_st, puppet],
     [puppet, hide, improv_op],
@@ -35,12 +39,13 @@ const Discovered = [{
   losses: {
     agentImprisoned: true
   },
-  imgsrc: 'Discovered.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 1,
   tier: 4,
   tag: tag
 }, {
-  title: 'Discovered!',
+  title: title,
   tasks: [
     [hide, improv_st, puppet],
     [puppet, hide, improv_op],
@@ -54,7 +59,8 @@ const Discovered = [{
   losses: {
     agentImprisoned: true
   },
-  imgsrc: 'Discovered.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
   agentLimit: 1,
   tier: 5,
   tag: tag

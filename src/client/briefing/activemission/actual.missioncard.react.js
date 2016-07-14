@@ -55,14 +55,14 @@ class ActualMissionCard extends Component {
           missiontag={activemission.get('tag')}
           thumbnailtext={components.getIn(['briefing', 'missionthumbnail', 'text'])}
           />
-        <div id='ActualMissionTasks'>
-          {actualmissiontasks}
-        </div>
         <MissionTitle
           isActual={false}
           isSpecial={isSpecial}
           title={activemission.get('title')}
           />
+        <div id='ActualMissionTasks'>
+          {actualmissiontasks}
+        </div>
         <div id='AgentAssignmentsContainer'>
           {assignments}
         </div>
