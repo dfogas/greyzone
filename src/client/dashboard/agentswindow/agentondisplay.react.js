@@ -8,6 +8,12 @@ import {msg} from '../../intl/store';
 import AgentCard from '../../agents/agentcard/agentcard.react';
 
 class AgentOnDisplay extends Component {
+  componentDidMount() {
+    const {agentondisplay, agents} = this.props;
+    if (agentondisplay)
+      dashboardActions.selectAgent(agentondisplay);
+  }
+
   putAgentonDisplay() {
     const {agents} = this.props;
     dashboardActions.selectAgentOnDisplay(agents.get(0));

@@ -9,7 +9,6 @@ import immutable from 'immutable';
 import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 import badEndsCheck from '../lib/badendscheck';
-import {Link} from 'react-router';
 
 import CampaignIntro from '../tutorial/campaign.intro.react';
 import DashboardContent from './dashboard.content.react';
@@ -78,11 +77,12 @@ class DashboardScreen extends Component {
           jsonapi={jsonapi}
           />
         <DashboardToCommand />
-        <DashboardToIntro />
         <ContestPointer />
         <LogPointer />
         <OptionsPointer />
         <StrategicalPointer />
+        {dashPointer === 'options' &&
+          <DashboardToIntro />}
         {jsonapi.getIn(['dashboard', 'enhancementtalk']) &&
           <EnhancementTalk
             jsonapi={jsonapi} />}

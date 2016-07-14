@@ -25,6 +25,7 @@ var PlayerSchema = new Schema({
   log: [Schema.Types.Mixed],
   missions: [Schema.Types.Mixed],
   missionsDone: [Schema.Types.Mixed],
+  multiplayer: Schema.Types.Mixed,
   name: {
     type: String,
     unique: false,

@@ -1,5 +1,6 @@
 /* Co totak funkce dělá?
   aha checkuje jestli zemí s obscuritou rovnou nule je více než 2
+  přesunuto na klienta možné smazat
   */
 
 import Player from '../../api/models/player';

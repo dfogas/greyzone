@@ -1,4 +1,4 @@
-import * as agentsActions from '../actions';
+import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import {msg} from '../../intl/store';
@@ -6,7 +6,7 @@ import {FormattedHTMLMessage} from 'react-intl';
 
 class EnhancementTalkDialog extends Component {
   dialogToChoice() {
-    agentsActions.dialogToChoice();
+    dashboardActions.dialogToChoice();
   }
 
   render() {

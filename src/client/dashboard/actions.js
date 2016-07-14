@@ -36,7 +36,7 @@ export function acceptMission(tier, focus, country, options) {
   // const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
 
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
-    dispatch(logMissionsWindow, {message: 'Upgrade your capability enhancement for higher tier missions.'});
+    flashDashboard(`Upgrade your capability enhancement for higher tier missions.`);
   else if (!maxMissionsCheck(jsonapiCursor()))
     flashDashboard('Missions limit reached.');
   else {
@@ -104,13 +104,28 @@ export function bookPrisonBreakMissionPrice(agentbeingsaved) {
   });
 }
 
-export function buyEnhancement(enhancement) {
-  const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const enhancementcapabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
-  if (enhancementcapabilitynames.indexOf('Good Label') === -1 && enhancement.get('type') === 'operationsscope')
-    dispatch(log, {message: 'You need to upgrade operation to Good Label, before enhancing your operations scope.'});
+export function buyEnhancement(mystery) {
+  const gameCash = jsonapiCursor(['gameCash']);
+  const gameContacts = jsonapiCursor(['gameContacts']);
+  const enhancements = jsonapiCursor(['enhancements']);
+  const list = gameCursor(['globals', 'enhancements']);
+  let enhancement;
+  console.log(mystery);
+  if (typeof mystery === 'string')
+    enhancement = list.find(enh => enh.get('missiontag') === mystery);
   else
+    enhancement = mystery;
+  let price = enhancement.get('price');
+  if (!enhancements.find(enh => enh.get('name') === 'Good Label') && enhancement.get('type') === 'operationsscope')
+    flashDashboard(`Upgrade operations first!`);
+  else if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts')) {
     dispatch(buyEnhancement, {enhancement});
+    choiceToAcknowledgement();
+  }
+  else {
+    flashDashboard(`Insufficient funds.`);
+    closeEnhancementTalk();
+  }
 }
 
 export function buyStatus(status) {
@@ -145,12 +160,20 @@ export function changeMissionOption(name, value) {
   dispatch(changeMissionOption, promise);
 }
 
+export function choiceToAcknowledgement() {
+  dispatch(choiceToAcknowledgement, {});
+}
+
 export function clearAgentHireFields() {
   dispatch(clearAgentHireFields, {});
 }
 
 export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
+}
+
+export function closeEnhancementTalk() {
+  dispatch(closeEnhancementTalk, {});
 }
 
 export function contactsFocusMission() {
@@ -173,6 +196,10 @@ export function destroyEvidenceMission() {
 
   flashDashboard(`New Destroy Evidence Mission!`);
   acceptSpecifiedMission(mission);
+}
+
+export function dialogToChoice() {
+  dispatch(dialogToChoice, {});
 }
 
 export function dismissAgent(agent) {
@@ -237,15 +264,15 @@ export function hireAgent(specialist, rank) {
   const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
 
   if (agentPrice > gameCash)
-    dispatch(logAgentsWindow, {message: 'Agent is too expensive for us, at the moment.'});
+    flashDashboard(`Agent is too expensive for us, at the moment.`);
   else if (!maxAgentsCheck(jsonapiCursor()))
-    dispatch(logAgentsWindow, {message: 'Max agents reached already. Dismiss an agent if you want to hire new one or upgrade operations if possible.'});
+    flashDashboard(`Max agents reached already. Dismiss an agent if you want to hire new one or upgrade operations if possible.`);
   else if (!leadershipCheck(rank - 1, leadershipNames))
-    dispatch(logAgentsWindow, {message: 'Upgrade leadership facility to recruit and train agents of higher ranks.'});
+    flashDashboard(`Upgrade leadership facility to recruit and train agents of higher ranks.`);
   else {
     localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'all'], JSON.stringify(storage.concat([agent])));
     dispatch(hireAgent, {agent, agentPrice});
-    dispatch(logAgentsWindow, {message: 'New agent recruited.'});
+    flashDashboard(`New agent recruited.`);
   }
 }
 
@@ -264,14 +291,6 @@ export function innerCircleMission() {
 
 export function log(message) {
   dispatch(log, {message});
-}
-
-export function logAgentsWindow(message) {
-  dispatch(logAgentsWindow, {message});
-}
-
-export function logMissionsWindow(message) {
-  dispatch(logMissionsWindow, {message});
 }
 
 export function obscurityFocusMission() {
@@ -365,12 +384,10 @@ export function sanitizeMissions() {
 export function saveAgent(agent) {
   const enhancements = jsonapiCursor(['enhancements']);
   const enhancementnames = enhancements.filter(enh => enh.get('type') === 'operationsscope').map(enh => enh.get('name'));
-  if (enhancementnames.indexOf(`We Got the Power`) === -1) {
+  if (enhancementnames.indexOf(`We Got the Power`) === -1)
     flashDashboard(`Buy enhancement 'We Got the Power first.'`);
-    dispatch(logAgentsWindow, `Buy enhancement 'We Got the Power first.'`);
-  }
   else if (jsonapiCursor(['agentBeingSaved']))
-    dispatch(logAgentsWindow, `There is currently agent being saved, save her first then, you may choose another one.`);
+    flashDashboard(`There is already agent being saved.`);
   else {
     dispatch(saveAgent, {agent});
     flashDashboard(`Agent ` + agent.get('name') + ` should be freed by next Prison Break mission.`);
@@ -435,12 +452,15 @@ setToString('dashboard', {
   buyEnhancement,
   buyStatus,
   cashFocusMission,
-  contactsFocusMission,
+  choiceToAcknowledgement,
   changeMissionOption,
   clearAgentHireFields,
   clearMissionAcceptFields,
+  closeEnhancementTalk,
+  contactsFocusMission,
   dashboardIntroToggle,
   destroyEvidenceMission,
+  dialogToChoice,
   dismissAgent,
   displayGameEndStatistics,
   facilityUpgradeDialog,
@@ -449,8 +469,6 @@ setToString('dashboard', {
   goodEndRich,
   hireAgent,
   log,
-  logAgentsWindow,
-  logMissionsWindow,
   obscurityFocusMission,
   oldDebtMission,
   operationsUpgradeDialogToggle,

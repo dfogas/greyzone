@@ -1,4 +1,4 @@
-import * as agentsActions from '../actions';
+import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import {msg} from '../../intl/store';
@@ -13,7 +13,7 @@ class EnhancementTalkAcknowledgement extends Component {
         <FormattedHTMLMessage message={msg('agents.enhancements.' + dashboard.get('enhancementtalk') + '.acknowledgement.text')} />
         <button
           id='EnhancementTalkAcknowledgementButton'
-          onClick={(e) => agentsActions.closeEnhancementTalk()}>{msg('agents.enhancements.' + dashboard.get('enhancementtalk') + '.acknowledgement.button')}</button>
+          onClick={(e) => dashboardActions.closeEnhancementTalk()}>{msg('agents.enhancements.' + dashboard.get('enhancementtalk') + '.acknowledgement.button')}</button>
       </div>
     );
   }

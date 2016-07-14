@@ -157,7 +157,7 @@ const ENGLISH = {
     buttons: {
       backtomission: 'Back',
       dcp: 'Control Damage',
-      escapesequence: 'Initiate Escape Sequence',
+      escapesequence: 'Admit Failure',
       end: 'Finish Mission',
       success: 'Mission Accomplished!'
     },

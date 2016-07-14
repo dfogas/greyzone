@@ -66,24 +66,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === agentsActions.choiceToAcknowledgement)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalkindex'], 'acknowledgement');
-    });
-
-  if (action === agentsActions.closeEnhancementTalk)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalk'], null);
-    });
-
-  if (action === agentsActions.dialogToChoice)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalkindex'], 'choice');
-    });
-
   if (action === dashboardActions.dismissAgent)
     jsonapiCursor(jsonapi => {
       return jsonapi

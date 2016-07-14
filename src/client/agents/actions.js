@@ -69,23 +69,15 @@ export function backtoRoster(agent) {
   dispatch(backtoRoster, {message: agent});
 }
 
-export function buyEnhancement(missiontag) {
-  const list = gameCursor(['globals', 'enhancements']);
-  const enhancement = list.find(enh => enh.get('missiontag') === missiontag);
+export function buyEnhancement(enhancement) {
+  const gameCash = jsonapiCursor(['gameCash']);
+  const gameContacts = jsonapiCursor(['gameContacts']);
+  const price = enhancement.get('price');
 
-  dispatch(buyEnhancement, {enhancement});
-}
-
-export function choiceToAcknowledgement() {
-  dispatch(choiceToAcknowledgement, {});
-}
-
-export function closeEnhancementTalk() {
-  dispatch(closeEnhancementTalk, {});
-}
-
-export function dialogToChoice() {
-  dispatch(dialogToChoice, {});
+  if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts'))
+    dispatch(buyEnhancement, {enhancement});
+  else
+    flashArmory(`Insufficient funds.`);
 }
 
 export function enhancementTalk(message) {
@@ -146,9 +138,6 @@ setToString('agents', {
   backFromArmory,
   backtoRoster,
   buyEnhancement,
-  choiceToAcknowledgement,
-  closeEnhancementTalk,
-  dialogToChoice,
   enhancementTalk,
   equip,
   getRank,

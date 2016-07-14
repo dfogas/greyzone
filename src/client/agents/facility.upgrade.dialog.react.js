@@ -1,4 +1,5 @@
 import './facility.upgrade.dialog.styl';
+import * as agentsActions from '../agents/actions';
 import * as dashboardActions from '../dashboard/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -9,7 +10,7 @@ import isExclusiveEnhancement from '../lib/exclusiveenhancement';
 class FacilityUpgradeDialog extends Component {
   enhancementBuy() {
     const {enhancement} = this.props;
-    dashboardActions.buyEnhancement(enhancement);
+    agentsActions.buyEnhancement(enhancement);
     setTimeout(dashboardActions.facilityUpgradeDialogClose(), 100);
   }
 

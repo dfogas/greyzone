@@ -34,6 +34,7 @@
     "eslint-plugin-react": "^2.0.1",
     "eventemitter3": "^1.0.1",
     "express": "^4.11.2",
+    "express-session": "^1.14.0",
     "extract-text-webpack-plugin": "^0.8.0",
     "file-loader": "^0.8.1",
     "flux": "^2.0.1",

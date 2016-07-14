@@ -29,7 +29,7 @@ export function loadGame(game) {
     $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Game has been loaded.</div>');
     $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
   } else {
-    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Hashes don\'t equal. Play for the experience and honestly.</div>');
+    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Hashes don\'t equal. You may need to log out.</div>');
     $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
   }
 }

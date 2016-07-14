@@ -6,27 +6,12 @@ import express from 'express';
 import frontend from './frontend';
 import morgan from 'morgan';
 import http from 'http';
-import Mission from './lib/greyzone/mission.generator';
-// import https from 'https';
-// import fs from 'fs';
 import ioServer from 'socket.io';
-import checkDiscovered from './lib/greyzone/checkdiscovered';
-
-// related to SSH certificate
-// const gscert = fs.readFileSync('1508390/www.ghoststruggle.com.cer');
-// const gskey = fs.readFileSync('1508390/gs.key');
-// const gsca = fs.readFileSync('1508390/Intermediate_CA_chain.cer');
-// //
-// const options = {
-//   key: gskey,
-//   cert: gscert,
-//   ca: gsca,
-//   // requestCert: false,
-//   // rejectUnauthorized: false
-// };
+import multiplayer from './multiplayer';
 
 const app = express();
 
+// https redirection for heroku
 if (config.isProduction)
   app.use((req, res, next) => {
     if (req.headers['x-forwarded-proto'] !== 'https')
@@ -37,7 +22,7 @@ if (config.isProduction)
 app.use('/', paypal);
 app.use(config.apipath, api);
 
-app.use(morgan('dev'));
+app.use(morgan('dev')); // development logger TODO: take care of production
 
 // Load react-js frontend. i.e. rendering logic, eats everything
 if (process.env.NODE_ENV)
@@ -52,43 +37,14 @@ app.use((err, req, res, next) => {
   res.status(500).send('500: ' + msg);
 });
 
-// production fork
-// const server = process.env.NODE_ENV === 'production' ? https.createServer(options, app) : http.createServer(app); // can't test production before deployment, anyway, beat it
 const server = http.createServer(app);
 const io = ioServer(server);
 
-io.on('connection', (socket) => {
-  console.log('user has connected');
-
-  socket.on('mission', function(msg) {
-    console.log('mission socket event');
-
-    let discoveredchance = Math.random() > 0.5;
-    if (discoveredchance) {
-      if (msg.title !== 'Discovered!' && msg.tier >= 3) {
-        console.log('Agents spotted. New Mission in Briefing room - Discovered!');
-        let mission = Mission('Discovered!', msg.tier, 10 * 60 * 1000, true);
-        mission.inCountry = msg.inCountry;
-        socket.emit('new mission', mission);
-      } else {
-        if (msg.title !== 'Noticed!') {
-          console.log('Somebody started investigation related to your activities. New Mission in Briefing room - Noticed!');
-          let mission = Mission('Noticed!', msg.tier, 10 * 60 * 1000, true);
-          mission.inCountry = msg.inCountry;
-          socket.emit('new mission', mission);
-        }
-      }
-    } else console.log('Mission went smoothly.');
-  });
-
-  // setInterval(() => {checkDiscovered(socket); }, 10 * 60 * 1000);
-});
-
+io.sockets.on('connection', multiplayer);
 
 // ..aAand running server
 server.listen(config.port, () => {
   console.log('Server started at port %s', config.port);
-  // TODO: přidat check na https server
 });
 
 // necessity for server API test hook

@@ -24,6 +24,7 @@ const MissionDescriptions = {
     me how I did it, but it is so.`,
   nextontheblacklist: `This strange individual - he has got a lot to answer for and
     should be brought to justice - my justice ...`,
+  noticed: `Somebody is after you, your contacts tell you, better cover it up before they find you.`,
   pokertable: `...And then we were waiting, trying to figure out each other's hand
     one thing he didn't know, that the whole game was fixed ...`,
   prisonbreak: `This is the plan, if it fails, we resort to plan B. What is plan B?

@@ -74,7 +74,7 @@ class TableTop extends Component {
                 rollable={dice.get('rollable')}
                 />
             );
-          }) : <div id="MissionStartStatus">Mission has not started yet.</div>
+          }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) : (<div id="MissionStartStatus">You most likely failed mission.</div>)
         }
         <ProbabilityBar
           activemission={activemission}
