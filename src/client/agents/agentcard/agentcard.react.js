@@ -102,7 +102,7 @@ class AgentCard extends Component {
         {(agent.get('prison') && !beingsaved) && (self.get('id') !== agent.get('id')) &&
           <button
             className='dismiss-agent-button'
-            onClick={(e) => agentsActions.dismissAgent(agent)}>Dont Save</button>}
+            onClick={(e) => dashboardActions.dismissAgent(agent)}>Dont Save</button>}
         {(agent.get('prison') && beingsaved) &&
           <button
             className='dismiss-agent-button'

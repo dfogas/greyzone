@@ -31,6 +31,7 @@ class DashboardContent extends Component {
           <MissionsWindow
             agentbeingsaved={jsonapi.get('agentbeingsaved')}
             enhancements={jsonapi.get('enhancements')}
+            game={game}
             jsonapi={jsonapi}
             missions={jsonapi.get('missions')}
             missionspricelist={game.getIn(['globals', 'constants', 'missionsPriceList'])}

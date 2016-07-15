@@ -1,5 +1,6 @@
 import './agent.profile.styl';
 import * as agentsActions from '../actions';
+import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import agentTalk from '../../lib/agenttalk';
@@ -32,10 +33,19 @@ class AgentProfile extends Component {
         <div className={'agent-label' + classString}>
           {agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}
         </div>
-        {(agent.get('prison') && !beingsaved) &&
+        {agent.get('prison') &&
           <div className='in-prison-label'>In Prison</div>}
         {beingsaved &&
           <div className='being-saved-label'>Rescuing</div>}
+        {agent.get('loyalty') === 'loyal' &&
+          <div className='loyal-label'>Loyal</div>}
+        {agent.get('KIA') &&
+          <div className='kia-label'>KIA</div>}
+        {agent.get('KIA') &&
+          <button
+            className='agent-honor-button-display'
+            onClick={(e) => dashboardActions.honorAgent(agent)}
+            style={{backgroundColor: 'black'}}>{msg('dashboard.strategical.agentslist.manage.honor')}</button>}
       </div>
     );
   }

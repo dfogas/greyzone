@@ -3,6 +3,7 @@ import * as briefingActions from '../../../briefing/actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import {msg} from '../../../intl/store';
+import * as dashboardActions from '../../../dashboard/actions';
 import * as missionActions from '../../actions';
 import * as tutorialActions from '../../../tutorial/actions';
 import immutable from 'immutable';
@@ -12,6 +13,8 @@ class MissionEndButton extends Component {
   end() {
     const {jsonapi, mission, tutorial} = this.props;
     const missionjs = mission.toJS();
+    // in order to actualize agentondisplay
+    // TODO: there must be some easy way to actualize the state of agent on display, gotta find it or else write function
     socket.emit('mission', missionjs); // eslint-disable-line no-undef
     socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
       const countrystats = jsonapi.get('countrystats');

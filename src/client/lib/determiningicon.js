@@ -21,6 +21,8 @@ export default function determiningIcon(resultkey) {
     return 'Free';
   if (resultkey === 'agentRecruited')
     return 'Recruit';
+  if (resultkey === 'agentImprisoned')
+    return 'Prison';
   else
     return '\u{1f631}';
 }

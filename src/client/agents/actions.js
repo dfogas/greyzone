@@ -119,10 +119,6 @@ export function getRank(agent) {
   else flashArmory('Upgrade training facility.');
 }
 
-export function honorAgent(agent) {
-  dispatch(honorAgent, {agent});
-}
-
 export function setETA(agent, equipment) {
   const delay = gameCursor(['globals', 'features', 'unpaid', 'equipments', 'ETAdelay']);
   const agentsETA = agentIncurDelay(agent, equipment, delay);
@@ -143,7 +139,6 @@ setToString('agents', {
   getRank,
   // goFree,
   // goToPrison,
-  honorAgent,
   flashArmory,
   setETA
 });

@@ -9,6 +9,7 @@ import {msg} from '../../intl/store';
 import MissionAcceptForm from './missionaccept.form.react';
 import MercuryNetwork from './mercury.network.react';
 import DashboardMissionsList from './dashboard.missions.list.react';
+import CountryOfOperation from './country.of.operation.react';
 
 class MissionsWindow extends Component {
   agentMission() {
@@ -45,7 +46,7 @@ class MissionsWindow extends Component {
   }
 
   render() {
-    const {agentbeingsaved, enhancements, jsonapi, missions, missionspricelist} = this.props;
+    const {agentbeingsaved, enhancements, game, jsonapi, missions, missionspricelist} = this.props;
     const missionaccept = jsonapi.get('dashboard').getIn(['strategical', 'missionaccept']);
     const canhasbank = enhancements.find(enh => enh.get('name') === 'Nostalgia');
     const payolddebt = enhancements.find(enh => enh.get('name') === 'Side Quest');
@@ -59,6 +60,10 @@ class MissionsWindow extends Component {
         <button
           id='RecruitAgentButton'
           onClick={this.agentMission}>Find Agent</button>
+        <CountryOfOperation
+          game={game}
+          jsonapi={jsonapi}
+          />
         {!debug &&
           <MercuryNetwork />}
         {debug &&
@@ -111,6 +116,7 @@ class MissionsWindow extends Component {
 MissionsWindow.propTypes = {
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   enhancements: React.PropTypes.instanceOf(immutable.List),
+  game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
   missions: React.PropTypes.instanceOf(immutable.List),
   missionspricelist: React.PropTypes.instanceOf(immutable.Map)

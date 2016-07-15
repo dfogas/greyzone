@@ -112,9 +112,8 @@ export function buyEnhancement(mystery) {
   let enhancement;
   console.log(mystery);
   if (typeof mystery === 'string')
-    enhancement = list.find(enh => enh.get('missiontag') === mystery);
-  else
-    enhancement = mystery;
+    enhancement = list.find(item => item.get('missiontag') === mystery);
+  else enhancement = mystery;
   let price = enhancement.get('price');
   if (!enhancements.find(enh => enh.get('name') === 'Good Label') && enhancement.get('type') === 'operationsscope')
     flashDashboard(`Upgrade operations first!`);
@@ -147,10 +146,15 @@ export function buyStatus(status) {
 export function cashFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
   const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'cash', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
+  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
+  const mission = missionAccept(operationstier, 'cash', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Cash Mission!`);
   acceptSpecifiedMission(mission);
+}
+
+export function changeCountry(option) {
+  dispatch(changeCountry, option);
 }
 
 export function changeMissionOption(name, value) {
@@ -179,7 +183,8 @@ export function closeEnhancementTalk() {
 export function contactsFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
   const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'contacts', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
+  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
+  const mission = missionAccept(operationstier, 'contacts', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Contacts Mission!`);
   acceptSpecifiedMission(mission);
@@ -208,10 +213,13 @@ export function dismissAgent(agent) {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
   const missionsList = gameCursor(['globals', 'missions']);
   const revengemission = missionAccept(operationstier, 'rattedout', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
+  const agents = jsonapiCursor(['agents']);
+  const agentondisplayindex = agents.indexOf(agents.find(ag => ag.get('id') === agent.get('id')));
 
   localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], JSON.stringify(storage.concat([agent.toJS()])));
   dispatch(dismissAgent, {agent});
-  flashDashboard(`Agent left to rot in prison!`);
+  flashDashboard(`Agent left to rot in prison!`); // TODO: full dialog for agent's revenge taken on player
+  selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
   if (agent.get('loyalty') !== 'loyal')
     dispatch(acceptMission, {mission: revengemission});
 }
@@ -248,6 +256,10 @@ export function flashDashboard(message) {
   $('#DashboardMessage').fadeOut(1200, () => $('#DashboardMessage').remove());
 }
 
+export function goodEndRich() {
+  dispatch(goodEndRich, {});
+}
+
 export function hireAgent(specialist, rank) {
   const self = jsonapiCursor(['self']);
   const agents = allAgents(jsonapiCursor()).indexOf(self) !== -1 ? allAgents(jsonapiCursor()).push(self) : allAgents(jsonapiCursor());
@@ -276,8 +288,13 @@ export function hireAgent(specialist, rank) {
   }
 }
 
-export function goodEndRich() {
-  dispatch(goodEndRich, {});
+export function honorAgent(agent) {
+  // because initiating honor Agent is only possible from agentondisplay, unless debug mode is on
+  const agents = jsonapiCursor(['agents']);
+  const agentondisplayindex = agents.indexOf(agents.find(agent));
+  selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+  flashDashboard(`Agent has been honored.`); // TODO: full dialog window for honoring agent
+  dispatch(honorAgent, {agent});
 }
 
 export function innerCircleMission() {
@@ -296,7 +313,8 @@ export function log(message) {
 export function obscurityFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
   const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'obscurity', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
+  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
+  const mission = missionAccept(operationstier, 'obscurity', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Obscurity Mission!`);
   acceptSpecifiedMission(mission);
@@ -358,7 +376,8 @@ export function refreshStandings() {
 export function reputationFocusMission() {
   const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
   const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'reputation', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
+  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
+  const mission = missionAccept(operationstier, 'reputation', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
 
   flashDashboard(`New Reputation Mission!`);
   acceptSpecifiedMission(mission);
@@ -452,6 +471,7 @@ setToString('dashboard', {
   buyEnhancement,
   buyStatus,
   cashFocusMission,
+  changeCountry,
   choiceToAcknowledgement,
   changeMissionOption,
   clearAgentHireFields,
@@ -468,6 +488,7 @@ setToString('dashboard', {
   flashDashboard,
   goodEndRich,
   hireAgent,
+  honorAgent,
   log,
   obscurityFocusMission,
   oldDebtMission,

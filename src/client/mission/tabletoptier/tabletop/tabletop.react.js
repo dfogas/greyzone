@@ -43,11 +43,13 @@ class TableTop extends Component {
     const {activemission, tutorial} = this.props;
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
+    const activetasks = activemission.get('tasks');
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
     const dicesthrown = actiondices.map(action => action.get('name'));
     const missionStarted = activemission.get('started');
     const protectivegear = activemission.getIn(['equipmenteffects', 'protectivegear']);
     const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey'), rollable: dice.get('rollable')})));
+    const taskscompleted = activemission.get('taskscompleted');
 //
     // console.log(actiondices.toJS());
     // console.log(remainingdices.toJS());
@@ -74,7 +76,9 @@ class TableTop extends Component {
                 rollable={dice.get('rollable')}
                 />
             );
-          }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) : (<div id="MissionStartStatus">You most likely failed mission.</div>)
+          }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
+          taskscompleted.size >= activetasks.size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">It seems, that you have been successfull.</div>)
+          : (<div id="MissionStartStatus">You most likely failed mission.</div>)
         }
         <ProbabilityBar
           activemission={activemission}

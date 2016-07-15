@@ -56,8 +56,8 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('enhancements', val => val.push(data.enhancement))
-        .update('gameCash', val => val - price.get('cash'))
-        .update('gameContacts', val => val - price.get('contacts'))
+        .update('gameCash', val => val - data.enhancement.get('price').get('cash'))
+        .update('gameContacts', val => val - data.enhancement.get('price').get('contacts'))
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) +
             ' - Enhancement ' + data.enhancement.get('name') + ' for your organization bought.'
@@ -70,6 +70,12 @@ export const dispatchToken = register(({action, data}) => {
       .update('statuses', val => val.push(immutable.fromJS(data.status)))
       .update('gameCash', val => val - data.status.getIn(['price', 'cash']))
       .update('gameContacts', val => val - data.status.getIn(['price', 'contacts']));
+    });
+
+  if (action === dashboardActions.changeCountry)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'countryofoperation'], data.value);
     });
 
   if (action === dashboardActions.changeMissionOption)
@@ -156,6 +162,16 @@ export const dispatchToken = register(({action, data}) => {
         ));
     });
   }
+
+  if (action === dashboardActions.honorAgent)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('log', val => val.unshift(
+          dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - ' +
+          'Agent ' + data.agent.get('specialist') + ' ' + data.agent.get('name') + ' has been honored in her death.'
+        ))
+        .update('agents', val => val.delete(val.indexOf(data.agent)));
+    });
 
   if (action === dashboardActions.log) {
     data = data.message || data;

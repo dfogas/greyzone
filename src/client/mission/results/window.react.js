@@ -24,13 +24,14 @@ class MissionResultsWindow extends Component {
     const activemission = jsonapi.get('activemission');
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const agentKIA = activemission.get('agentsonmission').find(agent => agent.get('KIA'));
+    const agentPrison = activemission.get('agentsonmission').find(agent => agent.get('prison'));
     const result = activemission.get('result');
     const rewards = activemission.get('rewards');
     const losses = activemission.get('losses');
     const results = losses.merge(rewards);
     const tutorial = jsonapi.get('tutorial');
 
-    // console.log('Fatal: ' + isFatal(losses, rewards));
+    // // console.log('Fatal: ' + isFatal(losses, rewards));
     // console.log('Agent Recruited: ' + rewards.keySeq().filter(key => key === 'agentRecruited').toList().size);
     // console.log(rewards.keySeq().size);
 
@@ -64,9 +65,9 @@ class MissionResultsWindow extends Component {
               </ul>}
           </p>
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentImprisoned')) &&
-            <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
+            <li className='mission-result-fatal'>{`Agent ${agentPrison.get('name')} has been imprisoned.`}</li>}
           {(result === 'fail' && losses.keySeq().find(key => key === 'agentImprisoned')) &&
-            <li className='mission-result-fatal'>Agent has been imprisoned.</li>}
+            <li className='mission-result-fatal'>{`Agent ${agentPrison.get('name')} has been imprisoned.`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentKilled')) &&
             <li className='mission-result-fatal'>{`Agent ${agentKIA.get('name')} has been killed.`}</li>}
           {(result === 'fail' && losses.keySeq().find(key => key === 'agentKilled')) &&
@@ -74,7 +75,7 @@ class MissionResultsWindow extends Component {
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentRecruited')) &&
             <li className='mission-result-fatal'>Agent has been recruited.</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentFreed')) &&
-            <li>Agent freed from prison!!</li>}
+            <li>{`Agent ${jsonapi.get('agents').get(0).get('name')} freed from prison!!`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentLoyal')) &&
             <li>Agent changed loyalty to you.</li>}
           {(result === 'fail' && losses.keySeq().find(key => key === 'agentLoyal')) &&

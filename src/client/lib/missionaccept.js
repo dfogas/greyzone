@@ -8,6 +8,7 @@ import randRes from './randomizeresults';
 import xmissioncheck from './xmissioncheck';
 import determineFocus from './determinefocus';
 import isFatal from './isfatal';
+import Mission from '../../server/lib/greyzone/mission.generator';
 import uuid from './guid';
 
 function character(chance) {
@@ -38,11 +39,8 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     randomMission = modifiedMissionsList.find(mission => mission.tag === 'prisonbreak' && mission.tier === tier);
   if (focus === 'olddebt')
     randomMission = modifiedMissionsList.find(mission => mission.tag === 'anolddebt' && mission.tier === tier);
-  if (focus === 'rattedout') {
-    randomMission = modifiedMissionsList.find(mission => mission.tag === 'discovered' && (mission.tier === (tier || 3)));
-    randomMission.ETA = Date.now() + (10 * 60 * 1000);
-    randomMission.forcefail = true;
-  }
+  if (focus === 'rattedout')
+    randomMission = Mission('Discovered!', tier, (10 * 60 * 1000), true);
   if (focus === 'evidence')
     randomMission = modifiedMissionsList.find(mission => mission.tag === 'destroyevidence' && (mission.tier === (tier || 3)));
   if (focus === 'killrat')
