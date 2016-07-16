@@ -1,5 +1,5 @@
 const TutorialMsg = {
-  agentinarmory: `Agent here can be given equipment.`,
+  agentinarmory: `Drop agent here, so that she can be given equipment.`,
   agentonmission: `Drag agent here and the mission can start.`,
   armoryScreen: `<div id='ArmoryTutorial'><h2>Armory Help</h2>Equip agent for mission here.
     For equipment effects look in help/equipments in<Link to='help'>About/Help</Link></div>.`,

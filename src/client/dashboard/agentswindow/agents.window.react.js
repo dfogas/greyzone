@@ -33,10 +33,10 @@ class AgentsWindow extends Component {
             options={options}
             self={self}
             />}
-        <AgentShiftLeft
+        {!debug && <AgentShiftLeft
           agentondisplay={agentondisplay}
           agents={agents}
-          />
+          />}
         {!debug && <AgentOnDisplay
           agentondisplay={agentondisplay}
           agentbeingsaved={jsonapi.get('agentbeingsaved')}
@@ -45,10 +45,10 @@ class AgentsWindow extends Component {
           jsonapi={jsonapi}
           self={self}
           />}
-        <AgentShiftRight
+        {!debug && <AgentShiftRight
           agentondisplay={agentondisplay}
           agents={agents}
-          />
+          />}
       </div>
     );
   }

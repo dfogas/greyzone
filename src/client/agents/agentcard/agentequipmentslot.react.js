@@ -52,11 +52,11 @@ class AgentEquipmentSlot extends Component {
         <div
           className={'agent-equipment-picture-placeholder' + classString}
           />
-        <div
+        {false && <div
           className={'agent-equipment-description-placeholder' + classString}
           >
           {agentequipment.get('name') ? agentequipment.get('name') : msg('tutorial.equipmentslot')}
-        </div>
+        </div>}
       </div>
     );
   }

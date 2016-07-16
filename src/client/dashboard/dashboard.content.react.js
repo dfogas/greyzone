@@ -22,7 +22,7 @@ class DashboardContent extends Component {
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     return (
       <div id='DashboardContent'>
-        {['strategical', 'enhancements', 'statuses', 'achievements', 'options'].indexOf(dashPointer) !== -1 &&
+        {['strategical', 'enhancements', 'achievements'].indexOf(dashPointer) !== -1 &&
           <PlayersWindow
             game={game}
             jsonapi={jsonapi}

@@ -76,11 +76,12 @@ class DashboardScreen extends Component {
           game={game}
           jsonapi={jsonapi}
           />
-        <DashboardToCommand />
         <ContestPointer />
         <LogPointer />
         <OptionsPointer />
         <StrategicalPointer />
+        {dashPointer === 'strategical' &&
+          <DashboardToCommand />}
         {dashPointer === 'options' &&
           <DashboardToIntro />}
         {jsonapi.getIn(['dashboard', 'enhancementtalk']) &&
@@ -116,7 +117,7 @@ class DashboardScreen extends Component {
           })}
         {jsonapi.get('gameend') &&
           <EndGameWindow jsonapi={jsonapi} />}
-        {!jsonapi.getIn(['activemission', 'started']) &&
+        {(!jsonapi.getIn(['activemission', 'started']) && dashPointer === 'strategical') &&
           <DashboardToBriefing />}
         {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) &&
           <StrategicalIntro jsonapi={jsonapi}/>}
