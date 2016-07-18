@@ -1,6 +1,7 @@
 /*
   tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) ImmutableList(missions), countryList([Country])) -> JSObject(Mission)
   options mohou být forcefail, randomizeresults
+  TODO: refactor
 */
 
 import randomInt from './getrandomint';
@@ -49,7 +50,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     randomMission = modifiedMissionsList.find(mission => mission.tag === 'afriendininnercircle' && (mission.tier === (tier || 3)));
 
   if (randomMission) {
-    if (country !== 'random')
+    if (country && country !== 'random')
       randomMission.inCountry = country;
     else
       randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
@@ -62,7 +63,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     return randomMission;
   } else {
     randomMission = missionsPerTier[randomInt(0, missionsPerTier.length - 1)];
-    if (country !== 'random')
+    if (country && country !== 'random')
       randomMission.inCountry = country;
     else
       randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
