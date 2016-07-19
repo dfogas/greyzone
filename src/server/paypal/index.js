@@ -59,6 +59,7 @@ app.get('/process', (req, res) => {
   let payerId = {'payer_id': req.query.PayerID};
 
   paypal.payment.execute(paymentId, payerId, (error, payment) => {
+    console.log(payment);
     if(error)
       console.error(error);
     else {

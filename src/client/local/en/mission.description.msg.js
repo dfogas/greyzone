@@ -14,22 +14,22 @@ const MissionDescriptions = {
   desinformation: `Hey, psst I got this absolutely fantastic tip for you,
     it can't fail, I am 100% sure.`,
   destroyevidence: `This was an excellent opportunity suppress some inconvenient
-    facts, and dangerous one too.`,
+    facts, and dangerous ones too.`,
   discovered: `Agent has been tagged by security system and now has to evade
     certain imprisonment.`,
-  industrialespionage: `For you this was just technical mumbo jumbo, but
+  industrialespionage: `(not implemented) For you this was just technical mumbo jumbo, but
     for certain somebody, these docs beared a lot of money-earning potential.`,
-  layinglow: `You can't fail, if you don't try at all.`,
+  layinglow: `Doing nothing - this is a hardest thing there is.`,
   moneychannelling: `This money is so clean as face of the baby. Don't ask
     me how I did it, but it is so.`,
-  nextontheblacklist: `This strange individual - he has got a lot to answer for and
+  nextontheblacklist: `(not implemented) This strange individual - he has got a lot to answer for and
     should be brought to justice - my justice ...`,
   noticed: `Somebody is after you, your contacts tell you, better cover it up before they find you.`,
-  pokertable: `...And then we were waiting, trying to figure out each other's hand
+  pokertable: `And then we were waiting, trying to figure out each other's hand
     one thing he didn't know, that the whole game was fixed ...`,
   prisonbreak: `This is the plan, if it fails, we resort to plan B. What is plan B?
-    Shout and run.`,
-  privatecollection: `What is it? Is there something amiss??`,
+    There is no plan B.`,
+  privatecollection: `(not implemented) What is it? Is there something amiss??`,
   quietbeforestorm: `There was a strange electrical charge carried in the air, everybody felt it.`,
   secretinvestigation: `(Not implemented yet)`,
   silencewitness: `(Not implemented yet)`,

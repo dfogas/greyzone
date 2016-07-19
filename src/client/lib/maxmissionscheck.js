@@ -6,8 +6,8 @@ var maxMissionsCheck = function(jsonapi) {
   const size = jsonapi.get('missions').size;
   const enhancements = jsonapi.get('enhancements').filter(enh => enh.get('type') === 'capability');
 
-  console.log(size);
-  console.log(enhancements.size);
+  // console.log(size);
+  // console.log(enhancements.size);
 
   if (size + 1 <= 2 && enhancements.size >= 1)
     return true;

@@ -1,7 +1,6 @@
 import App from 'client/app/app.react';
 import React from 'react/addons';
 import Footer from 'client/app/footer.react';
-import Menu from 'client/app/menu.react';
 import {RouteHandler} from 'react-router';
 import {expect} from 'chai'; // http://chaijs.com/api/bdd
 import {render} from 'test/utils';
@@ -18,7 +17,6 @@ describe('App', () => {
         onState={() => {}}
         text="a"
       >
-        <Menu viewer={this.state.viewer} />
         <RouteHandler {...this.state} />
         <Footer />
       </App>

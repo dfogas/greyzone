@@ -1,3 +1,6 @@
+/*
+  how does this page work?
+*/
 import './intro.screen.styl';
 import * as introActions from './actions';
 import React from 'react';
@@ -21,7 +24,7 @@ class IntroScreen extends Component {
     const {about} = this.props;
     return (
       <div id="IntroScreenWrapper">
-        <div id="IntroScreenLabel">{msg('introduction.screen.label')}</div>
+        <div id="IntroScreenLabel">Game Overview</div>
         <div id='IntroSidebar'>
           <div
             className='intro-links-group'
@@ -68,6 +71,7 @@ class IntroScreen extends Component {
         </div>
         <div id="IntroScreen">
           <div
+            className='intro-screen-item'
             id={'Intro' + capitalLetter(about.get('group')) + capitalLetter(about.get('item'))}
             >
             <FormattedHTMLMessage message={msg('' + about.get('group') + '.' + about.get('item'))} />

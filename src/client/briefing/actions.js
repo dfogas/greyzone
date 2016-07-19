@@ -43,6 +43,7 @@ export function checkFatalities(results) {
 }
 
 export function flashBriefing(message) {
+  $('#BriefingMessage').remove();
   $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);
   $('#BriefingMessage').hide().fadeIn(400);
   $('#BriefingMessage').fadeOut(1200, () => $('#BriefingMessage').remove());

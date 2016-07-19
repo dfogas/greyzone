@@ -1,14 +1,13 @@
 const intro = {
   end: `
     <p>
-      That's about it - you start, you play, you finish, earlier or later
-      for the fun of playing as long as you'll like. Enjoy it.
+      The GhostStruggle has many different ends for you to explore.
     </p>
   `,
   features: `
     <h2>Game Features</h2>
     <p>
-      GhostStruggle is a multiplayer web game designed with intention
+      GhostStruggle is single and multiplayer web game designed with intention
       to provide interesting playing mechanism with emphasis on functionality, first,
       and then on beauty, second.
       As it seems that perfection is achieved only when there's nothing left to
@@ -16,7 +15,7 @@ const intro = {
       necessary features for core game mechanisms and keep all other bullshit away.
     </p>
     <p>
-      It is designed as commercial product, but emphasis being on playability
+      It is designed as commercial product with emphasis being on playability
       and employing your brain, not on serving you fancy content and draining your
       credit card for overpriced collection pieces.
     </p>
@@ -75,9 +74,6 @@ const intro = {
       fully visualizing it right now ...
     </p>
   `,
-  screen: {
-    label: `About/Help/Introduction`
-  },
   signup: `
     <h3>What is it and how do I play it?</h3>
     <p>

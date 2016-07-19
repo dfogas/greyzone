@@ -95,16 +95,11 @@ export function equip(equipment) {
 }
 
 export function flashArmory(message) {
+  $('#ArmoryMessage').remove();
   $('#ArmoryScreen').append(`<div id='ArmoryMessage'>${message}</div>`);
   $('#ArmoryMessage').hide().fadeIn(300, () => {
-    $('#ArmoryMessage').fadeOut(700, () => $('#ArmoryMessage').remove());
+    $('#ArmoryMessage').fadeOut(1000, () => $('#ArmoryMessage').remove());
   });
-  // může být i v BriefingScreenu
-  if ($('#BriefingScreen')) {
-    $('#BriefingScreen').append(`<div id='BriefingMessage'>${message}</div>`);
-    $('#BriefingMessage').hide().fadeIn(400);
-    $('#BriefingMessage').fadeOut(1200, () => $('#BriefingMessage').remove());
-  }
 }
 
 export function getRank(agent) {

@@ -60,10 +60,10 @@ class MissionsWindow extends Component {
         <button
           id='RecruitAgentButton'
           onClick={this.agentMission}>Find Agent</button>
-        <CountryOfOperation
+        {!debug && <CountryOfOperation
           game={game}
           jsonapi={jsonapi}
-          />
+          />}
         {!debug &&
           <MercuryNetwork />}
         {debug &&

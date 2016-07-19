@@ -38,7 +38,7 @@ export function acceptMission(tier, focus, country, options) {
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
     flashDashboard(`Upgrade your capability enhancement for higher tier missions.`);
   else if (!maxMissionsCheck(jsonapiCursor()))
-    flashDashboard('Missions limit reached.');
+    flashDashboard('Missions limit reached, upgrade your operations.');
   else {
     dispatch(acceptMission, {mission});
     flashDashboard(`New mission!`);
@@ -51,7 +51,7 @@ function acceptSpecifiedMission(mission) {
   const missions = jsonapiCursor(['missions']);
 
   if (!maxMissionsCheck(jsonapiCursor()))
-    flashDashboard('Missions limit reached.');
+    flashDashboard('Missions limit reached, upgrade your operations.');
   else
     dispatch(acceptMission, {mission});
 }
@@ -251,6 +251,7 @@ export function facilityUpgradeDialogClose(enhancement) {
 }
 
 export function flashDashboard(message) {
+  $('#DashboardMessage').remove();
   $('#DashboardScreen').append(`<div id='DashboardMessage'>${message}</div>`);
   $('#DashboardMessage').hide().fadeIn(400);
   $('#DashboardMessage').fadeOut(1200, () => $('#DashboardMessage').remove());

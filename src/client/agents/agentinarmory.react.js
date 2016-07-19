@@ -16,6 +16,7 @@ class AgentInArmory extends Component {
     const {jsonapi} = this.props;
     const agents = jsonapi.get('agents');
     const agentinarmory = jsonapi.get('agentinarmory');
+
     var data = ev.dataTransfer.getData('text');
 
     if (!agentinarmory)
@@ -29,6 +30,7 @@ class AgentInArmory extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
+    const tutorial = jsonapi.getIn(['options', 'tutorial']);
 
     return (
       <div
@@ -43,7 +45,7 @@ class AgentInArmory extends Component {
             isShowcased={true}
             jsonapi={jsonapi}
           />}
-        {!agentinarmory &&
+        {!agentinarmory && tutorial &&
           <div id='AgentInArmoryStatus'>{msg('tutorial.agentinarmory')}</div>}
       </div>
     );

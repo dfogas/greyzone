@@ -49,10 +49,16 @@ class AgentScrollBar extends Component {
 
   render() {
     const {agents, game, isMission, jsonapi, style} = this.props;
+    const tutorial = jsonapi.getIn(['options', 'tutorial']);
 
-    if (!agents.size)
+    if (!agents.size && tutorial)
       return (
         <span id='AgentListPlaceholder'>No agents are present, hire them through Dashboard.</span>
+      );
+
+    else if (!agents.size)
+      return (
+        <div></div>
       );
 
     return (

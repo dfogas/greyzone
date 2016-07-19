@@ -54,10 +54,10 @@ class DashboardContent extends Component {
             jsonapi={jsonapi}
             options={jsonapi.get('options')}
             />}
-        {dashPointer === 'strategical' &&
+        {/* dashPointer === 'strategical' &&
           <CountryStatsWindow
             countrystats={jsonapi.get('countrystats')}
-          />}
+          /> */}
         {/*dashPointer === 'options' &&
           <Link to='payments'><button id='ToPayments'>Buy</button></Link>*/}
         {dashPointer === 'contest' &&

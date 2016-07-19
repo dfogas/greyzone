@@ -33,8 +33,7 @@ class PlayersWindow extends Component {
     const {jsonapi} = this.props;
     const agents = jsonapi.get('agents');
     const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
-    const agentondisplayindex = agents.indexOf(agents.find(agent => agent.get('id') === agentondisplay.get('id')));
-    dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
+    dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
     dashboardActions.playerDoesNotGoOnMissions();
   }
 
@@ -45,14 +44,16 @@ class PlayersWindow extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const self = jsonapi.get('self');
+    const selfIsDisplayed = jsonapi.getIn(['dashboard', 'agentondisplay', 'id']) === self.get('id');
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
+    const tutorial = jsonapi.getIn(['options', 'tutorial']);
     return (
       <div id='PlayersWindow'>
-        <div id='PlayerLabel'>
+        {/*<div id='PlayerLabel'>
           <div id='PlayerName'>
             {jsonapi.get('name')}
           </div>
-        </div>
+        </div>*/}
         {!playerAgentIsActive &&
           <div id='PlayerAgentCard'>
             {self &&
@@ -69,7 +70,7 @@ class PlayersWindow extends Component {
             id='PlayerAgentActionableButton'
             onClick={this.playerGoesOnMissions}
             >Go on Missions</button>}
-        {(self ? jsonapi.get('agents').find(agent => agent.get('id') === self.get('id')) : false) &&
+        {(playerAgentIsActive && selfIsDisplayed) &&
           <button
             id='PlayerAgentActionableButton'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
@@ -87,11 +88,11 @@ class PlayersWindow extends Component {
           jsonapi={jsonapi} />
         <PlayerAgentsLeadership
           jsonapi={jsonapi} />
-        <div id='PlayerHelpHint'>
+        {tutorial && <div id='PlayerHelpHint'>
           Click items to interact
           <br />
           Press 'h' for help
-        </div>
+        </div>}
       </div>
     );
   }
