@@ -1,60 +1,96 @@
 const concepts = {
-  cryptography: `
-    from tattoed skin of skull, through Leonardo's
-    notes, to 2nd WW Enigma where Germans hoped to keep their communication with
-    submarines secret and cryptography
-    through private/public keys has become allpresent in our daily communication,
-    goal of which is that only the sender and recipient can take part in message
-    passing, medium unknowing of the content, that it carries and listeners
-    unable to make sense of the message
+  connections: `
+    In some branches of human activity, it is about "Who do you know?" rather than
+    "How good you are at what you do?", especially if competition is high.
+    Aside from movie industry, this is useful in many other areas as well,
+    and well worth investigating and gaining.
+  `,
+  // stagnation: `
+  //   In an idealistic world a social and economic success of an individual would
+  //   depend only on his personal attributes and effort that he is making.
+  //   This is not the case, even if we abstract from risks, as societies uses
+  //   state to build rigid structures, strawmen of security, that ultimately
+  //   leads to stagnation and wasted potential.
+  // `,
+  cryptography: `Cryptography evolved over the history -
+    from tattoed skin of skull, through Leonardo's notes, to 2nd WW Enigma.
+    Private/public keys has become allpresent in our daily communication.
+    Goal is that only the sender and recipient are the only parties of communication,
+    medium unknowing of the content, that it carries, and listeners
+    unable to make sense of the message.
   `,
   espionage: `
-    espionage though subject to some romantic views, can be compared to
+    Espionage though subject to some romantic views, can be compared to
     special botanics work, as it is focused in gaining and taking care of
-    valuable sources, after which it aims toward the end of relation, changes to mining work
-    as this resource is often left to its fate after it gave all it could
+    valuable resources. After that as it goes toward the end of relationship,
+    it changes to mining work as this resource is often left to its fate after
+    it gave all it could.
+  `,
+  guns: `
+    World is not particularly safe place, it however quite safe compared to
+    how it was in the past. Approach to gun control varies from country to country,
+    with different history in each.<br />
+    Generally can be said that guns are only tools, whether they become a menace
+    or safety measure depends on the intents of individual and more importantly
+    on the structure of the society and internal and external pressures
+    exercised on it.
   `,
   hacking: `
-    originally hacker was a respectable term, describing individual
-    who knew and did things, in era of pioneering times of computer and
-    software development, it has become synonymous now-a-days with
+    Originally, hacker was a respectable term, describing individual,
+    who knew and did things in era of pioneering times of computers.
+    It has become synonymous, nowadays, with person who is
     exploiting vulnerabilities of information systems in organizations
-    for personal gain, a term for which cracker might be more appropriate word,
-    because it implies more correctly breaking and entering nature of such activities,
-    nevertheless the skillset is useful for goverment intelligence agencies as well
+    for personal gain. For such person, cracker is more appropriate word,
+    as it captures breaking and entering nature of such activities, albeit
+    only on electronic level.<br />
+    The skillset itself is sought by goverment intelligence agencies and corporate security.
   `,
   introduction: `
-    concepts of game are somewhat aligned to reality of our world,
+    Concepts of game are somewhat aligned to reality of our world,
     giving the game the desired background for imagination, feel free to read them
-    for general insight, but do not take them too seriously
+    for general insight.
   `,
   lawenforcement: `
-    cornerstone of state existence, controlled violence to make
-    the agreed norms of behaviour enforcable - as for the reality it
+    Cornerstone of state existence, it is a controlled violence that make
+    the agreed norms of behaviour enforcable. Its quality
     differs throughout the countries, more often than not subject to current
-    situations on the political scene and culture of the lands
+    situations on the political scene and culture of the lands.
   `,
   manipulation: `
-    descendants of monkeys and apes, people are apt not only in mimicking behaviours and acts of others,
-    our second nature in social life is to make others do our bidding, be for the sake of one individual or
-    rather for the hope of better life of group, with some individuals exceptionally talented in this area
+    Descendants of social animals - monkeys, people are apt not only in mimicking behaviours and acts of others -
+    in social life we are able make others to do our bidding, using underhand psychology tricks,
+    be for our own sake or for better life of group, that we identify as part of,
+    with some individuals exceptionally talented in this regard.
   `,
-  onlineGames: `
-    pinnacle of fun, distributed computer system, shadow side pay2win games
+  moneylaundering: `
+    Rich will never get poor because they know how to make money work for them,
+    and they use tax havens, on the more practical side.
+    <br />
+    Aside from it there is fairly large set of practices to legalize shady
+    earnings, but most successful is to become part
+    of establishment and suck on those generous strucks of subsidy cow.
+  `,
+  reputation: `
+    Do you agree that the great thing about this world is not where you are,
+    but where you're going? Most of the businesses would go bankrupt today,
+    had they forgot to evolve 5 years ago.
+    <br />
+    As we are sailing in fast waters, one thing that keeps you afloat is
+    your reputation.
   `,
   revenge: `
-    revenge is a way to keep morality in the society and promote just behavior
-    though its exercise through means of private individual effort or through unrestricted
-    collective effort is discouraged
+    Revenge is a way to keep morality in the society, an enforcing mechanism of sorts
+    used mainly by primitive cultures relying on personal honour rather
+    than on codified laws.
   `,
   stealth: `
-    to see without beeing seen
+    To see without beeing seen.
   `,
   WWW: `
-    one of the services enabled by Internet, beginnings date to 1990 and CERN institute
-    has hugely overreached its original purpose, education and science, it is ubiquitous, through
-    intensive commercial and competitive pressure has become one of the largest distribution
-    channels, one that gives living and existence to many organizations and individuals,
+    One of the services enabled by Internet, beginnings date to 1990 and CERN institute.
+    It has hugely overreached its original purpose, education and science, it is ubiquitous.
+    Through intensive commercial and competitive pressure has become one of the largest distribution
+    channels, one that gives living and existence to many organizations and individuals.
   `
 };
 

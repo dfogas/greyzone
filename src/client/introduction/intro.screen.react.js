@@ -74,6 +74,9 @@ class IntroScreen extends Component {
             className='intro-screen-item'
             id={'Intro' + capitalLetter(about.get('group')) + capitalLetter(about.get('item'))}
             >
+            <div className='intro-screen-item-title'>{capitalLetter(about.get('item'))}</div>
+            <br />
+            <br />
             <FormattedHTMLMessage message={msg('' + about.get('group') + '.' + about.get('item'))} />
           </div>
         </div>

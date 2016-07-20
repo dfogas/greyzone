@@ -1,26 +1,34 @@
 const intro = {
   end: `
     <p>
-      The GhostStruggle has many different ends for you to explore.
+      The GhostStruggle has different ends for you to explore, that depend
+      on campaigns you chose and your gameplay.
+    </p>
+    <p>
+      Suffice to say, that achieving good end is not easy, and it gets even
+      more difficult with enabled multiplayer.
     </p>
   `,
   features: `
-    <h2>Game Features</h2>
+    <h2>What does game offer to me?</h2>
     <p>
       GhostStruggle is single and multiplayer web game designed with intention
-      to provide interesting playing mechanism with emphasis on functionality, first,
-      and then on beauty, second.
+      to provide interesting playing mechanism with emphasis on functionality
+      and beauty.
       As it seems that perfection is achieved only when there's nothing left to
       take away rather than still adding new features, it strives to keep only
-      necessary features for core game mechanisms and keep all other bullshit away.
+      the necessary for core game and keep all other bullshit away.
     </p>
     <p>
       It is designed as commercial product with emphasis being on playability
-      and employing your brain, not on serving you fancy content and draining your
-      credit card for overpriced collection pieces.
+      and employing your brain.
+    </p>
+    <p>
+
     </p>
   `,
   gameplay: `
+    <h3>What will you be doing and why</h3>
     <p>
       You direct organization in strategical AND tactical sense
       by managing its resources and staying hidden from official probing,
@@ -43,8 +51,33 @@ const intro = {
       but you may also stick single player only.
     </p>
   `,
+  history: `
+    <h3>Where have you been, what have you done</h3>
+    <p>
+      You might be someone, who has special training, in - pick one -
+      secret service, special army forces - or just an ambitious amateur
+      with an adrenaline itch.
+    </p>
+    <p>
+      Regarding your entry to the game it might have been that you were
+      disgracefully expelled, survived a suicide mission or you simply
+      get too much knowledge.
+    </p>
+    <p>
+      As for your goal it might be longing for a good life, it might
+      be a revenge, or perhaps you have that certain collection of
+      distinguished art that you would like to complete.
+    </p>
+    <p>
+      With this history you tapped into a world where the rules bend
+      and restrictions don't apply
+      where what you do is in morally grey area, and you live in constant
+      danger. Or perhaps others experience false sense of security and
+      this is the real world. Can you say this is not so?
+    </p>
+  `,
   introduction: `
-    <h2>Introduction</h2>
+    <h2>Musings of an avatar</h2>
     <p>
       Does a man choose his profession, or does profession choose a man?
       I chose not to be a - what? - Villain?
@@ -55,7 +88,7 @@ const intro = {
     <p>
       People like to have order. Give them order and you have their vote in the elections.
       Then have the police and special forces to do this task given by public.
-      Does that mean that order is automatically good? Of course it does, for most.
+      Does that mean that order is automatically good? It does - mostly.
     </p>
     <p>
       My organization is not so narrow-minded. Do you need money real fast?

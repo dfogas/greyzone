@@ -1,6 +1,6 @@
 const help = {
   actions: `
-    <ul class='list-of-actions'><h2>Actions</h2>
+    <ul class='list-of-actions'>
       <li class='list-of-actions pursuit'><em>pursuit - escape or pursue in the true Bond fashion</em></li>
       <li class='list-of-actions hit'><em>hit - dispose of, put to sleep, send your regards ...</em></li>
       <li class='list-of-actions close_combat'><em>close combat - wrestle or knife down the opposing party</em></li>
@@ -23,22 +23,21 @@ const help = {
     </p>
   `,
   equipments: `
-    <h2>Listing of agents equipments</h2>
     <ul>
       <ul class='equipment-tier operations'>
         <li class='agent-equipment HiredGun'>Hired Gun - +1 operations die</li>
         <li class='agent-equipment HeavyArms'>Heavy Arms - 1 any operations result(no improv)</li>
-        <li class='agent-equipment ProtectiveGear'>Protective Gear - repeat all dice throw</li>
+        <li class='agent-equipment ProtectiveGear'>Protective Gear - choose dices for repeated throw</li>
       </ul>
       <ul class='equipment-tier electronics'>
         <li class='agent-equipment HandyKit'>Handy Kit - +1 electronics die</li>
         <li class='agent-equipment CustomTools'>Custom Tools - 1 any electronics result(no improv)</li>
-        <li class='agent-equipment WPAS'>WPAS - hide one dice result for later</li>
+        <li class='agent-equipment WPAS'>WPAS - hide one dice result for later, action might not be used to burn dice for repated try</li>
       </ul>
       <ul>
         <li class='agent-equipment FakePassports'>Fake passports - +1 stealth die</li>
         <li class='agent-equipment DrugsControl'>Drugs Control - 1 any stealth result(no improv)</li>
-        <li class='agent-equipment DCP'>DCP - alternative mission end, only reputation is lost</li>
+        <li class='agent-equipment DCP'>Damage Control Protocol - alternative mission end, only reputation is lost(no multiplayer)</li>
       </ul>
     </ul>
     <p>
@@ -52,11 +51,12 @@ const help = {
     </p>
   `,
   introduction: `
+    Here we hope to give you overview of game elements and hint at the mechanics of gameplay.
     After reading links in Introduction group, you have the idea of
     what you are doing, but how. Reading this section should help you.
   `,
   missionProgress: `
-    <ul class='mission-progress'><h2>Gameplay</h2>
+    <ul class='mission-progress'>
       <li class='mission-progress'><em>By drag&drop icons equip your agents for the mission in Armory.</em></li>
       <li class='mission-progress'><em>Hit mission title to select it in Briefing.</em></li>
       <li class='mission-progress'><em>After selecting mission assign the agents by drag&drop them to designated spots.</em></li>
@@ -74,17 +74,20 @@ const help = {
   `,
   segments: `
     <ul>
-      <h2>Game segments</h2>
       <li class='game-segments'>Command - overview of world intended for multiplayer features</li>
-      <li class='game-segments'>Dashboard - basic overview and control of the game</li>
+      <li class='game-segments'>Dashboard - basic overview and control of the game, customizable options, campaign screens</li>
       <li class='game-segments'>Armory - equip your agents for the mission, increasing their chances</li>
       <li class='game-segments'>Briefing - overview of current missions and deploying of agents to missions</li>
       <li class='game-segments'>Mission - the main deal of game magic happens there, your success or failure is made here</li>
     </ul>
+    <p>
+      Also enhancements are segments of gameplay but they are scattered over different screens
+      some have their areas and buttons, so you have click directly those to proceed with upgrade/purchase of
+      enhancement and generally new missions can be offered to you by your agents as you click on their pictures.
+    </p>
   `,
   terminology: `
     <ul class='terminology'>
-      <h2>Terminology</h2>
       <li class='terminology'>
         <em>Organization - agents, missions and other game assets, that you manage</em>
       </li>

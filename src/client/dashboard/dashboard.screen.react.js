@@ -67,13 +67,11 @@ class DashboardScreen extends Component {
     const isLoggedIn = !!this.props.viewer;
     const orgname = jsonapi.get('name');
 
-    console.log(dashPointer);
-
     return (
       <div id='DashboardScreen'>
         <div
           id='DashboardScreenLabel'
-          >{`${msg('dashboard.screen.label.' + dashPointer)} ${orgname}`}</div>
+          >{`${msg('dashboard.screen.label.' + dashPointer)} ` + orgname}</div>
         <DashboardContent
           contest={contest}
           game={game}
