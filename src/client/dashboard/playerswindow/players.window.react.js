@@ -8,6 +8,7 @@ import uuid from '../../lib/guid';
 import allAgents from '../../lib/allagents';
 import $ from 'jquery';
 import {msg} from '../../intl/store';
+import selfIsDisplayed from '../../lib/selfisdisplayed';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
 import PlayerAgentsLeadership from './player.agents.leadership.react';
@@ -44,7 +45,6 @@ class PlayersWindow extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const self = jsonapi.get('self');
-    const selfIsDisplayed = jsonapi.getIn(['dashboard', 'agentondisplay', 'id']) === self.get('id');
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
     const tutorial = jsonapi.getIn(['options', 'tutorial']);
     return (
@@ -70,7 +70,7 @@ class PlayersWindow extends Component {
             id='PlayerAgentActionableButton'
             onClick={this.playerGoesOnMissions}
             >Go on Missions</button>}
-        {(playerAgentIsActive && selfIsDisplayed) &&
+        {(playerAgentIsActive && selfIsDisplayed(jsonapi)) &&
           <button
             id='PlayerAgentActionableButton'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
