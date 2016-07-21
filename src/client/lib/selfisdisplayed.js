@@ -9,7 +9,7 @@ const selfIsDisplayed = function(jsonapi) {
   if (!jsonapi.get('self'))
     return false;
   else
-    return jsonapi.getIn(['dashboard', 'agentondisplay', 'id']) === self.get('id');
+    return jsonapi.getIn(['dashboard', 'agentondisplay', 'id']) === jsonapi.get('self').get('id');
 };
 
 export default selfIsDisplayed;
