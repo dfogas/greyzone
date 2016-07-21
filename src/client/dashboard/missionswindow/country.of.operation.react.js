@@ -8,12 +8,16 @@ import DropDown from 'react-dropdown-w-react13';
 
 class CountryOfOperation extends Component {
   changeCountry(option) {
+    //
     dashboardActions.changeCountry(option);
   }
 
   render() {
     const {game, jsonapi} = this.props;
     const countries = game.getIn(['globals', 'countries']);
+    const countryOfOperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
+    const countrystats = jsonapi.get('countrystats');
+    const countryOfOperationIndex = countryOfOperation ? countrystats.indexOf(countrystats.find(cs => cs.get('name') === countryOfOperation)) : 0;
     return (
       <div id='CountryOfOperation'>
         <DropDown
@@ -29,6 +33,9 @@ class CountryOfOperation extends Component {
           })}
           value={jsonapi.getIn(['dashboard', 'countryofoperation']) || 'Operating In ..'}
           />
+          <div className='country-obscurity-counter'>
+            Obscurity {jsonapi.getIn(['countrystats', countryOfOperationIndex, 'obscurity'])}
+          </div>
       </div>
     );
   }

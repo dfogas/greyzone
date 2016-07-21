@@ -2,8 +2,6 @@
   checking whether agent is on display, with null safe check
 */
 
-
-
 const selfIsDisplayed = function(jsonapi) {
   // TODO: write agent validation function to use here, ?Maybe
   if (!jsonapi.get('self'))

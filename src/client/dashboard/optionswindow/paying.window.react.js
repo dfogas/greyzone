@@ -5,9 +5,8 @@ import React from 'react';
 import immutable from 'immutable';
 
 class PayingWindow extends Component {
-  changePaying(ev) {
-    ev.preventDefault();
-    optionsActions.changePaying(ev.target.name, ev.target.checked);
+  changePaying(name, value) {
+    optionsActions.changePaying(name, value);
   }
 
   render() {
@@ -18,9 +17,9 @@ class PayingWindow extends Component {
     return (
       <div id='PayingWindow'>
         <legend>Paying Status</legend>
-        <label><input checked={base} name='base' onChange={(e) => this.changePaying(e)} type='checkbox' />Base</label>
-        <label><input checked={collector} name='collector' onChange={(e) => this.changePaying(e)} type='checkbox' />Collector</label>
-        <label><input checked={revenge} name='revenge' onChange={(e) => this.changePaying(e)} type='checkbox' />Revenge</label>
+        <label><input checked={base} name='base' onChange={(e) => this.changePaying(name, base)} type='checkbox' /><span>Base</span></label>
+        <label><input checked={collector} name='collector' onChange={(e) => this.changePaying(name, collector)} type='checkbox' /><span>Collector</span></label>
+        <label><input checked={revenge} name='revenge' onChange={(e) => this.changePaying(name, revenge)} type='checkbox' /><span>Revenge</span></label>
       </div>
     );
   }

@@ -12,8 +12,8 @@ class LanguageSelect extends Component {
 
   render() {
     var options = [
-      {value: 'en', label: 'English'},
-      {value: 'cz', label: 'Czech'}
+      // {value: 'cz', label: 'Czech'},
+      {value: 'en', label: 'English'}
     ];
     return (
       <DropDown

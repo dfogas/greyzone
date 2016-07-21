@@ -127,7 +127,7 @@ const dashboardMsg = {
       </div>
     `,
     window: {
-      label: `Statuses`
+      label: `Dolce Vita`
     }
   },
   title: 'Dashboard'

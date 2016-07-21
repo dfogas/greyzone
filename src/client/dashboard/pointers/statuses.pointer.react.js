@@ -2,6 +2,7 @@ import './statuses.pointer.styl';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
+import {msg} from '../../intl/store';
 
 class StatusesPointer extends Component {
   pointerChange() {
@@ -15,7 +16,7 @@ class StatusesPointer extends Component {
         id='ToStatuses'
         onClick={this.pointerChange}
         >
-        Statuses
+        {msg('dashboard.statuses.window')}
       </div>
     );
   }

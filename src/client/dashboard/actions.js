@@ -190,7 +190,7 @@ export function contactsFocusMission() {
   acceptSpecifiedMission(mission);
 }
 
-export function dashboardAnnounce(message) {
+function dashboardAnnounce(message) {
   $('#DashboardAnnounce').remove();
   $('#DashboardScreen').append(`<div id='DashboardAnnounce'>${message}</div>`);
   $('#DashboardAnnounce').on('click', () => {

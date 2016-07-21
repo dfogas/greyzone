@@ -101,7 +101,7 @@ const intro = {
     <p>
       As always, this lifestyle does have its price. I can't turn up,
       at the Social Security Office
-      and start asking for aliments. What have you been doing so far?
+      and start asking for money. What have you been doing so far?
       Oh, I was a head of secret
       organization doing this here and that over there - Al Pacino style,
       fully visualizing it right now ...

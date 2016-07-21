@@ -9,15 +9,30 @@ export function changeOption(name, value) {
   const promise = new Promise((resolve, reject) => {
     resolve({name, value});
   });
-  dispatch(changeOption, promise);
+  // console.log(name); //
+  if (name === 'multiplayer')
+    dashboardAnnounce(`Multiplayer is not yet implemented. Due to smoothing out interactions
+      with other players it will not feature game saves.`);
+  else
+    dispatch(changeOption, promise);
 }
 
 export function changePaying(name, value) {
-  const api = process.env.NODE_ENV === 'production' ?
-    cconfig.dnsprod :
-    cconfig.dnsdevel;
+  // const api = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   const userId = jsonapiCursor(['userId']);
-  location.href = `/create?userId=${userId}&name=${name}`;
+  // console.log(name, value);
+  if (value)
+    dashboardAnnounce(`This item is already bought.`);
+  else
+    location.href = `/create?userId=${userId}&name=${name}`;
+}
+
+function dashboardAnnounce(message) {
+  $('#DashboardAnnounce').remove();
+  $('#DashboardScreen').append(`<div id='DashboardAnnounce'>${message}</div>`);
+  $('#DashboardAnnounce').on('click', () => {
+    $('#DashboardAnnounce').remove();
+  });
 }
 
 export function loadGame(game) {

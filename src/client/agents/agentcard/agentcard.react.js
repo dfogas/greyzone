@@ -8,6 +8,7 @@ import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import shouldHaveRank from '../../lib/shouldhaverank';
 import uuid from '../../lib/guid';
+import AgentExperienceBar from './agent.experience.bar.react';
 
 import AgentStatCounter from './agentstatcounter.react';
 import AgentProfile from './agent.profile.react';
@@ -49,6 +50,7 @@ class AgentCard extends Component {
     const rankup = shouldHaveRank(agent.get('experience'), trainingtable) >= agent.get('rank') ? true : false;
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
+    const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay']).get('id');
 
     const classString = classnames(
       'agent-card', {
@@ -67,6 +69,11 @@ class AgentCard extends Component {
         isMission={this.props.isMission}
         key={key}
         onDragStart={this.drag}>
+        <AgentExperienceBar
+          agent={agent}
+          game={game}
+          isShowcased={this.props.isShowcased}
+          />
         <AgentClock
           agent={agent}
           />
@@ -107,7 +114,7 @@ class AgentCard extends Component {
           <button
             className='dismiss-agent-button'
             onClick={(e) => dashboardActions.postponeRescue(agent)}>Not now!</button>}
-        {trainingtable &&
+        {trainingtable && agentIsOnDisplay &&
           <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
         {agentequipments.map((agentequipment, i) => {
           return (

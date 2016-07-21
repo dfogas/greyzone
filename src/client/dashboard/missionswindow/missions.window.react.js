@@ -47,12 +47,7 @@ class MissionsWindow extends Component {
 
   render() {
     const {agentbeingsaved, enhancements, game, jsonapi, missions, missionspricelist} = this.props;
-    const missionaccept = jsonapi.get('dashboard').getIn(['strategical', 'missionaccept']);
-    const canhasbank = enhancements.find(enh => enh.get('name') === 'Nostalgia');
-    const payolddebt = enhancements.find(enh => enh.get('name') === 'Side Quest');
-    const purgeevidence = enhancements.find(enh => enh.get('name') === 'You can\'t see me');
-    const silencerat = enhancements.find(enh => enh.get('name') === 'Repaying the favor');
-    const innercircle = enhancements.find(enh => enh.get('name') === 'Gala in Opera house');
+
     const debug = jsonapi.getIn(['options', 'debug']);
 
     return (
@@ -69,7 +64,7 @@ class MissionsWindow extends Component {
         {debug &&
           <MissionAcceptForm
             enhancements={enhancements}
-            missionaccept={missionaccept}
+            missionaccept={jsonapi.get('dashboard').getIn(['strategical', 'missionaccept'])}
             missions={missions}
             missionspricelist={missionspricelist}
           />}
@@ -87,23 +82,23 @@ class MissionsWindow extends Component {
           <DashboardMissionsList
             missions={missions}
             />}
-        {canhasbank &&
+        {enhancements.find(enh => enh.get('name') === 'Nostalgia') &&
           <button
             id='RobBankButton'
             onClick={this.bankMission}>Do the bank</button>}
-        {payolddebt &&
+        {enhancements.find(enh => enh.get('name') === 'Side Quest') &&
           <button
             id='OldDebtButton'
             onClick={this.oldDebtMission}>Pay Old debt</button>}
-        {purgeevidence &&
+        {enhancements.find(enh => enh.get('name') === 'You can\'t see me') &&
           <button
             id='PurgeEvidenceButton'
             onClick={this.destroyEvidenceMission}>Purge Evidence</button>}
-        {silencerat &&
+        {enhancements.find(enh => enh.get('name') === 'Repaying the favor') &&
           <button
             id='SilenceRatButton'
             onClick={this.silenceWitnessMission}>Silence Witness</button>}
-        {innercircle &&
+        {enhancements.find(enh => enh.get('name') === 'Gala in Opera house') &&
           <button
             id='InnerCircleButton'
             onClick={this.innerCircleMission}>Inner Circle</button>}
