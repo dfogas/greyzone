@@ -1,5 +1,6 @@
 /* ImmutableMap(jsonapi) or null -> Boolean
   checking whether agent is on display, with null safe check
+  BML: true
 */
 
 const selfIsDisplayed = function(jsonapi) {

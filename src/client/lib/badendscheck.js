@@ -1,4 +1,8 @@
-/* ImmutableMap(jsonapi) -> String */
+/* ImmutableMap(jsonapi) -> String
+  subrutina pro průběžné zjišťování zda došlo k špatnému konci pracuje se stavem hráče,
+  možná tu chybí stav hry
+  BML: true
+*/
 import allAgents from './allagents';
 
 function checkBadEnds(jsonapi) {

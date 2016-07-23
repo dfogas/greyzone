@@ -126,8 +126,10 @@ const agents = {
   },
   talk: {
     cheeky: `<div id='AgentTalk'>What's up? - Did someone stole you a sweet roll?</div>`,
+    dead: `<div id='AgentTalk'>...</div>`,
     evasive: `<div id='AgentTalk'>I have this thing ..., never mind, what was it you wanted?</div>`,
     intimate: `<div id='AgentTalk'>Aww, you woke me up - is something going on?</div>`,
+    prison: `<div id='AgentTalk'>I don't want spend rest of my life here. Get me out!</div>`,
     self: `<div id='AgentTalk'>I should do something ... better think it through first.</div>`,
     soldiery: `<div id='AgentTalk'>Yes boss? I stand ready.</div>`,
     tired: {

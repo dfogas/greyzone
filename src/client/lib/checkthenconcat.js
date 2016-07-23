@@ -1,4 +1,7 @@
-/* Falsy or Truthy -> JSArray */
+/* Falsy or Truthy -> JSArray
+  shields against null or undefined when concatenating
+  BML: false
+*/
 
 function checkThenConcat(item) {
   if (item)

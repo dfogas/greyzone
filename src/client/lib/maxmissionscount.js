@@ -1,11 +1,7 @@
 /* Immutable.List -> Number
   checks capabilityEnhancements and returns number of max missions
+  BML: true
 */
-
-//TODO: implement SPoC
-// import EnhancementList from '../../server/lib/greyzone/enhancement.list';
-
-// const capabilityEnhancements = EnhancementList.filter(enh => enh.type === 'capability');
 
 function maxMissionsCount(enhancements) {
   const enhancementnames = enhancements.filter(enh => enh.get('type') === 'capability').map(enh => enh.get('name')).toJS();

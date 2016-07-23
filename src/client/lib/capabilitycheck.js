@@ -1,6 +1,7 @@
 /* Number [String] -> Boolean
   checks if there is possible action based on tier of accepted mission
   and players enhancements
+  BML: true
 */
 
 function capabilityCheck(tier, enhancementnames) {

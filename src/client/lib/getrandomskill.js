@@ -1,7 +1,8 @@
-/* eslint curly: 1 */ 
+/* eslint curly: 1 */
 /*
   Number Object(agentSkills) -> String
-  using default Math.random to determine which skill we increase
+  using default Math.random to determine which skill we increase, when agent ranks up
+  BML: true
 */
 var getRandomSkill = function(maximum, skills) {
   if (typeof maximum !== 'number')

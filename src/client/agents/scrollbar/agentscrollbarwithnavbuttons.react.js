@@ -1,6 +1,3 @@
-/*
-  Dumb Component
-*/
 import './agentscrollbarwithnavbuttons.styl';
 import * as scrollbarActions from './actions';
 import Component from '../../components/component.react';

@@ -1,4 +1,7 @@
-/* ImmutableList -> String */
+/* ImmutableList -> String
+  Returns name of level of operations of organization
+  BML: true
+*/
 
 function topLevelOps(enhancements) {
   const enhancementnames = enhancements.filter(enh => enh.get('type') === 'capability').map(enh => enh.get('name'));

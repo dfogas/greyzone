@@ -1,5 +1,7 @@
 /* ImmutableMap(Agent) ImmutableList(Task) -> JSArray(Dices) */
 /* použito při assignování agenta k tasku */
+/* TODO: přepsat na výstup do ImmutableList of dices */
+/* BML: true */
 import uuid from './guid';
 
 function actionDices(agent, task) {

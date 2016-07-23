@@ -1,1 +1,0 @@
-/* MissionList(JSArray) -> Mission(JSObject) */

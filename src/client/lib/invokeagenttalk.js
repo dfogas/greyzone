@@ -3,6 +3,7 @@
   používám zde $ ale možná bude lepší to nakonec řídit přes dashboard state
   klikání na ikonku agenta tak ale funguje i v Briefingu, Armory a také
   je ošetřen case pro Mission, nejde jen o Dashboard
+  BML: true
 */
 import agentTalk from '../lib/agenttalk';
 import $ from 'jquery';

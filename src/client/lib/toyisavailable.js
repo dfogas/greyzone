@@ -1,5 +1,8 @@
 /* ImmutableList(enhancements) ImmutableMap(toy) -> Boolean
-  checks made by name, so imperative is do not change names */
+  checks made by name, so imperative is do not change names
+  TODO: make dependable on game
+  BML: true
+*/
 
 function toyIsAvailable(enhancements, equipment) {
   const enhancementnames = enhancements.map(enh => enh.get('name'));

@@ -1,5 +1,6 @@
 /* Number [String] -> Boolean
   checks current number of missions against max missions allowed by capability enhancement if room for mission returns true
+  BML: true
 */
 
 var maxMissionsCheck = function(jsonapi) {

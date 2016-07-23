@@ -1,11 +1,16 @@
 /* ImmutableMap(Agent) ImmutableMap(Agent) -> String
-   generuje dialogy s agenty (no spíše jednostranné prohlášení, zatím)
+   generuje string pro dialogy s agenty (no spíše jednostranné prohlášení, zatím)
+   BML: true
 */
 
-function agentTalk(agent, self) {
+const agentTalk = function(agent, self) {
   const tired = agent.get('ETA') - Date.now() > 0;
   // console.log('tired: ' + tired);
-  if ((agent.get('id') === self.get('id')) && tired)
+  if (agent.get('KIA'))
+    return 'dead';
+  else if (agent.get('prison'))
+    return 'prison';
+  else if ((agent.get('id') === self.get('id')) && tired)
     return 'tired.self';
   else if (agent.get('personality') === 'SP' && tired)
     return 'tired.intimate';
@@ -47,6 +52,6 @@ function agentTalk(agent, self) {
     else
       return 'evasive';
   }
-}
+};
 
 export default agentTalk;

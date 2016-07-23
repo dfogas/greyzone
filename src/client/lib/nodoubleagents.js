@@ -1,10 +1,10 @@
 /* JSArray(Agents) Number(rank) String(specialist) => {NoDoubleAgent}
   poněkud krkolomné ošetření toho, že se nebudou duplikovat agenti
+  BML: true
 */
 
 import Agent from '../../server/lib/greyzone/agents.generator';
 import ProfilePics from '../../server/lib/greyzone/profilepics.list';
-// import reservedPick from './reservedpick';
 
 function noDoubleAgents(agents, rank, specialist) {
   let noDoubleAgent = Agent(specialist, rank);

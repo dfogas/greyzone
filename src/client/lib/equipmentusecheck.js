@@ -1,5 +1,6 @@
 /* ImmutableMap(Agent) ImmutableMap(Equipment) -> Boolean
   will the equipment use succeed?
+  BML: true
 */
 
 function equipmentUseCheck(agent, equipment) {

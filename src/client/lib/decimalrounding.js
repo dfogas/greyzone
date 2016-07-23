@@ -1,5 +1,7 @@
 /*
   taken from MDN
+  adds ceil10, round10 and floor10 to JS Math object
+  BML: false
 */
 
 (function() {

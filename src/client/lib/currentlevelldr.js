@@ -1,5 +1,8 @@
 /* ImmutableList(enhancements) -> ImmutableMap(enhancement)
-  takes list of enhancements that player owns and returns enhancement that has the highest level asn is of leadership type*/
+  takes list of enhancements that player owns and returns enhancement
+  that has the highest level asn is of leadership type
+  BML: true
+  */
 
 import immutable from 'immutable';
 

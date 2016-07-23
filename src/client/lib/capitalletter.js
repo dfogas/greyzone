@@ -1,5 +1,6 @@
 /* String -> String
   selfexplanatory
+  BML: false
 */
 
 function capitalLetter(string) {

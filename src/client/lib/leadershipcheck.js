@@ -1,6 +1,7 @@
 /* Number [String] -> Boolean
   checks if there is possible action based on rank of hired/ranked agent
   and players enhancements
+  BML: true
 */
 
 function leadershipCheck(rank, enhancementnames) {

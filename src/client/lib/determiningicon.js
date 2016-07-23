@@ -1,5 +1,7 @@
 /*
   String -> UnicodeChar or String
+  selfexplanatory
+  BML: true
 */
 
 export default function determiningIcon(resultkey) {

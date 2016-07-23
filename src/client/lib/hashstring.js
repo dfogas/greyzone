@@ -1,6 +1,6 @@
 /* String -> Number
   http://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
-  not secure by far
+  BML: false
 */
 
 function hashString(string) {

@@ -1,4 +1,6 @@
-/* ImmutableMap(agent) -> String */
+/* ImmutableMap(agent) -> String
+  BML: true
+*/
 
 var getPrimarySkill = function(agent) {
   if (agent.get('specialist') === 'operative')

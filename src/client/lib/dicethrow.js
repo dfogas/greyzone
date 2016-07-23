@@ -1,3 +1,9 @@
+/*
+  String(dicetype) String(dicekey) -> JSObject(Dice?)
+  TODO: možná by funkce měla brát jako parametr kostku(ImmutableMap)
+  BML: true
+*/
+
 export default function dicethrow(type, dicekey) {
   var diceThrowResult;
   var result;

@@ -1,5 +1,7 @@
 /*
   JsArray[Rewards] => JSObject{FocusBools}
+  this probably relic now, but still used by xmissioncheck for debug mode
+  BML: true
 */
 
 function determineFocus(rewards) {

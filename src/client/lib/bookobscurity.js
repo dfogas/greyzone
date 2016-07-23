@@ -1,4 +1,6 @@
 /* Number Number -> Number
+  kontroluje rozmezí, vlastně by se dalo generalizovat pokud by se přidalo min a max do parametrů fce
+  BML: true
 */
 
 function bookObscurity(val, change) {

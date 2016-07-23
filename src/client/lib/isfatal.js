@@ -1,4 +1,8 @@
-/* (ImmutableMap || JSObject) (ImmutableMap || JSObject) -> Boolean */
+/* (ImmutableMap || JSObject) (ImmutableMap || JSObject) -> Boolean
+  TODO: sort out the parameters
+  Pretty selfexplanatory
+  BML: true
+*/
 import immutable from 'immutable';
 
 function isFatal(losses, rewards) {

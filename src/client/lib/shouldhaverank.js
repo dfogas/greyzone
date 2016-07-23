@@ -6,6 +6,7 @@
 /*
   Number ImmutableList(trainingtable) -> Number
   guessing - takes experience and training table returns rank
+  BML: true
 */
 
 const shouldHaveRank = function(experience, trainingtable) {

@@ -1,4 +1,6 @@
-/* ImmutableMap(Equipment) ImmutableList(enhancements) -> ImmutableMap(Enhancement) */
+/* ImmutableMap(Equipment) ImmutableList(enhancements) -> ImmutableMap(Enhancement)
+  BML: true
+*/
 
 function equipmentEnhancement(equipment, enhancements) {
   if (equipment.get('name') === 'Hired Gun')

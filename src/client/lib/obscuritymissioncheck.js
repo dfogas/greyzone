@@ -4,6 +4,8 @@
   else returns true
 
   special exception for missions that do not have country also returns true
+
+  BML: true
 */
 
 /* eslint no-undefined: 1 */

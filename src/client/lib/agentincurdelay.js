@@ -1,9 +1,11 @@
 /*
+  part of game mechanism where player is booked time costs related to equipment use
   immutableMap(Agent) immutableMap(Equipment) Number(timeinms) -> Number(ETA)
   ETA in UNIX time
   intent of this function is to detect whether equipment in question is heavy
   and agent specialization then check actual delay and based on that
   infer time in which the agent will be available for action again
+  BML: true
 */
 
 function agentIncurDelay(agent, equipment, delay) {

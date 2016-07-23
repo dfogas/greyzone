@@ -4,6 +4,7 @@
   given: 80, 79.5 expected: false
   given: 80, 80 expected: true
   given: 80, 81 expected: true
+  BML: false
 */
 
 function checkbalance(price, balance) {

@@ -1,3 +1,9 @@
+/*
+  String(path) -> MutatingWorld
+  stolen from W3C schools
+  BML: false
+*/
+
 function sound(src) {
   this.sound = document.createElement('audio');
   this.sound.src = src;

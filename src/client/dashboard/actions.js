@@ -13,7 +13,6 @@ import {jsonapiCursor} from '../state';
 import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 import capabilityCheck from '../lib/capabilitycheck';
-import checkArmory from '../lib/checkarmory';
 import leadershipCheck from '../lib/leadershipcheck';
 import maxAgentsCheck from '../lib/maxagentscheck';
 import maxMissionsCheck from '../lib/maxmissionscheck';
@@ -275,7 +274,7 @@ export function hireAgent(specialist, rank) {
   const agent = noDoubleAgents(agents.toJS(), rank, specialist);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
   const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
-  const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (checkArmory() ? 1 : 0);
+  const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (jsonapiCursor(['agentinarmory']) ? 1 : 0);
 
   const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
   const agentPrice = agentPriceList[rank];

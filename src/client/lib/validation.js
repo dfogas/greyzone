@@ -1,5 +1,6 @@
 /*
   Simple serial "one by one" sync/async promises based validation.
+  BML: false
 */
 import Promise from 'bluebird';
 import React from 'react';

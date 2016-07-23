@@ -5,6 +5,7 @@
   3) per business logic and datatype set item on path in storage
     a) konvert to plain JS if immutable (?contested)
     b) JSON stringify the saved item
+  TODO: finish it, probably with some imported library
 */
 
 const saveToStorage = function(item, path, storage) {

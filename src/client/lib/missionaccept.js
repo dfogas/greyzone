@@ -2,6 +2,7 @@
   tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) ImmutableList(missions), countryList([Country])) -> JSObject(Mission)
   options mohou být forcefail, randomizeresults
   TODO: refactor
+  BML: true
 */
 
 import randomInt from './getrandomint';

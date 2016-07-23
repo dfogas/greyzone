@@ -1,6 +1,8 @@
 /* ImmutableList(enhancements) ImmutableList(enhancementsList) -> ImmutableMap(enhancement) or null
   takes list of enhancements that player owns and returns enhancement that agents' training
-  can be upgraded to or null if it has been maxed out already */
+  can be upgraded to or null if it has been maxed out already
+  BML: true
+*/
 
 import immutable from 'immutable';
 

@@ -1,5 +1,8 @@
 // taken from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-// String URL(also string) -> Value of query parameter(also string)
+/*
+  String(name of url query value) String(URL) -> String(url query value)
+  BML: false
+*/
 
 function getParameterByName(name, url) {
   if (!url)

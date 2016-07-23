@@ -3,6 +3,8 @@
   no comments whatsoever
   state seems to extending EventEmitter
   looks like Java code
+  actually written by Dan Steigerwald, it's probably how he learned it to be done
+  BML: false
 */
 import EventEmitter from 'eventemitter3';
 import immutable from 'immutable';

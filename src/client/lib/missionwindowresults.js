@@ -1,5 +1,6 @@
 /* ImmutableMap(jsonapi)-> JS function expression
   in order to make displaying results of mission composable
+  BML: true
 */
 
 import uuid from './guid';

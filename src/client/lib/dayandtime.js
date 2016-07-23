@@ -1,5 +1,8 @@
 /*
-  Number -> String
+  Number Number(minutes) -> String
+  from Unix time transfomrs to GMT time in certain format see example
+  probably stolen
+  BML: false
 */
 
 export default function dayandtime(ts, tz) {

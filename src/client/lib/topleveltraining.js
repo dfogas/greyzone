@@ -1,4 +1,7 @@
-/* ImmutableList -> String */
+/* ImmutableList -> String
+  Returns name of level of leadership(training) of organization
+  BML: true
+*/
 
 function topLevelTraining(enhancements) {
   const enhancementnames = enhancements.filter(enh => enh.get('type') === 'leadership').map(enh => enh.get('name'));

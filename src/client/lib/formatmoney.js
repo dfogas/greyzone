@@ -5,6 +5,8 @@
   2nd je číslo udávající počet desetinných míst, zpravidla 0
   3rd oddělovač, desetinná čárka
   4th oddělovač, tisíce
+  stolen on SO
+  BML: false
 */
 
 export default function formatMoney(num, c, d, t) {

@@ -1,4 +1,8 @@
-/* JSObject -> JSObject */
+/* JSObject -> JSObject
+  randomize results of missions
+  TODO: need to expand on this
+  BML: true
+*/
 import getRandomInt from '../lib/getrandomint';
 
 function randRes(mission) {

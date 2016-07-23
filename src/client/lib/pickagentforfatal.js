@@ -1,4 +1,7 @@
-/* ImmutableList(agents) => Number(index of picked agent) */
+/* ImmutableList(agents) => Number(index of picked agent)
+  TODO: this should be rewritten to return agent
+  BML: true
+*/
 import randomInt from './getrandomint';
 
 function pickAgentForFatal(agents) {

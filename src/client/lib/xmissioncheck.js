@@ -27,7 +27,10 @@ import PrisonBreak from '../../server/lib/greyzone/missions/prison.break';
 // import SecretInvestigation from '../../server/lib/greyzone/missions/secret.investigation';
 import SilenceWitness from '../../server/lib/greyzone/missions/silence.witness';
 
-// Array -> Array
+/* Array -> Array
+  this is relic and used by debug now for focus (determining focus lib as well)
+  BML: true
+*/
 function xmissioncheck(enhancementsnames, MissionsList) {
   let missionsList;
   missionsList = MissionsList;

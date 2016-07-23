@@ -1,6 +1,8 @@
 /* ImmutableMap (enhancement) => Boolean
   produces either true if enhancement is exclusive or
-  false if it is not exclusive */
+  false if it is not exclusive
+  BML: true
+   */
 
 import EnhancementsList from '../../server/lib/greyzone/enhancement.list';
 

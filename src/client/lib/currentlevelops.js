@@ -1,5 +1,7 @@
 /* ImmutableList(enhancements) -> ImmutableMap(enhancement)
-  takes list of enhancements that player owns and returns enhancement that has the highest level and is of capability type */
+  takes list of enhancements that player owns and returns enhancement that has the highest level and is of capability type
+  BML: true
+  */
 import immutable from 'immutable';
 
 function currentLevelOps(enhancements, list) {

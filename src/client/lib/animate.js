@@ -1,3 +1,10 @@
+/*
+  DOMElement, String, String, Number, Number, Number
+  mutates DOM
+  stolen
+  TODO: get rid of it, perhaps keep for amusement purposes
+*/
+
 function animate(elem, style, unit, from, to, time) {
   if (!elem) return;
   var start = new Date().getTime(),

@@ -1,5 +1,7 @@
 /* eslint no-unused-expressions: 1, no-undefined: 1 */
-/* ImmutableList(dices) ImmutableList(actions) -> Number(Probability) */
+/* ImmutableList(dices) ImmutableList(actions) -> Number(Probability)
+  BML: true
+*/
 import oneInSix from './oneinsix';
 import twoInSix from './twoinsix';
 

@@ -1,21 +1,7 @@
-// [Action] [Dice]-> Boolean;
-// where Action is Name(String) Type(String) ImgSrc(String)
-// and Dice is Name(String) Type(String)
+/* [Action] [Dice]-> Boolean;
+  BML: true
+*/
 import R from 'ramda';
-//
-// var testactions = [
-//   {name: 'tap', type: 'electronics', imgsrc: 'john'},
-//   {name: 'improv', type: 'electronics', imgsrc: 'ladida'},
-//   {name: 'improv', type: 'operations', imgsrc: 'blueeffect'}
-// ];
-// var testdices = [
-//   {name: 'tap', type: 'electronics'},
-//   {name: 'improv', type: 'electronics'},
-//   {name: 'improv', type: 'operations'},
-//   {name: 'pursuit', type: 'operations'},
-//   {name: 'fail', type: 'operations'}
-// ];
-// //
 
 const canCompleteTask = function(actions, dices) {
   // return R.without(actions.map(action => { return {name: action.name, type: action.type}}), dices).length <= dices.length - actions.length;
