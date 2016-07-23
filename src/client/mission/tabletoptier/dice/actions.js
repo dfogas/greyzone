@@ -1,5 +1,6 @@
 import {dispatch} from '../../../dispatcher';
 import setToString from '../../../lib/settostring';
+import Sound from '../../../lib/sound';
 import {jsonapiCursor} from '../../../state';
 
 export function create(dice) {
@@ -29,6 +30,8 @@ export function protectiveGearUse(dices) {
 }
 
 export function rollAll() {
+  const mySound = new Sound('../../../assets/audio/diceInHand.ogg');
+  mySound.play();
   dispatch(rollAll, {message: 'all dices rolled'});
 }
 

@@ -70,7 +70,7 @@ export function passMission(mission) {
 
 export function pushGameMission(mission) {
   const missions = jsonapiCursor(['missions']);
-  if (missions.indexOf(immutable.fromJS(mission)) === -1)
+  if (!missions.find(item => item.get('id') === mission.id))
     dispatch(pushGameMission, {mission});
 }
 

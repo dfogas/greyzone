@@ -20,6 +20,7 @@ import AgentClock from './agent.clock.react';
 class AgentCard extends Component {
   agentGetRank() {
     const {agent, agentindex} = this.props;
+    console.log('get rank');
     agentsActions.getRank(agent, agentindex);
   }
 
