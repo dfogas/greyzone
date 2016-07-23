@@ -30,7 +30,7 @@ class AgentCard extends Component {
   dismissAgent() {
     const {agent, jsonapi} = this.props;
     const agents = jsonapi.get('agents');
-    const agentondisplay = jsonapi.get('agentondisplay');
+    const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
     const agentondisplayindex = agents.indexOf(agents.find(agent => agent.get('id') === agentondisplay.get('id')));
     dashboardActions.dismissAgent(agent);
     dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
@@ -66,7 +66,7 @@ class AgentCard extends Component {
     const rankup = shouldHaveRank(agent.get('experience'), trainingtable) >= agent.get('rank') ? true : false;
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
-    const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay']).get('id');
+    const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay', 'id']);
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
     const selfIsNotInPrison = self ? !self.get('prison') : false;
 
@@ -141,7 +141,7 @@ class AgentCard extends Component {
           <button
             className='dismiss-agent-button'
             onClick={(e) => dashboardActions.postponeRescue(agent)}>Not now!</button>}
-        {trainingtable && agentIsOnDisplay &&
+        {trainingtable && agentIsOnDisplay && this.props.isShowcased &&
           <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
         {agentequipments.map((agentequipment, i) => {
           return (

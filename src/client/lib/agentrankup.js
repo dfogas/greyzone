@@ -1,4 +1,5 @@
 const getRandomSkill = require('./getrandomskill');
+const getPrimarySkill = require('./getprimaryskill');
 
 /* ImmutableList(TrainingTable) Number Immutable.Map(Agent) => Object(rankupSpecs)
   it determines whether agent should get equipment or statSkill up and control
@@ -20,6 +21,10 @@ function agentRankup(trainingtable, maxSkill, agent) {
     ruo.equipment = true;
   if (operationsSkill + electronicsSkill + stealthSkill < trainingtable.getIn([agent.get('rank'), 'statstotal']))
     ruo.skill = getRandomSkill(maxSkill, {operationsSkill, electronicsSkill, stealthSkill});
+
+  // check for primary skill
+  if (agent.get(ruo.skill) + 1 > agent.get(getPrimarySkill(agent)))
+    ruo.skill = agent.get(getPrimarySkill(agent));
 
   return ruo;
 }
