@@ -34,7 +34,7 @@ class CountryOfOperation extends Component {
           value={jsonapi.getIn(['dashboard', 'countryofoperation']) || 'Operating In ..'}
           />
           <div className='country-obscurity-counter'>
-            Obscurity {jsonapi.getIn(['countrystats', countryOfOperationIndex, 'obscurity'])}
+            Obscurity {Math.round10(jsonapi.getIn(['countrystats', countryOfOperationIndex, 'obscurity']), -2)}
           </div>
       </div>
     );

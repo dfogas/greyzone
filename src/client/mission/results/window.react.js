@@ -25,6 +25,7 @@ class MissionResultsWindow extends Component {
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const agentKIA = activemission.get('agentsonmission').find(agent => agent.get('KIA'));
     const agentPrison = activemission.get('agentsonmission').find(agent => agent.get('prison'));
+    const damageprotocol = activemission.get('equipmenteffects').get('damageprotocol');
     const result = activemission.get('result');
     const rewards = activemission.get('rewards');
     const losses = activemission.get('losses');
@@ -43,7 +44,7 @@ class MissionResultsWindow extends Component {
             <p>{
               `${activemission.get('agentsonmission').get(0).get('name')} escaped the pursuers.`
             }</p>}
-          {activemission.get('tag') === 'discovered' && result === 'fail' &&
+          {activemission.get('tag') === 'discovered' && result === 'fail' && !damageprotocol &&
             <p>{
               `${activemission.get('agentsonmission').get(0).get('name')} got caught.`
             }</p>}
@@ -66,7 +67,7 @@ class MissionResultsWindow extends Component {
           </p>
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentImprisoned')) &&
             <li className='mission-result-fatal'>{`Agent ${agentPrison.get('name')} has been imprisoned.`}</li>}
-          {(result === 'fail' && losses.keySeq().find(key => key === 'agentImprisoned')) &&
+          {!damageprotocol && (result === 'fail' && losses.keySeq().find(key => key === 'agentImprisoned')) &&
             <li className='mission-result-fatal'>{`Agent ${agentPrison.get('name')} has been imprisoned.`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentKilled')) &&
             <li className='mission-result-fatal'>{`Agent ${agentKIA.get('name')} has been killed.`}</li>}

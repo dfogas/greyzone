@@ -30,17 +30,17 @@ class PlayersWindow extends Component {
       $('#DashboardScreen').append(msg('tutorial.dashboardScreen'));
   }
 
-  playerDoesNotGoOnMissions() {
-    const {jsonapi} = this.props;
-    const agents = jsonapi.get('agents');
-    const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
-    dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
-    dashboardActions.playerDoesNotGoOnMissions();
-  }
-
-  playerGoesOnMissions() {
-    dashboardActions.playerGoesOnMissions();
-  }
+  // playerDoesNotGoOnMissions() {
+  //   const {jsonapi} = this.props;
+  //   const agents = jsonapi.get('agents');
+  //   const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
+  //   dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
+  //   dashboardActions.playerDoesNotGoOnMissions();
+  // }
+  //
+  // playerGoesOnMissions() {
+  //   dashboardActions.playerGoesOnMissions();
+  // }
 
   render() {
     const {game, jsonapi} = this.props;
@@ -65,7 +65,7 @@ class PlayersWindow extends Component {
                 key={uuid() + 'playeragent'}
               />}
           </div>}
-        {!playerAgentIsActive &&
+        {/*!playerAgentIsActive &&
           <button
             id='PlayerAgentActionableButton'
             onClick={this.playerGoesOnMissions}
@@ -74,7 +74,7 @@ class PlayersWindow extends Component {
           <button
             id='PlayerAgentActionableButton'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
-            >Dont go on Missions</button>}
+            >Dont go on Missions</button>*/}
         <div id='PlayerLiquidResources'>
           <span className='gameCash-counter'>
             Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$

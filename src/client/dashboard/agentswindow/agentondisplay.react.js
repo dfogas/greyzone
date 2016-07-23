@@ -36,8 +36,6 @@ class AgentOnDisplay extends Component {
             game={game}
             isShowcased={true}
             jsonapi={jsonapi}
-            self={self}
-            trainingtable={trainingtable}
             />}
       </div>
     );

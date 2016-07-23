@@ -3,6 +3,7 @@ const profilePics = {
     '../../assets/img/agents/operative/operative2_128.jpg',
     '../../assets/img/agents/operative/operative3_128.jpg',
     '../../assets/img/agents/operative/operative4_128.jpg',
+    '../../assets/img/agents/operative/operative5_128.jpg',
     '../../assets/img/agents/operative/sanya_128.jpg'
   ],
   spy: [
@@ -16,5 +17,6 @@ const profilePics = {
     '../../assets/img/agents/technician/miyako_128.jpg'
   ]
 };
+//
 
 export default profilePics;

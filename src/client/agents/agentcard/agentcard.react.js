@@ -5,6 +5,8 @@ import Component from '../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
 import immutable from 'immutable';
+import allAgents from '../../lib/allagents';
+import selfIsDisplayed from '../../lib/selfisdisplayed';
 import {msg} from '../../intl/store';
 import shouldHaveRank from '../../lib/shouldhaverank';
 import uuid from '../../lib/guid';
@@ -43,14 +45,30 @@ class AgentCard extends Component {
     dashboardActions.selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
   }
 
+  playerDoesNotGoOnMissions() {
+    const {jsonapi} = this.props;
+    const agents = jsonapi.get('agents');
+    const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
+    console.log('player hide');
+    dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
+    dashboardActions.playerDoesNotGoOnMissions();
+  }
+
+  playerGoesOnMissions() {
+    dashboardActions.playerGoesOnMissions();
+  }
+
   render() {
-    const {agent, agentindex, equipments, game, jsonapi, key, self} = this.props;
+    const {agent, agentindex, equipments, game, jsonapi, key} = this.props;
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
+    const self = jsonapi.get('self');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
     const rankup = shouldHaveRank(agent.get('experience'), trainingtable) >= agent.get('rank') ? true : false;
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
     const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay']).get('id');
+    const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
+    const selfIsNotInPrison = self ? !self.get('prison') : false;
 
     const classString = classnames(
       'agent-card', {
@@ -102,6 +120,15 @@ class AgentCard extends Component {
           isShowcased={this.props.isShowcased}
           self={self}
           />
+        {!playerAgentIsActive && self.get('id') === agent.get('id') &&
+          <button
+            id='ActivateSelf'
+            onClick={(e) => dashboardActions.playerGoesOnMissions()}>Activate</button>}
+        {playerAgentIsActive && selfIsDisplayed(jsonapi) && selfIsNotInPrison && self.get('id') === agent.get('id') &&
+          <button
+            id='HideSelf'
+            onClick={this.playerDoesNotGoOnMissions.bind(this)}
+            >Hide</button>}
         {(agent.get('prison') && !beingsaved) &&
           <button
             className='save-agent-button'
