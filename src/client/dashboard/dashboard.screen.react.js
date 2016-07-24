@@ -101,7 +101,10 @@ class DashboardScreen extends Component {
         {(!jsonapi.get('self') || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
           <ScreenPlastic />}
         {!jsonapi.get('self') &&
-          <PlayerAgentChoose />}
+          <PlayerAgentChoose
+            game={game}
+            jsonapi={jsonapi}
+            />}
         {!jsonapi.getIn(['campaigns', 'selection', 'done']) &&
           <PlayerCampaignChoose
             campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}

@@ -1,10 +1,7 @@
 import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
-// import getRandomSkill from '../lib/getrandomskill';
 import dayandtime from '../lib/dayandtime';
-// import uuid from '../lib/guid';
-
 import * as agentsActions from './actions';
 import * as dashboardActions from '../dashboard/actions';
 
@@ -31,7 +28,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], data.agent)
         .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.agent)))
-        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(data.dices))
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], data.dices)
         .setIn(['activemission', 'log'], 'Agent has been assigned to task.');
     });
 

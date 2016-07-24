@@ -1,1 +1,1 @@
-// import agentRankup from '../agentrankup';
+import agentRankup from '../agentrankup';

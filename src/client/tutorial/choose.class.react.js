@@ -10,6 +10,7 @@ class AgentChoose extends Component {
   }
 
   render() {
+    // const {game, jsonapi} = this.props;
     return (
       <div id="PlayerChoosesAgentClass">
         <p>You have done special tasks in the past, what they were more like?</p>
@@ -26,5 +27,9 @@ class AgentChoose extends Component {
     );
   }
 }
+
+AgentChoose.propTypes = {
+  
+};
 
 export default AgentChoose;

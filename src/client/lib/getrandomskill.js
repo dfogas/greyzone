@@ -4,9 +4,9 @@
   using default Math.random to determine which skill we increase, when agent ranks up
   BML: true
 */
-var getRandomSkill = function(maximum, skills) {
+const getRandomSkill = function(maximum, skills) {
   if (typeof maximum !== 'number')
-    throw new TypeError('Number expected, ' + (typeof max) + ' passed.');
+    throw new TypeError('Number expected, ' + (typeof maximum) + ' passed.');
   if (typeof skills !== 'object')
     throw new TypeError('JS object expected, ' + (typeof skills) + ' passed.');
   var random = Math.random();
@@ -16,7 +16,7 @@ var getRandomSkill = function(maximum, skills) {
       return prev;
     else
       return curr;
-  }, 0) === maximum;
+  }, 0) >= maximum;
 
   if (!isSkillMaxed) {
     if (random <= 0.34)
@@ -38,4 +38,4 @@ var getRandomSkill = function(maximum, skills) {
   else return 'electronicsSkill';
 };
 
-module.exports = getRandomSkill;
+export default getRandomSkill;

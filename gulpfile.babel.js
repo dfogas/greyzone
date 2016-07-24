@@ -57,6 +57,11 @@ gulp.task('lib-server', () => {
     .pipe(mocha({reporter: 'nyan'}));
 });
 
+gulp.task('lib-client', () => {
+  return gulp.src('./src/client/lib/test/*.*', {read: false})
+    .pipe(mocha({reporter: 'nyan'}));
+});
+
 gulp.task('api', (done) => {
   runSequence('env', 'apitest', done);
 });

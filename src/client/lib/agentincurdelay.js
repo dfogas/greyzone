@@ -1,6 +1,6 @@
 /*
-  part of game mechanism where player is booked time costs related to equipment use
   immutableMap(Agent) immutableMap(Equipment) Number(timeinms) -> Number(ETA)
+  part of game mechanism where player is booked time costs related to equipment use
   ETA in UNIX time
   intent of this function is to detect whether equipment in question is heavy
   and agent specialization then check actual delay and based on that

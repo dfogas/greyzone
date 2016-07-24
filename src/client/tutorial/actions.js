@@ -1,12 +1,13 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import {jsonapiCursor} from '../state';
+import {gameCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import actiondices from '../lib/actiondices';
 import EquipmentList from '../../server/lib/greyzone/equipments.list';
 import FirstMission from '../../server/lib/greyzone/missions/tutorial/first.mission';
 import Sanya from '../../server/lib/greyzone/agents/sanya.agent';
 import Miyako from '../../server/lib/greyzone/agents/miyako.agent';
+import Agent from '../../server/lib/greyzone/agents.generator';
 
 export function campaignIntroViewed(campaignname) {
   dispatch(campaignIntroViewed, {campaignname});
@@ -44,7 +45,8 @@ export function firstMissionDone() {
 }
 
 export function playerChoseAgentClass(agentclass) {
-  dispatch(playerChoseAgentClass, {agentclass});
+  const playersAgent = Agent(agentclass, 3, gameCursor(['globals', 'trainingtable']));
+  dispatch(playerChoseAgentClass, {agent: immutable.fromJS(playersAgent)});
 }
 
 export function toggleCampaign(name, value) {

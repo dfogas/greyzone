@@ -1,15 +1,16 @@
-/* String(AgentClass) Number(AgentRank) -> JS Object(Agent) */
+/* String(AgentClass) Number(AgentRank) ImmutableList -> JS Object(Agent) */
 
 import generateName from './name.generator';
 import generateCountry from './origin.generator';
 import generateImage from './image.generator';
 import generateEquipments from './generateequipments';
 import getRandomSkill from '../../../client/lib/getrandomskill';
+import immutable from 'immutable';
 import personality from './personality';
-import trainingtable from './trainingtable';
+// import trainingtable from './trainingtable';
 import uuid from '../../../client/lib/guid';
 
-let Agent = function(character, rank) {
+let Agent = function(character, rank, trainingtable) {
   let operationsSkill = 1,
       electronicsSkill = 1,
       stealthSkill = 1;
@@ -23,7 +24,7 @@ let Agent = function(character, rank) {
   if (character === 'spy')
     stealthSkill += 3;
 
-  for (let i = 6; i < trainingtable[rank - 1].statstotal; i += 1) {
+  for (let i = 6; i < trainingtable.get(rank - 1).get('statstotal'); i += 1) {
     let randomSkill = getRandomSkill(7, {operationsSkill, electronicsSkill, stealthSkill});
     if (randomSkill === 'operationsSkill')
       operationsSkill += 1;
@@ -43,13 +44,13 @@ let Agent = function(character, rank) {
     electronicsSkill: electronicsSkill,
     stealthSkill: stealthSkill,
     missionsDone: [],
-    equipments: generateEquipments(trainingtable[rank - 1].slots),
+    equipments: generateEquipments(trainingtable.get(rank - 1).get('slots')),
     KIA: false,
     loyalty: 'normal',
     prison: false,
-    experience: trainingtable[rank - 1].xp,
+    experience: trainingtable.get(rank - 1).get('xp'),
     rank: rank,
-    equipmentSlots: trainingtable[rank - 1].slots,
+    equipmentSlots: trainingtable.get(rank - 1).get('slots'),
     ETA: 0,
     personality: personality()
   };

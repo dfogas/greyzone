@@ -1,14 +1,15 @@
-/* ImmutableMap(Agent) ImmutableList(Task) -> JSArray(Dices) */
+/* ImmutableMap(Agent) ImmutableList(Task) -> ImmutableList(Dices) */
 /* použito při assignování agenta k tasku */
 /* TODO: přepsat na výstup do ImmutableList of dices */
 /* BML: true */
+import immutable from 'immutable';
 import uuid from './guid';
 
 function actionDices(agent, task) {
   let actiontypes = [];
 
   if (task)
-    actiontypes = task.toSeq().map(action => action.get('type'), actiontypes).toArray();
+    actiontypes = task.toSeq().map(action => action.get('type'), actiontypes).toList();
 
   let taskhasOperations = actiontypes.indexOf('operations');
   let taskhasElectronics = actiontypes.indexOf('electronics');
@@ -26,7 +27,7 @@ function actionDices(agent, task) {
     for (i = 0; i < agent.get('stealthSkill'); i += 1)
       actdices.push({type: 'stealth', name: 'fail', dicekey: uuid() + 'dice'});
 
-  return actdices;
+  return immutable.fromJS(actdices);
 }
 
 export default actionDices;

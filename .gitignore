@@ -4,6 +4,7 @@
 1508390
 bower_components
 build
+src/client/lib/test
 coverage
 dist
 docs
