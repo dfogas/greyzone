@@ -3,14 +3,14 @@ import * as agentsActions from '../actions';
 import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
-import agentTalk from '../../lib/agenttalk';
 import {msg} from '../../intl/store';
 import immutable from 'immutable';
 
 class AgentProfile extends Component {
   agentTalk() {
-    const {agent} = this.props;
-    agentsActions.agentTalking(agent);
+    const {agent, agentondisplay, isDisplay} = this.props;
+    if (agent.get('id') === agentondisplay.get('id') && isDisplay)
+      agentsActions.agentTalking(agent);
   }
 
   render() {
@@ -54,7 +54,9 @@ class AgentProfile extends Component {
 AgentProfile.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map),
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
+  agentondisplay: React.PropTypes.instanceOf(immutable.Map),
   imgsrc: React.PropTypes.string,
+  isDisplay: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
   self: React.PropTypes.instanceOf(immutable.Map)
 };

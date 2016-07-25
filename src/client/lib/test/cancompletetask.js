@@ -1,5 +1,6 @@
+/* Covered */
 import canCompleteTask from '../cancompletetask';
-import chai, {expect} from 'chai';
+import {expect} from 'chai';
 
 var testactions = [
   {name: 'tap', type: 'electronics', imgsrc: 'john'},
@@ -21,8 +22,8 @@ var testdices2 = [
   {name: 'fail', type: 'operations'}
 ];
 
-describe('can complete task', () => {
-  it('tests some situations and resolves them correctly', () => {
+describe('can complete task', () => {// eslint-disable-line no-undef
+  it('tests some situations and resolves them correctly', () => {// eslint-disable-line no-undef
     expect(canCompleteTask(testactions, testdices1)).to.be.a('boolean');
     expect(canCompleteTask(testactions, testdices1)).to.equal(true);
     expect(canCompleteTask(testactions, testdices2)).to.equal(false);

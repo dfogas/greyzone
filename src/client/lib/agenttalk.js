@@ -40,8 +40,7 @@ const agentTalk = function(agent, self) {
       return 'tired.cheeky';
     else
       return 'tired.evasive';
-  }
-  else {
+  } else {
     let chance = Math.random();
     if (chance < 0.35)
       return 'intimate';

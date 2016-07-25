@@ -2,7 +2,7 @@ import './enhancement.talk.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
 
 import EnhancementTalkAcknowledgement from './enhancement.talk.acknowledgement.react';
 import EnhancementTalkChoice from './enhancement.talk.choice.react';

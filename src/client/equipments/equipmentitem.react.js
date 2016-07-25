@@ -6,7 +6,6 @@ import equipmentEnhancement from '../lib/equipmentenhancement';
 import toyIsAvailable from '../lib/toyisavailable';
 import immutable from 'immutable';
 
-import EquipmentStockCounter from './equipmentstockcounter.react';
 import EquipmentStockItem from './equipmentstockitem.react';
 import FacilityUpgradeDialog from '../agents/facility.upgrade.dialog.react';
 
@@ -42,12 +41,6 @@ class EquipmentItem extends Component {
           available={isAvailable}
           equipment={equipment}
           />
-        {/*<EquipmentStockCounter
-          available={isAvailable}
-          name={equipment.get('name')}
-          price={equipment.get('price')}
-          quantity={equipment.get('quantity')}
-          />*/}
         <div className='equipment-count'>
           {equipment.get('quantity')}
         </div>
@@ -57,20 +50,6 @@ class EquipmentItem extends Component {
             owned={isAvailable}
             paying={paying}
             />}
-        {/*isAvailable &&
-          <input
-            className='equipment-buy-btn'
-            onClick={this.buy.bind(this)}
-            type='button'
-            value='Buy'
-          />*/}
-        {/*isAvailable &&
-          <input
-            className='equipment-sell-btn'
-            onClick={this.sell.bind(this)}
-            type='button'
-            value='Sell'
-          />*/}
         {equipment.get('heavy') &&
           <div
             className='heavy-equipment-tag'>Heavy</div>
@@ -83,9 +62,10 @@ class EquipmentItem extends Component {
 EquipmentItem.propTypes = {
   enhancements: React.PropTypes.instanceOf(immutable.List),
   equipment: React.PropTypes.instanceOf(immutable.Map),
-  key: React.PropTypes.string,
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
+  key: React.PropTypes.string,
   list: React.PropTypes.instanceOf(immutable.List),
+  paying: React.PropTypes.instanceOf(immutable.Map),
   stock: React.PropTypes.string
 };
 

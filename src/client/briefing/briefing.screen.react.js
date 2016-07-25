@@ -1,5 +1,5 @@
 import './briefing.screen.styl';
-import * as briefingActions from './actions';
+// import * as briefingActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import DocumentTitle from 'react-document-title';
@@ -37,7 +37,7 @@ class BriefingScreen extends Component {
   render() {
     const {game, jsonapi, pendingActions} = this.props;
     const agents = jsonapi.get('agents');
-    const briefingmessage = jsonapi.getIn(['briefing', 'message']);
+    // const briefingmessage = jsonapi.getIn(['briefing', 'message']);
 
     return (
       <DocumentTitle title={msg('briefing.title')}>
@@ -72,8 +72,8 @@ class BriefingScreen extends Component {
             jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask'])) &&
             <ToMission />}
           <AgentScrollBarWithNavButtons
-            isAgents={true}
             game={game}
+            isAgents={true}
             isBriefing={true}
             isMission={false}
             jsonapi={jsonapi}

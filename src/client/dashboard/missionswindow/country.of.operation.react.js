@@ -3,7 +3,7 @@ import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
 import DropDown from 'react-dropdown-w-react13';
 
 class CountryOfOperation extends Component {

@@ -56,11 +56,8 @@ class EndGameWindow extends Component {
         <hr />
         {options.getIn(['gameend', 'statistics']) &&
           <StatisticsWindow
-            countrystats={countrystats}
-            name={name}
             started={jsonapi.get('started')}
             statistics={statistics}
-            userId={jsonapi.get('userId')}
             />
           }
       </div>

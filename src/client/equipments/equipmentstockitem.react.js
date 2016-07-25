@@ -2,7 +2,7 @@ import * as equipmentActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 class EquipmentStockItem extends Component {
   buy(ev) {

@@ -5,7 +5,7 @@ import React from 'react';
 import immutable from 'immutable';
 import classnames from 'classnames/dedupe';
 import uuid from '../../lib/guid';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
 
 import AgentCard from '../agentcard/agentcard.react';
 
@@ -53,7 +53,7 @@ class AgentScrollBar extends Component {
 
     if (!agents.size && tutorial)
       return (
-        <span id='AgentListPlaceholder'>No agents are present, hire them through Dashboard.</span>
+        <span id='AgentListPlaceholder'>No agents are present.</span>
       );
 
     else if (!agents.size)

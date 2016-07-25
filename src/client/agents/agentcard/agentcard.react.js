@@ -20,7 +20,6 @@ import AgentClock from './agent.clock.react';
 class AgentCard extends Component {
   agentGetRank() {
     const {agent, agentindex} = this.props;
-    console.log('get rank');
     agentsActions.getRank(agent, agentindex);
   }
 
@@ -97,19 +96,16 @@ class AgentCard extends Component {
           agent={agent}
           />
         <AgentStatCounter
-          isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
           skill={agent.get('operationsSkill')}
           skillname="operations"
           />
         <AgentStatCounter
-          isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
           skill={agent.get('electronicsSkill')}
           skillname="electronics"
           />
         <AgentStatCounter
-          isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
           skill={agent.get('stealthSkill')}
           skillname="stealth"
@@ -117,6 +113,8 @@ class AgentCard extends Component {
         <AgentProfile
           agent={agent}
           agentbeingsaved={agentbeingsaved}
+          agentondisplay={jsonapi.getIn(['dashboard', 'agentondisplay'])}
+          isDisplay={this.props.isDisplay}
           isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
           self={self}
@@ -125,7 +123,7 @@ class AgentCard extends Component {
           <button
             id='ActivateSelf'
             onClick={(e) => dashboardActions.playerGoesOnMissions()}>Activate</button>}
-        {playerAgentIsActive && selfIsDisplayed(jsonapi) && selfIsNotInPrison && self.get('id') === agent.get('id') &&
+        {playerAgentIsActive && selfIsDisplayed(jsonapi) && selfIsNotInPrison && self.get('id') === agent.get('id') && this.props.isDisplay &&
           <button
             id='HideSelf'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
@@ -175,11 +173,11 @@ AgentCard.propTypes = {
   equipments: React.PropTypes.instanceOf(immutable.List),
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   isAgents: React.PropTypes.bool,
+  isDisplay: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  key: React.PropTypes.string,
-  self: React.PropTypes.instanceOf(immutable.Map)
+  key: React.PropTypes.string
 };
 
 export default AgentCard;

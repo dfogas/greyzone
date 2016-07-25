@@ -2,13 +2,14 @@ import './agent.experience.bar.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
+import immutable from 'immutable';
 
 class AgentExperienceBar extends Component {
   render() {
     const {agent, game, isShowcased} = this.props;
     const trainingtable = game.getIn(['globals', 'trainingtable']);
-    const expcurr = trainingtable ? trainingtable.getIn([agent.get('rank') - 1, 'xp']) : '';
-    const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
+    const expcurr = trainingtable.getIn([agent.get('rank') - 1, 'xp']);
+    const expnext = trainingtable.getIn([agent.get('rank'), 'xp']);
     const classStringOne = classnames('agent-experience-bar', {
       'showcased': isShowcased
     });
@@ -26,5 +27,11 @@ class AgentExperienceBar extends Component {
     );
   }
 }
+
+AgentExperienceBar.propTypes = {
+  agent: React.PropTypes.instanceOf(immutable.Map),
+  game: React.PropTypes.instanceOf(immutable.Map),
+  isShowcased: React.PropTypes.bool
+};
 
 export default AgentExperienceBar;

@@ -21,10 +21,10 @@ class AgentsWindow extends Component {
 
     return (
       <div id='AgentsWindow'>
-        {/*<AgentHireForm
+        {debug && <AgentHireForm
           agenthire={agenthire}
           agentspricelist={agentspricelist}
-          />*/}
+          />}
         {debug &&
           <AgentsList
             agentbeingsaved={jsonapi.get('agentbeingsaved')}
@@ -38,12 +38,12 @@ class AgentsWindow extends Component {
           agents={agents}
           />}
         {!debug && <AgentOnDisplay
-          agentondisplay={agentondisplay}
           agentbeingsaved={jsonapi.get('agentbeingsaved')}
+          agentondisplay={agentondisplay}
           agents={agents}
           game={game}
+          isDisplay={true}
           jsonapi={jsonapi}
-          self={self}
           />}
         {!debug && <AgentShiftRight
           agentondisplay={agentondisplay}

@@ -28,8 +28,6 @@ class AgentChoose extends Component {
   }
 }
 
-AgentChoose.propTypes = {
-  
-};
+AgentChoose.propTypes = {};
 
 export default AgentChoose;

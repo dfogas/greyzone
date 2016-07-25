@@ -5,8 +5,6 @@ import setToString from '../lib/settostring';
 import immutable from 'immutable';
 import cconfig from '../client.config';
 import CountryList from '../../server/lib/greyzone/country.list';
-import EnhancementList from '../../server/lib/greyzone/enhancement.list';
-import StatusesList from '../../server/lib/greyzone/statuses.list';
 
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
@@ -19,7 +17,6 @@ import maxMissionsCheck from '../lib/maxmissionscheck';
 import missionAccept from '../lib/missionaccept';
 import noDoubleAgents from '../lib/nodoubleagents';
 import getRandomInt from '../lib/getrandomint';
-import xmissioncheck from '../lib/xmissioncheck';
 import $ from 'jquery';
 
 /* Number, String, String, Object */
@@ -28,7 +25,6 @@ export function acceptMission(tier, focus, country, options) {
   const enhancements = jsonapiCursor(['enhancements']).toJS();
   const missionsList = gameCursor(['globals', 'missions']);
   const mission = missionAccept(tier, focus, country, options, enhancements, CountryList, missionsList);
-  const missions = jsonapiCursor(['missions']);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
 
   // const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
@@ -46,8 +42,6 @@ export function acceptMission(tier, focus, country, options) {
 
 function acceptSpecifiedMission(mission) {
   const enhancements = jsonapiCursor(['enhancements']);
-  const capabilities = enhancements.filter(enh => enh.get('type') === 'capability').map(enh => enh.get('name'));
-  const missions = jsonapiCursor(['missions']);
 
   if (!maxMissionsCheck(jsonapiCursor()))
     flashDashboard('Missions limit reached, upgrade your operations.');
@@ -273,8 +267,6 @@ export function hireAgent(specialist, rank) {
   const agents = allAgents(jsonapiCursor()).indexOf(self) !== -1 ? allAgents(jsonapiCursor()).push(self) : allAgents(jsonapiCursor());
   const agent = noDoubleAgents(agents.toJS(), rank, specialist);
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
-  const capabilityNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'capability').map(enh => enh.name);
-  const totalAgents = jsonapiCursor(['agents']).size + jsonapiCursor(['activemission', 'agentsonmission']).size + (jsonapiCursor(['agentinarmory']) ? 1 : 0);
 
   const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
   const agentPrice = agentPriceList[rank];

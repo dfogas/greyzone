@@ -5,8 +5,8 @@ import immutable from 'immutable';
 
 class StatisticsWindow extends Component {
   render() {
-    // TODO: after statistics are displayed do the displaying of them
-    const {countrystats, name, started, statistics, userId} = this.props;
+    // TODO: after statistics are displayed do the displaying of them ?? WHAT??
+    const {started, statistics} = this.props;
     return (
       <div id="StatisticsWindow">
         <div>Started playing on: {JSON.stringify(new Date(started))}</div>
@@ -26,11 +26,8 @@ class StatisticsWindow extends Component {
 }
 
 StatisticsWindow.propTypes = {
-  countrystats: React.PropTypes.instanceOf(immutable.Map),
-  name: React.PropTypes.string,
   started: React.PropTypes.number,
-  statistics: React.PropTypes.instanceOf(immutable.Map),
-  userId: React.PropTypes.string
+  statistics: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default StatisticsWindow;

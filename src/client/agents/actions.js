@@ -2,7 +2,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import {gameCursor} from '../state';
-import {msg} from '../intl/store';
+// import {msg} from '../intl/store';
 
 import actionDices from '../lib/actiondices';
 import agentIncurDelay from '../lib/agentincurdelay';

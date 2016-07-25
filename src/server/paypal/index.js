@@ -1,6 +1,6 @@
-/* eslint curly: 1 */
+/* eslint curly: 0 */
 import paypal from 'paypal-rest-sdk';
-import nuuid from 'node-uuid';
+// import nuuid from 'node-uuid';
 import express from 'express';
 import bodyParser from 'body-parser';
 import config from '../config';
@@ -60,7 +60,7 @@ app.get('/process', (req, res) => {
 
   paypal.payment.execute(paymentId, payerId, (error, payment) => {
     console.log(payment);
-    if(error)
+    if (error)
       console.error(error);
     else {
       let paycase = payment.transactions[0].description.split(',')[0];

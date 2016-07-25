@@ -5,9 +5,8 @@ import generateCountry from './origin.generator';
 import generateImage from './image.generator';
 import generateEquipments from './generateequipments';
 import getRandomSkill from '../../../client/lib/getrandomskill';
-import immutable from 'immutable';
+// import immutable from 'immutable';
 import personality from './personality';
-// import trainingtable from './trainingtable';
 import uuid from '../../../client/lib/guid';
 
 let Agent = function(character, rank, trainingtable) {

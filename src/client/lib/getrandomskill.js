@@ -28,8 +28,7 @@ const getRandomSkill = function(maximum, skills) {
     if (random <= 0.5)
       return 'electronicsSkill';
     else return 'stealthSkill';
-  }
-  else if (skills.electronicsSkill === maximum) {
+  } else if (skills.electronicsSkill === maximum) {
     if (random <= 0.5)
       return 'operationsSkill';
     else return 'stealthSkill';

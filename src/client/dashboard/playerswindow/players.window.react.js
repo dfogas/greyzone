@@ -1,5 +1,5 @@
 import './players.window.styl';
-import * as dashboardActions from '../actions';
+// import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
@@ -8,7 +8,8 @@ import uuid from '../../lib/guid';
 import allAgents from '../../lib/allagents';
 import $ from 'jquery';
 import {msg} from '../../intl/store';
-import selfIsDisplayed from '../../lib/selfisdisplayed';
+import determiningIcon from '../../lib/determiningicon';
+// import selfIsDisplayed from '../../lib/selfisdisplayed';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
 import PlayerAgentsLeadership from './player.agents.leadership.react';
@@ -45,25 +46,19 @@ class PlayersWindow extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const self = jsonapi.get('self');
-    const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
+    const playerAgentIsActive = allAgents(jsonapi).find(agent => agent.get('id') === self.get('id'));
     const tutorial = jsonapi.getIn(['options', 'tutorial']);
     return (
       <div id='PlayersWindow'>
-        {/*<div id='PlayerLabel'>
-          <div id='PlayerName'>
-            {jsonapi.get('name')}
-          </div>
-        </div>*/}
         {!playerAgentIsActive &&
           <div id='PlayerAgentCard'>
-            {self &&
-              <AgentCard
-                agent={self}
-                equipments={self.get('equipments')}
-                game={game}
-                jsonapi={jsonapi}
-                key={uuid() + 'playeragent'}
-              />}
+            <AgentCard
+              agent={self}
+              equipments={self.get('equipments')}
+              game={game}
+              jsonapi={jsonapi}
+              key={uuid() + 'playeragent'}
+              />
           </div>}
         {/*!playerAgentIsActive &&
           <button
@@ -77,11 +72,11 @@ class PlayersWindow extends Component {
             >Dont go on Missions</button>*/}
         <div id='PlayerLiquidResources'>
           <span className='gameCash-counter'>
-            Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
+            {determiningIcon('gameCash')}{formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
           </span>
           <br />
           <span className='gameContacts-counter'>
-            Contacts: {jsonapi.get('gameContacts')}
+            {determiningIcon('gameContacts')}{jsonapi.get('gameContacts')}
           </span>
         </div>
         <PlayerOperationsCapability

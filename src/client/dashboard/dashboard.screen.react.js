@@ -7,7 +7,6 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import allAgents from '../lib/allagents';
 import badEndsCheck from '../lib/badendscheck';
 
 import CampaignIntro from '../tutorial/campaign.intro.react';
@@ -44,7 +43,7 @@ class DashboardScreen extends Component {
     // checky na zabitého či uvězněného/objeveného hráče enda
     if (badEndsCheck(jsonapi) === 'Killed') // player's agent is in agents roster and has KIA status true
       dashboardActions.badEndKilled();
-    else if (badEndsCheck(jsonapi) === 'LeftInPrison') // neplatící hráč nemá šanci se osvobodit, i když má loayálního agenta
+    else if (badEndsCheck(jsonapi) === 'LeftInPrison') // neplatící hráč nemá šanci se osvobodit, když má loayálního agenta
       dashboardActions.badEndLeftInPrison();
     else if (badEndsCheck(jsonapi) === 'Discovered')
       dashboardActions.badEndDiscovered();
@@ -62,7 +61,6 @@ class DashboardScreen extends Component {
 
   render() {
     const {contest, game, jsonapi} = this.props;
-    const allagents = jsonapi.get('agents').concat(jsonapi.getIn(['activemission', 'agentsonmission']));
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']) || 'default';
     const isLoggedIn = !!this.props.viewer;
     const orgname = jsonapi.get('name');
@@ -98,9 +96,9 @@ class DashboardScreen extends Component {
             enhancements={jsonapi.get('enhancements')}
             list={game.getIn(['globals', 'enhancements'])}
             />}
-        {(!jsonapi.get('self') || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
+        {(jsonapi.get('self').get('name') === 'Default Self' || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
           <ScreenPlastic />}
-        {!jsonapi.get('self') &&
+        {jsonapi.get('self').get('name') === 'Default Self' &&
           <PlayerAgentChoose
             game={game}
             jsonapi={jsonapi}

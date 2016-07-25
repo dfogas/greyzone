@@ -4,17 +4,18 @@
 import './agentstatcounter.styl';
 import Component from '../../components/component.react';
 import React from 'react';
+import classnames from 'classnames';
 
 class AgentStatCounter extends Component {
   render() {
     const {skill, skillname} = this.props;
 
-    var classString = '';
-    if (this.props.isShowcased)
-      classString = ' showcased';
+    const classString = classnames('agent-stat-counter', skillname, {
+      'showcased': this.props.isShowcased
+    });
     return (
       <div
-        className={'agent-stat-counter ' + skillname + classString }
+        className={classString}
         >
         {skill}
       </div>

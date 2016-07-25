@@ -2,7 +2,7 @@ import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
 import hashString from '../../lib/hashstring';
-import cconfig from '../../client.config';
+// import cconfig from '../../client.config';
 import $ from 'jquery';
 
 export function changeOption(name, value) {

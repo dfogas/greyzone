@@ -7,8 +7,6 @@ import currentLevelLdr from '../../lib/currentlevelldr';
 import nextLevelLdr from '../../lib/nextlevelldr';
 import dayandtime from '../../lib/dayandtime';
 
-import EnhancementList from '../../../server/lib/greyzone/enhancement.list';
-
 class LeadershipSubCards extends Component {
   upgradeLeadership() {
     const {enhancements, list} = this.props;

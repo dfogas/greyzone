@@ -35,7 +35,12 @@ class MissionTrackingScreen extends Component {
     const missionResult = jsonapi.getIn(['activemission', 'result']);
 
     return (
-      <div id='MissionTrackingScreen'>
+      <div
+        id='MissionTrackingScreen'
+        style={{
+          backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`
+        }}>
+        <div id='MissionScreenDarkener'></div>
         <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>
         <TaskTier
           activemission={jsonapi.get('activemission')}
@@ -60,7 +65,7 @@ class MissionTrackingScreen extends Component {
     );
   }
 }
-
+//
 MissionTrackingScreen.propTypes = {
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
