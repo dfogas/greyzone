@@ -1,6 +1,7 @@
 /* Smart */
 import './dashboard.screen.styl';
 import * as dashboardActions from './actions';
+import * as endGameActions from './endgame/actions';
 // import * as missionActions from '../mission/actions';
 import * as tutorialActions from '../tutorial/actions';
 import Component from '../components/component.react';
@@ -12,7 +13,7 @@ import badEndsCheck from '../lib/badendscheck';
 import CampaignIntro from '../tutorial/campaign.intro.react';
 import DashboardContent from './dashboard.content.react';
 import EndGameWindow from './endgame.window.react';
-import EnhancementTalk from '../agents/agenttalk/enhancement.talk.react';
+import EnhancementTalk from './talk/enhancement.talk.react';
 import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
@@ -42,11 +43,11 @@ class DashboardScreen extends Component {
 
     // checky na zabitého či uvězněného/objeveného hráče enda
     if (badEndsCheck(jsonapi) === 'Killed') // player's agent is in agents roster and has KIA status true
-      dashboardActions.badEndKilled();
+      endGameActions.badEndKilled();
     else if (badEndsCheck(jsonapi) === 'LeftInPrison') // neplatící hráč nemá šanci se osvobodit, když má loayálního agenta
-      dashboardActions.badEndLeftInPrison();
+      endGameActions.badEndLeftInPrison();
     else if (badEndsCheck(jsonapi) === 'Discovered')
-      dashboardActions.badEndDiscovered();
+      endGameActions.badEndDiscovered();
   }
 
   componentWillReceiveProps() {

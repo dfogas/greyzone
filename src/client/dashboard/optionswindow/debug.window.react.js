@@ -1,5 +1,5 @@
 import './debug.window.styl';
-import * as dashboardActions from '../actions';
+import * as optionsActions from './actions';
 import * as missionActions from '../../mission/actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -8,8 +8,8 @@ import {Link} from 'react-router';
 class DebugWindow extends Component {
   sanitize(e) {
     e.preventDefault();
-    dashboardActions.sanitizeAgents(); // checks for null or undefined
-    dashboardActions.sanitizeMissions(); // check for null or undefined
+    optionsActions.sanitizeAgents(); // checks for null or undefined
+    optionsActions.sanitizeMissions(); // check for null or undefined
   }
 
   setDefaultMission() {

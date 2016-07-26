@@ -49,8 +49,12 @@ export function loadGame(game) {
   }
 }
 
-export function startNewGame(jsonapi) {
-  dispatch(startNewGame, jsonapi);
+export function sanitizeAgents() {
+  dispatch(sanitizeAgents, {});
+}
+
+export function sanitizeMissions() {
+  dispatch(sanitizeMissions, {});
 }
 
 export function saveGame(jsonapi, game) {
@@ -60,10 +64,16 @@ export function saveGame(jsonapi, game) {
   $('#SaveGameMessage').hide(3000, () => $('#SaveGameMessage').remove());
 }
 
+export function startNewGame(jsonapi) {
+  dispatch(startNewGame, jsonapi);
+}
+
 setToString('options', {
   changeOption,
   changePaying,
   loadGame,
+  sanitizeAgents,
+  sanitizeMissions,
   saveGame,
   startNewGame
 });

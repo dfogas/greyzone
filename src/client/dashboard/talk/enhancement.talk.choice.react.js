@@ -1,4 +1,4 @@
-import * as dashboardActions from '../../dashboard/actions';
+import * as talkActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -7,12 +7,12 @@ import {FormattedHTMLMessage} from 'react-intl';
 
 class EnhancementTalkChoice extends Component {
   choiceNo() {
-    dashboardActions.closeEnhancementTalk();
+    talkActions.closeEnhancementTalk();
   }
 
   choiceYes() {
     const {dashboard} = this.props;
-    dashboardActions.buyEnhancement(dashboard.get('enhancementtalk'));
+    talkActions.buyEnhancement(dashboard.get('enhancementtalk'));
   }
 
   render() {

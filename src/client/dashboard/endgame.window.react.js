@@ -1,6 +1,6 @@
 /* Smart Component - to be displayed after you click retire */
 import './endgame.window.styl';
-import * as dashboardActions from './actions';
+import * as endGameActions from './endgame/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,7 +11,7 @@ import StatisticsWindow from './statisticswindow/statistics.window.react';
 
 class EndGameWindow extends Component {
   displayStatistics() {
-    dashboardActions.displayGameEndStatistics();
+    endGameActions.displayGameEndStatistics();
   }
 
   render() {

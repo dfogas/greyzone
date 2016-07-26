@@ -25,7 +25,7 @@ function pollingStateToPersistence(jsonapi, nodeEnv) {
     localStorage.setItem(['ghoststruggle', 'statehash'], hashOfState);
 
   if (jsonapi.get('name') !== 'Default' && stateChanged) {
-    console.log('polling to persistance');
+    console.log('polling to persistance'); // eslint-disable-line no-console
     fetch(api + 'players/' + userId, {
       method: 'PUT',
       headers: {'Content-type': 'application/json'},

@@ -3,7 +3,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
-import allAgents from '../lib/allagents';
+// import allAgents from '../lib/allagents';
 import maxAgentsCheck from '../lib/maxagentscheck';
 import obscurityMissionCheck from '../lib/obscuritymissioncheck';
 import Sound from '../lib/sound';
@@ -144,12 +144,12 @@ export function setDefault() {
 export function start() {
   const activemission = jsonapiCursor(['activemission']);
   const countrystats = jsonapiCursor(['countrystats']);
-  const enhancementnames = jsonapiCursor(['enhancements']).map(enh => enh.get('name')).toJS();
+  // const enhancementnames = jsonapiCursor(['enhancements']).map(enh => enh.get('name')).toJS();
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   let mySound = new Sound(url + '/assets/audio/MissionStart.ogg');
 
-  console.log(!maxAgentsCheck(jsonapiCursor()));
-  console.log(activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1);
+  // console.log(!maxAgentsCheck(jsonapiCursor()));
+  // console.log(activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1);
 
   if (!obscurityMissionCheck(activemission, countrystats))
     flashMission(`Obscurity is too low.`);

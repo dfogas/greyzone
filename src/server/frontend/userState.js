@@ -103,7 +103,8 @@ export default function userState() {
       missions: [],
       agents: [],
       equipments: [],
-      countrystats: []
+      countrystats: [],
+      enhancements: []
     };
 
     fetch(api + 'contest/')

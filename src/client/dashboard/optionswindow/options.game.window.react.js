@@ -1,5 +1,5 @@
 import './options.game.window.styl';
-import * as dashboardActions from '../actions';
+import * as endGameActions from '../endgame/actions';
 import * as optionsActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -20,7 +20,7 @@ class OptionsGameWindow extends Component {
 
   retireGame() {
     // alert('Retired. Organization ends. Should be available after certain missions and certain cash. Probably as one achievement.');
-    dashboardActions.retireGame();
+    endGameActions.retireGame();
   }
 
   saveGameOne() {

@@ -1,4 +1,4 @@
-import * as dashboardActions from '../actions';
+import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,7 +10,7 @@ class PlayerAgentsLeadership extends Component {
     return (
       <div
         id='PlayerAgentsLeadership'
-        onClick={(e) => dashboardActions.trainingUpgradeDialogToggle()}>
+        onClick={(e) => talkActions.trainingUpgradeDialogToggle()}>
         Agents: {topLevelTraining(jsonapi.get('enhancements'))}
       </div>
     );

@@ -1,4 +1,4 @@
-import * as dashboardActions from '../dashboard/actions';
+import * as talkActions from '../dashboard/talk/actions';
 import * as equipmentActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -19,7 +19,7 @@ class EquipmentItem extends Component {
     const {equipment, jsonapi, list} = this.props;
     const enhancement = equipmentEnhancement(equipment, list);
     if (!jsonapi.getIn(['dashboard', 'facilityUpgradeDialog']))
-      dashboardActions.facilityUpgradeDialog(enhancement);
+      talkActions.facilityUpgradeDialog(enhancement);
   }
 
   sell() {

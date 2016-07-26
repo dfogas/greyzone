@@ -1,5 +1,6 @@
 import './training.upgrade.dialog.styl';
 import * as dashboardActions from '../actions';
+import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import currentLevelLdr from '../../lib/currentlevelldr';
@@ -12,7 +13,7 @@ class TrainingUpgradeDialog extends Component {
     const {enhancements, list} = this.props;
     const nextlevel = nextLevelLdr(enhancements, list);
     dashboardActions.upgradeEnhancement(nextlevel);
-    dashboardActions.trainingUpgradeDialogToggle();
+    talkActions.trainingUpgradeDialogToggle();
   }
 
   render() {
@@ -36,7 +37,7 @@ class TrainingUpgradeDialog extends Component {
         <br />
         <br />
         <button id='TrainingUpgradeYes' onClick={this.upgradeEnhancement.bind(this)}>Yes</button>
-        <button id='TrainingUpgradeNo' onClick={(e) => dashboardActions.trainingUpgradeDialogToggle()}>No</button>
+        <button id='TrainingUpgradeNo' onClick={(e) => talkActions.trainingUpgradeDialogToggle()}>No</button>
       </div>
     );
   }

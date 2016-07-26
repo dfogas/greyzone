@@ -8,16 +8,18 @@
   BML: true
 */
 
+import immutable from 'immutable';
+
 /* eslint no-undefined: 1 */
 function obscurityMissionCheck(mission, stats) {
-  const missionrewards = mission.get('rewards').toJS();
-  const missionlosses = mission.get('losses').toJS();
-  const countrystat = mission.get('inCountry') ? stats.find(stat => stat.get('name') === mission.get('inCountry')).toJS() : {obscurity: 0};
+  const missionrewards = mission.get('rewards');
+  const missionlosses = mission.get('losses');
+  const countrystat = mission.get('inCountry') ? stats.find(stat => stat.get('name') === mission.get('inCountry')) : immutable.fromJS({obscurity: 0});
 
   // TODO: this needs to be tested properly
-  if (countrystat.obscurity + missionrewards.obscurity < 0)
+  if (countrystat.get('obscurity') + missionrewards.get('obscurity') < 0)
     return false;
-  else if (countrystat.obscurity - missionlosses.obscurity < 0)
+  else if (countrystat.get('obscurity') - missionlosses.get('obscurity') < 0)
     return false;
   else
     return true;

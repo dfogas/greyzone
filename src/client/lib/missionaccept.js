@@ -1,5 +1,5 @@
 /*
-  tier(Number) focus(String) country(String) options(Object) enhancements([Enhancements]) ImmutableList(missions), countryList([Country])) -> JSObject(Mission)
+  focus(String) country(String) options(Object) ImMap(jsonapi) ImList(missions), ImList(countries) -> JSObject(Mission)
   options mohou být forcefail, randomizeresults
   TODO: refactor
   BML: true
@@ -22,10 +22,13 @@ function character(chance) {
     return 'spy';
 }
 
-function missionAccept(tier, focus, country, options, enhancements, countryList, missionsList) {
+function missionAccept(focus, country, options, jsonapi, countryList, missionsList) {
+  const enhancements = jsonapi.get('enhancements');
+  const tier = enhancements.filter(enh => enh.get('type') === 'capability').size;
   // declarations
   let randomMission;
-  const modifiedMissionsList = xmissioncheck(enhancements.filter(enh => enh.type === 'operationsscope').map(enh => enh.name), missionsList.toJS());
+  const modifiedMissionsList = xmissioncheck(enhancements.filter(enh => enh.get('type') === 'operationsscope').map(enh => enh.get('name')), missionsList.toJS());
+  // console.log(modifiedMissionsList);
   const focusedModifiedMissionsList = focus !== 'random' && focus !== 'multiplayer' ?
     missionsList.toJS().filter(mission => determineFocus(mission.rewards)[focus]) :
     missionsList.toJS();
@@ -54,7 +57,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     if (country && country !== 'random')
       randomMission.inCountry = country;
     else
-      randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
+      randomMission.inCountry = countryList.getIn([randomInt(0, countryList.size - 1), 'name']);
     randomMission.ETA = Date.now() + randomInt(1, 6) * (10 * 60 * 1000);
     if (randomMission.tag === 'discovered')
       randomMission.ETA = Date.now() + (10 * 60 * 1000);
@@ -67,7 +70,7 @@ function missionAccept(tier, focus, country, options, enhancements, countryList,
     if (country && country !== 'random')
       randomMission.inCountry = country;
     else
-      randomMission.inCountry = countryList[randomInt(0, countryList.length - 1)].name;
+      randomMission.inCountry = countryList.getIn([randomInt(0, countryList.size - 1), 'name']);
     randomMission.ETA = Date.now() + randomInt(1, 6) * (10 * 60 * 1000);
     randomMission.id = uuid() + 'gzm';
     if (randomMission.tag === 'agentintrouble')

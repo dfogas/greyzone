@@ -1,5 +1,5 @@
 import './mercury.network.styl';
-import * as dashboardActions from '../actions';
+import * as missionsWindowActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 
@@ -10,22 +10,22 @@ class MercuryNetwork extends Component {
         <button
           className='mercury-network-button'
           id='CashFocusMissionButton'
-          onClick={(e) => dashboardActions.cashFocusMission()}
+          onClick={(e) => missionsWindowActions.cashFocusMission()}
           >{`\u{1f4b0}`}</button>
         <button
           className='mercury-network-button'
           id='ContactsFocusMissionButton'
-          onClick={(e) => dashboardActions.contactsFocusMission()}
+          onClick={(e) => missionsWindowActions.contactsFocusMission()}
           >{`\u{1f575}`}</button>
         <button
           className='mercury-network-button'
           id='ReputationFocusMissionButton'
-          onClick={(e) => dashboardActions.reputationFocusMission()}
+          onClick={(e) => missionsWindowActions.reputationFocusMission()}
           >{`\u{1f3c6}`}</button>
         <button
           className='mercury-network-button'
           id='ObscurityFocusMissionButton'
-          onClick={(e) => dashboardActions.obscurityFocusMission()}
+          onClick={(e) => missionsWindowActions.obscurityFocusMission()}
           >{`\u{1f441}`}</button>
       </div>
     );

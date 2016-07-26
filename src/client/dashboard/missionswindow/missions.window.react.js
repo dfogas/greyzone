@@ -1,6 +1,7 @@
 /* Smart Component */
 import './missions.window.styl';
 import * as dashboardActions from '../actions';
+import * as missionsWindowActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
@@ -13,36 +14,36 @@ import CountryOfOperation from './country.of.operation.react';
 
 class MissionsWindow extends Component {
   agentMission() {
-    dashboardActions.agentRecruitMission();
+    missionsWindowActions.agentRecruitMission();
   }
 
   bankMission() {
-    dashboardActions.bankRobberyMission();
-  }
-
-  oldDebtMission() {
-    dashboardActions.oldDebtMission();
+    missionsWindowActions.bankRobberyMission();
   }
 
   destroyEvidenceMission() {
-    dashboardActions.destroyEvidenceMission();
+    missionsWindowActions.destroyEvidenceMission();
   }
 
   innerCircleMission() {
-    dashboardActions.innerCircleMission();
+    missionsWindowActions.innerCircleMission();
+  }
+
+  oldDebtMission() {
+    missionsWindowActions.oldDebtMission();
   }
 
   prisonBreakMission() {
     const {agentbeingsaved, missions} = this.props;
     const missionstitles = missions.map(mission => mission.get('title'));
     if (missionstitles.indexOf('Prison Break') === -1) {
-      dashboardActions.prisonBreakMission();
-      dashboardActions.bookPrisonBreakMissionPrice(agentbeingsaved);
+      missionsWindowActions.prisonBreakMission();
+      missionsWindowActions.bookPrisonBreakMissionPrice(agentbeingsaved);
     } else dashboardActions.flashDashboard('Prison Break mission already in place.');
   }
 
   silenceWitnessMission() {
-    dashboardActions.silenceWitnessMission();
+    missionsWindowActions.silenceWitnessMission();
   }
 
   render() {

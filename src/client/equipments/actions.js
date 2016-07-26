@@ -43,7 +43,7 @@ export function use(agent, agentequipmentandindex) {
   /*immutableMap JSObject(holding immutableMap(agentequipment and number(equipmentindex))) */
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
-  if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) {
+  if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) { // eslint-disable-line curly
     if (agent.get('name') === agentontask.get('name')) {
       let mySound = new Sound(url + equipmentSound(agentequipmentandindex.agentequipment));
       mySound.play();

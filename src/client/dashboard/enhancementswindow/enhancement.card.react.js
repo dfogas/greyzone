@@ -1,5 +1,5 @@
 import './enhancement.card.styl';
-import * as dashboardActions from '../actions';
+import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 // import animate from '../../lib/animate';
@@ -10,7 +10,7 @@ import isExclusiveEnhancement from '../../lib/exclusiveenhancement';
 class EnhancementCard extends Component {
   enhancementBuy() {
     const {enhancement} = this.props;
-    dashboardActions.buyEnhancement(enhancement);
+    talkActions.buyEnhancement(enhancement);
   }
 
   render() {

@@ -2,9 +2,8 @@ import './dashboard.missions.list.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../../intl/store';
-import dayandtime from '../../lib/dayandtime';
 import determiningIcon from '../../lib/determiningicon';
+// import {msg} from '../../intl/store';
 
 class DashboardMissionsList extends Component {
   render() {

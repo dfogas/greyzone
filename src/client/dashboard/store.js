@@ -1,12 +1,13 @@
 import {register} from '../dispatcher';
 import * as dashboardActions from './actions';
+import * as missionsWindowActions from './missionswindow/actions';
 import {contestCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === dashboardActions.acceptMission) {
+  if (action === dashboardActions.acceptMission || action === missionsWindowActions.acceptSpecifiedMission) {
     const mission = data.mission;
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -18,50 +19,18 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.badEndDiscovered)
-    jsonapiCursor(jsonapi => {
-      return jsonapi.set('gameend', 'discovered');
-    });
-
-  if (action === dashboardActions.badEndKilled)
-    jsonapiCursor(jsonapi => {
-      return jsonapi.set('gameend', 'killed');
-    });
-
-  if (action === dashboardActions.badEndLeftInPrison)
-    jsonapiCursor(jsonapi => {
-      return jsonapi.set('gameend', 'leftinprison');
-    });
-
-  if (action === dashboardActions.badEndRich)
-    jsonapiCursor(jsonapi => {
-      return jsonapi.set('gameend', 'richanddiscovered');
-    });
-
-  if (action === dashboardActions.bookMissionPrice)
+  if (action === dashboardActions.bookMissionPrice || action === missionsWindowActions.bookMissionPrice)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('gameContacts', val => val - data.message.get('contacts'))
         .update('gameCash', val => val - data.message.get('cash'));
     });
 
-  if (action === dashboardActions.bookPrisonBreakMissionPrice)
+  if (action === missionsWindowActions.bookPrisonBreakMissionPrice)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('gameContacts', val => val - data.message.get('contacts'))
         .update('gameCash', val => val - data.message.get('cash'));
-    });
-
-  if (action === dashboardActions.buyEnhancement)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .update('enhancements', val => val.push(data.enhancement))
-        .update('gameCash', val => val - data.enhancement.get('price').get('cash'))
-        .update('gameContacts', val => val - data.enhancement.get('price').get('contacts'))
-        .update('log', val => val.unshift(
-          dayandtime(Date.now(), new Date().getTimezoneOffset()) +
-            ' - Enhancement ' + data.enhancement.get('name') + ' for your organization bought.'
-        ));
     });
 
   if (action === dashboardActions.buyStatus)
@@ -84,12 +53,6 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', data.name], data.value);
     });
 
-  if (action === dashboardActions.choiceToAcknowledgement)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalkindex'], 'acknowledgement');
-    });
-
   if (action === dashboardActions.clearAgentHireFields)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -104,12 +67,6 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'strategical', 'missionaccept', 'form', 'fields', 'country'], 'random');
     });
 
-  if (action === dashboardActions.closeEnhancementTalk)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalk'], null);
-    });
-
   if (action === dashboardActions.dashboardIntroToggle) {
     const toggle = jsonapiCursor(['dashboard', 'strategical', 'intro']);
     jsonapiCursor(jsonapi => {
@@ -117,37 +74,6 @@ export const dispatchToken = register(({action, data}) => {
       .setIn(['dashboard', 'strategical', 'intro'], !toggle);
     });
   }
-
-  if (action === dashboardActions.dialogToChoice)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalkindex'], 'choice');
-    });
-
-  if (action === dashboardActions.displayGameEndStatistics)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['options', 'gameend', 'statistics'], true)
-        .setIn(['statistics'], immutable.fromJS(data));
-    });
-
-  if (action === dashboardActions.facilityUpgradeDialog)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'facilityUpgradeDialog'], data.enhancement.get('name'));
-    });
-
-  if (action === dashboardActions.facilityUpgradeDialogClose)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'facilityUpgradeDialog'], null);
-    });
-
-  if (action === dashboardActions.goodEndRich)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .set('gameend', 'richandhidden');
-    });
 
   if (action === dashboardActions.hireAgent) {
     const agents = jsonapiCursor(['agents']);
@@ -181,14 +107,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === dashboardActions.operationsUpgradeDialogToggle) {
-    const toggle = jsonapiCursor(['dashboard', 'operationsUpgradeDialog']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'operationsUpgradeDialog'], !toggle);
-    });
-  }
-
   if (action === dashboardActions.playerDoesNotGoOnMissions)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -218,12 +136,6 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.refreshStandings)
     contestCursor(() => {
       return immutable.fromJS(data);
-    });
-
-  if (action === dashboardActions.retireGame)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .set('gameend', 'retirement');
     });
 
   if (action === dashboardActions.sanitizeAgents)
@@ -272,14 +184,6 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['dashboard', 'statuses', 'tierdisplayed'], data.tier);
     });
-
-  if (action === dashboardActions.trainingUpgradeDialogToggle) {
-    const toggle = jsonapiCursor(['dashboard', 'trainingUpgradeDialog']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'trainingUpgradeDialog'], !toggle);
-    });
-  }
 
   if (action === dashboardActions.updateFormField)
     jsonapiCursor(jsonapi => {

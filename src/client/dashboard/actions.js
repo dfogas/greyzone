@@ -1,13 +1,9 @@
-/* Dashboard Actions */
+/* Dashboard Actions  */
 import Promise from 'bluebird';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import immutable from 'immutable';
 import cconfig from '../client.config';
-import CountryList from '../../server/lib/greyzone/country.list';
-
-import {gameCursor} from '../state';
-import {jsonapiCursor} from '../state';
+import {gameCursor, jsonapiCursor} from '../state';
 import {msg} from '../intl/store';
 import allAgents from '../lib/allagents';
 import capabilityCheck from '../lib/capabilitycheck';
@@ -16,19 +12,17 @@ import maxAgentsCheck from '../lib/maxagentscheck';
 import maxMissionsCheck from '../lib/maxmissionscheck';
 import missionAccept from '../lib/missionaccept';
 import noDoubleAgents from '../lib/nodoubleagents';
-import getRandomInt from '../lib/getrandomint';
 import $ from 'jquery';
+
+const countryList = gameCursor(['globals', 'countries']);
+const missionsList = gameCursor(['globals', 'missions']);
 
 /* Number, String, String, Object */
 export function acceptMission(tier, focus, country, options) {
-  /* for purposes of accept mission form*/
+  /* for purposes of accept mission form only i.e. debug*/
   const enhancements = jsonapiCursor(['enhancements']).toJS();
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(tier, focus, country, options, enhancements, CountryList, missionsList);
+  const mission = missionAccept(focus, country, options, jsonapiCursor(), countryList, missionsList);
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
-
-  // const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'missions']);
-  // const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
 
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
     flashDashboard(`Upgrade your capability enhancement for higher tier missions.`);
@@ -40,84 +34,10 @@ export function acceptMission(tier, focus, country, options) {
   }
 }
 
-function acceptSpecifiedMission(mission) {
-  const enhancements = jsonapiCursor(['enhancements']);
-
-  if (!maxMissionsCheck(jsonapiCursor()))
-    flashDashboard('Missions limit reached, upgrade your operations.');
-  else
-    dispatch(acceptMission, {mission});
-}
-
-export function agentRecruitMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'agent', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Agent Mission`);
-  acceptSpecifiedMission(mission);
-}
-
-export function badEndDiscovered() {
-  dispatch(badEndDiscovered, {});
-}
-
-export function badEndKilled() {
-  dispatch(badEndKilled, {});
-}
-
-export function badEndLeftInPrison() {
-  dispatch(badEndLeftInPrison, {});
-}
-
-export function badEndRich() {
-  dispatch(badEndRich, {});
-}
-
-export function bankRobberyMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'bank', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  acceptSpecifiedMission(mission);
-}
-
 export function bookMissionPrice(tier) {
-  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList']).get(tier);
+  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', tier + '']);
 
   dispatch(bookMissionPrice, {message: missionPrice});
-}
-
-export function bookPrisonBreakMissionPrice(agentbeingsaved) {
-  dispatch(bookPrisonBreakMissionPrice, {
-    message: immutable.fromJS({
-      cash: agentbeingsaved.get('rank') * 1000,
-      contacts: agentbeingsaved.get('rank') * 10
-    })
-  });
-}
-
-export function buyEnhancement(mystery) {
-  const gameCash = jsonapiCursor(['gameCash']);
-  const gameContacts = jsonapiCursor(['gameContacts']);
-  const enhancements = jsonapiCursor(['enhancements']);
-  const list = gameCursor(['globals', 'enhancements']);
-  let enhancement;
-  console.log(mystery);
-  if (typeof mystery === 'string')
-    enhancement = list.find(item => item.get('missiontag') === mystery);
-  else enhancement = mystery;
-  let price = enhancement.get('price');
-  if (!enhancements.find(enh => enh.get('name') === 'Good Label') && enhancement.get('type') === 'operationsscope')
-    flashDashboard(`Upgrade operations first!`);
-  else if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts')) {
-    dispatch(buyEnhancement, {enhancement});
-    choiceToAcknowledgement();
-  }
-  else {
-    flashDashboard(`Insufficient funds.`);
-    closeEnhancementTalk();
-  }
 }
 
 export function buyStatus(status) {
@@ -136,29 +56,16 @@ export function buyStatus(status) {
   } else flashDashboard(`You're short on cash!`);
 }
 
-export function cashFocusMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
-  const mission = missionAccept(operationstier, 'cash', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Cash Mission!`);
-  acceptSpecifiedMission(mission);
-}
-
 export function changeCountry(option) {
   dispatch(changeCountry, option);
 }
 
 export function changeMissionOption(name, value) {
+  /* probably just for mission.accept.form i.e. debug */
   const promise = new Promise((resolve, reject) => {
     resolve({name, value});
   });
   dispatch(changeMissionOption, promise);
-}
-
-export function choiceToAcknowledgement() {
-  dispatch(choiceToAcknowledgement, {});
 }
 
 export function clearAgentHireFields() {
@@ -167,20 +74,6 @@ export function clearAgentHireFields() {
 
 export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
-}
-
-export function closeEnhancementTalk() {
-  dispatch(closeEnhancementTalk, {});
-}
-
-export function contactsFocusMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
-  const mission = missionAccept(operationstier, 'contacts', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Contacts Mission!`);
-  acceptSpecifiedMission(mission);
 }
 
 function dashboardAnnounce(message) {
@@ -195,25 +88,10 @@ export function dashboardIntroToggle() {
   dispatch(dashboardIntroToggle, {});
 }
 
-export function destroyEvidenceMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'evidence', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Destroy Evidence Mission!`);
-  acceptSpecifiedMission(mission);
-}
-
-export function dialogToChoice() {
-  dispatch(dialogToChoice, {});
-}
-
 export function dismissAgent(agent) {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const revengemission = missionAccept(operationstier, 'rattedout', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
+  const revengemission = missionAccept('rattedout', 'random', {}, jsonapiCursor(), countryList, missionsList);
   const agents = jsonapiCursor(['agents']);
   const agentondisplayindex = agents.indexOf(agents.find(ag => ag.get('id') === agent.get('id')));
 
@@ -225,41 +103,11 @@ export function dismissAgent(agent) {
     dispatch(acceptMission, {mission: revengemission});
 }
 
-export function displayGameEndStatistics() {
-  // TODO: calls to localStorage and passes results to store
-  const userId = jsonapiCursor(['userId']);
-  const name = jsonapiCursor(['name']);
-
-  const jsonmissions = localStorage.getItem(['ghoststruggle', userId, name, 'missions']);
-  const missions = jsonmissions ? JSON.parse(jsonmissions) : [];
-  const jsonagents = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'all']);
-  const agentsall = jsonagents ? JSON.parse(jsonagents) : [];
-  const jsonagentsleft = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'leftinprison']);
-  const agentsleft = jsonagentsleft ? JSON.parse(jsonagentsleft) : [];
-  const jsonagentskilled = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'killed']);
-  const agentskilled = jsonagentskilled ? JSON.parse(jsonagentskilled) : [];
-  dispatch(displayGameEndStatistics, {agentsall, agentsleft, agentskilled, missions});
-}
-
-export function facilityUpgradeDialog(enhancement) {
-  const enhancements = jsonapiCursor(['enhancements']);
-  if (enhancements.indexOf(enhancement) === -1)
-    dispatch(facilityUpgradeDialog, {enhancement});
-}
-
-export function facilityUpgradeDialogClose(enhancement) {
-  dispatch(facilityUpgradeDialogClose, {enhancement});
-}
-
 export function flashDashboard(message) {
   $('#DashboardMessage').remove();
   $('#DashboardScreen').append(`<div id='DashboardMessage'>${message}</div>`);
   $('#DashboardMessage').hide().fadeIn(400);
   $('#DashboardMessage').fadeOut(1200, () => $('#DashboardMessage').remove());
-}
-
-export function goodEndRich() {
-  dispatch(goodEndRich, {});
 }
 
 export function hireAgent(specialist, rank) {
@@ -297,40 +145,8 @@ export function honorAgent(agent) {
   dispatch(honorAgent, {agent});
 }
 
-export function innerCircleMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'innercircle', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Inner Circle Mission`);
-  acceptSpecifiedMission(mission);
-}
-
 export function log(message) {
   dispatch(log, {message});
-}
-
-export function obscurityFocusMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
-  const mission = missionAccept(operationstier, 'obscurity', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Obscurity Mission!`);
-  acceptSpecifiedMission(mission);
-}
-
-export function oldDebtMission() {
-  const operationstier = getRandomInt(3, 5);
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'olddebt', 'random', {}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Old Debt Mission!`);
-  acceptSpecifiedMission(mission);
-}
-
-export function operationsUpgradeDialogToggle() {
-  dispatch(operationsUpgradeDialogToggle, {});
 }
 
 export function playerDoesNotGoOnMissions() {
@@ -350,15 +166,6 @@ export function postponeRescue(agent) {
   dispatch(postponeRescue, {agent});
 }
 
-export function prisonBreakMission() {
-  const operationstier = getRandomInt(3, 5);
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'prison', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New PrisonBreak Mission!`);
-  acceptSpecifiedMission(mission);
-}
-
 export function refreshStandings() {
   const api = process.env.NODE_ENV === 'production' ?
     cconfig.dnsprod + '/api/v1/' :
@@ -371,33 +178,6 @@ export function refreshStandings() {
     });
 
   dispatch(refreshStandings, promise);
-}
-
-export function reputationFocusMission() {
-  const operationstier = jsonapiCursor(['enhancements']).filter(enh => enh.get('type') === 'capability').size;
-  const missionsList = gameCursor(['globals', 'missions']);
-  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
-  const mission = missionAccept(operationstier, 'reputation', countryofoperation, {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  flashDashboard(`New Reputation Mission!`);
-  acceptSpecifiedMission(mission);
-}
-
-export function retireGame() {
-  if (jsonapiCursor(['statuses']).size > 10 && jsonapiCursor(['countrystats']).toJS().reduce((prev, curr) => {return prev + curr.obscurity; }, 0) < 9)
-      dispatch(badEndRich, {});
-  else if (jsonapiCursor(['statuses']).size > 11)
-    dispatch(goodEndRich, {});
-  else
-    dispatch(retireGame, {});
-}
-
-export function sanitizeAgents() {
-  dispatch(sanitizeAgents, {});
-}
-
-export function sanitizeMissions() {
-  dispatch(sanitizeMissions, {});
 }
 
 export function saveAgent(agent) {
@@ -421,24 +201,12 @@ export function selectAgentOnDisplay(agent) {
   dispatch(selectAgentOnDisplay, {agent});
 }
 
-export function silenceWitnessMission() {
-  const operationstier = getRandomInt(3, 5);
-  const missionsList = gameCursor(['globals', 'missions']);
-  const mission = missionAccept(operationstier, 'killrat', 'random', {avoidfatals: false}, jsonapiCursor(['enhancements']).toJS(), CountryList, missionsList);
-
-  acceptSpecifiedMission(mission);
-}
-
 export function statusesIntroToggle() {
   dispatch(statusesIntroToggle, {});
 }
 
 export function statusTierSelect(tier) {
   dispatch(statusTierSelect, {tier});
-}
-
-export function trainingUpgradeDialogToggle() {
-  dispatch(trainingUpgradeDialogToggle, {});
 }
 
 export function updateFormField({name, value}, context) {
@@ -461,53 +229,28 @@ export function upgradeEnhancement(enhancement) {
 
 setToString('dashboard', {
   acceptMission,
-  badEndDiscovered,
-  badEndKilled,
-  badEndLeftInPrison,
-  badEndRich,
-  bankRobberyMission,
   bookMissionPrice,
-  bookPrisonBreakMissionPrice,
-  buyEnhancement,
   buyStatus,
-  cashFocusMission,
   changeCountry,
-  choiceToAcknowledgement,
   changeMissionOption,
   clearAgentHireFields,
   clearMissionAcceptFields,
-  closeEnhancementTalk,
-  contactsFocusMission,
   dashboardIntroToggle,
-  destroyEvidenceMission,
-  dialogToChoice,
   dismissAgent,
-  displayGameEndStatistics,
-  facilityUpgradeDialog,
-  facilityUpgradeDialogClose,
   flashDashboard,
-  goodEndRich,
   hireAgent,
   honorAgent,
   log,
-  obscurityFocusMission,
-  oldDebtMission,
-  operationsUpgradeDialogToggle,
   playerDoesNotGoOnMissions,
   playerGoesOnMissions,
   pointerChange,
   postponeRescue,
   refreshStandings,
-  reputationFocusMission,
-  retireGame,
-  sanitizeAgents,
-  sanitizeMissions,
   saveAgent,
   selectAgent,
   selectAgentOnDisplay,
   statusesIntroToggle,
   statusTierSelect,
-  trainingUpgradeDialogToggle,
   updateFormField,
   upgradeEnhancement
 });
