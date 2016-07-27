@@ -12,17 +12,27 @@ import tutorialMsg from './en/tutorial.msg';
 
 const ENGLISH = {
   about: {
-    message: `<p>"Ghost Struggle" is a non-trivial, non-clicker game for aspiring masterminds, that simply works.</p>
-      <p>Theme is - contemporary world of hidden organizations, illegal, in their actions not always
-      criminal, though.</p>
-      <p> Designed with player experience in mind, intended to be played repeatedly and while there
-      are some scripted sequences, <br />the game should through its mechanisms introduce new story each time
-      that it is played.</p>
-      <p>Game is playable freely but with some features not avaiable to not-paying players.</p>
-      <p>The game itself is dependent on random events and is quite hard to finish - successfully finish, <br />bad ends are abundant.</p>
-      <p>There are purchaseable expansions to game labeled as campaings, that expand gameplay
-      significantly.</p>
-      <p>Interaction with other players will be possible in later stages.</p>`,
+    message: `<p>"Ghost Struggle" is a non-trivial, non-clicker game for aspiring masterminds, that simply works, possibly
+      creates an enjoyable experience as well.</p>
+      <p>Theme is espionage, world of secret investigative organizations, and you are put in charge of building up one - your own,
+      with your own objectives.</p>
+      <p>You leading a secret organization equals you having missions to complete.
+      You may participate on missions, as your avatar is represented by one of the agents.</br>
+      This not always advisable though - as some missions besides earning considerable rewards,
+      may throw you in the prison or even get killed.</p>
+      <p>Based on tried and tested dice and cards mechanism, game provides the challenge you've been looking for,
+      in an easy and enjoyable way, also offering wide range of tactical approaches.</p>
+      It is not always fair and might push some unexpected events your way,
+      though always giving some time to react and it is moderately difficult to finish -
+      successfully finish,<br />bad ends are abundant and you might quite easily end up facing one.
+      Not to worry, replaying is advisable option as the game was designed to be played repeatedly and
+      should through its mechanisms introduce new story each time that it is played.</p>
+      <p>At its current state there is only one successfull finish. There are going to be purchaseable expansions to game, that
+      expand gameplay significantly as well as add interaction with other players, so you may start messing with each other, if you like so.</p>
+      <p>Feel free to join and try game in its current development state, and
+      possibly leave a feedback on provided email address support@ghoststruggle.com or you might as well join forum(tbd) and if you
+      really enjoyed playing it become sponsor with stake in its future by providing financial support via Patreon(tbd), with direct link
+      to its creator.</p>`,
     title: `About the game`
   },
   agents: agentsMsg,
