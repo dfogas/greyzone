@@ -25,6 +25,7 @@ class OptionsWindow extends Component {
     const debug = options.get('debug');
     const animations = options.get('animations');
     const soundeffects = options.get('soundeffects');
+
     return (
       <div id='OptionsWindow'>
         <form className='options-form'>
@@ -32,7 +33,14 @@ class OptionsWindow extends Component {
             <legend>Options</legend>
             <label><input checked={multiplayer} name='multiplayer' onChange={(e) => this.changeOption(e)} type='checkbox' />Multiplayer</label>
             <label><input checked={tutorial} name='tutorial' onChange={(e) => this.changeOption(e)} type='checkbox' />Tutorial</label>
-            <label><input checked={debug} name='debug' onChange={(e) => this.changeOption(e)} type='checkbox' />Debug Mode</label>
+            {window.location.href === 'http://localhost:8000/' &&
+              <label>
+                <input
+                  checked={debug}
+                  name='debug'
+                  onChange={(e) => this.changeOption(e)}
+                  type='checkbox' />Debug Mode
+              </label>}
             <label><input checked={animations} name='animations' onChange={(e) => this.changeOption(e)} type='checkbox' />Animations</label>
             <label><input checked={soundeffects} name='soundeffects' onChange={(e) => this.changeOption(e)} type='checkbox' />Sound Effects</label>
           </fieldset>

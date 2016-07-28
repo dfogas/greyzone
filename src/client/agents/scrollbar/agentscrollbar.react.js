@@ -1,5 +1,6 @@
 import './agentscrollbar.styl';
 import * as agentActions from '../actions';
+import * as scrollbarActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
@@ -12,6 +13,16 @@ import AgentCard from '../agentcard/agentcard.react';
 class AgentScrollBar extends Component {
   allowDrop(ev) {
     ev.preventDefault();
+  }
+
+  componentDidUpdate() {
+    const {agents, isAgents, isBriefing, isMission, jsonapi} = this.props;
+    if (agents.size <= 3 && isAgents)
+      scrollbarActions.normalizeScrollbarLeft('armory');
+    if (agents.size <= 3 && isBriefing)
+      scrollbarActions.normalizeScrollbarLeft('briefing');
+    if (agents.size <= 1 && isMission)
+      scrollbarActions.normalizeScrollbarLeft('mission');
   }
 
   drop(ev) {
@@ -97,6 +108,7 @@ AgentScrollBar.propTypes = {
   data: React.PropTypes.array,
   game: React.PropTypes.instanceOf(immutable.Map),
   isAgents: React.PropTypes.bool,
+  isBriefing: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
   style: React.PropTypes.object

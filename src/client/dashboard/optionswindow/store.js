@@ -29,6 +29,20 @@ export const dispatchToken = register(({action, data}) => {
       return immutable.fromJS(data);
     });
 
+  if (action === optionsActions.sanitizeAgents)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('agents', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
+        .updateIn(['activemission', 'agentsonmission'], val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
+        .update('agents', val => val.toSet().toList());
+    });
+
+  if (action === optionsActions.sanitizeMissions)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('missions', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'));
+    });
+
   if (action === optionsActions.startNewGame)
     jsonapiCursor(jsonapi => {
       return immutable.fromJS(playerdefaults)

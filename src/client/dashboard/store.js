@@ -138,20 +138,6 @@ export const dispatchToken = register(({action, data}) => {
       return immutable.fromJS(data);
     });
 
-  if (action === dashboardActions.sanitizeAgents)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .update('agents', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
-        .updateIn(['activemission', 'agentsonmission'], val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'))
-        .update('agents', val => val.toSet().toList());
-    });
-
-  if (action === dashboardActions.sanitizeMissions)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .update('missions', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'));
-    });
-
   if (action === dashboardActions.saveAgent)
     jsonapiCursor(jsonapi => {
       return jsonapi

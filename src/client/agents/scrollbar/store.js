@@ -5,16 +5,24 @@ import * as scrollbarActions from './actions';
 
 export const dispatchToken = register(({action, data}) => {
 
+  if (action === scrollbarActions.normalizeScrollbarLeft) {
+    console.log('normalizing scrollbar to left'); //
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'agentscrollbar', data.context, 'left'], 0);
+    });
+  }
+
   if (action === scrollbarActions.scrollLeft)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['components', 'agentscrollbar', data.context, 'left'], data.agentscrollbar + 265);
+        .setIn(['components', 'agentscrollbar', data.context, 'left'], data.agentscrollbar + 264);
     });
 
   if (action === scrollbarActions.scrollRight)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['components', 'agentscrollbar', data.context, 'left'], data.agentscrollbar - 265);
+        .setIn(['components', 'agentscrollbar', data.context, 'left'], data.agentscrollbar - 264);
     });
 
   if (action === scrollbarActions.slideLeft)

@@ -6,7 +6,7 @@ import immutable from 'immutable';
 import classnames from 'classnames';
 
 import AgentScrollBar from './agentscrollbar.react';
-import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
+import AgentScrollBarNavButton from './agentscrollbarnavbutton.react'; //
 
 class AgentScrollBarWithNavButtons extends Component {
   scrollleft() {
@@ -42,10 +42,12 @@ class AgentScrollBarWithNavButtons extends Component {
       <div className={classString} id='AgentScrollBarWithNavButtons' >
         {(jsonapi.get('agents').size > 3 || isMission) &&
           <AgentScrollBarNavButton
+            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
             data={{orientation: 'left'}}
             isBriefing={this.props.isBriefing}
             isMission={this.props.isMission}
             parentCallback={this.scrollleft.bind(this)}
+            style={agentsbstyle}
             />}
         <div className={classString}>
           <AgentScrollBar
@@ -61,10 +63,12 @@ class AgentScrollBarWithNavButtons extends Component {
         </div>
         {(jsonapi.get('agents').size > 3 || isMission) &&
           <AgentScrollBarNavButton
+            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
             data={{orientation: 'right'}}
             isBriefing={this.props.isBriefing}
             isMission={this.props.isMission}
             parentCallback={this.scrollright.bind(this)}
+            style={agentsbstyle}
             />}
       </div>
     );

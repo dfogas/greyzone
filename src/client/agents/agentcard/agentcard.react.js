@@ -68,7 +68,7 @@ class AgentCard extends Component {
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
     const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay', 'id']);
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
-    const selfIsNotInPrison = self ? !self.get('prison') : false;
+    const agentIsNotInPrison = !agent.get('prison'); //
 
     const classString = classnames(
       'agent-card', {
@@ -78,6 +78,9 @@ class AgentCard extends Component {
     );
     if (agent)
       var agentequipments = agent.get('equipments');
+
+    // console.log(allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) !== null);
+    // console.log(allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')));
 
     return (
       <li
@@ -123,7 +126,7 @@ class AgentCard extends Component {
           <button
             id='ActivateSelf'
             onClick={(e) => dashboardActions.playerGoesOnMissions()}>Activate</button>}
-        {playerAgentIsActive && selfIsDisplayed(jsonapi) && selfIsNotInPrison && self.get('id') === agent.get('id') && this.props.isDisplay &&
+        {playerAgentIsActive && selfIsDisplayed(jsonapi) && agentIsNotInPrison && self.get('id') === agent.get('id') && this.props.isDisplay &&
           <button
             id='HideSelf'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
