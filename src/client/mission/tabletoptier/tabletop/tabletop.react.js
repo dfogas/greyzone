@@ -78,7 +78,7 @@ class TableTop extends Component {
             );
           }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
           taskscompleted.size >= activetasks.size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">It seems, that you have been successfull.</div>)
-          : (<div id="MissionStartStatus">You most likely failed mission.</div>)
+          : (activemission.getIn(['mission', 'currenttask', 'agentlock']) ? (<div id="MissionStartStatus">You most likely failed mission.</div>) : (<div id="MissionStartStatus">Continue next task.</div>))
         }
         <ProbabilityBar
           activemission={activemission}

@@ -18,7 +18,7 @@ class AgentScrollBarNavButton extends Component {
     });
     console.log((agents.size - 3) * -264);
 
-    const navstyle = orientation === 'left' ? (style.get('left') === 0 ? {opacity: 0} : {opacity: 1}) : (style.get('left') > ((agents.size - 3) * -264) ? {opacity: 1} : {opacity: 0.5});
+    const navstyle = orientation === 'left' ? (style.get('left') === 0 ? {opacity: 0} : {opacity: 1}) : (style.get('left') > ((agents.size - 3) * -264) ? {opacity: 1} : {opacity: 0});
 
     return (
       <div

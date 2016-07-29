@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {tap, monitor, improv_el, puppet, decipher, improv_st} from '../actions';
+import {tap, monitor, improv_el, puppet, decipher, improv_st, infiltrate} from '../actions';
 // import randomInt from '../../../../../client/lib/getrandomint';
 
 const tag = 'moneychannelling';
@@ -65,44 +65,48 @@ const MoneyChannelling = [{
   agentLimit: 3,
   tier: 3,
   tag: tag
-// }, {
-//   title: 'Money channelling',
-//   tasks: [
-//     [tap, monitor, improv_el],
-//     [puppet, puppet, tap, improv_el],
-//     [decipher, decipher, improv_el],
-//     [puppet, improv_st]
-//   ],
-//   inCountry: '',
-//   rewards: {
-//     gameCash: 60000
-//   },
-//   losses: {
-//     obscurity: 0.1,
-//     reputation: 100
-//   },
-//   imgsrc: 'Sagesse.jpg',
-//   agentLimit: 3,
-//   tier: 4
-// }, {
-//   title: 'Money channelling',
-//   tasks: [
-//     [tap, monitor, improv_el, improv_el],
-//     [puppet, puppet, tap, improv_el],
-//     [decipher, decipher, improv_el],
-//     [infiltrate, puppet, improv_st]
-//   ],
-//   inCountry: '',
-//   rewards: {
-//     gameCash: 360000
-//   },
-//   losses: {
-//     obscurity: 0.1,
-//     reputation: 100
-//   },
-//   imgsrc: 'Sagesse.jpg',
-//   agentLimit: 3,
-//   tier: 5
+}, {
+  title: title,
+  tasks: [
+    [tap, monitor, improv_el],
+    [puppet, puppet, tap, improv_el],
+    [decipher, decipher, improv_el],
+    [puppet, improv_st]
+  ],
+  inCountry: '',
+  rewards: {
+    gameCash: 100000
+  },
+  losses: {
+    obscurity: 0.15,
+    reputation: 500
+  },
+  sound: sound,
+  imgsrc: imgsrc,
+  agentLimit: 3,
+  tag: tag,
+  tier: 4
+}, {
+  title: title,
+  tasks: [
+    [tap, monitor, improv_el, improv_el],
+    [puppet, puppet, tap, improv_el],
+    [decipher, decipher, improv_el],
+    [infiltrate, puppet, improv_st]
+  ],
+  inCountry: '',
+  rewards: {
+    gameCash: 150000
+  },
+  losses: {
+    obscurity: 0.2,
+    reputation: 500
+  },
+  sound: sound,
+  imgsrc: imgsrc,
+  agentLimit: 3,
+  tag: tag,
+  tier: 5
 }];
 
 export default MoneyChannelling;

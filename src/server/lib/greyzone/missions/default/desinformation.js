@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {puppet, improv_st, decipher, hide, improv_op} from '../actions';
+import {puppet, improv_st, decipher, hide, improv_op, improv_el} from '../actions';
 
 const tag = 'desinformation';
 const title = 'Desinformation';
@@ -54,52 +54,52 @@ const Desinformation = [{
       gameContacts: 400
     },
     losses: {
-      obscurity: 0.8
+      obscurity: 0.3
     },
     imgsrc: imgsrc,
     sound: sound,
     agentLimit: 1,
     tier: 3,
     tag: tag
-  // }, {
-  //   title: 'Desinformation',
-  //   tasks: [
-  //     [puppet, improv_st, improv_st],
-  //     [decipher, hide, improv_el],
-  //     [improv_op]
-  //   ],
-  //   inCountry: '',
-  //   rewards: {
-  //     gameContacts: 72,
-  //     obscurity: 0.25
-  //   },
-  //   losses: {
-  //     agentImprisoned: true,
-  //     gameContacts: 27
-  //   },
-  //   imgsrc: 'marceullus.jpg',
-  //   agentLimit: 1,
-  //   tier: 4
-  // }, {
-  //   title: 'Desinformation',
-  //   tasks: [
-  //     [puppet, improv_st, improv_st],
-  //     [decipher, hide, improv_el],
-  //     [improv_op],
-  //     [puppet, improv_st, improv_st]
-  //   ],
-  //   inCountry: '',
-  //   rewards: {
-  //     gameContacts: 96,
-  //     obscurity: 0.3
-  //   },
-  //   losses: {
-  //     agentImprisoned: true,
-  //     gameContacts: 36
-  //   },
-  //   imgsrc: 'marceullus.jpg',
-  //   agentLimit: 1,
-  //   tier: 5
+  }, {
+    title: title,
+    tasks: [
+      [puppet, improv_st, improv_st],
+      [decipher, hide, improv_el],
+      [improv_op]
+    ],
+    inCountry: '',
+    rewards: {
+      gameContacts: 600
+    },
+    losses: {
+      obscurity: 0.5
+    },
+    imgsrc: imgsrc,
+    sound: sound,
+    agentLimit: 1,
+    tier: 4,
+    tag: tag
+  }, {
+    title: title,
+    tasks: [
+      [puppet, improv_st, improv_st],
+      [decipher, hide, improv_el],
+      [improv_op],
+      [puppet, improv_st, improv_st]
+    ],
+    inCountry: '',
+    rewards: {
+      gameContacts: 800,
+    },
+    losses: {
+      obscurity: 0.7
+    },
+    imgsrc: imgsrc,
+    sound: sound,
+    agentLimit: 1,
+    tier: 5,
+    tag: tag
   }];
 
 export default Desinformation;

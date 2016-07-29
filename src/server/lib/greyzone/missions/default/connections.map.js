@@ -64,46 +64,42 @@ const ConnectionsMap = [{
     agentLimit: 3,
     tier: 3,
     tag: tag
-  // }, {
-  //   title: 'Connections Map',
-  //   tasks: [
-  //     [monitor, tap, decipher],
-  //     [monitor, improv_el, puppet, improv_st],
-  //     [infiltrate, hide, improv_st],
-  //     [improv_st]
-  //   ],
-  //   inCountry: '',
-  //   rewards: {
-  //     gameContacts: 625,
-  //     reputation: 200
-  //   },
-  //   losses: {
-  //     gameCash: 13500,
-  //     gameContacts: 375
-  //   },
-  //   imgsrc: 'chinese.jpg',
-  //   agentLimit: 3,
-  //   tier: 4
-  // }, {
-  //   title: 'Connections Map',
-  //   tasks: [
-  //     [monitor, tap, decipher, improv_el],
-  //     [monitor, tap, puppet, improv_st],
-  //     [infiltrate, hide, improv_st],
-  //     [improv_st]
-  //   ],
-  //   inCountry: '',
-  //   rewards: {
-  //     gameContacts: 3125,
-  //     reputation: 250
-  //   },
-  //   losses: {
-  //     gameCash: 62500,
-  //     gameContacts: 1875
-  //   },
-  //   imgsrc: 'chinese.jpg',
-  //   agentLimit: 3,
-  //   tier: 5
+  }, {
+    title: 'Connections Map',
+    tasks: [
+      [monitor, tap, decipher],
+      [monitor, improv_el, puppet, improv_st],
+      [infiltrate, hide, improv_st],
+      [improv_st]
+    ],
+    inCountry: '',
+    rewards: {
+      gameContacts: 625
+    },
+    losses: {
+      gameCash: 62500
+    },
+    imgsrc: 'chinese.jpg',
+    agentLimit: 3,
+    tier: 4
+  }, {
+    title: 'Connections Map',
+    tasks: [
+      [monitor, tap, decipher, improv_el],
+      [monitor, tap, puppet, improv_st],
+      [infiltrate, hide, improv_st],
+      [improv_st, improv_st]
+    ],
+    inCountry: '',
+    rewards: {
+      gameContacts: 1250
+    },
+    losses: {
+      gameCash: 125000
+    },
+    imgsrc: 'chinese.jpg',
+    agentLimit: 3,
+    tier: 5
   }];
 
 export default ConnectionsMap;

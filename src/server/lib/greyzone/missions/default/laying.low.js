@@ -1,5 +1,5 @@
 /*eslint camelcase: 0*/
-import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate} from '../actions';
+import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate, puppet} from '../actions';
 
 const tag = 'layinglow';
 const title = 'Laying Low';
@@ -64,48 +64,52 @@ const LayingLow = [{
   agentLimit: 3,
   tier: 3,
   tag: tag
-// }, {
-//   title: 'Laying Low',
-//   tasks: [
-//     [close_combat, hide, improv_op],
-//     [improv_el, monitor],
-//     [hit, improv_op, hit],
-//     [infiltrate, improv_st, hide, puppet]
-//   ],
-//   inCountry: '',
-//   rewards: {
-//     gameCash: 2400,
-//     reputation: 400
-//   },
-//   losses: {
-//     agentImprisoned: true,
-//     reputation: 400,
-//     gameCash: 200
-//   },
-//   imgsrc: 'godfather_free_youtube.jpg',
-//   agentLimit: 3,
-//   tier: 4
-// }, {
-//   title: 'Laying Low',
-//   tasks: [
-//     [close_combat, hide, improv_op, improv_st],
-//     [improv_el, monitor, monitor],
-//     [hit, improv_op, hit],
-//     [infiltrate, improv_st, hide, puppet]
-//   ],
-//   inCountry: '',
-//   rewards: {
-//     gameCash: 3000,
-//     reputation: 500
-//   },
-//   losses: {
-//     agentImprisoned: true,
-//     reputation: 500,
-//     gameCash: 200
-//   },
-//   imgsrc: 'godfather_free_youtube.jpg',
-//   agentLimit: 3,
-//   tier: 5
+}, {
+  title: title,
+  tasks: [
+    [close_combat, hide, improv_op],
+    [improv_el, monitor],
+    [hit, improv_op, hit],
+    [infiltrate, improv_st, hide, puppet]
+  ],
+  inCountry: '',
+  rewards: {
+    obscurity: 1,
+    reputation: 500,
+    gameCash: 50000
+  },
+  losses: {
+    agentImprisoned: true,
+    reputation: 500
+  },
+  sound: sound,
+  imgsrc: imgsrc,
+  agentLimit: 3,
+  tag: tag,
+  tier: 4
+}, {
+  title: title,
+  tasks: [
+    [close_combat, hide, improv_op, improv_st],
+    [improv_el, monitor, monitor],
+    [hit, improv_op, hit],
+    [infiltrate, improv_st, hide, puppet]
+  ],
+  inCountry: '',
+  rewards: {
+    obscurity: 1.25,
+    reputation: 1000,
+    gameCash: 100000
+  },
+  losses: {
+    agentImprisoned: true,
+    reputation: 1000
+  },
+  sound: sound,
+  imgsrc: imgsrc,
+  agentLimit: 3,
+  tag: tag,
+  tier: 5
 }];
 
 export default LayingLow;
