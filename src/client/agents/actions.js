@@ -37,7 +37,9 @@ export function agentTalking(agent) {
   const enhancements = jsonapiCursor(['enhancements']);
   const self = jsonapiCursor(['self']);
 
-  if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
+  if (agent.get('prison'))
+    invokeAgentTalk(jsonapiCursor(), agent);
+  else if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
     dispatch(enhancementTalk, {message: 'prisonbreak'});
   else if (self.get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
     dispatch(enhancementTalk, {message: 'silencewitness'});
@@ -132,8 +134,6 @@ setToString('agents', {
   enhancementTalk,
   equip,
   getRank,
-  // goFree,
-  // goToPrison,
   flashArmory,
   setETA
 });

@@ -52,7 +52,8 @@ const DemonstrationOfPower = [{
     ],
     inCountry: '',
     rewards: {
-      reputation: 1000
+      reputation: 1000,
+      obscurity: -0.1
     },
     losses: {
       reputation: 1000
@@ -72,7 +73,8 @@ const DemonstrationOfPower = [{
     ],
     inCountry: '',
     rewards: {
-      reputation: 1500
+      reputation: 1500,
+      obscurity: -0.2
     },
     losses: {
       reputation: 1500
@@ -92,7 +94,8 @@ const DemonstrationOfPower = [{
     ],
     inCountry: '',
     rewards: {
-      reputation: 2000
+      reputation: 2000,
+      obscurity: -0.3
     },
     losses: {
       reputation: 2000

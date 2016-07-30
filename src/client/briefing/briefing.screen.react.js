@@ -65,6 +65,7 @@ class BriefingScreen extends Component {
           <BriefingInCountry
             countrystats={jsonapi.getIn(['countrystats'])}
             inCountry={jsonapi.getIn(['activemission', 'inCountry'])}
+            jsonapi={jsonapi}
             />
           <BriefingToDashboard />
           <BriefingToArmory />

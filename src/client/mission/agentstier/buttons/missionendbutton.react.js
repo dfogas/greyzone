@@ -21,14 +21,12 @@ class MissionEndButton extends Component {
       const countrystat = jsonapi.getIn(['countrystats', countrystats.indexOf(countrystats.find(countrystat => countrystat.get('name') === gamemission.inCountry))]);
       // console.log('checking for obscurity save');
       var probability = Math.random();
-      var border = 1 / (1 + countrystat.get('obscurity'));
+      var border = 1 / (1 + 2 * countrystat.get('obscurity'));
       var chance = probability < border;
       // console.log('border is' + border);
       // console.log('probability is ' + probability);
-      // console.log('chance is ' + chance);
-      if (chance && gamemission.title === 'Discovered!')
-        this.pushGameMission(gamemission);
-      else if (gamemission.title !== 'Discovered!')
+      console.log('chance is ' + chance);
+      if (chance)
         this.pushGameMission(gamemission);
       else
         setTimeout(briefingActions.flashBriefing('saved by obscurity'), 1000);

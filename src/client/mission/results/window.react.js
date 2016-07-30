@@ -7,6 +7,8 @@ import isFatal from '../../lib/isfatal';
 import uuid from '../../lib/guid';
 import {msg} from '../../intl/store';
 import icon from '../../lib/determiningicon';
+import oQ from '../../lib/obscurityquality';
+import rQ from '../../lib/reputationquality';
 import $ from 'jquery';
 
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
@@ -35,6 +37,7 @@ class MissionResultsWindow extends Component {
     // // console.log('Fatal: ' + isFatal(losses, rewards));
     // console.log('Agent Recruited: ' + rewards.keySeq().filter(key => key === 'agentRecruited').toList().size);
     // console.log(rewards.keySeq().size);
+    //
 
     return (
       <div
@@ -85,10 +88,18 @@ class MissionResultsWindow extends Component {
             <li>You stole yourself an Art Piece!</li>}
           <p>
             Your resources ATM are:
-            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
+            {/*results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 && */
               `${icon('gameCash')}${jsonapi.get('gameCash')}`}
-            {results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 &&
+            {/*results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 && */
               `  ${icon('gameContacts')}${jsonapi.get('gameContacts')}`}
+          </p>
+          <p>
+            {`You are currently ${oQ(jsonapi.get('countrystats').find(cs => activemission.get('inCountry') === cs.get('name')).get('obscurity'))}
+            during your operations in ${activemission.get('inCountry')}.`}
+          </p>
+          <p>
+            {`Your results and reputation in ${activemission.get('inCountry')} are
+              ${rQ(jsonapi.get('countrystats').find(cs => activemission.get('inCountry') === cs.get('name')).get('reputation'))}.`}
           </p>
           <MissionEndButton
             jsonapi={jsonapi}

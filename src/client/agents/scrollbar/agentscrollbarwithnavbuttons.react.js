@@ -6,7 +6,7 @@ import immutable from 'immutable';
 import classnames from 'classnames';
 
 import AgentScrollBar from './agentscrollbar.react';
-import AgentScrollBarNavButton from './agentscrollbarnavbutton.react'; //
+import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
 
 class AgentScrollBarWithNavButtons extends Component {
   scrollleft() {
@@ -29,6 +29,10 @@ class AgentScrollBarWithNavButtons extends Component {
 
   render() {
     const {game, isBriefing, isMission, jsonapi} = this.props;
+    const availableAgents = jsonapi.get('agents')
+      .filter(agent => !agent.get('prison'))
+      .filter(agent => !agent.get('KIA'))
+      .filter(agent => agent !== null);
     const agentsbstyle = isBriefing ? jsonapi.getIn(['components', 'agentscrollbar', 'briefing']) :
       isMission ? jsonapi.getIn(['components', 'agentscrollbar', 'mission']) :
       jsonapi.getIn(['components', 'agentscrollbar', 'armory']);
@@ -40,9 +44,9 @@ class AgentScrollBarWithNavButtons extends Component {
 
     return (
       <div className={classString} id='AgentScrollBarWithNavButtons' >
-        {(jsonapi.get('agents').size > 3 || isMission) &&
+        {(availableAgents.size > 3 || isMission) &&
           <AgentScrollBarNavButton
-            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
+            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : availableAgents}
             data={{orientation: 'left'}}
             isBriefing={this.props.isBriefing}
             isMission={this.props.isMission}
@@ -61,9 +65,9 @@ class AgentScrollBarWithNavButtons extends Component {
             style={agentsbstyletojs}
             />
         </div>
-        {(jsonapi.get('agents').size > 3 || isMission) &&
+        {(availableAgents.size > 3 || isMission) &&
           <AgentScrollBarNavButton
-            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
+            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : availableAgents}
             data={{orientation: 'right'}}
             isBriefing={this.props.isBriefing}
             isMission={this.props.isMission}

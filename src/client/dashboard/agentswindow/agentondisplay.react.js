@@ -3,15 +3,15 @@ import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-// import {msg} from '../../intl/store';
+import allAgents from '../../lib/allagents';
+// import {msg} from '../../intl/store'; //
 
 import AgentCard from '../../agents/agentcard/agentcard.react';
 
 class AgentOnDisplay extends Component {
   componentDidMount() {
-    const {agentondisplay, agents} = this.props;
-    if (!agentondisplay)
-      dashboardActions.selectAgent(agents.get(0));
+    const {jsonapi} = this.props;
+    dashboardActions.selectAgent(allAgents(jsonapi).get(0));
   }
 
   putAgentonDisplay() {

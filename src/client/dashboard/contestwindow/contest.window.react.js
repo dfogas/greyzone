@@ -27,7 +27,7 @@ class ContestWindow extends Component {
           >
           <td>{contestant.get('name')}</td>
           <td>{contestant.get('countrystats').reduce((prev, curr) => {
-            return curr.get('reputation') * curr.get('obscurity') + prev;
+            return Math.round10(curr.get('reputation') * curr.get('obscurity') + prev, 0);
           }, 0)}</td>
         </tr>
       );

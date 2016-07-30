@@ -17,9 +17,10 @@ class AgentScrollBar extends Component {
 
   componentDidUpdate() {
     const {agents, isAgents, isBriefing, isMission, jsonapi} = this.props;
-    if (agents.size <= 3 && isAgents)
+    const availableAgents = agents.filter(agent => !agent.get('prison')).filter(agent => !agent.get('KIA')).filter(agent => agent !== null);
+    if (availableAgents.size <= 3 && isAgents)
       scrollbarActions.normalizeScrollbarLeft('armory');
-    if (agents.size <= 3 && isBriefing)
+    if (availableAgents.size <= 3 && isBriefing)
       scrollbarActions.normalizeScrollbarLeft('briefing');
     if (agents.size <= 1 && isMission)
       scrollbarActions.normalizeScrollbarLeft('mission');
@@ -39,6 +40,7 @@ class AgentScrollBar extends Component {
     // why is that condition there?
     if (!agents.size) {
       // ANTIPATTERN: Direct DOM manipulation (Works So Well!)
+      // TODO: get into library
       document.getElementById(data).className = classnames(document.getElementById(data).className, {showcased: false});
       var c = document.getElementById(data).children;
       var i, j;
@@ -83,8 +85,8 @@ class AgentScrollBar extends Component {
       >
         {agents
           .filter(agent => agent !== null)
-          .filter(agent => agent.get('prison') !== true)
-          .filter(agent => agent.get('KIA') !== true)
+          .filter(agent => !agent.get('prison'))
+          .filter(agent => !agent.get('KIA'))
           .map((agent, i) => {
             return (
               <AgentCard
