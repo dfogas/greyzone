@@ -9,7 +9,7 @@ import AgentsWindow from './agentswindow/agents.window.react';
 import StatusesWindow from './statuseswindow/statuses.window.react';
 import OptionsWindow from './optionswindow/options.window.react';
 import MissionsWindow from './missionswindow/missions.window.react';
-import CountryStatsWindow from './countrieswindow/countrystats.window.react';
+// import CountryStatsWindow from './countrieswindow/countrystats.window.react';
 import ContestWindow from './contestwindow/contest.window.react';
 import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';

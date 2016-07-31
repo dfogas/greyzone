@@ -33,14 +33,6 @@ export const dispatchToken = register(({action, data}) => {
         .update('gameCash', val => val - data.message.get('cash'));
     });
 
-  if (action === dashboardActions.buyStatus)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-      .update('statuses', val => val.push(immutable.fromJS(data.status)))
-      .update('gameCash', val => val - data.status.getIn(['price', 'cash']))
-      .update('gameContacts', val => val - data.status.getIn(['price', 'contacts']));
-    });
-
   if (action === dashboardActions.changeCountry)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -155,20 +147,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'agentondisplay'], data.agent);
-    });
-
-  if (action === dashboardActions.statusesIntroToggle) {
-    const toggle = jsonapiCursor(['dashboard', 'statuses', 'intro']);
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'statuses', 'intro'], !toggle);
-    });
-  }
-
-  if (action === dashboardActions.statusTierSelect)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'statuses', 'tierdisplayed'], data.tier);
     });
 
   if (action === dashboardActions.updateFormField)

@@ -40,22 +40,6 @@ export function bookMissionPrice(tier) {
   dispatch(bookMissionPrice, {message: missionPrice});
 }
 
-export function buyStatus(status) {
-  const statusesall = gameCursor(['globals', 'statuses']);
-  const alltieritems = statusesall.filter(item => item.get('tier') === status.get('tier'));
-  const statuses = jsonapiCursor(['statuses']);
-  const tieritems = statuses.filter(item => item.get('tier') === status.get('tier'));
-
-  if (jsonapiCursor(['gameCash']) >= status.getIn(['price', 'cash']) && jsonapiCursor(['gameContacts']) >= status.getIn(['price', 'contacts'])) {
-    dispatch(buyStatus, {status});
-    if (tieritems.size + 1 === alltieritems.size) {
-      $('#StatusesWindow').append(msg('dashboard.statuses.tier' + status.get('tier')));
-      $('#StatusesTierComplete').append(`<button>Ok</button>`);
-      $('#StatusesTierComplete button').click(() => $('#StatusesTierComplete').remove());
-    }
-  } else flashDashboard(`You're short on cash!`);
-}
-
 export function changeCountry(option) {
   dispatch(changeCountry, option);
 }
@@ -201,14 +185,6 @@ export function selectAgentOnDisplay(agent) {
   dispatch(selectAgentOnDisplay, {agent});
 }
 
-export function statusesIntroToggle() {
-  dispatch(statusesIntroToggle, {});
-}
-
-export function statusTierSelect(tier) {
-  dispatch(statusTierSelect, {tier});
-}
-
 export function updateFormField({name, value}, context) {
   // Both email and password max length is 100.
   value = value.slice(0, 100);
@@ -230,7 +206,6 @@ export function upgradeEnhancement(enhancement) {
 setToString('dashboard', {
   acceptMission,
   bookMissionPrice,
-  buyStatus,
   changeCountry,
   changeMissionOption,
   clearAgentHireFields,
@@ -249,8 +224,6 @@ setToString('dashboard', {
   saveAgent,
   selectAgent,
   selectAgentOnDisplay,
-  statusesIntroToggle,
-  statusTierSelect,
   updateFormField,
   upgradeEnhancement
 });

@@ -28,6 +28,7 @@ import '../components/store';
 import '../dashboard/endgame/store';
 import '../dashboard/logwindow/store';
 import '../dashboard/optionswindow/store';
+import '../dashboard/statuseswindow/store';
 import '../dashboard/talk/store';
 import '../dashboard/store';
 import '../introduction/store';

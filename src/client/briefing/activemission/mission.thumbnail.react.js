@@ -37,7 +37,9 @@ class MissionThumbnail extends Component {
 }
 
 MissionThumbnail.propTypes = {
-  imgsrc: React.PropTypes.string
+  imgsrc: React.PropTypes.string,
+  missiontag: React.PropTypes.string,
+  thumbnailtext: React.PropTypes.string
 };
 
 export default MissionThumbnail;

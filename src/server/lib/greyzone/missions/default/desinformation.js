@@ -90,7 +90,7 @@ const Desinformation = [{
     ],
     inCountry: '',
     rewards: {
-      gameContacts: 800,
+      gameContacts: 800
     },
     losses: {
       obscurity: 0.7

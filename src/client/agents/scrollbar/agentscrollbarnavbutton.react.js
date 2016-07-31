@@ -2,7 +2,8 @@
 import './agentscrollbarnavbutton.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
-import classnames from 'classnames'; //
+import classnames from 'classnames';
+import immutable from 'immutable';
 
 class AgentScrollBarNavButton extends Component {
   forward() {
@@ -36,10 +37,12 @@ class AgentScrollBarNavButton extends Component {
 }
 
 AgentScrollBarNavButton.propTypes = {
+  agents: React.PropTypes.instanceOf(immutable.List),
   data: React.PropTypes.object,
   isBriefing: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
-  parentCallback: React.PropTypes.func
+  parentCallback: React.PropTypes.func,
+  style: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentScrollBarNavButton;

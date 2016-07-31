@@ -1,32 +1,32 @@
 /* Smart */
 import './status.card.styl';
-import * as dashboardActions from '../actions';
+import * as statusesActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 // import animate from '../../lib/animate';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
-import classnames from 'classnames';
+import classnames from 'classnames'; //
 
 class StatusCard extends Component {
   buyStatus() {
     const {status} = this.props;
-    dashboardActions.buyStatus(status);
+    statusesActions.buyStatus(status);
   }
 
   focusStatus(e) {
-    e.preventDefault();
-    e.target.style.opacity = 1;
+    // e.preventDefault();
+    // e.target.style.opacity = 1;
   }
 
   unfocusParentStatus(e) {
-    e.preventDefault();
-    e.target.parentNode.style.opacity = 0.5;
+    // e.preventDefault();
+    // e.target.parentNode.style.opacity = 0.5;
   }
 
   unfocusStatus(e) {
-    e.preventDefault();
-    e.target.style.opacity = 0.5;
+    // e.preventDefault();
+    // e.target.style.opacity = 0.5;
   }
 
   render() {

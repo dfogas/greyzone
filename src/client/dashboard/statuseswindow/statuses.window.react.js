@@ -1,24 +1,28 @@
 import './statuses.window.styl';
-import * as dashboardActions from '../actions';
+// import * as dashboardActions from '../actions';
+import * as statusesActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
+import isTierComplete from '../../lib/istiercomplete';
 
 import StatusesIntro from './statuses.intro.react';
 import StatusTier from './status.tier.react';
+import StatusesTierComplete from './statuses.tier.complete.react';
 import ShiftUp from './shift.up.react';
 import ShiftDown from './shift.down.react';
 
 class StatusesWindow extends Component {
   render() {
     const {dashboard, statuses, owned} = this.props;
+    const tierdisplayed = dashboard.getIn(['statuses', 'tierdisplayed']) || 1;
     return (
       <div id='StatusesWindow'>
         <div id='StatusesWindowLabel'>{msg('dashboard.statuses.window.label')}</div>
         {dashboard.getIn(['statuses', 'tierdisplayed']) > 1 &&
           <ShiftUp
-            tierdisplayed={dashboard.getIn(['statuses', 'tierdisplayed']) || 1}
+            tierdisplayed={tierdisplayed}
             />}
         <StatusTier
           statuses={statuses}
@@ -27,14 +31,22 @@ class StatusesWindow extends Component {
           />
         {(dashboard.getIn(['statuses', 'tierdisplayed']) < 4 || typeof dashboard.getIn(['statuses', 'tierdisplayed']) === 'undefined') &&
           <ShiftDown
-            tierdisplayed={dashboard.getIn(['statuses', 'tierdisplayed']) || 1}
+            tierdisplayed={tierdisplayed}
             />}
         {!dashboard.getIn(['statuses', 'intro']) &&
           <StatusesIntro />}
         {dashboard.getIn(['statuses', 'intro']) &&
           <button
             id='StatusesHistoryButton'
-            onClick={(e) => dashboardActions.statusesIntroToggle()}>Show Intro</button>}
+            onClick={(e) => statusesActions.statusesIntroToggle()}>Show Intro</button>}
+        {isTierComplete(tierdisplayed, owned, statuses) &&
+          <button
+            id='StatusesTierCompleteButton'
+            onClick={(e) => statusesActions.tierCursorChange(tierdisplayed)}>{`View DV#${tierdisplayed}`}</button>}
+        {dashboard.getIn(['statuses', 'tiercomplete']) &&
+          <StatusesTierComplete
+            tierdisplayed={tierdisplayed}
+          />}
       </div>
     );
   }

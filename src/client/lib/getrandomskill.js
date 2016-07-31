@@ -1,4 +1,4 @@
-/* eslint curly: 1 */
+/* eslint curly: 0 */
 /*
   Number Object(agentSkills) -> String
   using default Math.random to determine which skill we increase, when agent ranks up

@@ -4,7 +4,6 @@ import React from 'react';
 import immutable from 'immutable';
 import missionWindowResults from '../../lib/missionwindowresults';
 import isFatal from '../../lib/isfatal';
-import uuid from '../../lib/guid';
 import {msg} from '../../intl/store';
 import icon from '../../lib/determiningicon';
 import oQ from '../../lib/obscurityquality';
@@ -24,14 +23,13 @@ class MissionResultsWindow extends Component {
   render() {
     const {jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
-    const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const agentKIA = activemission.get('agentsonmission').find(agent => agent.get('KIA'));
     const agentPrison = activemission.get('agentsonmission').find(agent => agent.get('prison'));
     const damageprotocol = activemission.get('equipmenteffects').get('damageprotocol');
     const result = activemission.get('result');
     const rewards = activemission.get('rewards');
     const losses = activemission.get('losses');
-    const results = losses.merge(rewards);
+    // const results = losses.merge(rewards);
     const tutorial = jsonapi.get('tutorial');
 
     // // console.log('Fatal: ' + isFatal(losses, rewards));
@@ -94,12 +92,12 @@ class MissionResultsWindow extends Component {
               `  ${icon('gameContacts')}${jsonapi.get('gameContacts')}`}
           </p>
           <p>
-            {`You are currently ${oQ(jsonapi.get('countrystats').find(cs => activemission.get('inCountry') === cs.get('name')).get('obscurity'))}
+            {`You are currently ${oQ(jsonapi.get('countrystats').find(cs => (activemission.get('inCountry') || 'US') === cs.get('name')).get('obscurity'))}
             during your operations in ${activemission.get('inCountry')}.`}
           </p>
           <p>
             {`Your results and reputation in ${activemission.get('inCountry')} are
-              ${rQ(jsonapi.get('countrystats').find(cs => activemission.get('inCountry') === cs.get('name')).get('reputation'))}.`}
+              ${rQ(jsonapi.get('countrystats').find(cs => (activemission.get('inCountry') || 'US') === cs.get('name')).get('reputation'))}.`}
           </p>
           <MissionEndButton
             jsonapi={jsonapi}

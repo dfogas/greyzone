@@ -1,6 +1,6 @@
 /* Smart */
 import './dashboard.screen.styl';
-import * as dashboardActions from './actions';
+// import * as dashboardActions from './actions';
 import * as endGameActions from './endgame/actions';
 // import * as missionActions from '../mission/actions';
 import * as tutorialActions from '../tutorial/actions';
@@ -37,10 +37,8 @@ import StatusesPointer from './pointers/statuses.pointer.react';
 import StrategicalPointer from './pointers/strategical.pointer.react';
 
 class DashboardScreen extends Component {
-
   componentDidMount() {
     const {jsonapi} = this.props;
-
     // checky na zabitého či uvězněného/objeveného hráče enda
     if (badEndsCheck(jsonapi) === 'Killed') // player's agent is in agents roster and has KIA status true
       endGameActions.badEndKilled();
@@ -52,12 +50,9 @@ class DashboardScreen extends Component {
 
   componentWillReceiveProps() {
     const {jsonapi} = this.props;
-
+    // poté co je vybrána kampaň a první mise ještě neproběhla
     if (jsonapi.getIn(['campaigns', 'selection', 'done']) && !jsonapi.getIn(['tutorial', 'firstmission', 'done']))
       tutorialActions.firstMissionSetup();
-    // else
-    //   // just placeholder
-    //   console.log('selection of campaigns not done yet.');
   }
 
   render() {
