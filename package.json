@@ -100,5 +100,7 @@
     "webpack-dev-server": "^1.7.0",
     "yargs": "^3.3.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "ignore-styles": "^4.0.0"
+  }
 }

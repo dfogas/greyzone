@@ -22,7 +22,6 @@ class ActualMissionCard extends Component {
     const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
 
     let isActual = true;
-    let isSpecial = false;
 
     let assignments = [];
     for (let i = 1; i <= agentlimit; i += 1)
@@ -41,7 +40,6 @@ class ActualMissionCard extends Component {
       return (
         <Task
           isActual={isActual}
-          isSpecial={isSpecial}
           key={uuid() + 'actualtask' + i}
           task={activemission.get('tasks').get(i)}
           />
@@ -57,7 +55,6 @@ class ActualMissionCard extends Component {
           />
         <MissionTitle
           isActual={false}
-          isSpecial={isSpecial}
           title={activemission.get('title')}
           />
         <div id='ActualMissionTasks'>
@@ -69,13 +66,11 @@ class ActualMissionCard extends Component {
         <MissionResultList
           isActual={isActual}
           isLoss={true}
-          isSpecial={isSpecial}
           losses={activemission.get('losses')}
           />
         <MissionResultList
           isActual={isActual}
           isReward={true}
-          isSpecial={isSpecial}
           rewards={activemission.get('rewards')}
           />
       </div>

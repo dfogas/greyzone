@@ -9,10 +9,8 @@ class MissionResult extends Component {
     const {loss, losskey, reward, rewardkey} = this.props;
     const classString = classnames('mission-result', {
       'actual': this.props.isActual,
-      'briefing': this.props.isBriefing,
       'loss': this.props.isLoss,
       'reward': this.props.isReward,
-      'special': this.props.isSpecial,
       'task': this.props.isTask
     });
 
@@ -27,10 +25,8 @@ class MissionResult extends Component {
 
 MissionResult.propTypes = {
   isActual: React.PropTypes.bool,
-  isBriefing: React.PropTypes.bool,
   isLoss: React.PropTypes.bool,
   isReward: React.PropTypes.bool,
-  isSpecial: React.PropTypes.bool,
   isTask: React.PropTypes.bool,
   loss: React.PropTypes.oneOfType([
     React.PropTypes.bool,

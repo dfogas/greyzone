@@ -12,7 +12,6 @@ class Task extends Component {
     const {key, task} = this.props;
     const classString = classnames('task', {
       'actual': this.props.isActual,
-      'briefing': this.props.isBriefing,
       'current': this.props.isCurrent,
       'on-mission': this.props.isMission
     });
@@ -26,7 +25,6 @@ class Task extends Component {
             <Action
               action={action}
               isActual={this.props.isActual || false}
-              isBriefing={this.props.isBriefing || false}
               isCurrent={this.props.isCurrent || false}
               isMission={this.props.isMission || false}
               key={uuid() + i}
@@ -41,7 +39,6 @@ class Task extends Component {
 
 Task.propTypes = {
   isActual: React.PropTypes.bool,
-  isBriefing: React.PropTypes.bool,
   isCurrent: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
   key: React.PropTypes.string,

@@ -12,8 +12,8 @@ function missionWindowResults(jsonapi) {
   const result = activemission.get('result');
   const rewards = activemission.get('rewards');
   const losses = activemission.get('losses');
-  const results = losses.merge(rewards);
-  const tutorial = jsonapi.get('tutorial');
+  // const results = losses.merge(rewards);
+  // const tutorial = jsonapi.get('tutorial');
   const damageprevented = activemission.getIn(['equipmenteffects', 'damageprotocol']);
   const phrasingOfReward = function(reward) {
     if (typeof reward === 'number' && reward > 0)
@@ -62,7 +62,6 @@ function missionWindowResults(jsonapi) {
     });
   else
     return losses.keySeq().map(key => {
-      console.log('spravna vetev');
       return (
         <li key={uuid() + 'missionloss'}>
           {

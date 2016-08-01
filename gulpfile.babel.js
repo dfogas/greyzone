@@ -59,7 +59,7 @@ gulp.task('lib-server', () => {
 
 gulp.task('lib-client', () => {
   return gulp.src('./src/client/lib/test/*.*', {read: false})
-    .pipe(mocha({reporter: 'nyan'}));
+    .pipe(mocha({reporter: 'nyan', require: ['ignore-styles']}));
 });
 
 gulp.task('api', (done) => {

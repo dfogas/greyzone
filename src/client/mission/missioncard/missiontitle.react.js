@@ -5,20 +5,18 @@ import './missiontitle.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import classnames from 'classnames';
 
 class MissionTitle extends Component {
   render() {
     let {title} = this.props;
 
-    var classString = '';
-    if (this.props.isActual)
-      classString += ' actual';
-    if (this.props.isBriefing)
-      classString += ' briefing';
-    if (this.props.isSpecial)
-      classString += ' special';
+    const classString = classnames('mission-title', {
+      'actual': this.props.isActual
+    });
+
     return (
-      <div className={'mission-title' + classString}>
+      <div className={classString}>
         {title}
       </div>
     );
@@ -27,8 +25,6 @@ class MissionTitle extends Component {
 
 MissionTitle.propTypes = {
   isActual: React.PropTypes.bool,
-  isBriefing: React.PropTypes.bool,
-  isSpecial: React.PropTypes.bool,
   mission: React.PropTypes.instanceOf(immutable.Map),
   title: React.PropTypes.string
 };

@@ -49,7 +49,6 @@ class AgentCard extends Component {
     const {jsonapi} = this.props;
     const agents = jsonapi.get('agents');
     const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
-    console.log('player hide');
     dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
     dashboardActions.playerDoesNotGoOnMissions();
   }

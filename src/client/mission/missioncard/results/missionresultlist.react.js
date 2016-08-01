@@ -13,10 +13,8 @@ class MissionResultList extends Component {
     const {losses, rewards} = this.props;
     const classString = classnames('mission-result-list', {
       'actual': this.props.isActual,
-      'briefing': this.props.isBriefing,
       'loss': this.props.isLoss,
       'reward': this.props.isReward,
-      'special': this.props.isSpecial,
       'task': this.props.isTask
     });
     let losseskeys, rewardskeys;
@@ -33,9 +31,7 @@ class MissionResultList extends Component {
               return (
                 <MissionResult
                   isActual={this.props.isActual}
-                  isBriefing={this.props.isBriefing}
                   isLoss={true}
-                  isSpecial={this.props.isSpecial}
                   isTask={this.props.isTask}
                   key={uuid() + 'loss'}
                   loss={losses.get(losskey)}
@@ -46,9 +42,7 @@ class MissionResultList extends Component {
             rewardskeys.map((rewardkey, i) => {
               return (<MissionResult
                   isActual={this.props.isActual}
-                  isBriefing={this.props.isBriefing}
                   isReward={this.props.isReward}
-                  isSpecial={this.props.isSpecial}
                   isTask={this.props.isTask}
                   key={uuid() + 'reward'}
                   reward={rewards.get(rewardkey)}
@@ -63,10 +57,8 @@ class MissionResultList extends Component {
 
 MissionResultList.propTypes = {
   isActual: React.PropTypes.bool,
-  isBriefing: React.PropTypes.bool,
   isLoss: React.PropTypes.bool,
   isReward: React.PropTypes.bool,
-  isSpecial: React.PropTypes.bool,
   isTask: React.PropTypes.bool,
   losses: React.PropTypes.instanceOf(immutable.Map),
   rewards: React.PropTypes.instanceOf(immutable.Map)

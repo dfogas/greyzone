@@ -18,7 +18,6 @@ class EndGameWindow extends Component {
     const {jsonapi} = this.props;
     const countrystats = jsonapi.get('countrystats');
     const gameend = jsonapi.get('gameend');
-    const name = jsonapi.get('name');
     const options = jsonapi.get('options');
     const statistics = jsonapi.get('statistics');
 
@@ -66,10 +65,7 @@ class EndGameWindow extends Component {
 }
 
 EndGameWindow.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map),
-  name: React.PropTypes.string,
-  options: React.PropTypes.instanceOf(immutable.Map),
-  statistics: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default EndGameWindow;
