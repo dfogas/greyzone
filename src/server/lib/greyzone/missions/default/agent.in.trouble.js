@@ -12,7 +12,7 @@ let AgentInTrouble = [{
     [tap, monitor, improv_el],
     [improv_op, improv_st]
   ],
-  inCountry: '',
+  // inCountry: '',
   rewards: {
     agentRecruited: true,
     gameCash: -2000

@@ -1,11 +1,11 @@
 /*  */
 import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
-import missionAccept from '../../lib/missionaccept';
+import missionAccept from '../../lib/bml/missionaccept';
 import {gameCursor, jsonapiCursor} from '../../state';
 import immutable from 'immutable';
 import $ from 'jquery';
-import maxMissionsCheck from '../../lib/maxmissionscheck';
+import maxMissionsCheck from '../../lib/bml/maxmissionscheck';
 
 const countryList = gameCursor(['globals', 'countries']);
 const missionsList = gameCursor(['globals', 'missions']);

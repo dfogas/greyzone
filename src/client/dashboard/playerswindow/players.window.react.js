@@ -5,10 +5,10 @@ import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
-import allAgents from '../../lib/allagents';
+import allAgents from '../../lib/bml/allagents';
 import $ from 'jquery';
 import {msg} from '../../intl/store';
-import determiningIcon from '../../lib/determiningicon';
+import determiningIcon from '../../lib/bml/determiningicon';
 // import selfIsDisplayed from '../../lib/selfisdisplayed';
 
 import AgentCard from '../../agents/agentcard/agentcard.react';

@@ -8,7 +8,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import badEndsCheck from '../lib/badendscheck';
+import badEndsCheck from '../lib/bml/badendscheck';
 
 import CampaignIntro from '../tutorial/campaign.intro.react';
 import DashboardContent from './dashboard.content.react';

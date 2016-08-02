@@ -2,7 +2,7 @@ import './briefing.incountry.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import oQ from '../lib/obscurityquality'; //
+import oQ from '../lib/bml/obscurityquality'; //
 
 class BriefingInCountry extends Component {
   render() {

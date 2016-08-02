@@ -5,10 +5,10 @@ import Component from '../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
 import immutable from 'immutable';
-import allAgents from '../../lib/allagents';
-import selfIsDisplayed from '../../lib/selfisdisplayed';
+import allAgents from '../../lib/bml/allagents';
+import selfIsDisplayed from '../../lib/bml/selfisdisplayed';
 import {msg} from '../../intl/store';
-import shouldHaveRank from '../../lib/shouldhaverank';
+import shouldHaveRank from '../../lib/bml/shouldhaverank';
 import uuid from '../../lib/guid';
 import AgentExperienceBar from './agent.experience.bar.react';
 
@@ -62,7 +62,7 @@ class AgentCard extends Component {
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const self = jsonapi.get('self');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
-    const rankup = shouldHaveRank(agent.get('experience'), trainingtable) >= agent.get('rank') ? true : false;
+    const isRankUp = shouldHaveRank(agent, trainingtable) > agent.get('rank');
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
     const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay', 'id']);
@@ -157,7 +157,7 @@ class AgentCard extends Component {
               key={uuid() + i}
             />);
         })}
-        {rankup && this.props.isAgents &&
+        {isRankUp && this.props.isAgents &&
           <input
             className='agent-rankup-button'
             onClick={this.agentGetRank.bind(this)}

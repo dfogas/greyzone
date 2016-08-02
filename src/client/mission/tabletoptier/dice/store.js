@@ -1,7 +1,7 @@
 import * as actions from './actions';
 import {register} from '../../../dispatcher';
 import {jsonapiCursor} from '../../../state';
-import dicethrow from '../../../lib/dicethrow';
+import diceThrow from '../../../lib/bml/dicethrow';
 import immutable from 'immutable';
 
 export const dispatchToken = register(({action, data}) => {
@@ -12,7 +12,7 @@ export const dispatchToken = register(({action, data}) => {
 
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(actdices.map(dice => dicethrow(dice.type, dice.dicekey))))
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], immutable.fromJS(actdices.map(dice => diceThrow(dice.type, dice.dicekey))))
         .setIn(['activemission', 'mission', 'currenttask', 'diceslock'], true);
     });
   }
@@ -41,7 +41,7 @@ export const dispatchToken = register(({action, data}) => {
     const actiondices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'mission', 'currenttask', 'actiondices', actiondices.indexOf(actiondices.find(dice => dice.get('dicekey') === data.dice.get('dicekey')))], immutable.fromJS(dicethrow(data.dice.get('type'), data.dice.get('dicekey'))));
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices', actiondices.indexOf(actiondices.find(dice => dice.get('dicekey') === data.dice.get('dicekey')))], immutable.fromJS(diceThrow(data.dice.get('type'), data.dice.get('dicekey'))));
     });
   }
 

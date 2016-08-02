@@ -2,10 +2,9 @@ import './enhancement.card.styl';
 import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
-// import animate from '../../lib/animate';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
-import isExclusiveEnhancement from '../../lib/exclusiveenhancement';
+import isExclusiveEnhancement from '../../lib/bml/exclusiveenhancement';
 
 class EnhancementCard extends Component {
   enhancementBuy() {
@@ -14,7 +13,7 @@ class EnhancementCard extends Component {
   }
 
   render() {
-    const {enhancement, owned, paying} = this.props;
+    const {enhancement, list, owned, paying} = this.props;
     const paid = paying ? paying.toJS() : null;
     const isPaying = paid ?
       Object.keys(paid).reduce((prev, curr) => {
@@ -32,7 +31,7 @@ class EnhancementCard extends Component {
           <div><small>Owned</small></div>}
         {!owned &&
           <div>${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
-        {!owned && ((isExclusiveEnhancement(enhancement) && isPaying) || !isExclusiveEnhancement(enhancement)) && <button
+        {!owned && ((isExclusiveEnhancement(enhancement) && isPaying) || !isExclusiveEnhancement(enhancement, list)) && <button
           className='enhancement-buy-button'
           onClick={this.enhancementBuy.bind(this)}>
           Buy
@@ -44,6 +43,7 @@ class EnhancementCard extends Component {
 
 EnhancementCard.propTypes = {
   enhancement: React.PropTypes.instanceOf(immutable.Map),
+  list: React.PropTypes.instanceOf(immutable.List),
   owned: React.PropTypes.bool,
   paying: React.PropTypes.instanceOf(immutable.Map)
 };

@@ -8,7 +8,7 @@ import Component from '../components/component.react';
 import {msg} from '../intl/store';
 import {FormattedHTMLMessage} from 'react-intl';
 import immutable from 'immutable';
-import capitalLetter from '../lib/capitalletter';
+import capitalLetter from '../lib/general/capitalletter';
 import uuid from '../lib/guid';
 
 class IntroScreen extends Component {

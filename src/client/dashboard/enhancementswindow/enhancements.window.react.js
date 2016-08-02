@@ -36,6 +36,7 @@ class EnhancementsWindow extends Component {
             <EnhancementCard
               enhancement={enhancement}
               key={uuid() + 'toysowned'}
+              list={enhancements}
               owned={true}
               paying={paying}
               />

@@ -3,8 +3,8 @@ import * as dashboardActions from '../actions';
 import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react';
 import React from 'react';
-import currentLevelLdr from '../../lib/currentlevelldr';
-import nextLevelLdr from '../../lib/nextlevelldr';
+import currentLevelLdr from '../../lib/bml/currentlevelldr';
+import nextLevelLdr from '../../lib/bml/nextlevelldr';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
 

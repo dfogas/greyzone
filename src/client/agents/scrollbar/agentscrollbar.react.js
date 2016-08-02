@@ -16,7 +16,7 @@ class AgentScrollBar extends Component {
   }
 
   componentDidUpdate() {
-    const {agents, isAgents, isBriefing, isMission, jsonapi} = this.props;
+    const {agents, isAgents, isBriefing, isMission} = this.props;
     const availableAgents = agents.filter(agent => !agent.get('prison')).filter(agent => !agent.get('KIA')).filter(agent => agent !== null);
     if (availableAgents.size <= 3 && isAgents)
       scrollbarActions.normalizeScrollbarLeft('armory');

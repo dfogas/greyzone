@@ -2,7 +2,7 @@ import './dicebin.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import canCompleteTask from '../../../lib/cancompletetask';
+import canCompleteTask from '../../../lib/bml/cancompletetask';
 
 import * as diceActions from '../dice/actions';
 

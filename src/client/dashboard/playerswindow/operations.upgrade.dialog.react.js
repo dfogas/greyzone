@@ -4,8 +4,8 @@ import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import currentLevelOps from '../../lib/currentlevelops';
-import nextLevelOps from '../../lib/nextlevelops';
+import currentLevelOps from '../../lib/bml/currentlevelops';
+import nextLevelOps from '../../lib/bml/nextlevelops';
 import formatMoney from '../../lib/formatmoney';
 
 class OperationsUpgradeDialog extends Component {

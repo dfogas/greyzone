@@ -2,7 +2,7 @@ import './dashboard.content.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import allAgents from '../lib/allagents';
+import allAgents from '../lib/bml/allagents';
 
 import PlayersWindow from './playerswindow/players.window.react';
 import AgentsWindow from './agentswindow/agents.window.react';

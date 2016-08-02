@@ -5,7 +5,7 @@ import './probability.bar.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import probabilityOfSuccess from '../../../lib/probabilityofsuccess';
+import probabilityOfSuccess from '../../../lib/bml/probabilityofsuccess';
 
 class ProbabilityBar extends Component {
   render() {

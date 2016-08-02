@@ -1,5 +1,5 @@
 import uuid from '../../../../client/lib/guid';
-import EquipmentList from '../equipments.list';
+import EquipmentList from '../equipments/equipments.list';
 
 const Miyako = {
   ETA: 0,

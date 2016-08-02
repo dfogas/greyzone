@@ -3,6 +3,7 @@
   ImmutableMap(jsonapi) String(node_environment) -> () SideEffects
   purpose of this function is to check whether state of gameplay changed and
   depending on result do or don't do a fetch call
+  this is rather app logic not BML
 */
 
 import cconfig from '../client.config';
@@ -11,7 +12,7 @@ import hashString from './hashstring';
 // // 1st stage - poll only if changes - check
 // // TODO: if polling then
 // // 2nd stage - poll only changes
-// // 3rd stage - possibly completely replace w/ websockets
+// // else - possibly completely replace w/ websockets
 
 function pollingStateToPersistence(jsonapi, nodeEnv) {
   const api = nodeEnv === 'production' ?

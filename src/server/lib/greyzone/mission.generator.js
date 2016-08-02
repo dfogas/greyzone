@@ -2,7 +2,7 @@
   String Number Number Boolean -> JSObject(Mission)
   this is part of the effort to fulfill one  origin principle in greyzone
 */
-import CountryList from './country.list';
+import CountryList from './countries/countries.list';
 import MissionsList from './missions.list';
 import Discovered from './missions/gamepushed/discovered.mission';
 import Noticed from './missions/gamepushed/noticed.mission';

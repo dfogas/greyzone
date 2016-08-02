@@ -28,4 +28,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.missionScreenTransition) {
+    const toggle = jsonapiCursor(['components', 'mission', 'transition']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'mission', 'transition'], !toggle);
+    });
+  }
+
 });

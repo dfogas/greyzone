@@ -14,8 +14,13 @@ export function devNoticeToggle() {
   dispatch(devNoticeToggle, {});
 }
 
+export function missionScreenTransition() {
+  dispatch(missionScreenTransition, {});
+}
+
 setToString('components', {
   bigScreenToggle,
   bigScreenZ,
-  devNoticeToggle
+  devNoticeToggle,
+  missionScreenTransition
 });

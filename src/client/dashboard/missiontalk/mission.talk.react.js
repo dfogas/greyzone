@@ -1,7 +1,6 @@
 import './mission.talk.styl';
 import Component from '../../components/component.react';
 import React from 'react';
-import checkThenConcat from '../../lib/checkthenconcat';
 import immutable from 'immutable';
 
 import AgentTalk from './agent.talk.react';
@@ -15,7 +14,7 @@ class MissionTalk extends Component {
     const agentLimit = activemission.get('agentLimit');
     const agentsonmission = activemission.get('agentsonmission');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
-    const agents = agentsonmission.concat(checkThenConcat(agentontask));
+    const agents = agentsonmission.concat((() => {if (agentontask) return [agentontask]; else return []; })());
     const playerAgentOnMission = agents.find(agent => agent.get('id') === self.get('id'));
     const agentNotPlayer = agents.find(agent => agent.get('id') !== self.get('id'));
     return (

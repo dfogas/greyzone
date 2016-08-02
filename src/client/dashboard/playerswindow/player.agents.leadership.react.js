@@ -2,7 +2,7 @@ import * as talkActions from '../talk/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import topLevelTraining from '../../lib/topleveltraining';
+import topLevelTraining from '../../lib/bml/topleveltraining';
 
 class PlayerAgentsLeadership extends Component {
   render() {

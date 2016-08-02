@@ -1,5 +1,5 @@
 /* Covered */
-import canCompleteTask from '../cancompletetask';
+import canCompleteTask from '../bml/cancompletetask';
 import {expect} from 'chai';
 
 var testactions = [

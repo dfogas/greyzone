@@ -5,13 +5,11 @@ import * as scrollbarActions from './actions';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === scrollbarActions.normalizeScrollbarLeft) {
-    console.log('normalizing scrollbar to left'); //
+  if (action === scrollbarActions.normalizeScrollbarLeft)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['components', 'agentscrollbar', data.context, 'left'], 0);
     });
-  }
 
   if (action === scrollbarActions.scrollLeft)
     jsonapiCursor(jsonapi => {

@@ -10,21 +10,15 @@ import AgentScrollBarNavButton from './agentscrollbarnavbutton.react';
 
 class AgentScrollBarWithNavButtons extends Component {
   scrollleft() {
-    const {isBriefing, isMission, jsonapi} = this.props;
+    const {isBriefing, isMission} = this.props;
     const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
-    if (jsonapi.getIn(['options', 'animations']))
-      scrollbarActions.slideLeft(context);
-    else
-      scrollbarActions.scrollLeft(context);
+    scrollbarActions.scrollLeft(context);
   }
 
   scrollright() {
-    const {isBriefing, isMission, jsonapi} = this.props;
+    const {isBriefing, isMission} = this.props;
     const context = isBriefing ? 'briefing' : isMission ? 'mission' : 'armory';
-    if (jsonapi.getIn(['options', 'animations']))
-      scrollbarActions.slideRight(context);
-    else
-      scrollbarActions.scrollRight(context);
+    scrollbarActions.scrollRight(context);
   }
 
   render() {

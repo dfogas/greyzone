@@ -2,8 +2,8 @@ import * as talkActions from '../dashboard/talk/actions';
 import * as equipmentActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
-import equipmentEnhancement from '../lib/equipmentenhancement';
-import toyIsAvailable from '../lib/toyisavailable';
+import equipmentEnhancement from '../lib/bml/equipmentenhancement';
+import toyIsAvailable from '../lib/bml/toyisavailable';
 import immutable from 'immutable';
 
 import EquipmentStockItem from './equipmentstockitem.react';
@@ -47,6 +47,7 @@ class EquipmentItem extends Component {
         {jsonapi.getIn(['dashboard', 'facilityUpgradeDialog']) === enhancement.get('name') &&
           <FacilityUpgradeDialog
             enhancement={enhancement}
+            list={list}
             owned={isAvailable}
             paying={paying}
             />}

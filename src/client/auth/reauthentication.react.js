@@ -5,7 +5,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 import {focusInvalidField} from '../lib/validation';
-import getParameterByName from '../lib/geturlquery';
+import getParameterByName from '../lib/general/geturlquery';
 
 class ReauthenticationForm extends Component {
   getForm() {

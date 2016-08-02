@@ -2,8 +2,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
-import actiondices from '../lib/actiondices';
-import EquipmentList from '../../server/lib/greyzone/equipments.list';
+import actiondices from '../lib/bml/actiondices';
 import FirstMission from '../../server/lib/greyzone/missions/tutorial/first.mission';
 import Sanya from '../../server/lib/greyzone/agents/sanya.agent';
 import Miyako from '../../server/lib/greyzone/agents/miyako.agent';
@@ -19,6 +18,7 @@ export function confirmCampaignsSelection() {
 
 export function firstMissionSetup() {
   const self = jsonapiCursor(['self']);
+  const EquipmentList = gameCursor(['globals', 'equipments']);
   // AY! terrible hack
   // TODO: find better way to write this
   let mission;

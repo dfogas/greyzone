@@ -4,7 +4,7 @@ import generateName from './name.generator';
 import generateCountry from './origin.generator';
 import generateImage from './image.generator';
 import generateEquipments from './generateequipments';
-import getRandomSkill from '../../../client/lib/getrandomskill';
+import getRandomSkill from '../../../client/lib/bml/getrandomskill';
 // import immutable from 'immutable';
 import personality from './personality';
 import uuid from '../../../client/lib/guid';

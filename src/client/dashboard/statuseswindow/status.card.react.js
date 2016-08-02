@@ -3,7 +3,6 @@ import './status.card.styl';
 import * as statusesActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
-// import animate from '../../lib/animate';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
 import classnames from 'classnames'; //

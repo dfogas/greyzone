@@ -1,11 +1,12 @@
+/* debug */
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
 import dayandtime from '../../lib/dayandtime';
-import currentLevelOps from '../../lib/currentlevelops';
-import nextLevelOps from '../../lib/nextlevelops';
+import currentLevelOps from '../../lib/bml/currentlevelops';
+import nextLevelOps from '../../lib/bml/nextlevelops';
 
 class CapabilitySubCards extends Component {
   upgradeCapability() {

@@ -3,7 +3,7 @@ import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
-import maxMissionsCount from '../../lib/maxmissionscount';
+import maxMissionsCount from '../../lib/bml/maxmissionscount';
 import {msg} from '../../intl/store';
 
 import DropDown from 'react-dropdown-w-react13';

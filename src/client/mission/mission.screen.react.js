@@ -1,4 +1,5 @@
 import './mission.screen.styl';
+// import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -8,6 +9,7 @@ import $ from 'jquery';
 import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
 import AgentsTier from './agentstier/agentstier.react';
+import MissionScreenDarkener from './mission.screen.darkener.react';
 import MissionResultsWindow from './results/window.react';
 import MissionToBriefingButton from '../navs/missiontobriefing.react';
 import MissionToDashboardButton from '../navs/missiontodashboard.react';
@@ -15,10 +17,11 @@ import MissionToDashboardButton from '../navs/missiontodashboard.react';
 class MissionTrackingScreen extends Component {
   componentDidMount() {
     window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+    // setTimeout(() => {componentsActions.missionScreenTransition();}, 1000);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => this.showHelpMessage(e)); //
+    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
   }
 
   showHelpMessage(e) {
@@ -33,6 +36,7 @@ class MissionTrackingScreen extends Component {
     const {game, jsonapi} = this.props;
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);
+    const screenTrans = jsonapi.getIn(['components', 'mission', 'transition']);
 
     return (
       <div
@@ -40,19 +44,20 @@ class MissionTrackingScreen extends Component {
         style={{
           backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`
         }}>
-        <div id='MissionScreenDarkener'></div>
         <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>
         <TaskTier
           activemission={jsonapi.get('activemission')}
           />
-        <TableTopTier
-          activemission={jsonapi.get('activemission')}
-          tutorial={jsonapi.get('tutorial')}
-          />
+        {screenTrans &&
+          <TableTopTier
+            activemission={jsonapi.get('activemission')}
+            tutorial={jsonapi.get('tutorial')}
+          />}
         <AgentsTier
           game={game}
           jsonapi={jsonapi}
           />
+        <MissionScreenDarkener />
         {!missionStarted &&
           <MissionToBriefingButton />}
         {!missionStarted &&

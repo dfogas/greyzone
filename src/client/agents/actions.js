@@ -4,11 +4,13 @@ import {jsonapiCursor} from '../state';
 import {gameCursor} from '../state';
 // import {msg} from '../intl/store';
 
-import actionDices from '../lib/actiondices';
-import agentIncurDelay from '../lib/agentincurdelay';
-import agentRankup from '../lib/agentrankup';
-import invokeAgentTalk from '../lib/invokeagenttalk';
-import leadershipcheck from '../lib/leadershipcheck';
+import actionDices from '../lib/bml/actiondices';
+import agentIncurDelay from '../lib/bml/agentincurdelay';
+import agentRankup from '../lib/bml/agentrankup';
+import dayandtime from '../lib/dayandtime';
+import invokeAgentTalk from '../lib/bml/invokeagenttalk';
+import isEquipmentBackfire from '../lib/bml/isequipmentbackfire';
+import leadershipcheck from '../lib/bml/leadershipcheck';
 import $ from 'jquery';
 
 export function toArmory(agent) {
@@ -118,8 +120,9 @@ export function getRank(agent) {
 
 export function setETA(agent, equipment) {
   const delay = gameCursor(['globals', 'features', 'unpaid', 'equipments', 'ETAdelay']);
-  const agentsETA = agentIncurDelay(agent, equipment, delay);
+  const agentsETA = agentIncurDelay(agent, delay, isEquipmentBackfire(agent, equipment));
 
+  console.log(dayandtime(agentsETA, new Date().getTimezoneOffset()));
   dispatch(setETA, {agentsETA});
 }
 
@@ -133,7 +136,7 @@ setToString('agents', {
   buyEnhancement,
   enhancementTalk,
   equip,
-  getRank,
   flashArmory,
+  getRank,
   setETA
 });

@@ -5,9 +5,9 @@ import {register} from '../dispatcher';
 import immutable from 'immutable';
 import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
-import bookObscurity from '../lib/bookobscurity';
-import noDoubleAgents from '../lib/nodoubleagents';
-import allAgents from '../lib/allagents';
+import bookObscurity from '../lib/bml/bookobscurity';
+import noDoubleAgents from '../lib/bml/nodoubleagents';
+import allAgents from '../lib/bml/allagents';
 
 export const dispatchToken = register(({action, data}) => {
 

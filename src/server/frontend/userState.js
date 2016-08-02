@@ -16,14 +16,14 @@ fetch.Promise = require('bluebird');
 import 'isomorphic-fetch';
 
 /* Game inputs */
-import AchievementList from '../lib/greyzone/achievement.list';
-import CountryList from '../lib/greyzone/country.list';
-import EnhancementList from '../lib/greyzone/enhancement.list';
-import EquipmentList from '../lib/greyzone/equipments.list';
+import CountryList from '../lib/greyzone/countries/countries.list';
+import EnhancementList from '../lib/greyzone/enhancements/enhancement.list';
+import EquipmentList from '../lib/greyzone/equipments/equipments.list';
+import EventList from '../lib/greyzone/events/events.list';
 import MissionsList from '../lib/greyzone/missions.list';
 import OptionsList from '../lib/greyzone/options.list';
-import StatusList from '../lib/greyzone/statuses.list';
-import TrainingTable from '../lib/greyzone/trainingtable';
+import StatusList from '../lib/greyzone/statuses/statuses.list';
+import TrainingTable from '../lib/greyzone/globals/trainingtable';
 
 export default function userState() {
 
@@ -42,12 +42,8 @@ export default function userState() {
     };
 
     req.userState.game = {
-      events: [
-        {name: 'Event no. 1', target: 'target_id'}
-      ],
+      events: EventList,
       globals: {
-        achievements: AchievementList,
-        agentsforhire: [],
         constants: {
           agentsPriceList: {
             '1': 100,

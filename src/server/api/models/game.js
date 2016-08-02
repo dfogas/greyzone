@@ -4,11 +4,13 @@ const Schema = mongoose.schema;
 var GameSchema = new Schema({
   events: [Schema.Types.Mixed],
   globals: {
-    agentsforhire: [Schema.Types.Mixed],
     constants: {
       started: Number
     },
-    countries: [Schema.Types.Mixed]
+    countries: [Schema.Types.Mixed],
+    enhancements: [Schema.Types.Mixed],
+    equipments: [Schema.Types.Mixed],
+    missions: [Schema.Types.Mixed]
   }
 });
 

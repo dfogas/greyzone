@@ -5,7 +5,7 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
-import isTierComplete from '../../lib/istiercomplete';
+import isTierComplete from '../../lib/bml/istiercomplete';
 
 import StatusesIntro from './statuses.intro.react';
 import StatusTier from './status.tier.react';

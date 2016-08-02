@@ -40,7 +40,7 @@ import '../support/store';
 import '../tutorial/store';
 
 //libs
-import '../lib/decimalrounding';
+import '../lib/general/decimalrounding';
 
 class App extends Component {
 

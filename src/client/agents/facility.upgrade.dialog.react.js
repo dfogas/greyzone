@@ -5,7 +5,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import formatMoney from '../lib/formatmoney';
-import isExclusiveEnhancement from '../lib/exclusiveenhancement';
+import isExclusiveEnhancement from '../lib/bml/exclusiveenhancement';
 
 class FacilityUpgradeDialog extends Component {
   enhancementBuy() {
@@ -19,7 +19,7 @@ class FacilityUpgradeDialog extends Component {
   }
 
   render() {
-    const {enhancement, owned, paying} = this.props;
+    const {enhancement, list, owned, paying} = this.props;
     const paid = paying ? paying.toJS() : null;
     const isPaying = paid ?
       Object.keys(paid).reduce((prev, curr) => {
@@ -31,7 +31,7 @@ class FacilityUpgradeDialog extends Component {
         <div><em>{enhancement.get('description')}</em></div>
         {!owned &&
           <div>Facility Cost: ${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
-        {!owned && ((isExclusiveEnhancement(enhancement) && isPaying) || !isExclusiveEnhancement(enhancement)) && <button
+        {!owned && ((isExclusiveEnhancement(enhancement) && isPaying) || !isExclusiveEnhancement(enhancement, list)) && <button
           className='enhancement-buy-button'
           onClick={this.enhancementBuy.bind(this)}>
           Buy
@@ -46,6 +46,7 @@ class FacilityUpgradeDialog extends Component {
 
 FacilityUpgradeDialog.propTypes = {
   enhancement: React.PropTypes.instanceOf(immutable.Map),
+  list: React.PropTypes.instanceOf(immutable.List),
   owned: React.PropTypes.bool,
   paying: React.PropTypes.instanceOf(immutable.Map)
 };

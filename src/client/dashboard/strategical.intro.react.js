@@ -4,7 +4,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import allAgents from '../lib/allagents';
+import allAgents from '../lib/bml/allagents';
 
 class StrategicalIntro extends Component {
   render() {

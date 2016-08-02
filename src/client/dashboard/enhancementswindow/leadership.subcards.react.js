@@ -1,10 +1,11 @@
+/* Debug */
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
-import currentLevelLdr from '../../lib/currentlevelldr';
-import nextLevelLdr from '../../lib/nextlevelldr';
+import currentLevelLdr from '../../lib/bml/currentlevelldr';
+import nextLevelLdr from '../../lib/bml/nextlevelldr';
 import dayandtime from '../../lib/dayandtime';
 
 class LeadershipSubCards extends Component {

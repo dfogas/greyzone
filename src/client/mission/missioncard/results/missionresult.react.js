@@ -2,7 +2,7 @@ import './missionresult.styl';
 import Component from '../../../components/component.react.js';
 import React from 'react';
 import classnames from 'classnames';
-import determiningIcon from '../../../lib/determiningicon';
+import determiningIcon from '../../../lib/bml/determiningicon';
 
 class MissionResult extends Component {
   render() {

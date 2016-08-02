@@ -3,9 +3,9 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
-// import allAgents from '../lib/allagents';
-import maxAgentsCheck from '../lib/maxagentscheck';
-import obscurityMissionCheck from '../lib/obscuritymissioncheck';
+// import allAgents from '../lib/bml/allagents';
+import maxAgentsCheck from '../lib/bml/maxagentscheck';
+import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 import Sound from '../lib/sound';
 import $ from 'jquery';
 

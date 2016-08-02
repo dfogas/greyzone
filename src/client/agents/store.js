@@ -113,10 +113,10 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === agentsActions.setETA)
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.agentsETA);
-      });
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'ETA'], data.agentsETA);
+    });
 
   if (action === agentsActions.logArmory) {
     data = data.message || data;

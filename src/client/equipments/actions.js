@@ -5,7 +5,7 @@ import setToString from '../lib/settostring';
 import Sound from '../lib/sound';
 import {gameCursor} from '../state';
 import {jsonapiCursor} from '../state';
-import equipmentUseCheck from '../lib/equipmentusecheck';
+import equipmentUseCheck from '../lib/bml/equipmentusecheck';
 import cconfig from '../client.config';
 import equipmentSound from '../lib/equipmentsound';
 
