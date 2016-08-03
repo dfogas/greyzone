@@ -31,7 +31,7 @@ class EnhancementCard extends Component {
           <div><small>Owned</small></div>}
         {!owned &&
           <div>${formatMoney(enhancement.getIn(['price', 'cash']), 0, '.', ',')}{'\u{1f575}'}{enhancement.getIn(['price', 'contacts'])}</div>}
-        {!owned && ((isExclusiveEnhancement(enhancement) && isPaying) || !isExclusiveEnhancement(enhancement, list)) && <button
+        {!owned && ((isExclusiveEnhancement(enhancement, list) && isPaying) || !isExclusiveEnhancement(enhancement, list)) && <button
           className='enhancement-buy-button'
           onClick={this.enhancementBuy.bind(this)}>
           Buy
