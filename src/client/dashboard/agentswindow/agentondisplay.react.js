@@ -6,7 +6,7 @@ import immutable from 'immutable';
 import allAgents from '../../lib/bml/allagents';
 // import {msg} from '../../intl/store'; //
 
-import AgentCard from '../../agents/agentcard/agentcard.react';
+import AgentCard from '../../agents/agentcard/agent.card.react';
 
 class AgentOnDisplay extends Component {
   componentDidMount() {

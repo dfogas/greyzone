@@ -1,4 +1,4 @@
-import './missionresultlist.styl';
+import './mission.result.list.styl';
 import Component from '../../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import uuid from '../../../lib/guid';
 
 // import classnames from 'classnames';
-import MissionResult from './missionresult.react';
+import MissionResult from './mission.result.react';
 
 class MissionResultList extends Component {
   render() {

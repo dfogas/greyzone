@@ -74,13 +74,10 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 1,
-    reputation: 500,
-    gameCash: 50000
+    obscurity: 1
   },
   losses: {
-    agentImprisoned: true,
-    reputation: 500
+    reputation: 1500
   },
   sound: sound,
   imgsrc: imgsrc,
@@ -97,13 +94,10 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 1.25,
-    reputation: 1000,
-    gameCash: 100000
+    obscurity: 1
   },
   losses: {
-    agentImprisoned: true,
-    reputation: 1000
+    reputation: 2000
   },
   sound: sound,
   imgsrc: imgsrc,

@@ -1,4 +1,4 @@
-import './agentcard.styl';
+import './agent.card.styl';
 import * as agentsActions from '../actions';
 import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react';
@@ -12,9 +12,9 @@ import shouldHaveRank from '../../lib/bml/shouldhaverank';
 import uuid from '../../lib/guid';
 import AgentExperienceBar from './agent.experience.bar.react';
 
-import AgentStatCounter from './agentstatcounter.react';
+import AgentStatCounter from './agent.stat.counter.react';
 import AgentProfile from './agent.profile.react';
-import AgentEquipmentSlot from './agentequipmentslot.react';
+import AgentEquipmentSlot from './agent.equipment.slot.react';
 import AgentClock from './agent.clock.react';
 
 class AgentCard extends Component {
@@ -58,7 +58,7 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, agentindex, equipments, game, jsonapi, key} = this.props;
+    const {agent, agentindex, game, jsonapi, key} = this.props;
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const self = jsonapi.get('self');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
@@ -67,7 +67,6 @@ class AgentCard extends Component {
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
     const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay', 'id']);
     const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
-    const agentIsNotInPrison = !agent.get('prison'); //
 
     const classString = classnames(
       'agent-card', {
@@ -77,9 +76,6 @@ class AgentCard extends Component {
     );
     if (agent)
       var agentequipments = agent.get('equipments');
-
-    // console.log(allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) !== null);
-    // console.log(allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')));
 
     return (
       <li
@@ -97,21 +93,15 @@ class AgentCard extends Component {
         <AgentClock
           agent={agent}
           />
-        <AgentStatCounter
-          isShowcased={this.props.isShowcased}
-          skill={agent.get('operationsSkill')}
-          skillname="operations"
-          />
-        <AgentStatCounter
-          isShowcased={this.props.isShowcased}
-          skill={agent.get('electronicsSkill')}
-          skillname="electronics"
-          />
-        <AgentStatCounter
-          isShowcased={this.props.isShowcased}
-          skill={agent.get('stealthSkill')}
-          skillname="stealth"
-          />
+        {['operations', 'electronics', 'stealth'].map(skilltype => {
+          return (
+            <AgentStatCounter
+              isShowcased={this.props.isShowcased}
+              skill={agent.get(skilltype + 'Skill')}
+              skillname={skilltype}
+              />
+          );
+        })}
         <AgentProfile
           agent={agent}
           agentbeingsaved={agentbeingsaved}
@@ -125,7 +115,7 @@ class AgentCard extends Component {
           <button
             id='ActivateSelf'
             onClick={(e) => dashboardActions.playerGoesOnMissions()}>Activate</button>}
-        {playerAgentIsActive && selfIsDisplayed(jsonapi) && agentIsNotInPrison && self.get('id') === agent.get('id') && this.props.isDisplay &&
+        {playerAgentIsActive && selfIsDisplayed(jsonapi) && !agent.get('prison') && self.get('id') === agent.get('id') && this.props.isDisplay &&
           <button
             id='HideSelf'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
@@ -151,7 +141,7 @@ class AgentCard extends Component {
               agentequipment={agentequipment}
               agentindex={agentindex}
               equipmentindex={i}
-              equipments={equipments}
+              game={game}
               isMission={this.props.isMission}
               isShowcased={this.props.isShowcased}
               key={uuid() + i}
@@ -172,7 +162,6 @@ class AgentCard extends Component {
 AgentCard.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map).isRequired,
   agentindex: React.PropTypes.number,
-  equipments: React.PropTypes.instanceOf(immutable.List),
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   isAgents: React.PropTypes.bool,
   isDisplay: React.PropTypes.bool,

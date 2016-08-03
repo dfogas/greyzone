@@ -40,14 +40,12 @@ class TableTop extends Component {
   }
 
   render() {
-    const {activemission, tutorial} = this.props;
+    const {activemission/*, tutorial*/} = this.props;
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
-    const activetasks = activemission.get('tasks');
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
     const dicesthrown = actiondices.map(action => action.get('name'));
     const missionStarted = activemission.get('started');
-    const protectivegear = activemission.getIn(['equipmenteffects', 'protectivegear']);
     const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey'), rollable: dice.get('rollable')})));
     const taskscompleted = activemission.get('taskscompleted');
 //
@@ -77,7 +75,7 @@ class TableTop extends Component {
                 />
             );
           }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
-          taskscompleted.size >= activetasks.size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">It seems, that you have been successfull.</div>)
+          taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">It seems, that you have been successfull.</div>)
           : (activemission.getIn(['mission', 'currenttask', 'agentlock']) ? (<div id="MissionStartStatus">You most likely failed mission.</div>) : (<div id="MissionStartStatus">Continue next task.</div>))
         }
         <ProbabilityBar
@@ -93,7 +91,7 @@ class TableTop extends Component {
             type='button'
             value='CompleteTask'
             />}
-        {protectivegear &&
+        {activemission.getIn(['equipmenteffects', 'protectivegear']) &&
           <button id='ProtectiveGearButton' onClick={this.protectiveGearUse.bind(this)}>Use P.G.</button>}
         {agentontask &&
           <ActionButton

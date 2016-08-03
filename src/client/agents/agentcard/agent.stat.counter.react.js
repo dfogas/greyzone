@@ -1,7 +1,7 @@
 /*
   Dumb Component
 */
-import './agentstatcounter.styl';
+import './agent.stat.counter.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import classnames from 'classnames';
@@ -14,9 +14,7 @@ class AgentStatCounter extends Component {
       'showcased': this.props.isShowcased
     });
     return (
-      <div
-        className={classString}
-        >
+      <div className={classString}>
         {skill}
       </div>
     );
@@ -24,10 +22,9 @@ class AgentStatCounter extends Component {
 }
 
 AgentStatCounter.propTypes = {
-  count: React.PropTypes.number,
   isShowcased: React.PropTypes.bool,
-  skill: React.PropTypes.number,
-  skillname: React.PropTypes.string
+  skill: React.PropTypes.number.isRequired,
+  skillname: React.PropTypes.string.isRequired
 };
 
 export default AgentStatCounter;

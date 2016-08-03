@@ -5,7 +5,7 @@ import './agentinarmory.styl';
 import * as agentActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
-import AgentCard from './agentcard/agentcard.react';
+import AgentCard from './agentcard/agent.card.react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 

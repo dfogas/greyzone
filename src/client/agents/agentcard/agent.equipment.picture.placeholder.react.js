@@ -1,26 +1,26 @@
+import './agent.equipment.picture.placeholder.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
-import classnames from 'classnames';
 import immutable from 'immutable';
+import {msg} from '../../intl/store';
+import classnames from 'classnames';
 
 class AgentEquipmentPicturePlaceholder extends Component {
   render() {
-    const {equipment} = this.props;
-    const classString = classnames('agent-equipment-picture-placeholder', equipment.get('name').replace(/\s+/g, ''), {
-      'on-mission': this.props.isMission,
-      'showcased': this.props.isShowcased
-    });
+    const {agentequipment} = this.props;
+    const classString = classnames('agent-equipment-picture-placeholder',
+      immutable.Map.isMap(agentequipment) ? agentequipment.get('name').replace(/\s+/g, '') : '', {
+        'mission': this.props.isMission,
+        'showcased': this.props.isShowcased
+      });
     return (
-      <div
-        className={classString}
-        >
-      </div>
+      <div className={classString}></div>
     );
   }
 }
 
 AgentEquipmentPicturePlaceholder.propTypes = {
-  equipment: React.PropTypes.instanceOf(immutable.Map),
+  agentequipment: React.PropTypes.instanceOf(immutable.Map),
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool
 };

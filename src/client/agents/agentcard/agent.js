@@ -1,3 +1,4 @@
+/* probably reviver, not quite sure how to use them yet */
 import {Record} from 'immutable';
 
 const AgentRecord = Record({

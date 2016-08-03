@@ -11,7 +11,7 @@ import {msg} from '../../intl/store';
 import determiningIcon from '../../lib/bml/determiningicon';
 // import selfIsDisplayed from '../../lib/selfisdisplayed';
 
-import AgentCard from '../../agents/agentcard/agentcard.react';
+import AgentCard from '../../agents/agentcard/agent.card.react';
 import PlayerAgentsLeadership from './player.agents.leadership.react';
 import PlayerOperationsCapability from './player.operations.capability.react';
 

@@ -25,7 +25,7 @@ class MissionEndButton extends Component {
       var chance = probability < border;
       // console.log('border is' + border);
       // console.log('probability is ' + probability);
-      console.log('chance is ' + chance);
+      // console.log('chance is ' + chance);
       if (chance)
         this.pushGameMission(gamemission);
       else

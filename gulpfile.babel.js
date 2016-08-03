@@ -62,6 +62,11 @@ gulp.task('lib-client', () => {
     .pipe(mocha({reporter: 'nyan', require: ['ignore-styles']}));
 });
 
+gulp.task('components', () => {
+  return gulp.src('./src/client/lib/test/components/*.*', {read: false})
+    .pipe(mocha({reporter: 'nyan', require: ['ignore-styles']}));
+});
+
 gulp.task('api', (done) => {
   runSequence('env', 'apitest', done);
 });

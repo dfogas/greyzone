@@ -9,7 +9,7 @@ import uuid from '../../lib/guid';
 
 import MissionTitle from '../../mission/missioncard/missiontitle.react';
 import Task from '../../mission/missioncard/tasks/task.react';
-import MissionResultList from '../../mission/missioncard/results/missionresultlist.react';
+import MissionResultList from '../../mission/missioncard/results/mission.result.list.react';
 import AgentAssignment from './agentassignment.react';
 import MissionThumbnail from './mission.thumbnail.react';
 // import MissionClock from './mission.clock.react';

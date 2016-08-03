@@ -1,11 +1,13 @@
-import './agentequipmentslot.styl';
+import './agent.equipment.slot.styl';
+import * as agentActions from '../actions';
+import * as equipmentActions from '../../equipments/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../../intl/store';
-// dynamic
-import * as agentActions from '../actions';
-import * as equipmentActions from '../../equipments/actions';
+// import {msg} from '../../intl/store';
+import classnames from 'classnames';
+
+import AgentEquipmentPicturePlaceholder from './agent.equipment.picture.placeholder.react';
 
 class AgentEquipmentSlot extends Component {
 
@@ -14,7 +16,8 @@ class AgentEquipmentSlot extends Component {
   }
 
   drop(ev) {
-    const {equipmentindex, equipments} = this.props;
+    const {equipmentindex, game} = this.props;
+    const equipments = game.getIn(['globals', 'equipments']);
     ev.preventDefault();
     var message = ev.dataTransfer.getData('text');
     var tag = equipments.find(eq => eq.get('name') === message).get('tag');
@@ -30,33 +33,26 @@ class AgentEquipmentSlot extends Component {
   }
 
   render() {
-    const {agentindex, agentequipment, equipmentindex} = this.props;
+    const {agentequipment, equipmentindex} = this.props;
 
-    var classString = ' ';
-    if (this.props.isMission)
-      classString += ' mission';
+    const classString = classnames('agent-equipment-slot' + equipmentindex,
+      immutable.Map.isMap(agentequipment) ? agentequipment.get('name').replace(/\s+/g, '') : '', {
+        'mission': this.props.isMission,
+        'showcased': this.props.isShowcased
+    });
 
-    if (this.props.isShowcased)
-      classString += ' showcased';
-
-    classString += ' ' + agentequipment.get('name').replace(/\s+/g, '');
     return (
       <div
-        agentindex={agentindex}
-        className={'agent-equipment-slot' + equipmentindex + classString}
+        className={classString}
         equipmentindex={equipmentindex}
         onClick={this.equipmentUse.bind(this)}
         onDragOver={this.allowDrop}
-        onDrop={this.drop.bind(this)}
-        >
-        <div
-          className={'agent-equipment-picture-placeholder' + classString}
+        onDrop={this.drop.bind(this)}>
+        <AgentEquipmentPicturePlaceholder
+          agentequipment={agentequipment}
+          isMission={this.props.isMission}
+          isShowcased={this.props.isShowcased}
           />
-        {false && <div
-          className={'agent-equipment-description-placeholder' + classString}
-          >
-          {agentequipment.get('name') ? agentequipment.get('name') : msg('tutorial.equipmentslot')}
-        </div>}
       </div>
     );
   }
@@ -65,9 +61,8 @@ class AgentEquipmentSlot extends Component {
 AgentEquipmentSlot.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map),
   agentequipment: React.PropTypes.instanceOf(immutable.Map),
-  agentindex: React.PropTypes.number,
-  equipmentindex: React.PropTypes.number,
-  equipments: React.PropTypes.instanceOf(immutable.List),
+  equipmentindex: React.PropTypes.number.isRequired,
+  game: React.PropTypes.instanceOf(immutable.Map),
   isMission: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool
 };

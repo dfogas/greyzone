@@ -2,7 +2,7 @@ import './agentassignment.styl';
 import * as briefingActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
-import AgentCard from '../../agents/agentcard/agentcard.react';
+import AgentCard from '../../agents/agentcard/agent.card.react';
 import immutable from 'immutable';
 
 class AgentAssignment extends Component {

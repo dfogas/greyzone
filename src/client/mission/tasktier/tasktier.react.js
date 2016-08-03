@@ -6,7 +6,7 @@ import React from 'react';
 import uuid from '../../lib/guid';
 
 import Task from '../missioncard/tasks/task.react';
-import MissionResultList from '../missioncard/results/missionresultlist.react';
+import MissionResultList from '../missioncard/results/mission.result.list.react';
 
 class TaskTier extends Component {
 

@@ -1,4 +1,4 @@
-import './missionresult.styl';
+import './mission.result.styl';
 import Component from '../../../components/component.react.js';
 import React from 'react';
 import classnames from 'classnames';

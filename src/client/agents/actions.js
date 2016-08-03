@@ -122,7 +122,7 @@ export function setETA(agent, equipment) {
   const delay = gameCursor(['globals', 'features', 'unpaid', 'equipments', 'ETAdelay']);
   const agentsETA = agentIncurDelay(agent, delay, isEquipmentBackfire(agent, equipment));
 
-  console.log(dayandtime(agentsETA, new Date().getTimezoneOffset()));
+  // console.log(dayandtime(agentsETA, new Date().getTimezoneOffset()));
   dispatch(setETA, {agentsETA});
 }
 

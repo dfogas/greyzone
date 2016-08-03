@@ -10,7 +10,13 @@ var GameSchema = new Schema({
     countries: [Schema.Types.Mixed],
     enhancements: [Schema.Types.Mixed],
     equipments: [Schema.Types.Mixed],
-    missions: [Schema.Types.Mixed]
+    missions: [Schema.Types.Mixed],
+    statuses: [Schema.Types.Mixed],
+    options: {
+      collector: Boolean,
+      dolcevita: Boolean,
+      revenge: Boolean
+    }
   }
 });
 

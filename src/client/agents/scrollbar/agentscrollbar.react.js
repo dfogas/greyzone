@@ -8,7 +8,7 @@ import classnames from 'classnames/dedupe';
 import uuid from '../../lib/guid';
 // import {msg} from '../../intl/store';
 
-import AgentCard from '../agentcard/agentcard.react';
+import AgentCard from '../agentcard/agent.card.react';
 
 class AgentScrollBar extends Component {
   allowDrop(ev) {

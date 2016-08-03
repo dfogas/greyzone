@@ -5,6 +5,7 @@ import Component from '../../components/component.react.js';
 import React from 'react';
 import {msg} from '../../intl/store';
 import immutable from 'immutable';
+import classnames from 'classnames';
 
 class AgentProfile extends Component {
   agentTalk() {
@@ -17,20 +18,15 @@ class AgentProfile extends Component {
     //data cache placeholder
     const {agent, agentbeingsaved, self} = this.props;
     const beingsaved = agentbeingsaved ? agentbeingsaved.get('id') === agent.get('id') : false;
-    let formattedImg;
-    var classString = '';
+    const classString = classnames('', {'showcased': this.props.isShowcased});
+    const formattedImg = this.props.isShowcased ? agent.get('imgsrc').replace('_128', '_sc') : agent.get('imgsrc');
 
-    formattedImg = agent.get('imgsrc');
-    if (this.props.isShowcased) {
-      classString += ' showcased';
-      formattedImg = agent.get('imgsrc').replace('_128', '_sc');
-    }
     return (
-      <div className={'agent-profile' + classString}>
+      <div className={'agent-profile ' + classString}>
         <div
-          className={'agent-picture' + classString}
+          className={'agent-picture ' + classString}
           onClick={this.agentTalk.bind(this)}><img draggable='false' src={formattedImg} /></div>
-        <div className={'agent-label' + classString}>
+        <div className={'agent-label ' + classString}>
           {agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}
         </div>
         {agent.get('prison') &&
@@ -52,13 +48,13 @@ class AgentProfile extends Component {
 }
 
 AgentProfile.propTypes = {
-  agent: React.PropTypes.instanceOf(immutable.Map),
+  agent: React.PropTypes.instanceOf(immutable.Map).isRequired,
   agentbeingsaved: React.PropTypes.instanceOf(immutable.Map),
   agentondisplay: React.PropTypes.instanceOf(immutable.Map),
   imgsrc: React.PropTypes.string,
   isDisplay: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
-  self: React.PropTypes.instanceOf(immutable.Map)
+  self: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default AgentProfile;

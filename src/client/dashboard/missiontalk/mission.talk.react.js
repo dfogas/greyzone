@@ -8,7 +8,7 @@ import PlayerTalk from './player.talk.react';
 
 class MissionTalk extends Component {
   render() {
-    const {game, jsonapi} = this.props;
+    const {/*game,*/ jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
     const self = jsonapi.get('self');
     const agentLimit = activemission.get('agentLimit');

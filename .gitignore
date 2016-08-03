@@ -5,7 +5,6 @@
 bower_components
 build
 src/client/app/test
-src/client/lib/test
 src/test
 coverage
 dist

@@ -4,7 +4,7 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../../intl/store';
-import AgentCard from '../../../agents/agentcard/agentcard.react';
+import AgentCard from '../../../agents/agentcard/agent.card.react';
 
 class AgentOnMission extends Component {
 
