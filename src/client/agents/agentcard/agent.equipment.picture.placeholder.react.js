@@ -2,7 +2,6 @@ import './agent.equipment.picture.placeholder.styl';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../../intl/store';
 import classnames from 'classnames';
 
 class AgentEquipmentPicturePlaceholder extends Component {

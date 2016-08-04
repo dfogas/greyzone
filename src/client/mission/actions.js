@@ -146,7 +146,7 @@ export function start() {
   const countrystats = jsonapiCursor(['countrystats']);
   // const enhancementnames = jsonapiCursor(['enhancements']).map(enh => enh.get('name')).toJS();
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
-  let mySound = new Sound(url + '/assets/audio/MissionStart.ogg');
+
 
   // console.log(!maxAgentsCheck(jsonapiCursor()));
   // console.log(activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1);
@@ -157,7 +157,10 @@ export function start() {
     flashMission(`Upgrade operations for more agents.`);
   else {
     flashMission(`Mission Started`);
-    mySound.play();
+    if (jsonapiCursor(['options', 'soundeffects'])) {
+      let mySound = new Sound(url + '/assets/audio/MissionStart.ogg');
+      mySound.play();
+    }
     dispatch(start, {});
   }
 }

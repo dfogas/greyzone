@@ -95,8 +95,10 @@ export function selectMission(mission) {
   } else if (!obscurityMissionCheck(mission, countrystats))
     flashBriefing(`Mission won't start, obscurity is not high enough.`);
   else {
-    let missionSound = new Sound(url + '/assets/audio/' + mission.get('sound'));
-    missionSound.play();
+    if (jsonapiCursor(['options', 'soundeffects'])) {
+      let missionSound = new Sound(url + '/assets/audio/' + mission.get('sound'));
+      missionSound.play();
+    }
     dispatch(selectMission, {mission});
   }
 }

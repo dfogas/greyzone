@@ -28,6 +28,18 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.missionScreenToggleOff)
+  jsonapiCursor(jsonapi => {
+    return jsonapi
+    .setIn(['components', 'mission', 'transition'], false);
+  });
+
+  if (action === componentsActions.missionScreenToggleOn)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'mission', 'transition'], true);
+    });
+
   if (action === componentsActions.missionScreenTransition) {
     const toggle = jsonapiCursor(['components', 'mission', 'transition']);
     jsonapiCursor(jsonapi => {

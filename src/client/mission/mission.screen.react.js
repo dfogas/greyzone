@@ -57,7 +57,9 @@ class MissionTrackingScreen extends Component {
           game={game}
           jsonapi={jsonapi}
           />
-        <MissionScreenDarkener />
+        <MissionScreenDarkener
+          jsonapi={jsonapi}
+          />
         {!missionStarted &&
           <MissionToBriefingButton />}
         {!missionStarted &&

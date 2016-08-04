@@ -30,8 +30,10 @@ export function protectiveGearUse(dices) {
 }
 
 export function rollAll() {
-  const mySound = new Sound('../../../assets/audio/diceInHand.ogg');
-  mySound.play();
+  if (jsonapiCursor(['options', 'soundeffects'])) {
+    let mySound = new Sound('../../../assets/audio/diceInHand.ogg');
+    mySound.play();
+  }
   dispatch(rollAll, {message: 'all dices rolled'});
 }
 

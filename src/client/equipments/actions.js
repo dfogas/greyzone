@@ -45,8 +45,10 @@ export function use(agent, agentequipmentandindex) {
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) { // eslint-disable-line curly
     if (agent.get('name') === agentontask.get('name')) {
-      let mySound = new Sound(url + equipmentSound(agentequipmentandindex.agentequipment));
-      mySound.play();
+      if (jsonapiCursor(['options', 'soundeffects'])) {
+        let mySound = new Sound(url + equipmentSound(agentequipmentandindex.agentequipment));
+        mySound.play();
+      }
       dispatch(use, agentequipmentandindex);
     }
   } else {
