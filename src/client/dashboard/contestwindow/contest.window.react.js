@@ -36,7 +36,10 @@ class ContestWindow extends Component {
     return (
       <div id='ContestWindow'>
         <GeminiScrollbar>
-          <table id="ContestTable">
+          <table
+            id="ContestTable"
+            style={{opacity: 1}}
+            >
             <thead>
               <tr>
                 <th>Player</th>

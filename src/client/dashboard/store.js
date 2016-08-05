@@ -4,6 +4,7 @@ import * as missionsWindowActions from './missionswindow/actions';
 import {contestCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import dayandtime from '../lib/dayandtime';
+import bookObscurity from '../lib/bml/bookobscurity';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -96,6 +97,20 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('log', val => val.unshift(data));
+    });
+  }
+
+  if (action === dashboardActions.obscurityCountriesImpact) {
+    let playerState = jsonapiCursor();
+    const countrystats = jsonapiCursor(['countrystats']);
+    // console.log(data.countries.toJS(), data.impact);
+    data.countries.forEach(c => {
+      let indexOfCS = countrystats.indexOf(countrystats.find(cs => cs.get('name') === c.get('name')));
+      if (countrystats.map(cs => cs.get('name')).find(csname => csname === c.get('name')))
+        playerState = playerState.setIn(['countrystats', indexOfCS, 'obscurity'], bookObscurity(countrystats.getIn([indexOfCS, 'obscurity']), data.impact));
+    });
+    jsonapiCursor(jsonapi => {
+      return playerState;
     });
   }
 

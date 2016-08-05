@@ -75,7 +75,6 @@ export function dashboardIntroToggle() {
 export function dismissAgent(agent) {
   const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
   const storage = storagejson ? JSON.parse(storagejson) : [];
-  const revengemission = missionAccept('rattedout', 'random', {}, jsonapiCursor(), countryList, missionsList);
   const agents = jsonapiCursor(['agents']);
   const agentondisplayindex = agents.indexOf(agents.find(ag => ag.get('id') === agent.get('id')));
 
@@ -83,8 +82,11 @@ export function dismissAgent(agent) {
   dispatch(dismissAgent, {agent});
   flashDashboard(`Agent left to rot in prison!`); // TODO: full dialog for agent's revenge taken on player
   selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
-  if (agent.get('loyalty') !== 'loyal')
-    dispatch(acceptMission, {mission: revengemission});
+  if (agent.get('loyalty') !== 'loyal') {
+    // let organizationMissions = jsonapiCursor(['missionsDone']); TODO: check in which countries did agent take part in missions
+    obscurityCountriesImpact(countryList, -(agent.get('rank') / 10));
+    dashboardAnnounce(`The agent has talked, obscurity in countries has been lowered.`);
+  }
 }
 
 export function flashDashboard(message) {
@@ -123,7 +125,7 @@ export function hireAgent(specialist, rank) {
 export function honorAgent(agent) {
   // because initiating honor Agent is only possible from agentondisplay, unless debug mode is on
   const agents = jsonapiCursor(['agents']);
-  const agentondisplayindex = agents.indexOf(agents.find(agent));
+  const agentondisplayindex = agents.indexOf(agents.find(ag => ag.get('id') === agent.get('id')));
   selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
   flashDashboard(`Agent has been honored.`); // TODO: full dialog window for honoring agent
   dispatch(honorAgent, {agent});
@@ -131,6 +133,10 @@ export function honorAgent(agent) {
 
 export function log(message) {
   dispatch(log, {message});
+}
+
+export function obscurityCountriesImpact(countries, impact) {
+  dispatch(obscurityCountriesImpact, {countries, impact});
 }
 
 export function playerDoesNotGoOnMissions() {
@@ -216,6 +222,7 @@ setToString('dashboard', {
   hireAgent,
   honorAgent,
   log,
+  obscurityCountriesImpact,
   playerDoesNotGoOnMissions,
   playerGoesOnMissions,
   pointerChange,

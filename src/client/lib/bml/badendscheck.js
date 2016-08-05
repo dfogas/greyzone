@@ -13,7 +13,7 @@ function checkBadEnds(jsonapi) {
       return paying[curr] || prev;
     }, false) : false;
 
-  if (jsonapi.get('agents').filter(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0)
+  if (jsonapi.get('agents').find(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])))
     return 'Killed';
   else if (jsonapi.get('agents').filter(agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 && !isPaying)
     return 'LeftInPrison';
@@ -23,7 +23,7 @@ function checkBadEnds(jsonapi) {
         allAgents(jsonapi).filter(agent => agent.get('loyalty') === 'loyal').size === 0 // no agent of organization is loyal
   )
     return 'LeftInPrison';
-  else if (countrystats.filter(cs => cs.get('obscurity') === 0).size > 3)
+  else if (countrystats.filter(cs => cs.get('obscurity') <= 0.5).size > 3)
     return 'Discovered';
   else
     return '';

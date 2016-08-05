@@ -7,7 +7,7 @@ import oQ from '../lib/bml/obscurityquality'; //
 class BriefingInCountry extends Component {
   render() {
     const {countrystats, inCountry, jsonapi} = this.props;
-    const briefingCountry = inCountry ? inCountry : jsonapi.getIn(['dashboard', 'countryofoperation']);
+    const briefingCountry = inCountry !== '' ? inCountry : jsonapi.getIn(['dashboard', 'countryofoperation']);
     return (
       <div id='BriefingInCountry'>
         in {briefingCountry}

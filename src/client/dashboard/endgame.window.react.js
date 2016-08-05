@@ -5,6 +5,7 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
+import {FormattedHTMLMessage} from 'react-intl';
 
 import NewGameButton from './optionswindow/newgame.button.react';
 import StatisticsWindow from './statisticswindow/statistics.window.react';
@@ -24,28 +25,26 @@ class EndGameWindow extends Component {
     return (
       <div id="EndGameWindow">
         You ended the game with
-        {' '}
         {
-          countrystats.reduce((prev, curr) => {
+          Math.round(countrystats.reduce((prev, curr) => {
             return curr.get('reputation') * curr.get('obscurity') + prev;
           }, 0) +
-          (gameend === 'richandhidden' ? 50000 : 0)
+          (gameend === 'richandhidden' ? 50000 : 0))
         } total score.
         Your game end is:
           {gameend === 'retirement' ? 'Given Up' : ''}
-          {gameend === 'discovered' ? 'Betrayed' : ''}
+          {gameend === 'discovered' ? 'Not so secret now' : ''}
           {gameend === 'richanddiscovered' ? 'Rich But Not For Long' : ''}
           {gameend === 'richandhidden' ? 'Rich and Covered' : ''}
           {gameend === 'leftinprison' ? 'Left to Rot' : ''}
           {gameend === 'killed' ? 'KIA' : ''}
-        <p>
-          {gameend === 'retirement' && msg('ends.retirement')}
-          {gameend === 'discovered' && msg('ends.discovered')}
-          {gameend === 'richanddiscovered' && msg('ends.richanddiscovered')}
-          {gameend === 'richandhidden' && msg('ends.richandhidden')}
-          {gameend === 'leftinprison' && msg('ends.leftinprison')}
-          {gameend === 'killed' && msg('ends.killed')}
-        </p>
+
+          {gameend === 'retirement' && <FormattedHTMLMessage message={msg('ends.retirement')} />}
+          {gameend === 'discovered' && <FormattedHTMLMessage message={msg('ends.discovered')} />}
+          {gameend === 'richanddiscovered' && <FormattedHTMLMessage message={msg('ends.richanddiscovered')} />}
+          {gameend === 'richandhidden' && <FormattedHTMLMessage message={msg('ends.richandhidden')} />}
+          {gameend === 'leftinprison' && <FormattedHTMLMessage message={msg('ends.leftinprison')} />}
+          {gameend === 'killed' && <FormattedHTMLMessage message={msg('ends.killed')} />}
         <NewGameButton
           jsonapi={jsonapi}
           />

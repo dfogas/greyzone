@@ -2,6 +2,7 @@ import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
 import hashString from '../../lib/hashstring';
+import immutable from 'immutable';
 // import cconfig from '../../client.config';
 import $ from 'jquery';
 
@@ -65,7 +66,10 @@ export function saveGame(jsonapi, game) {
 }
 
 export function startNewGame(jsonapi) {
-  dispatch(startNewGame, jsonapi);
+  if (!jsonapi.get('paying'))
+    dispatch(startNewGame, jsonapi.set('paying', immutable.fromJS({base: false, collector: false, revenge: false})));
+  else
+    dispatch(startNewGame, jsonapi);
 }
 
 setToString('options', {

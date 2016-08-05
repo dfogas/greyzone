@@ -54,6 +54,7 @@ var playerdefaults = {
     }
   },
   dashboard: {
+    countryofoperation: 'US',
     strategical: {
       agenthire: {
         data: null,
@@ -64,7 +65,6 @@ var playerdefaults = {
           }
         }
       },
-      countryofoperation: 'US',
       missionaccept: {
         data: null,
         form: {

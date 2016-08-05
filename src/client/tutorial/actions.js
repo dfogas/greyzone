@@ -27,12 +27,12 @@ export function firstMissionSetup() {
       .setIn(['mission', 'currenttask', 'agentontask'], self)
       .update('agentsonmission', val => val.push(immutable.fromJS(Sanya)))
       .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(self, FirstMission.getIn(['tasks', 0]))))
-      .setIn(['mission', 'currenttask', 'agentontask', 'equipments'], immutable.fromJS([EquipmentList[3], EquipmentList[4]]))
+      .setIn(['mission', 'currenttask', 'agentontask', 'equipments'], immutable.fromJS([EquipmentList.get(3), EquipmentList.get(4)]))
       .setIn(['rewards', 'character'], 'spy');
   else
     mission = FirstMission
       .setIn(['mission', 'currenttask', 'agentontask'], immutable.fromJS(Miyako))
-      .update('agentsonmission', val => val.push(self.set('equipments', immutable.fromJS([EquipmentList[0], EquipmentList[6]]))))
+      .update('agentsonmission', val => val.push(self.set('equipments', immutable.fromJS([EquipmentList.get(0), EquipmentList.get(6)]))))
       .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(immutable.fromJS(Miyako), FirstMission.getIn(['tasks', 0]))))
       .setIn(['rewards', 'character'], self.get('specialist') === 'spy' ? 'operative' : 'spy');
 

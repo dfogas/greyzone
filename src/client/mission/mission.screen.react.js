@@ -43,7 +43,8 @@ class MissionTrackingScreen extends Component {
         id='MissionTrackingScreen'
         style={{
           backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`
-        }}>
+        }}
+        >
         <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>
         <TaskTier
           activemission={jsonapi.get('activemission')}
