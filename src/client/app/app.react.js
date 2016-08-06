@@ -8,7 +8,6 @@ import '../navs/navs.styl';
 // import cconfig from '../client.config';
 import * as state from '../state';
 import 'isomorphic-fetch';
-// import '../lib/io';
 import pollingStateToPersistence from '../lib/pollingstate';
 import Component from '../components/component.react';
 import React from 'react';

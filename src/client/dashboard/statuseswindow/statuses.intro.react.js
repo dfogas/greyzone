@@ -3,8 +3,14 @@ import * as statusesActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import {msg} from '../../intl/store';
+import $ from 'jquery';
 
 class StatusIntro extends Component {
+
+  componentDidMount() {
+    $(React.findDOMNode(this)).hide().fadeIn(400);
+  }
+
   render() {
     return (
       <div id='StatusesIntro'>

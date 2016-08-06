@@ -4,7 +4,7 @@
   */
 import immutable from 'immutable';
 
-function currentLevelOps(enhancements, list) {
+function currentLevelOps(enhancements) {
   const capabilityEnhancements = enhancements.filter(enh => enh.get('type') === 'capability');
 
   return capabilityEnhancements.reduce((prev, curr) => {

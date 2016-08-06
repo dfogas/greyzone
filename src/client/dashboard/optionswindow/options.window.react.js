@@ -55,9 +55,9 @@ class OptionsWindow extends Component {
           <OptionsGameWindow
             jsonapi={jsonapi}
             />}
-        <DebugWindow
+        {debug && <DebugWindow
           debug={debug}
-          />
+          />}
       </div>
     );
   }

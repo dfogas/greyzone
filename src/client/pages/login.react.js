@@ -20,7 +20,6 @@ class Login extends Component {
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
-          <BackgroundMusic />
           <Link to='signup'>
             <button id='LoginToSignup'>Sign Up</button>
           </Link>
@@ -28,6 +27,7 @@ class Login extends Component {
             <button id='LoginToIntro'>Introduction</button>
           </Link>
           <GSSigil />
+          <BackgroundMusic />
           <LoginMessage />
           <LoginForm {...this.props} />
           <button

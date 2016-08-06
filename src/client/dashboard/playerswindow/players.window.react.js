@@ -60,16 +60,6 @@ class PlayersWindow extends Component {
               key={uuid() + 'playeragent'}
               />
           </div>}
-        {/*!playerAgentIsActive &&
-          <button
-            id='PlayerAgentActionableButton'
-            onClick={this.playerGoesOnMissions}
-            >Go on Missions</button>}
-        {(playerAgentIsActive && selfIsDisplayed(jsonapi)) &&
-          <button
-            id='PlayerAgentActionableButton'
-            onClick={this.playerDoesNotGoOnMissions.bind(this)}
-            >Dont go on Missions</button>*/}
         <div id='PlayerLiquidResources'>
           <span className='gameCash-counter'>
             {determiningIcon('gameCash')}{formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$

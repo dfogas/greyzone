@@ -11,6 +11,10 @@ class LogWindow extends Component {
     logActions.clearLog();
   }
 
+  exportLog() {
+    logActions.exportLog();
+  }
+
   loadLog() {
     logActions.loadLog();
   }
@@ -34,6 +38,9 @@ class LogWindow extends Component {
             </div>
           );
         })}
+        <button
+          id='ExportLogButton'
+          onClick={this.exportLog}>{msg('dashboard.strategical.log.download')}</button>
         <button
           id='SaveLogButton'
           onClick={this.saveLog}>{msg('dashboard.strategical.log.save')}</button>

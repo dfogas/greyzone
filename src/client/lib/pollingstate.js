@@ -8,6 +8,7 @@
 
 import cconfig from '../client.config';
 import hashString from './hashstring';
+import lockr from 'lockr';
 
 // // 1st stage - poll only if changes - check
 // // TODO: if polling then
@@ -20,10 +21,10 @@ function pollingStateToPersistence(jsonapi, nodeEnv) {
     cconfig.dnsdevel + '/api/v1/';
   const userId = jsonapi.get('userId');
   const hashOfState = hashString(jsonapi.toString());
-  const stateChanged = parseInt(localStorage.getItem(['ghoststruggle', 'statehash']), 10) !== hashOfState;
+  const stateChanged = lockr.get('ghoststrugglestatehash') !== hashOfState;
 
   if (stateChanged)
-    localStorage.setItem(['ghoststruggle', 'statehash'], hashOfState);
+    lockr.set('ghoststrugglestatehash', hashOfState);
 
   if (jsonapi.get('name') !== 'Default' && stateChanged) {
     console.log('polling to persistance'); // eslint-disable-line no-console

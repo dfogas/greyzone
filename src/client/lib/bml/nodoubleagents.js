@@ -1,4 +1,4 @@
-/* JSArray(Agents) Number(rank) String(specialist) => {NoDoubleAgent}
+/* JSArray(Agents) Number(rank) String(specialist) => JSObject(NoDoubleAgent)
   poněkud krkolomné ošetření toho, že se nebudou duplikovat agenti
   BML: true
 */

@@ -1,7 +1,8 @@
 import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../../state';
-import $ from 'jquery';
+import {msg} from '../../intl/store';
+import $ from 'jquery'; //
 
 export function buyStatus(status) {
   const statusesall = gameCursor(['globals', 'statuses']);
@@ -24,7 +25,27 @@ export function flashDashboard(message) {
 }
 
 export function statusesIntroToggle() {
-  dispatch(statusesIntroToggle, {});
+  // console.log($('#StatusesIntro').hide === 'function');
+  // if ($('#StatusesIntro').hide === 'function') {
+  //   console.log('statuses intro present');
+  //   $('#StatusesIntro').fadeOut(400, () => {
+  //     dispatch(statusesIntroToggle, {});
+  //   });
+  // } else {
+  //   console.log('statuses intro not present');
+  //   $('#StatusesWindow').append(`<div id='StatusesIntro'>${msg('dashboard.statuses.intro.textHtml')}</div>`);
+  //   $('#StatusesIntro').on('click', () => {
+  //     $('#StatusesIntro').hide().fadeIn(400, () => {
+  //       dispatch(statusesIntroToggle, {});
+  //     });
+  //   });
+  // }
+  if (document.getElementById('StatusesIntro'))
+    $('#StatusesIntro').fadeOut(400, () => {
+      dispatch(statusesIntroToggle, {});
+    });
+  else
+    dispatch(statusesIntroToggle, {});
 }
 
 export function statusTierSelect(tier) {

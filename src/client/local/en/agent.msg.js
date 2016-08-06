@@ -72,8 +72,8 @@ const agents = {
       choice: {
         button1: `Do it!`,
         button2: `Not now`,
-        text: `<div id='EnhancementTalkChoice'>If we hope to survive long, then ...
-          short story - I can get access to some stores having physical and
+        text: `<div id='EnhancementTalkChoice'>If we hope to survive long ...
+          - I can get access to some stores having physical and
           electronic evidence about our doings. With a little bit of resource
           I can tap into them and leave nothing but a trail of smoke as I make them disappear
           So what do you thing?</div>`

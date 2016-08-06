@@ -1,6 +1,7 @@
 import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
+import lockr from 'lockr';
 
 export function badEndDiscovered() {
   dispatch(badEndDiscovered, {});
@@ -19,17 +20,11 @@ export function badEndRich() {
 }
 
 export function displayGameEndStatistics() {
-  const userId = jsonapiCursor(['userId']);
-  const name = jsonapiCursor(['name']);
 
-  const jsonmissions = localStorage.getItem(['ghoststruggle', userId, name, 'missions']);
-  const missions = jsonmissions ? JSON.parse(jsonmissions) : [];
-  const jsonagents = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'all']);
-  const agentsall = jsonagents ? JSON.parse(jsonagents) : [];
-  const jsonagentsleft = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'leftinprison']);
-  const agentsleft = jsonagentsleft ? JSON.parse(jsonagentsleft) : [];
-  const jsonagentskilled = localStorage.getItem(['ghoststruggle', userId, name, 'agents', 'killed']);
-  const agentskilled = jsonagentskilled ? JSON.parse(jsonagentskilled) : [];
+  const missions = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`) || [];
+  const agentsall = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || [];
+  const agentsleft = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`) || [];
+  const agentskilled = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`) || [];
   dispatch(displayGameEndStatistics, {agentsall, agentsleft, agentskilled, missions});
 }
 

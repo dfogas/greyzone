@@ -5,17 +5,19 @@ import hashString from '../../lib/hashstring';
 import immutable from 'immutable';
 // import cconfig from '../../client.config';
 import $ from 'jquery';
+import lockr from 'lockr';
 
 export function changeOption(name, value) {
   const promise = new Promise((resolve, reject) => {
     resolve({name, value});
   });
-  // console.log(name); //
   if (name === 'multiplayer')
     dashboardAnnounce(`Multiplayer is not yet implemented. Due to smoothing out interactions
       with other players it will not feature game saves.`);
-  else
+  else if (name === 'soundeffects') {
+    dashboardAnnounce(`Sound effects are ${value ? 'on' : 'off'}`);
     dispatch(changeOption, promise);
+  } else dispatch(changeOption, promise);
 }
 
 export function changePaying(name, value) {
@@ -36,14 +38,28 @@ function dashboardAnnounce(message) {
   });
 }
 
+function eraseGameLog() {
+  lockr.set(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`, []);
+}
+
+function eraseGameStatistics() {
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, []);
+}
+
 export function loadGame(game) {
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save' + game]);
-  const storage = storagejson ? JSON.parse(storagejson) : null;
-  const gamehash = localStorage.getItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save' + game, 'hash']);
-  if (storage && hashString(storagejson) === Number(gamehash)) {
-    dispatch(loadGame, storage);
-    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Game has been loaded.</div>');
-    $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
+  const savegame = lockr.get(`gs${jsonapiCursor(['_id'])}_save${game}`);
+  const gamehash = lockr.get(`gs${jsonapiCursor(['_id'])}_save${game}hash`);
+  const debug = jsonapiCursor(['options', 'debug']);
+
+  if (debug) {
+    dispatch(loadGame, savegame);
+    dashboardAnnounce(`Game has been loaded.`);
+  } else if (savegame && hashString(savegame) === gamehash) {
+    dispatch(loadGame, savegame);
+    dashboardAnnounce(`Game has been loaded.`);
   } else {
     $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Hashes don\'t equal. You may need to log out.</div>');
     $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
@@ -59,10 +75,10 @@ export function sanitizeMissions() {
 }
 
 export function saveGame(jsonapi, game) {
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save' + game], JSON.stringify(jsonapi.toJS()));
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['_id']), jsonapiCursor(['name']), 'save' + game, 'hash'], hashString(JSON.stringify(jsonapi.toJS())));
-  $('#OptionsWindow').append('<div id=\'SaveGameMessage\'>Game has been saved.</div>');
-  $('#SaveGameMessage').hide(3000, () => $('#SaveGameMessage').remove());
+  const jsonapijs = jsonapi.toJS();
+  lockr.set(`gs${jsonapiCursor(['_id'])}_save${game}`, jsonapijs);
+  lockr.set(`gs${jsonapiCursor(['_id'])}_save${game}hash`, hashString(jsonapijs));
+  dashboardAnnounce(`Game has been saved.`);
 }
 
 export function startNewGame(jsonapi) {
@@ -70,6 +86,8 @@ export function startNewGame(jsonapi) {
     dispatch(startNewGame, jsonapi.set('paying', immutable.fromJS({base: false, collector: false, revenge: false})));
   else
     dispatch(startNewGame, jsonapi);
+  eraseGameStatistics();
+  eraseGameLog();
 }
 
 setToString('options', {

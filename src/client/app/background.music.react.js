@@ -1,3 +1,4 @@
+import './background.music.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import $ from 'jquery';
@@ -12,7 +13,6 @@ class BackgroundMusic extends Component {
     const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
     return (
       <audio
-        autoPlay
         controls
         id='BackgroundMusic'
         loop>

@@ -75,7 +75,11 @@ class DashboardScreen extends Component {
         <LogPointer />
         <OptionsPointer />
         <StrategicalPointer />
-        {dashPointer === 'strategical' &&
+        <a
+          download='playerlog.txt'
+          id='DownloadLogLink'
+          style={{display: 'none'}}>Log download</a>
+        {dashPointer === 'strategical' && jsonapi.getIn(['options', 'multiplayer']) &&
           <DashboardToCommand />}
         {dashPointer === 'options' &&
           <DashboardToIntro />}

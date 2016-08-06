@@ -8,6 +8,7 @@ import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bml/bookobscurity';
 import noDoubleAgents from '../lib/bml/nodoubleagents';
 import allAgents from '../lib/bml/allagents';
+import lockr from 'lockr';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -117,11 +118,15 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val + results.reputation : val)
         .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? bookObscurity(val, results.obscurity) : val);
     });
-    if (Object.keys(results).indexOf('agentRecruited') !== -1)
+    if (Object.keys(results).indexOf('agentRecruited') !== -1) {
+      const newagent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get('tier'), data.mission.getIn(['rewards', 'character']));
+      // TODO: move to actions, restructure there, ASAP
+      const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || [];
+      lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
       jsonapiCursor(jsonapi => {
-        return jsonapi
-          .update('agents', val => val.push(immutable.fromJS(noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get('tier'), data.mission.getIn(['rewards', 'character'])))));
+        return jsonapi.update('agents', val => val.push(immutable.fromJS(newagent)));
       });
+    }
     if (Object.keys(results).indexOf('agentLoyal') !== -1 && agentBecominLoyal)
       jsonapiCursor(jsonapi => {
         return jsonapi

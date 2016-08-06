@@ -12,7 +12,7 @@ class PlayerOperationsCapability extends Component {
         id='PlayerOperationsCapability'
         onClick={(e) => talkActions.operationsUpgradeDialogToggle()}
         >
-        Operations: {topLevelOps(jsonapi.get('enhancements'))}
+        {topLevelOps(jsonapi.get('enhancements'))}
       </div>
     );
   }

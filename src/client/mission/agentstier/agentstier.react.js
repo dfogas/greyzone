@@ -3,7 +3,7 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import ActionChoose from './buttons/actionchoose.react';
+import ActionChoose from './buttons/action.choose.react';
 import AgentScrollBarWithNavButtons from '../../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import AgentOnMission from './agentonmission/agentonmission.react';
 import EscapeButton from './buttons/escapebutton.react';

@@ -13,6 +13,7 @@ import maxMissionsCheck from '../lib/bml/maxmissionscheck';
 import missionAccept from '../lib/bml/missionaccept';
 import noDoubleAgents from '../lib/bml/nodoubleagents';
 import $ from 'jquery';
+import lockr from 'lockr';
 
 const countryList = gameCursor(['globals', 'countries']);
 const missionsList = gameCursor(['globals', 'missions']);
@@ -73,14 +74,13 @@ export function dashboardIntroToggle() {
 }
 
 export function dismissAgent(agent) {
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison']);
-  const storage = storagejson ? JSON.parse(storagejson) : [];
+  const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`) || [];
   const agents = jsonapiCursor(['agents']);
   const agentondisplayindex = agents.indexOf(agents.find(ag => ag.get('id') === agent.get('id')));
 
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'leftinprison'], JSON.stringify(storage.concat([agent.toJS()])));
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, storage.concat([agent.toJS()]));
   dispatch(dismissAgent, {agent});
-  flashDashboard(`Agent left to rot in prison!`); // TODO: full dialog for agent's revenge taken on player
+  dashboardAnnounce(`Agent left to rot in prison!`); // TODO: full dialog for agent's revenge taken on player
   selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
   if (agent.get('loyalty') !== 'loyal') {
     // let organizationMissions = jsonapiCursor(['missionsDone']); TODO: check in which countries did agent take part in missions
@@ -96,6 +96,7 @@ export function flashDashboard(message) {
   $('#DashboardMessage').fadeOut(1200, () => $('#DashboardMessage').remove());
 }
 
+/* Debug */
 export function hireAgent(specialist, rank) {
   const self = jsonapiCursor(['self']);
   const agents = allAgents(jsonapiCursor()).indexOf(self) !== -1 ? allAgents(jsonapiCursor()).push(self) : allAgents(jsonapiCursor());
@@ -106,8 +107,7 @@ export function hireAgent(specialist, rank) {
   const agentPrice = agentPriceList[rank];
   const gameCash = jsonapiCursor(['gameCash']);
 
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'all']);
-  const storage = typeof storagejson === 'number' ? [] : storagejson ? JSON.parse(storagejson) : [];
+  const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || [];
 
   if (agentPrice > gameCash)
     flashDashboard(`Agent is too expensive for us, at the moment.`);
@@ -116,7 +116,7 @@ export function hireAgent(specialist, rank) {
   else if (!leadershipCheck(rank - 1, leadershipNames))
     flashDashboard(`Upgrade leadership facility to recruit and train agents of higher ranks.`);
   else {
-    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'agents', 'all'], JSON.stringify(storage.concat([agent])));
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([agent]));
     dispatch(hireAgent, {agent, agentPrice});
     flashDashboard(`New agent recruited.`);
   }

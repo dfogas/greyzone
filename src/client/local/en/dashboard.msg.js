@@ -49,6 +49,7 @@ const dashboardMsg = {
     },
     log: {
       clear: 'Clear Log',
+      download: 'Export Log',
       load: 'Load Log',
       save: 'Save Log'
     },

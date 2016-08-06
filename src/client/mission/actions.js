@@ -8,6 +8,7 @@ import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 import Sound from '../lib/sound';
 import $ from 'jquery';
+import lockr from 'lockr';
 
 export function agentFreed(agent) {
   dispatch(agentFreed, {agent});
@@ -61,9 +62,8 @@ export function checkFatalities(results) {
   if (results.agentImprisoned)
     dispatch(agentImprisoned, {agent: agentontask});
   if (results.agentKilled) {
-    const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')]);
-    const storage = storagejson ? JSON.parse(storagejson) : [];
-    localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], JSON.stringify(storage.concat([agentontask.toJS()])));
+    const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`) || [];
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, storage.concat([agentontask.toJS()]));
     dispatch(agentKilled, {agent: agentontask});
   }
   if (results.agentFreed)
@@ -125,10 +125,9 @@ export function organizationMissionDone() {
     inCountry: activemission.get('inCountry'),
     agents: agentsmissionall.toJS().map(agent => agent.id)
   };
-  const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions']);
-  const storage = storagejson ? JSON.parse(storagejson) : [];
+  const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`) || [];
 
-  localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name']), 'missions'], JSON.stringify(storage.concat([missionDone])));
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, storage.concat([missionDone]));
 }
 
 /*finds activemission in missions and removes it*/

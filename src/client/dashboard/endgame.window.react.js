@@ -1,6 +1,7 @@
 /* Smart Component - to be displayed after you click retire */
 import './endgame.window.styl';
 import * as endGameActions from './endgame/actions';
+import * as logActions from './logwindow/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -51,6 +52,9 @@ class EndGameWindow extends Component {
         <button
           id="DisplayStatistics"
           onClick={this.displayStatistics}>DisplayStatistics</button>
+        <button
+          id="ExportLogEndgameWindowButton"
+          onClick={(e) => logActions.exportLog()}>{msg('dashboard.strategical.log.download')}</button>
         <hr />
         {options.getIn(['gameend', 'statistics']) &&
           <StatisticsWindow

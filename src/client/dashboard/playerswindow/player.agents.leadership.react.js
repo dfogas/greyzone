@@ -11,7 +11,7 @@ class PlayerAgentsLeadership extends Component {
       <div
         id='PlayerAgentsLeadership'
         onClick={(e) => talkActions.trainingUpgradeDialogToggle()}>
-        Agents: {topLevelTraining(jsonapi.get('enhancements'))}
+        {topLevelTraining(jsonapi.get('enhancements'))}
       </div>
     );
   }

@@ -3,29 +3,33 @@ import {dispatch} from '../../dispatcher';
 import {jsonapiCursor} from '../../state';
 import R from 'ramda';
 import immutable from 'immutable';
+import lockr from 'lockr';
 
 export function clearLog() {
   dispatch(clearLog, {});
 }
 
-export function loadLog() {
-  const userId = jsonapiCursor(['_id']);
-  const organization = jsonapiCursor(['name']);
-  const log = immutable.fromJS(localStorage.getItem(['ghoststruggle', userId, organization, 'log']).split(','));
+export function exportLog() {
+  const logInExportFormat = JSON.stringify(jsonapiCursor(['log']).toJS());
+  let link = document.getElementById('DownloadLogLink');
 
+  link.href = window.URL.createObjectURL(new Blob([logInExportFormat], {type: 'application/json'}));
+  link.click();
+}
+
+export function loadLog() {
+  // console.log(lockr.get(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`));
+  const log = immutable.fromJS(lockr.get(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`));
   dispatch(loadLog, {log});
 }
 
 export function saveLog() {
   // TODO: saveLog is not working properly, doesn't overwrite saves - why?
   const log = jsonapiCursor(['log']).toJS();
-  const userId = jsonapiCursor(['_id']);
-  const organization = jsonapiCursor(['name']);
 
-  const storagejson = localStorage.getItem(['ghoststruggle', userId, organization, 'log']);
-  const storage = storagejson ? storagejson.split(',') : [];
+  const storage = lockr.get(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`) || [];
 
-  localStorage.setItem(['ghoststruggle', userId, organization, 'log'], R.uniq(storage.concat(log)));
+  lockr.set(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`, R.uniq(storage.concat(log)));
 }
 
 setToString('log', {

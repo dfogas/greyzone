@@ -7,6 +7,7 @@ import Sound from '../lib/sound';
 import cconfig from '../client.config';
 import $ from 'jquery';
 import immutable from 'immutable';
+import lockr from 'lockr';
 
 export function assignMission(agent) {
   /* pokud je agent unavený např. z předchozí mise */
@@ -28,15 +29,14 @@ export function bookLosses(mission) {
 }
 
 export function checkFatalities(results) {
-  /* results is JSObject */
+  /* results is probably JSObject */
   results = results.results || results || immutable.fromJS({});
   const agentfatalindex = pickAgentForFatal(jsonapiCursor(['agents']));
   if (agentfatalindex !== -1) {
     const agentfatal = jsonapiCursor(['agents']).get(agentfatalindex);
     if (results.agentKilled) {
-      const storagejson = localStorage.getItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')]);
-      const storage = storagejson ? JSON.parse(storagejson) : [];
-      localStorage.setItem(['ghoststruggle', jsonapiCursor(['userId']), jsonapiCursor(['name'], 'agents', 'killed')], JSON.stringify(storage.concat([agentfatal.toJS()])));
+      const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`) || [];
+      lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, storage.concat([agentfatal.toJS()]));
     }
     dispatch(checkFatalities, {results, agentfatal});
   }
