@@ -28,11 +28,19 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.introductionWindowToggle) {
+    const toggle = jsonapiCursor(['components', 'login', 'introductionwindow']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'login', 'introductionwindow'], !toggle);
+    });
+  }
+
   if (action === componentsActions.missionScreenToggleOff)
-  jsonapiCursor(jsonapi => {
-    return jsonapi
-    .setIn(['components', 'mission', 'transition'], false);
-  });
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .setIn(['components', 'mission', 'transition'], false);
+    });
 
   if (action === componentsActions.missionScreenToggleOn)
     jsonapiCursor(jsonapi => {

@@ -146,8 +146,7 @@ const ENGLISH = {
   help: helpMsg,
   introduction: introMsg,
   login: {
-    message: `<p>If you are on this page for the first time, click on the button Sign Up.</p>
-      <p>Else, log in with your credentials as you stated them when you signed up.</p>`
+    message: `<p>First time here? - `
   },
   menu: {
     armory: 'Armory',
@@ -199,7 +198,7 @@ const ENGLISH = {
   signup: {
     message: `<p>Here, you are going to create the name of your organization.
       On the email will be sent message with the link to activate a game account.
-      After clicking it and you can log in and can start scheming.</p>`
+      After clicking it and you can log in and can start playing.</p>`
   },
   support: {
     title: 'SupportPage'

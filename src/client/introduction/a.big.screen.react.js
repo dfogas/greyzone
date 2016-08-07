@@ -29,6 +29,7 @@ class BigScreen extends Component {
     return (
       <div
         id='ABigScreenIntro'
+        onClick={e => componentsActions.bigScreenZ(-1)}
         onKeyDown={e => this.quickRead(e)}
         style={{zIndex: zIndex}}
         tabIndex='1'>
