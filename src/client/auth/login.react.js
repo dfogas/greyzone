@@ -7,8 +7,12 @@ import immutable from 'immutable';
 import {focusInvalidField} from '../lib/validation';
 import {msg} from '../intl/store';
 import {Link} from 'react-router';
+import $ from 'jquery';
 
 class Login extends Component {
+  componentDidMount() {
+    $(React.findDOMNode(this)).delay(400).animate({opacity: 1}, 600, () => {});
+  }
 
   getForm() {
     return this.props.auth.get('form');

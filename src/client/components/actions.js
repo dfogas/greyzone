@@ -18,6 +18,10 @@ export function introductionWindowToggle() {
   dispatch(introductionWindowToggle, {});
 }
 
+export function loginSignupToggle() {
+  dispatch(loginSignupToggle, {});
+}
+
 export function missionScreenToggleOff() {
   dispatch(missionScreenToggleOff, {});
 }
@@ -35,6 +39,7 @@ setToString('components', {
   bigScreenZ,
   devNoticeToggle,
   introductionWindowToggle,
+  loginSignupToggle,
   missionScreenTransition,
   missionScreenToggleOff,
   missionScreenToggleOn

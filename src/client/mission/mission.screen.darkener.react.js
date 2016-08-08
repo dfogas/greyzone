@@ -1,4 +1,4 @@
-import * as componentsActions from '../components/actions';
+import * as componentsActions from '../components/actions'; //
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';

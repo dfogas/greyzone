@@ -36,6 +36,14 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.loginSignupToggle) {
+    const toggle = jsonapiCursor(['components', 'login', 'signup']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'login', 'signup'], !toggle);
+    });
+  }
+
   if (action === componentsActions.missionScreenToggleOff)
     jsonapiCursor(jsonapi => {
       return jsonapi

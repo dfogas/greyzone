@@ -7,8 +7,12 @@ import exposeRouter from '../components/exposerouter.react';
 import immutable from 'immutable';
 import {focusInvalidField} from '../lib/validation';
 import {msg} from '../intl/store';
+import $ from 'jquery';
 
 class SignUp extends Component {
+  componentDidMount() {
+    $(React.findDOMNode(this)).delay(400).animate({opacity: 1}, 600, () => {});
+  }
 
   getForm() {
     return this.props.auth.get('form');

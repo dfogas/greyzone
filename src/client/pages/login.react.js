@@ -1,13 +1,15 @@
 import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import DocumentTitle from 'react-document-title';
-import LoginForm from '../auth/login.react';
 import React from 'react';
 import {msg} from '../intl/store';
 import immutable from 'immutable';
 
 import GSSigil from '../app/gs.sigil.react';
+import LoginForm from '../auth/login.react';
 import LoginMessage from '../auth/login.message.react';
+import SignupForm from '../auth/signup.react';
+import SignupMessage from '../auth/signup.message.react';
 import WelcomeWindow from '../dashboard/welcome.window.react';
 import IntroductionWindow from '../dashboard/introduction.window.react';
 import ABigScreen from '../introduction/a.big.screen.react';
@@ -17,6 +19,7 @@ class Login extends Component {
 
   render() {
     const {jsonapi} = this.props;
+    const loginSignupToggle = jsonapi.getIn(['components', 'login', 'signup']);
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
@@ -25,8 +28,14 @@ class Login extends Component {
             onClick={(e) => componentsActions.introductionWindowToggle()}>Introduction</button>
           <GSSigil />
           <BackgroundMusic />
-          <LoginMessage />
-          <LoginForm {...this.props} />
+          {!loginSignupToggle &&
+            <LoginMessage />}
+          {!loginSignupToggle &&
+            <LoginForm {...this.props} />}
+          {loginSignupToggle &&
+            <SignupMessage />}
+          {loginSignupToggle &&
+            <SignupForm {...this.props} />}
           <button
             id='LoginDevNoticeButton'
             onClick={(e) => componentsActions.devNoticeToggle()}>Developers notice</button>

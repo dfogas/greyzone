@@ -3,11 +3,13 @@ import authMsg from './en/auth.msg';
 import campaignsMsg from './en/campaigns.msg';
 import conceptsMsg from './en/concepts.msg';
 import dashboardMsg from './en/dashboard.msg';
+import developersMsg from './en/developers.msg';
 import endsMsg from './en/ends.msg';
 import gameendsMsg from './en/gameends.msg';
 import helpMsg from './en/help.msg';
 import introMsg from './en/intro.msg';
 import missionDescriptionsMsg from './en/mission.description.msg';
+import storiesMsg from './en/stories.msg';
 import tutorialMsg from './en/tutorial.msg';
 
 const ENGLISH = {
@@ -81,49 +83,7 @@ const ENGLISH = {
   },
   concepts: conceptsMsg,
   dashboard: dashboardMsg,
-  developers: {
-    button: `Ok, I have read the notice`,
-    notice: `
-      <h2>Ghost Struggle version Zero</h2>
-      <p>
-        This game is still before production.
-        You can play it, as most of the game mechanisms are in place,
-        but weird shit might happen, and also you might lose your game saves.
-        Also game assets(pictures, texts and other) are too lacking yet.
-        So play and enjoy the experience, but bear that in mind.
-      </p>
-
-      <p>
-        <h2>Game Ends</h2>
-        <ul>Bad Ends:
-          <li>Given Up</li>
-          <li>Discovered</li>
-          <li>Rich, But Not For Long</li>
-          <li>Left in Prison</li>
-          <li>Killed</li>
-        </ul>
-        <ul>Good Ends:
-          <li>Rich and Covered</li>
-        </ul>
-      </p>
-      <p>
-        Recommended is reading Gameplay/Introduction section of About/Help before starting of your game.
-      </p>
-      <h3>Disclaimer</h3>
-      <p>
-        All graphic assets are original, but may be based on actually existing people or movie/game characters.
-      </p>
-      <p>
-        You may buy full access to the game in the options menu, when in game (including campaigns).
-      </p>
-      <p>
-        <em>
-          Warning: Game might include some depictions and hints of violence and suggestive scenes,
-          so if that is something you are offended by then do not play it.
-        </em>
-      </p>
-    `
-  },
+  developers: developersMsg,
   equipments: {
     electronics: [
       {name: 'Handy Kit'},
@@ -196,10 +156,10 @@ const ENGLISH = {
     emptyList: 'Empty List'
   },
   signup: {
-    message: `<p>Here, you are going to create the name of your organization.
-      On the email will be sent message with the link to activate a game account.
-      After clicking it and you can log in and can start playing.</p>`
+    message: `<p>Create name for your organization here.</p>
+      <p>Or perhaps you've already done that?</p>`
   },
+  stories: storiesMsg,
   support: {
     title: 'SupportPage'
   },
