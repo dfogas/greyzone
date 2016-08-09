@@ -1,7 +1,6 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import {jsonapiCursor} from '../state';
-import {gameCursor} from '../state';
+import {gameCursor, jsonapiCursor} from '../state';
 // import {msg} from '../intl/store';
 
 import actionDices from '../lib/bml/actiondices';
@@ -25,9 +24,11 @@ export function agentInArmoryAssignMission(agent) {
   const activemissionlimit = jsonapiCursor(['activemission', 'agentLimit']);
 
   if (totalmissionagents === activemissionlimit)
-    flashArmory('Mission agent limit already reached.');
+    flashArmory(`Mission agent limit already reached.`);
   else if (agent.get('ETA') - Date.now() > 0)
-    flashArmory('Agent is tired.');
+    flashArmory(`Agent is tired.`);
+  else if (jsonapiCursor(['dashboard', 'countryofoperation']) !== jsonapiCursor(['activemission', 'inCountry']))
+    flashArmory(`Not in the country.`);
   else {
     flashArmory('Assigned!');
     dispatch(agentInArmoryAssignMission, {agent});

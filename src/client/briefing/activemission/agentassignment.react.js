@@ -7,11 +7,15 @@ import immutable from 'immutable';
 
 class AgentAssignment extends Component {
   drop(ev) {
-    const {agents} = this.props;
+    const {jsonapi} = this.props;
+    const agents = jsonapi.get('agents');
     ev.preventDefault();
     var data = ev.dataTransfer.getData('text');
 
-    briefingActions.assignMission(agents.find(agent => agent.get('name') === data));
+    if (jsonapi.getIn(['dashboard', 'countryofoperation']) === jsonapi.getIn(['activemission', 'inCountry']))
+      briefingActions.assignMission(agents.find(agent => agent.get('name') === data));
+    else
+      briefingActions.flashBriefing(`You are not in the country.`);
   }
 
   allowDrop(ev) {
@@ -19,7 +23,8 @@ class AgentAssignment extends Component {
   }
 
   render() {
-    const {activemission, assignmentindex, game, jsonapi} = this.props;
+    const {assignmentindex, game, jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
     const agentonmission = activemission.getIn(['agentsonmission', assignmentindex - 1]) || null;
 
     return (
@@ -43,7 +48,6 @@ class AgentAssignment extends Component {
 }
 
 AgentAssignment.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map),
   agents: React.PropTypes.instanceOf(immutable.List),
   assignmentindex: React.PropTypes.number,
   game: React.PropTypes.instanceOf(immutable.Map),

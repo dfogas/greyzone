@@ -15,6 +15,7 @@ import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
 import AchievementsWindow from './achievementswindow/achievements.window.react';
 import LogWindow from './logwindow/log.window.react';
 
+
 class DashboardContent extends Component {
   render() {
     const {contest, game, jsonapi} = this.props;

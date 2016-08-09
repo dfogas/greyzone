@@ -1,6 +1,6 @@
 /* Smart */
 import './dashboard.screen.styl';
-// import * as dashboardActions from './actions';
+import * as dashboardActions from './actions';
 import * as endGameActions from './endgame/actions';
 // import * as missionActions from '../mission/actions';
 import * as tutorialActions from '../tutorial/actions';
@@ -35,6 +35,7 @@ import LogPointer from './pointers/log.pointer.react';
 import OptionsPointer from './pointers/options.pointer.react';
 import StatusesPointer from './pointers/statuses.pointer.react';
 import StrategicalPointer from './pointers/strategical.pointer.react';
+import IntermediateGoal from '../gameflow/intermediate.goal.react'; //
 
 class DashboardScreen extends Component {
   componentDidMount() {
@@ -79,6 +80,12 @@ class DashboardScreen extends Component {
           download='playerlog.txt'
           id='DownloadLogLink'
           style={{display: 'none'}}>Log download</a>
+        {dashPointer === 'strategical' &&
+          <button
+            id='IntermediateGoalButton'
+            onClick={(e) => dashboardActions.intermediateGoalToggle()}>Goals</button>}
+        {jsonapi.getIn(['dashboard', 'intermediategoal']) && dashPointer === 'strategical' &&
+          <IntermediateGoal jsonapi={jsonapi} />}
         {dashPointer === 'strategical' && jsonapi.getIn(['options', 'multiplayer']) &&
           <DashboardToCommand />}
         {dashPointer === 'options' &&

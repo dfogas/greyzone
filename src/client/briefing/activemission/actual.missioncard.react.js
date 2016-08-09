@@ -27,7 +27,6 @@ class ActualMissionCard extends Component {
     for (let i = 1; i <= agentlimit; i += 1)
       assignments.push(
         <AgentAssignment
-          activemission={activemission}
           agents={agents}
           assignmentindex={i}
           game={game}

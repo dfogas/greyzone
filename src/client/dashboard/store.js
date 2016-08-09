@@ -92,6 +92,14 @@ export const dispatchToken = register(({action, data}) => {
         .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
+  if (action === dashboardActions.intermediateGoalToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'intermediategoal']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'intermediategoal'], !toggle);
+    });
+  }
+
   if (action === dashboardActions.log) {
     data = data.message || data;
     jsonapiCursor(jsonapi => {

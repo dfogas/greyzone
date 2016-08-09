@@ -19,6 +19,14 @@ const TutorialMsg = {
     There is a contextual and event-reaction-based help as well.<br />
     Navigational buttons enable you to go to other screens, that have their 'h' keypress helps as well.</div>`,
   equipmentslot: `Drag icon here.`,
+  goals: {
+    agentrankfour: `Rank up an agent`,
+    dolcevitagoal: `Buy 5-star hotel, nightclub network and private jet`,
+    firstmission: `Complete first mission`,
+    getmoremissions: `Get five other missions`,
+    loyalcrew: `Get loyalty of your agents`,
+    operationslevelthree: `Get operations to Good Label`
+  },
   missionScreen: `<div id='MissionTutorial'><h2>Mission Help</h2>Mission screen is divided to three parts.
     Left side of the screen is where the tasks for mission are displayed and that is first part named TaskTier.
     In the bottom part of TaskTier are displayed Rewards and Losses of Current Mission.<br />

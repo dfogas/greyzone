@@ -131,6 +131,10 @@ export function honorAgent(agent) {
   dispatch(honorAgent, {agent});
 }
 
+export function intermediateGoalToggle() {
+  dispatch(intermediateGoalToggle, {});
+}
+
 export function log(message) {
   dispatch(log, {message});
 }
@@ -221,6 +225,7 @@ setToString('dashboard', {
   flashDashboard,
   hireAgent,
   honorAgent,
+  intermediateGoalToggle,
   log,
   obscurityCountriesImpact,
   playerDoesNotGoOnMissions,
