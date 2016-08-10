@@ -24,8 +24,8 @@ class IntermediateGoal extends Component {
         {<AgentRankFour agentrankfour={jsonapi.get('agents').find(agent => agent.get('rank') <= 4)} />}
         {<OperationsLevelThree operationslevelthree={jsonapi.get('enhancements').find(enh => enh.get('name') === 'Good Label')} />}
         {<GetMoreMissions jsonapi={jsonapi} />}
-        {<LoyalCrewGoal loyalcrew={jsonapi.getIn(['tutorial', 'loyalcrew'])} />}
-        {<DolceVitaGoal dolcevitagoal={jsonapi.getIn(['tutorial', 'dolcevitagoal'])} />}
+        {<LoyalCrewGoal jsonapi={jsonapi} />}
+        {<DolceVitaGoal jsonapi={jsonapi} />}
       </div>
     );
   }

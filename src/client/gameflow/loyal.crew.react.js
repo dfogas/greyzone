@@ -22,7 +22,7 @@ class LoyalCrew extends Component {
 }
 
 LoyalCrew.propTypes = {
-  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default LoyalCrew;
