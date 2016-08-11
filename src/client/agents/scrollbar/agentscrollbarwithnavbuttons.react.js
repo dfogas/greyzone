@@ -38,15 +38,15 @@ class AgentScrollBarWithNavButtons extends Component {
 
     return (
       <div className={classString} id='AgentScrollBarWithNavButtons' >
-        {(availableAgents.size > 3 || isMission) &&
-          <AgentScrollBarNavButton
-            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : availableAgents}
-            data={{orientation: 'left'}}
-            isBriefing={this.props.isBriefing}
-            isMission={this.props.isMission}
-            parentCallback={this.scrollleft.bind(this)}
-            style={agentsbstyle}
-            />}
+        <AgentScrollBarNavButton
+          agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : availableAgents}
+          data={{orientation: 'left'}}
+          isBriefing={this.props.isBriefing}
+          isMission={this.props.isMission}
+          jsonapi={jsonapi}
+          parentCallback={this.scrollleft.bind(this)}
+          style={agentsbstyle}
+          />
         <div className={classString}>
           <AgentScrollBar
             agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : jsonapi.get('agents')}
@@ -59,15 +59,15 @@ class AgentScrollBarWithNavButtons extends Component {
             style={agentsbstyletojs}
             />
         </div>
-        {(availableAgents.size > 3 || isMission) &&
-          <AgentScrollBarNavButton
-            agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : availableAgents}
-            data={{orientation: 'right'}}
-            isBriefing={this.props.isBriefing}
-            isMission={this.props.isMission}
-            parentCallback={this.scrollright.bind(this)}
-            style={agentsbstyle}
-            />}
+        <AgentScrollBarNavButton
+          agents={isMission ? jsonapi.getIn(['activemission', 'agentsonmission']) : availableAgents}
+          data={{orientation: 'right'}}
+          isBriefing={this.props.isBriefing}
+          isMission={this.props.isMission}
+          jsonapi={jsonapi}
+          parentCallback={this.scrollright.bind(this)}
+          style={agentsbstyle}
+          />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import './mission.thumbnail.styl';
+import './mission.thumbnail.styl';//
 import * as briefingActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -27,8 +27,7 @@ class MissionThumbnail extends Component {
         onClick={this.toggleShowMissionDescriptionText}
         onMouseLeave={(e) => this.hideTasks(e)}
         onMouseOver={(e) => this.showTasks(e)}
-        >
-        <img src={'../../../../assets/img/missions/thumbnails/' + imgsrc} />
+        style={{backgroundImage: `url('../../../../assets/img/missions/thumbnails/${imgsrc}')`}}>
         {thumbnailtext &&
           <div id='MissionDescription'>{msg('mission.descriptions.' + missiontag)}</div>}
       </div>

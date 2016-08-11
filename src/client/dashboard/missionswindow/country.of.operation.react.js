@@ -8,8 +8,17 @@ import DropDown from 'react-dropdown-w-react13';
 
 class CountryOfOperation extends Component {
   changeCountry(option) {
-    //
-    dashboardActions.changeCountry(option);
+    const {jsonapi} = this.props;
+    if (!jsonapi.get('missions').find(mission => mission.get('forcefail')))
+      dashboardActions.changeCountry(option);
+    else {
+      dashboardActions.changeCountry({
+        label: jsonapi.getIn(['dashboard', 'countryofoperation']),
+        name: 'countryofoperation',
+        value: jsonapi.getIn(['dashboard', 'countryofoperation'])
+      });
+      dashboardActions.dashboardAnnounce(`There is an unresolved forced mission`);
+    }
   }
 
   render() {

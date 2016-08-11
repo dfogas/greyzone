@@ -11,7 +11,7 @@ class AgentScrollBarNavButton extends Component {
   }
 
   render() {
-    const {agents, isMission, style} = this.props;
+    const {agents, isMission, jsonapi, style} = this.props;
     const orientation = this.props.data.orientation;
     const classString = classnames('agent-scroll-bar-nav-button', orientation, {
       'briefing': this.props.isBriefing,
@@ -21,7 +21,8 @@ class AgentScrollBarNavButton extends Component {
 
     // opacity setting
     const navStyle = function(pointing, isM) {
-      if (isM) return {opacity: 1};
+      if ((isM && jsonapi.getIn(['activemission', 'agentsonmission']).size > 1))
+        return pointing === 'left' ? (style.get('left') === 0 ? {opacity: 0} : {opacity: 1}) : (style.get('left') > ((agents.size - 1) * -264) ? {opacity: 1} : {opacity: 0});
       else return pointing === 'left' ? (style.get('left') === 0 ? {opacity: 0} : {opacity: 1}) : (style.get('left') > ((agents.size - 3) * -264) ? {opacity: 1} : {opacity: 0});
     };
 
@@ -41,6 +42,7 @@ AgentScrollBarNavButton.propTypes = {
   data: React.PropTypes.object,
   isBriefing: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   parentCallback: React.PropTypes.func,
   style: React.PropTypes.instanceOf(immutable.Map)
 };

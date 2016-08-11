@@ -6,7 +6,6 @@ import immutable from 'immutable';
 
 import DiceBin from './dicebin/dicebin.react';
 import TableTop from './tabletop/tabletop.react';
-import TableTopMessage from './tabletop/tabletop.message.react';
 
 class TableTopTier extends Component {
   render() {
@@ -19,7 +18,6 @@ class TableTopTier extends Component {
           activemission={activemission}
           tutorial={tutorial}
           />
-        <TableTopMessage missionlog={activemission.get('log')}/>
         <DiceBin activemission={activemission} />
       </div>
     );

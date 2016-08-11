@@ -3,6 +3,7 @@ import './mission.screen.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import missionBoxShadow from '../lib/bml/missionboxshadow';
 import {msg} from '../intl/store';
 import $ from 'jquery';
 
@@ -42,7 +43,8 @@ class MissionTrackingScreen extends Component {
       <div
         id='MissionTrackingScreen'
         style={{
-          backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`
+          backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`,
+          boxShadow: missionBoxShadow(jsonapi.get('activemission'))
         }}
         >
         <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>

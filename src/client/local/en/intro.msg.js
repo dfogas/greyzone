@@ -1,4 +1,5 @@
 const intro = {
+  button: `Thanks for the introduction`,
   end: `
     <p>
       The GhostStruggle has different ends for you to explore, that depend

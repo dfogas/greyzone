@@ -1,4 +1,4 @@
-import cconfig from '../client.config';
+import cconfig from '../client.config';//
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
@@ -9,6 +9,8 @@ import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 import Sound from '../lib/sound';
 import $ from 'jquery';
 import lockr from 'lockr';
+
+const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
 
 export function agentFreed(agent) {
   dispatch(agentFreed, {agent});
@@ -90,9 +92,10 @@ export function end() {
   dispatch(end, {});
 }
 
-/* sets activemission result to 'fail'
-  and its started property to false  */
+// sets activemission result to 'fail' and its started property to false
 export function fail() {
+  let mySound = new Sound(url + '/assets/audio/MissionFail.ogg');
+  mySound.play();
   dispatch(fail, {});
 }
 
@@ -104,10 +107,6 @@ function flashMission(message) {
 
 export function log(message) {
   dispatch(log, {message}); // still enhanced literal? Probably yes.
-}
-
-export function logMission(message) {
-  dispatch(logMission, {message});
 }
 
 /* fires after mission result is determined (success or fail)
@@ -143,12 +142,6 @@ export function setDefault() {
 export function start() {
   const activemission = jsonapiCursor(['activemission']);
   const countrystats = jsonapiCursor(['countrystats']);
-  // const enhancementnames = jsonapiCursor(['enhancements']).map(enh => enh.get('name')).toJS();
-  const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
-
-
-  // console.log(!maxAgentsCheck(jsonapiCursor()));
-  // console.log(activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1);
 
   if (!obscurityMissionCheck(activemission, countrystats))
     flashMission(`Obscurity is too low.`);
@@ -167,8 +160,12 @@ export function start() {
 /* sets activemission result to 'success'
   and its started property to false */
 export function success() {
+  let mySound = new Sound(url + '/assets/audio/MissionSuccess.ogg');
+  mySound.play();
   dispatch(success, {});
 }
+
+// TODO: logging system for mission actions so that it can be replayed
 
 setToString('mission', {
   agentFreed,
@@ -189,7 +186,6 @@ setToString('mission', {
   end,
   fail,
   log,
-  logMission,
   organizationMissionDone,
   removeCompletedMission,
   setDefault,

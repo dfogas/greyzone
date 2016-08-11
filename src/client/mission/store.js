@@ -174,8 +174,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.completeTask)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'taskscompleted'], jsonapiCursor(['activemission', 'taskscompleted']).push(data.message))
-        .setIn(['activemission', 'log'], 'Task was completed.');
+        .setIn(['activemission', 'taskscompleted'], jsonapiCursor(['activemission', 'taskscompleted']).push(data.message));
     });
 
   if (action === missionActions.controldamage) {
@@ -189,8 +188,7 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val - results.reputation : val)
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + jsonapiCursor(['activemission', 'title']) + ' in ' + missioncountryname + ' failed, with limited damages.'
-        ))
-        .setIn(['activemission', 'log'], 'Mission failed - limited damages. - Finish it!');
+        ));
     });
   }
 
@@ -205,7 +203,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'result'], 'fail')
-        .setIn(['activemission', 'log'], 'Mission has failed... - Go finish it.')
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' failed.'
         ));
@@ -222,12 +219,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('log', val => val.unshift(data.message));
-    });
-
-  if (action === missionActions.logMission)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['activemission', 'log'], data.message);
     });
 
   if (action === briefingActions.passMission)
@@ -261,8 +252,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.start)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'started'], true)
-        .setIn(['activemission', 'log'], 'Mission has started.');
+        .setIn(['activemission', 'started'], true);
     });
 
   if (action === missionActions.success) {
@@ -270,7 +260,6 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'result'], 'success')
-        .setIn(['activemission', 'log'], 'Mission success!! - Finish mission.')
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + activemission.get('title') + ' in ' + activemission.get('inCountry') + ' succeeded.'
         ));

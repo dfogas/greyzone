@@ -32,14 +32,6 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === equipmentsActions.logMissionFromEquipments) {
-    data = data.message || data;
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['activemission', 'log'], data);
-    });
-  }
-
   if (action === equipmentsActions.lockDice)
     jsonapiCursor(jsonapi => {
       return jsonapi

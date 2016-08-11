@@ -9,7 +9,10 @@ import $ from 'jquery';
 
 class WelcomeWindow extends Component {
   componentDidMount() {
-    $(React.findDOMNode(this)).focus();
+    // $(React.findDOMNode(this)).hide(400);
+    $(React.findDOMNode(this)).hide().show(400, () => {
+      $(React.findDOMNode(this)).focus();
+    });
   }
 
   quickRead(e) {

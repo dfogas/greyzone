@@ -3,13 +3,14 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import Sound from '../lib/sound';
-import {gameCursor} from '../state';
-import {jsonapiCursor} from '../state';
+import {gameCursor, jsonapiCursor} from '../state';
 import equipmentUseCheck from '../lib/bml/equipmentusecheck';
 import cconfig from '../client.config';
 import equipmentSound from '../lib/equipmentsound';
+import immutable from 'immutable';
 
 export function agentUnequip(agent) {
+  // TODO: add sound
   dispatch(agentUnequip, agent);
 }
 
@@ -20,10 +21,6 @@ export function buy(equipmentname) {
 
 export function lockDice(dice) {
   dispatch(lockDice, dice);
-}
-
-export function logMissionFromEquipments(message) {
-  dispatch(logMissionFromEquipments, {message});
 }
 
 export function noeffect(agentequipmentandindex) {
@@ -53,7 +50,8 @@ export function use(agent, agentequipmentandindex) {
     }
   } else {
     dispatch(noeffect, agentequipmentandindex);
-    dispatch(logMissionFromEquipments, {message: `Darn it! It didn't work!`});
+    let mySound = new Sound(url + equipmentSound(immutable.fromJS({name: 'Fail'})));
+    mySound.play();
   }
 }
 
@@ -62,7 +60,6 @@ setToString('equipment', {
   agentUnequip,
   buy,
   lockDice,
-  logMissionFromEquipments,
   noeffect,
   sell,
   use

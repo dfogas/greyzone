@@ -9,7 +9,7 @@ class LoyalCrew extends Component {
     const {jsonapi} = this.props;
     const loyalcrew = allAgents(jsonapi)
       .filter(agent => agent.get('id') !== jsonapi.getIn(['self', 'id']))
-      .filter(agent => agent.get('loyalty') === 'loyal').size === allAgents(jsonapi).filter(agent => agent.get('id') !== jsonapi.getIn(['self', 'id']));
+      .filter(agent => agent.get('loyalty') === 'loyal').size === allAgents(jsonapi).filter(agent => agent.get('id') !== jsonapi.getIn(['self', 'id'])).size;
 
     return (
       <div

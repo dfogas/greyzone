@@ -42,11 +42,12 @@ export function bookMissionPrice(tier) {
 }
 
 export function changeCountry(option) {
-  dispatch(changeCountry, option);
+  // TODO: změnit countryofoperation na novou programovanou komponentu místo dropdownu
+  setTimeout(() => {dispatch(changeCountry, option); }, 10);
 }
 
 export function changeMissionOption(name, value) {
-  /* probably just for mission.accept.form i.e. debug */
+  /* probably just for mission.accept.form i.e. debug  */
   const promise = new Promise((resolve, reject) => {
     resolve({name, value});
   });
@@ -61,7 +62,7 @@ export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
 }
 
-function dashboardAnnounce(message) {
+export function dashboardAnnounce(message) {
   $('#DashboardAnnounce').remove();
   $('#DashboardScreen').append(`<div id='DashboardAnnounce'>${message}</div>`);
   $('#DashboardAnnounce').on('click', () => {

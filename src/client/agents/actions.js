@@ -1,6 +1,7 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../state';
+import cconfig from '../client.config';
 // import {msg} from '../intl/store';
 
 import actionDices from '../lib/bml/actiondices';
@@ -10,7 +11,10 @@ import agentRankup from '../lib/bml/agentrankup';
 import invokeAgentTalk from '../lib/bml/invokeagenttalk';
 import isEquipmentBackfire from '../lib/bml/isequipmentbackfire';
 import leadershipcheck from '../lib/bml/leadershipcheck';
+import Sound from '../lib/sound';
 import $ from 'jquery';
+
+const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
 
 export function toArmory(agent) {
   if (agent)
@@ -39,20 +43,21 @@ export function agentTalking(agent) {
   const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
   const enhancements = jsonapiCursor(['enhancements']);
   const self = jsonapiCursor(['self']);
+  const isNotSelf = self.get('id') !== agent.get('id');
 
   if (agent.get('prison'))
     invokeAgentTalk(jsonapiCursor(), agent);
   else if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
     dispatch(enhancementTalk, {message: 'prisonbreak'});
-  else if (self.get('id') === agent.get('id') && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
+  else if (!isNotSelf && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
     dispatch(enhancementTalk, {message: 'silencewitness'});
-  else if (agent.get('specialist') === 'technician' && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
+  else if (isNotSelf && agent.get('specialist') === 'technician' && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
     dispatch(enhancementTalk, {message: 'destroyevidence'});
-  else if (agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal' && !enhancements.find(enh => enh.get('missiontag') === 'afriendininnercircle'))
+  else if (isNotSelf && agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal' && !enhancements.find(enh => enh.get('missiontag') === 'afriendininnercircle'))
     dispatch(enhancementTalk, {message: 'afriendininnercircle'});
-  else if (agent.get('personality') === 'SP' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'bankrobbery'))
+  else if (isNotSelf && agent.get('personality') === 'SP' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'bankrobbery'))
     dispatch(enhancementTalk, {message: 'bankrobbery'});
-  else if (agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
+  else if (isNotSelf && agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
     dispatch(enhancementTalk, {message: 'anolddebt'});
   else
     invokeAgentTalk(jsonapiCursor(), agent);
@@ -90,10 +95,12 @@ export function enhancementTalk(message) {
 }
 
 export function equip(equipment) {
-  // TODO: napsat líp
+  // TODO: napsat líp //
   const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(equipment.get('name')) !== -1;
   if (!hasAlready) {
     dispatch(equip, equipment);
+    let mySound = new Sound(url + '/assets/audio/AgentEquiped.ogg');
+    mySound.play();
     flashArmory('Agent equipped.');
   }
   else flashArmory('Agent already has this equipment.');

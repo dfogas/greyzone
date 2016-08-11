@@ -18,9 +18,8 @@ class TableTop extends Component {
   }
 
   completeTask() {
-    const {activemission} = this.props;
-    const currenttask = activemission.getIn(['tasks', 0]);
-    missionActions.completeTask(currenttask);
+    // const {activemission} = this.props;
+    missionActions.completeTask();
     missionActions.clearTabletop();
     missionActions.agentOnTaskGetsExperienceForCompletingTask();
     missionActions.clearTask();
@@ -48,7 +47,7 @@ class TableTop extends Component {
     const missionStarted = activemission.get('started');
     const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey'), rollable: dice.get('rollable')})));
     const taskscompleted = activemission.get('taskscompleted');
-//
+
     // console.log(actiondices.toJS());
     // console.log(remainingdices.toJS());
     // console.log(dicesthrown.toJS());

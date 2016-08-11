@@ -28,8 +28,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask'], data.agent)
         .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.agent)))
-        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], data.dices)
-        .setIn(['activemission', 'log'], 'Agent has been assigned to task.');
+        .setIn(['activemission', 'mission', 'currenttask', 'actiondices'], data.dices);
     });
 
   if (action === agentsActions.backFromArmory)

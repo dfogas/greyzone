@@ -12,6 +12,8 @@ function getEquipmentSound(equipment) {
   if (!immutable.Map.isMap(equipment))
     throw new Error('equipment is not immutable Map');
 
+  if (equipment.get('name') === 'Fail')
+    return '/assets/audio/use_fail.ogg';
   if (equipment.get('name') === msg('equipments.operations.0.name'))
     return '/assets/audio/gun_cocking.ogg';
   if (equipment.get('name') === msg('equipments.operations.1.name'))
