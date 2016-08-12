@@ -8,14 +8,11 @@ import DebugWindow from './debug.window.react';
 import OptionsGameWindow from './options.game.window.react';
 import CampaignsActive from './campaigns.active.react';
 import PayingWindow from './paying.window.react';
+import DashboardToIntro from '../../navs/dashboardtointro.react';
 
 class OptionsWindow extends Component {
   changeOption(ev) {
     optionsActions.changeOption(ev.target.name, ev.target.checked);
-  }
-
-  changePaying(ev) {
-    optionsActions.changePaying(ev.target.name, ev.target.checked);
   }
 
   render() {
@@ -51,6 +48,7 @@ class OptionsWindow extends Component {
         <PayingWindow
           paying={jsonapi.get('paying')}
           />
+        <DashboardToIntro />
         {!multiplayer &&
           <OptionsGameWindow
             jsonapi={jsonapi}

@@ -7,6 +7,7 @@ const dashboardMsg = {
   screen: {
     label: {
       achievements: 'Achievements',
+      collection: 'Collection',
       contest: 'Contest',
       default: 'Dashboard',
       enhancements: 'Upgrades',

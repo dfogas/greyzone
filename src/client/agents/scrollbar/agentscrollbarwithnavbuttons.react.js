@@ -1,4 +1,4 @@
-import './agentscrollbarwithnavbuttons.styl';
+import './agentscrollbarwithnavbuttons.styl';//
 import * as scrollbarActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -45,7 +45,7 @@ class AgentScrollBarWithNavButtons extends Component {
           isMission={this.props.isMission}
           jsonapi={jsonapi}
           parentCallback={this.scrollleft.bind(this)}
-          style={agentsbstyle}
+          style={agentsbstyle || immutable.fromJS({left: 0})}
           />
         <div className={classString}>
           <AgentScrollBar
@@ -66,7 +66,7 @@ class AgentScrollBarWithNavButtons extends Component {
           isMission={this.props.isMission}
           jsonapi={jsonapi}
           parentCallback={this.scrollright.bind(this)}
-          style={agentsbstyle}
+          style={agentsbstyle || immutable.fromJS({left: 0})}
           />
       </div>
     );

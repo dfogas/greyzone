@@ -1,6 +1,6 @@
 /* Smart */
-import './dashboard.screen.styl';
-import * as dashboardActions from './actions';
+import './dashboard.screen.styl'; //
+// import * as dashboardActions from './actions';
 import * as endGameActions from './endgame/actions';
 // import * as missionActions from '../mission/actions';
 import * as tutorialActions from '../tutorial/actions';
@@ -22,20 +22,9 @@ import StrategicalIntro from './strategical.intro.react';
 import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
 
 // buttons, selects
-import DashboardToBriefing from '../navs/dashboardtobriefing.react';
-import DashboardToCommand from '../navs/dashboardtocommand.react';
-import DashboardToIntro from '../navs/dashboardtointro.react';
 import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
-
-// pointers
-import ContestPointer from './pointers/contest.pointer.react';
-import EnhancementsPointer from './pointers/enhancements.pointer.react';
-import LogPointer from './pointers/log.pointer.react';
-import OptionsPointer from './pointers/options.pointer.react';
-import StatusesPointer from './pointers/statuses.pointer.react';
-import StrategicalPointer from './pointers/strategical.pointer.react';
-import IntermediateGoal from '../gameflow/intermediate.goal.react'; //
+import Pointer from './pointer.react';
 
 class DashboardScreen extends Component {
   componentDidMount() {
@@ -72,27 +61,15 @@ class DashboardScreen extends Component {
           game={game}
           jsonapi={jsonapi}
           />
-        <ContestPointer />
-        <LogPointer />
-        <OptionsPointer />
-        <StrategicalPointer />
+        <Pointer pointsto='contest' />
+        <Pointer pointsto='log' />
+        <Pointer pointsto='options' />
+        <Pointer pointsto='strategical' />
         <a
           download='playerlog.txt'
           id='DownloadLogLink'
           style={{display: 'none'}}>Log download</a>
-        {dashPointer === 'strategical' &&
-          <button
-            id='IntermediateGoalButton'
-            onClick={(e) => dashboardActions.intermediateGoalToggle()}>Goals</button>}
-        {jsonapi.getIn(['dashboard', 'intermediategoal']) && dashPointer === 'strategical' &&
-          <IntermediateGoal jsonapi={jsonapi} />}
-        {dashPointer === 'strategical' && jsonapi.getIn(['options', 'multiplayer']) &&
-          <DashboardToCommand />}
-        {dashPointer === 'options' &&
-          <DashboardToIntro />}
-        {jsonapi.getIn(['dashboard', 'enhancementtalk']) &&
-          <EnhancementTalk
-            jsonapi={jsonapi} />}
+        {jsonapi.getIn(['dashboard', 'enhancementtalk']) && <EnhancementTalk jsonapi={jsonapi} />}
         {jsonapi.getIn(['dashboard', 'operationsUpgradeDialog']) &&
           <OperationsUpgradeDialog
             enhancements={jsonapi.get('enhancements')}
@@ -103,6 +80,7 @@ class DashboardScreen extends Component {
             enhancements={jsonapi.get('enhancements')}
             list={game.getIn(['globals', 'enhancements'])}
             />}
+        {/* start game */}
         {(jsonapi.get('self').get('name') === 'Default Self' || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
           <ScreenPlastic />}
         {jsonapi.get('self').get('name') === 'Default Self' &&
@@ -124,18 +102,14 @@ class DashboardScreen extends Component {
                   />
               );
           })}
-        {jsonapi.get('gameend') &&
-          <EndGameWindow jsonapi={jsonapi} />}
-        {(!jsonapi.getIn(['activemission', 'started']) && dashPointer === 'strategical') &&
-          <DashboardToBriefing />}
-        {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) &&
-          <StrategicalIntro jsonapi={jsonapi}/>}
+        {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) && <StrategicalIntro jsonapi={jsonapi}/>}
+        {/* end of start game */}
+        {jsonapi.getIn(['options', 'debug']) && <Pointer pointsto='enhancements' />}
+        {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) && <Pointer pointsto='statuses' />}
+        {dashPointer === 'options' && <LanguageSelect locales={this.props.locales}/>}
+        {jsonapi.getIn(['campaigns', 'campaigns', 'collector', 'selected']) && <Pointer pointsto='collection' />}
+        {jsonapi.get('gameend') && <EndGameWindow jsonapi={jsonapi} />}
         {isLoggedIn && <Logout />}
-        {jsonapi.getIn(['options', 'debug']) && <EnhancementsPointer />}
-        {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) &&
-          <StatusesPointer />}
-        {dashPointer === 'options' &&
-          <LanguageSelect locales={this.props.locales}/>}
       </div>
     );
   }

@@ -31,7 +31,7 @@ class MissionEndButton extends Component {
       else
         setTimeout(briefingActions.flashBriefing('saved by obscurity'), 1000);
     });
-    missionActions.end();
+    missionActions.end(mission);
     if (tutorial && !tutorial.getIn(['firstmission', 'done']))
       tutorialActions.firstMissionDone();
     missionActions.removeCompletedMission();

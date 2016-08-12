@@ -4,6 +4,7 @@
 
 function genPayReq(userId, name, basePayReq) {
   let payReq = basePayReq;
+  console.log(name, 'payment generator');
   if (name === 'collector') {
     payReq.transactions[0].amount.total = '7.99';
     payReq.transactions[0].description = 'collector,' + userId;

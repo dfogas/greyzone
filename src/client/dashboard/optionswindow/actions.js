@@ -60,10 +60,7 @@ export function loadGame(game) {
   } else if (savegame && hashString(savegame) === gamehash) {
     dispatch(loadGame, savegame);
     dashboardAnnounce(`Game has been loaded.`);
-  } else {
-    $('#OptionsWindow').append('<div id=\'LoadGameMessage\'>Hashes don\'t equal. You may need to log out.</div>');
-    $('#LoadGameMessage').hide(3000, () => $('#LoadGameMessage').remove());
-  }
+  } else dashboardAnnounce(`Hashes don\'t equal. You may need to log out.`);
 }
 
 export function sanitizeAgents() {

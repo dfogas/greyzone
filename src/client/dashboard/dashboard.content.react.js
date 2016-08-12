@@ -2,50 +2,30 @@ import './dashboard.content.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import allAgents from '../lib/bml/allagents';
 
-import PlayersWindow from './playerswindow/players.window.react';
-import AgentsWindow from './agentswindow/agents.window.react';
-import StatusesWindow from './statuseswindow/statuses.window.react';
-import OptionsWindow from './optionswindow/options.window.react';
-import MissionsWindow from './missionswindow/missions.window.react';
-// import CountryStatsWindow from './countrieswindow/countrystats.window.react';
+import CollectionWindow from './collectionwindow/collection.window.react';
 import ContestWindow from './contestwindow/contest.window.react';
 import EnhancementsWindow from './enhancementswindow/enhancements.window.react';
-import AchievementsWindow from './achievementswindow/achievements.window.react';
 import LogWindow from './logwindow/log.window.react';
-
+import OptionsWindow from './optionswindow/options.window.react';
+import StatusesWindow from './statuseswindow/statuses.window.react';
+import StrategicalWindow from './strategicalwindow/strategical.window.react';
 
 class DashboardContent extends Component {
   render() {
     const {contest, game, jsonapi} = this.props;
-    const allagents = allAgents(jsonapi);
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     return (
       <div id='DashboardContent'>
-        {['strategical', 'enhancements', 'achievements'].indexOf(dashPointer) !== -1 &&
-          <PlayersWindow
+        {dashPointer === 'collection' && jsonapi.getIn(['campaigns', 'campaigns', 'collector', 'selected']) &&
+          <CollectionWindow
             game={game}
-            jsonapi={jsonapi}
-          />}
+            jsonapi={jsonapi} />}
         {dashPointer === 'strategical' &&
-          <MissionsWindow
-            agentbeingsaved={jsonapi.get('agentbeingsaved')}
-            enhancements={jsonapi.get('enhancements')}
+          <StrategicalWindow
             game={game}
             jsonapi={jsonapi}
-            missions={jsonapi.get('missions')}
-            missionspricelist={game.getIn(['globals', 'constants', 'missionsPriceList'])}
-          />}
-        {dashPointer === 'strategical' &&
-          <AgentsWindow
-            agenthire={jsonapi.getIn(['dashboard', 'strategical', 'agenthire'])}
-            agents={allagents}
-            dashboard={jsonapi.get('dashboard')}
-            game={game}
-            jsonapi={jsonapi}
-            options={jsonapi.get('options')}
-          />}
+            />}
         {dashPointer === 'log' &&
           <LogWindow
             log={jsonapi.get('log')}
@@ -55,10 +35,6 @@ class DashboardContent extends Component {
             jsonapi={jsonapi}
             options={jsonapi.get('options')}
             />}
-        {/* dashPointer === 'strategical' &&
-          <CountryStatsWindow
-            countrystats={jsonapi.get('countrystats')}
-          /> */}
         {/*dashPointer === 'options' &&
           <Link to='payments'><button id='ToPayments'>Buy</button></Link>*/}
         {dashPointer === 'contest' &&
@@ -77,17 +53,13 @@ class DashboardContent extends Component {
             owned={jsonapi.get('enhancements')}
             paying={jsonapi.get('paying')}
             />}
-        {(dashPointer === 'achievements') &&
-          <AchievementsWindow
-            achievements={game.getIn(['globals', 'achievements'])}
-            />}
       </div>
     );
   }
 }
 
 DashboardContent.propTypes = {
-  contest: React.PropTypes.instanceOf(immutable.Map),
+  contest: React.PropTypes.instanceOf(immutable.List),
   game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };

@@ -1,4 +1,4 @@
-import './enhancements.window.styl';
+import './enhancements.window.styl'; //
 import Component from '../../components/component.react.js';
 import React from 'react';
 import R from 'ramda';
@@ -47,6 +47,7 @@ class EnhancementsWindow extends Component {
             <EnhancementCard
               enhancement={enhancement}
               key={uuid() + 'operationsscopeowned'}
+              list={enhancements}
               owned={true}
               />
           );
@@ -56,6 +57,7 @@ class EnhancementsWindow extends Component {
             <EnhancementCard
               enhancement={enhancement}
               key={uuid() + 'toys'}
+              list={enhancements}
               owned={false}
               paying={paying}
               />
@@ -66,6 +68,7 @@ class EnhancementsWindow extends Component {
             <EnhancementCard
               enhancement={enhancement}
               key={uuid() + 'operationsscope'}
+              list={enhancements}
               owned={false}
               />
           );

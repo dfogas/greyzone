@@ -44,7 +44,7 @@ AgentScrollBarNavButton.propTypes = {
   isMission: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map),
   parentCallback: React.PropTypes.func,
-  style: React.PropTypes.instanceOf(immutable.Map)
+  style: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
 export default AgentScrollBarNavButton;

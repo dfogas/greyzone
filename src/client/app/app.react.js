@@ -30,6 +30,7 @@ import '../dashboard/optionswindow/store';
 import '../dashboard/statuseswindow/store';
 import '../dashboard/talk/store';
 import '../dashboard/store';
+import '../events/store';
 import '../introduction/store';
 import '../mission/tabletoptier/dice/store';
 import '../equipments/store';
