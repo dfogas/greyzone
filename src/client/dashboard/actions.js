@@ -41,11 +41,6 @@ export function bookMissionPrice(tier) {
   dispatch(bookMissionPrice, {message: missionPrice});
 }
 
-export function changeCountry(option) {
-  // TODO: změnit countryofoperation na novou programovanou komponentu místo dropdownu
-  setTimeout(() => {dispatch(changeCountry, option); }, 10);
-}
-
 export function changeMissionOption(name, value) {
   /* probably just for mission.accept.form i.e. debug  */
   const promise = new Promise((resolve, reject) => {
@@ -217,7 +212,6 @@ export function upgradeEnhancement(enhancement) {
 setToString('dashboard', {
   acceptMission,
   bookMissionPrice,
-  changeCountry,
   changeMissionOption,
   clearAgentHireFields,
   clearMissionAcceptFields,

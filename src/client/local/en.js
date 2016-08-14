@@ -134,8 +134,7 @@ const ENGLISH = {
     emptyList: 'Empty List'
   },
   signup: {
-    message: `<p>Create name for your organization here.</p>
-      <p>Or perhaps you've already done that?</p>`
+    message: `<p>Create name for your organization here.</p>`
   },
   stories: storiesMsg,
   support: {

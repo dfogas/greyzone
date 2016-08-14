@@ -8,14 +8,22 @@ class EventsOverview extends Component {
     const {game} = this.props;
     return (
       <div id='EventsOverview'>
-        <div style={{display: 'block'}}>Events Overview</div>
-        {game.get('events').map(gaev => {
-          return (
-            <div className='game-event'>
-              {gaev.get('tag')}{gaev.get('country')}
-            </div>
-          );
-        })}
+        <div className='game-event'>
+          <table>
+            <th>Tag</th>
+            <th>Country</th>
+            <th>Level</th>
+            {game.get('events').map(gaev => {
+              return (
+                <tr>
+                  <td>{gaev.get('tag')}</td>
+                  <td>{gaev.get('country')}</td>
+                  <td>{gaev.get('level')}</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import './country.of.operation.styl';
 import * as dashboardActions from '../actions';
+import * as travelActions from '../travelwindow/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,9 +11,9 @@ class CountryOfOperation extends Component {
   changeCountry(option) {
     const {jsonapi} = this.props;
     if (!jsonapi.get('missions').find(mission => mission.get('forcefail')))
-      dashboardActions.changeCountry(option);
+      travelActions.changeCountry(option);
     else {
-      dashboardActions.changeCountry({
+      travelActions.changeCountry({
         label: jsonapi.getIn(['dashboard', 'countryofoperation']),
         name: 'countryofoperation',
         value: jsonapi.getIn(['dashboard', 'countryofoperation'])

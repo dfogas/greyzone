@@ -81,7 +81,7 @@ class DashboardScreen extends Component {
             list={game.getIn(['globals', 'enhancements'])}
             />}
         {/* start game */}
-        {(jsonapi.get('self').get('name') === 'Default Self' || !jsonapi.getIn(['campaigns', 'selection', 'done'])) &&
+        {(jsonapi.get('self').get('name') === 'Default Self' || !jsonapi.getIn(['campaigns', 'selection', 'done']) || jsonapi.getIn(['dashboard', 'screenplastic', 'toggle'])) &&
           <ScreenPlastic />}
         {jsonapi.get('self').get('name') === 'Default Self' &&
           <PlayerAgentChoose

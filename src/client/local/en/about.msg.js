@@ -26,7 +26,7 @@ const aboutMsg = {
       should through its mechanisms introduce new story each time that it is played.
     </p>
     <p>
-      Multiplayer work is in progress so you may start messing with other players, if you like so.
+      Multiplayer work is in progress so after it is implemented you may start messing with other players, if you like so.
     </p>
     <p>
       Feel free to join and try game in its current development state, and
