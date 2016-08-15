@@ -5,7 +5,7 @@ import immutable from 'immutable';
 
 class EventsOverview extends Component {
   render() {
-    const {game} = this.props;
+    const {jsonapi} = this.props;
     return (
       <div id='EventsOverview'>
         <div className='game-event'>
@@ -13,12 +13,12 @@ class EventsOverview extends Component {
             <th>Tag</th>
             <th>Country</th>
             <th>Level</th>
-            {game.get('events').map(gaev => {
+            {jsonapi.get('events').map(jsev => {
               return (
                 <tr>
-                  <td>{gaev.get('tag')}</td>
-                  <td>{gaev.get('country')}</td>
-                  <td>{gaev.get('level')}</td>
+                  <td>{jsev.get('tag')}</td>
+                  <td>{jsev.get('country')}</td>
+                  <td>{jsev.get('level')}</td>
                 </tr>
               );
             })}
@@ -30,7 +30,7 @@ class EventsOverview extends Component {
 }
 
 EventsOverview.propTypes = {
-  game: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default EventsOverview;

@@ -1,4 +1,4 @@
-import './briefing.screen.styl';
+import './briefing.screen.styl'; //
 // import * as briefingActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -13,10 +13,12 @@ import ActiveMission from './activemission/active.mission.react';
 import BriefingInCountry from './briefing.incountry.react';
 import BriefingToDashboard from '../navs/briefingtodashboard.react';
 import BriefingToArmory from '../navs/briefingtoarmory.react';
+import EventsOverview from './events.overview.react';
 import MissionsListTable from './missionlist.table.react';
-import ToMission from '../navs/tomission.react';
 import MissionShiftLeft from './shift.left.react';
 import MissionShiftRight from './shift.right.react';
+import TablePlanToggle from './table.plan.toggle.react';
+import ToMission from '../navs/tomission.react';
 
 class BriefingScreen extends Component {
   componentDidMount() {
@@ -67,8 +69,11 @@ class BriefingScreen extends Component {
             inCountry={jsonapi.getIn(['activemission', 'inCountry'])}
             jsonapi={jsonapi}
             />
+          {jsonapi.getIn(['components', 'briefing', 'tableplan', 'toggle']) &&
+            <EventsOverview jsonapi={jsonapi} />}
           <BriefingToDashboard />
           <BriefingToArmory />
+          <TablePlanToggle />
           {(jsonapi.getIn(['activemission', 'agentsonmission']).size ||
             jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask'])) &&
             <ToMission />}

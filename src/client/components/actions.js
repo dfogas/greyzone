@@ -34,6 +34,10 @@ export function missionScreenTransition() {
   dispatch(missionScreenTransition, {});
 }
 
+export function tablePlanToggle() {
+  dispatch(tablePlanToggle, {});
+}
+
 setToString('components', {
   bigScreenToggle,
   bigScreenZ,
@@ -42,5 +46,6 @@ setToString('components', {
   loginSignupToggle,
   missionScreenTransition,
   missionScreenToggleOff,
-  missionScreenToggleOn
+  missionScreenToggleOn,
+  tablePlanToggle
 });

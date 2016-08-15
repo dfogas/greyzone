@@ -1,4 +1,4 @@
-/* eslint curly: 1 */
+/* eslint curly: 0 */
 /* String String(BoolString) -> String */
 
 const bookAttention = function(attentionlevel, direction) {

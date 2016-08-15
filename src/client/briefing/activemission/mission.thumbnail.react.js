@@ -5,18 +5,19 @@ import React from 'react';
 import {msg} from '../../intl/store';
 
 class MissionThumbnail extends Component {
-  hideTasks(e) {
-    e.preventDefault();
-    e.target.style.opacity = 1;
-  }
+  // hideTasks(e) {
+  //   e.preventDefault();
+  //   e.target.style.opacity = 1;
+  // }
+
+
+  // showTasks(e) {
+  //   e.preventDefault();
+  //   e.target.style.opacity = 0.5;
+  // }
 
   toggleShowMissionDescriptionText() {
     briefingActions.missionTextToggle();
-  }
-
-  showTasks(e) {
-    e.preventDefault();
-    e.target.style.opacity = 0.5;
   }
 
   render() {
@@ -25,8 +26,6 @@ class MissionThumbnail extends Component {
       <div
         id='ActualMissionThumbnail'
         onClick={this.toggleShowMissionDescriptionText}
-        onMouseLeave={(e) => this.hideTasks(e)}
-        onMouseOver={(e) => this.showTasks(e)}
         style={{backgroundImage: `url('../../../../assets/img/missions/thumbnails/${imgsrc}')`}}>
         {thumbnailtext &&
           <div id='MissionDescription'>{msg('mission.descriptions.' + missiontag)}</div>}

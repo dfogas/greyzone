@@ -11,6 +11,7 @@
 
 import config from '../config';
 import cconfig from '../../client/client.config';
+import eventsList from '../lib/greyzone/events/events.list';
 import fetch from 'node-fetch';
 fetch.Promise = require('bluebird');
 import 'isomorphic-fetch';
@@ -50,7 +51,8 @@ export default function userState() {
       agents: [],
       equipments: [],
       countrystats: [],
-      enhancements: []
+      enhancements: [],
+      events: eventsList
     };
 
     fetch(api + 'contest/')

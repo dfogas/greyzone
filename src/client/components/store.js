@@ -64,4 +64,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.tablePlanToggle) {
+    const toggle = jsonapiCursor(['components', 'briefing', 'tableplan', 'toggle']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'briefing', 'tableplan', 'toggle'], !toggle);
+    });
+  }
+
 });

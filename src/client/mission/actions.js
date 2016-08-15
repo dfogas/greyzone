@@ -1,4 +1,4 @@
-import cconfig from '../client.config';//
+import cconfig from '../client.config';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';

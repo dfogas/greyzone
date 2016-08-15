@@ -2,10 +2,11 @@
   Object that serves main component of initial state of new player
   It is merged to some state skeleton and saved to database via player.js controller on server
 */
-import EnhancementList from './greyzone/enhancements/enhancement.list';
 import CountryList from './greyzone/countries/countries.list';
-import Mission from './greyzone/mission.generator';
+import EnhancementList from './greyzone/enhancements/enhancement.list';
 import EquipmentList from './greyzone/equipments/equipments.list';
+import EventsList from './greyzone/events/events.list';
+import Mission from './greyzone/mission.generator';
 import playerEquipments from './greyzone/playerequipments';
 import playerCountryStats from './greyzone/playercountrystats';
 import dayandtime from '../../client/lib/dayandtime';
@@ -85,6 +86,7 @@ var playerdefaults = {
     EnhancementList[12] // Forger
   ],
   equipments: playerEquipments(EquipmentList, 1),
+  events: EventsList,
   log: [dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' you entered office.'],
   missions: [
     Mission('Connections Map', 1, (24 * 60 * 60 * 1000)),

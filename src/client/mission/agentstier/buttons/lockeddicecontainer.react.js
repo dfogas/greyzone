@@ -28,7 +28,7 @@ class LockedDiceContainer extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
-        {lockeddice &&
+        {lockeddice.size !== 0 &&
           <Dice
             dicekey={lockeddice ? lockeddice.get('dicekey') : ''}
             dicetype={lockeddice ? lockeddice.get('dicetype') : ''}

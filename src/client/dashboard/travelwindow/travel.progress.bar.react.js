@@ -1,4 +1,4 @@
-import './travel.progress.bar.styl';
+import './travel.progress.bar.styl'; //
 import * as travelActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -16,7 +16,9 @@ class TravelProgressBar extends Component {
     const progressbarindex = dashboard.getIn(['progressbar', 'index']);
     const dots = immutable.fromJS(['off', 'off', 'off', 'off', 'off']).set(progressbarindex, 'on');
     return (
-      <div id='TravelProgressBar'>
+      <div
+        id='TravelProgressBar'
+        onClick={(e) => travelActions.travelWindowToggle()}>
         {dots.map(dot => {
           return (
             <TravelProgressBarDot

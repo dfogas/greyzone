@@ -11,7 +11,6 @@ import DashboardToCommand from '../../navs/dashboardtocommand.react';
 
 import AgentsWindow from '../agentswindow/agents.window.react';
 import CountryStatsWindow from '../countrieswindow/countrystats.window.react';
-import EventsOverview from '../events.overview.react';
 import IntermediateGoal from '../../gameflow/intermediate.goal.react';
 import MissionsWindow from '../missionswindow/missions.window.react';
 import PlayersWindow from '../playerswindow/players.window.react';
@@ -26,9 +25,6 @@ class StrategicalWindow extends Component {
           game={game}
           jsonapi={jsonapi}
         />
-        <EventsOverview
-          game={game}
-          />
         <MissionsWindow
           agentbeingsaved={jsonapi.get('agentbeingsaved')}
           enhancements={jsonapi.get('enhancements')}

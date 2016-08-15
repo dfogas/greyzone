@@ -59,8 +59,8 @@ export const dispatchToken = register(({action, data}) => {
       break;
 
     case authActions.login:
-      jsonapiCursor(() => {
-        return immutable.fromJS(data);
+      jsonapiCursor(jsonapi => {
+        return jsonapi.mergeDeep(immutable.fromJS(data));
       });
       break;
   }

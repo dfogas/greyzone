@@ -1,4 +1,4 @@
-import * as actions from './actions';
+import * as actions from './actions';//
 import {register} from '../../../dispatcher';
 import {jsonapiCursor} from '../../../state';
 import diceThrow from '../../../lib/bml/dicethrow';
@@ -20,7 +20,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === actions.create)
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .updateIn(['activemission', 'mission', 'currenttask', 'actiondices'], val => val.push(immutable.fromJS({type: data.dicetype, name: data.name, key: data.key, rollable: false})))
+      .updateIn(['activemission', 'mission', 'currenttask', 'actiondices'], val => val.push(immutable.fromJS({type: data.dicetype, name: data.name, dicekey: data.dicekey, rollable: false})))
       .setIn(['activemission', 'equipmenteffects', 'actionchoose'], null);
     });
 

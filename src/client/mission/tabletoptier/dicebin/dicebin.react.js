@@ -21,16 +21,8 @@ class DiceBin extends Component {
     const {activemission} = this.props;
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const missionstarted = activemission.get('started');
-    // const dicesthrown = actiondices.toJS().map(action => action.name);
     const currentindex = activemission.get('taskscompleted').size;
     const currenttask = activemission.getIn(['tasks', currentindex]) || immutable.fromJS(Array(0));
-
-    // let taskActions = [];
-    // if (currenttask)
-    //   taskActions = currenttask.toSeq().map(action =>
-    //                     action.get('name'), taskActions)
-    //                   .toArray();
-    // //nice
 
     return (
       <div

@@ -1,22 +1,28 @@
-import {dispatch} from '../../../dispatcher';
+import {dispatch} from '../../../dispatcher'; //
 import setToString from '../../../lib/settostring';
 import Sound from '../../../lib/sound';
 import {jsonapiCursor} from '../../../state';
+import $ from 'jquery';
 
 export function create(dice) {
-  const lockeddicekey = jsonapiCursor(['activemission', 'equipmenteffects', 'lockeddice', 0, 'dicekey']);
-  const dicekeys = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']).toJS().map(dice => dice.dicekey);
+  const dicekeys = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']).map(die => die.get('dicekey'));
   const debugswitch = jsonapiCursor(['options', 'debug']);
-  if (dicekeys.indexOf(dice.dicekey) === -1 || debugswitch || lockeddicekey === dice.dicekey)
+  if (dicekeys.indexOf(dice.dicekey) !== -1)
+    flashMission(`This is not possible`);
+  else
+    dispatch(create, dice);
+  if (debugswitch)
     dispatch(create, dice);
 }
 
-export function remove(dice) {
-  dispatch(remove, dice);
+export function destroyLockedDice() {
+  dispatch(destroyLockedDice, {});
 }
 
-export function roll(dice) {
-  dispatch(roll, {dice});
+function flashMission(message) {
+  $('#TableTop').append(`<div id=\'MissionStartMessage\'>${message}</div>`);
+  $('#MissionStartMessage').hide().fadeIn(200);
+  $('#MissionStartMessage').fadeOut(1000, () => $('#MissionStartMessage').remove());
 }
 
 export function protectiveGearEffectFizzle() {
@@ -27,6 +33,17 @@ export function protectiveGearUse(dices) {
   for (let i = 0; i < dices.size; i += 1)
     roll(dices.get(i));
   protectiveGearEffectFizzle();
+}
+
+export function remove(dice) {
+  const lockeddicekey = jsonapiCursor(['activemission', 'equipmenteffects', 'lockeddice', 'dicekey']);
+  if (lockeddicekey === dice.dicekey)
+    destroyLockedDice();
+  dispatch(remove, dice);
+}
+
+export function roll(dice) {
+  dispatch(roll, {dice});
 }
 
 export function rollAll() {
@@ -43,6 +60,7 @@ export function selectForReroll(index) {
 
 setToString('dice', {
   create,
+  destroyLockedDice,
   protectiveGearEffectFizzle,
   remove,
   roll,

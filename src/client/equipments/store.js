@@ -1,3 +1,4 @@
+import * as diceActions from '../mission/tabletoptier/dice/actions';
 import * as equipmentsActions from './actions';
 import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
@@ -27,10 +28,16 @@ export const dispatchToken = register(({action, data}) => {
     const equipments = jsonapiCursor(['equipments']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .updateIn(['equipments', equipments.indexOf(equipments.find(equipment => equipment.get('name') === data.get('name'))), 'quantity'], val => val + 1)
-      .updateIn(['gameCash'], val => val - data.get('price'));
+        .updateIn(['equipments', equipments.indexOf(equipments.find(equipment => equipment.get('name') === data.get('name'))), 'quantity'], val => val + 1)
+        .updateIn(['gameCash'], val => val - data.get('price'));
     });
   }
+
+  if (action === diceActions.destroyLockedDice)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['activemission', 'equipmenteffects', 'lockeddice'], null);
+    });
 
   if (action === equipmentsActions.lockDice)
     jsonapiCursor(jsonapi => {
@@ -108,7 +115,7 @@ export const dispatchToken = register(({action, data}) => {
     if (data.agentequipment.get('name') === msg('equipments.electronics.2.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'equipmenteffects', 'lockeddice'], [])
+          .setIn(['activemission', 'equipmenteffects', 'lockeddice'], immutable.fromJS(Array(0)))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
