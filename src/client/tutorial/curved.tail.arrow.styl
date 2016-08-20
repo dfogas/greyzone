@@ -1,0 +1,28 @@
+.curved-tail-arrow {
+  position relative
+  top 380px
+  width 0
+  height 0
+  border-top 18px solid transparent
+  border-right 18px solid blue
+  -webkit-transform rotate(-100deg)
+  -moz-transform rotate(-100deg)
+  -ms-transform rotate(-100deg)
+  -o-transform rotate(-100deg)
+}
+
+.curved-tail-arrow:after {
+  content ''
+  position absolute
+  border 0 solid transparent
+  border-top 6px solid blue
+  border-radius 40px 0 0 0
+  top -24px
+  left -18px
+  width 24px
+  height 24px
+  -webkit-transform rotate(45deg)
+  -moz-transform rotate(45deg)
+  -ms-transform rotate(45deg)
+  -o-transform rotate(45deg)
+}

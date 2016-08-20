@@ -1,4 +1,4 @@
-import * as state from '../../client/state';
+import * as state from '../../client/state'; //
 import DocumentTitle from 'react-document-title';
 import Html from './html.react';
 import Promise from 'bluebird';
@@ -11,6 +11,8 @@ import routes from '../../client/routes';
 import stateMerger from '../lib/merger';
 
 export default function render(req, res, userState = {}) {
+  if (req.session)
+    console.log('Session' + JSON.stringify(req.session));
   const appState = immutable.fromJS(initialState).mergeWith(stateMerger, userState).toJS();
   return renderPage(req, res, appState);
 }

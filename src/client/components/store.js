@@ -4,6 +4,14 @@ import {jsonapiCursor} from '../state';
 
 export const dispatchToken = register(({action, data}) => {
 
+  if (action === componentsActions.activeMissionToggle) {
+    const toggle = jsonapiCursor(['components', 'briefing', 'activemission', 'toggle']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'briefing', 'activemission', 'toggle'], !toggle);
+    });
+  }
+
   if (action === componentsActions.bigScreenToggle) {
     const toggle = jsonapiCursor(['components', 'login', 'bigscreen', 'status']);
     jsonapiCursor(jsonapi => {
@@ -44,6 +52,14 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.missionListToggle) {
+    const toggle = jsonapiCursor(['components', 'briefing', 'missionlist']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'briefing', 'missionlist'], !toggle);
+    });
+  }
+
   if (action === componentsActions.missionScreenToggleOff)
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -64,11 +80,19 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === componentsActions.tablePlanToggle) {
-    const toggle = jsonapiCursor(['components', 'briefing', 'tableplan', 'toggle']);
+  if (action === componentsActions.deskPlanToggle) {
+    const toggle = jsonapiCursor(['components', 'briefing', 'deskplan', 'toggle']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['components', 'briefing', 'tableplan', 'toggle'], !toggle);
+        .setIn(['components', 'briefing', 'deskplan', 'toggle'], !toggle);
+    });
+  }
+
+  if (action === componentsActions.taskHelpToggle) {
+    const toggle = jsonapiCursor(['components', 'briefing', 'taskhelp', 'toggle']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'briefing', 'taskhelp', 'toggle'], !toggle);
     });
   }
 

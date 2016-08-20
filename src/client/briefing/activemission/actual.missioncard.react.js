@@ -7,11 +7,12 @@ import React from 'react';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
 
+import AgentAssignment from './agentassignment.react';
+import ActiveMissionToggleOff from './active.mission.toggle.off.react';
+import MissionResultList from '../../mission/missioncard/results/mission.result.list.react';
+import MissionThumbnail from './mission.thumbnail.react';
 import MissionTitle from '../../mission/missioncard/missiontitle.react';
 import Task from '../../mission/missioncard/tasks/task.react';
-import MissionResultList from '../../mission/missioncard/results/mission.result.list.react';
-import AgentAssignment from './agentassignment.react';
-import MissionThumbnail from './mission.thumbnail.react';
 // import MissionClock from './mission.clock.react';
 
 class ActualMissionCard extends Component {
@@ -52,13 +53,15 @@ class ActualMissionCard extends Component {
           missiontag={activemission.get('tag')}
           thumbnailtext={components.getIn(['briefing', 'missionthumbnail', 'text'])}
           />
+        <ActiveMissionToggleOff />
         <MissionTitle
           isActual={false}
           title={activemission.get('title')}
           />
-        <div id='ActualMissionTasks'>
-          {actualmissiontasks}
-        </div>
+        {false &&
+          <div id='ActualMissionTasks'>
+            {actualmissiontasks}
+          </div>}
         <div id='AgentAssignmentsContainer'>
           {assignments}
         </div>

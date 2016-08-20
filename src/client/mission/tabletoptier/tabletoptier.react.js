@@ -8,6 +8,7 @@ import DiceBin from './dicebin/dicebin.react';
 import TableTop from './tabletop/tabletop.react';
 
 class TableTopTier extends Component {
+
   render() {
     const {activemission, tutorial} = this.props;
 

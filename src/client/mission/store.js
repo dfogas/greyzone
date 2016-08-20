@@ -6,9 +6,7 @@ import immutable from 'immutable';
 import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
 import bookObscurity from '../lib/bml/bookobscurity';
-import noDoubleAgents from '../lib/bml/nodoubleagents';
-import allAgents from '../lib/bml/allagents';
-import lockr from 'lockr';
+import bookReputation from '../lib/bml/bookreputation';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -57,6 +55,15 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'mission', 'currenttask', 'agentlock'], true);
     });
 
+  if (action === missionActions.agentLoyalty) {
+    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+    const agentBecominLoyal = agentsonmission.find(agent => agent.get('loyalty') === 'normal');
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+      .updateIn(['activemission', 'agentsonmission', agentsonmission.indexOf(agentBecominLoyal)], val => val.set('loyalty', 'loyal'));
+    });
+  }
+
   if (action === missionActions.agentMissionDone) {
     const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
     if (jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']))
@@ -88,6 +95,23 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === missionActions.agentRecruited)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.update('agents', val => val.push(immutable.fromJS(data)));
+    });
+
+  if (action === missionActions.bookCash)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('gameCash', val => val + data.amount);
+    });
+
+  if (action === missionActions.bookContacts)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('gameContacts', val => val + data.amount);
+    });
+
   if (action === missionActions.bookLosses || action === briefingActions.bookLosses) {
     const results = data.mission.get('losses') ? data.mission.get('losses').toJS() : {};
     const countrystats = jsonapiCursor(['countrystats']);
@@ -103,14 +127,24 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === missionActions.bookObscurity)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['countrystats', data.countryindex, 'obscurity'], val => bookObscurity(val, data.obscurity));
+    });
+
+  if (action === missionActions.bookReputation)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .updateIn(['countrystats', data.countryindex, 'reputation'], val => bookReputation(val, data.reputation));
+    });
+
   if (action === missionActions.bookRewards) {
     // TODO: this should be done in actions ...
     const results = data.mission.get('rewards') ? data.mission.get('rewards').toJS() : {};
     const countrystats = jsonapiCursor(['countrystats']);
     const missioncountryname = data.mission.get('inCountry');
     const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
-    const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
-    const agentBecominLoyal = agentsonmission.find(agent => agent.get('loyalty') === 'normal');
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['gameCash'], val => results.gameCash ? val + results.gameCash : val)
@@ -118,20 +152,6 @@ export const dispatchToken = register(({action, data}) => {
         .updateIn(['countrystats', countryindex, 'reputation'], val => results.reputation ? val + results.reputation : val)
         .updateIn(['countrystats', countryindex, 'obscurity'], val => results.obscurity ? bookObscurity(val, results.obscurity) : val);
     });
-    if (Object.keys(results).indexOf('agentRecruited') !== -1) {
-      const newagent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), data.mission.get('tier'), data.mission.getIn(['rewards', 'character']));
-      // TODO: move to actions, restructure there, ASAP
-      const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || [];
-      lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
-      jsonapiCursor(jsonapi => {
-        return jsonapi.update('agents', val => val.push(immutable.fromJS(newagent)));
-      });
-    }
-    if (Object.keys(results).indexOf('agentLoyal') !== -1 && agentBecominLoyal)
-      jsonapiCursor(jsonapi => {
-        return jsonapi
-          .updateIn(['activemission', 'agentsonmission', agentsonmission.indexOf(agentBecominLoyal)], val => val.set('loyalty', 'loyal'));
-      });
   }
 
   if (action === briefingActions.checkFatalities) {

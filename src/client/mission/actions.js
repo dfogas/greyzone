@@ -3,7 +3,8 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
-// import allAgents from '../lib/bml/allagents';
+import allAgents from '../lib/bml/allagents';
+import noDoubleAgents from '../lib/bml/nodoubleagents';
 import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 import Sound from '../lib/sound';
@@ -42,6 +43,14 @@ export function agentMissionDone(agent) {
     dispatch(agentMissionDone, {message: activemissionId, agent: agent});
 }
 
+export function agentLoyalty() {
+  dispatch(agentLoyalty, {});
+}
+
+export function agentRecruited(agent) {
+  dispatch(agentRecruited, agent);
+}
+
 export function agentOnTaskGetsExperienceForCompletingTask() {
   dispatch(agentOnTaskGetsExperienceForCompletingTask, {});
 }
@@ -50,11 +59,59 @@ export function agentsAreBackFromMission() {
   dispatch(agentsAreBackFromMission, {});
 }
 
+export function bookCash(amount) {
+  dispatch(bookCash, {amount});
+}
+
+export function bookContacts(amount) {
+  dispatch(bookContacts, {amount});
+}
+
 export function bookLosses(mission) {
+  const results = mission.get('losses') ? mission.get('losses').toJS() : {};
+  const countrystats = jsonapiCursor(['countrystats']);
+  const missioncountryname = mission.get('inCountry');
+  const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+  //TODO: přesunout sem věci ze storu
   dispatch(bookLosses, {mission});
 }
 
+export function bookObscurity(mission) {
+  const results = mission.get('losses') ? mission.get('losses').toJS() : {};
+  const countrystats = jsonapiCursor(['countrystats']);
+  const missioncountryname = mission.get('inCountry');
+  const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+
+  dispatch(bookObscurity, {countryindex, obscurity: results.obscurity});
+}
+
+export function bookReputation(mission) {
+  const results = mission.get('losses') ? mission.get('losses').toJS() : {};
+  const countrystats = jsonapiCursor(['countrystats']);
+  const missioncountryname = mission.get('inCountry');
+  const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+
+  dispatch(bookReputation, {countryindex, reputation: results.reputation});
+}
+
 export function bookRewards(mission) {
+  const results = mission.get('rewards') ? mission.get('rewards').toJS() : {};
+  const countrystats = jsonapiCursor(['countrystats']);
+  const missioncountryname = mission.get('inCountry');
+  const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+  const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  const agentBecominLoyal = agentsonmission.find(agent => agent.get('loyalty') === 'normal');
+
+  if (Object.keys(results).indexOf('agentRecruited') !== -1) {
+    const newagent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), mission.get('tier'), mission.getIn(['rewards', 'character']));
+    const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || [];
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
+    agentRecruited(newagent);
+  }
+  if (Object.keys(results).indexOf('agentLoyal') !== -1 && agentBecominLoyal)
+    agentLoyalty();
+
   dispatch(bookRewards, {mission});
 }
 
@@ -173,9 +230,15 @@ setToString('mission', {
   agentIsBackFromTask,
   agentKilled,
   agentLockedToTask,
+  agentLoyalty,
   agentMissionDone,
   agentOnTaskGetsExperienceForCompletingTask,
+  agentRecruited,
   agentsAreBackFromMission,
+  bookCash,
+  bookContacts,
+  bookObscurity,
+  bookReputation,
   bookLosses,
   bookRewards,
   checkFatalities,

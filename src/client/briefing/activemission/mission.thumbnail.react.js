@@ -26,7 +26,7 @@ class MissionThumbnail extends Component {
       <div
         id='ActualMissionThumbnail'
         onClick={this.toggleShowMissionDescriptionText}
-        style={{backgroundImage: `url('../../../../assets/img/missions/thumbnails/${imgsrc}')`}}>
+        style={{}/*{backgroundImage: `url('../../../../assets/img/missions/thumbnails/${imgsrc}')`}*/}>
         {thumbnailtext &&
           <div id='MissionDescription'>{msg('mission.descriptions.' + missiontag)}</div>}
       </div>

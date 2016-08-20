@@ -1,8 +1,10 @@
 import './choose.class.styl';
+import * as tutorialActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import {msg} from '../intl/store';
-import * as tutorialActions from './actions';
+
+import CurvedTailArrow from './curved.tail.arrow.react';
 
 class AgentChoose extends Component {
   playerChooseAgent(e) {
@@ -13,6 +15,7 @@ class AgentChoose extends Component {
     // const {game, jsonapi} = this.props;
     return (
       <div id="PlayerChoosesAgentClass">
+        <CurvedTailArrow />
         <p>You have done special tasks in the past, what they were more like?</p>
         <div id="ChooseOperative" name='operative' onClick={(e) => this.playerChooseAgent(e)}>
           Pursuits, Fights and Hits

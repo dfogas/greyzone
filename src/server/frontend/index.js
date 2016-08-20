@@ -24,6 +24,7 @@ if (process.env.NODE_ENV) {
   app.use(userState());
 
   app.get('*', (req, res, next) => {
+    // is place for session here? No - no, it is not
     render(req, res, req.userState).catch(next);
   });
 

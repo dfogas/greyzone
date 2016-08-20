@@ -1,5 +1,6 @@
 /* eslint curly: 1 */
-import api from './api';
+import api from './api'; //
+import auth from './api/controllers/auth';
 import paypal from './paypal';
 import config from './config';
 import express from 'express';
@@ -21,6 +22,7 @@ if (config.isProduction)
 
 app.use('/', paypal);
 app.use(config.apipath, api);
+app.use('/', auth);
 
 app.use(morgan('dev')); // development logger TODO: take care of production
 

@@ -6,13 +6,18 @@ import oQ from '../lib/bml/obscurityquality'; //
 
 class BriefingInCountry extends Component {
   render() {
-    const {countrystats, inCountry, jsonapi} = this.props;
+    const {jsonapi} = this.props;
+    const inCountry = jsonapi.getIn(['activemission', 'inCountry']);
     const briefingCountry = inCountry !== '' ? inCountry : jsonapi.getIn(['dashboard', 'countryofoperation']);
+    const countrystats = jsonapi.get('countrystats');
     return (
       <div id='BriefingInCountry'>
         in {briefingCountry}
         <div id='BriefingObscurityDisplay'>
           {briefingCountry && oQ(Math.round10(countrystats.find(item => item.get('name') === briefingCountry).get('obscurity'), -2))}
+        </div>
+        <div id='BriefingAttentionLevel'>
+          {briefingCountry && jsonapi.get('events').find(jsev => jsev.get('country') === briefingCountry && jsev.get('tag') === 'attention').get('level')}
         </div>
       </div>
     );
@@ -20,8 +25,6 @@ class BriefingInCountry extends Component {
 }
 
 BriefingInCountry.propTypes = {
-  countrystats: React.PropTypes.instanceOf(immutable.List),
-  inCountry: React.PropTypes.string,
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

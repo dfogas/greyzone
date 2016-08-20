@@ -1,11 +1,11 @@
-import express from 'express';
+import express from 'express'; //
 import Player from '../models/player';
 
 const router = express.Router();
 
 router.route('/:player_id')
   .put((req, res) => {
-
+    // console.log('Session: ', req.session);
     Player.update(
       // TODO: rewrite through findById and save combination
       // we need params _id here else only 1st record from parent collection is updated

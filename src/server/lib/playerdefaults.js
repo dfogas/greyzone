@@ -96,8 +96,10 @@ var playerdefaults = {
   started: Date.now(),
   statuses: [],
   options: {
-    soundeffects: true,
+    animations: true,
+    debug: false,
     multiplayer: false,
+    soundeffects: true,
     tutorial: true
   },
   tutorial: {

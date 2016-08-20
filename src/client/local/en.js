@@ -86,6 +86,9 @@ const ENGLISH = {
   login: {
     message: `<p>First time here? - `
   },
+  logout: {
+    title: 'Logout Page'
+  },
   menu: {
     armory: 'Armory',
     briefing: 'Briefing',

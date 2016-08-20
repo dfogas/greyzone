@@ -1,3 +1,11 @@
+//
+// import bodyParser from 'body-parser';
+// import config from '../../config';
+// import cors from 'cors';
+// import mongoose from 'mongoose';
+// import morgan from 'morgan';
+
+//
 import express from 'express';
 import passport from 'passport';
 import Player from '../models/player';
@@ -23,7 +31,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-router.route('/login')
+router.route('/api/v1/auth/login')
   .post(localAuthenticator, (req, res) => {
     const {email} = req.body;
     User.findOne({username: email}, function(err, user) {
@@ -38,7 +46,7 @@ router.route('/login')
     });
   });
 
-router.route('/signup')
+router.route('/api/v1/auth/signup')
   .post((req, res) => {
     const {email, organization, password} = req.body;
 
@@ -118,7 +126,7 @@ router.route('/signup')
 
   });
 
-router.route('/verify')
+router.route('/api/v1/auth/verify')
   .get((req, res) => {
     const {id, hash} = req.query;
     // req.query Davide
@@ -171,7 +179,7 @@ router.route('/verify')
     });
   });
 
-router.route('/lprecover')
+router.route('/api/v1/auth/lprecover')
   .post((req, res) => {
     const {email} = req.body;
 
@@ -204,7 +212,7 @@ router.route('/lprecover')
     });
   });
 
-router.route('/reauthentication')
+router.route('/api/v1/auth/reauthentication')
   .post((req, res) => {
     const {email, password} = req.body;
     const {hash} = req.query;
@@ -243,5 +251,15 @@ router.route('/reauthentication')
         // });
     });
   });
+
+// router.route('/logout')
+//   .get((req, res) => {
+//     req.session.destroy((err) => {
+//       if (err)
+//         throw new Error(`Error destroying session.`);
+//       // else
+//       //   res.redirect('/');
+//     });
+//   });
 
 export default router;

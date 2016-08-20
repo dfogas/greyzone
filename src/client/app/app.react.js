@@ -4,6 +4,7 @@
 */
 import './app.styl';
 import '../navs/navs.styl';
+import './animations.styl';
 // import config from '../../server/config'; //I think that this breaks the app
 // import cconfig from '../client.config';
 import * as state from '../state';

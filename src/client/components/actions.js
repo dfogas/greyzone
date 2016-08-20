@@ -1,12 +1,20 @@
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 
+export function activeMissionToggle() {
+  dispatch(activeMissionToggle, {});
+}
+
 export function bigScreenToggle() {
   dispatch(bigScreenToggle, {});
 }
 
 export function bigScreenZ(zIndex) {
   dispatch(bigScreenZ, {zIndex});
+}
+
+export function deskPlanToggle() {
+  dispatch(deskPlanToggle, {});
 }
 
 export function devNoticeToggle() {
@@ -22,6 +30,10 @@ export function loginSignupToggle() {
   dispatch(loginSignupToggle, {});
 }
 
+export function missionListToggle() {
+  dispatch(missionListToggle, {});
+}
+
 export function missionScreenToggleOff() {
   dispatch(missionScreenToggleOff, {});
 }
@@ -34,18 +46,21 @@ export function missionScreenTransition() {
   dispatch(missionScreenTransition, {});
 }
 
-export function tablePlanToggle() {
-  dispatch(tablePlanToggle, {});
+export function taskHelpToggle() {
+  dispatch(taskHelpToggle, {});
 }
 
 setToString('components', {
+  activeMissionToggle,
   bigScreenToggle,
   bigScreenZ,
+  deskPlanToggle,
   devNoticeToggle,
   introductionWindowToggle,
   loginSignupToggle,
+  missionListToggle,
   missionScreenTransition,
   missionScreenToggleOff,
   missionScreenToggleOn,
-  tablePlanToggle
+  taskHelpToggle
 });

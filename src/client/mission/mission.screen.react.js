@@ -48,18 +48,20 @@ class MissionTrackingScreen extends Component {
         }}
         >
         <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>
-        <TaskTier
-          activemission={jsonapi.get('activemission')}
-          />
+        {screenTrans &&
+          <TaskTier
+            activemission={jsonapi.get('activemission')}
+            />}
         {screenTrans &&
           <TableTopTier
             activemission={jsonapi.get('activemission')}
             tutorial={jsonapi.get('tutorial')}
-          />}
-        <AgentsTier
-          game={game}
-          jsonapi={jsonapi}
-          />
+            />}
+        {screenTrans &&
+          <AgentsTier
+            game={game}
+            jsonapi={jsonapi}
+            />}
         <MissionScreenDarkener
           jsonapi={jsonapi}
           />

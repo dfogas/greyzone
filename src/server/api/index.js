@@ -12,7 +12,7 @@ import path from 'path';
 import passport from 'passport';
 
 // controllers
-import auth from './controllers/auth';
+// import auth from './controllers/auth';
 import contest from './controllers/contest';
 import paypal from './controllers/paypal';
 import player from './controllers/player';
@@ -44,7 +44,7 @@ app.use(passport.initialize());
 app.use(cors()); // what does it do?
 
 // route index(es)
-app.use('/auth', auth);
+// app.use('/auth', auth);
 app.use('/contest', contest);
 app.use('/paypal', paypal);
 app.use('/players', player);

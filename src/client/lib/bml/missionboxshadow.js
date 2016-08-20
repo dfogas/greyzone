@@ -5,6 +5,8 @@ const missionBoxShadow = function(mission) {//
     return 'inset 0 0 500px sandybrown';
   else if (mission.get('tag') === 'agentintrouble')
     return 'inset 0 0 500px black';
+  else if (mission.get('tag') === 'connectionsmap')
+    return 'inset 0 0 500px grey';
   else if (mission.get('tag') === 'demonstrationofpower')
     return 'inset 0 0 500px darkred';
   else if (mission.get('tag') === 'discovered')

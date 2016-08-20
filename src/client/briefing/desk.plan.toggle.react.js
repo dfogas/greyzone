@@ -1,4 +1,4 @@
-import './table.plan.toggle.styl';
+import './desk.plan.toggle.styl'; //
 import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -17,9 +17,9 @@ class TablePlanToggle extends Component {
     return (
       <div
         id='TablePlanToggle'
-        onClick={(e) => componentsActions.tablePlanToggle()}
-        onMouseLeave={this.dimPlan.bind(this)}>
-        onMouseOver={this.highlightPlan.bind(this)}
+        onClick={(e) => componentsActions.taskHelpToggle()}
+        onMouseLeave={this.dimPlan.bind(this)}
+        onMouseOver={this.highlightPlan.bind(this)}>
       </div>
     );
   }
