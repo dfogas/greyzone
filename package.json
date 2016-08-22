@@ -81,7 +81,7 @@
     "through2": "^2.0.0",
     "url-loader": "^0.5.5",
     "validator": "^3.34.0",
-    "webpack": "^1.9.5",
+    "webpack": "^1.12.2",
     "webpack-dev-server": "1.14.0",
     "yargs": "^3.3.1"
   },
