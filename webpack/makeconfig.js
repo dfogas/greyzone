@@ -7,6 +7,7 @@ var NotifyPlugin = require('./notifyplugin');
 var constants = require('./constants');
 var path = require('path');
 var webpack = require('webpack');
+// var autoprefixer = require('autoprefixer');
 
 var devtools = process.env.CONTINUOUS_INTEGRATION
   ? 'inline-source-map'
@@ -16,7 +17,7 @@ var devtools = process.env.CONTINUOUS_INTEGRATION
   : '#cheap-module-eval-source-map';
 
 var loaders = {
-  'css': '',
+  'css': '!css-loader',
   // 'less': '!less-loader',
   // 'scss|sass': '!sass-loader',
   'styl': '!stylus-loader'
@@ -24,19 +25,45 @@ var loaders = {
 
 module.exports = function(isDevelopment) {
 
+  // function stylesLoaders() {
+  //   return Object.keys(loaders).map(function(ext) {
+  //     var prefix = 'css-loader!autoprefixer-loader?browsers=last 2 version';
+  //     var extLoaders = prefix + loaders[ext];
+  //     var loader = isDevelopment
+  //       ? 'style-loader!' + extLoaders
+  //       : ExtractTextPlugin.extract('style-loader', extLoaders);
+  //     return {
+  //       loader: loader,
+  //       test: new RegExp('\\.(' + ext + ')$')
+  //     };
+  //   });
+  // }
+
   function stylesLoaders() {
     return Object.keys(loaders).map(function(ext) {
-      var prefix = 'css-loader!autoprefixer-loader?browsers=last 2 version';
-      var extLoaders = prefix + loaders[ext];
       var loader = isDevelopment
-        ? 'style-loader!' + extLoaders
-        : ExtractTextPlugin.extract('style-loader', extLoaders);
-      return {
-        loader: loader,
-        test: new RegExp('\\.(' + ext + ')$')
-      };
+        ? `style-loader${loaders[ext]}!postcss-loader`
+        : null;
+        // : ExtractTextPlugin.extract('style-loader', extLoaders);
+        return {
+          loader: loader,
+          // test: new RegExp('\\.(' + ext + ')$')
+          test: new RegExp('\\.(' + ext + ')$')
+        }
     });
   }
+
+  // console.log(stylesLoaders());
+
+var constStyleLoaders = [{
+  loader: `style-loader!css-loader`,
+  test: /\.css$/
+}, {
+  loader: `style-loader!css-loader!stylus-loader`,
+  test: /\.styl$/
+}];
+
+console.log(constStyleLoaders);
 
   var config = {
     cache: isDevelopment,
@@ -80,7 +107,8 @@ module.exports = function(isDevelopment) {
           'babel-loader'
         ],
         test: /\.js$/
-      }].concat(stylesLoaders())
+      }]
+      .concat(constStyleLoaders)
     },
     output: isDevelopment ? {
       path: constants.BUILD_DIR,
@@ -105,8 +133,7 @@ module.exports = function(isDevelopment) {
         plugins.push(
           NotifyPlugin,
           new webpack.HotModuleReplacementPlugin(),
-          // Tell reloader to not reload if there is an error.
-          new webpack.NoErrorsPlugin()
+          new webpack.NoErrorsPlugin()// Tell reloader to not reload if there is an error.
         );
       else
         plugins.push(
@@ -126,6 +153,9 @@ module.exports = function(isDevelopment) {
         );
       return plugins;
     })(),
+    // postcss: function() {
+    //   return [require('autoprefixer')];
+    // },
     resolve: {
       extensions: ['', '.js', '.json'],
       modulesDirectories: ['src', 'node_modules'],

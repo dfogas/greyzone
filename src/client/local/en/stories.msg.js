@@ -1,4 +1,5 @@
 const storiesMsg = {
+  anAnt: ``,
   evergreens: [],
   lakenyos: [`I see you bickering over some meaningless bad luck. My dad has survived
     lake Nyos if that means something to you.`, `In 1986 due to unknown cause a large

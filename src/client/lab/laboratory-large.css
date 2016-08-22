@@ -150,9 +150,6 @@ body {
 	width:100%;
 	height:100%;
 	background: #071a1e;
-	background: -moz-linear-gradient(top, #071a1e 0%, #274249 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#071a1e), color-stop(100%,#274249));
-	background: -webkit-linear-gradient(top, #071a1e 0%,#274249 100%);
 	background: linear-gradient(to bottom, #071a1e 0%,#274249 100%);
 }
 label, input[type=checkbox]:before {
@@ -191,18 +188,12 @@ label[for=roll] {
 	z-index:1;
 	text-shadow:0 -1px 0 #006699;
 	border-color:#17C7EC;
-	background: -moz-linear-gradient(top, #0099CC 0%, #006699 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0099CC), color-stop(100%,#006699));
-	background: -webkit-linear-gradient(top, #0099CC 0%,#006699 100%);
 	background: linear-gradient(to bottom, #0099CC 0%,#006699 100%);
 }
 label[for=secondroll] {
 	margin-top:-100px;
 	text-shadow:0 -1px 0 #CC0033;
 	border-color:#FF8298;
-	background: -moz-linear-gradient(top, #FF6666 0%, #CC0033 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF6666), color-stop(100%,#CC0033));
-	background: -webkit-linear-gradient(top, #FF6666 0%,#CC0033 100%);
 	background: linear-gradient(to bottom, #FF6666 0%,#CC0033 100%);
 }
 #roll:checked ~ label[for=roll] {
@@ -214,9 +205,6 @@ label[for=secondroll] {
 #secondroll:checked ~ label[for=secondroll] {
 	text-shadow:0 -1px 0 #336633;
 	border-color:#66FF99;
-	background: -moz-linear-gradient(top, #66CC66 0%, #336633 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#66CC66), color-stop(100%,#336633));
-	background: -webkit-linear-gradient(top, #66CC66 0%,#336633 100%);
 	background: linear-gradient(to bottom, #66CC66 0%,#336633 100%);
 }
 #secondroll:checked ~ label[for=secondroll] span {

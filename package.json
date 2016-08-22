@@ -14,7 +14,7 @@
     "npm": "3.8.9"
   },
   "dependencies": {
-    "autoprefixer-loader": "^3.1.0",
+    "autoprefixer": "^6.4.0",
     "babel": "^5.8.38",
     "babel-core": "^5.8.38",
     "babel-eslint": "^3.0.1",
@@ -76,15 +76,17 @@
     "serve-favicon": "^2.2.0",
     "socket.io": "https://registry.npmjs.org/socket.io/-/socket.io-1.4.5.tgz",
     "style-loader": "^0.12.0",
-    "stylus-loader": "^1.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^1.6.1",
     "through2": "^2.0.0",
     "url-loader": "^0.5.5",
     "validator": "^3.34.0",
     "webpack": "^1.9.5",
-    "webpack-dev-server": "^1.7.0",
+    "webpack-dev-server": "^1.14.0",
     "yargs": "^3.3.1"
   },
   "devDependencies": {
-    "ignore-styles": "^4.0.0"
+    "ignore-styles": "^4.0.0",
+    "postcss-loader": "^0.10.1"
   }
 }
