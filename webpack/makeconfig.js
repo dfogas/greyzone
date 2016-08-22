@@ -5,8 +5,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var NotifyPlugin = require('./notifyplugin');
 var constants = require('./constants');
 var path = require('path');
+var poststylus = require('poststylus');
 var webpack = require('webpack');
-// var autoprefixer = require('autoprefixer');
 
 var loaders = {
   'css': '!css-loader',
@@ -15,13 +15,21 @@ var loaders = {
 
 module.exports = function(isDevelopment) {
 
-  var constStyleLoaders = [{
-    loader: `style-loader!css-loader`,
-    test: /\.css$/
-  }, {
-    loader: `style-loader!css-loader!stylus-loader`,
-    test: /\.styl$/
-  }];
+  var constStyleLoaders = isDevelopment
+  ? [{
+      loader: `style-loader!css-loader!postcss-loader`,
+      test: /\.css$/
+    }, {
+      loader: `style-loader!css-loader!stylus-loader`,
+      test: /\.styl$/
+    }]
+  : [{
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      test: /\.css$/
+    }, {
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!'),
+      test: /\.styl$/
+    }];
 
   var config = {
     cache: isDevelopment,
@@ -109,9 +117,9 @@ module.exports = function(isDevelopment) {
         );
       return plugins;
     })(),
-    // postcss: function() {
-    //   return [require('autoprefixer')];
-    // },
+    postcss: function() {
+      return [require('autoprefixer')];
+    },
     resolve: {
       extensions: ['', '.js', '.json'],
       modulesDirectories: ['src', 'node_modules'],
@@ -119,6 +127,11 @@ module.exports = function(isDevelopment) {
       alias: {
         'react$': require.resolve(path.join(constants.NODE_MODULES_DIR, 'react'))
       }
+    },
+    stylus: {
+      use: [
+        poststylus(['autoprefixer'])
+      ]
     }
   };
 
