@@ -1,5 +1,4 @@
 /* @flow weak */
-
 'use strict';
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -9,66 +8,25 @@ var path = require('path');
 var webpack = require('webpack');
 // var autoprefixer = require('autoprefixer');
 
-var devtools = process.env.CONTINUOUS_INTEGRATION
-  ? 'inline-source-map'
-  // cheap-module-eval-source-map, because we want original source, but we don't
-  // care about columns, which makes this devtool faster than eval-source-map.
-  // http://webpack.github.io/docs/configuration.html#devtool
-  : '#cheap-module-eval-source-map';
-
 var loaders = {
   'css': '!css-loader',
-  // 'less': '!less-loader',
-  // 'scss|sass': '!sass-loader',
   'styl': '!stylus-loader'
 };
 
 module.exports = function(isDevelopment) {
 
-  // function stylesLoaders() {
-  //   return Object.keys(loaders).map(function(ext) {
-  //     var prefix = 'css-loader!autoprefixer-loader?browsers=last 2 version';
-  //     var extLoaders = prefix + loaders[ext];
-  //     var loader = isDevelopment
-  //       ? 'style-loader!' + extLoaders
-  //       : ExtractTextPlugin.extract('style-loader', extLoaders);
-  //     return {
-  //       loader: loader,
-  //       test: new RegExp('\\.(' + ext + ')$')
-  //     };
-  //   });
-  // }
-
-  function stylesLoaders() {
-    return Object.keys(loaders).map(function(ext) {
-      var loader = isDevelopment
-        ? `style-loader${loaders[ext]}!postcss-loader`
-        : null;
-        // : ExtractTextPlugin.extract('style-loader', extLoaders);
-        return {
-          loader: loader,
-          // test: new RegExp('\\.(' + ext + ')$')
-          test: new RegExp('\\.(' + ext + ')$')
-        }
-    });
-  }
-
-  // console.log(stylesLoaders());
-
-var constStyleLoaders = [{
-  loader: `style-loader!css-loader`,
-  test: /\.css$/
-}, {
-  loader: `style-loader!css-loader!stylus-loader`,
-  test: /\.styl$/
-}];
-
-console.log(constStyleLoaders);
+  var constStyleLoaders = [{
+    loader: `style-loader!css-loader`,
+    test: /\.css$/
+  }, {
+    loader: `style-loader!css-loader!stylus-loader`,
+    test: /\.styl$/
+  }];
 
   var config = {
     cache: isDevelopment,
     debug: isDevelopment,
-    devtool: isDevelopment ? devtools : '',
+    devtool: '#cheap-module-eval-source-map',// http://webpack.github.io/docs/configuration.html#devtool
     entry: {
       app: isDevelopment ? [
         'webpack-dev-server/client?http://localhost:8888',
@@ -137,8 +95,7 @@ console.log(constStyleLoaders);
         );
       else
         plugins.push(
-          // Render styles into separate cacheable file to prevent FOUC and
-          // optimize for critical rendering path.
+          // Render styles into separate cacheable file to prevent FOUC and optimize for critical rendering path.
           new ExtractTextPlugin('app.css', {
             allChunks: true
           }),
@@ -146,8 +103,7 @@ console.log(constStyleLoaders);
           new webpack.optimize.OccurenceOrderPlugin(),
           new webpack.optimize.UglifyJsPlugin({
             compress: {
-              // Because uglify reports so many irrelevant warnings.
-              warnings: false
+              warnings: false// Because uglify reports so many irrelevant warnings.
             }
           })
         );
@@ -169,3 +125,31 @@ console.log(constStyleLoaders);
   return config;
 
 };
+
+  // function stylesLoaders() {
+  //   return Object.keys(loaders).map(function(ext) {
+  //     var prefix = 'css-loader!autoprefixer-loader?browsers=last 2 version';
+  //     var extLoaders = prefix + loaders[ext];
+  //     var loader = isDevelopment
+  //       ? 'style-loader!' + extLoaders
+  //       : ExtractTextPlugin.extract('style-loader', extLoaders);
+  //     return {
+  //       loader: loader,
+  //       test: new RegExp('\\.(' + ext + ')$')
+  //     };
+  //   });
+  // }
+
+  // function stylesLoaders() {
+  //   return Object.keys(loaders).map(function(ext) {
+  //     var loader = isDevelopment
+  //       ? `style-loader${loaders[ext]}!postcss-loader`
+  //       : null;
+  //       // : ExtractTextPlugin.extract('style-loader', extLoaders);
+  //       return {
+  //         loader: loader,
+  //         // test: new RegExp('\\.(' + ext + ')$')
+  //         test: new RegExp('\\.(' + ext + ')$')
+  //       }
+  //   });
+  // }

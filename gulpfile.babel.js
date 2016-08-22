@@ -11,18 +11,22 @@ import yargs from 'yargs';
 
 const args = yargs
   .alias('p', 'production')
-  // .alias('d', 'deployment')
+  .alias('s', 'staging')
   .argv;
 
 gulp.task('env', () => {
-  const env = args.production ? 'production' : 'development';
+  const env = args.production ? 'production' : args.staging ? 'staging' : 'development';
   process.env.NODE_ENV = env; // eslint-disable-line no-undef
+  console.log(process.env.NODE_ENV);
 });
 
 gulp.task('build-webpack-production', webpackBuild(makeWebpackConfig(false)));
+gulp.task('build-webpack-staging', webpackBuild(makeWebpackConfig(false)));
 gulp.task('build-webpack-dev', webpackDevServer(makeWebpackConfig(true)));
 gulp.task('build-webpack', [args.production
   ? 'build-webpack-production'
+  : args.staging
+  ? 'build-webpack-staging'
   : 'build-webpack-dev'
 ]);
 gulp.task('build', ['build-webpack']);
