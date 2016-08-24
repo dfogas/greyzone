@@ -37,8 +37,8 @@ const accessLogStream = fs.createWriteStream(
 
 app.use(bodyParser.json({limit: '1000kb'}));
 app.use(bodyParser.urlencoded({extended: true}));
-if (!config.isProduction)
-  app.use(morgan('combined', {stream: accessLogStream}));
+// if (!config.isProduction)
+//   app.use(morgan('combined', {stream: accessLogStream}));
 app.use(passport.initialize());
 
 app.use(cors()); // what does it do?

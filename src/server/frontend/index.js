@@ -12,9 +12,8 @@ const app = express(); //frontend subapp?
 
 if (process.env.NODE_ENV) {
   // Add Este.js headers for React related routes only
-  if (!config.isProduction)
-  app.use(esteHeaders());
-
+  if (!config.isProduction || !config.isStaging)
+    app.use(esteHeaders());
 
   app.use(compression());
   app.use(favicon('assets/img/favicon.ico'));

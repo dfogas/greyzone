@@ -31,6 +31,8 @@ module.exports = function(isDevelopment) {
       test: /\.styl$/
     }];
 
+  console.log(constStyleLoaders);
+
   var config = {
     cache: isDevelopment,
     debug: isDevelopment,

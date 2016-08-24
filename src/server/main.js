@@ -12,7 +12,7 @@ import multiplayer from './multiplayer';
 
 const app = express();
 
-// https redirection for heroku
+// https redirection for heroku, neplatí pro staging ENV
 if (config.isProduction)
   app.use((req, res, next) => {
     if (req.headers['x-forwarded-proto'] !== 'https')

@@ -1,6 +1,6 @@
 const config = require('./config');
 
-if (config.isProduction || require('piping')(config.piping)) {
+if (config.isProduction || config.isStaging || require('piping')(config.piping)) {
   if (!process.env.NODE_ENV)
     throw new Error('Environment variable NODE_ENV must be set.');
 

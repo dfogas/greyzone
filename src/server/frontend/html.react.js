@@ -5,11 +5,11 @@ export default class Html extends Component {
 
   render() {
     // Only for production. For dev, it's handled by webpack with livereload.
-    const linkStyles = this.props.isProduction &&
-      <link
-        href={`/build/app.css?v=${this.props.version}`}
-        rel="stylesheet"
-      />;
+    let linkStyles = (this.props.isProduction || this.props.isStaging) &&
+     <link
+       href={`/build/app.css?v=${this.props.version}`}
+       rel="stylesheet"
+       />;
 
     return (
       <html lang="en">
@@ -29,6 +29,7 @@ export default class Html extends Component {
 Html.propTypes = {
   bodyHtml: React.PropTypes.string.isRequired,
   isProduction: React.PropTypes.bool.isRequired,
+  isStaging: React.PropTypes.bool.isRequired,
   title: React.PropTypes.string.isRequired,
   version: React.PropTypes.string.isRequired
 };

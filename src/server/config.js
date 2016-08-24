@@ -25,6 +25,7 @@ var config = {
     'http://localhost:8000',
   googleAnalyticsId: 'UA-77300811-1',
   isProduction: process.env.NODE_ENV === 'production',
+  isStaging: process.env.NODE_ENV === 'staging',
   piping: {
     // Ignore webpack custom loaders on server. TODO: Reuse index.js config.
     ignore: /(\/\.|~$|\.(css|less|sass|scss|styl))/,

@@ -59,6 +59,8 @@ function getPageHtml(Handler, appState) {
   const appHtml = `<div id="app">${React.renderToString(<Handler />)}</div>`;
   const appScriptSrc = config.isProduction
     ? '/build/app.js?v=' + config.version
+    : config.isStaging
+    ? '/build/app.js?v=' + config.version
     : '//localhost:8888/build/app.js';
   const urlServer = config.isProduction ? 'https://www.ghoststruggle.com' : 'http://localhost:8000';
 
@@ -104,6 +106,7 @@ function getPageHtml(Handler, appState) {
     <Html
       bodyHtml={appHtml + scriptHtml}
       isProduction={config.isProduction}
+      isStaging={config.isStaging}
       title={title}
       version={config.version}
     />
