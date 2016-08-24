@@ -4,6 +4,16 @@ import React from 'react';
 import $ from 'jquery';
 
 class ActiveMissionToggleOff extends Component {
+  activeMissionToggle(e) {
+    e.preventDefault();
+    if (typeof ($('.active-mission').val()) === 'string') // check if item is present in browser's DOM
+      $('.active-mission').addClass('animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+        // animationsActions.animationEnd(); //
+        componentsActions.activeMissionToggle();
+      });
+    else componentsActions.activeMissionToggle();
+  }
+
   dimDot() {
     $(React.findDOMNode(this)).css('box-shadow', '');
   }
@@ -16,7 +26,7 @@ class ActiveMissionToggleOff extends Component {
     return (
       <div
         id='ActiveMissionToggleOff'
-        onClick={(e) => componentsActions.activeMissionToggle()}
+        onClick={this.activeMissionToggle}
         onMouseLeave={this.dimDot.bind(this)}
         onMouseOver={this.highlightDot.bind(this)}>
       </div>

@@ -15,16 +15,16 @@ class AgentScrollBar extends Component {
     ev.preventDefault();
   }
 
-  componentDidUpdate() {
-    const {agents, isAgents, isBriefing, isMission} = this.props;
-    const availableAgents = agents.filter(agent => !agent.get('prison')).filter(agent => !agent.get('KIA')).filter(agent => agent !== null);
-    if (availableAgents.size <= 3 && isAgents)
-      scrollbarActions.normalizeScrollbarLeft('armory');
-    if (availableAgents.size <= 3 && isBriefing)
-      scrollbarActions.normalizeScrollbarLeft('briefing');
-    if (agents.size <= 1 && isMission)
-      scrollbarActions.normalizeScrollbarLeft('mission');
-  }
+  // componentDidUpdate() {
+  //   const {agents, isAgents, isBriefing, isMission} = this.props;
+  //   const availableAgents = agents.filter(agent => !agent.get('prison')).filter(agent => !agent.get('KIA')).filter(agent => agent !== null);
+  //   if (availableAgents.size <= 3 && isAgents)
+  //     scrollbarActions.normalizeScrollbarLeft('armory');
+  //   if (availableAgents.size <= 3 && isBriefing)
+  //     scrollbarActions.normalizeScrollbarLeft('briefing');
+  //   if (agents.size <= 1 && isMission)
+  //     scrollbarActions.normalizeScrollbarLeft('mission');
+  // }
 
   drop(ev) {
     ev.preventDefault(ev);

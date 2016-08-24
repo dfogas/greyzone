@@ -22,6 +22,7 @@ import {measureRender} from '../console';
 import '../intl/store';
 import '../agents/store';
 import '../agents/scrollbar/store';
+import '../animations/store';
 import '../auth/store';
 import '../briefing/store';
 import '../components/store';

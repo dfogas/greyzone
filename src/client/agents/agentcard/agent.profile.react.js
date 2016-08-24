@@ -19,7 +19,14 @@ class AgentProfile extends Component {
     const {agent, agentbeingsaved, self} = this.props;
     const beingsaved = agentbeingsaved ? agentbeingsaved.get('id') === agent.get('id') : false;
     const classString = classnames('', {'showcased': this.props.isShowcased});
-    const formattedImg = this.props.isShowcased ? agent.get('imgsrc').replace('_128', '_sc') : agent.get('imgsrc');
+    const isLoyal = agent.get('loyalty') === 'loyal';
+    let formattedImg = (this.props.isShowcased && isLoyal)
+      ? agent.get('imgsrc').replace('_128', 'L_sc')
+      : this.props.isShowcased
+      ? agent.get('imgsrc').replace('_128', '_sc')
+      : isLoyal
+      ? agent.get('imgsrc').replace('_128', 'L_128')
+      : agent.get('imgsrc');
 
     return (
       <div className={'agent-profile ' + classString}>

@@ -12,12 +12,12 @@ import $ from 'jquery';
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
 
 class MissionResultsWindow extends Component {
-  vszuuut() {
-    // console.log('vžút');
-    // console.log(React.findDOMNode(this));
-    // Works!
-    $(React.findDOMNode(this)).hide().slideDown().show();
-  }
+  // vszuuut() {
+  //   // console.log('vžút');
+  //   // console.log(React.findDOMNode(this));
+  //   // Works!
+  //   $(React.findDOMNode(this)).hide().slideDown().show();
+  // }
 
   render() {
     const {jsonapi} = this.props;
@@ -37,9 +37,7 @@ class MissionResultsWindow extends Component {
     //
 
     return (
-      <div
-        id="MissionResultsWindow"
-        onClick={this.vszuuut.bind(this)}>
+      <div id="MissionResultsWindow">
           {activemission.get('tag') === 'discovered' && result === 'success' &&
             <p>{
               `${activemission.get('agentsonmission').get(0).get('name')} escaped the pursuers.`

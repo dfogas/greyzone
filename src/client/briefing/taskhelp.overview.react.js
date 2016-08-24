@@ -23,7 +23,10 @@ class TaskHelpOverview extends Component {
     });
     return (
       <div id='TaskHelpOverview'>
-        {actualmissiontasks}
+        {!!actualmissiontasks.size &&
+          actualmissiontasks}
+        {!actualmissiontasks.size &&
+          <div id='TaskHelpOverviewPlaceholder'>No Tasks for selected mission</div>}
       </div>
     );
   }

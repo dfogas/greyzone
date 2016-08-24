@@ -20,24 +20,28 @@ class MissionsListTable extends Component {
           />
       );
     });
+    console.log(missionlist);
 
     return (
       <div id='MissionsListTable'>
-        <table>
-          <thead>
-            <tr>
-              <th>{msg('briefing.missionlist.headers.title')}</th>
-              <th>{msg('briefing.missionlist.headers.region')}</th>
-              <th>{msg('briefing.missionlist.headers.tier')}</th>
-              <th>{msg('briefing.missionlist.headers.ETA')}</th>
-              <th>{msg('briefing.missionlist.headers.pass')}</th>
-              <th>{msg('briefing.missionlist.headers.specials')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {missionlist}
-          </tbody>
-        </table>
+        {missionlist.size &&
+          <table>
+            <thead>
+              <tr>
+                <th>{msg('briefing.missionlist.headers.title')}</th>
+                <th>{msg('briefing.missionlist.headers.region')}</th>
+                <th>{msg('briefing.missionlist.headers.tier')}</th>
+                <th>{msg('briefing.missionlist.headers.ETA')}</th>
+                <th>{msg('briefing.missionlist.headers.pass')}</th>
+                <th>{msg('briefing.missionlist.headers.specials')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {missionlist}
+            </tbody>
+          </table>}
+        {!missionlist.size &&
+          <div id='MissionListTablePlaceholder'>No Missions Available</div>}
       </div>
     );
   }

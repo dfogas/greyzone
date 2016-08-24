@@ -27,7 +27,7 @@ module.exports = function(isDevelopment) {
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
       test: /\.css$/
     }, {
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!'),
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader?browsers=last 2 version!stylus-loader'),
       test: /\.styl$/
     }];
 
