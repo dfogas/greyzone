@@ -1,4 +1,4 @@
-import './agentscrollbarwithnavbuttons.styl';//
+import './agentscrollbarwithnavbuttons.styl';
 import * as scrollbarActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';

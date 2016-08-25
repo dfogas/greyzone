@@ -39,6 +39,7 @@ export function agentLockedToTask() {
 export function agentMissionDone(agent) {
   const activemission = jsonapiCursor(['activemission']);
   const activemissionId = activemission.get('id');
+  console.log(agent.toJS());
   if (agent.get('missionsDone').indexOf(activemissionId) === -1)
     dispatch(agentMissionDone, {message: activemissionId, agent: agent});
 }

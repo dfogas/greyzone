@@ -29,6 +29,12 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['tutorial', 'firstmission', 'done'], true);
     });
 
+  if (action === tutorialActions.historyProgress)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['tutorial', 'playerhistory', 'slideNo'], data.slideNo + 1);
+    });
+
   if (action === tutorialActions.playerChoseAgentClass)
     jsonapiCursor(jsonapi => {
       return jsonapi

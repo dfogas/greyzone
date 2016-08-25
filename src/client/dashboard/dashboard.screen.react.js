@@ -17,6 +17,7 @@ import EnhancementTalk from './talk/enhancement.talk.react';
 import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
+import PlayerHistoryIntro from '../tutorial/playerhistoryintro/player.history.intro.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
 import StrategicalIntro from './strategical.intro.react';
 import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
@@ -69,6 +70,8 @@ class DashboardScreen extends Component {
           download='playerlog.txt'
           id='DownloadLogLink'
           style={{display: 'none'}}>Log download</a>
+        {(jsonapi.getIn(['tutorial', 'playerhistory', 'slides']).size > (jsonapi.getIn(['tutorial', 'playerhistory', 'slideNo']) || 0)) &&
+          <PlayerHistoryIntro tutorial={jsonapi.get('tutorial')} />}
         {jsonapi.getIn(['dashboard', 'enhancementtalk']) && <EnhancementTalk jsonapi={jsonapi} />}
         {jsonapi.getIn(['dashboard', 'operationsUpgradeDialog']) &&
           <OperationsUpgradeDialog

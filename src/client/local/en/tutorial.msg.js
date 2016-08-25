@@ -32,7 +32,16 @@ const TutorialMsg = {
     In the bottom part of TaskTier are displayed Rewards and Losses of Current Mission.<br />
     Middle part called TableTop is reserved for Mission interactions like dice throws and puttin aside dice
     for retries. The right side is for part where agents are located and also for effects taking place due to
-    equipment uses.</div>`
+    equipment uses.</div>`,
+  playerhistory: [
+    `You barely remember how it started. It was a hot July and you were "recuited" by some obscure character.`,
+    `You clearly remember the training, it had been intense right before you were thrown out to wolves`,
+    `Making it through initial trails you established level of confidence that helped you rise in the rank`,
+    `but after you were left for dead after one action, you decided to use that to your advantage`,
+    `contacting your good colleague, you kept yourself hiding and under radar, but time has come for risk`,
+    `Monitoring the official and secret message channels, it has come to your attention that there is a hunt on certain criminal underway `,
+    `You decided to help her ...`
+  ]
 };
 
 export default TutorialMsg;

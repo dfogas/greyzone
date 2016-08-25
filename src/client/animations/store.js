@@ -7,4 +7,4 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi;
     });
-})
+});

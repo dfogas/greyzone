@@ -44,6 +44,10 @@ export function firstMissionDone() {
   dispatch(firstMissionDone, {});
 }
 
+export function historyProgress(slideNo) {
+  dispatch(historyProgress, {slideNo});
+}
+
 export function playerChoseAgentClass(agentclass) {
   const playersAgent = Agent(agentclass, 3, gameCursor(['globals', 'trainingtable']));
   dispatch(playerChoseAgentClass, {agent: immutable.fromJS(playersAgent)});
@@ -58,6 +62,7 @@ setToString('tutorial', {
   confirmCampaignsSelection,
   firstMissionDone,
   firstMissionSetup,
+  historyProgress,
   playerChoseAgentClass,
   toggleCampaign
 });

@@ -17,7 +17,7 @@ const args = yargs
 gulp.task('env', () => {
   const env = args.production ? 'production' : args.staging ? 'staging' : 'development';
   process.env.NODE_ENV = env; // eslint-disable-line no-undef
-  console.log(process.env.NODE_ENV);
+  // console.log(process.env.NODE_ENV);
 });
 
 gulp.task('build-webpack-production', webpackBuild(makeWebpackConfig(false)));

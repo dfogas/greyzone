@@ -28,14 +28,6 @@ class CountryOfOperation extends Component {
     const countryOfOperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
     const countrystats = jsonapi.get('countrystats');
     const countryOfOperationIndex = countryOfOperation ? countrystats.indexOf(countrystats.find(cs => cs.get('name') === countryOfOperation)) : 0;
-    console.log(countries.map(item => {
-      return {
-        value: item.get('name'),
-        name: 'countryofoperation',
-        label: item.get('name')
-      };
-    }));
-    console.log(countries.toJS());
     return (
       <div id='CountryOfOperation'>
         <DropDown

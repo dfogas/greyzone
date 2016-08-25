@@ -1,3 +1,4 @@
+import './film.slide.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import {msg} from '../../intl/store';
@@ -7,7 +8,8 @@ class FilmSlide extends Component {
   render() {
     const {slide} = this.props;
     return (
-      <div className='film-slide'>
+      <div className='player-history-film-slide'>
+        {slide}
       </div>
     );
   }

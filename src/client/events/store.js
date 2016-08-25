@@ -8,7 +8,7 @@ import bookObscurity from '../lib/bml/bookobscurity';
 
 export const dispatchToken = register(({action, data}) => {
   const attention = jsonapiCursor(['events']).filter(gaev => gaev.get('tag') === 'attention');
-  const inCountry = jsonapiCursor(['activemission', 'inCountry']);
+  const inCountry = jsonapiCursor(['activemission', 'inCountry']) || 'US';
   const indexOfCS = jsonapiCursor(['countrystats']).indexOf(jsonapiCursor(['countrystats']).find(cs => cs.get('name') === inCountry));
   const indexOfCAL = jsonapiCursor(['events']).indexOf(jsonapiCursor(['events']).find(gaev => gaev.get('tag') === 'attention' && gaev.get('country') === inCountry));
 

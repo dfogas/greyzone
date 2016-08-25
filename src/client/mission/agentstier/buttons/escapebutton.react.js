@@ -12,11 +12,11 @@ class EscapeButton extends Component {
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     missionActions.checkFatalities(activemission.get('losses').toJS());
     missionActions.agentMissionDone(agentontask);
+    for (var i = 0; i < agentsonmission.size; i += 1)
+      missionActions.agentMissionDone(agentsonmission.get(i));
     missionActions.bookLosses(activemission);
     missionActions.agentIsBackFromTask();
     missionActions.fail();
-    for (var i = 0; i < agentsonmission.size; i += 1)
-      missionActions.agentMissionDone(agentsonmission.get(i));
     missionActions.organizationMissionDone();
   }
 
