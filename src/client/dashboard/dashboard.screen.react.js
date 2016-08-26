@@ -1,8 +1,6 @@
 /* Smart */
 import './dashboard.screen.styl'; //
-// import * as dashboardActions from './actions';
 import * as endGameActions from './endgame/actions';
-// import * as missionActions from '../mission/actions';
 import * as tutorialActions from '../tutorial/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -10,16 +8,14 @@ import immutable from 'immutable';
 import {msg} from '../intl/store';
 import badEndsCheck from '../lib/bml/badendscheck';
 
-import CampaignIntro from '../tutorial/campaign.intro.react';
+// import CampaignIntro from '../tutorial/campaign.intro.react';
 import DashboardContent from './dashboard.content.react';
 import EndGameWindow from './endgame.window.react';
 import EnhancementTalk from './talk/enhancement.talk.react';
 import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
-import PlayerAgentChoose from '../tutorial/choose.class.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
-import PlayerHistoryIntro from '../tutorial/playerhistoryintro/player.history.intro.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
-import StrategicalIntro from './strategical.intro.react';
+// import StrategicalIntro from './strategical.intro.react';
 import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
 
 // buttons, selects
@@ -42,7 +38,7 @@ class DashboardScreen extends Component {
   componentWillReceiveProps() {
     const {jsonapi} = this.props;
     // poté co je vybrána kampaň a první mise ještě neproběhla
-    if (jsonapi.getIn(['campaigns', 'selection', 'done']) && !jsonapi.getIn(['tutorial', 'firstmission', 'done']))
+    if (!jsonapi.getIn(['tutorial', 'firstmission', 'done']))
       tutorialActions.firstMissionSetup();
   }
 
@@ -70,8 +66,6 @@ class DashboardScreen extends Component {
           download='playerlog.txt'
           id='DownloadLogLink'
           style={{display: 'none'}}>Log download</a>
-        {(jsonapi.getIn(['tutorial', 'playerhistory', 'slides']).size > (jsonapi.getIn(['tutorial', 'playerhistory', 'slideNo']) || 0)) &&
-          <PlayerHistoryIntro tutorial={jsonapi.get('tutorial')} />}
         {jsonapi.getIn(['dashboard', 'enhancementtalk']) && <EnhancementTalk jsonapi={jsonapi} />}
         {jsonapi.getIn(['dashboard', 'operationsUpgradeDialog']) &&
           <OperationsUpgradeDialog
@@ -84,19 +78,14 @@ class DashboardScreen extends Component {
             list={game.getIn(['globals', 'enhancements'])}
             />}
         {/* start game */}
-        {(jsonapi.get('self').get('name') === 'Default Self' || !jsonapi.getIn(['campaigns', 'selection', 'done']) || jsonapi.getIn(['dashboard', 'screenplastic', 'toggle'])) &&
-          <ScreenPlastic />}
-        {jsonapi.get('self').get('name') === 'Default Self' &&
-          <PlayerAgentChoose
-            game={game}
-            jsonapi={jsonapi}
-            />}
+        {/*(jsonapi.get('self').get('name') === 'Default Self' || !jsonapi.getIn(['campaigns', 'selection', 'done']) || jsonapi.getIn(['dashboard', 'screenplastic', 'toggle'])) &&
+          <ScreenPlastic />*/}
         {!jsonapi.getIn(['campaigns', 'selection', 'done']) &&
           <PlayerCampaignChoose
             campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}
             paying={jsonapi.get('paying')}
             />}
-        {(jsonapi.getIn(['campaigns', 'campaigns']) && (typeof jsonapi.getIn(['campaigns', 'campaigns']).toJS()) === 'object') &&
+        {/*(jsonapi.getIn(['campaigns', 'campaigns']) && (typeof jsonapi.getIn(['campaigns', 'campaigns']).toJS()) === 'object') &&
           Object.keys(jsonapi.getIn(['campaigns', 'campaigns']).toJS()).map(campaign => {
             if (!jsonapi.getIn(['campaigns', 'campaigns', campaign, 'intro', 'viewed']) && jsonapi.getIn(['campaigns', 'campaigns', campaign, 'selected']))
               return (
@@ -104,8 +93,8 @@ class DashboardScreen extends Component {
                   campaign={jsonapi.getIn(['campaigns', 'campaigns', campaign])}
                   />
               );
-          })}
-        {!jsonapi.get('dashboard').getIn(['strategical', 'intro']) && <StrategicalIntro jsonapi={jsonapi}/>}
+          })*/}
+        {/*!jsonapi.get('dashboard').getIn(['strategical', 'intro']) && <StrategicalIntro jsonapi={jsonapi}/>*/}
         {/* end of start game */}
         {jsonapi.getIn(['options', 'debug']) && <Pointer pointsto='enhancements' />}
         {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) && <Pointer pointsto='statuses' />}

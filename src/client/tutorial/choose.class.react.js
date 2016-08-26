@@ -2,6 +2,7 @@ import './choose.class.styl';
 import * as tutorialActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
+import immutable from 'immutable';
 import {msg} from '../intl/store';
 
 import CurvedTailArrow from './curved.tail.arrow.react';
@@ -12,25 +13,28 @@ class AgentChoose extends Component {
   }
 
   render() {
-    // const {game, jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     return (
       <div id="PlayerChoosesAgentClass">
         <CurvedTailArrow />
-        <p>You have done special tasks in the past, what they were more like?</p>
+        <p>{msg('tutorial.chooseclass.question')}</p>
         <div id="ChooseOperative" name='operative' onClick={(e) => this.playerChooseAgent(e)}>
-          Pursuits, Fights and Hits
+          {msg('tutorial.chooseclass.operative')}
         </div>
         <div id="ChooseTechnician" name='technician' onClick={(e) => this.playerChooseAgent(e)}>
-          Explosions, Wiring Stuff and Cracking Devices
+          {msg('tutorial.chooseclass.technician')}
         </div>
         <div id="ChooseSpy" name='spy' onClick={(e) => this.playerChooseAgent(e)}>
-          Manipulation of and Lying to People
+          {msg('tutorial.chooseclass.spy')}
         </div>
       </div>
     );
   }
 }
 
-AgentChoose.propTypes = {};
+AgentChoose.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default AgentChoose;

@@ -12,6 +12,10 @@ export function campaignIntroViewed(campaignname) {
   dispatch(campaignIntroViewed, {campaignname});
 }
 
+export function completeTutorial() {
+  dispatch(completeTutorial, {});
+}
+
 export function confirmCampaignsSelection() {
   dispatch(confirmCampaignsSelection, {});
 }
@@ -59,6 +63,7 @@ export function toggleCampaign(name, value) {
 
 setToString('tutorial', {
   campaignIntroViewed,
+  completeTutorial,
   confirmCampaignsSelection,
   firstMissionDone,
   firstMissionSetup,

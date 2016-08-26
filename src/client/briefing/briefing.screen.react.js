@@ -56,14 +56,16 @@ class BriefingScreen extends Component {
               game={game}
               jsonapi={jsonapi}
               />}
-          <MissionShiftLeft
-            activemission={jsonapi.get('activemission')}
-            missions={jsonapi.get('missions')}
-            />
-          <MissionShiftRight
-            activemission={jsonapi.get('activemission')}
-            missions={jsonapi.get('missions')}
-            />
+          {jsonapi.getIn(['components', 'briefing', 'activemission', 'toggle']) &&
+            <MissionShiftLeft
+              activemission={jsonapi.get('activemission')}
+              missions={jsonapi.get('missions')}
+              />}
+          {jsonapi.getIn(['components', 'briefing', 'activemission', 'toggle']) &&
+            <MissionShiftRight
+              activemission={jsonapi.get('activemission')}
+              missions={jsonapi.get('missions')}
+              />}
           <BriefingInCountry
             jsonapi={jsonapi}
             />
@@ -95,7 +97,7 @@ class BriefingScreen extends Component {
           {/*<div id='BriefingLogMessage'>
             Message:  {briefingmessage}
           </div>*/}
-          <div id='BriefingLiquidResources'>
+          {/*<div id='BriefingLiquidResources'>
             <span className='gameCash-counter'>
               Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
             </span>
@@ -103,7 +105,7 @@ class BriefingScreen extends Component {
             <span className='gameContacts-counter'>
               Contacts: {jsonapi.get('gameContacts')}
             </span>
-          </div>
+          </div>*/}
         </div>
       </DocumentTitle>
     );

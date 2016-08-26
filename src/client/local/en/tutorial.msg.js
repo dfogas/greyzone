@@ -12,6 +12,12 @@ const TutorialMsg = {
     Some missions are forced upon your organization,<br />
     i.e. if you ignore or pass them, they will automatically take their toll.</div>`,
   button: `What to do here.`,
+  chooseclass: {
+    operative: `Pursuits, Fights and Hits`,
+    question: `You have done special tasks in the past, what they were more like?`,
+    spy: `Manipulation of and Lying to People`,
+    technician: `Explosions, Wiring Stuff and Cracking Devices`
+  },
   commandScreen: `<div id='CommandTutorial'><h2>Command Center Help</h2>This is intended to be a control
     point of players interaction. However it is not designed yet.</div>`,
   dashboardScreen: `<div id='DashboardTutorial'><h2>Dashboard Help</h2>Dashboard is the overview of all important points of the game.<br />

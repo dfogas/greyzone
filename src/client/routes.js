@@ -8,6 +8,7 @@ import Armory from './pages/armory.react';
 import Briefing from './pages/briefing.react';
 import Command from './pages/command.react';
 import Dashboard from './pages/dashboard.react';
+import Tutorial from './pages/tutorial.react';
 import Introduction from './pages/introduction.react';
 import Mission from './pages/mission.react';
 import SignUp from './pages/signup.react';
@@ -25,6 +26,7 @@ export default (
     <Route handler={Login} name="login" />
     <Route handler={Armory} name="armory" />
     <Route handler={Briefing} name="briefing" />
+    <Route handler={Tutorial} name="tutorial" />
     <Route handler={Command} name="command" />
     <Route handler={Introduction} name="help" />
     <Route handler={Introduction} name="intro" />

@@ -1,4 +1,4 @@
-import * as talkActions from '../dashboard/talk/actions';
+import * as talkActions from '../dashboard/talk/actions'; //
 import * as equipmentActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';

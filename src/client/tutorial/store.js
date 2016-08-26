@@ -11,6 +11,12 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['campaigns', 'campaigns', data.campaignname, 'intro', 'viewed'], true);
     });
 
+  if (action === tutorialActions.completeTutorial)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['tutorial', 'completed'], true);
+    });
+
   if (action === tutorialActions.confirmCampaignsSelection)
     jsonapiCursor(jsonapi => {
       return jsonapi
