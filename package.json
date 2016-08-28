@@ -10,7 +10,7 @@
     "test": "gulp test"
   },
   "engines": {
-    "node": "4.4.3",
+    "node": "4.4.5",
     "npm": "3.8.9"
   },
   "dependencies": {

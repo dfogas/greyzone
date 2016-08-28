@@ -1,6 +1,6 @@
 import './agentscrollbar.styl';
 import * as agentActions from '../actions';
-import * as scrollbarActions from './actions';
+// import * as scrollbarActions from './actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';

@@ -3,11 +3,11 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import missionWindowResults from '../../lib/bml/missionwindowresults';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
 import icon from '../../lib/bml/determiningicon';
 import oQ from '../../lib/bml/obscurityquality';
 import rQ from '../../lib/bml/reputationquality';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
 

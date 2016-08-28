@@ -8,13 +8,12 @@ import ActualMissionCard from './actual.missioncard.react';
 
 class ActiveMission extends Component {
   render() {
-    const {activemission, agents, components, game, jsonapi} = this.props;
+    const {activemission, components, game, jsonapi} = this.props;
 
     return (
       <div className='active-mission'>
         <ActualMissionCard
           activemission={activemission}
-          agents={agents}
           components={components}
           game={game}
           isActual={true}
@@ -27,7 +26,6 @@ class ActiveMission extends Component {
 
 ActiveMission.propTypes = {
   activemission: React.PropTypes.instanceOf(immutable.Map),
-  agents: React.PropTypes.instanceOf(immutable.List),
   components: React.PropTypes.instanceOf(immutable.Map),
   game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map)

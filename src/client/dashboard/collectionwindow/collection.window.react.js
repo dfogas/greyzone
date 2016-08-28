@@ -6,7 +6,7 @@ import immutable from 'immutable';
 
 class CollectionWindow extends Component {
   render() {
-    const {game, jsonapi} = this.props;
+    // const {game, jsonapi} = this.props;
     return (
       <div id='CollectionWindow'>
         Work in progress

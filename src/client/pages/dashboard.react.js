@@ -23,8 +23,8 @@ class Dashboard extends Component {
         <div className="dashboard-page">
           {!tutorialfinished &&
             <DashboardToTutorial />}
-          {/*!tutorialfinished &&
-            <button id='SkipIntroButton' onClick={(e) => tutorialActions.completeTutorial()}>Skip Intro</button>*/}
+          {!tutorialfinished &&
+            <button id='SkipIntroButton' onClick={(e) => tutorialActions.completeTutorial()}>Skip Intro</button>}
           {!missionstarted && tutorialfinished &&
             <DashboardScreen
               contest={contest}

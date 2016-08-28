@@ -118,8 +118,8 @@ const ENGLISH = {
     title: 'Mission'
   },
   navs: {
-    dashboardtomission: 'ToMission',
-    dashboardtotutorial: 'ToTutorial'
+    dashboardtomission: 'To Mission',
+    dashboardtotutorial: `Story`
   },
   notFound: {
     continueMessage: 'Continue here please.',

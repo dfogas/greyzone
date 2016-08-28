@@ -8,10 +8,10 @@ var path = require('path');
 var poststylus = require('poststylus');
 var webpack = require('webpack');
 
-var loaders = {
-  'css': '!css-loader',
-  'styl': '!stylus-loader'
-};
+// var loaders = {
+//   'css': '!css-loader',
+//   'styl': '!stylus-loader'
+// };
 
 module.exports = function(isDevelopment) {
 

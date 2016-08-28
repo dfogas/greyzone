@@ -1,7 +1,7 @@
 import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../../state';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
 import $ from 'jquery'; //
 
 export function buyStatus(status) {

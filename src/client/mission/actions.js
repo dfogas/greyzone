@@ -39,7 +39,6 @@ export function agentLockedToTask() {
 export function agentMissionDone(agent) {
   const activemission = jsonapiCursor(['activemission']);
   const activemissionId = activemission.get('id');
-  console.log(agent.toJS());
   if (agent.get('missionsDone').indexOf(activemissionId) === -1)
     dispatch(agentMissionDone, {message: activemissionId, agent: agent});
 }
@@ -69,10 +68,10 @@ export function bookContacts(amount) {
 }
 
 export function bookLosses(mission) {
-  const results = mission.get('losses') ? mission.get('losses').toJS() : {};
-  const countrystats = jsonapiCursor(['countrystats']);
-  const missioncountryname = mission.get('inCountry');
-  const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+  // const results = mission.get('losses') ? mission.get('losses').toJS() : {};
+  // const countrystats = jsonapiCursor(['countrystats']);
+  // const missioncountryname = mission.get('inCountry');
+  // const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
   //TODO: přesunout sem věci ze storu
   dispatch(bookLosses, {mission});
 }
@@ -97,9 +96,9 @@ export function bookReputation(mission) {
 
 export function bookRewards(mission) {
   const results = mission.get('rewards') ? mission.get('rewards').toJS() : {};
-  const countrystats = jsonapiCursor(['countrystats']);
-  const missioncountryname = mission.get('inCountry');
-  const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
+  // const countrystats = jsonapiCursor(['countrystats']);
+  // const missioncountryname = mission.get('inCountry');
+  // const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
   const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
   const agentBecominLoyal = agentsonmission.find(agent => agent.get('loyalty') === 'normal');
 

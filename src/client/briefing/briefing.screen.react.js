@@ -5,7 +5,7 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import formatMoney from '../lib/formatmoney';
+// import formatMoney from '../lib/formatmoney';
 import $ from 'jquery';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
@@ -41,8 +41,6 @@ class BriefingScreen extends Component {
 
   render() {
     const {game, jsonapi, pendingActions} = this.props;
-    const agents = jsonapi.get('agents');
-    // const briefingmessage = jsonapi.getIn(['briefing', 'message']);
 
     return (
       <DocumentTitle title={msg('briefing.title')}>
@@ -51,7 +49,6 @@ class BriefingScreen extends Component {
           {jsonapi.getIn(['components', 'briefing', 'activemission', 'toggle']) &&
             <ActiveMission
               activemission={jsonapi.get('activemission')}
-              agents={agents}
               components={jsonapi.get('components')}
               game={game}
               jsonapi={jsonapi}

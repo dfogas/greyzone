@@ -20,7 +20,7 @@ class MissionsListTable extends Component {
           />
       );
     });
-    console.log(missionlist);
+    // console.log(missionlist);
 
     return (
       <div id='MissionsListTable'>

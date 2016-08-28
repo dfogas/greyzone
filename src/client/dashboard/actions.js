@@ -4,7 +4,7 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import cconfig from '../client.config';
 import {gameCursor, jsonapiCursor} from '../state';
-import {msg} from '../intl/store';
+// import {msg} from '../intl/store';
 import allAgents from '../lib/bml/allagents';
 import capabilityCheck from '../lib/bml/capabilitycheck';
 import leadershipCheck from '../lib/bml/leadershipcheck';

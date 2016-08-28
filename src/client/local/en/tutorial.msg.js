@@ -47,7 +47,8 @@ const TutorialMsg = {
     `contacting your good colleague, you kept yourself hiding and under radar, but time has come for risk`,
     `Monitoring the official and secret message channels, it has come to your attention that there is a hunt on certain criminal underway `,
     `You decided to help her ...`
-  ]
+  ],
+  title: `Player's Story`
 };
 
 export default TutorialMsg;

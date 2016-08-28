@@ -3,6 +3,7 @@ import * as tutorialActions from './actions';
 import Component from '../components/component.react.js';
 import React from 'react';
 import {Link} from 'react-router';
+import immutable from 'immutable';
 
 import PlayerHistoryIntro from './playerhistoryintro/player.history.intro.react';
 import PlayerAgentChoose from '../tutorial/choose.class.react';
@@ -29,5 +30,11 @@ class TutorialScreen extends Component {
     );
   }
 }
+
+TutorialScreen.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  tutorial: React.PropTypes.instanceOf(immutable.Map)
+};
 
 export default TutorialScreen;

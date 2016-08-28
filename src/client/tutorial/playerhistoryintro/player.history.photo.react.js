@@ -2,7 +2,7 @@ import './player.history.photo.styl';
 import * as tutorialActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
 import immutable from 'immutable';
 
 class PlayerHistoryPhoto extends Component {
@@ -22,5 +22,9 @@ class PlayerHistoryPhoto extends Component {
     );
   }
 }
+
+PlayerHistoryPhoto.propTypes = {
+  tutorial: React.PropTypes.instanceOf(immutable.Map).isRequired
+};
 
 export default PlayerHistoryPhoto;

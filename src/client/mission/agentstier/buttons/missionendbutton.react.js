@@ -23,7 +23,7 @@ class MissionEndButton extends Component {
   }
 
   handleMissionEnd() {
-    const {jsonapi, mission, tutorial} = this.props;
+    const {jsonapi, mission} = this.props;
     const missionjs = mission.toJS();
     socket.emit('mission', missionjs); // eslint-disable-line no-undef
     socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
