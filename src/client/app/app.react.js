@@ -8,7 +8,6 @@ import './animations.styl';
 // import config from '../../server/config'; //I think that this breaks the app
 // import cconfig from '../client.config';
 import * as state from '../state';
-import 'isomorphic-fetch';
 import pollingStateToPersistence from '../lib/pollingstate';
 import Component from '../components/component.react';
 import React from 'react';
@@ -30,7 +29,6 @@ import '../dashboard/endgame/store';
 import '../dashboard/logwindow/store';
 import '../dashboard/optionswindow/store';
 import '../dashboard/statuseswindow/store';
-import '../dashboard/talk/store';
 import '../dashboard/store';
 import '../events/store';
 import '../introduction/store';
@@ -39,9 +37,12 @@ import '../equipments/store';
 import '../mission/store';
 import '../users/store';
 import '../support/store';
+import '../talk/enhancements/store';
+import '../talk/store';
 import '../tutorial/store';
 
 //libs
+import 'isomorphic-fetch';
 import '../lib/general/decimalrounding';
 
 class App extends Component {

@@ -1,11 +1,11 @@
 import {register} from '../../dispatcher';
-import * as talkActions from './actions';
+import * as talkEnhancementsActions from './actions';
 import {jsonapiCursor} from '../../state';
 import dayandtime from '../../lib/dayandtime';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === talkActions.buyEnhancement)
+  if (action === talkEnhancementsActions.buyEnhancement)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .update('enhancements', val => val.push(data.enhancement))
@@ -17,37 +17,37 @@ export const dispatchToken = register(({action, data}) => {
         ));
     });
 
-  if (action === talkActions.choiceToAcknowledgement)
+  if (action === talkEnhancementsActions.choiceToAcknowledgement)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'enhancementtalkindex'], 'acknowledgement');
     });
 
-  if (action === talkActions.closeEnhancementTalk)
+  if (action === talkEnhancementsActions.closeEnhancementTalk)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'enhancementtalk'], null);
     });
 
-  if (action === talkActions.dialogToChoice)
+  if (action === talkEnhancementsActions.dialogToChoice)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'enhancementtalkindex'], 'choice');
     });
 
-  if (action === talkActions.facilityUpgradeDialog)
+  if (action === talkEnhancementsActions.facilityUpgradeDialog)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'facilityUpgradeDialog'], data.enhancement.get('name'));
     });
 
-  if (action === talkActions.facilityUpgradeDialogClose)
+  if (action === talkEnhancementsActions.facilityUpgradeDialogClose)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['dashboard', 'facilityUpgradeDialog'], null);
     });
 
-  if (action === talkActions.operationsUpgradeDialogToggle) {
+  if (action === talkEnhancementsActions.operationsUpgradeDialogToggle) {
     const toggle = jsonapiCursor(['dashboard', 'operationsUpgradeDialog']);
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -55,7 +55,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === talkActions.trainingUpgradeDialogToggle) {
+  if (action === talkEnhancementsActions.trainingUpgradeDialogToggle) {
     const toggle = jsonapiCursor(['dashboard', 'trainingUpgradeDialog']);
     jsonapiCursor(jsonapi => {
       return jsonapi

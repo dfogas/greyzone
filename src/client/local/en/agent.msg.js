@@ -124,19 +124,19 @@ const agents = {
     sanya: `<div id='OldDebtTalk'>sanya's old debt</div>`
   },
   talk: {
-    cheeky: `<div id='AgentTalk'>What's up? - Did someone stole you a sweet roll?</div>`,
-    dead: `<div id='AgentTalk'>...</div>`,
-    evasive: `<div id='AgentTalk'>I have this thing ..., never mind, what was it you wanted?</div>`,
-    intimate: `<div id='AgentTalk'>Aww, you woke me up - is something going on?</div>`,
-    prison: `<div id='AgentTalk'>I don't want spend rest of my life here. Get me out!</div>`,
-    self: `<div id='AgentTalk'>I should do something ... better think it through first.</div>`,
-    soldiery: `<div id='AgentTalk'>Yes boss? I stand ready.</div>`,
+    cheeky: `What's up? - Did someone stole you a sweet roll?`,
+    dead: `... who is it, lurking in the shadows??`,
+    evasive: `I have this thing ..., never mind, what was it you wanted?`,
+    intimate: `Aww, you woke me up - is something going on?`,
+    prison: `I don't want spend rest of my life here. Get me out!`,
+    self: `I should do something ... better think it through first.`,
+    soldiery: `Yes boss? I stand ready.`,
     tired: {
-      cheeky: `<div id='AgentTalk'>(Tired)Not in the shape - nor mood, really.</div>`,
-      evasive: `<div id='AgentTalk'>(Tired)Excuse me!</div>`,
-      intimate: `<div id='AgentTalk'>(Tired)Sorry, boss. I need to tank fuel.</div>`,
-      self: `<div id='AgentTalk'>(Tired)The last mission was more difficult than I expected ...</div>`,
-      soldiery: `<div id='AgentTalk'>(Tired)Of course, just let me catch a breath!</div>`
+      cheeky: `(Tired)Not in the shape - nor mood, really.`,
+      evasive: `(Tired)Excuse me!`,
+      intimate: `(Tired)Sorry, boss. I need to tank fuel.`,
+      self: `(Tired)The last mission was more difficult than I expected ...`,
+      soldiery: `(Tired)Of course, just let me catch a breath!`
     }
   }
 };

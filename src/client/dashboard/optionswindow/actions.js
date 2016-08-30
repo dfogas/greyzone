@@ -11,10 +11,10 @@ export function changeOption(name, value) {
   const promise = new Promise((resolve, reject) => {
     resolve({name, value});
   });
-  if (name === 'multiplayer')
-    dashboardAnnounce(`Multiplayer is not yet implemented. Due to smoothing out interactions
-      with other players it will not feature game saves.`);
-  else if (name === 'soundeffects') {
+  // if (name === 'multiplayer')
+  //   dashboardAnnounce(`Multiplayer is not yet implemented. Due to smoothing out interactions
+  //     with other players it will not feature game saves.`);
+  if (name === 'soundeffects') {
     dashboardAnnounce(`Sound effects are ${value ? 'on' : 'off'}`);
     dispatch(changeOption, promise);
   } else dispatch(changeOption, promise);

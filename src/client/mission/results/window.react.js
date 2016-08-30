@@ -5,6 +5,7 @@ import immutable from 'immutable';
 import missionWindowResults from '../../lib/bml/missionwindowresults';
 // import {msg} from '../../intl/store';
 import icon from '../../lib/bml/determiningicon';
+// import prop from '../../lib/general/r.i.prop';
 import oQ from '../../lib/bml/obscurityquality';
 import rQ from '../../lib/bml/reputationquality';
 // import $ from 'jquery';
@@ -40,11 +41,11 @@ class MissionResultsWindow extends Component {
       <div id="MissionResultsWindow">
           {activemission.get('tag') === 'discovered' && result === 'success' &&
             <p>{
-              `${activemission.get('agentsonmission').get(0).get('name')} escaped the pursuers.`
+              `${activemission.getIn(['agentsonmission', 0, 'name'])} escaped the pursuers.`
             }</p>}
           {activemission.get('tag') === 'discovered' && result === 'fail' && !damageprotocol &&
             <p>{
-              `${activemission.get('agentsonmission').get(0).get('name')} got caught.`
+              `${activemission.getIn(['agentsonmission', 0, 'name'])} got caught.`
             }</p>}
           <p>
             {

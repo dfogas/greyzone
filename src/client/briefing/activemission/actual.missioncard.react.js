@@ -14,7 +14,7 @@ import MissionTitle from '../../mission/missioncard/missiontitle.react';
 
 class ActualMissionCard extends Component {
   render() {
-    const {activemission, components, game, jsonapi} = this.props;
+    const {activemission, components, /*game,*/ jsonapi} = this.props;
     const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
 
     return (

@@ -10,8 +10,7 @@ import badEndsCheck from '../lib/bml/badendscheck';
 
 // import CampaignIntro from '../tutorial/campaign.intro.react';
 import DashboardContent from './dashboard.content.react';
-import EndGameWindow from './endgame.window.react';
-import EnhancementTalk from './talk/enhancement.talk.react';
+import EndGameWindow from './endgame/endgame.window.react';
 import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
@@ -66,7 +65,6 @@ class DashboardScreen extends Component {
           download='playerlog.txt'
           id='DownloadLogLink'
           style={{display: 'none'}}>Log download</a>
-        {jsonapi.getIn(['dashboard', 'enhancementtalk']) && <EnhancementTalk jsonapi={jsonapi} />}
         {jsonapi.getIn(['dashboard', 'operationsUpgradeDialog']) &&
           <OperationsUpgradeDialog
             enhancements={jsonapi.get('enhancements')}

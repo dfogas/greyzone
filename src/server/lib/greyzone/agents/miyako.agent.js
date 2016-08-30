@@ -13,7 +13,7 @@ const Miyako = {
   experience: 100,
   id: uuid() + 'technician',
   imgsrc: '../../assets/img/agents/technician/miyako_128.jpg',
-  loyalty: 'loyal',
+  loyalty: 'normal',
   missionsDone: [],
   name: 'Miyako',
   operationsSkill: 2,

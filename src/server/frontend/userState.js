@@ -38,8 +38,7 @@ export default function userState() {
     req.userState.jsonapi = {
       name: 'Default',
       title: 'DefaultTitle',
-      gameCash: 0,
-      gameContacts: 0,
+      agents: [],
       components: {
         login: {
           bigscreen: {
@@ -47,12 +46,16 @@ export default function userState() {
           devnotice: false
         }
       },
-      missions: [],
-      agents: [],
-      equipments: [],
       countrystats: [],
       enhancements: [],
-      events: eventsList
+      equipments: [],
+      events: eventsList,
+      gameCash: 0,
+      gameContacts: 0,
+      missions: [],
+      talk: {
+        participants: []
+      }
     };
 
     fetch(api + 'contest/')

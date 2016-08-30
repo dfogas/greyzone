@@ -1,4 +1,4 @@
-import './agentondisplay.styl';
+import './agentondisplay.styl'; //
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -7,6 +7,7 @@ import allAgents from '../../lib/bml/allagents';
 // import {msg} from '../../intl/store'; //
 
 import AgentCard from '../../agents/agentcard/agent.card.react';
+import DialogBox from './dialog.box.react';
 
 class AgentOnDisplay extends Component {
   componentDidMount() {
@@ -23,9 +24,9 @@ class AgentOnDisplay extends Component {
     const {agentondisplay, agentbeingsaved, game, jsonapi} = this.props;
 
     return (
-      <div
-        id='AgentOnDisplay'
-        >
+      <div id='AgentOnDisplay'>
+        {jsonapi.getIn(['components', 'dashboard', 'agentdialog']) &&
+          <DialogBox agent={agentondisplay} jsonapi={jsonapi} />}
         {!agentondisplay &&
           <button
             id='DisplayAgentOnDisplayButton'

@@ -1,4 +1,4 @@
-import * as talkActions from '../talk/actions';
+import * as talkEnhancementsActions from '../../talk/enhancements/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,7 +10,7 @@ class PlayerOperationsCapability extends Component {
     return (
       <div
         id='PlayerOperationsCapability'
-        onClick={(e) => talkActions.operationsUpgradeDialogToggle()}
+        onClick={(e) => talkEnhancementsActions.operationsUpgradeDialogToggle()}
         >
         {topLevelOps(jsonapi.get('enhancements'))}
       </div>

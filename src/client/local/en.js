@@ -95,13 +95,14 @@ const ENGLISH = {
     command: 'Command',
     countries: 'Countries',
     dashboard: 'Dashboard',
+    forum: 'Forum',
     headerHtml: `<a href="https://github.com/steida/este">Este.js</a> App`,
     help: 'Help',
     introduction: 'Intro',
     login: 'Login',
     mission: 'Mission',
-    signup: 'Sign Up',
-    forum: 'Forum'
+    talk: 'Talk',
+    signup: 'Sign Up'
   },
   mission: {
     buttons: {
@@ -143,6 +144,9 @@ const ENGLISH = {
   stories: storiesMsg,
   support: {
     title: 'SupportPage'
+  },
+  talk: {
+    title: `Talk with agents`
   },
   title: `Ghost Struggle`,
   tutorial: tutorialMsg,

@@ -102,6 +102,9 @@ var playerdefaults = {
     soundeffects: true,
     tutorial: true
   },
+  talk: {
+    participants: []
+  },
   tutorial: {
     firstmission: {
       done: false

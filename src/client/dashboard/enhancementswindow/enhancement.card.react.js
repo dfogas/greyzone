@@ -1,5 +1,5 @@
 import './enhancement.card.styl';
-import * as talkActions from '../talk/actions';
+import * as enhancementsTalkActions from '../../talk/enhancements/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
@@ -9,7 +9,7 @@ import isExclusiveEnhancement from '../../lib/bml/exclusiveenhancement';
 class EnhancementCard extends Component {
   enhancementBuy() {
     const {enhancement} = this.props;
-    talkActions.buyEnhancement(enhancement);
+    enhancementsTalkActions.buyEnhancement(enhancement);
   }
 
   render() {

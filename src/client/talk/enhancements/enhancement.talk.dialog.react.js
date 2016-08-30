@@ -1,4 +1,4 @@
-import * as talkActions from './actions';
+import * as talkEnhancementsActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -7,7 +7,7 @@ import {FormattedHTMLMessage} from 'react-intl';
 
 class EnhancementTalkDialog extends Component {
   dialogToChoice() {
-    talkActions.dialogToChoice();
+    talkEnhancementsActions.dialogToChoice();
   }
 
   render() {

@@ -2,7 +2,7 @@ import './choose.class.styl';
 import * as tutorialActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
-import immutable from 'immutable';
+// import immutable from 'immutable';
 import {msg} from '../intl/store';
 
 import CurvedTailArrow from './curved.tail.arrow.react';
@@ -13,7 +13,7 @@ class AgentChoose extends Component {
   }
 
   render() {
-    const {game, jsonapi} = this.props;
+    // const {game, jsonapi} = this.props;
     return (
       <div id="PlayerChoosesAgentClass">
         <CurvedTailArrow />
@@ -32,9 +32,9 @@ class AgentChoose extends Component {
   }
 }
 
-AgentChoose.propTypes = {
-  game: React.PropTypes.instanceOf(immutable.Map),
-  jsonapi: React.PropTypes.instanceOf(immutable.Map)
-};
+// AgentChoose.propTypes = {
+//   game: React.PropTypes.instanceOf(immutable.Map),
+//   jsonapi: React.PropTypes.instanceOf(immutable.Map)
+// };
 
 export default AgentChoose;

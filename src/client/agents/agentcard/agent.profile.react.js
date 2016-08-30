@@ -6,12 +6,14 @@ import React from 'react';
 import {msg} from '../../intl/store';
 import immutable from 'immutable';
 import classnames from 'classnames';
+import formattedImg from '../../lib/bml/formattedimg';
 
 class AgentProfile extends Component {
   agentTalk() {
     const {agent, agentondisplay, isDisplay} = this.props;
     if (agent.get('id') === agentondisplay.get('id') && isDisplay)
-      agentsActions.agentTalking(agent);
+      dashboardActions.agentDialogToggle();
+      // agentsActions.agentTalking(agent);
   }
 
   render() {
@@ -20,19 +22,12 @@ class AgentProfile extends Component {
     const beingsaved = agentbeingsaved ? agentbeingsaved.get('id') === agent.get('id') : false;
     const classString = classnames('', {'showcased': this.props.isShowcased});
     const isLoyal = agent.get('loyalty') === 'loyal';
-    let formattedImg = (this.props.isShowcased && isLoyal)
-      ? agent.get('imgsrc').replace('_128', 'L_sc')
-      : this.props.isShowcased
-      ? agent.get('imgsrc').replace('_128', '_sc')
-      : isLoyal
-      ? agent.get('imgsrc').replace('_128', 'L_128')
-      : agent.get('imgsrc');
 
     return (
       <div className={'agent-profile ' + classString}>
         <div
           className={'agent-picture ' + classString}
-          onClick={this.agentTalk.bind(this)}><img draggable='false' src={formattedImg} /></div>
+          onClick={this.agentTalk.bind(this)}><img draggable='false' src={formattedImg(isLoyal, this.props.isShowcased, agent)} /></div>
         <div className={'agent-label ' + classString}>
           {agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}
         </div>

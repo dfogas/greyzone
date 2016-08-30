@@ -1,15 +1,15 @@
 /* Smart Component - to be displayed after you click retire */
 import './endgame.window.styl';
-import * as endGameActions from './endgame/actions';
-import * as logActions from './logwindow/actions';
-import Component from '../components/component.react';
+import * as endGameActions from './actions';
+import * as logActions from '../logwindow/actions';
+import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import {msg} from '../intl/store';
+import {msg} from '../../intl/store';
 import {FormattedHTMLMessage} from 'react-intl';
 
-import NewGameButton from './optionswindow/newgame.button.react';
-import StatisticsWindow from './statisticswindow/statistics.window.react';
+import NewGameButton from './newgame.button.react';
+import StatisticsWindow from './statistics.window.react';
 
 class EndGameWindow extends Component {
   displayStatistics() {

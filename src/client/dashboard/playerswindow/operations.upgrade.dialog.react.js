@@ -1,6 +1,6 @@
 import './operations.upgrade.dialog.styl';
 import * as dashboardActions from '../actions';
-import * as talkActions from '../talk/actions';
+import * as talkEnhancementsActions from '../../talk/enhancements/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -13,7 +13,7 @@ class OperationsUpgradeDialog extends Component {
     const {enhancements, list} = this.props;
     const nextlevel = nextLevelOps(enhancements, list);
     dashboardActions.upgradeEnhancement(nextlevel);
-    talkActions.operationsUpgradeDialogToggle();
+    talkEnhancementsActions.operationsUpgradeDialogToggle();
   }
 
   render() {
@@ -37,7 +37,7 @@ class OperationsUpgradeDialog extends Component {
         <br />
         <br />
         <button id='OperationsUpgradeYes' onClick={this.upgradeEnhancement.bind(this)}>Yes</button>
-        <button id='OperationsUpgradeNo' onClick={(e) => talkActions.operationsUpgradeDialogToggle()}>No</button>
+        <button id='OperationsUpgradeNo' onClick={(e) => talkEnhancementsActions.operationsUpgradeDialogToggle()}>No</button>
       </div>
     );
   }

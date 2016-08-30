@@ -23,6 +23,14 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === dashboardActions.agentDialogToggle) {
+    const toggle = jsonapiCursor(['components', 'dashboard', 'agentdialog']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'dashboard', 'agentdialog'], !toggle);
+    });
+  }
+
   if (action === dashboardActions.bookMissionPrice || action === missionsWindowActions.bookMissionPrice)
     jsonapiCursor(jsonapi => {
       return jsonapi

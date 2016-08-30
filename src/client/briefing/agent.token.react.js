@@ -1,8 +1,9 @@
 import './agent.token.styl';
-// import * as agentsActions from '../agents/actions';
 import React from 'react';
 import Component from '../components/component.react.js';
 import immutable from 'immutable';
+import classnames from 'classnames';
+import formattedImg from '../lib/bml/formattedimg';
 
 class AgentToken extends Component {
   drag(ev) {
@@ -10,21 +11,24 @@ class AgentToken extends Component {
   }
 
   render() {
-    const {agent, jsonapi} = this.props;
+    const {agent/*, jsonapi*/} = this.props;
+    const isLoyal = agent.get('loyalty') === 'loyal';
+
     return (
       <div
-        className='agent-token'
+        className={classnames('agent-token', {'istalk': this.props.isTalk})}
         draggable='true'
         id={agent.get('name')}
         onDragStart={this.drag}
-        style={{backgroundImage: `url(../${agent.get('imgsrc')})`}}>
+        style={{backgroundImage: `url(../${formattedImg(isLoyal, false, agent)})`}}>
       </div>
     );
   }
 }
 
 AgentToken.propTypes = {
-  agent: React.PropTypes.instanceOf(immutable.Map),
+  agent: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  isTalk: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

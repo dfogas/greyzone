@@ -1,6 +1,6 @@
 import './facility.upgrade.dialog.styl';
 import * as agentsActions from '../agents/actions';
-import * as talkActions from '../dashboard/talk/actions';
+import * as talkEnhancementsActions from '../talk/enhancements/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,11 +11,11 @@ class FacilityUpgradeDialog extends Component {
   enhancementBuy() {
     const {enhancement} = this.props;
     agentsActions.buyEnhancement(enhancement);
-    setTimeout(talkActions.facilityUpgradeDialogClose(), 100);
+    setTimeout(talkEnhancementsActions.facilityUpgradeDialogClose(), 100);
   }
 
   closeDialog() {
-    talkActions.facilityUpgradeDialogClose();
+    talkEnhancementsActions.facilityUpgradeDialogClose();
   }
 
   render() {

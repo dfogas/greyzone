@@ -8,13 +8,13 @@ import actionDices from '../lib/bml/actiondices';
 import agentIncurDelay from '../lib/bml/agentincurdelay';
 import agentRankup from '../lib/bml/agentrankup';
 // import dayandtime from '../lib/dayandtime';
-import invokeAgentTalk from '../lib/bml/invokeagenttalk';
 import isEquipmentBackfire from '../lib/bml/isequipmentbackfire';
 import leadershipcheck from '../lib/bml/leadershipcheck';
 import Sound from '../lib/sound';
 import $ from 'jquery';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
+const isNotProduction = process.env.NODE_ENV !== 'production';
 
 export function toArmory(agent) {
   if (agent)
@@ -46,7 +46,7 @@ export function agentTalking(agent) {
   const isNotSelf = self.get('id') !== agent.get('id');
 
   if (agent.get('prison'))
-    invokeAgentTalk(jsonapiCursor(), agent);
+    isNotProduction ? alert('add prison dialog here') : console.log('work in progress');//eslint-disable-line no-alert, no-unused-expressions
   else if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
     dispatch(enhancementTalk, {message: 'prisonbreak'});
   else if (!isNotSelf && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
@@ -60,7 +60,7 @@ export function agentTalking(agent) {
   else if (isNotSelf && agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
     dispatch(enhancementTalk, {message: 'anolddebt'});
   else
-    invokeAgentTalk(jsonapiCursor(), agent);
+    isNotProduction ? alert('add dialog option here') : console.log('work in progress'); //eslint-disable-line no-alert, no-unused-expressions
 }
 
 export function assignTask(agent) {

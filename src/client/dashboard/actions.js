@@ -35,6 +35,10 @@ export function acceptMission(tier, focus, country, options) {
   }
 }
 
+export function agentDialogToggle() {
+  dispatch(agentDialogToggle, {});
+}
+
 export function bookMissionPrice(tier) {
   const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', tier + '']);
 
@@ -211,6 +215,7 @@ export function upgradeEnhancement(enhancement) {
 
 setToString('dashboard', {
   acceptMission,
+  agentDialogToggle,
   bookMissionPrice,
   changeMissionOption,
   clearAgentHireFields,

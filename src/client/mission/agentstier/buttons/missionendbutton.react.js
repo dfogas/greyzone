@@ -49,7 +49,7 @@ class MissionEndButton extends Component {
       <input
         id='MissionEndButton'
         onClick={(e) => {
-          this.handleMissionEnd.bind(this);
+          this.handleMissionEnd();
           this.animateOut();
         }}
         type='button'

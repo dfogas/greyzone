@@ -13,7 +13,7 @@ const Sanya = {
   experience: 100,
   id: uuid() + 'operative',
   imgsrc: '../../assets/img/agents/operative/sanya_128.jpg',
-  loyalty: 'loyal',
+  loyalty: 'normal',
   missionsDone: [],
   name: 'Sanya',
   operationsSkill: 4,

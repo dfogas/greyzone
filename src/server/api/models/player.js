@@ -43,13 +43,16 @@ var PlayerSchema = new Schema({
   started: Number,
   statistics: Schema.Types.Mixed,
   statuses: [Schema.Types.Mixed],
-  userId: String,
+  talk: {
+    participants: [String]
+  },
   title: {
     type: String,
     unique: false,
     required: true
   },
-  tutorial: Schema.Types.Mixed
+  tutorial: Schema.Types.Mixed,
+  userId: String
 });
 
 var Player = mongoose.model('Player', PlayerSchema);
