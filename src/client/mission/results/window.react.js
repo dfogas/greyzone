@@ -1,11 +1,11 @@
-import './window.styl';
+import './window.styl'; //
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import missionWindowResults from '../../lib/bml/missionwindowresults';
 // import {msg} from '../../intl/store';
 import icon from '../../lib/bml/determiningicon';
-// import prop from '../../lib/general/r.i.prop';
+import prop from '../../lib/general/r.i.prop';
 import oQ from '../../lib/bml/obscurityquality';
 import rQ from '../../lib/bml/reputationquality';
 // import $ from 'jquery';
@@ -65,13 +65,13 @@ class MissionResultsWindow extends Component {
               </ul>}
           </p>
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentImprisoned')) &&
-            <li className='mission-result-fatal'>{`Agent ${agentPrison.get('name')} has been imprisoned.`}</li>}
+            <li className='mission-result-fatal'>{`Agent ${prop('name', agentPrison)} has been imprisoned.`}</li>}
           {!damageprotocol && (result === 'fail' && losses.keySeq().find(key => key === 'agentImprisoned')) &&
-            <li className='mission-result-fatal'>{`Agent ${agentPrison.get('name')} has been imprisoned.`}</li>}
+            <li className='mission-result-fatal'>{`Agent ${prop('name', agentPrison)} has been imprisoned.`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentKilled')) &&
-            <li className='mission-result-fatal'>{`Agent ${agentKIA.get('name')} has been killed.`}</li>}
+            <li className='mission-result-fatal'>{`Agent ${prop('name', agentKIA)} has been killed.`}</li>}
           {(result === 'fail' && losses.keySeq().find(key => key === 'agentKilled')) &&
-            <li className='mission-result-fatal'>{`Agent ${agentKIA.get('name')} has been killed.`}</li>}
+            <li className='mission-result-fatal'>{`Agent ${prop('name', agentKIA)} has been killed.`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentRecruited')) &&
             <li className='mission-result-fatal'>Agent has been recruited.</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentFreed')) &&

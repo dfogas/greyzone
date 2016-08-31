@@ -4,12 +4,15 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
+import Pointer from '../pointer.react';
+
 class CollectionWindow extends Component {
   render() {
     // const {game, jsonapi} = this.props;
     return (
       <div id='CollectionWindow'>
         Work in progress
+        <Pointer pointsto='strategical' />
       </div>
     );
   }

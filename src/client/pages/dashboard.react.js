@@ -1,4 +1,4 @@
-import * as tutorialActions from '../tutorial/actions';
+import * as tutorialActions from '../tutorial/actions'; //
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -24,7 +24,15 @@ class Dashboard extends Component {
           {!tutorialfinished &&
             <DashboardToTutorial />}
           {!tutorialfinished &&
-            <button id='SkipIntroButton' onClick={(e) => tutorialActions.completeTutorial()}>Skip Intro</button>}
+            <button
+              id='SkipIntroButton'
+              onClick={(e) => {
+                tutorialActions.playerChoseAgentClass('spy');
+                tutorialActions.completeTutorial();
+              }}>
+                Skip Intro
+              </button>
+            }
           {!missionstarted && tutorialfinished &&
             <DashboardScreen
               contest={contest}

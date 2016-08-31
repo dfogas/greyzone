@@ -3,7 +3,7 @@ import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import pickAgentForFatal from '../lib/bml/pickagentforfatal';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
-import Sound from '../lib/sound';
+// import Sound from '../lib/sound';
 import cconfig from '../client.config';
 import $ from 'jquery';
 import immutable from 'immutable';
@@ -83,7 +83,6 @@ export function reputationImpact(country, impact) {
 export function selectMission(mission) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const countrystats = jsonapiCursor(['countrystats']);
-  const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   if (agentontask)
     flashBriefing('Agent is on task, move her back.');
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
@@ -94,13 +93,7 @@ export function selectMission(mission) {
     }
   } else if (!obscurityMissionCheck(mission, countrystats))
     flashBriefing(`Mission won't start, obscurity is not high enough.`);
-  else {
-    if (jsonapiCursor(['options', 'soundeffects'])) {
-      let missionSound = new Sound(url + '/assets/audio/' + mission.get('sound'));
-      missionSound.play();
-    }
-    dispatch(selectMission, {mission});
-  }
+  else dispatch(selectMission, {mission});
 }
 
 export function setDefaultAfterExpired() {

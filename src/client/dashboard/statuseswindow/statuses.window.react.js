@@ -7,6 +7,7 @@ import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import isTierComplete from '../../lib/bml/istiercomplete';
 
+import Pointer from '../pointer.react';
 import StatusesIntro from './statuses.intro.react';
 import StatusTier from './status.tier.react';
 import StatusesTierComplete from './statuses.tier.complete.react';
@@ -20,15 +21,14 @@ class StatusesWindow extends Component {
     return (
       <div id='StatusesWindow'>
         <div id='StatusesWindowLabel'>{msg('dashboard.statuses.window.label')}</div>
-        {dashboard.getIn(['statuses', 'tierdisplayed']) > 1 &&
-          <ShiftUp
-            tierdisplayed={tierdisplayed}
-            />}
         <StatusTier
           statuses={statuses}
           statusesowned={owned}
           tierdisplayed={dashboard.getIn(['statuses', 'tierdisplayed']) || 1}
           />
+        <Pointer pointsto='strategical' />
+        {dashboard.getIn(['statuses', 'tierdisplayed']) > 1 &&
+          <ShiftUp tierdisplayed={tierdisplayed} />}
         {(dashboard.getIn(['statuses', 'tierdisplayed']) < 4 || typeof dashboard.getIn(['statuses', 'tierdisplayed']) === 'undefined') &&
           <ShiftDown
             tierdisplayed={tierdisplayed}

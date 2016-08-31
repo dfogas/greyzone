@@ -14,7 +14,7 @@ import TravelWindow from './travelwindow/travel.window.react';
 
 class DashboardContent extends Component {
   render() {
-    const {contest, game, jsonapi} = this.props;
+    const {contest, game, isLoggedIn, jsonapi} = this.props;
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     return (
       <div id='DashboardContent'>
@@ -27,6 +27,7 @@ class DashboardContent extends Component {
         {dashPointer === 'strategical' &&
           <StrategicalWindow
             game={game}
+            isLoggedIn={isLoggedIn}
             jsonapi={jsonapi}
             />}
         {dashPointer === 'log' &&

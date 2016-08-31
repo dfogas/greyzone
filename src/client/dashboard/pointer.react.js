@@ -9,12 +9,13 @@ class Pointer extends Component {
   render() {
     const {pointsto} = this.props;
     const pointerId = `To${capitalLetter(pointsto)}`;
+    const pointer = pointsto === 'strategical' ? 'Main' : capitalLetter(pointsto);
     return (
       <div
         className='dashboardscreen-pointer'
         id={pointerId}
         onClick={(e) => dashboardActions.pointerChange(pointsto)}>
-        {capitalLetter(pointsto)}
+        {pointer}
       </div>
     );
   }

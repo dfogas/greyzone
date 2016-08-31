@@ -7,6 +7,7 @@ import immutable from 'immutable';
 import uuid from '../../lib/guid';
 
 import GeminiScrollbar from 'react-gemini-scrollbar';
+import Pointer from '../pointer.react';
 
 class ContestWindow extends Component {
   refreshContest() {
@@ -51,6 +52,7 @@ class ContestWindow extends Component {
             </tbody>
           </table>
         </GeminiScrollbar>
+        <Pointer pointsto='strategical' />
         <button
           id='RefreshContestButton'
           onClick={this.refreshContest}>Refresh</button>

@@ -5,6 +5,7 @@ import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../intl/store';
 import uuid from '../../lib/guid';
+import Pointer from '../pointer.react';
 
 class LogWindow extends Component {
   clearLog() {
@@ -38,6 +39,7 @@ class LogWindow extends Component {
             </div>
           );
         })}
+        <Pointer pointsto='strategical' />
         <button
           id='ExportLogButton'
           onClick={this.exportLog}>{msg('dashboard.strategical.log.download')}</button>

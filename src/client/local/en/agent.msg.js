@@ -124,7 +124,7 @@ const agents = {
     sanya: `<div id='OldDebtTalk'>sanya's old debt</div>`
   },
   talk: {
-    cheeky: `What's up? - Did someone stole you a sweet roll?`,
+    cheeky: `What's up - Someone stole you a sweet roll?`,
     dead: `... who is it, lurking in the shadows??`,
     evasive: `I have this thing ..., never mind, what was it you wanted?`,
     intimate: `Aww, you woke me up - is something going on?`,

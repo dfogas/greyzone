@@ -18,9 +18,8 @@ import ScreenPlastic from '../tutorial/screen.plastic.react';
 import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
 
 // buttons, selects
-import Logout from '../auth/logout.react';
 import LanguageSelect from '../app/language.select.react';
-import Pointer from './pointer.react';
+// import Pointer from './pointer.react';
 
 class DashboardScreen extends Component {
   componentDidMount() {
@@ -55,12 +54,9 @@ class DashboardScreen extends Component {
         <DashboardContent
           contest={contest}
           game={game}
+          isLoggedIn={isLoggedIn}
           jsonapi={jsonapi}
           />
-        <Pointer pointsto='contest' />
-        <Pointer pointsto='log' />
-        <Pointer pointsto='options' />
-        <Pointer pointsto='strategical' />
         <a
           download='playerlog.txt'
           id='DownloadLogLink'
@@ -94,12 +90,8 @@ class DashboardScreen extends Component {
           })*/}
         {/*!jsonapi.get('dashboard').getIn(['strategical', 'intro']) && <StrategicalIntro jsonapi={jsonapi}/>*/}
         {/* end of start game */}
-        {jsonapi.getIn(['options', 'debug']) && <Pointer pointsto='enhancements' />}
-        {jsonapi.getIn(['campaigns', 'campaigns', 'dolcevita']) && <Pointer pointsto='statuses' />}
         {dashPointer === 'options' && <LanguageSelect locales={this.props.locales}/>}
-        {jsonapi.getIn(['campaigns', 'campaigns', 'collector', 'selected']) && <Pointer pointsto='collection' />}
         {jsonapi.get('gameend') && <EndGameWindow jsonapi={jsonapi} />}
-        {isLoggedIn && <Logout />}
       </div>
     );
   }

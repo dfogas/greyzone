@@ -4,11 +4,12 @@ import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
+import CampaignsActive from './campaigns.active.react';
+import DashboardToIntro from '../../navs/dashboardtointro.react';
 import DebugWindow from './debug.window.react';
 import OptionsGameWindow from './options.game.window.react';
-import CampaignsActive from './campaigns.active.react';
 import PayingWindow from './paying.window.react';
-import DashboardToIntro from '../../navs/dashboardtointro.react';
+import Pointer from '../pointer.react';
 
 class OptionsWindow extends Component {
   changeOption(ev) {
@@ -17,11 +18,11 @@ class OptionsWindow extends Component {
 
   render() {
     const {jsonapi, options} = this.props;
-    const tutorial = options.get('tutorial');
-    const multiplayer = options.get('multiplayer');
-    const debug = options.get('debug');
     const animations = options.get('animations');
+    const debug = options.get('debug');
+    const multiplayer = options.get('multiplayer');
     const soundeffects = options.get('soundeffects');
+    const tutorial = options.get('tutorial');
 
     return (
       <div id='OptionsWindow'>
@@ -49,13 +50,13 @@ class OptionsWindow extends Component {
           paying={jsonapi.get('paying')}
           />
         <DashboardToIntro />
+        <Pointer pointsto='strategical' />
         {!multiplayer &&
           <OptionsGameWindow
             jsonapi={jsonapi}
             />}
-        {debug && <DebugWindow
-          debug={debug}
-          />}
+        {debug &&
+          <DebugWindow debug={debug} />}
       </div>
     );
   }

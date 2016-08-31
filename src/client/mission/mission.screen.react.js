@@ -6,6 +6,8 @@ import immutable from 'immutable';
 import missionBoxShadow from '../lib/bml/missionboxshadow';
 import {msg} from '../intl/store';
 import $ from 'jquery';
+import Sound from '../lib/sound';
+import cconfig from '../client.config';
 
 import TaskTier from './tasktier/tasktier.react';
 import TableTopTier from './tabletoptier/tabletoptier.react';
@@ -17,7 +19,14 @@ import MissionToDashboardButton from '../navs/missiontodashboard.react';
 
 class MissionTrackingScreen extends Component {
   componentDidMount() {
+    const {jsonapi} = this.props;
+    const mission = jsonapi.get('activemission');
+    const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
     window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+    if (jsonapi.getIn(['options', 'soundeffects'])) {
+      let missionSound = new Sound(url + '/assets/audio/' + mission.get('sound'));
+      missionSound.play();
+    }
     // setTimeout(() => {componentsActions.missionScreenTransition();}, 1000);
   }
 

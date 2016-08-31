@@ -49,9 +49,9 @@ class CommandCenterScreen extends Component {
           <CommandToDashboard />}
         {isLoggedIn &&
           <CommandToBriefing />}
-        <MainScreen
+        {<MainScreen
           jsonapi = {jsonapi}
-          />
+          />}
         <div id='CommandEmailSupport'>
           Technical problems?! Send mail to support@ghoststruggle.com.
         </div>
