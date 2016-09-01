@@ -1,4 +1,4 @@
-/*eslint camelcase: 0*/
+/* eslint camelcase: 0 */
 import {close_combat, hide, improv_op, improv_st, improv_el, monitor, hit, infiltrate, puppet} from '../actions';
 
 const tag = 'layinglow';
@@ -15,7 +15,8 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 0.05
+    obscurity: 0.01,
+    attentionLowered: true
   },
   losses: {
     reputation: 50
@@ -34,7 +35,8 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 0.25
+    obscurity: 0.02,
+    attentionLowered: true
   },
   losses: {
     reputation: 250
@@ -54,7 +56,8 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 0.75
+    obscurity: 0.03,
+    attentionLowered: true
   },
   losses: {
     reputation: 1000
@@ -74,7 +77,8 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 1
+    obscurity: 0.04,
+    attentionLowered: true
   },
   losses: {
     reputation: 1500
@@ -94,7 +98,8 @@ const LayingLow = [{
   ],
   inCountry: '',
   rewards: {
-    obscurity: 1
+    obscurity: 0.05,
+    attentionLowered: true
   },
   losses: {
     reputation: 2000

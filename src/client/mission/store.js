@@ -5,6 +5,7 @@ import {register} from '../dispatcher';
 import immutable from 'immutable';
 import defaultActiveMission from '../../server/lib/greyzone/missions/default/defaultactivemission';
 import dayandtime from '../lib/dayandtime';
+import bookAttention from '../lib/bml/bookattention';
 import bookObscurity from '../lib/bml/bookobscurity';
 import bookReputation from '../lib/bml/bookreputation';
 
@@ -99,6 +100,16 @@ export const dispatchToken = register(({action, data}) => {
     jsonapiCursor(jsonapi => {
       return jsonapi.update('agents', val => val.push(immutable.fromJS(data)));
     });
+
+  if (action === missionActions.attentionLowered) {
+    const inCountry = data.country || 'US';
+    const indexOfCAL = jsonapiCursor(['events']).indexOf(jsonapiCursor(['events']).find(gaev => gaev.get('tag') === 'attention' && gaev.get('country') === inCountry));
+    const countryAL = jsonapiCursor(['events', indexOfCAL, 'level']);
+
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['events', indexOfCAL, 'level'], bookAttention(countryAL, 'down'));
+    });
+  }
 
   if (action === missionActions.bookCash)
     jsonapiCursor(jsonapi => {

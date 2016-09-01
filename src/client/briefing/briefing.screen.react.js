@@ -66,7 +66,7 @@ class BriefingScreen extends Component {
           <BriefingInCountry
             jsonapi={jsonapi}
             />
-          <BriefingToDashboard />
+          {!jsonapi.getIn(['activemission', 'agentsonmission']).size && <BriefingToDashboard />}
           <BriefingToArmory />
           <ActiveMissionToggle />
           <DeskPlanToggle />

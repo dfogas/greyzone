@@ -9,6 +9,7 @@ import uuid from '../../lib/guid';
 import CapabilitySubCards from './capability.subcards.react';
 import LeadershipSubCards from './leadership.subcards.react';
 import EnhancementCard from './enhancement.card.react';
+import Pointer from '../pointer.react';
 
 class EnhancementsWindow extends Component {
   render() {
@@ -31,6 +32,7 @@ class EnhancementsWindow extends Component {
         <LeadershipSubCards
           enhancements={owned}
           list={enhancements} />
+        <Pointer pointsto='strategical' />
         {toysowned.map((enhancement) => {
           return (
             <EnhancementCard

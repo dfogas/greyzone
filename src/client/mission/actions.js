@@ -59,6 +59,10 @@ export function agentsAreBackFromMission() {
   dispatch(agentsAreBackFromMission, {});
 }
 
+export function attentionLowered(country) {
+  dispatch(attentionLowered, {country});
+}
+
 export function bookCash(amount) {
   dispatch(bookCash, {amount});
 }
@@ -109,6 +113,8 @@ export function bookRewards(mission) {
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
     agentRecruited(newagent);
   }
+  if (Object.keys(results).indexOf('attentionLowered') !== -1)
+    attentionLowered(mission.get('inCountry'));
   if (Object.keys(results).indexOf('agentLoyal') !== -1 && agentBecominLoyal)
     agentLoyalty();
 
@@ -235,6 +241,7 @@ setToString('mission', {
   agentOnTaskGetsExperienceForCompletingTask,
   agentRecruited,
   agentsAreBackFromMission,
+  attentionLowered,
   bookCash,
   bookContacts,
   bookObscurity,

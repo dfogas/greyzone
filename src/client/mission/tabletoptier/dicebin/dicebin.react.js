@@ -16,7 +16,6 @@ class DiceBin extends Component {
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     ev.preventDefault();
     var dice = JSON.parse(ev.dataTransfer.getData('text'));
-    console.log(dice);
     if (actiondices.find(die => die.get('dicekey') === dice.dicekey))
       diceActions.remove(dice);
   }

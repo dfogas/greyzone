@@ -1,5 +1,6 @@
 /* Smart Component */
 import './missions.window.styl';
+import * as commandActions from '../../command/actions';
 import * as dashboardActions from '../actions';
 import * as missionsWindowActions from './actions';
 import Component from '../../components/component.react.js';
@@ -37,7 +38,8 @@ class MissionsWindow extends Component {
     const {agentbeingsaved, missions} = this.props;
     const missionstitles = missions.map(mission => mission.get('title'));
     if (missionstitles.indexOf('Prison Break') === -1) {
-      missionsWindowActions.prisonBreakMission();
+      commandActions.loadMissions();
+      missionsWindowActions.prisonBreakMission(agentbeingsaved);
       missionsWindowActions.bookPrisonBreakMissionPrice(agentbeingsaved);
     } else dashboardActions.flashDashboard('Prison Break mission already in place.');
   }

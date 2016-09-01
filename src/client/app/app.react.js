@@ -24,6 +24,7 @@ import '../agents/scrollbar/store';
 import '../animations/store';
 import '../auth/store';
 import '../briefing/store';
+import '../command/store';
 import '../components/store';
 import '../dashboard/endgame/store';
 import '../dashboard/logwindow/store';

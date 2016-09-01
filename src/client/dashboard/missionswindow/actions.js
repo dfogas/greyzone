@@ -1,4 +1,3 @@
-/*  */
 import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import missionAccept from '../../lib/bml/missionaccept';
@@ -99,8 +98,9 @@ export function oldDebtMission() {
   acceptSpecifiedMission(mission);
 }
 
-export function prisonBreakMission() {
-  const mission = missionAccept('prison', 'random', {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
+export function prisonBreakMission(agentbeingsaved) {
+  const country = jsonapiCursor(['missionsDone']).filter(item => item.get('agents').indexOf(agentbeingsaved.get('id')) !== -1).reduce((result, x) => { return result.get('timeDone') > x.get('timeDone') ? result : x;}, immutable.fromJS({timeDone: 0, inCountry: 'US'})).get('inCountry');
+  const mission = missionAccept('prison', country, {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
   flashDashboard(`New PrisonBreak Mission!`);
   acceptSpecifiedMission(mission);
