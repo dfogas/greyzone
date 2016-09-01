@@ -167,16 +167,16 @@ router.route('/api/v1/auth/verify')
                   player: player.name
                 });
             });
+            NotVerified.findByIdAndRemove(id, function(err) {
+              if (err)
+                console.log(err);
+            });
           }
         });
       } else
       res.json({message: 'Wrong authorization'});
     });
 
-    NotVerified.findByIdAndRemove(id, function(err) {
-      if (err)
-        console.log(err);
-    });
   });
 
 router.route('/api/v1/auth/lprecover')

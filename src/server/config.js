@@ -14,7 +14,7 @@ var config = {
     'mongodb://localhost:27017/mbase' :
     // for API test
     'mongodb://localhost:27017/mtest',
-  datastorage: process.env.NODE_ENV === 'production' ?
+  datastorage: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging' ?
     'mongodb://admin:' + passwords.mbase + '@ds055852.mlab.com:55852/mbase' :
     process.env.NODE_ENV ?
     'mongodb://localhost:27017/mbase' :
