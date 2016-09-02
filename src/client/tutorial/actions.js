@@ -57,6 +57,13 @@ export function playerChoseAgentClass(agentclass) {
   dispatch(playerChoseAgentClass, {agent: immutable.fromJS(playersAgent)});
 }
 
+export function setupTutorial() {
+  /* because  */
+  const tutorial = jsonapiCursor(['options', 'tutorial']);
+  if (tutorial)
+    dispatch(setupTutorial, {});
+}
+
 export function toggleCampaign(name, value) {
   dispatch(toggleCampaign, {name, value});
 }
@@ -69,5 +76,6 @@ setToString('tutorial', {
   firstMissionSetup,
   historyProgress,
   playerChoseAgentClass,
+  setupTutorial,
   toggleCampaign
 });

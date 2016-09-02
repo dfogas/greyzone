@@ -19,7 +19,7 @@ class StatusesWindow extends Component {
     const {dashboard, statuses, owned} = this.props;
     const tierdisplayed = dashboard.getIn(['statuses', 'tierdisplayed']) || 1;
     return (
-      <div id='StatusesWindow'>
+      <div id={`StatusesWindow${tierdisplayed}`}>
         <div id='StatusesWindowLabel'>{msg('dashboard.statuses.window.label')}</div>
         <StatusTier
           statuses={statuses}
@@ -36,9 +36,9 @@ class StatusesWindow extends Component {
         {!dashboard.getIn(['statuses', 'intro']) &&
           <StatusesIntro />}
         {dashboard.getIn(['statuses', 'intro']) &&
-          <button
+          <div
             id='StatusesHistoryButton'
-            onClick={(e) => statusesActions.statusesIntroToggle()}>Show Intro</button>}
+            onClick={(e) => statusesActions.statusesIntroToggle()}></div>}
         {isTierComplete(tierdisplayed, owned, statuses) &&
           <button
             id='StatusesTierCompleteButton'

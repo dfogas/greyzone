@@ -47,6 +47,10 @@ export const dispatchToken = register(({action, data}) => {
         .set('self', data.agent);
     });
 
+  if (action === tutorialActions.setupTutorial) {
+    /*TODO: placeholder */
+  }
+
   if (action === tutorialActions.toggleCampaign)
     jsonapiCursor(jsonapi => {
       return jsonapi

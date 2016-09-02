@@ -1,0 +1,35 @@
+#EquipmentUseHint
+  position relative
+  top 170px
+  right -240px
+  width 0
+  height 0
+  border-top 27px solid transparent
+  border-right 27px solid red
+  transform rotate(-80deg)
+  z-index 11
+  animation 1s pulseAngled 2s infinite
+
+#EquipmentUseHint:after
+  content ''
+  position absolute
+  border 0 solid transparent
+  border-top 9px solid red
+  border-radius 60px 0 0 0
+  top -36px
+  left -27px
+  width 36px
+  height 36px
+  transform rotate(45deg)
+  animation 1s pulseFortyFive 2s infinite
+
+#EquipmentUseHintText
+  position relative
+  top 260px
+  right -230px
+  max-width 150px
+  text-align center
+  padding 5px
+  font-size 1.2em
+  background-color white
+  z-index 11

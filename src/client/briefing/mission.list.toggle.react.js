@@ -5,6 +5,7 @@ import Component from '../components/component.react';
 import React from 'react';
 // import {msg} from '../intl/store';
 import $ from 'jquery';
+import Sound from '../lib/sound';
 
 class MissionListToggle extends Component {
   dimTaskHelp() {
@@ -12,6 +13,8 @@ class MissionListToggle extends Component {
   }
 
   highlightTaskHelp() {
+    let mySound = new Sound('../../../assets/audio/ui/rollover2.wav');
+    mySound.play();
     $(React.findDOMNode(this)).css('box-shadow', '0 0 40px white, 0 0 20px white inset');
   }
 

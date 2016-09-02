@@ -1,6 +1,6 @@
 import './agentequipcontent.styl';
 import * as agentActions from './actions';
-import * as equipmentsActions from '../equipments/actions';
+import * as equipmentActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -24,7 +24,7 @@ class AgentEquipContent extends Component {
 
   unequipAll() {
     const {jsonapi} = this.props;
-    equipmentsActions.agentUnequip(jsonapi.get('agentinarmory'));
+    equipmentActions.agentUnequip(jsonapi.get('agentinarmory'));
   }
 
   render() {

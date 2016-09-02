@@ -40,6 +40,7 @@ import '../users/store';
 import '../support/store';
 import '../talk/enhancements/store';
 import '../talk/store';
+import '../tutorial/firstmission/store';
 import '../tutorial/store';
 
 //libs

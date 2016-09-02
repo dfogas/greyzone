@@ -19,7 +19,6 @@ import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react
 
 // buttons, selects
 import LanguageSelect from '../app/language.select.react';
-// import Pointer from './pointer.react';
 
 class DashboardScreen extends Component {
   componentDidMount() {
@@ -35,7 +34,6 @@ class DashboardScreen extends Component {
 
   componentWillReceiveProps() {
     const {jsonapi} = this.props;
-    // poté co je vybrána kampaň a první mise ještě neproběhla
     if (!jsonapi.getIn(['tutorial', 'firstmission', 'done']))
       tutorialActions.firstMissionSetup();
   }

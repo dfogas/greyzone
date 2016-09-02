@@ -3,6 +3,7 @@ import * as componentsActions from '../../components/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import $ from 'jquery';
+import Sound from '../../lib/sound';
 
 class ActiveMissionToggle extends Component {
   // activeMissionToggle(e) {
@@ -20,6 +21,8 @@ class ActiveMissionToggle extends Component {
   }
 
   highlightMonitor() {
+    let mySound = new Sound('../../../assets/audio/ui/rollover.ogg');
+    mySound.play();
     $(React.findDOMNode(this)).css('box-shadow', '0 0 40px white, 0 0 20px white inset');
   }
 

@@ -67,6 +67,7 @@ class StrategicalWindow extends Component {
 }
 
 StrategicalWindow.propTypes = {
+  isLoggedIn: React.PropTypes.bool,
   game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };

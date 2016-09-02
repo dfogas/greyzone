@@ -14,14 +14,14 @@ const StatusList = [{
   price: {cash: 1000000, contacts: 0},
   tier: 1
 }, {
-  imgsrc: 'racing_track.jpg',
-  name: 'Racing Track',
-  price: {cash: 550000, contacts: 0},
-  tier: 2
-}, {
   imgsrc: 'winter_resort.jpg',
   name: 'Winter Resort',
   price: {cash: 750000, contacts: 0},
+  tier: 2
+}, {
+  imgsrc: 'racing_track.jpg',
+  name: 'Racing Track',
+  price: {cash: 550000, contacts: 0},
   tier: 2
 }, {
   imgsrc: 'hunters_range.jpg',

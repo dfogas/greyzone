@@ -1,5 +1,5 @@
 import * as diceActions from '../mission/tabletoptier/dice/actions';
-import * as equipmentsActions from './actions';
+import * as equipmentActions from './actions';
 import {register} from '../dispatcher';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
@@ -8,7 +8,7 @@ import uuid from '../lib/guid';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === equipmentsActions.agentUnequip) {
+  if (action === equipmentActions.agentUnequip) {
     const agentsequipments = data.get('equipments');
     const equipments = jsonapiCursor(['equipments']);
 
@@ -24,7 +24,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === equipmentsActions.buy) {
+  if (action === equipmentActions.buy) {
     const equipments = jsonapiCursor(['equipments']);
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -39,19 +39,19 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['activemission', 'equipmenteffects', 'lockeddice'], null);
     });
 
-  if (action === equipmentsActions.lockDice)
+  if (action === equipmentActions.lockDice)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'equipmenteffects', 'lockeddice'], immutable.fromJS(data));
     });
 
-  if (action === equipmentsActions.noeffect)
+  if (action === equipmentActions.noeffect)
     jsonapiCursor(jsonapi => {
       return jsonapi
         .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
     });
 
-  if (action === equipmentsActions.sell) {
+  if (action === equipmentActions.sell) {
     const equipments = jsonapiCursor(['equipments']);
     jsonapiCursor(jsonapi => {
       return jsonapi
@@ -60,7 +60,7 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === equipmentsActions.use) {
+  if (action === equipmentActions.use) {
     const actiondices = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']);
 
     if (data.agentequipment.get('name') === msg('equipments.operations.0.name'))

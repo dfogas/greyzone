@@ -9,13 +9,12 @@ import allAgents from '../../lib/bml/allagents';
 import selfIsDisplayed from '../../lib/bml/selfisdisplayed';
 import {msg} from '../../intl/store';
 import shouldHaveRank from '../../lib/bml/shouldhaverank';
-import uuid from '../../lib/guid';
-import AgentExperienceBar from './agent.experience.bar.react';
 
-import AgentStatCounter from './agent.stat.counter.react';
-import AgentProfile from './agent.profile.react';
-import AgentEquipmentSlot from './agent.equipment.slot.react';
 import AgentClock from './agent.clock.react';
+import AgentEquipmentSlot from './agent.equipment.slot.react';
+import AgentExperienceBar from './agent.experience.bar.react';
+import AgentProfile from './agent.profile.react';
+import AgentStatCounter from './agent.stat.counter.react';
 
 class AgentCard extends Component {
   agentGetRank() {
@@ -58,7 +57,7 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, agentindex, game, jsonapi, key} = this.props;
+    const {agent, game, jsonapi, key} = this.props;
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const self = jsonapi.get('self');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
@@ -139,12 +138,11 @@ class AgentCard extends Component {
             <AgentEquipmentSlot
               agent={agent}
               agentequipment={agentequipment}
-              agentindex={agentindex}
               equipmentindex={i}
               game={game}
               isMission={this.props.isMission}
               isShowcased={this.props.isShowcased}
-              key={uuid() + i}
+              tutorial={jsonapi.get('tutorial')}
             />);
         })}
         {isRankUp && this.props.isAgents &&

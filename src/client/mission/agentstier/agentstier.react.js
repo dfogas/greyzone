@@ -1,4 +1,4 @@
-import './agentstier.styl';
+import './agentstier.styl'; //
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -6,11 +6,12 @@ import immutable from 'immutable';
 import ActionChoose from './buttons/action.choose.react';
 import AgentScrollBarWithNavButtons from '../../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import AgentOnMission from './agentonmission/agentonmission.react';
+import BackToMissionButton from './buttons/backtomission.react';
+import EquipmentUseHint from '../../tutorial/firstmission/equipment.use.hint.react';
 import EscapeButton from './buttons/escapebutton.react';
 import EscapeProtocol from './buttons/escapeprotocol.react';
 import LockedDiceContainer from './buttons/lockeddicecontainer.react';
 import SuccessButton from './buttons/successbutton.react';
-import BackToMissionButton from './buttons/backtomission.react';
 
 class AgentsTier extends Component {
 
@@ -39,6 +40,8 @@ class AgentsTier extends Component {
           game={game}
           jsonapi={jsonapi}
           />
+        {!jsonapi.getIn(['tutorial', 'firstmission', 'equipmentusehint']) &&
+          <EquipmentUseHint firstmission={jsonapi.getIn(['tutorial', 'firstmission'])} />}
         {activemission.getIn(['equipmenteffects', 'actionchoose']) &&
           <ActionChoose activemission={activemission}/>}
         {!activemission.getIn(['mission', 'currenttask', 'agentlock']) &&

@@ -1,6 +1,7 @@
 import './agent.equipment.slot.styl';
 import * as agentActions from '../actions';
 import * as equipmentActions from '../../equipments/actions';
+import * as tutorialFirstMissionActions from '../../tutorial/firstmission/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
 import immutable from 'immutable';
@@ -26,9 +27,11 @@ class AgentEquipmentSlot extends Component {
   }
 
   equipmentUse() {
-    const {agent, agentequipment, equipmentindex} = this.props;
+    const {agent, agentequipment, equipmentindex, tutorial} = this.props;
 
     equipmentActions.use(agent, {agentequipment, equipmentindex});
+    if (!tutorial.getIn(['firstmission', 'equipmentusehint']))
+      tutorialFirstMissionActions.equipmentUseHintToggle();
     agentActions.setETA(agent, agentequipment);
   }
 
@@ -64,7 +67,8 @@ AgentEquipmentSlot.propTypes = {
   equipmentindex: React.PropTypes.number.isRequired,
   game: React.PropTypes.instanceOf(immutable.Map),
   isMission: React.PropTypes.bool,
-  isShowcased: React.PropTypes.bool
+  isShowcased: React.PropTypes.bool,
+  tutorial: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default AgentEquipmentSlot;

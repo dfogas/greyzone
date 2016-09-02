@@ -43,6 +43,18 @@
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg)
     opacity: 0
 
+@keyframes pulseFortyFive
+    0%,100%
+        transform: scale3d(1,1,1) rotate(45deg)
+    50%
+        transform: scale3d(1.05,1.05,1.05) rotate(45deg)
+
+@keyframes pulseAngled
+    0%,100%
+        transform: scale3d(1,1,1) rotate(-80deg)
+    50%
+        transform: scale3d(1.15,1.15,1.15) rotate(-80deg)
+
 @keyframes rotateIn
   0%
     transform-origin: center
