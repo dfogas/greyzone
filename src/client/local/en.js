@@ -84,7 +84,7 @@ const ENGLISH = {
   help: helpMsg,
   introduction: introMsg,
   login: {
-    message: `<p>First time here? - `
+    message: `First time here?`
   },
   logout: {
     title: 'Logout Page'
@@ -119,7 +119,7 @@ const ENGLISH = {
     title: 'Mission'
   },
   navs: {
-    dashboardtomission: 'To Mission',
+    dashboardtomission: `Mission`,
     dashboardtotutorial: `Story`
   },
   notFound: {

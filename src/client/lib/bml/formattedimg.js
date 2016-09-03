@@ -1,13 +1,14 @@
 /* Bool Bool Immutable.Map(agent) -> String */
+import prop from '../general/r.i.prop';
 
 const formattedImg = function(isLoyal, isShowcased, agent) {
   let formattedImg = (isShowcased && isLoyal)
-    ? agent.get('imgsrc').replace('_128', 'L_sc')
+    ? prop('imgsrc', agent).replace('_128', 'L_sc')
     : isShowcased
-    ? agent.get('imgsrc').replace('_128', '_sc')
+    ? prop('imgsrc', agent).replace('_128', '_sc')
     : isLoyal
-    ? agent.get('imgsrc').replace('_128', 'L_128')
-    : agent.get('imgsrc');
+    ? prop('imgsrc', agent).replace('_128', 'L_128')
+    : prop('imgsrc', agent);
 
   return formattedImg;
 };

@@ -8,7 +8,7 @@ import allAgents from '../../lib/bml/allagents';
 
 import DashboardToBriefing from '../../navs/dashboardtobriefing.react';
 import DashboardToCommand from '../../navs/dashboardtocommand.react';
-import DashboardToTalk from '../../navs/dashboardtotalk.react';
+// import DashboardToTalk from '../../navs/dashboardtotalk.react';
 
 import AgentsWindow from '../agentswindow/agents.window.react';
 import CountryStatsWindow from '../countrieswindow/countrystats.window.react';
@@ -52,7 +52,7 @@ class StrategicalWindow extends Component {
             id='IntermediateGoalButton'
             onClick={(e) => dashboardActions.intermediateGoalToggle()}>Goals</button>}
         {jsonapi.getIn(['dashboard', 'intermediategoal']) && <IntermediateGoal jsonapi={jsonapi} />}
-        {jsonapi.getIn(['options', 'multiplayer']) && <DashboardToCommand />}
+        {/*jsonapi.getIn(['options', 'multiplayer'])*/true && <DashboardToCommand />}
         {!jsonapi.getIn(['activemission', 'started']) && <DashboardToBriefing />}
         {/*!jsonapi.getIn(['activemission', 'started']) && <DashboardToTalk />*/}
         {jsonapi.getIn(['options', 'debug']) && <Pointer pointsto='enhancements' />}
@@ -67,8 +67,8 @@ class StrategicalWindow extends Component {
 }
 
 StrategicalWindow.propTypes = {
-  isLoggedIn: React.PropTypes.bool,
   game: React.PropTypes.instanceOf(immutable.Map),
+  isLoggedIn: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

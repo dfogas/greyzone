@@ -1,4 +1,4 @@
-import CommandCenterScreen from '../command/commandcenterscreen.react';
+import CommandCenterScreen from '../command/command.screen.react';
 import DocumentTitle from 'react-document-title';
 import Component from '../components/component.react';
 import React from 'react';

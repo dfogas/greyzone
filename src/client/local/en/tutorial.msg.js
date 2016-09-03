@@ -42,7 +42,7 @@ const TutorialMsg = {
   playerhistory: [
     `You barely remember how it started. It was a hot July and you were "recuited" by some obscure character.`,
     `You clearly remember the training, it had been intense right before you were thrown out to wolves`,
-    `Making it through initial trails you established level of confidence that helped you rise in the rank`,
+    `Making it through initial trials you established level of confidence that helped you rise in the rank`,
     `but after you were left for dead after one action, you decided to use that to your advantage`,
     `contacting your good colleague, you kept yourself hiding and under radar, but time has come for risk`,
     `Monitoring the official and secret message channels, it has come to your attention that there is a hunt on certain criminal underway `,

@@ -22,6 +22,8 @@ class Dashboard extends Component {
       <DocumentTitle title={msg('dashboard.title')}>
         <div className="dashboard-page">
           {!tutorialfinished &&
+            <div id='NewGameStart'>So, here I was, alive.</div>}
+          {!tutorialfinished &&
             <DashboardToTutorial />}
           {!tutorialfinished &&
             <button

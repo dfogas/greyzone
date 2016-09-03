@@ -4,7 +4,7 @@ import {jsonapiCursor} from '../state';
 import pickAgentForFatal from '../lib/bml/pickagentforfatal';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 // import Sound from '../lib/sound';
-import cconfig from '../client.config';
+// import cconfig from '../client.config';
 import $ from 'jquery';
 import immutable from 'immutable';
 import lockr from 'lockr';

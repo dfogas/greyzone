@@ -1,4 +1,4 @@
-import './login.message.styl';
+import './login.message.styl'; //
 import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -15,9 +15,9 @@ class LoginMessage extends Component {
     return (
       <div id='LoginMessage'>
         <FormattedHTMLMessage message={msg('login.message')} />
-        <button
+        <div
           id='LoginToSignup'
-          onClick={(e) => componentsActions.loginSignupToggle()}>{msg('menu.signup')}</button>
+          onClick={(e) => componentsActions.loginSignupToggle()}>{msg('menu.signup')}</div>
       </div>
     );
   }

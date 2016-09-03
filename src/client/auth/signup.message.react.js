@@ -15,9 +15,12 @@ class SignupMessage extends Component {
     return (
       <div id='SignupMessage'>
         <FormattedHTMLMessage message={msg('signup.message')} />
-        {true && <button
-          id='SignupToLogin'
-          onClick={(e) => componentsActions.loginSignupToggle()}>To Login</button>}
+        {true &&
+          <div
+            id='SignupToLogin'
+            onClick={(e) => componentsActions.loginSignupToggle()}>To Login
+          </div>
+        }
       </div>
     );
   }

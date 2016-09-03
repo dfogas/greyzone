@@ -92,6 +92,10 @@ function getPageHtml(Handler, appState) {
     </script>`;
 
   scriptHtml += `
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+  `;
+
+  scriptHtml += `
     <script src="/socket.io/socket.io.js"></script>`;
 
   scriptHtml += `<script>
@@ -99,6 +103,7 @@ function getPageHtml(Handler, appState) {
     URL_SERVER = '${urlServer}';
     var socket = io.connect(URL_SERVER);
     </script>`;
+
 
   const title = DocumentTitle.rewind();
 

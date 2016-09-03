@@ -8,11 +8,14 @@
   z-index 0
 
 .login
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  align-items center
+  justify-content center
   position absolute
-  width 280px
-  height 130px
   left 630px
-  top 335px
+  top 295px
   display inline-block
   opacity 0
   zoom 1
@@ -22,35 +25,45 @@
     border silver
 
   input
+    background rgba(0, 0, 0, 0.5)
     width 100%
     margin .25em
+    color white
 
   legend
     background-color black
     color silver
 
   button
-    font-size 1.5em
-    background-color silver
-    color black
+    font-size 1em
+    background rgba(0, 0, 0, 0.7)
+    color silver
 
   .error-message
     color red
     font-weight bold
+    opacity 0.9
+    margin 2px
+    text-shadow 1px 1px 4px black
+    z-index 1
 
   a
     color silver
-
-#LoginToSignup
-  background-color gold
-  color black
-  opacity 0.5
+    margin 2px
 
 #LoginToIntro
   position absolute
-  background-color silver
+  background rgba(0, 0, 0, 0.5)
   font-size 1.6em
-  color black
+  color white
   right 10px
   top 10px
   opacity 0.8
+
+#LoginDevNoticeButton
+  position absolute
+  right 10px
+  bottom 20px
+  background rgba(0, 0, 0, 0.5)
+  color white
+  font-size 1.8em

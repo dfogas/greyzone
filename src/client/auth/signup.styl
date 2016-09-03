@@ -7,34 +7,58 @@
   position absolute
 
 .signup
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  align-items center
+  justify-content center
   position absolute
-  width 280px
-  height 195px
   left 630px
   top 295px
   opacity 0
 
   form
     width 20em
-    border-color gold
+    border none
 
     fieldset
       border-color gold
 
   input
+    background rgba(0, 0, 0, 0.5)
+    color white
     width 100%
     margin .25em
+  //   border-color gold
+  //
+  // input:focus
+  //   box-shadow 0 0 5px gold
 
   legend
     color gold
 
   button
-    font-size 1.5em
+    position relative
+    font-size 1em
     background-color gold
     color black
+    border-width 3px
+    border-left-color darkslateblue
+    border-top-color darkslateblue
+    border-right-color cornflowerblue
+    border-bottom-color cornflowerblue
+    -moz-border-left-color darkslateblue
+    -moz-border-top-color darkslateblue
+    -moz-border-right-color cornflowerblue
+    -moz-border-bottom-color cornflowerblue
 
   .error-message
     color red
+    font-weight bold
+    opacity 0.9
+    margin 2px
+    text-shadow 1px 1px 4px black
+    z-index 1
 
 #SignupToIntro
   position absolute

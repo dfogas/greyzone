@@ -1,4 +1,5 @@
 import './command.styl';
+import * as commandActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -6,7 +7,7 @@ import {Link} from 'react-router';
 import {msg} from '../intl/store';
 import $ from 'jquery';
 
-import MainScreen from './mainscreen.react';
+import CommandContent from './command.content.react';
 import CommandToDashboard from '../navs/commandtodashboard.react.js';
 import CommandToBriefing from '../navs/commandtobriefing.react.js';
 
@@ -31,8 +32,9 @@ class CommandCenterScreen extends Component {
     const isLoggedIn = !!viewer;
 
     return (
-      <div id='CommandCenterScreen'>
-        <div id='CommandCenterScreenLabel'>{msg('command.screen.label')}</div>
+      <div id='CommandScreen'>
+        <div id='CommandScreenLabel'>{msg('command.screen.label')}</div>
+        <button id='LoadMissionsButton' onClick={(e) => commandActions.loadMissions()}>Load Missions</button>
         {!isLoggedIn &&
           <Link to='login'>
             <button className='login-button'>
@@ -49,7 +51,7 @@ class CommandCenterScreen extends Component {
           <CommandToDashboard />}
         {isLoggedIn &&
           <CommandToBriefing />}
-        {<MainScreen
+        {<CommandContent
           jsonapi = {jsonapi}
           />}
         <div id='CommandEmailSupport'>

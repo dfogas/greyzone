@@ -1,10 +1,9 @@
-import './mission.talk.styl';
+import './mission.talk.styl'; //
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 
-import AgentTalk from './agent.talk.react';
-import PlayerTalk from './player.talk.react';
+import AgentTalkProfile from './agent.talk.profile.react';
 
 class MissionTalk extends Component {
   render() {
@@ -20,38 +19,37 @@ class MissionTalk extends Component {
     return (
       <div className='mission-talk'>
         {playerAgentOnMission && agentLimit === 1 &&
-          <div className='player-talk'>
-            Oh great, I got a mission to finish ... and I am alone on it.
-          </div>}
+          <AgentTalkProfile
+            agent={playerAgentOnMission}
+            talk={`Oh great, I got a mission to finish ... and I am alone on it.`}
+            />
+        }
         {playerAgentOnMission && agentLimit > 1 &&
-          <div className='mission-dialog'>
-            <AgentTalk
-              agent={agentNotPlayer}
-              talk={'Hey, boss, we got a mission to complete!'}
-              />
-            <PlayerTalk
-              player={playerAgentOnMission}
-              talk={'Of course we do, lets get to it.'}
-              />
-          </div>}
+          <AgentTalkProfile
+            agent={agentNotPlayer}
+            talk={'Hey, boss, we got a mission to complete!'}
+            />}
+        {playerAgentOnMission && agentLimit > 1 &&
+          <AgentTalkProfile
+            agent={playerAgentOnMission}
+            talk={'Of course we do, lets get to it.'}
+            />}
         {!playerAgentOnMission && agentLimit === 1 &&
           <div className='agent-talk'>
-            <AgentTalk
+            <AgentTalkProfile
               agent={agentNotPlayer}
               talk={'I got to concentrate on this mission, I am alone here... Hopefully it works out.'}
               />
           </div>}
         {!playerAgentOnMission && agentLimit > 1 &&
-          <div className='mission-dialog'>
-            <AgentTalk
+            <AgentTalkProfile
               agent={agentNotPlayer}
               talk={'I dont know, have a bad feeling about this mission.'}
-              />
-            <AgentTalk
+              /> &&
+            <AgentTalkProfile
               agent={agents.get(1)}
               talk={'Be cool, partner, we finish this baby and go back home in no time.'}
-              />
-          </div>}
+              />}
       </div>
     );
   }

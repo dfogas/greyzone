@@ -19,7 +19,9 @@ class Login extends Component {
 
   render() {
     const {jsonapi} = this.props;
-    const loginSignupToggle = jsonapi.getIn(['components', 'login', 'signup']);
+    const signupToggle = jsonapi.getIn(['components', 'login', 'signup']);
+    const introWindowToggle = jsonapi.getIn(['components', 'login', 'introductionwindow']);
+    const devNoticeToggle = jsonapi.getIn(['components', 'login', 'devnotice']);
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
@@ -28,13 +30,13 @@ class Login extends Component {
             onClick={(e) => componentsActions.introductionWindowToggle()}>Introduction</button>
           <GSSigil />
           <BackgroundMusic />
-          {!loginSignupToggle &&
+          {(!signupToggle && !introWindowToggle && !devNoticeToggle) &&
             <LoginMessage />}
-          {!loginSignupToggle &&
+          {(!signupToggle && !introWindowToggle && !devNoticeToggle) &&
             <LoginForm {...this.props} />}
-          {loginSignupToggle &&
+          {(signupToggle && !devNoticeToggle && !introWindowToggle) &&
             <SignupMessage />}
-          {loginSignupToggle &&
+          {(signupToggle && !devNoticeToggle && !introWindowToggle) &&
             <SignupForm {...this.props} />}
           <button
             id='LoginDevNoticeButton'
@@ -43,9 +45,9 @@ class Login extends Component {
             <button
               id='LoginBigScreenButton'
               onClick={(e) => componentsActions.bigScreenToggle()}>Big Screen</button>}
-          {jsonapi.getIn(['components', 'login', 'devnotice']) &&
+          {devNoticeToggle &&
             <WelcomeWindow />}
-          {jsonapi.getIn(['components', 'login', 'introductionwindow']) &&
+          {introWindowToggle &&
             <IntroductionWindow />}
           {!jsonapi.getIn(['components', 'login', 'bigscreen', 'status']) &&
             <ABigScreen

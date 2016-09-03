@@ -63,6 +63,7 @@ class DashboardContent extends Component {
 DashboardContent.propTypes = {
   contest: React.PropTypes.instanceOf(immutable.List),
   game: React.PropTypes.instanceOf(immutable.Map),
+  isLoggedIn: React.PropTypes.string,
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

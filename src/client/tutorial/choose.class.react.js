@@ -5,8 +5,6 @@ import React from 'react';
 // import immutable from 'immutable';
 import {msg} from '../intl/store';
 
-import CurvedTailArrow from './curved.tail.arrow.react';
-
 class AgentChoose extends Component {
   playerChooseAgent(e) {
     tutorialActions.playerChoseAgentClass(e.target.getAttribute('name'));
@@ -16,7 +14,6 @@ class AgentChoose extends Component {
     // const {game, jsonapi} = this.props;
     return (
       <div id="PlayerChoosesAgentClass">
-        <CurvedTailArrow />
         <p>{msg('tutorial.chooseclass.question')}</p>
         <div id="ChooseOperative" name='operative' onClick={(e) => this.playerChooseAgent(e)}>
           {msg('tutorial.chooseclass.operative')}
