@@ -1,4 +1,5 @@
 /*
+  //
   another example of crappy design process
   no comments whatsoever
   state seems to extending EventEmitter

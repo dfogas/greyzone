@@ -8,12 +8,10 @@ class MissionToDashboard extends Component {
   render() {
     return (
       <Link to='dashboard'>
-        <button
-          className='ingame-nav-button'
+        <div
+          className='ingame-nav-curved-tail-arrow to-right'
           id='MissionToDashboardButton'
-          >
-          {msg('menu.dashboard')}
-        </button>
+          >{msg('menu.dashboard')}</div>
       </Link>
     );
   }

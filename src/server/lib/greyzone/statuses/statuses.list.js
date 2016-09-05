@@ -29,13 +29,8 @@ const StatusList = [{
   price: {cash: 1500000, contacts: 0},
   tier: 2
 }, {
-  imgsrc: 'medieval_castle.jpg',
-  name: 'Medieval Castle',
-  price: {cash: 2000000, contacts: 0},
-  tier: 3
-}, {
-  imgsrc: 'peerage.jpg',
-  name: 'Peerage',
+  imgsrc: 'stables.jpg',
+  name: 'Stables',
   price: {cash: 500000, contacts: 0},
   tier: 3
 }, {
@@ -44,9 +39,14 @@ const StatusList = [{
   price: {cash: 2000000, contacts: 0},
   tier: 3
 }, {
-  imgsrc: 'nightclub_network.jpg',
-  name: 'Nightclub Network',
-  price: {cash: 2500000, contacts: 0},
+  imgsrc: 'medieval_castle.jpg',
+  name: 'Medieval Castle',
+  price: {cash: 2000000, contacts: 0},
+  tier: 3
+}, {
+  imgsrc: 'private_jet.jpg',
+  name: 'Private Jet',
+  price: {cash: 6000000, contacts: 0},
   tier: 4
 }, {
   imgsrc: 'five_star_hotel.jpg',
@@ -54,9 +54,9 @@ const StatusList = [{
   price: {cash: 7500000, contacts: 0},
   tier: 4
 }, {
-  imgsrc: 'private_jet.jpg',
-  name: 'Private Jet',
-  price: {cash: 6000000, contacts: 0},
+  imgsrc: 'nightclub_network.jpg',
+  name: 'Nightclub Network',
+  price: {cash: 2500000, contacts: 0},
   tier: 4
 }];
 

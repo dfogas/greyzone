@@ -20,6 +20,13 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === statusesActions.statusesTierToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'statuses', 'tier']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['dashboard', 'statuses', 'tier'], !toggle);
+    });
+  }
+
   if (action === statusesActions.statusTierSelect)
     jsonapiCursor(jsonapi => {
       return jsonapi

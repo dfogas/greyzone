@@ -1,5 +1,5 @@
-import './agentequipcontent.styl';
-import * as agentActions from './actions';
+import './agentequipcontent.styl'; //
+import * as agentsActions from './actions';
 import * as equipmentActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -8,18 +8,19 @@ import formatMoney from '../lib/formatmoney';
 
 import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
+import ArmoryToBriefing from '../navs/armorytobriefing.react';
 import EquipmentStock from '../equipments/equipmentstock.react';
 
 class AgentEquipContent extends Component {
   agentInArmoryToMission() {
     const {jsonapi} = this.props;
-    agentActions.agentInArmoryAssignMission(jsonapi.get('agentinarmory'));
+    agentsActions.agentInArmoryAssignMission(jsonapi.get('agentinarmory'));
   }
 
   backFromArmory() {
     const {jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
-    agentActions.backFromArmory(agentinarmory);
+    agentsActions.backFromArmory(agentinarmory);
   }
 
   unequipAll() {
@@ -39,6 +40,10 @@ class AgentEquipContent extends Component {
 
     return (
       <div id='AgentEquipContent'>
+        <div className='armory-code' id='ArmoryCodeRed' name='red' onClick={(e) => agentsActions.codeChange(e.target.getAttribute('name'))}></div>
+        <div className='armory-code' id='ArmoryCodeYellow' name='yellow' onClick={(e) => agentsActions.codeChange(e.target.getAttribute('name'))}></div>
+        <div className='armory-code' id='ArmoryCodeGreen' name='green' onClick={(e) => agentsActions.codeChange(e.target.getAttribute('name'))}></div>
+        <ArmoryToBriefing />
         <AgentScrollBarWithNavButtons
           agents={jsonapi.get('agents')}
           game={game}

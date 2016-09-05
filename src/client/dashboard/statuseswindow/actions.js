@@ -25,27 +25,20 @@ export function flashDashboard(message) {
 }
 
 export function statusesIntroToggle() {
-  // console.log($('#StatusesIntro').hide === 'function');
-  // if ($('#StatusesIntro').hide === 'function') {
-  //   console.log('statuses intro present');
-  //   $('#StatusesIntro').fadeOut(400, () => {
-  //     dispatch(statusesIntroToggle, {});
-  //   });
-  // } else {
-  //   console.log('statuses intro not present');
-  //   $('#StatusesWindow').append(`<div id='StatusesIntro'>${msg('dashboard.statuses.intro.textHtml')}</div>`);
-  //   $('#StatusesIntro').on('click', () => {
-  //     $('#StatusesIntro').hide().fadeIn(400, () => {
-  //       dispatch(statusesIntroToggle, {});
-  //     });
-  //   });
-  // }
   if (document.getElementById('StatusesIntro'))
     $('#StatusesIntro').fadeOut(400, () => {
       dispatch(statusesIntroToggle, {});
     });
   else
     dispatch(statusesIntroToggle, {});
+}
+
+export function statusesTierToggle() {
+  if (document.getElementById('StatusTier'))
+    $('#StatusTier').fadeOut(400, () => {
+      dispatch(statusesTierToggle, {});
+    });
+  else dispatch(statusesTierToggle, {});
 }
 
 export function statusTierSelect(tier) {
@@ -64,6 +57,7 @@ setToString('statuses', {
   buyStatus,
   flashDashboard,
   statusesIntroToggle,
+  statusesTierToggle,
   statusTierSelect,
   tierCursorChange,
   tierCompleteClose

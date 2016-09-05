@@ -3,7 +3,6 @@ import './tasktier.styl';
 import Component from '../../components/component.react';
 import immutable from 'immutable';
 import React from 'react';
-import uuid from '../../lib/guid';
 
 import Task from '../missioncard/tasks/task.react';
 import MissionResultList from '../missioncard/results/mission.result.list.react';
@@ -11,7 +10,7 @@ import MissionResultList from '../missioncard/results/mission.result.list.react'
 class TaskTier extends Component {
 
   render() {
-    const {activemission} = this.props;
+    const {activemission, game} = this.props;
     const tasks = activemission.get('tasks');
 
     return (
@@ -19,9 +18,9 @@ class TaskTier extends Component {
         {tasks.map((task, i) => {
           return (
             <Task
+              game={game}
               isCurrent={activemission.get('taskscompleted').size === i}
               isMission={true}
-              key={uuid() + 'missiontask'}
               task={task}
               />
           );
@@ -46,7 +45,8 @@ class TaskTier extends Component {
 }
 
 TaskTier.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map).isRequired
+  activemission: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  game: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default TaskTier;

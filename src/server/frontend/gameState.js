@@ -14,6 +14,7 @@ import EventList from '../lib/greyzone/events/events.list';
 import MissionsList from '../lib/greyzone/missions.list';
 import OptionsList from '../lib/greyzone/options.list';
 import StatusList from '../lib/greyzone/statuses/statuses.list';
+import TaskList from '../lib/greyzone/missions/task.list';
 import TrainingTable from '../lib/greyzone/globals/trainingtable';
 
 const gameState = {
@@ -55,6 +56,7 @@ const gameState = {
       }
     },
     statuses: StatusList,
+    tasks: TaskList,
     trainingtable: TrainingTable
   }
 };

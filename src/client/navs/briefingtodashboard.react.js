@@ -8,12 +8,12 @@ class BriefingToDashboard extends Component {
   render() {
     return (
       <Link to='dashboard'>
-        <button
-          className='ingame-nav-button'
+        <div
+          className='ingame-nav-curved-tail-arrow to-right'
           id='BriefingToDashboard'
           >
           {msg('menu.dashboard')}
-        </button>
+        </div>
       </Link>
     );
   }

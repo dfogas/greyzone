@@ -2,3 +2,49 @@
   color silver
   text-align center
   font-size 1.1em
+
+.ingame-nav-curved-tail-arrow
+  position relative
+  width 0
+  height 0
+  border-top 36px solid transparent
+  border-right 36px solid darkslateblue
+  transform rotate(140deg)
+
+.ingame-nav-curved-tail-arrow:after
+  content ''
+  position absolute
+  border 0 solid transparent
+  border-top 12px solid darkslateblue
+  border-radius 0px 80px 0px 0px
+  top -72px
+  left -11px
+  width 48px
+  height 48px
+  transform rotate(225deg)
+
+.to-right.ingame-nav-curved-tail-arrow
+  position relative
+  width 0
+  height 0
+  border-top 36px solid transparent
+  border-right 36px solid darkslateblue
+  transform rotate(-60deg)
+
+.to-right.ingame-nav-curved-tail-arrow:after
+  content ''
+  position absolute
+  border 0 solid transparent
+  border-top 12px solid darkslateblue
+  border-radius 80px 0 0 0
+  top -48px
+  left -36px
+  width 48px
+  height 48px
+  transform rotate(45deg)
+
+.to-right.ingame-nav-curved-tail-arrow.armory
+  border-right-color tan
+
+.to-right.ingame-nav-curved-tail-arrow.armory:after
+  border-top-color tan

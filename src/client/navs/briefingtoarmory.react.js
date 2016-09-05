@@ -8,10 +8,10 @@ class BriefingToArmory extends Component {
   render() {
     return (
       <Link to='armory'>
-        <button
-          className='ingame-nav-button'
+        <div
+          className='ingame-nav-curved-tail-arrow'
           id='BriefingToArmory'
-          >{msg('menu.armory')}</button>
+          >{msg('menu.armory')}</div>
       </Link>
     );
   }

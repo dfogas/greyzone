@@ -3,15 +3,21 @@ import Component from '../components/component.react';
 import React from 'react';
 import {Link} from 'react-router';
 import {msg} from '../intl/store';
+import $ from 'jquery';
 
 class DashboardToBriefing extends Component {
+  hightlight() {
+    $(React.findDOMNode(this)).css({color: 'teal'});
+  }
+
   render() {
     return (
       <Link to='briefing'>
-        <button
-          className='ingame-nav-button'
+        <div
+          className='ingame-nav-curved-tail-arrow'
           id='DashboardToBriefing'
-          >{msg('menu.briefing')}</button>
+          onMouseOver={this.hightlight.bind(this)}
+          >{msg('menu.briefing')}</div>
       </Link>
     );
   }

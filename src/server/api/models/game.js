@@ -16,7 +16,8 @@ var GameSchema = new Schema({
       collector: Boolean,
       dolcevita: Boolean,
       revenge: Boolean
-    }
+    },
+    tasks: Schema.Types.Mixed
   }
 });
 

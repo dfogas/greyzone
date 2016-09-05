@@ -8,12 +8,11 @@ class MissionToBriefing extends Component {
   render() {
     return (
       <Link to='briefing'>
-        <button
-          className='ingame-nav-button'
+        <div
+          className='ingame-nav-curved-tail-arrow'
           id='MissionToBriefingButton'
           >
-          {msg('menu.briefing')}
-        </button>
+          {msg('menu.briefing')}</div>
       </Link>
     );
   }

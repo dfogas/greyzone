@@ -16,7 +16,7 @@ if (isBrowser) {
 
   window.este = {
 
-    measureRender: false,
+    measureRender: true,
 
     loadState() {
       const stateStr = window.prompt('Paste the serialized state into the input.'); // eslint-disable-line no-alert

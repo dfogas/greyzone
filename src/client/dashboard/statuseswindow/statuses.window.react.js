@@ -1,5 +1,4 @@
 import './statuses.window.styl';
-// import * as dashboardActions from '../actions';
 import * as statusesActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -21,24 +20,29 @@ class StatusesWindow extends Component {
     return (
       <div id={`StatusesWindow${tierdisplayed}`}>
         <div id='StatusesWindowLabel'>{msg('dashboard.statuses.window.label')}</div>
-        <StatusTier
-          statuses={statuses}
-          statusesowned={owned}
-          tierdisplayed={dashboard.getIn(['statuses', 'tierdisplayed']) || 1}
-          />
         <Pointer pointsto='strategical' />
-        {dashboard.getIn(['statuses', 'tierdisplayed']) > 1 &&
-          <ShiftUp tierdisplayed={tierdisplayed} />}
-        {(dashboard.getIn(['statuses', 'tierdisplayed']) < 4 || typeof dashboard.getIn(['statuses', 'tierdisplayed']) === 'undefined') &&
-          <ShiftDown
-            tierdisplayed={tierdisplayed}
+        {dashboard.getIn(['statuses', 'tier']) &&
+          <StatusTier
+            statuses={statuses}
+            statusesowned={owned}
+            tierdisplayed={dashboard.getIn(['statuses', 'tierdisplayed']) || 1}
             />}
+        {dashboard.getIn(['statuses', 'tierdisplayed']) > 1
+          && dashboard.getIn(['statuses', 'tier'])
+          && <ShiftUp tierdisplayed={tierdisplayed} />}
+        {(dashboard.getIn(['statuses', 'tierdisplayed']) < 4 || typeof dashboard.getIn(['statuses', 'tierdisplayed']) === 'undefined')
+          && dashboard.getIn(['statuses', 'tier'])
+          && <ShiftDown tierdisplayed={tierdisplayed} />}
         {!dashboard.getIn(['statuses', 'intro']) &&
           <StatusesIntro />}
-        {dashboard.getIn(['statuses', 'intro']) &&
+        {true &&
           <div
-            id='StatusesHistoryButton'
+            id='StatusesHistoryToggle'
             onClick={(e) => statusesActions.statusesIntroToggle()}></div>}
+        {true &&
+          <div
+            id='TierShownToggle'
+            onClick={(e) => statusesActions.statusesTierToggle()}></div>}
         {isTierComplete(tierdisplayed, owned, statuses) &&
           <button
             id='StatusesTierCompleteButton'

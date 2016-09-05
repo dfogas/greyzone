@@ -5,6 +5,247 @@ import immutable from 'immutable';
 const Game = immutable.fromJS({
   "events" : [],
   "globals" : {
+    "tasks" : {
+      "cracks_and_wires" : [{
+          "name" : "tap",
+          "type" : "electronics",
+          "imgsrc" : "tap.jpg"
+        }, {
+          "name" : "tap",
+          "type" : "electronics",
+          "imgsrc" : "tap.jpg"
+        }
+      ],
+      "escape" : [{
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }, {
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }
+      ],
+      "big_brother" : [{
+          "name" : "monitor",
+          "type" : "electronics",
+          "imgsrc" : "monitor.jpg"
+        }, {
+          "name" : "monitor",
+          "type" : "electronics",
+          "imgsrc" : "monitor.jpg"
+        }
+      ],
+      "hotline" : [{
+          "name" : "monitor",
+          "type" : "electronics",
+          "imgsrc" : "monitor.jpg"
+        }, {
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }
+      ],
+      "hack" : [{
+          "name" : "decipher",
+          "type" : "electronics",
+          "imgsrc" : "decipher.jpg"
+        }, {
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }
+      ],
+      "disappear" : [{
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }
+      ],
+      "brawl" : [{
+          "name" : "close_combat",
+          "type" : "operations",
+          "imgsrc" : "close_combat.jpg"
+        }
+      ],
+      "silent_kill" : [{
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }, {
+          "name" : "hit",
+          "type" : "operations",
+          "imgsrc" : "hit.jpg"
+        }
+      ],
+      "eavesdropping" : [{
+          "name" : "tap",
+          "type" : "electronics",
+          "imgsrc" : "tap.jpg"
+        }
+      ],
+      "make_betray" : [{
+          "name" : "infiltrate",
+          "type" : "stealth",
+          "imgsrc" : "infiltrate.jpg"
+        }, {
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }
+      ],
+      "secret_pursuit" : [{
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }, {
+          "name" : "pursuit",
+          "type" : "operations",
+          "imgsrc" : "pursuit.jpg"
+        }
+      ],
+      "loops_within_loops" : [{
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }, {
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }, {
+          "name" : "tap",
+          "type" : "electronics",
+          "imgsrc" : "tap.jpg"
+        }
+      ],
+      "pain_and_lead" : [{
+          "name" : "close_combat",
+          "type" : "operations",
+          "imgsrc" : "close_combat.jpg"
+        }, {
+          "name" : "hit",
+          "type" : "operations",
+          "imgsrc" : "hit.jpg"
+        }
+      ],
+      "watch" : [{
+          "name" : "monitor",
+          "type" : "electronics",
+          "imgsrc" : "monitor.jpg"
+        }
+      ],
+      "shootout" : [{
+          "name" : "hit",
+          "type" : "operations",
+          "imgsrc" : "hit.jpg"
+        }, {
+          "name" : "hit",
+          "type" : "operations",
+          "imgsrc" : "hit.jpg"
+        }
+      ],
+      "pure_improvization" : [],
+      "infiltrate" : [{
+          "name" : "infiltrate",
+          "type" : "stealth",
+          "imgsrc" : "infiltrate.jpg"
+        }
+      ],
+      "underground_fight" : [{
+          "name" : "close_combat",
+          "type" : "operations",
+          "imgsrc" : "close_combat.jpg"
+        }, {
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }
+      ],
+      "rewriting_the_code" : [{
+          "name" : "decipher",
+          "type" : "electronics",
+          "imgsrc" : "decipher.jpg"
+        }, {
+          "name" : "decipher",
+          "type" : "electronics",
+          "imgsrc" : "decipher.jpg"
+        }
+      ],
+      "rigging_cameras" : [{
+          "name" : "monitor",
+          "type" : "electronics",
+          "imgsrc" : "monitor.jpg"
+        }, {
+          "name" : "tap",
+          "type" : "electronics",
+          "imgsrc" : "tap.jpg"
+        }
+      ],
+      "manipulate" : [{
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }
+      ],
+      "man_and_machine" : [{
+          "name" : "decipher",
+          "type" : "electronics",
+          "imgsrc" : "decipher.jpg"
+        }, {
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }
+      ],
+      "pursuit" : [{
+          "name" : "pursuit",
+          "type" : "operations",
+          "imgsrc" : "pursuit.jpg"
+        }
+      ],
+      "bomb_mule" : [{
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }, {
+          "name" : "tap",
+          "type" : "electronics",
+          "imgsrc" : "tap.jpg"
+        }
+      ],
+      "puppeteer" : [{
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }, {
+          "name" : "puppet",
+          "type" : "stealth",
+          "imgsrc" : "puppet.jpg"
+        }
+      ],
+      "silent_partner" : [{
+          "name" : "hide",
+          "type" : "stealth",
+          "imgsrc" : "hide.jpg"
+        }, {
+          "name" : "infiltrate",
+          "type" : "stealth",
+          "imgsrc" : "infiltrate.jpg"
+        }
+      ],
+      "understand" : [{
+          "name" : "decipher",
+          "type" : "electronics",
+          "imgsrc" : "decipher.jpg"
+        }
+      ],
+      "shoot" : [{
+          "name" : "hit",
+          "type" : "operations",
+          "imgsrc" : "hit.jpg"
+        }
+      ]
+    },
     "statuses" : [{
         "imgsrc" : "yacht.jpg",
         "name" : "Yacht",

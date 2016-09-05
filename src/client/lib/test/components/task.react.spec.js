@@ -4,6 +4,7 @@ import {render} from '../utils/utils';
 import Task from '../../../mission/missioncard/tasks/task.react';
 import React from 'react';
 import immutable from 'immutable';
+import GameState from '../data/game.state.test';
 
 /* LESSON: Reach.Children utility helps manipulate opaque data structure of component.props.children */
 
@@ -11,6 +12,7 @@ describe('task react component', () => {// eslint-disable-line no-undef
   it('renders correctly', () => {// eslint-disable-line no-undef
     const component = render(
       <Task
+        game={GameState}
         id='Task'
         name='task'
         onSave={() => {}}
@@ -23,9 +25,8 @@ describe('task react component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(component.type).to.equal('ul');
-    expect(component.props.className).to.equal('task');
+    expect(component.type).to.equal('div');
+    expect(component.props.className).to.equal('task-fieldset');
     expect(React.Children.count(component.props.children)).to.equal(3);
-    // expect(component.props.children).
   });
 });

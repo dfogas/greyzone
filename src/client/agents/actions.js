@@ -2,12 +2,10 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../state';
 import cconfig from '../client.config';
-// import {msg} from '../intl/store';
 
 import actionDices from '../lib/bml/actiondices';
 import agentIncurDelay from '../lib/bml/agentincurdelay';
 import agentRankup from '../lib/bml/agentrankup';
-// import dayandtime from '../lib/dayandtime';
 import isEquipmentBackfire from '../lib/bml/isequipmentbackfire';
 import leadershipcheck from '../lib/bml/leadershipcheck';
 import Sound from '../lib/sound';
@@ -90,6 +88,10 @@ export function buyEnhancement(enhancement) {
     flashArmory(`Insufficient funds.`);
 }
 
+export function codeChange(color) {
+  dispatch(codeChange, {color});
+}
+
 export function enhancementTalk(message) {
   dispatch(enhancementTalk, message);
 }
@@ -142,6 +144,7 @@ setToString('agents', {
   backFromArmory,
   backtoRoster,
   buyEnhancement,
+  codeChange,
   enhancementTalk,
   equip,
   flashArmory,

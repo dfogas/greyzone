@@ -77,7 +77,9 @@ class BriefingScreen extends Component {
               missions={jsonapi.get('missions')}
               />}
           {jsonapi.getIn(['components', 'briefing', 'taskhelp', 'toggle']) &&
-            <TaskHelpOverview jsonapi={jsonapi} />}
+            <TaskHelpOverview
+              game={game}
+              jsonapi={jsonapi} />}
           {jsonapi.getIn(['components', 'briefing', 'deskplan', 'toggle']) &&
             <EventsOverview jsonapi={jsonapi} />}
           {(jsonapi.getIn(['activemission', 'agentsonmission']).size ||

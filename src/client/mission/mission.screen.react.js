@@ -60,6 +60,7 @@ class MissionTrackingScreen extends Component {
         {screenTrans &&
           <TaskTier
             activemission={jsonapi.get('activemission')}
+            game={game}
             />}
         {screenTrans &&
           <TableTopTier

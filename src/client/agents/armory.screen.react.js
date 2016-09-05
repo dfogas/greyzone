@@ -7,7 +7,6 @@ import {msg} from '../intl/store';
 import $ from 'jquery';
 
 import AgentEquipContent from './agentequipcontent.react';
-import ArmoryToBriefing from '../navs/armorytobriefing.react';
 
 class ArmoryScreen extends Component {
   componentDidMount() {
@@ -31,7 +30,6 @@ class ArmoryScreen extends Component {
     return (
       <div id='ArmoryScreen' >
         <div id='ArmoryScreenLabel'>{msg('armory.screen.label')}</div>
-        <ArmoryToBriefing />
         <AgentEquipContent
           game={game}
           jsonapi={jsonapi}
