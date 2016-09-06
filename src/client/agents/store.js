@@ -77,13 +77,6 @@ export const dispatchToken = register(({action, data}) => {
         .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
-  if (action === agentsActions.enhancementTalk)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['dashboard', 'enhancementtalk'], data.message)
-        .setIn(['dashboard', 'enhancementtalkindex'], 'dialog');
-    });
-
   if (action === agentsActions.equip) {
     const equipments = jsonapiCursor(['equipments']);
     const stockindex = equipments.indexOf(equipments.find(equipment => equipment.get('name') === data.get('name')));

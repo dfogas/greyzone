@@ -1,5 +1,4 @@
 import './agent.to.talk.to.styl'; //
-import * as agentsActions from '../agents/actions';
 import * as talkActions from './actions';
 // import * as talkEnhancementsActions from './enhancements/actions';
 import Component from '../components/component.react';
@@ -38,7 +37,7 @@ class AgentToTalkTo extends Component {
         {agent &&
           <img
             draggable='false'
-            onClick={(e) => agentsActions.agentTalking(agent)}
+            onClick={(e) => talkActions.agentTalking(agent)}
             src={formattedImg(isLoyal, true, agent)}
             />}
       </div>

@@ -147,7 +147,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
   });
   it('renders correctly self on display', () => {// eslint-disable-line no-undef
     const component = render(

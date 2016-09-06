@@ -5,11 +5,12 @@
 
 import Agent from '../../../server/lib/greyzone/agents.generator';
 import ProfilePics from '../../../server/lib/greyzone/profilepics.list';
-import {gameCursor} from '../../state';
+import {gameCursor, jsonapiCursor} from '../../state';
+import allAgents from '../../lib/bml/allagents';
 
 function noDoubleAgents(agents, rank, specialist) {
   let noDoubleAgent = Agent(specialist, rank, gameCursor(['globals', 'trainingtable']));
-  const agentPics = agents.map(agent => agent.imgsrc);
+  const agentPics = allAgents(jsonapiCursor()).map(agent => agent.imgsrc);
   if (agentPics.indexOf(noDoubleAgent.imgsrc) === -1)
     // console.log('picture is unused yet');
     return noDoubleAgent;

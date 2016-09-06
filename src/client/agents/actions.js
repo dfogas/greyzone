@@ -12,7 +12,6 @@ import Sound from '../lib/sound';
 import $ from 'jquery';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
-const isNotProduction = process.env.NODE_ENV !== 'production';
 
 export function toArmory(agent) {
   if (agent)
@@ -35,30 +34,6 @@ export function agentInArmoryAssignMission(agent) {
     flashArmory('Assigned!');
     dispatch(agentInArmoryAssignMission, {agent});
   }
-}
-
-export function agentTalking(agent) {
-  const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
-  const enhancements = jsonapiCursor(['enhancements']);
-  const self = jsonapiCursor(['self']);
-  const isNotSelf = self.get('id') !== agent.get('id');
-
-  if (agent.get('prison'))
-    isNotProduction ? alert('add prison dialog here') : console.log('work in progress');//eslint-disable-line no-alert, no-unused-expressions, no-console
-  else if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
-    dispatch(enhancementTalk, {message: 'prisonbreak'});
-  else if (!isNotSelf && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
-    dispatch(enhancementTalk, {message: 'silencewitness'});
-  else if (isNotSelf && agent.get('specialist') === 'technician' && goodlabel && agent.get('missionsDone').size > 10 && !enhancements.find(enh => enh.get('missiontag') === 'destroyevidence'))
-    dispatch(enhancementTalk, {message: 'destroyevidence'});
-  else if (isNotSelf && agent.get('specialist') === 'spy' && goodlabel && agent.get('loyalty') === 'loyal' && !enhancements.find(enh => enh.get('missiontag') === 'afriendininnercircle'))
-    dispatch(enhancementTalk, {message: 'afriendininnercircle'});
-  else if (isNotSelf && agent.get('personality') === 'SP' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'bankrobbery'))
-    dispatch(enhancementTalk, {message: 'bankrobbery'});
-  else if (isNotSelf && agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
-    dispatch(enhancementTalk, {message: 'anolddebt'});
-  else
-    isNotProduction ? alert('add dialog option here') : console.log('work in progress'); //eslint-disable-line no-alert, no-unused-expressions, no-console
 }
 
 export function assignTask(agent) {
@@ -90,10 +65,6 @@ export function buyEnhancement(enhancement) {
 
 export function codeChange(color) {
   dispatch(codeChange, {color});
-}
-
-export function enhancementTalk(message) {
-  dispatch(enhancementTalk, message);
 }
 
 export function equip(equipment) {
@@ -139,13 +110,11 @@ export function setETA(agent, equipment) {
 setToString('agents', {
   toArmory,
   agentInArmoryAssignMission,
-  agentTalking,
   assignTask,
   backFromArmory,
   backtoRoster,
   buyEnhancement,
   codeChange,
-  enhancementTalk,
   equip,
   flashArmory,
   getRank,

@@ -1,5 +1,4 @@
 import './agent.profile.styl';
-import * as agentsActions from '../actions';
 import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
@@ -13,7 +12,6 @@ class AgentProfile extends Component {
     const {agent, agentondisplay, isDisplay} = this.props;
     if (agent.get('id') === agentondisplay.get('id') && isDisplay)
       dashboardActions.agentDialogToggle();
-      // agentsActions.agentTalking(agent);
   }
 
   render() {

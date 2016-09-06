@@ -15,4 +15,11 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi.setIn(['talk', 'participants'], immutable.fromJS(Array(0)));
     });
 
+  if (action === talkActions.enhancementTalk)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'enhancementtalk'], data.message)
+        .setIn(['dashboard', 'enhancementtalkindex'], 'dialog');
+    });
+
 });

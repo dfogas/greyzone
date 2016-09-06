@@ -1,6 +1,5 @@
 import './talk.screen.styl';
 // import talkEnhancementsActions from './actions';
-import * as agentsActions from '../agents/actions';
 import * as talkActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -24,9 +23,6 @@ class TalkScreen extends Component {
           agentid={jsonapi.getIn(['talk', 'participants', 0])}
           jsonapi={jsonapi}
           />
-        <button
-          id='TalkEnhancementsButton'
-          onClick={(e) => agentsActions.agentTalking(jsonapi.get('agents').get(0))}>Talk New Missions</button>
         {jsonapi.getIn(['dashboard', 'enhancementtalk']) &&
           <EnhancementTalk jsonapi={jsonapi} />}
         <Link to='dashboard'>

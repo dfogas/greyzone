@@ -4,8 +4,6 @@ import {gameCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import actiondices from '../lib/bml/actiondices';
 import FirstMission from '../../server/lib/greyzone/missions/tutorial/first.mission';
-import Sanya from '../../server/lib/greyzone/agents/sanya.agent';
-import Miyako from '../../server/lib/greyzone/agents/miyako.agent';
 import Agent from '../../server/lib/greyzone/agents.generator';
 
 export function campaignIntroViewed(campaignname) {
@@ -25,19 +23,21 @@ export function firstMissionSetup() {
   const EquipmentList = gameCursor(['globals', 'equipments']);
   // AY! terrible hack
   // TODO: find better way to write this
+  const partnerTechnician = Agent('technician', 3, gameCursor(['globals', 'trainingtable']));
   let mission;
   if (self.get('specialist') === 'technician')
     mission = FirstMission
       .setIn(['mission', 'currenttask', 'agentontask'], self)
-      .update('agentsonmission', val => val.push(immutable.fromJS(Sanya)))
+      .update('agentsonmission', val => val.push(immutable.fromJS(Agent('operative', 3, gameCursor(['globals', 'trainingtable']))).set('equipments', immutable.fromJS([EquipmentList.get(0), EquipmentList.get(6)]))))
       .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(self, FirstMission.getIn(['tasks', 0]))))
       .setIn(['mission', 'currenttask', 'agentontask', 'equipments'], immutable.fromJS([EquipmentList.get(3), EquipmentList.get(4)]))
       .setIn(['rewards', 'character'], 'spy');
   else
     mission = FirstMission
-      .setIn(['mission', 'currenttask', 'agentontask'], immutable.fromJS(Miyako))
+      .setIn(['mission', 'currenttask', 'agentontask'], immutable.fromJS(partnerTechnician))
       .update('agentsonmission', val => val.push(self.set('equipments', immutable.fromJS([EquipmentList.get(0), EquipmentList.get(6)]))))
-      .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(immutable.fromJS(Miyako), FirstMission.getIn(['tasks', 0]))))
+      .setIn(['mission', 'currenttask', 'actiondices'], immutable.fromJS(actiondices(immutable.fromJS(partnerTechnician), FirstMission.getIn(['tasks', 0]))))
+      .setIn(['mission', 'currenttask', 'agentontask', 'equipments'], immutable.fromJS([EquipmentList.get(3), EquipmentList.get(4)]))
       .setIn(['rewards', 'character'], self.get('specialist') === 'spy' ? 'operative' : 'spy');
 
   mission = mission.set('started', true).set('tier', 3);

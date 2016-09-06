@@ -1,4 +1,4 @@
-import Component from '../../components/component.react'; //
+import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import $ from 'jquery';
@@ -6,11 +6,11 @@ import $ from 'jquery';
 class PlayerHistorySlideText extends Component {
   componentDidUpdate() {
     $('.player-history-slide-text-overlay').css({width: '1540px'});
-    TweenMax.to('.player-history-slide-text-overlay', 5, {width: 0});
+    TweenMax.to('.player-history-slide-text-overlay', 3, {width: 0});//eslint-disable-line no-undef
   }
 
   componentDidMount() {
-    TweenMax.to('.player-history-slide-text-overlay', 5, {width: 0});
+    TweenMax.to('.player-history-slide-text-overlay', 3, {width: 0});//eslint-disable-line no-undef
   }
 
   render() {

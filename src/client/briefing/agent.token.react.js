@@ -4,6 +4,7 @@ import Component from '../components/component.react.js';
 import immutable from 'immutable';
 import classnames from 'classnames';
 import formattedImg from '../lib/bml/formattedimg';
+import prop from '../lib/general/r.i.prop';
 
 class AgentToken extends Component {
   drag(ev) {
@@ -12,13 +13,13 @@ class AgentToken extends Component {
 
   render() {
     const {agent/*, jsonapi*/} = this.props;
-    const isLoyal = agent.get('loyalty') === 'loyal';
+    const isLoyal = prop('loyalty', agent) === 'loyal';
 
     return (
       <div
         className={classnames('agent-token', {'istalk': this.props.isTalk})}
         draggable='true'
-        id={agent.get('name')}
+        id={prop('name', agent)}
         onDragStart={this.drag}
         style={{backgroundImage: `url(../${formattedImg(isLoyal, false, agent)})`}}>
       </div>

@@ -3,7 +3,6 @@ import './taskhelp.overview.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-import uuid from '../lib/guid';
 
 import Task from '../mission/missioncard/tasks/task.react';
 

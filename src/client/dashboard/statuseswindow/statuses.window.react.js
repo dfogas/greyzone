@@ -1,4 +1,4 @@
-import './statuses.window.styl';
+import './statuses.window.styl'; //
 import * as statusesActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -18,7 +18,7 @@ class StatusesWindow extends Component {
     const {dashboard, statuses, owned} = this.props;
     const tierdisplayed = dashboard.getIn(['statuses', 'tierdisplayed']) || 1;
     return (
-      <div id={`StatusesWindow${tierdisplayed}`}>
+      <div className={isTierComplete(tierdisplayed, owned, statuses) ? '' : 'desaturated-background'} id={`StatusesWindow${tierdisplayed}`}>
         <div id='StatusesWindowLabel'>{msg('dashboard.statuses.window.label')}</div>
         <Pointer pointsto='strategical' />
         {dashboard.getIn(['statuses', 'tier']) &&

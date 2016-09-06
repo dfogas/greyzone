@@ -5,7 +5,6 @@
   does not check for self
   BML: true
 */
-
 function checkThenConcat(item) {
   if (item)
     return [item];
@@ -13,12 +12,13 @@ function checkThenConcat(item) {
     return [];
 }
 
-function allAgents(jsonapi) {
+const allAgents = function(jsonapi) {
   const agents = jsonapi.get('agents');
   const agentsonmission = jsonapi.getIn(['activemission', 'agentsonmission']);
   const agentinarmory = jsonapi.get('agentinarmory');
   const agentbeingsaved = jsonapi.get('agentbeingsaved');
   const agentontask = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask']);
+  const self = jsonapi.get('self');
 
   const allagents = agents
     .concat(agentsonmission)
@@ -26,8 +26,10 @@ function allAgents(jsonapi) {
     .concat(checkThenConcat(agentbeingsaved))
     .concat(checkThenConcat(agentontask));
 
-  return allagents;
-}
+  const playerAgentIsActive = allagents.find(agent => agent.get('id') === self.get('id'));
 
-// export default allAgents;
-module.exports = allAgents;
+  return playerAgentIsActive ? allagents : allagents.concat(checkThenConcat(self));
+};
+
+export default allAgents;
+// module.exports = allAgents;
