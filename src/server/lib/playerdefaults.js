@@ -1,5 +1,5 @@
 /*
-  Object that serves main component of initial state of new player
+  Object that serves main component of initial state of new player --
   It is merged to some state skeleton and saved to database via player.js controller on server
 */
 import CountryList from './greyzone/countries/countries.list';
@@ -43,7 +43,7 @@ var playerdefaults = {
   achievements: [],
   activemission: defaultActiveMission,
   agents: [],
-  countrystats: playerCountryStats(CountryList, 0, 1),
+  countrystats: playerCountryStats(CountryList, 0, 2),
   components: {
     briefing: {
       missionthumbnail: {

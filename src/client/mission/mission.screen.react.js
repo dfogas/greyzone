@@ -47,6 +47,8 @@ class MissionTrackingScreen extends Component {
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);
     const screenTrans = jsonapi.getIn(['components', 'mission', 'transition']);
+    const countryofoperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
+    // {msg('mission.screen.label')}
 
     return (
       <div
@@ -56,7 +58,7 @@ class MissionTrackingScreen extends Component {
           boxShadow: missionBoxShadow(jsonapi.get('activemission'))
         }}
         >
-        <div id='MissionScreenLabel'>{msg('mission.screen.label')}</div>
+        <div id='MissionScreenLabel'>Mission in {countryofoperation}</div>
         {screenTrans &&
           <TaskTier
             activemission={jsonapi.get('activemission')}
@@ -64,8 +66,7 @@ class MissionTrackingScreen extends Component {
             />}
         {screenTrans &&
           <TableTopTier
-            activemission={jsonapi.get('activemission')}
-            tutorial={jsonapi.get('tutorial')}
+            jsonapi={jsonapi}
             />}
         {screenTrans &&
           <AgentsTier

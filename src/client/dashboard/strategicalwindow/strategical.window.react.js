@@ -11,6 +11,7 @@ import DashboardToCommand from '../../navs/dashboardtocommand.react';
 // import DashboardToTalk from '../../navs/dashboardtotalk.react';
 
 import AgentsWindow from '../agentswindow/agents.window.react';
+import CountryStateOverview from '../country.state.overview.react';
 import CountryStatsWindow from '../countrieswindow/countrystats.window.react';
 import IntermediateGoal from '../../gameflow/intermediate.goal.react';
 import Logout from '../../auth/logout.react';
@@ -24,6 +25,10 @@ class StrategicalWindow extends Component {
     const allagents = allAgents(jsonapi);
     return (
       <div id='StrategicalWindow'>
+        <CountryStateOverview
+          game={game}
+          jsonapi={jsonapi}
+          />
         <PlayersWindow
           game={game}
           isLoggedIn={isLoggedIn}

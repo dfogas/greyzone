@@ -1,4 +1,4 @@
-import './successbutton.styl';
+import './successbutton.styl'; //
 import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -24,12 +24,9 @@ class SuccessButton extends Component {
 
   render() {
     return (
-      <input
+      <button
         id='SuccessButton'
-        onClick={this.missionSuccess.bind(this)}
-        type='button'
-        value={msg('mission.buttons.success')}
-        />
+        onClick={this.missionSuccess.bind(this)}>{msg('mission.buttons.success')}</button>
     );
   }
 }

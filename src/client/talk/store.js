@@ -10,6 +10,14 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi.updateIn(['talk', 'participants'], val => val.push(data.agent.get('id')));
     });
 
+  if (action === talkActions.agentDialogToggle) {
+    const toggle = jsonapiCursor(['components', 'dashboard', 'agentdialog']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'dashboard', 'agentdialog'], !toggle);
+    });
+  }
+
   if (action === talkActions.clearParticipants)
     jsonapiCursor(jsonapi => {
       return jsonapi.setIn(['talk', 'participants'], immutable.fromJS(Array(0)));

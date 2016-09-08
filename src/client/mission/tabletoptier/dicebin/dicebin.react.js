@@ -35,7 +35,7 @@ class DiceBin extends Component {
         >
         {/*missionstarted && canCompleteTask && <div className='dice-bin' onDragOver={this.allowDrop} onDrop={this.drop.bind(this)} />*/}
         {missionstarted && !canCompleteTask(currenttask.toJS(), actiondices.toJS()) ?
-          `Drop die here to retry.` :
+          `Drop die here to retry or use equipment.` :
           <div
             className='dice-bin'
             onDragOver={this.allowDrop}

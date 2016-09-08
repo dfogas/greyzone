@@ -32,14 +32,15 @@ class TableTop extends Component {
   }
 
   protectiveGearUse() {
-    const {activemission} = this.props;
-    const selecteddices = activemission.getIn(['mission', 'currenttask', 'actiondices']).filter(dice => dice.get('rollable'));
+    const {jsonapi} = this.props;
+    const selecteddices = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'actiondices']).filter(dice => dice.get('rollable'));
 
     diceActions.protectiveGearUse(selecteddices);
   }
 
   render() {
-    const {activemission/*, tutorial*/} = this.props;
+    const {jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const currenttask = activemission.getIn(['tasks', activemission.get('taskscompleted').size]);
@@ -48,6 +49,11 @@ class TableTop extends Component {
     const remainingdices = actiondices.map(dice => (immutable.fromJS({type: dice.get('type'), dicekey: dice.get('dicekey'), rollable: dice.get('rollable')})));
     const taskscompleted = activemission.get('taskscompleted');
 
+    const paying = jsonapi.get('paying') ? jsonapi.get('paying').toJS() : null;
+    const isPaying = paying ?
+    Object.keys(paying).reduce((prev, curr, index, array) => {
+      return paying[curr] || prev;
+    }, false) : false;
     // console.log(actiondices.toJS());
     // console.log(remainingdices.toJS());
     // console.log(dicesthrown.toJS());
@@ -74,22 +80,20 @@ class TableTop extends Component {
                 />
             );
           }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
-          taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">It seems, that you have been successfull.</div>)
+          taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">You have been successfull.</div>)
           : (activemission.getIn(['mission', 'currenttask', 'agentlock']) ? (<div id="MissionStartStatus">You most likely failed mission.</div>) : (<div id="MissionStartStatus">Continue next task.</div>))
         }
-        <ProbabilityBar
-          activemission={activemission}
-          />
+        {isPaying &&
+          <ProbabilityBar
+            activemission={activemission}
+            />}
         {currenttask &&
           canCompleteTask(currenttask.toJS(), actiondices.toJS()) &&
           missionStarted &&
           (activemission.get('tasks').size !== activemission.get('taskscompleted').size) &&
-          <input
+          <button
             className='taskcomplete-button'
-            onClick={this.completeTask.bind(this)}
-            type='button'
-            value='CompleteTask'
-            />}
+            onClick={this.completeTask.bind(this)}>Complete Task</button>}
         {activemission.getIn(['equipmenteffects', 'protectivegear']) &&
           <button id='ProtectiveGearButton' onClick={this.protectiveGearUse.bind(this)}>Use P.G.</button>}
         {agentontask &&
@@ -104,8 +108,7 @@ class TableTop extends Component {
 }
 
 TableTop.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map),
-  tutorial: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default TableTop;

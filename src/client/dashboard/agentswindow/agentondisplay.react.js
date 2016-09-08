@@ -1,10 +1,10 @@
-import './agentondisplay.styl'; //
+import './agentondisplay.styl';
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import allAgents from '../../lib/bml/allagents';
-// import {msg} from '../../intl/store'; //
+// import {msg} from '../../intl/store';
 
 import AgentCard from '../../agents/agentcard/agent.card.react';
 import DialogBox from './dialog.box.react';

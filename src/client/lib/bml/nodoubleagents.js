@@ -10,7 +10,7 @@ import allAgents from '../../lib/bml/allagents';
 
 function noDoubleAgents(agents, rank, specialist) {
   let noDoubleAgent = Agent(specialist, rank, gameCursor(['globals', 'trainingtable']));
-  const agentPics = allAgents(jsonapiCursor()).map(agent => agent.imgsrc);
+  const agentPics = allAgents(jsonapiCursor()).map(agent => agent.get('imgsrc'));
   if (agentPics.indexOf(noDoubleAgent.imgsrc) === -1)
     // console.log('picture is unused yet');
     return noDoubleAgent;

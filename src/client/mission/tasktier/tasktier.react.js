@@ -11,6 +11,7 @@ class TaskTier extends Component {
 
   render() {
     const {activemission, game} = this.props;
+    const isPlaceholder = activemission.get('title') === 'Quiet before the Storm';
     const tasks = activemission.get('tasks');
 
     return (
@@ -26,19 +27,21 @@ class TaskTier extends Component {
           );
         })}
         <br />
-        <MissionResultList
-          activemissiontitle={activemission.get('title')}
-          isLoss={true}
-          isTask={true}
-          losses={activemission.get('losses')}
-          />
+        {!isPlaceholder &&
+          <MissionResultList
+            activemissiontitle={activemission.get('title')}
+            isLoss={true}
+            isTask={true}
+            losses={activemission.get('losses')}
+          />}
         <br />
-        <MissionResultList
-          activemissiontitle={activemission.get('title')}
-          isReward={true}
-          isTask={true}
-          rewards={activemission.get('rewards')}
-          />
+        {!isPlaceholder &&
+          <MissionResultList
+            activemissiontitle={activemission.get('title')}
+            isReward={true}
+            isTask={true}
+            rewards={activemission.get('rewards')}
+          />}
       </div>
     );
   }

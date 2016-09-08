@@ -1,4 +1,4 @@
-import './agent.to.talk.to.styl'; //
+import './agent.to.talk.to.styl';
 import * as talkActions from './actions';
 // import * as talkEnhancementsActions from './enhancements/actions';
 import Component from '../components/component.react';
@@ -6,6 +6,9 @@ import React from 'react';
 import formattedImg from '../lib/bml/formattedimg';
 import immutable from 'immutable';
 import prop from '../lib/general/r.i.prop';
+import allAgents from '../lib/bml/allagents';
+
+import DialogBox from '../dashboard/agentswindow/dialog.box.react';
 
 class AgentToTalkTo extends Component {
   allowDrop(ev) {
@@ -24,7 +27,7 @@ class AgentToTalkTo extends Component {
 
   render() {
     const {agentid, jsonapi} = this.props;
-    const agent = jsonapi.get('agents').find(agent => agent.get('id') === agentid);
+    const agent = allAgents(jsonapi).find(agent => agent.get('id') === agentid);
     const isLoyal = prop('loyalty', agent) === 'loyal';
     return (
       <div
@@ -32,6 +35,8 @@ class AgentToTalkTo extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
+        {jsonapi.getIn(['components', 'dashboard', 'agentdialog']) &&
+          <DialogBox agent={agent} jsonapi={jsonapi} />}
         {agent &&
           <button id='DoneTalkingButton' onClick={(e) => talkActions.clearParticipants()}>Back</button>}
         {agent &&

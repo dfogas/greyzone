@@ -10,6 +10,10 @@ export function addParticipant(agent) {
   dispatch(addParticipant, {agent});
 }
 
+export function agentDialogToggle() {
+  dispatch(agentDialogToggle, {});
+}
+
 export function agentTalking(agent) {
   const goodlabel = jsonapiCursor(['enhancements']).find(enh => enh.get('name') === 'Good Label');
   const enhancements = jsonapiCursor(['enhancements']);
@@ -31,7 +35,7 @@ export function agentTalking(agent) {
   else if (isNotSelf && agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
     dispatch(enhancementTalk, {message: 'anolddebt'});
   else
-    isNotProduction ? alert(msg(`agents.talk.${agentTalk(agent, self)}`)) : console.log('work in progress'); //eslint-disable-line no-alert, no-unused-expressions, no-console
+    isNotProduction ? agentDialogToggle() : console.log('work in progress'); //eslint-disable-line no-alert, no-unused-expressions, no-console
 }
 
 export function clearParticipants() {
@@ -48,6 +52,7 @@ export function enhancementTalk(message) {
 
 setToString('talk', {
   addParticipant,
+  agentDialogToggle,
   agentTalking,
   clearParticipants,
   endConversation,

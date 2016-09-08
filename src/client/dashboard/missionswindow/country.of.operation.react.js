@@ -4,7 +4,6 @@ import * as travelActions from '../travelwindow/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-// import {msg} from '../../intl/store';
 import DropDown from 'react-dropdown-w-react13';
 
 class CountryOfOperation extends Component {
@@ -25,9 +24,6 @@ class CountryOfOperation extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const countries = game.getIn(['globals', 'countries']);
-    const countryOfOperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
-    const countrystats = jsonapi.get('countrystats');
-    const countryOfOperationIndex = countryOfOperation ? countrystats.indexOf(countrystats.find(cs => cs.get('name') === countryOfOperation)) : 0;
     return (
       <div id='CountryOfOperation'>
         <DropDown
@@ -43,9 +39,6 @@ class CountryOfOperation extends Component {
           }).toJS()}
           value={jsonapi.getIn(['dashboard', 'countryofoperation']) || 'Operating In ..'}
           />
-          <div className='country-obscurity-counter'>
-            Obscurity {Math.round10(jsonapi.getIn(['countrystats', countryOfOperationIndex, 'obscurity']), -2)}
-          </div>
       </div>
     );
   }

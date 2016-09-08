@@ -32,6 +32,8 @@ class AgentEquipmentSlot extends Component {
     equipmentActions.use(agent, {agentequipment, equipmentindex});
     if (!tutorial.getIn(['firstmission', 'equipmentusehint']))
       tutorialFirstMissionActions.equipmentUseHintToggle();
+    if (tutorial.getIn(['firstmission', 'equipmentusehint']) && !tutorial.getIn(['firstmission', 'anotherequipmentusehint']))
+      tutorialFirstMissionActions.anotherEquipmentUseHintToggle();
     agentActions.setETA(agent, agentequipment);
   }
 
