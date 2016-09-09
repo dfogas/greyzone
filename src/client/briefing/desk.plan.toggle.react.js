@@ -6,6 +6,16 @@ import $ from 'jquery';
 import Sound from '../lib/sound';
 
 class TablePlanToggle extends Component {
+  travelSelectionToggle(e) {
+    e.preventDefault();
+    if (typeof ($('#CountryOfOperation').val()) === 'string') // check if item is present in browser's DOM
+      $('#CountryOfOperation').addClass('animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+        // animationsActions.animationEnd(); //
+        componentsActions.travelSelectionToggle();
+      });
+    else componentsActions.travelSelectionToggle();
+  }
+
   dimPlan() {
     $(React.findDOMNode(this)).css('box-shadow', '');
   }
@@ -20,7 +30,7 @@ class TablePlanToggle extends Component {
     return (
       <div
         id='TablePlanToggle'
-        onClick={(e) => componentsActions.taskHelpToggle()}
+        onClick={this.travelSelectionToggle}
         onMouseLeave={this.dimPlan.bind(this)}
         onMouseOver={this.highlightPlan.bind(this)}>
       </div>

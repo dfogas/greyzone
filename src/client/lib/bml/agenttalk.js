@@ -1,34 +1,35 @@
-/* ImmutableMap(Agent) ImmutableMap(Agent) -> String
+/* ImmutableMap(Agent) ImmutableMap(Agent) -> String //
    generuje string pro dialogy s agenty (no spíše jednostranné prohlášení, zatím)
    BML: true
 */
+import prop from '../general/r.i.prop';
 
 const agentTalk = function(agent, self) {
-  const tired = agent.get('ETA') - Date.now() > 0;
+  const tired = prop('ETA', agent) - Date.now() > 0;
   // console.log('tired: ' + tired);
-  if (agent.get('KIA'))
+  if (prop('KIA', agent) === true)
     return 'dead';
-  else if (agent.get('prison'))
+  else if (prop('prison', agent) === true)
     return 'prison';
-  else if ((agent.get('id') === self.get('id')) && tired)
+  else if ((prop('id', agent) === self.get('id')) && tired)
     return 'tired.self';
-  else if (agent.get('personality') === 'SP' && tired)
+  else if (prop('personality', agent) === 'SP' && tired)
     return 'tired.intimate';
-  else if (agent.get('personality') === 'SJ' && tired)
+  else if (prop('personality', agent) === 'SJ' && tired)
     return 'tired.soldiery';
-  else if (agent.get('personality') === 'NT' && tired)
+  else if (prop('personality', agent) === 'NT' && tired)
     return 'tired.cheeky';
-  else if (agent.get('personality') === 'NF' && tired)
+  else if (prop('personality', agent) === 'NF' && tired)
     return 'tired.evasive';
-  else if (agent.get('id') === self.get('id'))
+  else if (prop('id', agent) === self.get('id'))
     return 'self';
-  else if (agent.get('personality') === 'SP')
+  else if (prop('personality', agent) === 'SP')
     return 'intimate';
-  else if (agent.get('personality') === 'SJ')
+  else if (prop('personality', agent) === 'SJ')
     return 'soldiery';
-  else if (agent.get('personality') === 'NT')
+  else if (prop('personality', agent) === 'NT')
     return 'cheeky';
-  else if (agent.get('personality') === 'NF')
+  else if (prop('personality', agent) === 'NF')
     return 'evasive';
   else if (tired) {
     let chance = Math.random();

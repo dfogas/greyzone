@@ -11,8 +11,8 @@ const MoneyChannelling = [{
   title: title,
   tasks: [
     [tap, monitor],
-    [puppet, puppet, tap],
-    [decipher, decipher]
+    [puppet, improv_st, tap],
+    [decipher, improv_el]
   ],
   inCountry: '',
   rewards: {
@@ -30,8 +30,8 @@ const MoneyChannelling = [{
   title: title,
   tasks: [
     [tap, monitor, improv_el],
-    [puppet, puppet, tap],
-    [decipher, decipher]
+    [puppet, improv_st, tap],
+    [decipher, improv_el]
   ],
   inCountry: '',
   rewards: {

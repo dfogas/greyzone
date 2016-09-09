@@ -11,7 +11,6 @@ import {msg} from '../../intl/store';
 import MissionAcceptForm from './missionaccept.form.react';
 import MercuryNetwork from './mercury.network.react';
 import DashboardMissionsList from './dashboard.missions.list.react';
-import CountryOfOperation from './country.of.operation.react';
 
 class MissionsWindow extends Component {
   agentMission() {
@@ -49,7 +48,7 @@ class MissionsWindow extends Component {
   }
 
   render() {
-    const {agentbeingsaved, enhancements, game, jsonapi, missions, missionspricelist} = this.props;
+    const {agentbeingsaved, enhancements/*, game*/, jsonapi, missions, missionspricelist} = this.props;
 
     const debug = jsonapi.getIn(['options', 'debug']);
 
@@ -58,10 +57,6 @@ class MissionsWindow extends Component {
         <button
           id='RecruitAgentButton'
           onClick={this.agentMission}>Find Agent</button>
-        {!debug && <CountryOfOperation
-          game={game}
-          jsonapi={jsonapi}
-          />}
         {!debug &&
           <MercuryNetwork />}
         {debug &&

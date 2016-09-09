@@ -39,6 +39,7 @@ var PlayerSchema = new Schema({
     collector: Boolean,
     revenge: Boolean
   },
+  savegames: Schema.Types.Mixed,
   self: Schema.Types.Mixed,
   started: Number,
   statistics: Schema.Types.Mixed,

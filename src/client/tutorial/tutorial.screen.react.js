@@ -9,6 +9,12 @@ import PlayerHistoryIntro from './playerhistoryintro/player.history.intro.react'
 import PlayerAgentChoose from '../tutorial/choose.class.react';
 
 class TutorialScreen extends Component {
+  completeTutorial(e) {
+    e.preventDefault();
+    tutorialActions.completeTutorial();
+    window.history.back();
+  }
+
   render() {
     const {game, jsonapi, tutorial} = this.props;
     const tutorialSlidesFinished = (tutorial.getIn(['playerhistory', 'slides']).size > (tutorial.getIn(['playerhistory', 'slideNo']) || 0));
@@ -25,7 +31,7 @@ class TutorialScreen extends Component {
         {!tutorial.get('completed') &&
           <button
             id='CompleteTutorialButton'
-            onClick={(e) => tutorialActions.completeTutorial()}>Complete Tutorial</button>}
+            onClick={this.completeTutorial}>Complete Tutorial</button>}
       </div>
     );
   }

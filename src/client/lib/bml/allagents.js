@@ -19,7 +19,6 @@ const allAgents = function(jsonapi) {
   const agentbeingsaved = jsonapi.get('agentbeingsaved');
   const agentontask = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask']);
   const self = jsonapi.get('self');
-
   const allagents = agents
     .concat(agentsonmission)
     .concat(checkThenConcat(agentinarmory))

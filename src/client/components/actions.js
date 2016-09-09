@@ -46,8 +46,8 @@ export function missionScreenTransition() {
   dispatch(missionScreenTransition, {});
 }
 
-export function taskHelpToggle() {
-  dispatch(taskHelpToggle, {});
+export function travelSelectionToggle() {
+  dispatch(travelSelectionToggle, {});
 }
 
 setToString('components', {
@@ -62,5 +62,5 @@ setToString('components', {
   missionScreenTransition,
   missionScreenToggleOff,
   missionScreenToggleOn,
-  taskHelpToggle
+  travelSelectionToggle
 });

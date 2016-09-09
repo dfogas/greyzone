@@ -43,7 +43,7 @@ const tasks = {
   hotline: [monitor, puppet],
   rigging_cameras: [monitor, tap],
   puppeteer: [puppet, puppet],
-  bomb_mule: [puppet, tap],
+  white_horse: [puppet, tap],
   cracks_and_wires: [tap, tap],
   through_hard_earned_trust: [close_combat, hide, infiltrate],
   rough_day: [close_combat, hit, hit],

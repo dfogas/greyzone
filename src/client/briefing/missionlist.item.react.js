@@ -1,5 +1,6 @@
-import * as missionActions from '../mission/actions';
 import * as briefingActions from './actions';
+import * as componentsActions from '../components/actions';
+import * as missionActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -15,9 +16,11 @@ class MissionListItem extends Component {
   }
 
   selectMission() {
-    const {mission} = this.props;
+    const {jsonapi, mission} = this.props;
     missionActions.agentsAreBackFromMission();
     briefingActions.selectMission(mission);
+    if (!jsonapi.getIn(['components', 'briefing', 'activemission', 'toggle']))
+      componentsActions.activeMissionToggle();
   }
 
   render() {
@@ -50,6 +53,7 @@ class MissionListItem extends Component {
 
 MissionListItem.propTypes = {
   isSelected: React.PropTypes.bool,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   mission: React.PropTypes.instanceOf(immutable.Map)
 };
 

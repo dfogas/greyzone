@@ -10,7 +10,6 @@ import LogWindow from './logwindow/log.window.react';
 import OptionsWindow from './optionswindow/options.window.react';
 import StatusesWindow from './statuseswindow/statuses.window.react';
 import StrategicalWindow from './strategicalwindow/strategical.window.react';
-import TravelWindow from './travelwindow/travel.window.react';
 
 class DashboardContent extends Component {
   render() {
@@ -18,8 +17,6 @@ class DashboardContent extends Component {
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']);
     return (
       <div id='DashboardContent'>
-        {jsonapi.getIn(['dashboard', 'progressbar', 'toggle']) &&
-          <TravelWindow dashboard={jsonapi.get('dashboard')} />}
         {dashPointer === 'collection' && jsonapi.getIn(['campaigns', 'campaigns', 'collector', 'selected']) &&
           <CollectionWindow
             game={game}

@@ -5,18 +5,20 @@ const bookAttention = function(attentionlevel, direction) {
   if (direction === 'down') {
     if (attentionlevel === 'none' || attentionlevel === 'low')
       return 'none';
-    else if (attentionlevel === 'medium')
+    else if (attentionlevel === 'mid')
       return 'low';
     else if (attentionlevel === 'high')
-      return 'medium';
-  } else {
-    if (attentionlevel === 'high' || attentionlevel === 'medium')
+      return 'mid';
+    else return 'none'; // return value catching
+  } else if (direction === 'up') {
+    if (attentionlevel === 'high' || attentionlevel === 'mid')
       return 'high';
     else if (attentionlevel === 'low')
-      return 'medium';
+      return 'mid';
     else if (attentionlevel === 'none')
       return 'low';
-  }
+    else return 'none'; // return value catching
+  } else return 'none'; // return value catching
 };
 
 export default bookAttention;

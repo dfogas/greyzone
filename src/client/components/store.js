@@ -88,11 +88,11 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
-  if (action === componentsActions.taskHelpToggle) {
-    const toggle = jsonapiCursor(['components', 'briefing', 'taskhelp', 'toggle']);
+  if (action === componentsActions.travelSelectionToggle) {
+    const toggle = jsonapiCursor(['components', 'briefing', 'travelselection', 'toggle']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['components', 'briefing', 'taskhelp', 'toggle'], !toggle);
+        .setIn(['components', 'briefing', 'travelselection', 'toggle'], !toggle);
     });
   }
 

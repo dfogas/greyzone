@@ -21,7 +21,7 @@ class TalkScreen extends Component {
           jsonapi={jsonapi}
           />
         <AgentToTalkTo
-          agentid={jsonapi.getIn(['talk', 'participants', 0]) || jsonapi.getIn(['self', 'id'])}
+          agentid={jsonapi.getIn(['talk', 'participants', 0])}
           jsonapi={jsonapi}
           />
         {jsonapi.getIn(['dashboard', 'enhancementtalk']) &&

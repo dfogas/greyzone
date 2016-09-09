@@ -3,19 +3,21 @@ import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import uuid from '../lib/guid';
+import prop from '../lib/general/r.i.prop';
 
 import MissionListItem from './missionlist.item.react';
 
 class MissionsListTable extends Component {
   render() {
-    const {activemission, missions} = this.props;
+    const {jsonapi} = this.props;
+    const activemission = prop('activemission', jsonapi);
+    const missions = jsonapi.get('missions');
 
     const missionlist = missions.map(mission => {
       return (
         <MissionListItem
           isSelected={mission.get('id') === activemission.get('id')}
-          key={uuid() + 'missionlist'}
+          jsonapi={jsonapi}
           mission={mission}
           />
       );
@@ -48,8 +50,7 @@ class MissionsListTable extends Component {
 }
 
 MissionsListTable.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map),
-  missions: React.PropTypes.instanceOf(immutable.List)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default MissionsListTable;

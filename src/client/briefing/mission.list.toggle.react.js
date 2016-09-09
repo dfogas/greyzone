@@ -1,5 +1,4 @@
 import './mission.list.toggle.styl';
-import * as animationsActions from '../animations/actions';
 import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';

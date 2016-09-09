@@ -24,6 +24,7 @@ import '../agents/scrollbar/store';
 import '../animations/store';
 import '../auth/store';
 import '../briefing/store';
+import '../briefing/travelwindow/store';
 import '../command/store';
 import '../components/store';
 import '../dashboard/endgame/store';
@@ -36,12 +37,12 @@ import '../introduction/store';
 import '../mission/tabletoptier/dice/store';
 import '../equipments/store';
 import '../mission/store';
-import '../users/store';
 import '../support/store';
 import '../talk/enhancements/store';
 import '../talk/store';
 import '../tutorial/firstmission/store';
 import '../tutorial/store';
+import '../users/store';
 
 //libs
 import 'isomorphic-fetch';

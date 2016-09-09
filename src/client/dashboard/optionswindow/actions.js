@@ -39,7 +39,7 @@ function dashboardAnnounce(message) {
 }
 
 function eraseGameLog() {
-  lockr.set(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`, []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}log`, []);
 }
 
 function eraseGameStatistics() {
@@ -50,8 +50,8 @@ function eraseGameStatistics() {
 }
 
 export function loadGame(game) {
-  const savegame = lockr.get(`gs${jsonapiCursor(['_id'])}_save${game}`);
-  const gamehash = lockr.get(`gs${jsonapiCursor(['_id'])}_save${game}hash`);
+  const savegame = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}`);
+  const gamehash = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}hash`);
   const debug = jsonapiCursor(['options', 'debug']);
 
   if (debug) {
@@ -73,9 +73,12 @@ export function sanitizeMissions() {
 
 export function saveGame(jsonapi, game) {
   const jsonapijs = jsonapi.toJS();
-  lockr.set(`gs${jsonapiCursor(['_id'])}_save${game}`, jsonapijs);
-  lockr.set(`gs${jsonapiCursor(['_id'])}_save${game}hash`, hashString(jsonapijs));
+  lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}`, jsonapijs);
+  lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}hash`, hashString(jsonapijs));
   dashboardAnnounce(`Game has been saved.`);
+  const missionsDoneCount = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`).length;
+
+  dispatch(saveGame, {missionsDoneCount, game});
 }
 
 export function startNewGame(jsonapi) {

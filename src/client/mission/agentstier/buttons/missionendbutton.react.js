@@ -1,6 +1,5 @@
 import './missionendbutton.styl';
 import * as briefingActions from '../../../briefing/actions';
-// import * as dashboardActions from '../../../dashboard/actions';
 import * as missionActions from '../../actions';
 import * as tutorialActions from '../../../tutorial/actions';
 import Component from '../../../components/component.react';
@@ -19,10 +18,12 @@ class MissionEndButton extends Component {
       missionActions.removeCompletedMission();
       missionActions.agentsAreBackFromMission();
       missionActions.setDefault();
+      window.history.back();
     });
   }
 
-  handleMissionEnd() {
+  handleMissionEnd(e) {
+    e.preventDefault();
     const {jsonapi, mission} = this.props;
     const missionjs = mission.toJS();
     socket.emit('mission', missionjs); // eslint-disable-line no-undef
@@ -49,7 +50,7 @@ class MissionEndButton extends Component {
       <input
         id='MissionEndButton'
         onClick={(e) => {
-          this.handleMissionEnd();
+          this.handleMissionEnd(e);
           this.animateOut();
         }}
         type='button'

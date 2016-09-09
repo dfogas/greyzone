@@ -1,7 +1,8 @@
 import './country.of.operation.styl';
-import * as dashboardActions from '../actions';
-import * as travelActions from '../travelwindow/actions';
-import Component from '../../components/component.react';
+import * as componentsActions from '../components/actions';
+import * as dashboardActions from '../dashboard/actions';
+import * as travelActions from './travelwindow/actions';
+import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import DropDown from 'react-dropdown-w-react13';
@@ -9,9 +10,10 @@ import DropDown from 'react-dropdown-w-react13';
 class CountryOfOperation extends Component {
   changeCountry(option) {
     const {jsonapi} = this.props;
-    if (!jsonapi.get('missions').find(mission => mission.get('forcefail')))
+    if (!jsonapi.get('missions').find(mission => mission.get('forcefail'))) {
+      componentsActions.travelSelectionToggle();
       travelActions.changeCountry(option);
-    else {
+    } else {
       travelActions.changeCountry({
         label: jsonapi.getIn(['dashboard', 'countryofoperation']),
         name: 'countryofoperation',
@@ -26,6 +28,8 @@ class CountryOfOperation extends Component {
     const countries = game.getIn(['globals', 'countries']);
     return (
       <div id='CountryOfOperation'>
+        <div id='CountryOfOperationText'>Operating in {jsonapi.getIn(['dashboard', 'countryofoperation'])}</div>
+        <div id='TravelToText'>Move operations to ... ?</div>
         <DropDown
           baseClassName='countryofoperation'
           name='countryofoperation'

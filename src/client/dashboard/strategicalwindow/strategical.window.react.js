@@ -14,7 +14,6 @@ import AgentsWindow from '../agentswindow/agents.window.react';
 import CountryStateOverview from '../country.state.overview.react';
 import CountryStatsWindow from '../countrieswindow/countrystats.window.react';
 import IntermediateGoal from '../../gameflow/intermediate.goal.react';
-import Logout from '../../auth/logout.react';
 import MissionsWindow from '../missionswindow/missions.window.react';
 import PlayersWindow from '../playerswindow/players.window.react';
 import Pointer from '../pointer.react';
@@ -65,7 +64,6 @@ class StrategicalWindow extends Component {
         {jsonapi.getIn(['campaigns', 'campaigns', 'collector', 'selected']) && <Pointer pointsto='collection' />}
         {false &&
           <CountryStatsWindow countrystats={jsonapi.get('countrystats')} />}
-        {isLoggedIn && <Logout />}
       </div>
     );
   }

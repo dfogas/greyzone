@@ -1,4 +1,4 @@
-import './mission.screen.styl';
+import './mission.screen.styl'; //
 // import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -44,20 +44,20 @@ class MissionTrackingScreen extends Component {
 
   render() {
     const {game, jsonapi} = this.props;
+    const countryofoperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
+    const isPlaceholder = jsonapi.getIn(['activemission', 'title']) === 'Quiet before the Storm';
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);
     const screenTrans = jsonapi.getIn(['components', 'mission', 'transition']);
-    const countryofoperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
     // {msg('mission.screen.label')}
 
     return (
       <div
         id='MissionTrackingScreen'
-        style={{
+        style={isPlaceholder ? {} : {
           backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`,
           boxShadow: missionBoxShadow(jsonapi.get('activemission'))
-        }}
-        >
+        }}>
         <div id='MissionScreenLabel'>Mission in {countryofoperation}</div>
         {screenTrans &&
           <TaskTier

@@ -43,6 +43,12 @@ export const dispatchToken = register(({action, data}) => {
         .update('missions', val => val.filter(val => val !== null).filter(val => typeof val !== 'undefined'));
     });
 
+  if (action === optionsActions.saveGame)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['savegames', data.game - 1], immutable.fromJS({missionsDoneCount: data.missionsDoneCount, savedAt: Date.now()}));
+    });
+
   if (action === optionsActions.startNewGame)
     jsonapiCursor(jsonapi => {
       return immutable.fromJS(playerdefaults)

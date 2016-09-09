@@ -18,7 +18,7 @@ export const dispatchToken = register(({action, data}) => {
         return jsonapi
           .updateIn(['countrystats', indexOfCS, 'obscurity'], val => bookObscurity(val, -0.1));
       });
-    else if (attention.find(gaev => gaev.get('country') === inCountry).get('level') === 'medium')
+    else if (attention.find(gaev => gaev.get('country') === inCountry).get('level') === 'mid')
       jsonapiCursor(jsonapi => {
         return jsonapi
           .updateIn(['countrystats', indexOfCS, 'obscurity'], val => bookObscurity(val, -0.2));

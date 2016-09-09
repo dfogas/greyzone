@@ -1,42 +1,19 @@
-import './options.game.window.styl';
-import * as endGameActions from '../endgame/actions';
+import './options.game.window.styl'; //
 import * as optionsActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import dayandtime from '../../lib/dayandtime';
 
 class OptionsGameWindow extends Component {
-  loadGameOne() {
-    optionsActions.loadGame(1);
+  loadGame(num) {
+    optionsActions.loadGame(num);
   }
 
-  loadGameTwo() {
-    optionsActions.loadGame(2);
-  }
-
-  loadGameThree() {
-    optionsActions.loadGame(3);
-  }
-
-  retireGame() {
-    // alert('Retired. Organization ends. Should be available after certain missions and certain cash. Probably as one achievement.');
-    endGameActions.retireGame();
-  }
-
-  saveGameOne() {
+  saveGame(num) {
     // should save to WebStorage
     const {jsonapi} = this.props;
-    optionsActions.saveGame(jsonapi, 1);
-  }
-
-  saveGameTwo() {
-    const {jsonapi} = this.props;
-    optionsActions.saveGame(jsonapi, 2);
-  }
-
-  saveGameThree() {
-    const {jsonapi} = this.props;
-    optionsActions.saveGame(jsonapi, 3);
+    optionsActions.saveGame(jsonapi, num);
   }
 
   render() {
@@ -50,19 +27,27 @@ class OptionsGameWindow extends Component {
       <div id="OptionsGameWindow">
         <fieldset>
           <legend>Game Window</legend>
-          <button id='RetireButton' onClick={this.retireGame}>Retire</button>
-          <br />
-          <button className='save-game-button' onClick={this.saveGameOne.bind(this)}>Save game 1</button>
-          {isPaying &&
-            <button className='save-game-button' onClick={this.saveGameTwo.bind(this)}>Save game 2</button>}
-          {isPaying &&
-            <button className='save-game-button' onClick={this.saveGameThree.bind(this)}>Save game 3</button>}
-          <br />
-          <button className='load-game-button' onClick={this.loadGameOne}>Load game 1</button>
-          {isPaying &&
-            <button className='load-game-button' onClick={this.loadGameTwo}>Load game 2</button>}
-          {isPaying &&
-            <button className='load-game-button' onClick={this.loadGameThree}>Load game 3</button>}
+          <table>
+            <thead>
+              <th>Save Game</th>
+              <th>Load Game</th>
+              <th>Game Description</th>
+            </thead>
+            <tbody>
+                {[1, 2, 3].map(num => {
+                  return (
+                    <tr>
+                      {(num === 1 || isPaying) &&
+                        <td><button className='save-game-button' onClick={(e) => this.saveGame(num)}>Save game {num}</button></td>}
+                      {(num === 1 || isPaying) &&
+                        <td><button className='load-game-button' onClick={(e) => this.loadGame(num)}>Load game {num}</button></td>}
+                      {(num === 1 || isPaying) &&
+                        <td>{`Game saved at ${dayandtime(jsonapi.getIn(['savegames', num - 1, 'savedAt']), new Date().getTimezoneOffset())} missions done: ${jsonapi.getIn(['savegames', num - 1, 'missionsDoneCount'])}`}</td>}
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
         </fieldset>
       </div>
     );

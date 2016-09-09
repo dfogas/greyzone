@@ -1,11 +1,11 @@
-import './country.state.overview.styl';
+import './country.state.overview.styl'; //
 import React from 'react';
 import Component from '../components/component.react';
 import immutable from 'immutable';
 
 class CountryStateOverview extends Component {
   render() {
-    const {game, jsonapi} = this.props;
+    const {/*game, */jsonapi} = this.props;
     return (
         <div id='CountryStateOverview'>
           {jsonapi.get('countrystats').map(cs => {
@@ -30,6 +30,13 @@ class CountryStateOverview extends Component {
                     height: (3 - obscurity) * 100,
                     width: '22px'
                   }}>
+                  <div className='country-obscurity-bar-countryname'>
+                    {jsonapi.getIn([
+                      'events',
+                      jsonapi.get('events').indexOf(jsonapi.get('events').find(jsev => jsev.get('country') === cs.get('name'))),
+                      'country'
+                    ])}
+                  </div>
                 </div>
               </div>
             );

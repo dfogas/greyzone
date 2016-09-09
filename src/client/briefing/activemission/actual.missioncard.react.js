@@ -1,5 +1,5 @@
 /* Dumb Component */
-import './actual.missioncard.styl';
+import './actual.missioncard.styl'; //
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,25 +10,45 @@ import ActiveMissionToggleOff from './active.mission.toggle.off.react';
 import MissionResultList from '../../mission/missioncard/results/mission.result.list.react';
 import MissionThumbnail from './mission.thumbnail.react';
 import MissionTitle from '../../mission/missioncard/missiontitle.react';
+import Task from '../../mission/missioncard/tasks/task.react';
 // import MissionClock from './mission.clock.react';
 
 class ActualMissionCard extends Component {
   render() {
-    const {activemission, components, /*game,*/ jsonapi} = this.props;
+    const {activemission, components, game, jsonapi} = this.props;
+    const isPlaceholder = activemission.get('title') === 'Quiet before the Storm';
     const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
+    const tasks = activemission.get('tasks');
+
+    const actualmissiontasks = tasks.map((task, i) => {
+      return (
+        <Task
+          game={game}
+          isActual={false}
+          task={task}
+          />
+      );
+    });
 
     return (
       <div className={'mission-card actual'}>
-        <MissionThumbnail
-          imgsrc={imgsrc}
-          missiontag={activemission.get('tag')}
-          thumbnailtext={components.getIn(['briefing', 'missionthumbnail', 'text'])}
-          />
+        {false &&
+          <MissionThumbnail
+            imgsrc={imgsrc}
+            missiontag={activemission.get('tag')}
+            thumbnailtext={components.getIn(['briefing', 'missionthumbnail', 'text'])}
+            />}
         <ActiveMissionToggleOff />
-        <MissionTitle
-          isActual={false}
-          title={activemission.get('title')}
-          />
+        {!isPlaceholder &&
+          <MissionTitle
+            isActual={false}
+            title={activemission.get('title')}
+            />}
+        {!!actualmissiontasks.size &&
+          <div id='ActualMissionTasks'>
+            {actualmissiontasks}
+          </div>
+        }
         <AgentAssignmentsContainer
           jsonapi={jsonapi}
           />

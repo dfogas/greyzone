@@ -18,8 +18,7 @@ export function exportLog() {
 }
 
 export function loadLog() {
-  // console.log(lockr.get(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`));
-  const log = immutable.fromJS(lockr.get(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`));
+  const log = immutable.fromJS(lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}log`));
   dispatch(loadLog, {log});
 }
 
@@ -27,9 +26,9 @@ export function saveLog() {
   // TODO: saveLog is not working properly, doesn't overwrite saves - why?
   const log = jsonapiCursor(['log']).toJS();
 
-  const storage = lockr.get(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`) || [];
+  const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}log`) || [];
 
-  lockr.set(`gs${jsonapiCursor(['_id'])}${jsonapiCursor(['name'])}log`, R.uniq(storage.concat(log)));
+  lockr.set(`gs${jsonapiCursor(['usedId'])}${jsonapiCursor(['name'])}log`, R.uniq(storage.concat(log)));
 }
 
 setToString('log', {

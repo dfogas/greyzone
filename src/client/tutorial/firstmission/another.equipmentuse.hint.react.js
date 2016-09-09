@@ -1,11 +1,11 @@
 import './another.equipment.use.hint.styl';
 import Component from '../../components/component.react';
 import React from 'react';
-import immutable from 'immutable';
+// import immutable from 'immutable';
 
 class AnotherEquipmentUseHint extends Component {
   render() {
-    const {firstmission} = this.props;
+    // const {firstmission} = this.props;
     return (
       <div>
         <div id='AnotherEquipmentUseHint'>
@@ -16,8 +16,8 @@ class AnotherEquipmentUseHint extends Component {
   }
 }
 
-AnotherEquipmentUseHint.propTypes = {
-  firstmission: React.PropTypes.instanceOf(immutable.Map)
-};
+// AnotherEquipmentUseHint.propTypes = {
+//   firstmission: React.PropTypes.instanceOf(immutable.Map)
+// };
 
 export default AnotherEquipmentUseHint;
