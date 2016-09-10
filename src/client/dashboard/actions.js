@@ -5,8 +5,8 @@ import setToString from '../lib/settostring';
 import cconfig from '../client.config';
 import {gameCursor, jsonapiCursor} from '../state';
 // import {msg} from '../intl/store';
-import allAgents from '../lib/bml/allagents';
 import capabilityCheck from '../lib/bml/capabilitycheck';
+import dashboardAnnounce from '../lib/dashboardannounce';
 import leadershipCheck from '../lib/bml/leadershipcheck';
 import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import maxMissionsCheck from '../lib/bml/maxmissionscheck';
@@ -26,9 +26,9 @@ export function acceptMission(tier, focus, country, options) {
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
 
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
-    flashDashboard(`Upgrade your capability enhancement for higher tier missions.`);
+    dashboardAnnounce(`Upgrade your capability enhancement for higher tier missions.`);
   else if (!maxMissionsCheck(jsonapiCursor()))
-    flashDashboard('Missions limit reached, upgrade your operations.');
+    dashboardAnnounce('Missions limit reached, upgrade your operations.');
   else {
     dispatch(acceptMission, {mission});
     flashDashboard(`New mission!`);
@@ -61,14 +61,6 @@ export function clearMissionAcceptFields() {
   dispatch(clearMissionAcceptFields, {});
 }
 
-export function dashboardAnnounce(message) {
-  $('#DashboardAnnounce').remove();
-  $('#DashboardScreen').append(`<div id='DashboardAnnounce'>${message}</div>`);
-  $('#DashboardAnnounce').on('click', () => {
-    $('#DashboardAnnounce').remove();
-  });
-}
-
 export function dashboardIntroToggle() {
   dispatch(dashboardIntroToggle, {});
 }
@@ -98,9 +90,7 @@ export function flashDashboard(message) {
 
 /* Debug */
 export function hireAgent(specialist, rank) {
-  const self = jsonapiCursor(['self']);
-  const agents = allAgents(jsonapiCursor()).indexOf(self) !== -1 ? allAgents(jsonapiCursor()).push(self) : allAgents(jsonapiCursor());
-  const agent = noDoubleAgents(agents.toJS(), rank, specialist);
+  const agent = noDoubleAgents(rank, specialist, jsonapiCursor());
   const leadershipNames = jsonapiCursor(['enhancements']).toJS().filter(enh => enh.type === 'leadership').map(enh => enh.name);
 
   const agentPriceList = gameCursor(['globals', 'constants', 'agentsPriceList']).toJS();
@@ -143,8 +133,8 @@ export function obscurityCountriesImpact(countries, impact) {
   dispatch(obscurityCountriesImpact, {countries, impact});
 }
 
-export function playerDoesNotGoOnMissions() {
-  dispatch(playerDoesNotGoOnMissions, {});
+export function playerDoesNotGoOnMissions(playerAgent) {
+  dispatch(playerDoesNotGoOnMissions, {playerAgent});
 }
 
 export function playerGoesOnMissions() {

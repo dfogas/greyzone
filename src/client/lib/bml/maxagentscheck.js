@@ -6,7 +6,8 @@
 import allAgents from './allagents';
 
 const maxAgentsCheck = function(jsonapi) {
-  const limit = allAgents(jsonapi).size;
+  const playerAgentIsActive = allAgents(jsonapi).find(ag => ag.get('id') === jsonapi.getIn(['self', 'id']));
+  const limit = playerAgentIsActive ? allAgents(jsonapi).size : (allAgents(jsonapi).size + 1);
   const enhancements = jsonapi.get('enhancements').filter(enh => enh.get('type') === 'capability');
 
   if (limit + 1 <= 4 && enhancements.size >= 1)

@@ -5,7 +5,6 @@ import Component from '../components/component.react';
 import React from 'react';
 import {Link} from 'react-router';
 import immutable from 'immutable';
-import allAgents from '../lib/bml/allagents';
 
 import AgentToTalkTo from './agent.to.talk.to.react';
 import EnhancementTalk from './enhancements/enhancement.talk.react';

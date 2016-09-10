@@ -11,7 +11,9 @@ import GeminiScrollbar from 'react-gemini-scrollbar';
 class MainScreen extends Component {
   render() {
     const {jsonapi} = this.props;
-    const agents = allAgents(jsonapi);
+    const self = jsonapi.get('self');
+    const playerAgentIsActive = allAgents(jsonapi).find(agent => agent.get('id') === self.get('id'));
+    const agents = playerAgentIsActive ? allAgents(jsonapi) : allAgents(jsonapi).push(jsonapi.get('self'));
     return (
       <div className='command-content'>
         <GeminiScrollbar>

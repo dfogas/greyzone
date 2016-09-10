@@ -9,7 +9,7 @@ import agentTalk from '../../lib/bml/agenttalk';
 
 class DialogBox extends Component {
   render() {
-    // DOMCALL 
+    // DOMCALL
     const {agent, jsonapi} = this.props;
     return (
       <div className='dialog-box' id='DialogBox'>

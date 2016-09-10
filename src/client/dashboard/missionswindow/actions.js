@@ -1,9 +1,10 @@
-import {dispatch} from '../../dispatcher';
+import {dispatch} from '../../dispatcher'; //
 import setToString from '../../lib/settostring';
 import missionAccept from '../../lib/bml/missionaccept';
 import {gameCursor, jsonapiCursor} from '../../state';
 import immutable from 'immutable';
 import $ from 'jquery';
+import dashboardAnnounce from '../../lib/dashboardannounce';
 import maxMissionsCheck from '../../lib/bml/maxmissionscheck';
 
 const countryList = gameCursor(['globals', 'countries']);
@@ -18,7 +19,7 @@ export function agentRecruitMission() {
 
 export function acceptSpecifiedMission(mission) {
   if (!maxMissionsCheck(jsonapiCursor()))
-    flashDashboard('Missions limit reached, upgrade your operations.');
+    dashboardAnnounce('Missions limit reached, upgrade your operations.');
   else {
     dispatch(acceptSpecifiedMission, {mission});
     bookMissionPrice(mission.tier);

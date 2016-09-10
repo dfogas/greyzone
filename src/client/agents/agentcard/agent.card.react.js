@@ -13,6 +13,7 @@ import shouldHaveRank from '../../lib/bml/shouldhaverank';
 import AgentClock from './agent.clock.react';
 import AgentEquipmentSlot from './agent.equipment.slot.react';
 import AgentExperienceBar from './agent.experience.bar.react';
+import AgentPersonalityMap from './agent.personality.map.react';
 import AgentProfile from './agent.profile.react';
 import AgentStatCounter from './agent.stat.counter.react';
 
@@ -48,8 +49,11 @@ class AgentCard extends Component {
     const {jsonapi} = this.props;
     const agents = jsonapi.get('agents');
     const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
-    dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
-    dashboardActions.playerDoesNotGoOnMissions();
+    const self = jsonapi.get('self');
+    if (agents.find(ag => ag.get('id') === self.get('id'))) {
+      dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
+      dashboardActions.playerDoesNotGoOnMissions(agents.find(ag => ag.get('id') === self.get('id')));
+    } else dashboardActions.dashboardAnnounce(`I am busy, move me to available agents.`);
   }
 
   playerGoesOnMissions() {
@@ -65,7 +69,7 @@ class AgentCard extends Component {
     const expnext = trainingtable ? trainingtable.getIn([agent.get('rank'), 'xp']) : '';
     const beingsaved = agentbeingsaved ? agent.get('id') === agentbeingsaved.get('id') : false;
     const agentIsOnDisplay = agent.get('id') === jsonapi.getIn(['dashboard', 'agentondisplay', 'id']);
-    const playerAgentIsActive = self ? allAgents(jsonapi).find(agent => agent.get('id') === self.get('id')) : false;
+    const playerAgentIsActive = allAgents(jsonapi).find(agent => agent.get('id') === self.get('id'));
 
     const classString = classnames(
       'agent-card', {
@@ -76,6 +80,29 @@ class AgentCard extends Component {
     if (agent)
       var agentequipments = agent.get('equipments');
 
+    const agentequipmentsmap = agentequipments.map((agentequipment, i) => {
+      return (
+        <AgentEquipmentSlot
+          agent={agent}
+          agentequipment={agentequipment}
+          equipmentindex={i}
+          game={game}
+          isMission={this.props.isMission}
+          isShowcased={this.props.isShowcased}
+          tutorial={jsonapi.get('tutorial')}
+        />);
+    });
+
+    const skillmap = ['operations', 'electronics', 'stealth'].map(skilltype => {
+      return (
+        <AgentStatCounter
+          isShowcased={this.props.isShowcased}
+          skill={agent.get(skilltype + 'Skill')}
+          skillname={skilltype}
+          />
+      );
+    });
+
     return (
       <li
         className={classString}
@@ -83,7 +110,8 @@ class AgentCard extends Component {
         id={agent.get('name')}
         isMission={this.props.isMission}
         key={key}
-        onDragStart={this.drag}>
+        onDragStart={this.drag}
+        >
         <AgentExperienceBar
           agent={agent}
           game={game}
@@ -92,15 +120,7 @@ class AgentCard extends Component {
         <AgentClock
           agent={agent}
           />
-        {['operations', 'electronics', 'stealth'].map(skilltype => {
-          return (
-            <AgentStatCounter
-              isShowcased={this.props.isShowcased}
-              skill={agent.get(skilltype + 'Skill')}
-              skillname={skilltype}
-              />
-          );
-        })}
+        {skillmap}
         <AgentProfile
           agent={agent}
           agentbeingsaved={agentbeingsaved}
@@ -133,18 +153,12 @@ class AgentCard extends Component {
             onClick={(e) => dashboardActions.postponeRescue(agent)}>Not now!</button>}
         {trainingtable && agentIsOnDisplay && this.props.isShowcased &&
           <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
-        {agentequipments.map((agentequipment, i) => {
-          return (
-            <AgentEquipmentSlot
-              agent={agent}
-              agentequipment={agentequipment}
-              equipmentindex={i}
-              game={game}
-              isMission={this.props.isMission}
-              isShowcased={this.props.isShowcased}
-              tutorial={jsonapi.get('tutorial')}
-            />);
-        })}
+        {!this.props.isDisplay &&
+          agentequipmentsmap}
+        {this.props.isDisplay &&
+          <AgentPersonalityMap
+            agent={agent}
+            />}
         {isRankUp && this.props.isAgents &&
           <input
             className='agent-rankup-button'

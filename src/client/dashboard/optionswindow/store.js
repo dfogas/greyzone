@@ -55,7 +55,8 @@ export const dispatchToken = register(({action, data}) => {
         .set('userId', data.get('userId'))
         .set('name', data.get('name'))
         .set('gameend', null)
-        .set('paying', data.get('paying'));
+        .set('paying', data.get('paying'))
+        .set('savegames', data.get('savegames'));
     });
 
 });

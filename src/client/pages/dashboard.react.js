@@ -22,19 +22,21 @@ class Dashboard extends Component {
       <DocumentTitle title={msg('dashboard.title')}>
         <div className="dashboard-page">
           {!tutorialfinished &&
-            <div id='NewGameStart'>So, here I was, alive.</div>}
-          {!tutorialfinished &&
-            <DashboardToTutorial />}
-          {!tutorialfinished &&
-            <button
-              id='SkipIntroButton'
-              onClick={(e) => {
-                tutorialActions.playerChoseAgentClass('spy');
-                tutorialActions.completeTutorial();
-              }}>
-                Skip Intro
-              </button>
-            }
+            <div id='NewGameStart'>
+              <p>So, here I was, alive.</p>
+              <p>But... - how did I get here?</p>
+              <DashboardToTutorial />
+              {jsonapi.getIn(['self', 'name']) === 'Default Self' &&
+                <button
+                  id='SkipIntroButton'
+                  onClick={(e) => {
+                    tutorialActions.playerChoseAgentClass('spy');
+                    tutorialActions.completeTutorial();
+                  }}>
+                  Skip Intro
+                </button>
+              }
+            </div>}
           {!missionstarted && tutorialfinished &&
             <DashboardScreen
               contest={contest}

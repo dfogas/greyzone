@@ -31,18 +31,6 @@ class PlayersWindow extends Component {
       $('#DashboardScreen').append(msg('tutorial.dashboardScreen'));
   }
 
-  // playerDoesNotGoOnMissions() {
-  //   const {jsonapi} = this.props;
-  //   const agents = jsonapi.get('agents');
-  //   const agentondisplay = jsonapi.getIn(['dashboard', 'agentondisplay']);
-  //   dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
-  //   dashboardActions.playerDoesNotGoOnMissions();
-  // }
-  //
-  // playerGoesOnMissions() {
-  //   dashboardActions.playerGoesOnMissions();
-  // }
-
   render() {
     const {game, jsonapi} = this.props;
     const self = jsonapi.get('self');

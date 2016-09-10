@@ -14,6 +14,10 @@ export function completeTutorial() {
   dispatch(completeTutorial, {});
 }
 
+export function confirmAvatar() {
+  dispatch(confirmAvatar, {});
+}
+
 export function confirmCampaignsSelection() {
   dispatch(confirmCampaignsSelection, {});
 }
@@ -71,6 +75,7 @@ export function toggleCampaign(name, value) {
 setToString('tutorial', {
   campaignIntroViewed,
   completeTutorial,
+  confirmAvatar,
   confirmCampaignsSelection,
   firstMissionDone,
   firstMissionSetup,

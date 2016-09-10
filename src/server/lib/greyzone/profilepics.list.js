@@ -5,6 +5,7 @@ const profilePics = {
     '../../assets/img/agents/operative/operative4_128.jpg'
   ],
   spy: [
+    '../../assets/img/agents/spy/spy1_128.jpg',
     '../../assets/img/agents/spy/spy2_128.jpg',
     '../../assets/img/agents/spy/spy3_128.jpg',
     '../../assets/img/agents/spy/spy4_128.jpg'

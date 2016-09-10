@@ -3,7 +3,6 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
-import allAgents from '../lib/bml/allagents';
 import noDoubleAgents from '../lib/bml/nodoubleagents';
 import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
@@ -100,14 +99,11 @@ export function bookReputation(mission) {
 
 export function bookRewards(mission) {
   const results = mission.get('rewards') ? mission.get('rewards').toJS() : {};
-  // const countrystats = jsonapiCursor(['countrystats']);
-  // const missioncountryname = mission.get('inCountry');
-  // const countryindex = countrystats.indexOf(countrystats.find(country => country.get('name') === missioncountryname));
   const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
   const agentBecominLoyal = agentsonmission.find(agent => agent.get('loyalty') === 'normal');
 
   if (Object.keys(results).indexOf('agentRecruited') !== -1) {
-    const newagent = noDoubleAgents(allAgents(jsonapiCursor()).toJS(), mission.get('tier'), mission.getIn(['rewards', 'character']));
+    const newagent = noDoubleAgents(mission.get('tier'), mission.getIn(['rewards', 'character']), jsonapiCursor());
     const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || [];
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, storage.concat([newagent]));
@@ -144,7 +140,7 @@ export function clearTabletop() {
 }
 
 export function completeTask(task) {
-  dispatch(completeTask, {message: task});
+  dispatch(completeTask, {task});
 }
 
 export function controldamage(mission) {

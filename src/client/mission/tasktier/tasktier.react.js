@@ -10,7 +10,8 @@ import MissionResultList from '../missioncard/results/mission.result.list.react'
 class TaskTier extends Component {
 
   render() {
-    const {activemission, game} = this.props;
+    const {game, jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
     const isPlaceholder = activemission.get('title') === 'Quiet before the Storm';
     const tasks = activemission.get('tasks');
 
@@ -22,6 +23,7 @@ class TaskTier extends Component {
               game={game}
               isCurrent={activemission.get('taskscompleted').size === i}
               isMission={true}
+              jsonapi={jsonapi}
               task={task}
               />
           );
@@ -48,8 +50,8 @@ class TaskTier extends Component {
 }
 
 TaskTier.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map).isRequired,
-  game: React.PropTypes.instanceOf(immutable.Map)
+  game: React.PropTypes.instanceOf(immutable.Map),
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default TaskTier;

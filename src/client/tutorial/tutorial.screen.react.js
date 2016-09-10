@@ -21,7 +21,7 @@ class TutorialScreen extends Component {
     return (
       <div id='TutorialScreen'>
         <CurvedTailArrow />
-        {jsonapi.get('self').get('name') === 'Default Self' && !tutorialSlidesFinished &&
+        {!tutorial.get('avatarselected') && !tutorialSlidesFinished &&
           <PlayerAgentChoose
             game={game}
             jsonapi={jsonapi}

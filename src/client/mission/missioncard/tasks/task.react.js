@@ -1,5 +1,5 @@
 /* Dumb Component */
-import './task.styl';
+import './task.styl'; //
 import Component from '../../../components/component.react';
 import React from 'react';
 import Action from '../action.react';
@@ -10,12 +10,15 @@ import uuid from '../../../lib/guid';
 
 class Task extends Component {
   render() {
-    const {game, task} = this.props;
+    const {game, jsonapi, task} = this.props;
+    const activemission = jsonapi.getIn(['activemission']);
     const classString = classnames('task', {
       'actual': this.props.isActual,
       'current': this.props.isCurrent,
       'on-mission': this.props.isMission
     });
+    // CONVENTION: předpokládáme různé tasky na misi
+    const isComplete = activemission.get('taskscompleted').find(tc => tc === task);
 
     return (
       <div className='task-fieldset'>
@@ -36,6 +39,16 @@ class Task extends Component {
             );
           })}
         </ul>
+        {this.props.isMission &&
+          <div
+            className='taskmission-checkbox'
+            style={
+              {
+                animation: isComplete ? `fadeIn 2s linear` : ``,
+                backgroundImage: isComplete ? `url('../../../../../assets/img/checkboxes/big-green-check-64.png')` : `url('../../../../../assets/img/checkboxes/big-red-x-64.png')`
+              }
+            }>
+          </div>}
       </div>
     );
   }
@@ -46,6 +59,7 @@ Task.propTypes = {
   isActual: React.PropTypes.bool,
   isCurrent: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   task: React.PropTypes.instanceOf(immutable.List)
 };
 

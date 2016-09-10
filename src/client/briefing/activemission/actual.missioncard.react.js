@@ -25,6 +25,7 @@ class ActualMissionCard extends Component {
         <Task
           game={game}
           isActual={false}
+          jsonapi={jsonapi}
           task={task}
           />
       );

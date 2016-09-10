@@ -6,7 +6,6 @@ import React from 'react';
 import formattedImg from '../lib/bml/formattedimg';
 import immutable from 'immutable';
 import prop from '../lib/general/r.i.prop';
-import allAgents from '../lib/bml/allagents';
 
 import DialogBox from '../dashboard/agentswindow/dialog.box.react';
 
@@ -27,7 +26,7 @@ class AgentToTalkTo extends Component {
 
   render() {
     const {agentid, jsonapi} = this.props;
-    const agent = allAgents(jsonapi).find(agent => agent.get('id') === agentid);
+    const agent = jsonapi.get('agents').find(agent => agent.get('id') === agentid);
     const isLoyal = prop('loyalty', agent) === 'loyal';
     return (
       <div

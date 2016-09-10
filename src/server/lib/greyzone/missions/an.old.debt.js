@@ -3,8 +3,8 @@ import {infiltrate, improv_op, close_combat, hit, improv_st, decipher, improv_el
 
 const tag = 'anolddebt';
 const title = 'An Old Debt';
-const imgsrc = 'OldDebt.jpg';
-const sound = 'OldDebt.ogg';
+const imgsrc = 'AnOldDebt.jpg';
+const sound = 'AnOldDebt.ogg';
 
 const AnOldDebt = [{
   title: title,

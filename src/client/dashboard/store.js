@@ -128,8 +128,8 @@ export const dispatchToken = register(({action, data}) => {
   if (action === dashboardActions.playerDoesNotGoOnMissions)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .set('self', jsonapiCursor(['agents']).find(agent => agent.get('id') === jsonapiCursor(['self', 'id'])))
-        .update('agents', val => val.delete(jsonapiCursor(['agents']).indexOf(jsonapiCursor(['agents']).find(agent => agent.get('id') === jsonapiCursor(['self', 'id'])))));
+        .set('self', data.playerAgent)
+        .update('agents', val => val.delete(val.indexOf(data.playerAgent))); // delete in immutable should remove from list completely
     });
 
   if (action === dashboardActions.playerGoesOnMissions)

@@ -61,8 +61,8 @@ class MissionTrackingScreen extends Component {
         <div id='MissionScreenLabel'>Mission in {countryofoperation}</div>
         {screenTrans &&
           <TaskTier
-            activemission={jsonapi.get('activemission')}
             game={game}
+            jsonapi={jsonapi}
             />}
         {screenTrans &&
           <TableTopTier

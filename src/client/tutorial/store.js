@@ -17,6 +17,12 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['tutorial', 'completed'], true);
     });
 
+  if (action === tutorialActions.confirmAvatar)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['tutorial', 'avatarselected'], true);
+    });
+
   if (action === tutorialActions.confirmCampaignsSelection)
     jsonapiCursor(jsonapi => {
       return jsonapi

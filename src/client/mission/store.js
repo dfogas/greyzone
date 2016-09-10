@@ -205,7 +205,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === missionActions.completeTask)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'taskscompleted'], jsonapiCursor(['activemission', 'taskscompleted']).push(data.message));
+        .updateIn(['activemission', 'taskscompleted'], val => val.push(data.task));
     });
 
   if (action === missionActions.controldamage) {

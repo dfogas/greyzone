@@ -20,6 +20,7 @@ function checkBadEnds(jsonapi) {
   else if (
     jsonapi.get('agents').filter(
       agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 &&  // player's agent is in agent's roster and has prison status true
+        // teoreticky je možné hráče ponechat ve vězení a hru dohrát jen s agenty
         allAgents(jsonapi).filter(agent => agent.get('loyalty') === 'loyal').size === 0 // no agent of organization is loyal
   )
     return 'LeftInPrison';

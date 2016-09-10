@@ -13,12 +13,18 @@ const storiesMsg = {
     I was witnessing a scene in which mother has killed so that she can feed her children
     with children of another mother. I clarified many of my views on live on that day.`],
   evergreens: {
-    operative: [],
-    spy: [],
-    technician: {
-      askedforapinnumber: [`At the bank I was told "pick your four digit pincode but it can't be a year."`,
-        `"Aren't they all years?" I asked. We sat in silence for a bit.`]
-      }
+    operative: [
+      [`A lion wandered savanah, asking different animals who is the king of all animals. And they all answered - ''It is you, oh mighty lion.'`,
+      `Then he met elephant and he asked him the same question, but the elephant got angry, had beaten up lion badly and went away.`,
+      `Lion, as he was pickin himself up, muttered to himself - 'Even if he didn't know the answer, he could have stayed calm ...'`]
+    ],
+    spy: [
+      [`Did you know that about 91 percent of people are willing to give another human deadly
+        electricity charge bolt, when a man in the white coat tells them to?`]
+    ],
+    technician: [
+      [`At the bank I was told "pick your four digit pincode but it can't be a year."`, `"Aren't they all years?" I asked. Then we sat in silence.`]
+      ]
   },
   lakenyos: [`I see you bickering over some meaningless bad luck. My dad has survived
     lake Nyos if that means something to you.`, `In 1986 due to unknown cause a large
@@ -38,7 +44,12 @@ const storiesMsg = {
     `As he was finishing his speech, he recieved applause from all participants, who liked
     it, even though they were about the communist leader who wrote it.`, `contrary to which
     the colleagues of the historian were producing quite a quantity of cold sweat, because
-    they clearly recognized excerpt from Hitler's Mein Kampf`]
+    they clearly recognized excerpt from Hitler's Mein Kampf`],
+  oneliners: {
+    operative: [`operative oneliner`, `operative secondoneliner`, `operative thirdoneliner`],
+    spy: [`spy oneliner`, `spy secondoneliner`, `spy thirdoneliner`],
+    technician: [`technician oneliner`, `technician secondoneliner`, `technician thirdoneliner`]
+  }
   };
 
 export default storiesMsg;

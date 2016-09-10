@@ -16,6 +16,7 @@ class TaskHelpOverview extends Component {
         <Task
           game={game}
           isActual={true}
+          jsonapi={jsonapi}
           task={task}
           />
       );

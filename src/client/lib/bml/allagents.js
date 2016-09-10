@@ -18,16 +18,13 @@ const allAgents = function(jsonapi) {
   const agentinarmory = jsonapi.get('agentinarmory');
   const agentbeingsaved = jsonapi.get('agentbeingsaved');
   const agentontask = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask']);
-  const self = jsonapi.get('self');
   const allagents = agents
     .concat(agentsonmission)
     .concat(checkThenConcat(agentinarmory))
     .concat(checkThenConcat(agentbeingsaved))
     .concat(checkThenConcat(agentontask));
 
-  const playerAgentIsActive = allagents.find(agent => agent.get('id') === self.get('id'));
-
-  return playerAgentIsActive ? allagents : allagents.concat(checkThenConcat(self));
+  return allagents;
 };
 
 export default allAgents;
