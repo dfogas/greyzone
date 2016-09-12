@@ -23,6 +23,7 @@ class Dashboard extends Component {
         <div className="dashboard-page">
           {!tutorialfinished &&
             <div id='NewGameStart'>
+              <legend>Starting new game</legend>
               <p>So, here I was, alive.</p>
               <p>But... - how did I get here?</p>
               <DashboardToTutorial />

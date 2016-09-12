@@ -6,6 +6,7 @@ const tag = 'moneychannelling';
 const title = 'Money channelling';
 const imgsrc = 'MoneyChannelling.jpg';
 const sound = 'MoneyChannelling.ogg';
+const description = `This money is so clean as face of the baby. Don't ask me how I did it, but it is so.`;
 
 const MoneyChannelling = [{
   title: title,
@@ -23,6 +24,7 @@ const MoneyChannelling = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 1,
   tag: tag
@@ -42,6 +44,7 @@ const MoneyChannelling = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 2,
   tag: tag
@@ -62,6 +65,7 @@ const MoneyChannelling = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 3,
   tag: tag
@@ -81,8 +85,9 @@ const MoneyChannelling = [{
     obscurity: 0.15,
     reputation: 500
   },
-  sound: sound,
   imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 3,
   tag: tag,
   tier: 4
@@ -102,8 +107,9 @@ const MoneyChannelling = [{
     obscurity: 0.2,
     reputation: 500
   },
-  sound: sound,
   imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 3,
   tag: tag,
   tier: 5

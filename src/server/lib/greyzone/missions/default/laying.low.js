@@ -5,6 +5,7 @@ const tag = 'layinglow';
 const title = 'Laying Low';
 const imgsrc = 'LayingLow.jpg';
 const sound = 'LayingLow.ogg';
+const description = `Doing nothing for some, this is a hardest thing there is.`;
 
 const LayingLow = [{
   title: title,
@@ -23,6 +24,7 @@ const LayingLow = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 1,
   tag: tag
@@ -42,8 +44,9 @@ const LayingLow = [{
     reputation: 250
   },
   imgsrc: imgsrc,
-  agentLimit: 3,
   sound: sound,
+  description: description,
+  agentLimit: 3,
   tier: 2,
   tag: tag
 }, {
@@ -64,6 +67,7 @@ const LayingLow = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 3,
   tag: tag
@@ -84,6 +88,7 @@ const LayingLow = [{
     reputation: 1500
   },
   sound: sound,
+  description: description,
   imgsrc: imgsrc,
   agentLimit: 3,
   tag: tag,
@@ -105,6 +110,7 @@ const LayingLow = [{
     reputation: 2000
   },
   sound: sound,
+  description: description,
   imgsrc: imgsrc,
   agentLimit: 3,
   tag: tag,

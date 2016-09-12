@@ -1,3 +1,4 @@
+/* eslint curly: 1 */
 import * as missionActions from './actions';
 import * as briefingActions from '../briefing/actions';
 import {jsonapiCursor} from '../state';
@@ -98,7 +99,9 @@ export const dispatchToken = register(({action, data}) => {
 
   if (action === missionActions.agentRecruited)
     jsonapiCursor(jsonapi => {
-      return jsonapi.update('agents', val => val.push(immutable.fromJS(data)));
+      return jsonapi
+        .update('agents', val => val.push(immutable.fromJS(data)))
+        .setIn(['activemission', 'agentrecruited'], immutable.fromJS(data));
     });
 
   if (action === missionActions.attentionLowered) {
@@ -220,6 +223,18 @@ export const dispatchToken = register(({action, data}) => {
         .update('log', val => val.unshift(
           dayandtime(Date.now(), new Date().getTimezoneOffset()) + ' - Mission ' + jsonapiCursor(['activemission', 'title']) + ' in ' + missioncountryname + ' failed, with limited damages.'
         ));
+    });
+  }
+
+  if (action === missionActions.recruitAgentToggle) {
+    if (jsonapiCursor(['agents']).find(ag => ag.get('id') === jsonapiCursor(['activemission', 'agentrecruited', 'id'])))
+      jsonapiCursor(jsonapi => {
+        return jsonapi
+          .update('agents', val => val.delete(val.indexOf(data.agent)));
+      });
+    else jsonapiCursor(jsonapi => {
+      return jsonapi
+        .update('agents', val => val.unshift(data.agent));
     });
   }
 

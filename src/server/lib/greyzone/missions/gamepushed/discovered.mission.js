@@ -5,6 +5,7 @@ const imgsrc = 'Discovered.jpg';
 const sound = 'Discovered.ogg';
 const tag = 'discovered';
 const title = 'Discovered!';
+const description = `Agent has been tagged by security system and now has to evade certain imprisonment.`;
 
 const Discovered = [{
   title: title,
@@ -22,6 +23,7 @@ const Discovered = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 1,
   tier: 3,
   tag: tag
@@ -41,6 +43,7 @@ const Discovered = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 1,
   tier: 4,
   tag: tag
@@ -61,6 +64,7 @@ const Discovered = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 1,
   tier: 5,
   tag: tag

@@ -1,5 +1,5 @@
-import './actionbutton.styl';
-import * as dicesActions from '../../dice/actions';
+import './actionbutton.styl'; //
+import * as dicesActions from '../../rotatingdie/actions';
 import * as missionActions from '../../../actions';
 import Component from '../../../../components/component.react.js';
 import React from 'react';
@@ -12,8 +12,13 @@ class ActionButton extends Component {
       missionActions.agentLockedToTask();
     }
 
-    if (!diceslock && missionStarted)
-      dicesActions.rollAll();
+    if (!diceslock && missionStarted) {
+      dicesActions.spinDice();
+      setTimeout(() => {
+        dicesActions.spinDice();
+        dicesActions.rollAll();
+      }, 1500);
+    }
 
     if (!agentlock && missionStarted)
       missionActions.agentLockedToTask();

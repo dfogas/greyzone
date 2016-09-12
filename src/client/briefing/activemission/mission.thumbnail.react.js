@@ -2,33 +2,23 @@ import './mission.thumbnail.styl';//
 import * as briefingActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
-import {msg} from '../../intl/store';
+// import {msg} from '../../intl/store';
+// import immutable from 'immutable';
 
 class MissionThumbnail extends Component {
-  // hideTasks(e) {
-  //   e.preventDefault();
-  //   e.target.style.opacity = 1;
-  // }
-
-
-  // showTasks(e) {
-  //   e.preventDefault();
-  //   e.target.style.opacity = 0.5;
-  // }
-
   toggleShowMissionDescriptionText() {
     briefingActions.missionTextToggle();
   }
 
   render() {
-    const {imgsrc, missiontag, thumbnailtext} = this.props;
+    const {imgsrc, /*mission, */thumbnailtext} = this.props;
     return (
       <div
         id='ActualMissionThumbnail'
         onClick={this.toggleShowMissionDescriptionText}
         style={{backgroundImage: `url('../../../../assets/img/missions/thumbnails/${imgsrc}')`}}>
         {thumbnailtext &&
-          <div id='MissionDescription'>{msg('mission.descriptions.' + missiontag)}</div>}
+          <div id='MissionDescription'>mission.get('description')</div>}
       </div>
     );
   }
@@ -36,7 +26,7 @@ class MissionThumbnail extends Component {
 
 MissionThumbnail.propTypes = {
   imgsrc: React.PropTypes.string,
-  missiontag: React.PropTypes.string,
+  // mission: React.PropTypes.instanceOf(immutable.Map),
   thumbnailtext: React.PropTypes.string
 };
 

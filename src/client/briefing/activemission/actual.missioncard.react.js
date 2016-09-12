@@ -36,7 +36,7 @@ class ActualMissionCard extends Component {
         {false &&
           <MissionThumbnail
             imgsrc={imgsrc}
-            missiontag={activemission.get('tag')}
+            mission={activemission}
             thumbnailtext={components.getIn(['briefing', 'missionthumbnail', 'text'])}
             />}
         <ActiveMissionToggleOff />

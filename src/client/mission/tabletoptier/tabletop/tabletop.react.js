@@ -1,5 +1,5 @@
 /* Smart Component */
-import './tabletop.styl';
+import './tabletop.styl'; //
 import * as missionActions from '../../actions';
 import * as diceActions from '../dice/actions';
 import Component from '../../../components/component.react';
@@ -8,7 +8,7 @@ import immutable from 'immutable';
 import canCompleteTask from '../../../lib/bml/cancompletetask';
 
 import ProbabilityBar from './probability.bar.react';
-import Dice from '../dice/dice.react';
+import Dice from '../rotatingdie/rotating.die.react';
 import MissionTitle from '../../missioncard/missiontitle.react';
 import ActionButton from './buttons/actionbutton.react';
 
@@ -66,25 +66,28 @@ class TableTop extends Component {
         id='TableTop'
         onDragOver={this.allowDrop}
         onDrop={this.drop}>
-        <MissionTitle
+        {true && <MissionTitle
           isActual={true}
           title={activemission.get('title')}
-          />
-        {agentontask && remainingdices.size ?
-          remainingdices.map((dice, i) => {
-            return (
-              <Dice
-                diceindex={i}
-                dicekey={dice.get('dicekey')}
-                dicetype={dice.get('type')}
-                name={dicesthrown.get(i)}
-                rollable={dice.get('rollable')}
-                />
-            );
-          }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
-          taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">You have been successfull.</div>)
-          : (activemission.getIn(['mission', 'currenttask', 'agentlock']) ? (<div id="MissionStartStatus">You most likely failed mission.</div>) : (<div id="MissionStartStatus">Continue next task.</div>))
-        }
+          />}
+        <div id='TableTopDiceContainer'>
+          {agentontask && remainingdices.size ?
+            remainingdices.map((dice, i) => {
+              return (
+                <Dice
+                  diceindex={i}
+                  dicekey={dice.get('dicekey')}
+                  dicetype={dice.get('type')}
+                  jsonapi={jsonapi}
+                  name={dicesthrown.get(i)}
+                  rollable={dice.get('rollable')}
+                  />
+              );
+            }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
+            taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">You have been successfull.</div>)
+            : (activemission.getIn(['mission', 'currenttask', 'agentlock']) ? (<div id="MissionStartStatus">You most likely failed mission.</div>) : (<div id="MissionStartStatus">Continue next task.</div>))
+          }
+        </div>
         {isPaying &&
           <ProbabilityBar
             activemission={activemission}

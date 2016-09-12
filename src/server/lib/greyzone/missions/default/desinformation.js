@@ -5,6 +5,7 @@ const tag = 'desinformation';
 const title = 'Desinformation';
 const imgsrc = 'Desinformation.jpg';
 const sound = 'Desinformation.ogg';
+const description = `Hey, psst I got this absolutely fantastic tip for you, it can't fail, I am 100% sure.`;
 
 const Desinformation = [{
     title: title,
@@ -21,6 +22,7 @@ const Desinformation = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 1,
     tier: 1,
     tag: tag
@@ -39,6 +41,7 @@ const Desinformation = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 1,
     tier: 2,
     tag: tag
@@ -58,6 +61,7 @@ const Desinformation = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 1,
     tier: 3,
     tag: tag
@@ -77,6 +81,7 @@ const Desinformation = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 1,
     tier: 4,
     tag: tag
@@ -97,6 +102,7 @@ const Desinformation = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 1,
     tier: 5,
     tag: tag

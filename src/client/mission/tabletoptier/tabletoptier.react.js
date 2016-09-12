@@ -1,4 +1,5 @@
-import './tabletoptier.styl';
+import './tabletoptier.styl'; //
+import * as rotatingDieActions from './rotatingdie/actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -21,6 +22,9 @@ class TableTopTier extends Component {
           />}
         {isPlaceholder &&
           <div id='NoActiveMissionText'>No Active Mission</div>}
+        <button
+          id='SpinDiceButton'
+          onClick={(e) => rotatingDieActions.spinDice()}>Spin Dice</button>
         <DiceBin activemission={activemission} />
       </div>
     );

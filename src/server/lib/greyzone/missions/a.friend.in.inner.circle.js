@@ -5,6 +5,7 @@ const tag = 'afriendininnercircle';
 const title = 'A Friend in Inner Circle';
 const imgsrc = 'InnerCircle.jpg';
 const sound = 'InnerCircle.ogg';
+const description = `As long as we have Alan's support, we may conduct our operation freely.`;
 
 const AFriendInInnerCircle = [{
   title: title,
@@ -23,6 +24,7 @@ const AFriendInInnerCircle = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -45,6 +47,7 @@ const AFriendInInnerCircle = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 4,
   tag: tag
@@ -68,6 +71,7 @@ const AFriendInInnerCircle = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 5,
   tag: tag

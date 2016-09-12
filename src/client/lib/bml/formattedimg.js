@@ -2,6 +2,9 @@
 import prop from '../general/r.i.prop';
 
 const formattedImg = function(isLoyal, isShowcased, agent) {
+  if (!agent)
+    return '';
+
   let formattedImg = (isShowcased && isLoyal)
     ? prop('imgsrc', agent).replace('_128', 'L_sc')
     : isShowcased

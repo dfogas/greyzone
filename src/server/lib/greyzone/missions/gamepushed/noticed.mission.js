@@ -6,6 +6,7 @@ const sound = 'Noticed.ogg';
 const imgsrc = 'Noticed.jpg';
 const title = 'Noticed!';
 const tag = 'noticed';
+const description = `Somebody is after you, your contacts tell you, better cover it up before they find you.`;
 
 const Noticed = [{
   title: title,
@@ -22,6 +23,7 @@ const Noticed = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 1,
   tier: 1,
   tag: tag
@@ -38,8 +40,9 @@ const Noticed = [{
   losses: {
     obscurity: 0.4
   },
-  sound: sound,
   imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 1,
   tier: 2,
   tag: tag
@@ -57,8 +60,9 @@ const Noticed = [{
   losses: {
     obscurity: 0.6
   },
-  sound: sound,
   imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 1,
   tier: 3,
   tag: tag

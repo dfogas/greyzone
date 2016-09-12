@@ -12,6 +12,21 @@
   border-radius 1em
   animation flipInX 1s
   z-index 1001
+  //
+  // .agent-card li
+  //   padding-left 5px
+
+  .agent-stat-counter.operations
+    position absolute
+    left 0px
+
+  .agent-stat-counter.electronics
+    position absolute
+    left 0px
+
+  .agent-stat-counter.stealth
+    position absolute
+    left 0px
 
   ul
     list-style-type none
@@ -42,7 +57,7 @@
         font-weight bold
         font-size 1.1em
 
-  li
+  li.mission-result-special-other
     list-style-type none
     padding-left 30px
     font-weight bold
@@ -56,3 +71,15 @@
 
 #MissionResultsWindow.animated
   animation flipOutX 1.5s
+
+#RecruitAgentToggleButton
+  position relative
+  top 10px
+  left 350px
+  background rgba(0, 0, 0, 0.9)
+  z-index 101
+
+#RecruitAgentStatus
+  position relative
+  top 50px
+  left 200px

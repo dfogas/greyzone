@@ -25,8 +25,6 @@ export function confirmCampaignsSelection() {
 export function firstMissionSetup() {
   const self = jsonapiCursor(['self']);
   const EquipmentList = gameCursor(['globals', 'equipments']);
-  // AY! terrible hack
-  // TODO: find better way to write this
   const partnerTechnician = Agent('technician', 3, gameCursor(['globals', 'trainingtable']));
   let mission;
   if (self.get('specialist') === 'technician')

@@ -188,6 +188,10 @@ export function organizationMissionDone() {
   lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, storage.concat([missionDone]));
 }
 
+export function recruitAgentToggle(agent) {
+  dispatch(recruitAgentToggle, {agent});
+}
+
 /*finds activemission in missions and removes it*/
 export function removeCompletedMission() {
   dispatch(removeCompletedMission, {});
@@ -253,6 +257,7 @@ setToString('mission', {
   fail,
   log,
   organizationMissionDone,
+  recruitAgentToggle,
   removeCompletedMission,
   setDefault,
   start,

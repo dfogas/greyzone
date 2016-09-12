@@ -5,6 +5,7 @@ const tag = 'connectionsmap';
 const title = 'Connections Map';
 const imgsrc = 'ConnectionsMap.jpg';
 const sound = 'ConnectionsMap.ogg';
+const description = `The first thing is to know, who talks to whom and what are the feelings of the groups towards each other.`;
 
 const ConnectionsMap = [{
     title: title,
@@ -22,6 +23,7 @@ const ConnectionsMap = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 3,
     tier: 1,
     tag: tag
@@ -41,6 +43,7 @@ const ConnectionsMap = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 3,
     tier: 2,
     tag: tag
@@ -61,6 +64,7 @@ const ConnectionsMap = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 3,
     tier: 3,
     tag: tag
@@ -79,7 +83,9 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 62500
     },
-    imgsrc: 'chinese.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
+    description: description,
     agentLimit: 3,
     tier: 4
   }, {
@@ -97,7 +103,9 @@ const ConnectionsMap = [{
     losses: {
       gameCash: 125000
     },
-    imgsrc: 'chinese.jpg',
+    imgsrc: imgsrc,
+    sound: sound,
+    description: description,
     agentLimit: 3,
     tier: 5
   }];

@@ -14,9 +14,6 @@ import React from 'react';
 import {RouteHandler} from 'react-router';
 import {measureRender} from '../console';
 
-// import Footer from './footer.react';
-// import Menu from './menu.react';
-
 // Remember to import all app stores here.
 import '../intl/store';
 import '../agents/store';
@@ -32,11 +29,12 @@ import '../dashboard/logwindow/store';
 import '../dashboard/optionswindow/store';
 import '../dashboard/statuseswindow/store';
 import '../dashboard/store';
+import '../equipments/store';
 import '../events/store';
 import '../introduction/store';
-import '../mission/tabletoptier/dice/store';
-import '../equipments/store';
 import '../mission/store';
+import '../mission/tabletoptier/dice/store';
+import '../mission/tabletoptier/rotatingdie/store';
 import '../support/store';
 import '../talk/enhancements/store';
 import '../talk/store';
@@ -90,13 +88,7 @@ class App extends Component {
 
     return (
       <div className="page">
-        {/*<Menu viewer={this.state.viewer} />*/}
-        {/*<Menu
-          locales={this.state.i18n.get('locales')}
-          {...this.state}
-          />*/}
         <RouteHandler {...this.state} />
-        {/*<Footer />*/}
       </div>
     );
   }

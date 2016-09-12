@@ -19,7 +19,7 @@ const MissionDescriptions = {
     certain imprisonment.`,
   industrialespionage: `(not implemented) For you this was just technical mumbo jumbo, but
     for certain somebody, these docs beared a lot of money-earning potential.`,
-  layinglow: `Doing nothing - this is a hardest thing there is.`,
+  layinglow: `Doing nothing for some, this is a hardest thing there is.`,
   moneychannelling: `This money is so clean as face of the baby. Don't ask
     me how I did it, but it is so.`,
   nextontheblacklist: `(not implemented) This strange individual - he has got a lot to answer for and

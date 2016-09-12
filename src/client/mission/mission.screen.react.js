@@ -1,3 +1,4 @@
+
 import './mission.screen.styl'; //
 // import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
@@ -82,6 +83,7 @@ class MissionTrackingScreen extends Component {
           <MissionToDashboardButton />}
         {missionStarted && missionResult &&
           <MissionResultsWindow
+            game={game}
             jsonapi={jsonapi}
             />}
       </div>

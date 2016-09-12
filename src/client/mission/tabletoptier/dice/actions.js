@@ -8,6 +8,7 @@ export function create(dice) {
   const dicekeys = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']).map(die => die.get('dicekey'));
   const debugswitch = jsonapiCursor(['options', 'debug']);
   if (dicekeys.indexOf(dice.dicekey) !== -1)
+
     flashMission(`This is not possible`);
   else
     dispatch(create, dice);
@@ -20,6 +21,7 @@ export function destroyLockedDice() {
 }
 
 function flashMission(message) {
+  $('#MissionStartMessage').remove();
   $('#TableTop').append(`<div id=\'MissionStartMessage\'>${message}</div>`);
   $('#MissionStartMessage').hide().fadeIn(200);
   $('#MissionStartMessage').fadeOut(1000, () => $('#MissionStartMessage').remove());

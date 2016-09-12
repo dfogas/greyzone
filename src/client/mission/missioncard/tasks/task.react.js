@@ -17,8 +17,12 @@ class Task extends Component {
       'current': this.props.isCurrent,
       'on-mission': this.props.isMission
     });
-    // CONVENTION: předpokládáme různé tasky na misi
+    // CONVENTION: předpokládáme různé tasky na misi,
+    // nefunguje při čerstvém přihlášení
     const isComplete = activemission.get('taskscompleted').find(tc => tc === task);
+    // // console.log(task.toJS()); //
+    // console.log(isComplete);
+    // console.log(activemission.get('taskscompleted').toJS());
 
     return (
       <div className='task-fieldset'>

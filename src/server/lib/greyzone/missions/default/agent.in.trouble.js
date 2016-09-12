@@ -5,6 +5,7 @@ const tag = 'agentintrouble';
 const title = 'Agent In Trouble';
 const imgsrc = 'AgentInTrouble.jpg';
 const sound = 'AgentInTrouble.ogg';
+const description = `How did she got to this mess is a puzzle ..., but lets help her and see what happens.`;
 
 let AgentInTrouble = [{
   title: title,
@@ -23,6 +24,7 @@ let AgentInTrouble = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 1,
   tag: tag
@@ -44,6 +46,7 @@ let AgentInTrouble = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 2,
   tag: tag
@@ -65,6 +68,7 @@ let AgentInTrouble = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -87,6 +91,7 @@ let AgentInTrouble = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 4,
   tag: tag
@@ -109,6 +114,7 @@ let AgentInTrouble = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 5,
   tag: tag

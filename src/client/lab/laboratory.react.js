@@ -1,4 +1,5 @@
-import './laboratory.styl';
+import './laboratory.styl'; //
+import './die.animations.styl';
 import Component from '../components/component.react';
 import React from 'react';
 
@@ -11,7 +12,7 @@ class Laboratory extends Component {
             <input id="secondroll" name="roll" type="checkbox" />
             <input id="roll" name="roll" type="checkbox" />
             <label htmlFor="roll">Roll it!</label>
-            <label htmlFor="secondroll"><span>Stop!</span></label>
+            <label htmlFor="secondroll">Stop!</label>
             <div id="platform">
               <div id="dice">
                 <div className="side front">

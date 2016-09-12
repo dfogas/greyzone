@@ -5,6 +5,7 @@ const tag = 'anolddebt';
 const title = 'An Old Debt';
 const imgsrc = 'AnOldDebt.jpg';
 const sound = 'AnOldDebt.ogg';
+const description = `It's time to pay.`;
 
 const AnOldDebt = [{
   title: title,
@@ -23,6 +24,7 @@ const AnOldDebt = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -44,6 +46,7 @@ const AnOldDebt = [{
   imgsrc: imgsrc,
   agentLimit: 2,
   sound: sound,
+  description: description,
   tier: 4,
   tag: tag
 }, {
@@ -64,6 +67,7 @@ const AnOldDebt = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 5,
   tag: tag

@@ -1,0 +1,136 @@
+#Dice0.rotating-die {
+  // position: absolute;
+  width: 100px;
+  height: 100px;
+  // margin: 100px;
+  transform-style: preserve-3d;
+  animation: spin 25s infinite linear;
+}
+
+.rotating-die {
+  margin 20px
+  // margin-left: 20px;
+  // margin-right: 20px;
+  // margin-bottom: -20px;
+  // margin-top: -20px;
+}
+
+// .rotating-die.rollable.operations
+// box-shadow 0 0 25px yellow, inset 0 0 25px black
+// .rotating-die.rollable.electronics
+//   box-shadow 0 0 25px yellow, inset 0 0 25px black
+.rotating-die.rollable
+  box-shadow 0 0 25px yellow, inset 0 0 25px black
+
+.side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+  box-shadow:inset 0 0 20px #111111;
+  border-radius: 20px;
+}
+.side.operations {
+  background-color: darkred
+}
+.side.electronics {
+  background-color: darkgreen
+}
+.side.stealth {
+  background-color: gold
+}
+// .side.front.operations {
+//   background-image: url('../../../../../assets/img/missions/actions/pursuit.png');
+// }
+.side.top.operations {
+  background-image: url('../../../../../assets/img/missions/actions/hit.png');
+}
+.side.right.operations {
+  background-image: url('../../../../../assets/img/missions/actions/close_combat.png');
+}
+.side.back.operations {
+  background-image: url('../../../../../assets/img/missions/actions/pursuit.png');
+}
+
+.side.left {
+  background-image: url('../../../../../assets/img/missions/actions/improv.png');
+}
+.side.bottom {
+  background-image: url('../../../../../assets/img/missions/actions/improv.png');
+}
+// .side.front.electronics {
+//   background-image: url('../../../../../assets/img/missions/actions/tap.png');
+// }
+.side.top.electronics {
+  background-image: url('../../../../../assets/img/missions/actions/monitor.png');
+}
+.side.right.electronics {
+  background-image: url('../../../../../assets/img/missions/actions/decipher.png');
+}
+.side.back.electronics {
+  background-image: url('../../../../../assets/img/missions/actions/tap.png');
+}
+// .side.front.stealth {
+//   background-image: url('../../../../../assets/img/missions/actions/infiltrate.png');
+// }
+.side.top.stealth {
+  background-image: url('../../../../../assets/img/missions/actions/puppet.png');
+}
+.side.right.stealth {
+  background-image: url('../../../../../assets/img/missions/actions/hide.png');
+}
+.side.back.stealth {
+  background-image: url('../../../../../assets/img/missions/actions/infiltrate.png');
+}
+#Dice0.rotating-die .cover, #Dice0.rotating-die .inner {
+  background: #101010;
+  box-shadow: none;
+}
+#Dice0.rotating-die .cover {
+  border-radius: 0;
+  transform: translateZ(0px);
+}
+#Dice0.rotating-die .cover.x {
+  transform: rotateY(90deg);
+}
+#Dice0.rotating-die .cover.z {
+  transform: rotateX(90deg);
+}
+#Dice0.rotating-die .front  {
+  transform: translateZ(50px);
+}
+#Dice0.rotating-die .front.inner  {
+  transform: translateZ(49px);
+}
+#Dice0.rotating-die .back {
+  transform: rotateX(-180deg) translateZ(50px);
+}
+#Dice0.rotating-die .back.inner {
+  transform: rotateX(-180deg) translateZ(49px);
+}
+#Dice0.rotating-die .right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+#Dice0.rotating-die .right.inner {
+  transform: rotateY(90deg) translateZ(49px);
+}
+#Dice0.rotating-die .left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+#Dice0.rotating-die .left.inner {
+  transform: rotateY(-90deg) translateZ(49px);
+}
+#Dice0.rotating-die .top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+#Dice0.rotating-die .top.inner {
+  transform: rotateX(90deg) translateZ(49px);
+}
+#Dice0.rotating-die .bottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+#Dice0.rotating-die .bottom.inner {
+  transform: rotateX(-90deg) translateZ(49px);
+}

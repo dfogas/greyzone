@@ -3,8 +3,8 @@ import setToString from '../../lib/settostring';
 import {jsonapiCursor} from '../../state';
 import hashString from '../../lib/hashstring';
 import immutable from 'immutable';
+import announce from '../../lib/announce';
 // import cconfig from '../../client.config';
-import $ from 'jquery';
 import lockr from 'lockr';
 
 export function changeOption(name, value) {
@@ -12,10 +12,10 @@ export function changeOption(name, value) {
     resolve({name, value});
   });
   // if (name === 'multiplayer')
-  //   dashboardAnnounce(`Multiplayer is not yet implemented. Due to smoothing out interactions
-  //     with other players it will not feature game saves.`);
+  //   announce(`Multiplayer is not yet implemented. Due to smoothing out interactions
+  //     with other players it will not feature game saves.`, `Dashboard`);
   if (name === 'soundeffects') {
-    dashboardAnnounce(`Sound effects are ${value ? 'on' : 'off'}`);
+    announce(`Sound effects are ${value ? 'on' : 'off'}`, `Dashboard`);
     dispatch(changeOption, promise);
   } else dispatch(changeOption, promise);
 }
@@ -25,17 +25,9 @@ export function changePaying(name, value) {
   const userId = jsonapiCursor(['userId']);
   // console.log(name, value);
   if (value)
-    dashboardAnnounce(`This item is already bought.`);
+    announce(`This item is already bought.`, `Dashboard`);
   else
     location.href = `/create?userId=${userId}&name=${name}`;
-}
-
-function dashboardAnnounce(message) {
-  $('#DashboardAnnounce').remove();
-  $('#DashboardScreen').append(`<div id='DashboardAnnounce'>${message}</div>`);
-  $('#DashboardAnnounce').on('click', () => {
-    $('#DashboardAnnounce').remove();
-  });
 }
 
 function eraseGameLog() {
@@ -56,11 +48,11 @@ export function loadGame(game) {
 
   if (debug) {
     dispatch(loadGame, savegame);
-    dashboardAnnounce(`Game has been loaded.`);
+    announce(`Game has been loaded.`, `Dashboard`);
   } else if (savegame && hashString(savegame) === gamehash) {
     dispatch(loadGame, savegame);
-    dashboardAnnounce(`Game has been loaded.`);
-  } else dashboardAnnounce(`Hashes don\'t equal. You may need to log out.`);
+    announce(`Game has been loaded.`, `Dashboard`);
+  } else announce(`Hashes don\'t equal. You may need to log out.`, `Dashboard`);
 }
 
 export function sanitizeAgents() {
@@ -75,7 +67,7 @@ export function saveGame(jsonapi, game) {
   const jsonapijs = jsonapi.toJS();
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}`, jsonapijs);
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}hash`, hashString(jsonapijs));
-  dashboardAnnounce(`Game has been saved.`);
+  announce(`Game has been saved.`, `Dashboard`);
   const missionsDoneCount = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`).length;
 
   dispatch(saveGame, {missionsDoneCount, game});

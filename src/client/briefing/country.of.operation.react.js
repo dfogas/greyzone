@@ -1,7 +1,7 @@
 import './country.of.operation.styl';
 import * as componentsActions from '../components/actions';
-import * as dashboardActions from '../dashboard/actions';
 import * as travelActions from './travelwindow/actions';
+import announce from '../lib/announce';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -19,7 +19,7 @@ class CountryOfOperation extends Component {
         name: 'countryofoperation',
         value: jsonapi.getIn(['dashboard', 'countryofoperation'])
       });
-      dashboardActions.dashboardAnnounce(`There is an unresolved forced mission`);
+      announce(`There is an unresolved forced mission`, `Dashboard`);
     }
   }
 

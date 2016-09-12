@@ -1,4 +1,4 @@
-import './choose.class.styl';
+import './choose.class.styl'; //
 import * as tutorialActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -46,7 +46,7 @@ class AgentChoose extends Component {
             <label>Spy</label>}
         </div>
         <div id='PlayerChoosesAvatarsClassMessage'>
-          Choose Class of Player Agent Avatar
+          {isDefault ? `Choose Class of Player Agent Avatar` : `You have chosen ${jsonapi.getIn(['self', 'specialist'])}`}
         </div>
         <div id='PlayerChoosesAvatarAvatarPicture'>
           <img src={formattedImg(false, true, jsonapi.get('self'))} />

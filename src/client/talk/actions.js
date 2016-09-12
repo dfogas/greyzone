@@ -21,7 +21,8 @@ export function agentTalking(agent) {
   const isNotSelf = self.get('id') !== agent.get('id');
 
   if (agent.get('prison'))
-    isNotProduction ? alert('add prison dialog here') : console.log('work in progress');//eslint-disable-line no-alert, no-unused-expressions, no-console
+    agentDialogToggle();
+    // isNotProduction ? alert('add prison dialog here') : console.log('work in progress');//eslint-disable-line no-alert, no-unused-expressions, no-console
   else if ((goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'prisonbreak')))
     dispatch(enhancementTalk, {message: 'prisonbreak'});
   else if (!isNotSelf && goodlabel && jsonapiCursor(['agents']).filter(agent => agent.get('prison')).size && !enhancements.find(enh => enh.get('missiontag') === 'silencewitness'))
@@ -35,7 +36,7 @@ export function agentTalking(agent) {
   else if (isNotSelf && agent.get('loyalty') !== 'loyal' && goodlabel && !enhancements.find(enh => enh.get('missiontag') === 'anolddebt') && agent.get('id') !== self.get('id'))
     dispatch(enhancementTalk, {message: 'anolddebt'});
   else
-    isNotProduction ? agentDialogToggle() : console.log('work in progress'); //eslint-disable-line no-alert, no-unused-expressions, no-console
+    agentDialogToggle();
 }
 
 export function clearParticipants() {

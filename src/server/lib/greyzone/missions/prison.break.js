@@ -2,6 +2,9 @@
 import {hide, improv_st, infiltrate, decipher, tap, improv_el, close_combat, improv_op, pursuit} from './actions';
 
 const tag = 'prisonbreak';
+const imgsrc = 'PrisonBreak.jpg';
+const sound = 'PrisonBreak.ogg';
+const description = `This is the plan, if it fails, we resort to plan B. What is plan B? There is no plan B.`;
 
 const PrisonBreak = [{
   title: 'Prison Break',
@@ -20,7 +23,9 @@ const PrisonBreak = [{
     gameCash: 10000,
     obscurity: 0.25
   },
-  imgsrc: 'PrisonBreak.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 3,
   tag: tag
@@ -41,7 +46,9 @@ const PrisonBreak = [{
     gameCash: 15000,
     obscurity: 0.35
   },
-  imgsrc: 'PrisonBreak.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 4,
   tag: tag
@@ -62,7 +69,9 @@ const PrisonBreak = [{
     gameCash: 25000,
     obscurity: 0.45
   },
-  imgsrc: 'PrisonBreak.jpg',
+  imgsrc: imgsrc,
+  sound: sound,
+  description: description,
   agentLimit: 3,
   tier: 5,
   tag: tag

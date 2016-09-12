@@ -2,6 +2,8 @@
 import {decipher, monitor, tap, improv_el, hit, close_combat, improv_op, improv_st, pursuit, hide} from './actions';
 
 const tag = 'bankrobbery';
+const imgsrc = 'BankRobbery.jpg';
+const description = `The business seems to be slow, it's time to get money in the old-fashioned way.`;
 
 const BankRobbery = [{
   title: 'Bank Robbery',
@@ -21,7 +23,8 @@ const BankRobbery = [{
     obscurity: 1,
     gameContacts: 1000
   },
-  imgsrc: 'BankRobbery.jpg',
+  imgsrc: imgsrc,
+  description: description,
   agentLimit: 3,
   tier: 3,
   tag: tag
@@ -44,7 +47,8 @@ const BankRobbery = [{
     obscurity: 2,
     gameContacts: 500
   },
-  imgsrc: 'BankRobbery.jpg',
+  imgsrc: imgsrc,
+  description: description,
   agentLimit: 3,
   tier: 4,
   tag: tag
@@ -67,7 +71,8 @@ const BankRobbery = [{
     obscurity: 3,
     gameContacts: 2000
   },
-  imgsrc: '',
+  imgsrc: imgsrc,
+  description: description,
   agentLimit: 3,
   tier: 5,
   tag: tag

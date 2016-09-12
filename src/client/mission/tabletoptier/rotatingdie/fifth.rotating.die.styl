@@ -1,0 +1,58 @@
+#Dice4.rotating-die {
+  // position: absolute;
+  width: 100px;
+  height: 100px;
+  // margin: 100px;
+  transform-style: preserve-3d;
+  animation: spin 25s infinite linear;
+}
+#Dice4.rotating-die .cover, #Dice4.rotating-die .inner {
+  background: #101010;
+  box-shadow: none;
+}
+#Dice4.rotating-die .cover {
+  border-radius: 0;
+  transform: translateZ(0px);
+}
+#Dice4.rotating-die .cover.x {
+  transform: rotateY(90deg);
+}
+#Dice4.rotating-die .cover.z {
+  transform: rotateX(90deg);
+}
+#Dice4.rotating-die .front  {
+  transform: translateZ(50px);
+}
+#Dice4.rotating-die .front.inner  {
+  transform: translateZ(49px);
+}
+#Dice4.rotating-die .back {
+  transform: rotateX(-180deg) translateZ(50px);
+}
+#Dice4.rotating-die .back.inner {
+  transform: rotateX(-180deg) translateZ(49px);
+}
+#Dice4.rotating-die .right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+#Dice4.rotating-die .right.inner {
+  transform: rotateY(90deg) translateZ(49px);
+}
+#Dice4.rotating-die .left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+#Dice4.rotating-die .left.inner {
+  transform: rotateY(-90deg) translateZ(49px);
+}
+#Dice4.rotating-die .top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+#Dice4.rotating-die .top.inner {
+  transform: rotateX(90deg) translateZ(49px);
+}
+#Dice4.rotating-die .bottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+#Dice4.rotating-die .bottom.inner {
+  transform: rotateX(-90deg) translateZ(49px);
+}

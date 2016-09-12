@@ -6,7 +6,7 @@ import cconfig from '../client.config';
 import {gameCursor, jsonapiCursor} from '../state';
 // import {msg} from '../intl/store';
 import capabilityCheck from '../lib/bml/capabilitycheck';
-import dashboardAnnounce from '../lib/dashboardannounce';
+import announce from '../lib/announce';
 import leadershipCheck from '../lib/bml/leadershipcheck';
 import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import maxMissionsCheck from '../lib/bml/maxmissionscheck';
@@ -26,9 +26,9 @@ export function acceptMission(tier, focus, country, options) {
   const capabilitynames = enhancements.filter(enh => enh.type === 'capability').map(enh => enh.name);
 
   if (!capabilityCheck(parseInt(tier, 10), capabilitynames))
-    dashboardAnnounce(`Upgrade your capability enhancement for higher tier missions.`);
+    announce(`Upgrade your capability enhancement for higher tier missions.`, `Dashboard`);
   else if (!maxMissionsCheck(jsonapiCursor()))
-    dashboardAnnounce('Missions limit reached, upgrade your operations.');
+    announce(`Missions limit reached, upgrade your operations.`, `Dashboard`);
   else {
     dispatch(acceptMission, {mission});
     flashDashboard(`New mission!`);
@@ -72,12 +72,12 @@ export function dismissAgent(agent) {
 
   lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, storage.concat([agent.toJS()]));
   dispatch(dismissAgent, {agent});
-  dashboardAnnounce(`Agent left to rot in prison!`); // TODO: full dialog for agent's revenge taken on player
+  announce(`Agent left to rot in prison!`, `Dashboard`); // TODO: full dialog for agent's revenge taken on player
   selectAgent(agents.get(agentondisplayindex === 0 ? agents.size - 1 : agentondisplayindex - 1));
   if (agent.get('loyalty') !== 'loyal') {
     // let organizationMissions = jsonapiCursor(['missionsDone']); TODO: check in which countries did agent take part in missions
     obscurityCountriesImpact(countryList, -(agent.get('rank') / 10));
-    dashboardAnnounce(`The agent has talked, obscurity in countries has been lowered.`);
+    announce(`The agent has talked, obscurity in countries has been lowered.`, `Dashboard`);
   }
 }
 

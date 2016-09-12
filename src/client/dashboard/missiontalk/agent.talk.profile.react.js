@@ -1,14 +1,14 @@
-import './agent.talk.profile.styl'; //
+import './agent.talk.profile.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
-// import prop from '../../lib/general/r.i.prop';
+import prop from '../../lib/general/r.i.prop';
 import formattedImg from '../../lib/bml/formattedimg';
 
 class AgentTalkProfile extends Component {
   render() {
     const {agent, talk} = this.props;
-    const isLoyal = agent.get('loyalty') === 'loyal';
+    const isLoyal = prop('loyalty', agent) === 'loyal';
     const imgsrc = formattedImg(isLoyal, true, agent);
 
     return (

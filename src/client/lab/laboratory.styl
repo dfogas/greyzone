@@ -1,122 +1,6 @@
 #LaboratoryPage
 
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: translateZ(100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    16% {
-      -webkit-transform: translateZ(100px) rotateX(180deg) rotateY(180deg) rotateZ(0deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    33% {
-      -webkit-transform: translateZ(100px) rotateX(360deg) rotateY(90deg) rotateZ(180deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    50% {
-      -webkit-transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    66% {
-      -webkit-transform: translateZ(100px) rotateX(180deg) rotateY(360deg) rotateZ(270deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    83% {
-      -webkit-transform: translateZ(100px) rotateX(270deg) rotateY(180deg) rotateZ(180deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    100% {
-      -webkit-transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-  }
-  @keyframes spin {
-    0% { transform: translateZ(100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-    16% { transform: translateZ(100px) rotateX(180deg) rotateY(180deg) rotateZ(0deg); }
-    33% { transform: translateZ(100px) rotateX(360deg) rotateY(90deg) rotateZ(180deg); }
-    50% { transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-    66% { transform: translateZ(100px) rotateX(180deg) rotateY(360deg) rotateZ(270deg); }
-    83% { transform: translateZ(100px) rotateX(270deg) rotateY(180deg) rotateZ(180deg); }
-    100% { transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-  }
-  @-webkit-keyframes spin-duplicate {
-    0% {
-      -webkit-transform: translateZ(100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    16% {
-      -webkit-transform: translateZ(100px) rotateX(180deg) rotateY(180deg) rotateZ(0deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    33% {
-      -webkit-transform: translateZ(100px) rotateX(360deg) rotateY(90deg) rotateZ(180deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    50% {
-      -webkit-transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    66% {
-      -webkit-transform: translateZ(100px) rotateX(180deg) rotateY(360deg) rotateZ(270deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    83% {
-      -webkit-transform: translateZ(100px) rotateX(270deg) rotateY(180deg) rotateZ(180deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-    100% {
-      -webkit-transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
-    }
-  }
-  @keyframes spin-duplicate {
-    0% { transform: translateZ(100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-    16% { transform: translateZ(100px) rotateX(180deg) rotateY(180deg) rotateZ(0deg); }
-    33% { transform: translateZ(100px) rotateX(360deg) rotateY(90deg) rotateZ(180deg); }
-    50% { transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-    66% { transform: translateZ(100px) rotateX(180deg) rotateY(360deg) rotateZ(270deg); }
-    83% { transform: translateZ(100px) rotateX(270deg) rotateY(180deg) rotateZ(180deg); }
-    100% { transform: translateZ(100px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-  }
-  @-webkit-keyframes roll {
-      0% { -webkit-transform: translate3d(-200px,-50px,-400px) }
-      12% { -webkit-transform: translate3d(0px,0,-100px) }
-      25% { -webkit-transform: translate3d(200px,-50px,-400px) }
-      37% { -webkit-transform: translate3d(0px,-100px,-800px) }
-      50% { -webkit-transform: translate3d(-200px,-50px,-400px) }
-      62% { -webkit-transform: translate3d(0px,0,-100px) }
-      75% { -webkit-transform: translate3d(200px,-50px,-400px) }
-      87% { -webkit-transform: translate3d(0px,-100px,-800px) }
-      100% { -webkit-transform: translate3d(-200px,-50px,-400px) }
-  }
-
-  @keyframes roll {
-      0% { transform: translate3d(-200px,-50px,-400px) }
-      12% { transform: translate3d(0px,0,-100px) }
-      25% { transform: translate3d(200px,-50px,-400px) }
-      37% { transform: translate3d(0px,-100px,-800px) }
-      50% { transform: translate3d(-200px,-50px,-400px) }
-      62% { transform: translate3d(0px,0,-100px) }
-      75% { transform: translate3d(200px,-50px,-400px) }
-      87% { transform: translate3d(0px,-100px,-800px) }
-      100% { transform: translate3d(-200px,-50px,-400px) }
-  }
   #roll:checked ~ #platform > #dice {
-      -webkit-animation: spin-duplicate 2s infinite linear;
       animation: spin-duplicate 2s infinite linear;
   }
   #roll:checked ~ #platform {
@@ -126,7 +10,6 @@
   }
   #secondroll:checked ~ #roll:checked ~ #platform > #dice,
   #secondroll:checked ~ #roll:checked ~ #platform {
-      -webkit-animation-play-state: paused;
       animation-play-state: paused;
   }
   #wrapper {
@@ -134,8 +17,6 @@
       width: 100px;
       padding-top: 100px;
       margin: 0 auto;
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1200px;
       perspective: 1200px;
   }
   #platform {
@@ -146,9 +27,6 @@
       width: 100px;
       height: 100px;
       transform-style: preserve-3d;
-      -webkit-perspective: 1200px;
-      -webkit-backface-visibility: hidden;
-      -webkit-animation: spin 25 infinite linear;
       animation: spin 25s infinite linear;
   }
   .side {
@@ -171,10 +49,10 @@
     background-image: url('../../../assets/img/missions/actions/close_combat.png');
   }
   .side.left {
-    background-image: url('../../../assets/img/missions/actions/i.png');
+    background-image: url('../../../assets/img/missions/actions/improv.png');
   }
   .side.bottom {
-    background-image: url('../../../assets/img/missions/actions/i.png');
+    background-image: url('../../../assets/img/missions/actions/improv.png');
   }
   #dice .cover, #dice .inner {
       background: #101010;
@@ -182,63 +60,48 @@
   }
   #dice .cover {
       border-radius: 0;
-      -webkit-transform: translateZ(0px);
       transform: translateZ(0px);
   }
   #dice .cover.x {
-      -webkit-transform: rotateY(90deg);
       transform: rotateY(90deg);
   }
   #dice .cover.z {
-      -webkit-transform: rotateX(90deg);
       transform: rotateX(90deg);
   }
   #dice .front  {
-      -webkit-transform: translateZ(50px);
       transform: translateZ(50px);
   }
   #dice .front.inner  {
-      -webkit-transform: translateZ(49px);
       transform: translateZ(49px);
   }
   #dice .back {
-      -webkit-transform: rotateX(-180deg) translateZ(50px);
       transform: rotateX(-180deg) translateZ(50px);
   }
   #dice .back.inner {
-      -webkit-transform: rotateX(-180deg) translateZ(49px);
       transform: rotateX(-180deg) translateZ(49px);
   }
   #dice .right {
-      -webkit-transform: rotateY(90deg) translateZ(50px);
       transform: rotateY(90deg) translateZ(50px);
   }
   #dice .right.inner {
-      -webkit-transform: rotateY(90deg) translateZ(49px);
       transform: rotateY(90deg) translateZ(49px);
   }
   #dice .left {
-      -webkit-transform: rotateY(-90deg) translateZ(50px);
       transform: rotateY(-90deg) translateZ(50px);
   }
   #dice .left.inner {
-      -webkit-transform: rotateY(-90deg) translateZ(49px);
       transform: rotateY(-90deg) translateZ(49px);
   }
   #dice .top {
-      -webkit-transform: rotateX(90deg) translateZ(50px);
       transform: rotateX(90deg) translateZ(50px);
   }
   #dice .top.inner {
-      -webkit-transform: rotateX(90deg) translateZ(49px);
       transform: rotateX(90deg) translateZ(49px);
   }
   #dice .bottom {
-      -webkit-transform: rotateX(-90deg) translateZ(50px);
       transform: rotateX(-90deg) translateZ(50px);
   }
   #dice .bottom.inner {
-      -webkit-transform: rotateX(-90deg) translateZ(49px);
       transform: rotateX(-90deg) translateZ(49px);
   }
 

@@ -1,4 +1,4 @@
-import './agent.card.styl';
+import './agent.card.styl'; //
 import * as agentsActions from '../actions';
 import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react';
@@ -6,8 +6,10 @@ import React from 'react';
 import classnames from 'classnames';
 import immutable from 'immutable';
 import allAgents from '../../lib/bml/allagents';
+import announce from '../../lib/announce';
 import selfIsDisplayed from '../../lib/bml/selfisdisplayed';
 import {msg} from '../../intl/store';
+import uuid from '../../lib/guid';
 import shouldHaveRank from '../../lib/bml/shouldhaverank';
 
 import AgentClock from './agent.clock.react';
@@ -53,7 +55,7 @@ class AgentCard extends Component {
     if (agents.find(ag => ag.get('id') === self.get('id'))) {
       dashboardActions.selectAgent(agents.find(agent => agent.get('id') !== agentondisplay.get('id')));
       dashboardActions.playerDoesNotGoOnMissions(agents.find(ag => ag.get('id') === self.get('id')));
-    } else dashboardActions.dashboardAnnounce(`I am busy, move me to available agents.`);
+    } else announce(`I am busy, move me to available agents.`, 'Dashboard');
   }
 
   playerGoesOnMissions() {
@@ -61,7 +63,7 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, game, jsonapi, key} = this.props;
+    const {agent, game, jsonapi} = this.props;
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const self = jsonapi.get('self');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
@@ -109,7 +111,7 @@ class AgentCard extends Component {
         draggable="true"
         id={agent.get('name')}
         isMission={this.props.isMission}
-        key={key}
+        key={uuid() + 'agentcard'}
         onDragStart={this.drag}
         >
         <AgentExperienceBar
@@ -155,7 +157,7 @@ class AgentCard extends Component {
           <div className='agent-exp-next'>{agent.get('experience') + '/' + expnext}</div>}
         {!this.props.isDisplay &&
           agentequipmentsmap}
-        {this.props.isDisplay &&
+        {(this.props.isDisplay || this.props.isRecruit) &&
           <AgentPersonalityMap
             agent={agent}
             />}
@@ -178,6 +180,7 @@ AgentCard.propTypes = {
   isAgents: React.PropTypes.bool,
   isDisplay: React.PropTypes.bool,
   isMission: React.PropTypes.bool,
+  isRecruit: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   key: React.PropTypes.string

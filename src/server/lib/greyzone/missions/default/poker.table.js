@@ -5,6 +5,7 @@ const tag = 'pokertable';
 const title = 'Poker Table';
 const imgsrc = 'PokerTable.jpg';
 const sound = 'PokerTable.ogg';
+const description = `And then we were waiting, trying to figure out each other's hand one thing he didn't know, that the whole game was fixed ...`;
 
 const PokerTable = [{
     title: title,
@@ -21,6 +22,7 @@ const PokerTable = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 1,
     tag: tag
@@ -40,6 +42,7 @@ const PokerTable = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 2,
     tag: tag
@@ -59,6 +62,7 @@ const PokerTable = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 3,
     tag: tag
@@ -79,6 +83,7 @@ const PokerTable = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tag: tag,
     tier: 4
@@ -99,6 +104,7 @@ const PokerTable = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tag: tag,
     tier: 5

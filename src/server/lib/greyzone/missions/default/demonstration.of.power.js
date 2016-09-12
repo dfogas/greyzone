@@ -5,6 +5,7 @@ const tag = 'demonstrationofpower';
 const title = 'Demonstration Of Power';
 const imgsrc = 'DemonstrationOfPower.jpg';
 const sound = 'DemonstrationOfPower.ogg';
+const description = `Let's show our 'friends', that we are serious.`;
 
 const DemonstrationOfPower = [{
     title: title,
@@ -21,6 +22,7 @@ const DemonstrationOfPower = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 1,
     tag: tag
@@ -40,6 +42,7 @@ const DemonstrationOfPower = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 2,
     tag: tag
@@ -60,6 +63,7 @@ const DemonstrationOfPower = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 3,
     tag: tag
@@ -79,8 +83,9 @@ const DemonstrationOfPower = [{
     losses: {
       reputation: 1500
     },
-    sound: sound,
     imgsrc: imgsrc,
+    sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 4,
     tag: tag
@@ -102,6 +107,7 @@ const DemonstrationOfPower = [{
     },
     imgsrc: imgsrc,
     sound: sound,
+    description: description,
     agentLimit: 2,
     tier: 5,
     tag: tag

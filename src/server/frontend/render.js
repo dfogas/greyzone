@@ -11,8 +11,6 @@ import routes from '../../client/routes';
 import stateMerger from '../lib/merger';
 
 export default function render(req, res, userState = {}) {
-  if (req.session)
-    console.log('Session' + JSON.stringify(req.session));
   const appState = immutable.fromJS(initialState).mergeWith(stateMerger, userState).toJS();
   return renderPage(req, res, appState);
 }

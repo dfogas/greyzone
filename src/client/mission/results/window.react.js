@@ -1,4 +1,5 @@
-import './window.styl'; //
+import './window.styl';
+import * as missionActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -11,6 +12,7 @@ import rQ from '../../lib/bml/reputationquality';
 // import $ from 'jquery';
 
 import MissionEndButton from '../agentstier/buttons/missionendbutton.react';
+import AgentCard from '../../agents/agentcard/agent.card.react';
 
 class MissionResultsWindow extends Component {
   // vszuuut() {
@@ -21,7 +23,7 @@ class MissionResultsWindow extends Component {
   // }
 
   render() {
-    const {jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
     const agentKIA = activemission.get('agentsonmission').find(agent => agent.get('KIA'));
     const agentPrison = activemission.get('agentsonmission').find(agent => agent.get('prison'));
@@ -73,15 +75,36 @@ class MissionResultsWindow extends Component {
           {(result === 'fail' && losses.keySeq().find(key => key === 'agentKilled')) &&
             <li className='mission-result-fatal'>{`Agent ${prop('name', agentKIA)} has been killed.`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentRecruited')) &&
-            <li className='mission-result-fatal'>Agent has been recruited.</li>}
+            <li className='mission-result-fatal'>Agent can be recruited.</li>}
+          {activemission.get('agentrecruited') &&
+            <div>
+              <button
+                id='RecruitAgentToggleButton'
+                onClick={(e) => missionActions.recruitAgentToggle(activemission.get('agentrecruited'))}>
+                {jsonapi.get('agents').find(ag => ag.get('id') === activemission.getIn(['agentrecruited', 'id']))
+                ? `Don't Recruit`
+                : `Recruit`}</button>
+              {<div id='RecruitAgentStatus'>
+                {jsonapi.get('agents').find(ag => ag.get('id') === activemission.getIn(['agentrecruited', 'id']))
+                  ? `Agent is currently joining you.`
+                  : `Agent isn't joining you now.`
+                }
+              </div>}
+              <AgentCard
+                agent={activemission.get('agentrecruited')}
+                game={game}
+                isRecruit={true}
+                jsonapi={jsonapi}
+                />
+            </div>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentFreed')) &&
-            <li>{`Agent ${jsonapi.get('agents').get(0).get('name')} freed from prison!!`}</li>}
+            <li className='mission-result-special-other'>{`Agent ${jsonapi.get('agents').get(0).get('name')} freed from prison!!`}</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'agentLoyal')) &&
-            <li>Agent changed loyalty to you.</li>}
+            <li className='mission-result-special-other'>Agent changed loyalty to you.</li>}
           {(result === 'fail' && losses.keySeq().find(key => key === 'agentLoyal')) &&
-            <li>Agent changed loyalty to you.</li>}
+            <li className='mission-result-special-other'>Agent changed loyalty to you.</li>}
           {(result === 'success' && rewards.keySeq().find(key => key === 'artPieceGained')) &&
-            <li>You stole yourself an Art Piece!</li>}
+            <li className='mission-result-special-other'>You stole yourself an Art Piece!</li>}
           <p>
             Your resources ATM are:
             {/*results.keySeq().filter(key => key === 'gameCash').toList().size !== 0 && */
@@ -108,6 +131,7 @@ class MissionResultsWindow extends Component {
 }
 
 MissionResultsWindow.propTypes = {
+  game: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 

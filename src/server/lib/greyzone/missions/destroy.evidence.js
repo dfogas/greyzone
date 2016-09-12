@@ -5,6 +5,7 @@ const tag = 'destroyevidence';
 const title = 'Destroy Evidence';
 const imgsrc = 'DestroyEvidence.jpg';
 const sound = 'DestroyEvidence.ogg';
+const description = `This was an excellent opportunity suppress some inconvenient facts, and dangerous ones too.`;
 
 const DestroyEvidence = [{
   title: title,
@@ -23,6 +24,7 @@ const DestroyEvidence = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 3,
   tag: tag
@@ -46,6 +48,7 @@ const DestroyEvidence = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 4,
   tag: tag
@@ -69,6 +72,7 @@ const DestroyEvidence = [{
   },
   imgsrc: imgsrc,
   sound: sound,
+  description: description,
   agentLimit: 2,
   tier: 5,
   tag: tag

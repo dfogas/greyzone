@@ -1,4 +1,4 @@
-import './mission.talk.styl'; //
+import './mission.talk.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -16,6 +16,7 @@ class MissionTalk extends Component {
     const agents = agentsonmission.concat((() => {if (agentontask) return [agentontask]; else return []; })());
     const playerAgentOnMission = agents.find(agent => agent.get('id') === self.get('id'));
     const agentNotPlayer = agents.find(agent => agent.get('id') !== self.get('id'));
+    // console.log(agents.toJS());
     return (
       <div className='mission-talk'>
         {playerAgentOnMission && agentLimit === 1 &&
@@ -28,28 +29,35 @@ class MissionTalk extends Component {
           <AgentTalkProfile
             agent={agentNotPlayer}
             talk={'Hey, boss, we got a mission to complete!'}
-            />}
+            />
+        }
         {playerAgentOnMission && agentLimit > 1 &&
           <AgentTalkProfile
             agent={playerAgentOnMission}
             talk={'Of course we do, lets get to it.'}
-            />}
+            />
+        }
         {!playerAgentOnMission && agentLimit === 1 &&
           <div className='agent-talk'>
             <AgentTalkProfile
               agent={agentNotPlayer}
               talk={'I got to concentrate on this mission, I am alone here... Hopefully it works out.'}
               />
-          </div>}
-        {!playerAgentOnMission && agentLimit > 1 &&
-            <AgentTalkProfile
-              agent={agentNotPlayer}
-              talk={'I dont know, have a bad feeling about this mission.'}
-              /> &&
-            <AgentTalkProfile
-              agent={agents.get(1)}
-              talk={'Be cool, partner, we finish this baby and go back home in no time.'}
-              />}
+          </div>
+        }
+        {(!playerAgentOnMission && agentLimit > 1) &&
+          <AgentTalkProfile
+            agent={agentNotPlayer}
+            talk={'I dont know, have a bad feeling about this mission.'}
+            />
+        }
+        {(!playerAgentOnMission && agentLimit > 1) &&
+          <AgentTalkProfile
+            agent={agents.get(1)}
+            talk={'Be cool, partner, we finish this baby and go back home in no time.'}
+            />
+        }
+        <div id='MissionTalkMissionDescription'>{activemission.get('description')}</div>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import setToString from '../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../state';
 import cconfig from '../client.config';
 
+import announce from '../lib/announce';
 import actionDices from '../lib/bml/actiondices';
 import agentIncurDelay from '../lib/bml/agentincurdelay';
 import agentRankup from '../lib/bml/agentrankup';
@@ -95,8 +96,10 @@ export function getRank(agent) {
   if (leadershipcheck(agent.get('rank'), enhancementnames)) {
     flashArmory('Agent Rank Gained.');
     dispatch(getRank, agentRankup(trainingtable, 7, agent));
+  } else {
+    announce('Upgrade training facility in your Dashboard.', 'Briefing');
+    announce('Upgrade training facility in your Dashboard.', 'Armory');
   }
-  else flashArmory('Upgrade training facility.');
 }
 
 export function setETA(agent, equipment) {
