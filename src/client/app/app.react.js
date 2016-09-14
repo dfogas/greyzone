@@ -19,6 +19,7 @@ import '../intl/store';
 import '../agents/store';
 import '../agents/scrollbar/store';
 import '../animations/store';
+import '../app/feedbackform/store';
 import '../auth/store';
 import '../briefing/store';
 import '../briefing/travelwindow/store';

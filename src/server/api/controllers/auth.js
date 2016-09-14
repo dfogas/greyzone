@@ -16,6 +16,7 @@ import localAuthenticator from '../strategies/local';
 import playerdefaults from '../../lib/playerdefaults';
 import transporter from '../mail/transporter';
 import uuid from '../../../client/lib/guid';
+import playerFeedback from '../mail/player.feedback';
 import verifier from '../mail/email.verifier';
 import lostpassword from '../mail/lost.password';
 
@@ -249,6 +250,33 @@ router.route('/api/v1/auth/reauthentication')
         //       pwchanged: doc.password !== password
         //     });
         // });
+    });
+  });
+
+router.route('/api/v1/auth/feedback')
+  .post((req, res) => {
+    const {userId} = req.body;
+    const feedback = req.body;
+    User.findOne({_id: userId}, function(err, user) {
+      if (err) {
+        console.log(err);
+        res.json({err: err});
+      } else transporter.sendMail(playerFeedback(feedback, user.username), function(err, info) {
+        if (err) {
+          console.log('Sending mail Error: ' + err.message);
+          res.json({
+            description: `Send mail Error`,
+            message: `Encountered error when trying to send an email` + err
+          });
+        } else {
+          console.log(`New feedback from ${user.username} has been sent.`);
+          res.json({
+            description: `New Feedback`,
+            message: `New feedback from player ${user.username}.`,
+            username: user.username
+          });
+        }
+      });
     });
   });
 

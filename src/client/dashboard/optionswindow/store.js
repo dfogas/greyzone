@@ -24,6 +24,14 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === optionsActions.giveFeedback) {
+    const toggle = jsonapiCursor(['dashboard', 'feedback']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['dashboard', 'feedback'], !toggle);
+    });
+  }
+
   if (action === optionsActions.loadGame)
     jsonapiCursor(jsonapi => {
       return immutable.fromJS(data);

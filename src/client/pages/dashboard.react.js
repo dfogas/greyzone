@@ -1,4 +1,4 @@
-import * as tutorialActions from '../tutorial/actions'; //
+import * as tutorialActions from '../tutorial/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -7,6 +7,7 @@ import DocumentTitle from 'react-document-title';
 import DashboardScreen from '../dashboard/dashboard.screen.react';
 import DashboardToMission from '../navs/dashboardtomission.react';
 import DashboardToTutorial from '../navs/dashboardtotutorial.react';
+import FeedbackForm from '../app/feedbackform/feedback.form.react';
 import MissionTalk from '../dashboard/missiontalk/mission.talk.react';
 import requireAuth from '../auth/requireauth.react';
 import {msg} from '../intl/store';
@@ -14,13 +15,16 @@ import {msg} from '../intl/store';
 class Dashboard extends Component {
 
   render() {
-    const {contest, game, jsonapi, locales, pendingActions, viewer} = this.props;
+    const {auth, contest, game, jsonapi, locales, pendingActions, viewer} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
     const tutorialfinished = jsonapi.getIn(['tutorial', 'completed']);
 
     return (
       <DocumentTitle title={msg('dashboard.title')}>
         <div className="dashboard-page">
+          {jsonapi.getIn(['dashboard', 'feedback']) &&
+            <FeedbackForm
+              auth={auth} />}
           {!tutorialfinished &&
             <div id='NewGameStart'>
               <legend>Starting new game</legend>
@@ -62,6 +66,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  auth: React.PropTypes.instanceOf(immutable.Map).isRequired,
   contest: React.PropTypes.instanceOf(immutable.List).isRequired,
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,

@@ -58,7 +58,12 @@ class OptionsWindow extends Component {
           />
         <DashboardToIntro />
         <Pointer pointsto='strategical' />
-        <button id='RetireGameButton' onClick={(e) => this.retireGame()}>Retire</button>
+        <button id='RetireGameButton' onClick={(e) => this.retireGame()}>Retire&End Game</button>
+        <button
+          id='ProvideFeedbackButton'
+          onClick={(e) => {
+            optionsActions.giveFeedback();
+          }}>Give Feedback</button>
         <Logout />
         {!multiplayer &&
           <OptionsGameWindow

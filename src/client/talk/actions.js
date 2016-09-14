@@ -4,7 +4,7 @@ import {jsonapiCursor} from '../state';
 import agentTalk from '../lib/bml/agenttalk';
 import {msg} from '../intl/store';
 
-const isNotProduction = process.env.NODE_ENV !== 'production';
+// const isNotProduction = process.env.NODE_ENV !== 'production';
 
 export function addParticipant(agent) {
   dispatch(addParticipant, {agent});

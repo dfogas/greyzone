@@ -41,6 +41,10 @@ function eraseGameStatistics() {
   lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, []);
 }
 
+export function giveFeedback() {
+  dispatch(giveFeedback, {});
+}
+
 export function loadGame(game) {
   const savegame = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}`);
   const gamehash = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}hash`);
@@ -85,6 +89,7 @@ export function startNewGame(jsonapi) {
 setToString('options', {
   changeOption,
   changePaying,
+  giveFeedback,
   loadGame,
   sanitizeAgents,
   sanitizeMissions,

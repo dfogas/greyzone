@@ -2,7 +2,6 @@ import './dashboardtointro.styl';
 import Component from '../components/component.react';
 import React from 'react';
 import {Link} from 'react-router';
-import {msg} from '../intl/store';
 
 class DashboardToIntro extends Component {
   render() {
@@ -11,7 +10,7 @@ class DashboardToIntro extends Component {
         <button
           className='ingame-nav-button'
           id='DashboardToIntro'
-          >{msg('menu.help')}</button>
+          >GSPedia</button>
       </Link>
     );
   }

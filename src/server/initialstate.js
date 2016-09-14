@@ -1,4 +1,4 @@
-import messages from '../client/messages';
+import messages from '../client/messages'; //
 
 const initialLocale = 'en';
 
@@ -10,6 +10,16 @@ export default {
   },
   auth: {
     data: null,
+    feedbackform: {
+      stars: {
+        mechanics: 0,
+        aesthetics: 0,
+        interface: 0,
+        theme: 0,
+        difficulty: 0,
+        overall: 0
+      }
+    },
     form: null,
     lprecover: {message: ``},
     reauthentication: {message: ``}
