@@ -82,7 +82,9 @@ export function reputationImpact(country, impact) {
 /*passed mission is merged to become a activemission*/
 export function selectMission(mission) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
   const countrystats = jsonapiCursor(['countrystats']);
+  const events = jsonapiCursor(['events']);
   if (agentontask)
     flashBriefing('Agent is on task, move her back.');
   else if (mission && mission.get('ETA') - Date.now() <= 0) {
@@ -91,7 +93,7 @@ export function selectMission(mission) {
       dispatch(bookLosses, {mission});
       checkFatalities({results: mission.get('losses').toJS()});
     }
-  } else if (!obscurityMissionCheck(mission, countrystats))
+  } else if (!obscurityMissionCheck(mission, countrystats, events, countryofoperation))
     flashBriefing(`Mission won't start, obscurity is not high enough.`);
   else dispatch(selectMission, {mission});
 }

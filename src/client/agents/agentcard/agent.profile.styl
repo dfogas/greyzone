@@ -66,3 +66,33 @@
   top 0
   right 0
   z-index 10
+
+#AgentWantsTalkExclamationMark
+  position relative
+  width 51px
+  height 51px
+  background-repeat no-repeat
+  background-size 100% 100%
+  left 0px
+  top -190px
+  z-index 1001
+  animation 3s pulse 2s infinite
+
+  .exclamation-mark.upper
+    position absolute
+    top 0px
+    left 0px
+    border-top 40px solid red
+    border-left 7px solid transparent
+    border-right 7px solid transparent
+    height 0
+    width 20px
+
+  .exclamation-mark.lower
+    position absolute
+    bottom -10px
+    left 3px
+    height 15px
+    width 15px
+    background rgba(255, 0, 0, 1)
+    border-radius 100%

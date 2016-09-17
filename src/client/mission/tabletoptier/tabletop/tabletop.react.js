@@ -1,5 +1,5 @@
 /* Smart Component */
-import './tabletop.styl'; //
+import './tabletop.styl';
 import * as missionActions from '../../actions';
 import * as diceActions from '../dice/actions';
 import Component from '../../../components/component.react';
@@ -92,10 +92,11 @@ class TableTop extends Component {
           <ProbabilityBar
             activemission={activemission}
             />}
-        {currenttask &&
-          canCompleteTask(currenttask.toJS(), actiondices.toJS()) &&
-          missionStarted &&
-          (activemission.get('tasks').size !== activemission.get('taskscompleted').size) &&
+        {currenttask
+          && canCompleteTask(currenttask.toJS(), actiondices.toJS())
+          && missionStarted
+          && (activemission.get('tasks').size !== activemission.get('taskscompleted').size)
+          && actiondices.size &&
           <button
             className='taskcomplete-button'
             onClick={this.completeTask.bind(this)}>Complete Task</button>}

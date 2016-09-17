@@ -39,6 +39,7 @@ export default function userState() {
       name: 'Default',
       title: 'DefaultTitle',
       agents: [],
+      armory: {},
       components: {
         login: {
           bigscreen: {

@@ -14,6 +14,11 @@ import $ from 'jquery';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
 
+/*user interfaces function */
+export function armoryCode(color) {
+  dispatch(armoryCode, {color});
+}
+
 export function toArmory(agent) {
   if (agent)
     dispatch(toArmory, {message: agent});
@@ -111,6 +116,7 @@ export function setETA(agent, equipment) {
 }
 
 setToString('agents', {
+  armoryCode,
   toArmory,
   agentInArmoryAssignMission,
   assignTask,

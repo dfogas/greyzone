@@ -7,6 +7,7 @@ var PlayerSchema = new Schema({
   agentbeingsaved: Schema.Types.Mixed,
   agentinarmory: Schema.Types.Mixed,
   agents: [Schema.Types.Mixed],
+  armory: Schema.Types.Mixed,
   campaigns: Schema.Types.Mixed,
   components: Schema.Types.Mixed,
   countrystats: [Schema.Types.Mixed],

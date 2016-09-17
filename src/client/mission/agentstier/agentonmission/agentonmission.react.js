@@ -46,10 +46,11 @@ class AgentOnMission extends Component {
         >
         {!!agentontask &&
           <AgentCard
-           agent={agentontask}
-           game={game}
-           isShowcased={true}
-           jsonapi={jsonapi}
+             agent={agentontask}
+             draggable="true"
+             game={game}
+             isShowcased={true}
+             jsonapi={jsonapi}
            />
         }
         {!agentontask && (missionresult ? (!isLastTaskDone && !missionresult) || (isLastTaskDone && !missionresult) : !isLastTaskDone) &&

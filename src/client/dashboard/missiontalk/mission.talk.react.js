@@ -38,12 +38,10 @@ class MissionTalk extends Component {
             />
         }
         {!playerAgentOnMission && agentLimit === 1 &&
-          <div className='agent-talk'>
-            <AgentTalkProfile
-              agent={agentNotPlayer}
-              talk={'I got to concentrate on this mission, I am alone here... Hopefully it works out.'}
-              />
-          </div>
+          <AgentTalkProfile
+            agent={agentNotPlayer}
+            talk={'I got to concentrate on this mission, I am alone here... Hopefully it works out.'}
+            />
         }
         {(!playerAgentOnMission && agentLimit > 1) &&
           <AgentTalkProfile

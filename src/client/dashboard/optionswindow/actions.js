@@ -51,9 +51,17 @@ export function loadGame(game) {
   const debug = jsonapiCursor(['options', 'debug']);
 
   if (debug) {
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`) || []);
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentskilled`) || []);
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`) || []);
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}missions`) || []);
     dispatch(loadGame, savegame);
     announce(`Game has been loaded.`, `Dashboard`);
   } else if (savegame && hashString(savegame) === gamehash) {
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`) || []);
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentskilled`) || []);
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`) || []);
+    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}missions`) || []);
     dispatch(loadGame, savegame);
     announce(`Game has been loaded.`, `Dashboard`);
   } else announce(`Hashes don\'t equal. You may need to log out.`, `Dashboard`);
@@ -71,10 +79,20 @@ export function saveGame(jsonapi, game) {
   const jsonapijs = jsonapi.toJS();
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}`, jsonapijs);
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}hash`, hashString(jsonapijs));
+  lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}agentskilled`, lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`) || []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`) || []);
+  lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}missions`, lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`) || []);
   announce(`Game has been saved.`, `Dashboard`);
-  const missionsDoneCount = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`).length;
+  const missionsDoneCount = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}missions`).length;
+  // in order to track savegames info accross different games
+  const saveGameInfo = {
+    missionsDoneCount,
+    savedAt: Date.now()
+  };
+  lockr.set(`gs${jsonapiCursor(['userId'])}_savegame${game}info`, saveGameInfo);
 
-  dispatch(saveGame, {missionsDoneCount, game});
+  dispatch(saveGame, {saveGameInfo, game});
 }
 
 export function startNewGame(jsonapi) {
@@ -86,6 +104,17 @@ export function startNewGame(jsonapi) {
   eraseGameLog();
 }
 
+export function updateSaveGamesInfo() {
+  // console.log(lockr.get(`gs${jsonapiCursor(['userId'])}_savegame1info`));//
+  // console.log(`gs${jsonapiCursor(['userId'])}_savegame1info`);
+  const savegames = immutable.List([
+    immutable.fromJS(lockr.get(`gs${jsonapiCursor(['userId'])}_savegame1info`) || {}),
+    immutable.fromJS(lockr.get(`gs${jsonapiCursor(['userId'])}_savegame2info`) || {}),
+    immutable.fromJS(lockr.get(`gs${jsonapiCursor(['userId'])}_savegame3info`) || {})
+  ]);
+  dispatch(updateSaveGamesInfo, savegames);
+}
+
 setToString('options', {
   changeOption,
   changePaying,
@@ -94,5 +123,6 @@ setToString('options', {
   sanitizeAgents,
   sanitizeMissions,
   saveGame,
-  startNewGame
+  startNewGame,
+  updateSaveGamesInfo
 });

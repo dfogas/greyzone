@@ -27,6 +27,7 @@ class MissionResultsWindow extends Component {
     const activemission = jsonapi.get('activemission');
     const agentKIA = activemission.get('agentsonmission').find(agent => agent.get('KIA'));
     const agentPrison = activemission.get('agentsonmission').find(agent => agent.get('prison'));
+    const eventsCI = jsonapi.get('events').indexOf(jsonapi.get('events').find(jsev => jsev.get('country') === activemission.get('inCountry')));
     const damageprotocol = activemission.get('equipmenteffects').get('damageprotocol');
     const result = activemission.get('result');
     const rewards = activemission.get('rewards');
@@ -119,6 +120,10 @@ class MissionResultsWindow extends Component {
           <p>
             {`Your results and reputation in ${activemission.get('inCountry')} are
               ${rQ(jsonapi.get('countrystats').find(cs => (activemission.get('inCountry') || 'US') === cs.get('name')).get('reputation'))}.`}
+          </p>
+          <p>
+            {`The attention level of authorities and competition to your activities in ${activemission.get('inCountry')}
+              is ${jsonapi.getIn(['events', eventsCI, 'level'])} which might be of some concern.`}
           </p>
           <MissionEndButton
             jsonapi={jsonapi}

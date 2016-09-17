@@ -39,6 +39,9 @@ var playerdefaults = {
   gameContacts: 500,
   agentinarmory: null,
   agentbeingsaved: null,
+  armory: {
+    code: 'red'
+  },
   timestarted: Date.now(),
   achievements: [],
   activemission: defaultActiveMission,

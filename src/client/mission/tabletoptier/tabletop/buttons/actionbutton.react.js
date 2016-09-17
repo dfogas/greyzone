@@ -1,12 +1,14 @@
-import './actionbutton.styl'; //
+import './actionbutton.styl';
 import * as dicesActions from '../../rotatingdie/actions';
 import * as missionActions from '../../../actions';
 import Component from '../../../../components/component.react.js';
 import React from 'react';
+import Sound from '../../../../lib/sound';
 
 class ActionButton extends Component {
   action() {
     const {agentlock, diceslock, missionStarted} = this.props;
+
     if (!missionStarted) {
       missionActions.start();
       missionActions.agentLockedToTask();
@@ -14,6 +16,8 @@ class ActionButton extends Component {
 
     if (!diceslock && missionStarted) {
       dicesActions.spinDice();
+      let mySound = new Sound('../../../../../../assets/audio/diceInHand.ogg');
+      mySound.play();
       setTimeout(() => {
         dicesActions.spinDice();
         dicesActions.rollAll();
@@ -27,14 +31,14 @@ class ActionButton extends Component {
   render() {
     const {missionStarted, diceslock} = this.props;
     return (
-      <div>
+      <button>
         {!diceslock && <input
           className='action-button'
           onClick={this.action.bind(this)}
           type='button'
-          value={missionStarted ? 'Action - Dice Throw' : 'Start Mission' }
+          value={missionStarted ? 'Throw' : 'Start Mission' }
           />}
-      </div>
+      </button>
     );
   }
 }

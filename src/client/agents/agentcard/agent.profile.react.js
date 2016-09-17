@@ -1,12 +1,14 @@
-import './agent.profile.styl'; //
+import './agent.profile.styl';
 import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react.js';
 import React from 'react';
-import {msg} from '../../intl/store';
 import immutable from 'immutable';
+import {Link} from 'react-router';
+import {msg} from '../../intl/store';
+
+import agentWantsTalk from '../../lib/bml/agentwantstalk';
 import classnames from 'classnames';
 import formattedImg from '../../lib/bml/formattedimg';
-import {Link} from 'react-router';
 
 class AgentProfile extends Component {
   // agentTalk() {
@@ -17,10 +19,12 @@ class AgentProfile extends Component {
 
   render() {
     //data cache placeholder
-    const {agent, agentbeingsaved, self} = this.props;
+    const {agent, agentbeingsaved, jsonapi, self} = this.props;
     const beingsaved = agentbeingsaved ? agentbeingsaved.get('id') === agent.get('id') : false;
     const classString = classnames('', {'showcased': this.props.isShowcased});
     const isLoyal = agent.get('loyalty') === 'loyal';
+
+    // console.log(agentWantsTalk(agent, jsonapi));
 
     return (
       <div className={'agent-profile ' + classString}>
@@ -29,6 +33,16 @@ class AgentProfile extends Component {
             <Link to='talk'><img draggable='false' src={formattedImg(isLoyal, this.props.isShowcased, agent)} /></Link>}
           {!this.props.isDisplay &&
             <img draggable='false' src={formattedImg(isLoyal, this.props.isShowcased, agent)} />}
+          {this.props.isDisplay
+            && agentWantsTalk(agent, jsonapi)
+            &&
+            <div id='AgentWantsTalkExclamationMark'>
+              <div className='exclamation-mark upper'>
+              </div>
+              <div className='exclamation-mark lower'>
+              </div>
+            </div>
+            }
         </div>
         <div className={'agent-label ' + classString}>
           {agent.get('name')}{self ? agent.get('id') === self.get('id') && '(Player)' : ''}
@@ -58,6 +72,7 @@ AgentProfile.propTypes = {
   imgsrc: React.PropTypes.string,
   isDisplay: React.PropTypes.bool,
   isShowcased: React.PropTypes.bool,
+  jsonapi: React.PropTypes.instanceOf(immutable.Map),
   self: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 

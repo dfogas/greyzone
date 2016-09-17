@@ -54,7 +54,10 @@ export const dispatchToken = register(({action, data}) => {
   if (action === optionsActions.saveGame)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['savegames', data.game - 1], immutable.fromJS({missionsDoneCount: data.missionsDoneCount, savedAt: Date.now()}));
+        .setIn(['savegames', data.game - 1], immutable.fromJS({
+          missionsDoneCount: data.saveGameInfo.missionsDoneCount,
+          savedAt: data.saveGameInfo.savedAt
+        }));
     });
 
   if (action === optionsActions.startNewGame)
@@ -65,6 +68,12 @@ export const dispatchToken = register(({action, data}) => {
         .set('gameend', null)
         .set('paying', data.get('paying'))
         .set('savegames', data.get('savegames'));
+    });
+
+  if (action === optionsActions.updateSaveGamesInfo)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .set('savegames', data);
     });
 
 });

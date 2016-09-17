@@ -1,4 +1,4 @@
-import './agentscrollbar.styl';
+import './agentscrollbar.styl'; //
 import * as agentActions from '../actions';
 // import * as scrollbarActions from './actions';
 import Component from '../../components/component.react.js';
@@ -92,6 +92,7 @@ class AgentScrollBar extends Component {
               <AgentCard
                 agent={agent}
                 agentindex={i}
+                draggable="true"
                 game={game}
                 isAgents={this.props.isAgents}
                 jsonapi={jsonapi}

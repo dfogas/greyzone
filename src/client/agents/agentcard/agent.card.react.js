@@ -63,7 +63,7 @@ class AgentCard extends Component {
   }
 
   render() {
-    const {agent, game, jsonapi} = this.props;
+    const {agent, draggable, game, jsonapi} = this.props;
     const agentbeingsaved = jsonapi.get('agentbeingsaved');
     const self = jsonapi.get('self');
     const trainingtable = game.getIn(['globals', 'trainingtable']);
@@ -108,7 +108,7 @@ class AgentCard extends Component {
     return (
       <li
         className={classString}
-        draggable="true"
+        draggable={draggable}
         id={agent.get('name')}
         isMission={this.props.isMission}
         key={uuid() + 'agentcard'}
@@ -130,6 +130,7 @@ class AgentCard extends Component {
           isDisplay={this.props.isDisplay}
           isMission={this.props.isMission}
           isShowcased={this.props.isShowcased}
+          jsonapi={jsonapi}
           self={self}
           />
         {!playerAgentIsActive && self.get('id') === agent.get('id') &&
@@ -176,6 +177,7 @@ class AgentCard extends Component {
 AgentCard.propTypes = {
   agent: React.PropTypes.instanceOf(immutable.Map).isRequired,
   agentindex: React.PropTypes.number,
+  draggable: React.PropTypes.string,
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   isAgents: React.PropTypes.bool,
   isDisplay: React.PropTypes.bool,

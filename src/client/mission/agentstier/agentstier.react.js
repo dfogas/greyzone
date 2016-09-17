@@ -1,4 +1,4 @@
-import './agentstier.styl'; //
+import './agentstier.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -21,14 +21,20 @@ class AgentsTier extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
-    const activetasks = jsonapi.getIn(['activemission', 'tasks']);
     const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
+    const activetasks = jsonapi.getIn(['activemission', 'tasks']);
+
     const isLastTaskDone = taskscompleted.size >= activetasks.size && taskscompleted.size !== 0;
     const isDefaultMission = jsonapi.getIn(['activemission', 'title']) === 'Default Mission';
     const isPlaceholder = jsonapi.getIn(['activemission', 'title']) === 'Quiet before the Storm';
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);
     const agentontask = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask']);
+
+    const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
+    const missionstarted = activemission.get('started');
+    const currentindex = activemission.get('taskscompleted').size;
+    const currenttask = activemission.getIn(['tasks', currentindex]) || immutable.fromJS(Array(0));
 
     return (
       <div id='AgentsTier'>
@@ -66,7 +72,7 @@ class AgentsTier extends Component {
           <SuccessButton activemission={activemission} />}
         {activemission.getIn(['equipmenteffects', 'damageprotocol']) && !missionResult &&
           <EscapeProtocol activemission={activemission} />}
-        {!isLastTaskDone && !missionResult &&
+        {!isLastTaskDone && !missionResult && (currenttask.size > actiondices.size) &&
           !isDefaultMission && missionStarted && agentontask &&
           <EscapeButton activemission={activemission} />}
       </div>

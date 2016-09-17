@@ -52,6 +52,7 @@ class FeedbackForm extends Component {
     return (
       <div id='FeedbackForm'>
         <form onSubmit={(e) => {this.onFormSubmit(e); }}>
+          <div id='FeedbackFormCloseButton' onClick={(e) => optionsActions.giveFeedback()}></div>
           <fieldset>
             <legend>Feedback</legend>
             <fieldset>

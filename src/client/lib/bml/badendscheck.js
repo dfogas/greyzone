@@ -3,7 +3,7 @@
   možná tu chybí stav hry
   BML: true
 */
-import allAgents from './allagents';
+import allAgents from './allagents'; //
 
 function checkBadEnds(jsonapi) {
   const countrystats = jsonapi.get('countrystats');
@@ -15,8 +15,8 @@ function checkBadEnds(jsonapi) {
 
   if (jsonapi.get('agents').find(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])))
     return 'Killed';
-  else if (jsonapi.get('agents').filter(agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 && !isPaying)
-    return 'LeftInPrison';
+  // else if (jsonapi.get('agents').filter(agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0)
+  //   return 'LeftInPrison';
   else if (
     jsonapi.get('agents').filter(
       agent => agent.get('prison') && agent.get('id') === jsonapi.getIn(['self', 'id'])).size !== 0 &&  // player's agent is in agent's roster and has prison status true

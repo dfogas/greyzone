@@ -13,7 +13,7 @@ class AgentTalkProfile extends Component {
 
     return (
       <div
-        className='agent-talk-profile'
+        className='agent-talks-profile'
         style={{
           backgroundImage: `url('../${imgsrc}')`
         }}>

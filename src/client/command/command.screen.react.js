@@ -54,6 +54,15 @@ class CommandCenterScreen extends Component {
         {<CommandContent
           jsonapi = {jsonapi}
           />}
+        <div id='CommandScreenMissionStatistics'>
+          {`Missions done: ${jsonapi.get('missionsDone').size}`}
+          {`Success: ${jsonapi.get('missionsDone').filter(mission => {
+            return mission.get('result') === 'success';
+          }).size}`}
+          {`Fail: ${jsonapi.get('missionsDone').filter(mission => {
+            return mission.get('result') === 'fail';
+          }).size}`}
+        </div>
         <div id='CommandEmailSupport'>
           Technical problems?! Send mail to support@ghoststruggle.com.
         </div>

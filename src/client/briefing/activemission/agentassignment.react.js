@@ -39,6 +39,7 @@ class AgentAssignment extends Component {
         {agentonmission &&
           <AgentCard
             agent={agentonmission}
+            draggable="true"
             game={game}
             jsonapi={jsonapi}
             />}

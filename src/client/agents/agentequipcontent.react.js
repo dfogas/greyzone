@@ -1,8 +1,9 @@
-import './agentequipcontent.styl'; //
+import './agentequipcontent.styl';
 import * as agentsActions from './actions';
 import * as equipmentActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
+import capitalLetter from '../lib/general/capitalletter';
 import immutable from 'immutable';
 import formatMoney from '../lib/formatmoney';
 
@@ -10,6 +11,8 @@ import AgentInArmory from './agentinarmory.react';
 import AgentScrollBarWithNavButtons from './scrollbar/agentscrollbarwithnavbuttons.react';
 import ArmoryToBriefing from '../navs/armorytobriefing.react';
 import EquipmentStock from '../equipments/equipmentstock.react';
+import ArmoryCodeToggle from './armory.code.toggle.react';
+import RedAlertToggle from './red.alert.toggle.react';
 
 class AgentEquipContent extends Component {
   agentInArmoryToMission() {
@@ -31,58 +34,65 @@ class AgentEquipContent extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const agentinarmory = jsonapi.get('agentinarmory');
+    const alert = jsonapi.getIn(['armory', 'code']);
 
-    const equipments = jsonapi.get('equipments');
+    // const equipments = jsonapi.get('equipments');
     // POI: there was toSeq used for lazy evaluation, wonder was it any good doing there?
-    const equipmentsoperations = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'O');
-    const equipmentselectronics = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'E');
-    const equipmentsstealth = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'S');
+    // const equipmentsoperations = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'O');
+    // const equipmentselectronics = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'E');
+    // const equipmentsstealth = equipments.filter(equipment => equipment.get('tag').charAt(2) === 'S');
 
     return (
-      <div id='AgentEquipContent'>
-        <div className='armory-code' id='ArmoryCodeRed' name='red' onClick={(e) => agentsActions.codeChange(e.target.getAttribute('name'))}></div>
-        <div className='armory-code' id='ArmoryCodeYellow' name='yellow' onClick={(e) => agentsActions.codeChange(e.target.getAttribute('name'))}></div>
-        <div className='armory-code' id='ArmoryCodeGreen' name='green' onClick={(e) => agentsActions.codeChange(e.target.getAttribute('name'))}></div>
+      <div
+        id='AgentEquipContent'
+        style={{
+          boxShadow: `inset 0 0 30px ${alert}, 0 0 10px ${alert}`
+        }}>
+        <RedAlertToggle
+          armorycode={alert}
+          />
         <ArmoryToBriefing />
-        <AgentScrollBarWithNavButtons
-          agents={jsonapi.get('agents')}
-          game={game}
-          isAgents={true}
-          isBriefing={false}
-          isMission={false}
-          jsonapi={jsonapi}
-          />
-        <div id='ArmoryGameCashCounter'>
-          Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
-        </div>
-        <AgentInArmory
-          game={game}
-          jsonapi={jsonapi}
-          />
-        <EquipmentStock
-          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
-          equipments={equipmentsoperations}
-          jsonapi={jsonapi}
-          list={game.getIn(['globals', 'enhancements'])}
-          paying={jsonapi.get('paying')}
-          stock='operations'
-          />
-        <EquipmentStock
-          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
-          equipments={equipmentselectronics}
-          jsonapi={jsonapi}
-          list={game.getIn(['globals', 'enhancements'])}
-          paying={jsonapi.get('paying')}
-          stock='electronics'
-          />
-        <EquipmentStock
-          enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
-          equipments={equipmentsstealth}
-          jsonapi={jsonapi}
-          list={game.getIn(['globals', 'enhancements'])}
-          paying={jsonapi.get('paying')}
-          stock='stealth'
-          />
+        {['red', 'yellow', 'green'].map(code => {
+          return (
+            <ArmoryCodeToggle
+              armorycode={code}
+              isActive={alert === code}
+              />
+          );
+        })}
+        {alert === 'red' &&
+          <AgentScrollBarWithNavButtons
+            agents={jsonapi.get('agents')}
+            game={game}
+            isAgents={true}
+            isBriefing={false}
+            isMission={false}
+            jsonapi={jsonapi}
+            />}
+        {false &&
+          <div id='ArmoryGameCashCounter'>
+            Cash: {formatMoney(jsonapi.get('gameCash'), 0, '.', ',')}$
+          </div>}
+        {alert === 'red' &&
+          <AgentInArmory
+            game={game}
+            jsonapi={jsonapi}
+            />}
+        {alert !== 'green' &&
+          ['operations', 'electronics', 'stealth'].map(stockname => {
+            return (
+              <EquipmentStock
+                enhancements={jsonapi.get('enhancements').filter(enh => enh.get('type') === 'toys')}
+                equipments={jsonapi.get('equipments')
+                  .filter(equipment => equipment.get('tag').charAt(2) === capitalLetter(stockname).slice(0, 1))}
+                jsonapi={jsonapi}
+                list={game.getIn(['globals', 'enhancements'])}
+                paying={jsonapi.get('paying')}
+                stock={stockname}
+                />
+            );
+          })
+        }
         {agentinarmory && <button
           id='BackFromArmory'
           onClick={this.backFromArmory.bind(this)}>Back</button>}

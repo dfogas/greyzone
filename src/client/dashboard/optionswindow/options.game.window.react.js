@@ -49,6 +49,9 @@ class OptionsGameWindow extends Component {
             </tbody>
           </table>
         </fieldset>
+        <button
+          id='UpdateSaveGamesInfoButton'
+          onClick={(e) => optionsActions.updateSaveGamesInfo()}>Info</button>
       </div>
     );
   }

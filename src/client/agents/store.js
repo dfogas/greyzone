@@ -16,6 +16,12 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === agentsActions.armoryCode)
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['armory', 'code'], data.color);
+    });
+
   if (action === agentsActions.agentInArmoryAssignMission)
     jsonapiCursor(jsonapi => {
       return jsonapi

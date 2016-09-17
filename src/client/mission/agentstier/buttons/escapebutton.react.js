@@ -1,4 +1,4 @@
-import './escapebutton.styl';
+import './escapebutton.styl'; //
 import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -22,12 +22,9 @@ class EscapeButton extends Component {
 
   render() {
     return (
-      <input
+      <button
         className='escape-button'
-        onClick={this.missionFail.bind(this)}
-        type='button'
-        value={msg('mission.buttons.escapesequence')}
-        />
+        onClick={this.missionFail.bind(this)}>{msg('mission.buttons.escapesequence')}</button>
     );
   }
 }

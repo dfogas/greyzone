@@ -1,30 +1,43 @@
+@keyframes expandInLeft {
+  from {
+    width: 320px
+    height: 0
+  }
+  to {
+    width: 320px
+    height: 470px
+  }
+}
+
 #IntermediateGoal
   position absolute
-  max-width 300px
+  max-width 320px
   top 65px
-  left 10px
+  left 30px
   background rgba(0, 0, 0, 1)
   border 3px solid ghostwhite
   color ghostwhite
   font-size 1.3em
   font-weight bold
+  overflow hidden
+  animation expandInLeft 1.5s
 
 #FirstMissionGoal.done
   text-decoration line-through
-  color red
+  color rgba(125, 125, 125, 0.5)
 
 #AgentRankFour.done
   text-decoration line-through
-  color red
+  color rgba(125, 125, 125, 0.5)
 
 #OperationsLevelThree.done
   text-decoration line-through
-  color red
+  color rgba(125, 125, 125, 0.5)
 
 #LoyalCrewGoal.done
   text-decoration line-through
-  color red
+  color rgba(125, 125, 125, 0.5)
 
 #DolceVitaGoal.done
   text-decoration line-through
-  color red
+  color rgba(125, 125, 125, 0.5)

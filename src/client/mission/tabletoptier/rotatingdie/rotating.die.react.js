@@ -16,8 +16,10 @@ import '../../../lab/die.animations.styl';
 import * as rotatingDieActions from './actions';
 import Component from '../../../components/component.react';
 import React from 'react';
+import animationnames from '../../../lib/bml/dieanimations';
 import classnames from 'classnames';
 import immutable from 'immutable';
+import randomInt from '../../../lib/getrandomint';
 import uuid from '../../../lib/guid';
 
 class RotatingDie extends Component {
@@ -50,7 +52,7 @@ class RotatingDie extends Component {
         style={
           isSpin
           ? {
-              animation: `spin-duplicate 2s infinite linear`
+              animation: `${animationnames[(randomInt(0, 2))]} 2s infinite linear`
             }
           : {
               animationPlayState: `paused`

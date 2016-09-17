@@ -1,14 +1,16 @@
-import cconfig from '../client.config';
+import cconfig from '../client.config'; //
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import immutable from 'immutable';
+import $ from 'jquery';
+import lockr from 'lockr';
+
+import announce from '../lib/announce';
 import noDoubleAgents from '../lib/bml/nodoubleagents';
 import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 import Sound from '../lib/sound';
-import $ from 'jquery';
-import lockr from 'lockr';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
 
@@ -204,12 +206,14 @@ export function setDefault() {
 /*sets activemission.started  true*/
 export function start() {
   const activemission = jsonapiCursor(['activemission']);
+  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
   const countrystats = jsonapiCursor(['countrystats']);
+  const events = jsonapiCursor(['events']);
 
-  if (!obscurityMissionCheck(activemission, countrystats))
-    flashMission(`Obscurity is too low.`);
+  if (!obscurityMissionCheck(activemission, countrystats, events, countryofoperation))
+    announce(`Obscurity is too low.`, `dashboard`);
   else if (!maxAgentsCheck(jsonapiCursor()) && (activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1))
-    flashMission(`Upgrade operations for more agents.`);
+    announce(`Upgrade operations for more agents.`, `dashboard`);
   else {
     flashMission(`Mission Started`);
     if (jsonapiCursor(['options', 'soundeffects'])) {

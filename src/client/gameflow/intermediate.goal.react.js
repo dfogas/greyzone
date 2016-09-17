@@ -17,16 +17,17 @@ class IntermediateGoal extends Component {
     const {jsonapi} = this.props;
 
     return (
-      <div
+      <fieldset
         id='IntermediateGoal'
         onClick={(e) => dashboardActions.intermediateGoalToggle()}>
+        <legend>Goals</legend>
         {<FirstMissionGoal firstmission={jsonapi.getIn(['tutorial', 'firstmission'])} />}
         {<AgentRankFour agentrankfour={jsonapi.get('agents').find(agent => agent.get('rank') >= 4)} />}
         {<OperationsLevelThree operationslevelthree={jsonapi.get('enhancements').find(enh => enh.get('name') === 'Good Label')} />}
         {<GetMoreMissions jsonapi={jsonapi} />}
         {<LoyalCrewGoal jsonapi={jsonapi} />}
         {<DolceVitaGoal jsonapi={jsonapi} />}
-      </div>
+      </fieldset>
     );
   }
 }
