@@ -6,7 +6,6 @@ import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
 import allAgents from '../../lib/bml/allagents';
-import $ from 'jquery';
 import {msg} from '../../intl/store';
 import determiningIcon from '../../lib/bml/determiningicon';
 // import selfIsDisplayed from '../../lib/selfisdisplayed';
@@ -16,21 +15,6 @@ import PlayerAgentsLeadership from './player.agents.leadership.react';
 import PlayerOperationsCapability from './player.operations.capability.react';
 
 class PlayersWindow extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.showHelpMessage);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
-  }
-
-  showHelpMessage(e) {
-    if (e.keyCode === 72 && $('#DashboardTutorial').html())
-      $('#DashboardTutorial').remove();
-    else if (e.keyCode === 72)
-      $('#DashboardScreen').append(msg('tutorial.dashboardScreen'));
-  }
-
   render() {
     const {game, jsonapi} = this.props;
     const self = jsonapi.get('self');
@@ -61,8 +45,8 @@ class PlayersWindow extends Component {
           jsonapi={jsonapi} />
         <PlayerAgentsLeadership
           jsonapi={jsonapi} />
-        {tutorial && <div id='PlayerHelpHint'>
-          Click items to interact
+        {tutorial && <div className='player-help-hint'>
+          Click/drag&drop items to interact
           <br />
           Press 'h' for help
         </div>}

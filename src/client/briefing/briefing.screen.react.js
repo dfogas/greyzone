@@ -1,11 +1,11 @@
-import './briefing.screen.styl';
+import './briefing.screen.styl'; //
+import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
 // import formatMoney from '../lib/formatmoney';
-import $ from 'jquery';
 
 import AgentScrollBarWithNavButtons from '../agents/scrollbar/agentscrollbarwithnavbuttons.react';
 import ActiveMission from './activemission/active.mission.react';
@@ -20,23 +20,22 @@ import MissionListToggle from './mission.list.toggle.react';
 import MissionShiftLeft from './shift.left.react';
 import MissionShiftRight from './shift.right.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
+import ScreenHelp from '../tutorial/screen.help.react';
 import ToMission from '../navs/tomission.react';
 import TravelWindow from './travelwindow/travel.window.react';
 
 class BriefingScreen extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.addEventListener('keydown', this.helpMessage);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.removeEventListener('keydown', this.helpMessage);
   }
 
-  showHelpMessage(e) {
-    if (e.keyCode === 72 && $('#BriefingTutorial').html())
-      $('#BriefingTutorial').remove(); //
-    else if (e.keyCode === 72)
-      $('#BriefingScreen').append(msg('tutorial.briefingScreen'));
+  helpMessage(e) {
+    if (e.keyCode === 72)
+      componentsActions.screenHelpToggle('briefing');
   }
 
   render() {
@@ -46,6 +45,8 @@ class BriefingScreen extends Component {
       <DocumentTitle title={msg('briefing.title')}>
         <div id='BriefingScreen'>
           <div id='BriefingScreenLabel'>{msg('briefing.screen.label')}</div>
+          {jsonapi.getIn(['components', 'screenhelp', 'briefing']) &&
+            <ScreenHelp context='briefing' />}
           {jsonapi.getIn(['dashboard', 'screenplastic', 'toggle']) &&
             <ScreenPlastic />}
           {jsonapi.getIn(['components', 'briefing', 'travelselection', 'toggle']) &&

@@ -1,30 +1,29 @@
 import './command.styl';
 import * as commandActions from './actions';
+import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {Link} from 'react-router';
 import {msg} from '../intl/store';
-import $ from 'jquery';
 
 import CommandContent from './command.content.react';
 import CommandToDashboard from '../navs/commandtodashboard.react.js';
 import CommandToBriefing from '../navs/commandtobriefing.react.js';
+import ScreenHelp from '../tutorial/screen.help.react';
 
 class CommandCenterScreen extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.addEventListener('keydown', this.helpMessage);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.removeEventListener('keydown', this.helpMessage);
   }
 
-  showHelpMessage(e) {
-    if (e.keyCode === 72 && $('#CommandTutorial').html())
-      $('#CommandTutorial').remove();
-    else if (e.keyCode === 72)
-      $('#CommandCenterScreen').append(msg('tutorial.commandScreen'));
+  helpMessage(e) {
+    if (e.keyCode === 72)
+      componentsActions.screenHelpToggle('command');
   }
 
   render() {
@@ -35,6 +34,8 @@ class CommandCenterScreen extends Component {
       <div id='CommandScreen'>
         <div id='CommandScreenLabel'>{msg('command.screen.label')}</div>
         <button id='LoadMissionsButton' onClick={(e) => commandActions.loadMissions()}>Load Missions</button>
+        {jsonapi.getIn(['components', 'screenhelp', 'command']) &&
+          <ScreenHelp context='command' />}
         {!isLoggedIn &&
           <Link to='login'>
             <button className='login-button'>

@@ -1,12 +1,9 @@
-
-import './mission.screen.styl'; //
-// import * as componentsActions from '../components/actions';
+import './mission.screen.styl';
+import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import missionBoxShadow from '../lib/bml/missionboxshadow';
-import {msg} from '../intl/store';
-import $ from 'jquery';
 import Sound from '../lib/sound';
 import cconfig from '../client.config';
 
@@ -17,13 +14,14 @@ import MissionScreenDarkener from './mission.screen.darkener.react';
 import MissionResultsWindow from './results/window.react';
 import MissionToBriefingButton from '../navs/missiontobriefing.react';
 import MissionToDashboardButton from '../navs/missiontodashboard.react';
+import ScreenHelp from '../tutorial/screen.help.react';
 
 class MissionTrackingScreen extends Component {
   componentDidMount() {
     const {jsonapi} = this.props;
     const mission = jsonapi.get('activemission');
     const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
-    window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.addEventListener('keydown', this.helpMessage);
     if (jsonapi.getIn(['options', 'soundeffects'])) {
       let missionSound = new Sound(url + '/assets/audio/' + mission.get('sound'));
       missionSound.play();
@@ -32,15 +30,12 @@ class MissionTrackingScreen extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.removeEventListener('keydown', this.helpMessage);
   }
 
-  showHelpMessage(e) {
-    if (e.keyCode === 72 && $('#MissionTutorial').html())
-      $('#MissionTutorial').remove();
-    else if (e.keyCode === 72)
-      $('#MissionTrackingScreen').append(msg('tutorial.missionScreen'));
-    //..
+  helpMessage(e) {
+    if (e.keyCode === 72)
+      componentsActions.screenHelpToggle('mission');
   }
 
   render() {
@@ -50,6 +45,7 @@ class MissionTrackingScreen extends Component {
     const missionStarted = jsonapi.getIn(['activemission', 'started']);
     const missionResult = jsonapi.getIn(['activemission', 'result']);
     const screenTrans = jsonapi.getIn(['components', 'mission', 'transition']);
+    const tutorial = jsonapi.getIn(['options', 'tutorial']);
     // {msg('mission.screen.label')}
 
     return (
@@ -60,6 +56,11 @@ class MissionTrackingScreen extends Component {
           boxShadow: missionBoxShadow(jsonapi.get('activemission'))
         }}>
         <div id='MissionScreenLabel'>Mission in {countryofoperation}</div>
+        <MissionScreenDarkener
+          jsonapi={jsonapi}
+          />
+        {jsonapi.getIn(['components', 'screenhelp', 'mission']) &&
+          <ScreenHelp context='mission' />}
         {screenTrans &&
           <TaskTier
             game={game}
@@ -74,9 +75,6 @@ class MissionTrackingScreen extends Component {
             game={game}
             jsonapi={jsonapi}
             />}
-        <MissionScreenDarkener
-          jsonapi={jsonapi}
-          />
         {!missionStarted &&
           <MissionToBriefingButton />}
         {!missionStarted &&
@@ -86,6 +84,11 @@ class MissionTrackingScreen extends Component {
             game={game}
             jsonapi={jsonapi}
             />}
+        {tutorial && <div className='player-help-hint-mission-screen'>
+          Click/drag&drop items to interact
+          <br />
+          Press 'h' for help
+        </div>}
       </div>
     );
   }

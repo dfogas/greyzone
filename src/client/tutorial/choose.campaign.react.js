@@ -21,20 +21,24 @@ class ChooseCampaign extends Component {
           <legend>Choose Campaigns</legend>
           <label>
             <input
-              checked={campaigns ? campaigns.getIn(['dolcevita', 'selected']) : false}
-              name='dolcevita' onChange={(e) => this.toggleCampaign(e)}
+              checked={campaigns ? campaigns.getIn(['dolcevita', 'selected']) : true}
+              disabled={true}
+              name='dolcevita'
+              onChange={(e) => this.toggleCampaign(e)}
               type='checkbox' />Dolce Vita</label>
           <label>
             <input
               checked={campaigns ? campaigns.getIn(['collector', 'selected']) : false}
               disabled={!paying.get('collector')}
-              name='collector' onChange={(e) => this.toggleCampaign(e)}
+              name='collector'
+              onChange={(e) => this.toggleCampaign(e)}
               type='checkbox' />Collector</label>
           <label>
             <input
               checked={campaigns ? campaigns.getIn(['revenge', 'selected']) : false}
               disabled={!paying.get('revenge')}
-              name='revenge' onChange={(e) => this.toggleCampaign(e)}
+              name='revenge'
+              onChange={(e) => this.toggleCampaign(e)}
               type='checkbox' />Revenge</label>
         </fieldset>
         <button onClick={this.confirmCampaignsSelection}>Confirm</button>

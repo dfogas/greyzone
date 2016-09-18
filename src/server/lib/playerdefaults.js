@@ -46,6 +46,14 @@ var playerdefaults = {
   achievements: [],
   activemission: defaultActiveMission,
   agents: [],
+  campaigns: {
+    campaigns: {
+      dolcevita: {
+        name: 'dolcevita',
+        selected: true
+      }
+    }
+  },
   countrystats: playerCountryStats(CountryList, 0, 2),
   components: {
     briefing: {

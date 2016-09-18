@@ -3,6 +3,7 @@ import './actual.missioncard.styl'; //
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import R from 'ramda';
 
 import AgentAssignmentsContainer from './agent.assignments.container.react';
 import AgentToken from '../agent.token.react';
@@ -16,6 +17,7 @@ import Task from '../../mission/missioncard/tasks/task.react';
 class ActualMissionCard extends Component {
   render() {
     const {activemission, components, game, jsonapi} = this.props;
+    const agentLimit = activemission.get('agentLimit');
     const isPlaceholder = activemission.get('title') === 'Quiet before the Storm';
     const imgsrc = activemission.get('imgsrc') || 'placeholder.jpg';
     const tasks = activemission.get('tasks');
@@ -59,6 +61,12 @@ class ActualMissionCard extends Component {
               <AgentToken
                 agent={agent}
                 jsonapi={jsonapi}
+                />
+            );
+          })}
+          {R.range(0, agentLimit - jsonapi.getIn(['activemission', 'agentsonmission']).size).map(ph => {
+            return (
+              <AgentToken
                 />
             );
           })}

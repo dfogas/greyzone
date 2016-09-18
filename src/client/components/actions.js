@@ -1,4 +1,4 @@
-import {dispatch} from '../dispatcher';
+import {dispatch} from '../dispatcher'; //
 import setToString from '../lib/settostring';
 
 export function activeMissionToggle() {
@@ -46,6 +46,10 @@ export function missionScreenTransition() {
   dispatch(missionScreenTransition, {});
 }
 
+export function screenHelpToggle(context) {
+  dispatch(screenHelpToggle, {context});
+}
+
 export function travelSelectionToggle() {
   dispatch(travelSelectionToggle, {});
 }
@@ -62,5 +66,6 @@ setToString('components', {
   missionScreenTransition,
   missionScreenToggleOff,
   missionScreenToggleOn,
+  screenHelpToggle,
   travelSelectionToggle
 });

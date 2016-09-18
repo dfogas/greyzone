@@ -1,27 +1,26 @@
 /* Dumb */
 import './armory.screen.styl';
+import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../intl/store';
-import $ from 'jquery';
 
 import AgentEquipContent from './agentequipcontent.react';
+import ScreenHelp from '../tutorial/screen.help.react';
 
 class ArmoryScreen extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.addEventListener('keydown', this.helpMessage);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => this.showHelpMessage(e));
+    window.removeEventListener('keydown', this.helpMessage);
   }
 
-  showHelpMessage(e) {
-    if (e.keyCode === 72 && $('#ArmoryTutorial').html())
-      $('#ArmoryTutorial').remove();
-    else if (e.keyCode === 72)
-      $('#ArmoryScreen').append(msg('tutorial.armoryScreen'));
+  helpMessage(e) {
+    if (e.keyCode === 72)
+      componentsActions.screenHelpToggle('armory');
   }
 
   render() {
@@ -34,6 +33,8 @@ class ArmoryScreen extends Component {
           game={game}
           jsonapi={jsonapi}
           />
+        {jsonapi.getIn(['components', 'screenhelp', 'armory']) &&
+          <ScreenHelp context='armory' />}
       </div>
     );
   }
