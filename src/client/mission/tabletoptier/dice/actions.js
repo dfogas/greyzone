@@ -1,6 +1,6 @@
 import {dispatch} from '../../../dispatcher'; //
 import setToString from '../../../lib/settostring';
-import Sound from '../../../lib/sound';
+import playSound from '../../../lib/sound';
 import {jsonapiCursor} from '../../../state';
 import $ from 'jquery';
 
@@ -8,7 +8,6 @@ export function create(dice) {
   const dicekeys = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']).map(die => die.get('dicekey'));
   const debugswitch = jsonapiCursor(['options', 'debug']);
   if (dicekeys.indexOf(dice.dicekey) !== -1)
-
     flashMission(`This is not possible`);
   else
     dispatch(create, dice);
@@ -49,10 +48,7 @@ export function roll(dice) {
 }
 
 export function rollAll() {
-  if (jsonapiCursor(['options', 'soundeffects'])) {
-    let mySound = new Sound('../../../assets/audio/diceInHand.ogg');
-    mySound.play();
-  }
+  playSound('../../../assets/audio/diceInHand.ogg');
   dispatch(rollAll, {message: 'all dices rolled'});
 }
 

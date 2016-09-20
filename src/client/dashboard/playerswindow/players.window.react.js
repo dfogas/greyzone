@@ -1,12 +1,10 @@
 import './players.window.styl';
-// import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
 import formatMoney from '../../lib/formatmoney';
 import immutable from 'immutable';
 import uuid from '../../lib/guid';
 import allAgents from '../../lib/bml/allagents';
-import {msg} from '../../intl/store';
 import determiningIcon from '../../lib/bml/determiningicon';
 // import selfIsDisplayed from '../../lib/selfisdisplayed';
 
@@ -46,7 +44,7 @@ class PlayersWindow extends Component {
         <PlayerAgentsLeadership
           jsonapi={jsonapi} />
         {tutorial && <div className='player-help-hint'>
-          Click/drag&drop items to interact
+          Click items to interact
           <br />
           Press 'h' for help
         </div>}

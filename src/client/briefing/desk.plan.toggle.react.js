@@ -3,7 +3,7 @@ import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import $ from 'jquery';
-import Sound from '../lib/sound';
+import playSound from '../lib/sound';
 
 class TablePlanToggle extends Component {
   travelSelectionToggle(e) {
@@ -21,8 +21,7 @@ class TablePlanToggle extends Component {
   }
 
   highlightPlan() {
-    let mySound = new Sound('../../../assets/audio/ui/rollover3.wav');
-    mySound.play();
+    playSound('../../../assets/audio/ui/rollover3.wav');
     $(React.findDOMNode(this)).css('box-shadow', '0 0 30px white');
   }
 

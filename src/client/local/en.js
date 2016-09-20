@@ -100,7 +100,7 @@ const ENGLISH = {
     help: 'Help',
     introduction: 'Intro',
     login: 'Login',
-    mission: 'Mission',
+    mission: 'Start Mission',
     talk: 'Talk',
     signup: 'Sign Up'
   },

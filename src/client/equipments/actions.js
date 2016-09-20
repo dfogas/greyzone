@@ -2,7 +2,7 @@
 /*Equipment Actions*/
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
-import Sound from '../lib/sound';
+import playSound from '../lib/sound';
 import {gameCursor, jsonapiCursor} from '../state';
 import equipmentUseCheck from '../lib/bml/equipmentusecheck';
 import cconfig from '../client.config';
@@ -42,16 +42,12 @@ export function use(agent, agentequipmentandindex) {
   const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
   if (equipmentUseCheck(agent, agentequipmentandindex.agentequipment)) { // eslint-disable-line curly
     if (agent.get('name') === agentontask.get('name')) {
-      if (jsonapiCursor(['options', 'soundeffects'])) {
-        let mySound = new Sound(url + equipmentSound(agentequipmentandindex.agentequipment));
-        mySound.play();
-      }
+      playSound(url + equipmentSound(agentequipmentandindex.agentequipment));
       dispatch(use, agentequipmentandindex);
     }
   } else {
     dispatch(noeffect, agentequipmentandindex);
-    let mySound = new Sound(url + equipmentSound(immutable.fromJS({name: 'Fail'})));
-    mySound.play();
+    playSound(url + equipmentSound(immutable.fromJS({name: 'Fail'})));
   }
 }
 

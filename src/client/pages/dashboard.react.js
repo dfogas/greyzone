@@ -1,4 +1,4 @@
-import * as tutorialActions from '../tutorial/actions';
+import * as tutorialActions from '../tutorial/actions'; //
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -15,7 +15,7 @@ import {msg} from '../intl/store';
 class Dashboard extends Component {
 
   render() {
-    const {auth, contest, game, jsonapi, locales, pendingActions, viewer} = this.props;
+    const {auth, contest, game, i18n, jsonapi, pendingActions, viewer} = this.props;
     const missionstarted = jsonapi.getIn(['activemission', 'started']);
     const tutorialfinished = jsonapi.getIn(['tutorial', 'completed']);
 
@@ -46,8 +46,8 @@ class Dashboard extends Component {
             <DashboardScreen
               contest={contest}
               game={game}
+              i18n={i18n}
               jsonapi={jsonapi}
-              locales={locales}
               pendingActions={pendingActions}
               viewer={viewer}
               />}
@@ -69,6 +69,7 @@ Dashboard.propTypes = {
   auth: React.PropTypes.instanceOf(immutable.Map).isRequired,
   contest: React.PropTypes.instanceOf(immutable.List).isRequired,
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
+  i18n: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   locales: React.PropTypes.string,
   pendingActions: React.PropTypes.instanceOf(immutable.Map).isRequired,

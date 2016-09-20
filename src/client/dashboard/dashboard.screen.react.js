@@ -1,5 +1,5 @@
 /* Smart */
-import './dashboard.screen.styl'; //
+import './dashboard.screen.styl';
 import * as componentsActions from '../components/actions';
 import * as endGameActions from './endgame/actions';
 import * as tutorialActions from '../tutorial/actions';
@@ -53,7 +53,7 @@ class DashboardScreen extends Component {
   }
 
   render() {
-    const {contest, game, jsonapi} = this.props;
+    const {contest, game, i18n, jsonapi} = this.props;
     const dashPointer = jsonapi.getIn(['components', 'dashboard', 'index']) || 'default';
     const isLoggedIn = !!this.props.viewer;
     const orgname = jsonapi.get('name');
@@ -104,7 +104,7 @@ class DashboardScreen extends Component {
           })*/}
         {/*!jsonapi.get('dashboard').getIn(['strategical', 'intro']) && <StrategicalIntro jsonapi={jsonapi}/>*/}
         {/* end of start game */}
-        {dashPointer === 'options' && <LanguageSelect locales={this.props.locales}/>}
+        {dashPointer === 'options' && <LanguageSelect i18n={i18n}/>}
         {jsonapi.get('gameend') && <EndGameWindow jsonapi={jsonapi} />}
       </div>
     );
@@ -115,6 +115,7 @@ DashboardScreen.propTypes = {
   agentspricelist: React.PropTypes.instanceOf(immutable.Map),
   contest: React.PropTypes.instanceOf(immutable.List),
   game: React.PropTypes.instanceOf(immutable.Map),
+  i18n: React.PropTypes.instanceOf(immutable.Map),
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired,
   locales: React.PropTypes.string,
   viewer: React.PropTypes.string

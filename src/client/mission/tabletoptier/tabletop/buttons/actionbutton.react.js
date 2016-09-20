@@ -3,7 +3,7 @@ import * as dicesActions from '../../rotatingdie/actions';
 import * as missionActions from '../../../actions';
 import Component from '../../../../components/component.react.js';
 import React from 'react';
-import Sound from '../../../../lib/sound';
+import playSound from '../../../../lib/sound';
 
 class ActionButton extends Component {
   action() {
@@ -16,8 +16,7 @@ class ActionButton extends Component {
 
     if (!diceslock && missionStarted) {
       dicesActions.spinDice();
-      let mySound = new Sound('../../../../../../assets/audio/diceInHand.ogg');
-      mySound.play();
+      playSound('../../../../../../assets/audio/diceInHand.ogg');
       setTimeout(() => {
         dicesActions.spinDice();
         dicesActions.rollAll();

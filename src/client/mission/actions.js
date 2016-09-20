@@ -10,7 +10,7 @@ import announce from '../lib/announce';
 import noDoubleAgents from '../lib/bml/nodoubleagents';
 import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
-import Sound from '../lib/sound';
+import playSound from '../lib/sound';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
 
@@ -155,8 +155,7 @@ export function end() {
 
 // sets activemission result to 'fail' and its started property to false
 export function fail() {
-  let mySound = new Sound(url + '/assets/audio/MissionFail.ogg');
-  mySound.play();
+  playSound(url + '/assets/audio/MissionFail.ogg');
   dispatch(fail, {});
 }
 
@@ -216,10 +215,7 @@ export function start() {
     announce(`Upgrade operations for more agents.`, `dashboard`);
   else {
     flashMission(`Mission Started`);
-    if (jsonapiCursor(['options', 'soundeffects'])) {
-      let mySound = new Sound(url + '/assets/audio/MissionStart.ogg');
-      mySound.play();
-    }
+    playSound(url + '/assets/audio/MissionStart.ogg');
     dispatch(start, {});
   }
 }
@@ -227,8 +223,7 @@ export function start() {
 /* sets activemission result to 'success'
   and its started property to false */
 export function success() {
-  let mySound = new Sound(url + '/assets/audio/MissionSuccess.ogg');
-  mySound.play();
+  playSound(url + '/assets/audio/MissionSuccess.ogg');
   dispatch(success, {});
 }
 

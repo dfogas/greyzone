@@ -32,7 +32,6 @@ class AgentsTier extends Component {
     const agentontask = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask']);
 
     const actiondices = activemission.getIn(['mission', 'currenttask', 'actiondices']);
-    const missionstarted = activemission.get('started');
     const currentindex = activemission.get('taskscompleted').size;
     const currenttask = activemission.getIn(['tasks', currentindex]) || immutable.fromJS(Array(0));
 

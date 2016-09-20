@@ -3,6 +3,7 @@ import * as agentsActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';
 import $ from 'jquery';
+import playSound from '../lib/sound.js';
 
 class RedAlertToggle extends Component {
   dimPlan() {
@@ -15,8 +16,7 @@ class RedAlertToggle extends Component {
 
   highlightPlan() {
     const {armorycode} = this.props;
-    // let mySound = new Sound('../../../assets/audio/ui/rollover3.wav');
-    // mySound.play();
+    playSound('../../../assets/audio/ui/rollover3.wav');
     $(React.findDOMNode(this)).css({
       backgroundColor: `${armorycode === 'green' ? 'yellow' : 'red'}`,
       boxShadow: `0 0 30px ${armorycode === 'green' ? 'yellow' : 'red'}`

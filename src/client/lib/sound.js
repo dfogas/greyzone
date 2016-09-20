@@ -1,10 +1,11 @@
 /*
-  String(path) -> MutatingWorld
+  String(path) -> Side Effect(or null)
   stolen from W3C schools
   BML: false
 */
+import {jsonapiCursor} from '../state';
 
-function sound(src) {
+const Sound = function(src) {
   this.sound = document.createElement('audio');
   this.sound.src = src;
   this.sound.setAttribute('preload', 'auto');
@@ -17,6 +18,13 @@ function sound(src) {
   this.stop = function() {
     this.sound.pause();
   };
-}
+};
 
-export default sound;
+const playSound = function(src) {
+  if (jsonapiCursor(['options', 'soundeffects'])) {
+    let mySound = new Sound(src);
+    mySound.play();
+  } else return null;
+};
+
+export default playSound;

@@ -7,11 +7,11 @@ import allAgents from './allagents'; //
 
 function checkBadEnds(jsonapi) {
   const countrystats = jsonapi.get('countrystats');
-  const paying = jsonapi.get('paying') ? jsonapi.get('paying').toJS() : null;
-  const isPaying = paying ?
-    Object.keys(paying).reduce((prev, curr) => {
-      return paying[curr] || prev;
-    }, false) : false;
+  // const paying = jsonapi.get('paying') ? jsonapi.get('paying').toJS() : null;
+  // const isPaying = paying ?
+  //   Object.keys(paying).reduce((prev, curr) => {
+  //     return paying[curr] || prev;
+  //   }, false) : false;
 
   if (jsonapi.get('agents').find(agent => agent.get('KIA') && agent.get('id') === jsonapi.getIn(['self', 'id'])))
     return 'Killed';

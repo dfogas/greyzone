@@ -1,4 +1,4 @@
-import {dispatch} from '../dispatcher';
+import {dispatch} from '../dispatcher'; //
 import setToString from '../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../state';
 import cconfig from '../client.config';
@@ -9,7 +9,7 @@ import agentIncurDelay from '../lib/bml/agentincurdelay';
 import agentRankup from '../lib/bml/agentrankup';
 import isEquipmentBackfire from '../lib/bml/isequipmentbackfire';
 import leadershipcheck from '../lib/bml/leadershipcheck';
-import Sound from '../lib/sound';
+import playSound from '../lib/sound';
 import $ from 'jquery';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
@@ -74,12 +74,10 @@ export function codeChange(color) {
 }
 
 export function equip(equipment) {
-  // TODO: napsat líp //
-  const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).map(eqs => eqs.get('name')).indexOf(equipment.get('name')) !== -1;
+  const hasAlready = jsonapiCursor(['agentinarmory', 'equipments']).find(eq => eq.get('name') === equipment.get('name'));
   if (!hasAlready) {
     dispatch(equip, equipment);
-    let mySound = new Sound(url + '/assets/audio/AgentEquiped.ogg');
-    mySound.play();
+    playSound(url + '/assets/audio/AgentEquiped.ogg');
     flashArmory('Agent equipped.');
   }
   else flashArmory('Agent already has this equipment.');

@@ -1,4 +1,4 @@
-import './tomission.styl'; //
+import './tomission.styl';
 import * as missionsActions from '../mission/actions';
 import Component from '../components/component.react';
 import React from 'react';

@@ -1,7 +1,7 @@
 // duplication of dice actions
 import {dispatch} from '../../../dispatcher';
 import setToString from '../../../lib/settostring';
-import Sound from '../../../lib/sound';
+import playSound from '../../../lib/sound';
 import {jsonapiCursor} from '../../../state';
 import $ from 'jquery';
 
@@ -50,10 +50,7 @@ export function roll(dice) {
 }
 
 export function rollAll() {
-  if (jsonapiCursor(['options', 'soundeffects'])) {
-    let mySound = new Sound('../../../assets/audio/diceInHand.ogg');
-    mySound.play();
-  }
+  playSound('../../../assets/audio/diceInHand.ogg');
   dispatch(rollAll, {message: 'all dices rolled'});
 }
 
