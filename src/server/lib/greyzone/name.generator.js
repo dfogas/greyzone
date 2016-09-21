@@ -47,13 +47,21 @@ nameSet.greyzone = [
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // generator function
 
-function generateName(type) {
+function sanitizedName(type) {
   var chain;
   chain = markovChain(type);
   if (chain)
-    return markovName(chain);
-  return '';
+    return markovName(chain).replace(/\-/g, '');
+  else return 'Phantom';
 }
+//
+// function generateName(type) {
+//   var chain;
+//   chain = markovChain(type);
+//   if (chain)
+//     return markovName(chain);
+//   return '';
+// }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // generate multiple
@@ -183,5 +191,5 @@ function selectLink(chain, key) {
   return '-';
 }
 
-export default generateName;
+export default sanitizedName;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

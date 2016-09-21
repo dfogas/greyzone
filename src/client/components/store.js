@@ -88,6 +88,14 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.salesPitchToggle) {
+    const toggle = jsonapiCursor(['components', 'dashboard', 'salespitch']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'dashboard', 'salespitch'], !toggle);
+    });
+  }
+
   if (action === componentsActions.screenHelpToggle) {
     const toggle = jsonapiCursor(['components', 'screenhelp', data.context]);
     jsonapiCursor(jsonapi => {

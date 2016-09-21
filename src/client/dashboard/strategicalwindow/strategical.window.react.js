@@ -1,4 +1,4 @@
-import './strategical.window.styl';
+import './strategical.window.styl'; //
 import * as dashboardActions from '../actions';
 import Component from '../../components/component.react';
 import React from 'react';
@@ -19,6 +19,7 @@ import IntermediateGoal from '../../gameflow/intermediate.goal.react';
 import MissionsWindow from '../missionswindow/missions.window.react';
 import PlayersWindow from '../playerswindow/players.window.react';
 import Pointer from '../pointer.react';
+import GoalsHint from '../../tutorial/hints/goals.hint.react';
 import UpgradeTrainingHint from '../../tutorial/hints/upgrade.training.hint.react';
 
 class StrategicalWindow extends Component {
@@ -72,6 +73,10 @@ class StrategicalWindow extends Component {
           && topLevelTraining(jsonapi.get('enhancements')) === 'Basic Training'
           && jsonapi.getIn(['options', 'tutorial'])
           && <UpgradeTrainingHint />}
+        {!jsonapi.getIn(['options', 'debug'])
+          && !jsonapi.getIn(['dashboard', 'intermediategoal'])
+          && allAgents(jsonapi).filter(agent => agent.get('rank') >= 4).size === 0
+          && <GoalsHint />}
         {false &&
           <CountryStatsWindow countrystats={jsonapi.get('countrystats')} />}
       </div>

@@ -8,17 +8,20 @@ export function bookPrice(price) {
 }
 
 export function changeCountry(option) {
-  // TODO: změnit countryofoperation na novou programovanou komponentu místo dropdownu
   // make a wish
   // console.log('travel cost: ', bookTraveling(jsonapiCursor(), gameCursor(), option).toJS());
-  bookPrice(bookTraveling(jsonapiCursor(), gameCursor(), option));
-  setTimeout(() => {dispatch(changeCountry, option); }, 10);
-  travelWindowToggle();
-  screenPlasticToggle();
-  setTimeout(() => {
+  if (option.value === jsonapiCursor(['dashboard', 'countryofoperation']))
+    setTimeout(() => {dispatch(changeCountry, option); }, 10);
+  else {
+    bookPrice(bookTraveling(jsonapiCursor(), gameCursor(), option));
+    setTimeout(() => {dispatch(changeCountry, option); }, 10);
     travelWindowToggle();
     screenPlasticToggle();
-  }, 10000);
+    setTimeout(() => {
+      travelWindowToggle();
+      screenPlasticToggle();
+    }, 10000);
+  }
 }
 
 export function moveDot() {

@@ -46,6 +46,10 @@ export function missionScreenTransition() {
   dispatch(missionScreenTransition, {});
 }
 
+export function salesPitchToggle() {
+  dispatch(salesPitchToggle, {});
+}
+
 export function screenHelpToggle(context) {
   dispatch(screenHelpToggle, {context});
 }
@@ -66,6 +70,7 @@ setToString('components', {
   missionScreenTransition,
   missionScreenToggleOff,
   missionScreenToggleOn,
+  salesPitchToggle,
   screenHelpToggle,
   travelSelectionToggle
 });

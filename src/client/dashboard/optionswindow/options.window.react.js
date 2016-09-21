@@ -1,4 +1,5 @@
 import './options.window.styl';
+import * as componentsActions from '../../components/actions';
 import * as endGameActions from '../endgame/actions';
 import * as optionsActions from './actions';
 import Component from '../../components/component.react';
@@ -12,6 +13,7 @@ import Logout from '../../auth/logout.react';
 import OptionsGameWindow from './options.game.window.react';
 import PayingWindow from './paying.window.react';
 import Pointer from '../pointer.react';
+import SalesPitch from '../../selling/sales.pitch.react';
 
 class OptionsWindow extends Component {
   changeOption(ev) {
@@ -64,7 +66,15 @@ class OptionsWindow extends Component {
           onClick={(e) => {
             optionsActions.giveFeedback();
           }}>Give Feedback</button>
+        <button
+          id='SalesPitchToggle'
+          onClick={(e) => {
+            componentsActions.salesPitchToggle();
+          }}
+          >Buy the game</button>
         <Logout />
+        {jsonapi.getIn(['components', 'dashboard', 'salespitch']) &&
+          <SalesPitch />}
         {!multiplayer &&
           <OptionsGameWindow
             jsonapi={jsonapi}

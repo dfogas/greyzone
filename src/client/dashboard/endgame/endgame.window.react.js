@@ -25,13 +25,12 @@ class EndGameWindow extends Component {
 
     return (
       <div id="EndGameWindow">
-        You ended the game with
-        {
+        {`You ended the game with ${
           Math.round(countrystats.reduce((prev, curr) => {
             return curr.get('reputation') * curr.get('obscurity') + prev;
           }, 0) +
           (gameend === 'richandhidden' ? 50000 : 0))
-        } total score.
+        } total score.`}
         Your game end is:
           {gameend === 'retirement' ? 'Given Up' : ''}
           {gameend === 'discovered' ? 'Not so secret now' : ''}

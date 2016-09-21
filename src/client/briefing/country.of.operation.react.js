@@ -1,4 +1,4 @@
-import './country.of.operation.styl';
+import './country.of.operation.styl'; //
 import * as componentsActions from '../components/actions';
 import * as travelActions from './travelwindow/actions';
 import announce from '../lib/announce';
@@ -19,7 +19,7 @@ class CountryOfOperation extends Component {
         name: 'countryofoperation',
         value: jsonapi.getIn(['dashboard', 'countryofoperation'])
       });
-      announce(`There is an unresolved forced mission`, `Dashboard`);
+      announce(`There is an unresolved forced mission`, `Briefing`);
     }
   }
 
@@ -28,7 +28,7 @@ class CountryOfOperation extends Component {
     const countries = game.getIn(['globals', 'countries']);
     return (
       <div id='CountryOfOperation'>
-        <div id='CountryOfOperationText'>Operating in {jsonapi.getIn(['dashboard', 'countryofoperation'])}</div>
+        <div id='CountryOfOperationText'>You operate in <div>{jsonapi.getIn(['dashboard', 'countryofoperation'])}</div></div>
         <div id='TravelToText'>Move operations to ... ?</div>
         <DropDown
           baseClassName='countryofoperation'

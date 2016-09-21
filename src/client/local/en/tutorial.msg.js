@@ -1,4 +1,4 @@
-import determiningIcon from '../../lib/bml/determiningicon';
+import determiningIcon from '../../lib/bml/determiningicon'; //
 
 const TutorialMsg = {
   agentinarmory: `Drop agent here, so that she can be given equipment.`,
@@ -46,7 +46,9 @@ const TutorialMsg = {
   dashboardScreen: `
     <h2>Dashboard Help</h2>
     <p>Dashboard is the overview of all important points of the game.</p>
-    <p>You are selecting which missions here.</p>
+    <p>You are selecting which missions you will go to here.</p>
+    <p>There are 7 basic missions, 2 missions that game gives you(forced), and
+      5 missions that you acquire by playing.</p>
     <p>Mission will usually give you one or more of the following items:
       <li>money - ${determiningIcon('gameCash')}</li>
       <li>reputation - ${determiningIcon('reputation')}</li>

@@ -1,0 +1,36 @@
+#GoalsHint
+  position relative
+  top 100px
+  right -80px
+  width 0
+  height 0
+  border-top 54px solid transparent
+  border-right 54px solid red
+  transform rotate(-80deg)
+  z-index 11
+  animation 5s pulseAngled 2s infinite
+
+#GoalsHint:after
+  content ''
+  position absolute
+  border 0 solid transparent
+  border-top 18px solid red
+  border-radius 120px 0 0 0
+  top -72px
+  left -54px
+  width 72px
+  height 72px
+  transform rotate(45deg)
+  animation 5s pulseFortyFive 2s infinite
+
+#GoalsHintText
+  position relative
+  top -80px
+  right 170px
+  max-width 190px
+  text-align center
+  padding 5px
+  font-size 1em
+  background-color white
+  z-index 11
+  transform rotate(90deg)
