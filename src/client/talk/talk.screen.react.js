@@ -1,4 +1,4 @@
-import './talk.screen.styl';
+import './talk.screen.styl'; //
 // import talkEnhancementsActions from './actions';
 import * as talkActions from './actions';
 import Component from '../components/component.react';
@@ -13,8 +13,10 @@ import PartyOfAgents from './party.of.agents.react';
 class TalkScreen extends Component {
   render() {
     const {game, jsonapi} = this.props;
+    const orgname = jsonapi.get('name');
     return (
       <div id='TalkScreen'>
+        <div id='TalkScreenLabel'>{'Lounge - ' + orgname}</div>
         <PartyOfAgents
           game={game}
           jsonapi={jsonapi}

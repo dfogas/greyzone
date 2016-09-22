@@ -50,12 +50,14 @@ export function loadGame(game) {
   const gamehash = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}hash`);
   const debug = jsonapiCursor(['options', 'debug']);
 
+  // TODO: I am not sure why debug is here, need to remove it
   if (debug) {
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`) || []);
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentskilled`) || []);
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`) || []);
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}missions`) || []);
     dispatch(loadGame, savegame);
+    updateSaveGamesInfo();
     announce(`Game has been loaded.`, `Dashboard`);
   } else if (savegame && hashString(savegame) === gamehash) {
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`) || []);
@@ -63,8 +65,25 @@ export function loadGame(game) {
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`) || []);
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}missions`) || []);
     dispatch(loadGame, savegame);
+    updateSaveGamesInfo();
     announce(`Game has been loaded.`, `Dashboard`);
   } else announce(`Hashes don\'t equal. You may need to log out.`, `Dashboard`);
+}
+
+export function loadMissions() {
+  // loads missions from local storage passes them to store
+  const missions = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`) || [];
+  /*
+    const missionDone = {
+      title: activemission.get('title'),
+      timeDone: Date.now(),
+      tier: activemission.get('tier'),
+      result: activemission.get('result'),
+      inCountry: activemission.get('inCountry'),
+      agents: agentsmissionall.toJS().map(agent => agent.id)
+    };
+  */
+  dispatch(loadMissions, {missions});
 }
 
 export function sanitizeAgents() {
@@ -77,6 +96,8 @@ export function sanitizeMissions() {
 
 export function saveGame(jsonapi, game) {
   const jsonapijs = jsonapi.toJS();
+  // loading missions so that no mission gets lost
+  loadMissions();
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}`, jsonapijs);
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}hash`, hashString(jsonapijs));
   lockr.set(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`) || []);
@@ -102,6 +123,7 @@ export function startNewGame(jsonapi) {
     dispatch(startNewGame, jsonapi);
   eraseGameStatistics();
   eraseGameLog();
+  updateSaveGamesInfo();
 }
 
 export function updateSaveGamesInfo() {
@@ -120,6 +142,7 @@ setToString('options', {
   changePaying,
   giveFeedback,
   loadGame,
+  loadMissions,
   sanitizeAgents,
   sanitizeMissions,
   saveGame,

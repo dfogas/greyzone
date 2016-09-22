@@ -1,7 +1,8 @@
-import {dispatch} from '../../dispatcher';
+import {dispatch} from '../../dispatcher'; //
 import setToString from '../../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../../state';
 import $ from 'jquery';
+import announce from '../../lib/announce';
 
 export function buyEnhancement(mystery) {
   const gameCash = jsonapiCursor(['gameCash']);
@@ -15,12 +16,12 @@ export function buyEnhancement(mystery) {
   else enhancement = mystery;
   let price = enhancement.get('price');
   if (!enhancements.find(enh => enh.get('name') === 'Good Label') && enhancement.get('type') === 'operationsscope')
-    flashDashboard(`Upgrade operations first!`);
+    announce(`Upgrade operations first`, `Talk`);
   else if (gameCash >= price.get('cash') && gameContacts >= price.get('contacts')) {
     dispatch(buyEnhancement, {enhancement});
     choiceToAcknowledgement();
   } else {
-    flashDashboard(`Insufficient funds.`);
+    announce(`Insufficient cash or contacts. Price is $10,000 and 100 contacts.`, `Talk`);
     closeEnhancementTalk();
   }
 }
@@ -45,13 +46,6 @@ export function facilityUpgradeDialog(enhancement) {
 
 export function facilityUpgradeDialogClose(enhancement) {
   dispatch(facilityUpgradeDialogClose, {enhancement});
-}
-
-function flashDashboard(message) {
-  $('#DashboardMessage').remove();
-  $('#DashboardScreen').append(`<div id='DashboardMessage'>${message}</div>`);
-  $('#DashboardMessage').hide().fadeIn(400);
-  $('#DashboardMessage').fadeOut(1200, () => $('#DashboardMessage').remove());
 }
 
 export function operationsUpgradeDialogToggle() {

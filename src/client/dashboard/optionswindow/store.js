@@ -37,6 +37,11 @@ export const dispatchToken = register(({action, data}) => {
       return immutable.fromJS(data);
     });
 
+  if (action === optionsActions.loadMissions)
+    jsonapiCursor(jsonapi => {
+      return jsonapi.set('missionsDone', immutable.fromJS(data.missions));
+    });
+
   if (action === optionsActions.sanitizeAgents)
     jsonapiCursor(jsonapi => {
       return jsonapi

@@ -122,7 +122,7 @@ var playerdefaults = {
     },
     playerhistory: {
       slides: [
-        `You barely remember how it started. It was a hot July and you were "recuited" by some obscure character.`,
+        `You barely remember how it started. It was a hot July and you were recuited by some obscure character.`,
         `You clearly remember the training, it had been intense right before you were thrown out to wolves`,
         `Making it through initial trials you established level of confidence that helped you rise in the rank`,
         `but after you were left for dead after one action, you decided to use that to your advantage`,

@@ -23,6 +23,7 @@ class OptionsGameWindow extends Component {
       Object.keys(paying).reduce((prev, curr, index, array) => {
         return paying[curr] || prev;
       }, false) : false;
+    // TODO: refactor savegames
     return (
       <div id="OptionsGameWindow">
         <fieldset>
@@ -49,9 +50,9 @@ class OptionsGameWindow extends Component {
             </tbody>
           </table>
         </fieldset>
-        <button
+        {false && <button
           id='UpdateSaveGamesInfoButton'
-          onClick={(e) => optionsActions.updateSaveGamesInfo()}>Info</button>
+          onClick={(e) => optionsActions.updateSaveGamesInfo()}>Info</button>}
       </div>
     );
   }

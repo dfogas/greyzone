@@ -54,6 +54,7 @@ export default function userState() {
       gameCash: 0,
       gameContacts: 0,
       missions: [],
+      tutorial: {},
       savegames: [],
       talk: {
         participants: []

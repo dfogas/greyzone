@@ -1,6 +1,5 @@
 import './agent.to.talk.to.styl';
 import * as talkActions from './actions';
-// import * as talkEnhancementsActions from './enhancements/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import formattedImg from '../lib/bml/formattedimg';
