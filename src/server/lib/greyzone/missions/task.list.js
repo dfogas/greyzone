@@ -1,5 +1,5 @@
 /*eslint camelcase: 0 */
-import {decipher, monitor, tap, puppet, infiltrate, hide, hit, close_combat, pursuit} from './actions';
+import {decipher, monitor, tap, puppet, infiltrate, hide, hit, close_combat, pursuit} from './actions'; //
 
 /*
   pravidla ...

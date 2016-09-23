@@ -10,7 +10,7 @@ const description = `The first thing is to know, who talks to whom and what are 
 const ConnectionsMap = [{
     title: title,
     tasks: [
-      [monitor, tap, decipher],
+      [tap, decipher, improv_el],
       [monitor],
       [infiltrate, hide]
     ],

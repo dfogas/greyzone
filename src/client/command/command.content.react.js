@@ -17,7 +17,7 @@ class MainScreen extends Component {
     return (
       <div className='command-content'>
         <GeminiScrollbar>
-          {jsonapi.get('missionsDone').map(item => {
+          {jsonapi.get('missionsDone').reverse().map(item => {
             return (
               <div className='org-mission-done'>
                 <span>{dayandtime(item.get('timeDone'), new Date().getTimezoneOffset())}</span>

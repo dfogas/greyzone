@@ -9,6 +9,7 @@ import dayandtime from '../lib/dayandtime';
 import bookAttention from '../lib/bml/bookattention';
 import bookObscurity from '../lib/bml/bookobscurity';
 import bookReputation from '../lib/bml/bookreputation';
+import experienceGain from '../lib/bml/experiencegain';
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -85,7 +86,7 @@ export const dispatchToken = register(({action, data}) => {
       return jsonapi
         .updateIn(['activemission', 'mission', 'currenttask', 'agentontask', 'experience'],
           // přidej mu zkušenost, gah
-          val => val + 15);
+          val => val + experienceGain(data.mission, data.agent));
     });
 
   if (action === missionActions.agentsAreBackFromMission) {

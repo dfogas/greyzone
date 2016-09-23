@@ -1,7 +1,6 @@
-import {dispatch} from '../../dispatcher'; //
+import {dispatch} from '../../dispatcher';
 import setToString from '../../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../../state';
-import $ from 'jquery';
 import announce from '../../lib/announce';
 
 export function buyEnhancement(mystery) {

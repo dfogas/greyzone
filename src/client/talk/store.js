@@ -11,10 +11,10 @@ export const dispatchToken = register(({action, data}) => {
     });
 
   if (action === talkActions.agentDialogToggle) {
-    const toggle = jsonapiCursor(['components', 'dashboard', 'agentdialog']);
+    const toggle = jsonapiCursor(['talk', 'dialog']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['components', 'dashboard', 'agentdialog'], !toggle);
+        .setIn(['talk', 'dialog'], !toggle);
     });
   }
 
@@ -29,5 +29,12 @@ export const dispatchToken = register(({action, data}) => {
         .setIn(['dashboard', 'enhancementtalk'], data.message)
         .setIn(['dashboard', 'enhancementtalkindex'], 'dialog');
     });
+
+  if (action === talkActions.storyBoxToggle) {
+    const toggle = jsonapiCursor(['talk', 'story']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['talk', 'story'], !toggle);
+    });
+  }
 
 });

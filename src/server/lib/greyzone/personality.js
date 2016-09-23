@@ -10,10 +10,8 @@ const personality = function() {
     return 'SJ';
   else if (chance < 0.85)
     return 'NT';
-  else if (chance < 0.95)
-    return 'NF';
   else
-    return 'XX';
+    return 'NF';
 };
 
 export default personality;

@@ -53,7 +53,9 @@ export function agentRecruited(agent) {
 }
 
 export function agentOnTaskGetsExperienceForCompletingTask() {
-  dispatch(agentOnTaskGetsExperienceForCompletingTask, {});
+  const agent = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
+  const mission = jsonapiCursor(['activemission']);
+  dispatch(agentOnTaskGetsExperienceForCompletingTask, {agent, mission});
 }
 
 export function agentsAreBackFromMission() {

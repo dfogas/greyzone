@@ -59,7 +59,7 @@ const TutorialMsg = {
     </p>
     <p>It also tracks in how much danger your organization is and how much attention
       its missions recieve.</p>
-    <p>Also it serves as a entry point to talk to your agents and
+    <p>Also it serves as a entry point to talk to your agents(implemented) and
     review your agents history(not implemented).</p>
   `,
   equipmentslot: `Drag icon here.`,
@@ -82,12 +82,12 @@ const TutorialMsg = {
     Pressing them should not be always automatic though.</p>
     `,
   playerhistory: [
-    `You barely remember the start of story. It was a hot summer and you were "recuited" by some obscure character.`,
-    `You clearly remember the training, it had been intense, and then you were thrown out to wolves.`,
+    `You barely remember the start of story. It was a hot summer and you were recuited by some obscure character.`,
+    `You clearly remember the start, it had been intense, you were thrown out to wolves.`,
     `Making it through initial trials you established level of confidence that helped you rise in the rank.`,
-    `but you were left for dead after one action, considered KIA and you survived and you shouldn't.`,
-    `Contacting your good colleague, you kept yourself hiding and under radar, but time has come for risk.`,
-    `Monitoring the official and secret message channels, it has come to your attention that there is a hunt on certain criminal underway `,
+    `You were left for dead after one action, considered KIA but you survived and - you shouldn't.`,
+    `Contacting your former companion, you kept yourself hiding, but time has come for risk.`,
+    `Monitoring the communication channels, it has come to your attention that there is a hunt on certain criminal going on.`,
     `You decided to help her ...`
   ],
   title: `Player's Story`

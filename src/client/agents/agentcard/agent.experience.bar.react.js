@@ -7,9 +7,6 @@ import immutable from 'immutable';
 class AgentExperienceBar extends Component {
   render() {
     const {agent, game, isShowcased} = this.props;
-    const trainingtable = game.getIn(['globals', 'trainingtable']);
-    const expcurr = trainingtable.getIn([agent.get('rank') - 1, 'xp']);
-    const expnext = trainingtable.getIn([agent.get('rank'), 'xp']);
     const classStringOne = classnames('agent-experience-bar', {
       'showcased': isShowcased
     });
@@ -17,11 +14,21 @@ class AgentExperienceBar extends Component {
       'showcased': isShowcased
     });
 
+    const computeStyle = function(agenttorank, trainingtable) {
+      const expcurr = trainingtable.getIn([agent.get('rank') - 1, 'xp']);
+      const expnext = trainingtable.getIn([agent.get('rank'), 'xp']);
+
+      if (agenttorank.get('experience') >= expnext)
+        return '100%';
+      else
+        return ((agent.get('experience') - expcurr) * 100 / (expnext - expcurr) + '%');
+    };
+
     return (
       <div className={classStringOne}>
         <div
           className={classStringTwo}
-          style={{width: ((agent.get('experience') - expcurr) * 100 / (expnext - expcurr) + '%')}}
+          style={{width: computeStyle(agent, game.getIn(['globals', 'trainingtable']))}}
           ></div>
       </div>
     );

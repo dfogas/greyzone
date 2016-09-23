@@ -6,6 +6,7 @@ import immutable from 'immutable';
 class CountryStateOverview extends Component {
   render() {
     const {/*game, */jsonapi} = this.props;
+    const countryofoperation = jsonapi.getIn(['dashboard', 'countryofoperation']);
     return (
         <div id='CountryStateOverview'>
           {jsonapi.get('countrystats').map(cs => {
@@ -13,7 +14,9 @@ class CountryStateOverview extends Component {
             return (
               <div
                 className='country-obscurity-bar-template'
-                style={{background: 'linear-gradient(white, grey, black)'}}>
+                style={{
+                  background: 'linear-gradient(white, grey, black)'
+                }}>
                 {
                   <div className='country-attention-level'>
                     {`${jsonapi.getIn([
@@ -32,15 +35,15 @@ class CountryStateOverview extends Component {
                     width: '15px'
                   }}>
                   <div className='country-obscurity-bar-countryname'>
-                    {jsonapi.getIn([
+                    {`${cs.get('name') === countryofoperation ? '*' : ''}${jsonapi.getIn([
                       'events',
                       jsonapi.get('events').indexOf(jsonapi.get('events').find(jsev => jsev.get('country') === cs.get('name'))),
                       'country'
-                    ])}
+                    ])}`}
                   </div>
                 </div>
                 <div
-                  className='country-obscuirity-indicator'
+                  className='country-obscurity-indicator'
                   style={{
                     bottom: `${obscurity * 100 + 15}px`
                   }}>

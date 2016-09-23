@@ -7,7 +7,6 @@ import allAgents from '../../lib/bml/allagents';
 // import {msg} from '../../intl/store';
 
 import AgentCard from '../../agents/agentcard/agent.card.react';
-import DialogBox from './dialog.box.react';
 
 class AgentOnDisplay extends Component {
   componentDidMount() {
@@ -25,8 +24,6 @@ class AgentOnDisplay extends Component {
 
     return (
       <div id='AgentOnDisplay'>
-        {jsonapi.getIn(['components', 'dashboard', 'agentdialog']) &&
-          <DialogBox agent={agentondisplay} jsonapi={jsonapi} />}
         {!agentondisplay &&
           <button
             id='DisplayAgentOnDisplayButton'

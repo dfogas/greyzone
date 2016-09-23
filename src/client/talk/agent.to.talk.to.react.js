@@ -6,7 +6,8 @@ import formattedImg from '../lib/bml/formattedimg';
 import immutable from 'immutable';
 import prop from '../lib/general/r.i.prop';
 
-import DialogBox from '../dashboard/agentswindow/dialog.box.react';
+import DialogBox from './dialog.box.react';
+import StoryBox from './story.box.react';
 
 class AgentToTalkTo extends Component {
   allowDrop(ev) {
@@ -33,8 +34,10 @@ class AgentToTalkTo extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
-        {jsonapi.getIn(['components', 'dashboard', 'agentdialog']) &&
+        {jsonapi.getIn(['talk', 'dialog']) &&
           <DialogBox agent={agent} jsonapi={jsonapi} />}
+        {jsonapi.getIn(['talk', 'story']) &&
+          <StoryBox agent={agent} />}
         {agent &&
           <button id='DoneTalkingButton' onClick={(e) => talkActions.clearParticipants()}>Back</button>}
         {agent &&

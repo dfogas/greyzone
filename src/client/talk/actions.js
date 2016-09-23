@@ -1,8 +1,8 @@
-import {dispatch} from '../dispatcher'; //
+import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
-import agentTalk from '../lib/bml/agenttalk';
-import {msg} from '../intl/store';
+// import agentTalk from '../lib/bml/agenttalk';
+// import {msg} from '../intl/store';
 
 // const isNotProduction = process.env.NODE_ENV !== 'production';
 
@@ -51,11 +51,16 @@ export function enhancementTalk(message) {
   dispatch(enhancementTalk, message);
 }
 
+export function storyBoxToggle(agent) {
+  dispatch(storyBoxToggle, agent);
+}
+
 setToString('talk', {
   addParticipant,
   agentDialogToggle,
   agentTalking,
   clearParticipants,
   endConversation,
-  enhancementTalk
+  enhancementTalk,
+  storyBoxToggle
 });
