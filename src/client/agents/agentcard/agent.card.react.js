@@ -1,4 +1,4 @@
-import './agent.card.styl'; //
+import './agent.card.styl';
 import * as agentsActions from '../actions';
 import * as dashboardActions from '../../dashboard/actions';
 import Component from '../../components/component.react';
@@ -134,14 +134,14 @@ class AgentCard extends Component {
           self={self}
           />
         {!playerAgentIsActive && self.get('id') === agent.get('id') &&
-          <button
+          <div
             id='ActivateSelf'
-            onClick={(e) => dashboardActions.playerGoesOnMissions()}>Activate</button>}
+            onClick={(e) => dashboardActions.playerGoesOnMissions()}>Activate</div>}
         {playerAgentIsActive && selfIsDisplayed(jsonapi) && !agent.get('prison') && self.get('id') === agent.get('id') && this.props.isDisplay &&
-          <button
+          <div
             id='HideSelf'
             onClick={this.playerDoesNotGoOnMissions.bind(this)}
-            >Hide</button>}
+            >Hide</div>}
         {(agent.get('prison') && !beingsaved) &&
           <button
             className='save-agent-button'

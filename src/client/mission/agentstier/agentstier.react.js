@@ -2,6 +2,7 @@ import './agentstier.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
+import probabilityOfSuccess from '../../lib/bml/probabilityofsuccess';
 
 // first mission
 import AnotherEquipmentUseHint from '../../tutorial/firstmission/another.equipmentuse.hint.react';
@@ -21,8 +22,8 @@ class AgentsTier extends Component {
   render() {
     const {game, jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
-    const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
     const activetasks = jsonapi.getIn(['activemission', 'tasks']);
+    const taskscompleted = jsonapi.getIn(['activemission', 'taskscompleted']);
 
     const isLastTaskDone = taskscompleted.size >= activetasks.size && taskscompleted.size !== 0;
     const isDefaultMission = jsonapi.getIn(['activemission', 'title']) === 'Default Mission';
@@ -71,7 +72,7 @@ class AgentsTier extends Component {
           <SuccessButton activemission={activemission} />}
         {activemission.getIn(['equipmenteffects', 'damageprotocol']) && !missionResult &&
           <EscapeProtocol activemission={activemission} />}
-        {!isLastTaskDone && !missionResult && (currenttask.size > actiondices.size) &&
+        {!isLastTaskDone && !missionResult && probabilityOfSuccess(actiondices, currenttask) === 0 &&
           !isDefaultMission && missionStarted && agentontask &&
           <EscapeButton activemission={activemission} />}
       </div>

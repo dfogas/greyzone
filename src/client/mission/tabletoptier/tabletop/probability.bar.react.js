@@ -1,6 +1,3 @@
-/*
-  Dumb Component
-*/
 import './probability.bar.styl';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -19,7 +16,7 @@ class ProbabilityBar extends Component {
     return (
       <div className='probability-bar'>
         {!isLastTaskDone &&
-          Math.round10(probabilityOfSuccess(actiondices, currenttask), -2)}
+          `${Math.round((Math.round10(probabilityOfSuccess(actiondices, currenttask), -3)) * 1000) / 10} %` }
       </div>
     );
   }

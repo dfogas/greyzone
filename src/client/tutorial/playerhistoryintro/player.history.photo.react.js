@@ -6,6 +6,7 @@ import React from 'react';
 import immutable from 'immutable';
 
 import PlayerHistorySlideText from './player.history.slide.text.react';
+import PlayerHistoryPicture from './player.history.picture.react';
 
 class PlayerHistoryPhoto extends Component {
 
@@ -22,6 +23,7 @@ class PlayerHistoryPhoto extends Component {
       <div
         id='PlayerHistoryPhoto'
         onClick={this.historyProgress.bind(this)}>
+        <PlayerHistoryPicture slideNo={slideNo} tutorial={tutorial} />
         <PlayerHistorySlideText slideNo={slideNo} tutorial={tutorial} />
         <div className='player-history-slide-text-overlay'>
         </div>

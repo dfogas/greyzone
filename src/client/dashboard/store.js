@@ -163,6 +163,13 @@ export const dispatchToken = register(({action, data}) => {
         .update('agents', val => val.delete(val.indexOf(data.agent)));
     });
 
+  if (action === dashboardActions.screenPlasticToggle) {
+    const toggle = jsonapiCursor(['dashboard', 'screenplastic', 'toggle']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi.setIn(['dashboard', 'screenplastic', 'toggle'], !toggle);
+    });
+  }
+
   if (action === dashboardActions.selectAgent)
     jsonapiCursor(jsonapi => {
       return jsonapi

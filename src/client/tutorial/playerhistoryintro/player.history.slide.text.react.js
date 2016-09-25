@@ -17,7 +17,7 @@ class PlayerHistorySlideText extends Component {
     const {slideNo, tutorial} = this.props;
     return (
       <div className='player-history-slide-text'>
-        {tutorial.getIn(['playerhistory', 'slides', slideNo])}
+        {tutorial.getIn(['playerhistory', 'slides', slideNo, 'text'])}
       </div>
     );
   }

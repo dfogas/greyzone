@@ -47,7 +47,7 @@ class BriefingScreen extends Component {
           <div id='BriefingScreenLabel'>{msg('briefing.screen.label')}</div>
           {jsonapi.getIn(['components', 'screenhelp', 'briefing']) &&
             <ScreenHelp context='briefing' />}
-          {jsonapi.getIn(['dashboard', 'screenplastic', 'toggle']) &&
+          {jsonapi.getIn(['briefing', 'screenplastic', 'toggle']) &&
             <ScreenPlastic />}
           {jsonapi.getIn(['components', 'briefing', 'travelselection', 'toggle']) &&
             <CountryOfOperation

@@ -173,6 +173,10 @@ export function saveAgent(agent) {
   }
 }
 
+export function screenPlasticToggle() {
+  dispatch(screenPlasticToggle, {});
+}
+
 export function selectAgent(agent) {
   dispatch(selectAgent, {agent});
 }
@@ -219,6 +223,7 @@ setToString('dashboard', {
   postponeRescue,
   refreshStandings,
   saveAgent,
+  screenPlasticToggle,
   selectAgent,
   selectAgentOnDisplay,
   updateFormField,

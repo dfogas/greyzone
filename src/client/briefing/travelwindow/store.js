@@ -25,9 +25,9 @@ export const dispatchToken = register(({action, data}) => {
     });
 
   if (action === travelActions.screenPlasticToggle) {
-    const toggle = jsonapiCursor(['dashboard', 'screenplastic', 'toggle']);
+    const toggle = jsonapiCursor(['briefing', 'screenplastic', 'toggle']);
     jsonapiCursor(jsonapi => {
-      return jsonapi.setIn(['dashboard', 'screenplastic', 'toggle'], !toggle);
+      return jsonapi.setIn(['briefing', 'screenplastic', 'toggle'], !toggle);
     });
   }
 

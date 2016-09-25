@@ -1,5 +1,6 @@
-import './agentequipcontent.styl';
+import './agentequipcontent.styl'; //
 import * as agentsActions from './actions';
+import * as briefingActions from '../briefing/actions';
 import * as equipmentActions from '../equipments/actions';
 import Component from '../components/component.react';
 import React from 'react';
@@ -17,6 +18,9 @@ import RedAlertToggle from './red.alert.toggle.react';
 class AgentEquipContent extends Component {
   agentInArmoryToMission() {
     const {jsonapi} = this.props;
+    if (jsonapi.getIn(['activemission', 'tag']) === 'quietbeforestorm'
+        && jsonapi.get('missions').size > 0)
+      briefingActions.selectMission(jsonapi.getIn(['missions', 0]));
     agentsActions.agentInArmoryAssignMission(jsonapi.get('agentinarmory'));
   }
 

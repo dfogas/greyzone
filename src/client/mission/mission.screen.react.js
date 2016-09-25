@@ -52,7 +52,7 @@ class MissionTrackingScreen extends Component {
           backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`,
           boxShadow: missionBoxShadow(jsonapi.get('activemission'))
         }}>
-        <div id='MissionScreenLabel'>Mission in {countryofoperation}</div>
+        <div id='MissionScreenLabel'>{jsonapi.getIn(['activemission', 'title'])} in {countryofoperation}</div>
         <MissionScreenDarkener
           jsonapi={jsonapi}
           />

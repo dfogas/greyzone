@@ -162,11 +162,12 @@ router.route('/api/v1/auth/verify')
                   error: 'Player saving error: ' + err
                 });
               else
-                res.json({
-                  message: 'New user and player have been added. You may log in now.',
-                  user: user.username,
-                  player: player.name
-                });
+                res.send('<p>Congratulation, the registration was successful.</p><a href="https://www.ghoststruggle.com">GhostStruggle Page</a>');
+                // res.json({
+                //   message: 'New user and player have been added. You may log in now.',
+                //   user: user.username,
+                //   player: player.name
+                // });
             });
             NotVerified.findByIdAndRemove(id, function(err) {
               if (err)

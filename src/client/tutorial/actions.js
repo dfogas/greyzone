@@ -3,6 +3,7 @@ import setToString from '../lib/settostring';
 import {gameCursor, jsonapiCursor} from '../state';
 import immutable from 'immutable';
 import actiondices from '../lib/bml/actiondices';
+import announce from '../lib/announce';
 import FirstMission from '../../server/lib/greyzone/missions/tutorial/first.mission';
 import Agent from '../../server/lib/greyzone/agents.generator';
 
@@ -15,7 +16,10 @@ export function completeTutorial() {
 }
 
 export function confirmAvatar() {
-  dispatch(confirmAvatar, {});
+  if (jsonapiCursor(['self', 'name']) === 'Default Self')
+    announce(`Please select class for your agent`, 'Tutorial');
+  else
+    dispatch(confirmAvatar, {});
 }
 
 export function confirmCampaignsSelection() {

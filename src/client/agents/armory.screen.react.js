@@ -25,10 +25,15 @@ class ArmoryScreen extends Component {
 
   render() {
     const {game, jsonapi} = this.props;
+    const armorycode = jsonapi.getIn(['armory', 'code']);
 
     return (
       <div id='ArmoryScreen' >
-        <div id='ArmoryScreenLabel'>{msg('armory.screen.label')}</div>
+        <div
+          id='ArmoryScreenLabel'
+          style={{
+            backgroundColor: armorycode
+          }}>{msg('armory.screen.label')}</div>
         <AgentEquipContent
           game={game}
           jsonapi={jsonapi}

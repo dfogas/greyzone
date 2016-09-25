@@ -66,13 +66,14 @@ class TableTop extends Component {
         id='TableTop'
         onDragOver={this.allowDrop}
         onDrop={this.drop}>
-        {true && <MissionTitle
+        {false && <MissionTitle
           isActual={true}
           title={activemission.get('title')}
           />}
         <div id='TableTopDiceContainer'>
-          {agentontask && remainingdices.size ?
-            remainingdices.map((dice, i) => {
+          {agentontask
+            && remainingdices.size
+            ? remainingdices.map((dice, i) => {
               return (
                 <Dice
                   diceindex={i}
@@ -83,9 +84,14 @@ class TableTop extends Component {
                   rollable={dice.get('rollable')}
                   />
               );
-            }) : !missionStarted ? (<div id="MissionStartStatus">Mission has not started yet.</div>) :
-            taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0 ? (<div id="MissionStartStatus">You have been successfull.</div>)
-            : (activemission.getIn(['mission', 'currenttask', 'agentlock']) ? (<div id="MissionStartStatus">You most likely failed mission.</div>) : (<div id="MissionStartStatus">Continue next task.</div>))
+            })
+            : !missionStarted
+              ? (<div id="MissionStartStatus">Mission has not started yet.</div>)
+              : taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0
+                ? (<div id="MissionStartStatus">You have been successfull.</div>)
+                : (activemission.getIn(['mission', 'currenttask', 'agentlock'])
+                  ? (<div id="MissionStartStatus">You most likely failed mission.</div>)
+                  : (<div id="MissionStartStatus">Continue next task.</div>))
           }
         </div>
         {isPaying &&

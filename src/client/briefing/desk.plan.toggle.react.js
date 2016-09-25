@@ -32,7 +32,7 @@ class TablePlanToggle extends Component {
         onClick={this.travelSelectionToggle}
         onMouseLeave={this.dimPlan.bind(this)}
         onMouseOver={this.highlightPlan.bind(this)}>
-        Travel Plan
+        <div id='TablePlanToggleText'>Travel Plan</div>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import * as componentsActions from '../components/actions';
+import * as componentsActions from '../components/actions'; //
 import Component from '../components/component.react';
 import DocumentTitle from 'react-document-title';
 import React from 'react';
@@ -13,7 +13,7 @@ import SignupMessage from '../auth/signup.message.react';
 import WelcomeWindow from '../dashboard/welcome.window.react';
 import IntroductionWindow from '../dashboard/introduction.window.react';
 import ABigScreen from '../introduction/a.big.screen.react';
-import BackgroundMusic from '../app/background.music.react';
+// import BackgroundMusic from '../app/background.music.react';
 
 class Login extends Component {
 
@@ -29,7 +29,8 @@ class Login extends Component {
             id='LoginToIntro'
             onClick={(e) => componentsActions.introductionWindowToggle()}>Introduction</button>
           <GSSigil />
-          <BackgroundMusic />
+          {/*<BackgroundMusic />*/}
+          {<div className='recommended-browsers'>*Recommended to play in Chrome, Brave or Vivaldi</div>}
           {(!signupToggle && !introWindowToggle && !devNoticeToggle) &&
             <LoginMessage />}
           {(!signupToggle && !introWindowToggle && !devNoticeToggle) &&

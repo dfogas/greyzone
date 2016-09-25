@@ -122,13 +122,34 @@ var playerdefaults = {
     },
     playerhistory: {
       slides: [
-        `You barely remember how it started. It was a hot July and you were recuited by some obscure character.`,
-        `You clearly remember the training, it had been intense right before you were thrown out to wolves`,
-        `Making it through initial trials you established level of confidence that helped you rise in the rank`,
-        `but after you were left for dead after one action, you decided to use that to your advantage`,
-        `contacting your good colleague, you kept yourself hiding and under radar, but time has come for risk`,
-        `Monitoring the official and secret message channels, it has come to your attention that there is a hunt on certain criminal underway `,
-        `You decided to help her ...`
+        {
+          imgsrc: 'assets/img/intro/Recruitment.jpg',
+          text: `You barely remember the start of story. It was a hot summer and you were recuited by some obscure character.`
+        },
+        {
+          imgsrc: 'assets/img/intro/TrainingThrownToWolves.jpg',
+          text: `You clearly remember the start, it had been intense, you were thrown out to wolves.`
+        },
+        {
+          imgsrc: 'assets/img/intro/RisingInRanks.jpg',
+          text: `Making it through initial trials you established level of confidence that helped you rise in the rank.`
+        },
+        {
+          imgsrc: 'assets/img/intro/LeftForDead3.jpg',
+          text: `You were left for dead after one action, considered KIA but you survived and - you shouldn't.`
+        },
+        {
+          imgsrc: 'assets/img/intro/MakingContact.jpg',
+          text: `Contacting your former companion, you kept yourself hiding, but time has come for risk.`
+        },
+        {
+          imgsrc: 'assets/img/intro/ListeningToChannels.jpg',
+          text: `Monitoring the communication channels, it has come to your attention that there is a hunt on certain criminal going on.`
+        },
+        {
+          imgsrc: '',
+          text: `You decided to help her ...`
+        }
       ]
     }
   }
