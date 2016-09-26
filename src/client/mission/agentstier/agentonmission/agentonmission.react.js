@@ -1,15 +1,19 @@
-import './agentonmission.styl';
+import './agentonmission.styl'; //
 import * as agentActions from '../../../agents/actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
 import {msg} from '../../../intl/store';
+import experienceGain from '../../../lib/bml/experiencegain';
+
 import AgentCard from '../../../agents/agentcard/agent.card.react';
+import ExperienceGainFlash from '../../../agents/agentcard/experience.gain.flash.react';
 
 class AgentOnMission extends Component {
 
   drop(ev) {
-    const {activemission} = this.props;
+    const {jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const agentsonmission = activemission.get('agentsonmission');
     const activetasks = activemission.get('tasks');
@@ -31,7 +35,8 @@ class AgentOnMission extends Component {
   }
 
   render() {
-    const {activemission, game, jsonapi} = this.props;
+    const {game, jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
     const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
     const missionresult = activemission.get('result');
     const activetasks = activemission.get('tasks');
@@ -44,6 +49,10 @@ class AgentOnMission extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
+        {jsonapi.getIn(['components', 'mission', 'experiencegainflash']) &&
+          <ExperienceGainFlash
+            experiencegain={experienceGain(activemission, agentontask)}
+          />}
         {!!agentontask &&
           <AgentCard
              agent={agentontask}

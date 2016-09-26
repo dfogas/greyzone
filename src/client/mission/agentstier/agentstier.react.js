@@ -48,7 +48,6 @@ class AgentsTier extends Component {
           />}
         {!isPlaceholder &&
           <AgentOnMission
-            activemission={activemission}
             game={game}
             jsonapi={jsonapi}
             />}
@@ -69,12 +68,12 @@ class AgentsTier extends Component {
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
           <LockedDiceContainer activemission={activemission}/>}
         {isLastTaskDone && !missionResult && missionStarted &&
-          <SuccessButton activemission={activemission} />}
+          <SuccessButton jsonapi={jsonapi} />}
         {activemission.getIn(['equipmenteffects', 'damageprotocol']) && !missionResult &&
           <EscapeProtocol activemission={activemission} />}
         {!isLastTaskDone && !missionResult && probabilityOfSuccess(actiondices, currenttask) === 0 &&
           !isDefaultMission && missionStarted && agentontask &&
-          <EscapeButton activemission={activemission} />}
+          <EscapeButton jsonapi={jsonapi} />}
       </div>
     );
   }

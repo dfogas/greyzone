@@ -6,6 +6,7 @@ import Component from '../../../components/component.react';
 import React from 'react';
 import {msg} from '../../../intl/store';
 import immutable from 'immutable';
+// import {Promise} from 'bluebird';
 import $ from 'jquery';
 
 class MissionEndButton extends Component {
@@ -24,20 +25,37 @@ class MissionEndButton extends Component {
 
   handleMissionEnd(e) {
     e.preventDefault();
-    const {jsonapi, mission} = this.props;
-    const missionjs = mission.toJS();
-    socket.emit('mission', missionjs); // eslint-disable-line no-undef
-    socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
-      const countrystats = jsonapi.get('countrystats');
-      const countrystat = jsonapi.getIn(['countrystats', countrystats.indexOf(countrystats.find(countrystat => countrystat.get('name') === gamemission.inCountry))]);
-      var probability = Math.random();
-      var border = 1 / (1 + 2 * countrystat.get('obscurity'));
-      var chance = probability < border;
-      if (chance)
-        this.pushGameMission(gamemission);
-      else
-        setTimeout(briefingActions.flashBriefing('saved by obscurity'), 1000);
-    });
+    // const {jsonapi} = this.props;
+    // // socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
+    // socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
+    //   console.log('recieved new mission from server');
+    //   if (!obscurityDeflect(jsonapi))
+    //     briefingActions.pushGameMission(gamemission);
+    //   else console.log('je to v klidu');
+    // });
+
+    // socket.on('new mission', (gamemission) => { // eslint-disable-line no-undef
+      // if (!obscurityDeflect(jsonapi)) {
+      //   briefingActions.pushGameMission(gamemission);
+      //   if (gamemission.title === 'Noticed')
+      //     announce(`
+      //       Your actions been noticed during your last mission. You'd better send an agent
+      //       to make amends with the locals, so that they do not rat you out.
+      //       - New Mission: Noticed - in Briefing Room`,
+      //       'Briefing'
+      //     );
+      //   else announce(
+      //     `Police enforcement force spotted you during your last mission.
+      //     You need to send agent to make escape from their clutches possible.
+      //     - New Mission: Discovered - in Briefing Room`,
+      //     'Briefing'
+      //   );
+      // } else announce(
+      //   `It seems that someone has been watching you during your last mission.
+      //     In the end, nothing happened thanks to the precautions that you took.`,
+      //     'Briefing'
+      //   );
+    // });
   }
 
   pushGameMission(mission) {

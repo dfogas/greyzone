@@ -29,7 +29,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
     expect(component.props.className).to.have.string('agent-card');
     expect(component.props.className).not.have.string(' showcased');
     expect(component.props.className).to.have.string(' on-mission');
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(4);
   });
   it('renders for agent in prison and not being saved', () => {// eslint-disable-line no-undef
     const component = render(
@@ -45,7 +45,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(8);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(7);
   });
   it('renders for agent in prison and being saved', () => {// eslint-disable-line no-undef
     const component = render(
@@ -66,7 +66,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
     //     throw err;
     //   console.log(`It's saved.`);
     // });
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(7);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
   });
   it('renders correctly for agent on display', () => {// eslint-disable-line no-undef
     const component = render(
@@ -82,7 +82,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(8);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(7);
   });
   it('renders correctly for agent in armory', () => {// eslint-disable-line no-undef
     const component = render(
@@ -98,7 +98,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(4);
   });
   it('renders correctly for agent on task', () => {// eslint-disable-line no-undef
     const component = render(
@@ -115,7 +115,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(4);
   });
   it('renders correctly for agent in agent roster with due for rankup', () => {// eslint-disable-line no-undef
     const component = render(
@@ -131,7 +131,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
   });
   it('renders correctly for PlayerAgent (in Players Window)', () => {// eslint-disable-line no-undef
 
@@ -147,7 +147,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
   });
   it('renders correctly self on display', () => {// eslint-disable-line no-undef
     const component = render(
@@ -163,7 +163,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
   });
   it('renders correctly for self on display and in prison', () => {// eslint-disable-line no-undef
     const component = render(
@@ -179,7 +179,7 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
   });
   it('renders correctly for self on display and in prison and being saved', () => {// eslint-disable-line no-undef
     const component = render(
@@ -195,6 +195,6 @@ describe('agent card component', () => {// eslint-disable-line no-undef
         text='a'
         />
     );
-    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(6);
+    expect(JSON.parse(JSON.stringify(component.props.children)).filter(item => item)).to.have.length(5);
   });
 });

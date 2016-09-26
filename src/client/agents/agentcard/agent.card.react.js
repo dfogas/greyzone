@@ -12,7 +12,7 @@ import {msg} from '../../intl/store';
 import uuid from '../../lib/guid';
 import shouldHaveRank from '../../lib/bml/shouldhaverank';
 
-import AgentClock from './agent.clock.react';
+// import AgentClock from './agent.clock.react';
 import AgentEquipmentSlot from './agent.equipment.slot.react';
 import AgentExperienceBar from './agent.experience.bar.react';
 import AgentPersonalityMap from './agent.personality.map.react';
@@ -118,9 +118,6 @@ class AgentCard extends Component {
           agent={agent}
           game={game}
           isShowcased={this.props.isShowcased}
-          />
-        <AgentClock
-          agent={agent}
           />
         {skillmap}
         <AgentProfile

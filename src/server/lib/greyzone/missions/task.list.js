@@ -1,5 +1,5 @@
 /*eslint camelcase: 0 */
-import {decipher, monitor, tap, puppet, infiltrate, hide, hit, close_combat, pursuit} from './actions'; //
+import {decipher, monitor, tap, puppet, infiltrate, hide, hit, close_combat, pursuit} from './actions';
 
 /*
   pravidla ...
@@ -44,11 +44,16 @@ const tasks = {
   rigging_cameras: [monitor, tap],
   puppeteer: [puppet, puppet],
   white_horse: [puppet, tap],
+  wild_chasing: [pursuit, pursuit],
   cracks_and_wires: [tap, tap],
+  fighting_to_prove_yourself: [close_combat, close_combat, infiltrate],
   through_hard_earned_trust: [close_combat, hide, infiltrate],
   rough_day: [close_combat, hit, hit],
-  fighting_to_prove_yourself: [close_combat, close_combat, infiltrate],
+  buggy_as_hell: [close_combat, tap, tap],
   full_control: [decipher, monitor, tap],
+  coding_s_kill: [decipher, decipher, hit],
+  double_agent: [hide, infiltrate, infiltrate],
+  didnt_know_what_hit_them: [hide, infiltrate, puppet],
   social_mastery: [infiltrate, puppet, puppet],
   truman_show: [monitor, monitor, tap],
   perfect_setup: [monitor, puppet, tap],

@@ -36,6 +36,14 @@ export const dispatchToken = register(({action, data}) => {
     });
   }
 
+  if (action === componentsActions.experienceGainFlashToggle) {
+    const toggle = jsonapiCursor(['components', 'mission', 'experiencegainflash']);
+    jsonapiCursor(jsonapi => {
+      return jsonapi
+        .setIn(['components', 'mission', 'experiencegainflash'], !toggle);
+    });
+  }
+
   if (action === componentsActions.introductionWindowToggle) {
     const toggle = jsonapiCursor(['components', 'login', 'introductionwindow']);
     jsonapiCursor(jsonapi => {

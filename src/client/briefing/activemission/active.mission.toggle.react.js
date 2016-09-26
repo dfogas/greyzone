@@ -32,6 +32,7 @@ class ActiveMissionToggle extends Component {
         onClick={(e) => componentsActions.activeMissionToggle()}
         onMouseLeave={this.dimMonitor.bind(this)}
         onMouseOver={this.highlightMonitor.bind(this)}>
+        <div id='ActiveMissionToggleText'>Active Mission</div>
       </div>
     );
   }

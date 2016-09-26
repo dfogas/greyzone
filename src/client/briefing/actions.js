@@ -1,10 +1,12 @@
-import {dispatch} from '../dispatcher';
+import {dispatch} from '../dispatcher'; //
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
 import pickAgentForFatal from '../lib/bml/pickagentforfatal';
+import maxAgentsCheck from '../lib/bml/maxagentscheck';
 import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 // import cconfig from '../client.config';
 import $ from 'jquery';
+import announce from '../lib/announce';
 import immutable from 'immutable';
 import lockr from 'lockr';
 
@@ -63,7 +65,7 @@ export function passMission(mission) {
   reputationImpact(inCountry, reputationloss);
   if (mission.get('forcefail')) {
     dispatch(bookLosses, {mission});
-    checkFatalities({results: mission.get('losses').toJS()});
+    checkFatalities({results: mission.get('losses')});
   }
 }
 
@@ -94,7 +96,10 @@ export function selectMission(mission) {
     }
   } else if (!obscurityMissionCheck(mission, countrystats, events, countryofoperation))
     flashBriefing(`Mission won't start, obscurity is not high enough.`);
-  else dispatch(selectMission, {mission});
+  else if (!maxAgentsCheck(jsonapiCursor()) && (mission.get('rewards').keySeq().indexOf('agentRecruited') !== -1)) {
+    flashBriefing(`Upgrade operations for more agents.`, 'Dashboard');
+    announce(`Upgrade operations for more agents.`, 'Armory');
+  } else dispatch(selectMission, {mission});
 }
 
 export function setDefaultAfterExpired() {

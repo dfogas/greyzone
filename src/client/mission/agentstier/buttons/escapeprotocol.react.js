@@ -18,6 +18,10 @@ class EscapeProtocol extends Component {
     missionActions.fail();
     for (var i = 0; i < agentsonmission.size; i += 1)
       missionActions.agentMissionDone(agentsonmission.get(i));
+    this.organizationMissionDone();
+  }
+
+  organizationMissionDone() {
     missionActions.organizationMissionDone();
   }
 

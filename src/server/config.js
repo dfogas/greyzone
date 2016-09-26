@@ -33,7 +33,7 @@ var config = {
         ? 'ARX2tIvUWeatMK76ByR5Ah4eC3QZ4AnVx--uoukqEQ1bCexLgMqc48dnRu-pMRkrtX-QNGrUPN5nqT9U'
         : 'ASeVvgbUxX4kOI8YCk_in3_5QNUNP2-BfBqU3yHGO7ydQ2eHLbe593CLyBgZT7RrLkZe5K_QpkojtKQz',
       'client_secret': process.env.NODE_ENV === 'production'
-        ? 'EB9tntFIjTX6aBGTx36dN-3Ft7gZJryPC8KLZwEswf321yU0kAeGCmUg5kbTVitZ-FoqvtJ03su8JtH'
+        ? 'EB9tntFIjTX6aBGTx36dN-3Ft7gZJryPC8KLZwEswf321yU0kAeGCmUg5kbTVitZ-FoqvtJ03su8JtH_'
         : 'EHcj0-gW6H82eEbHFdsr-o-PX91XtEmHlQBvy-e6ZB8xpnV_bTbdOqw6IY3N-KnxqctjMRNkMriLFN3Y'
     }
   },

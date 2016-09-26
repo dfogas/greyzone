@@ -100,7 +100,7 @@ const dashboardMsg = {
       Your drive is getting better and you recieve few invitations to social functions
       of some importance. Posh people around you seem to take you as one of them,
       or perhaps - not quite yet. You catch a few side glances that makes you puzzled and
-      intrigued - you decide to investigate it further.<br />
+      intrigued - you decide to investigate it further.
       As it would seem some part of rich people, consider themselves something more,
       than the rest given their heritage and so. It might to for a good topping to borrow
       yourself a respectable title, perhaps pay someone to discover that you are of
@@ -110,14 +110,13 @@ const dashboardMsg = {
       As you strech your legs, sitting in cozy bieder-meier
       chair, smelling cognac in the special glass, you realize that you have everything
       you ever dreamed of. Most of the people that were subject of your envy now envies you
-      and you even did not have to work that hard to achieve that.<br />
+      and you even did not have to work that hard to achieve that.
       Life is excellent, but what if you could make it spectacular? You contemplate posibilities
       as your plan is coming to its final form.
     `,
     tier4: `
       You've made it! You got more cash than you can ever spend and high society status.
       So little to gain and so much to lose. There's not much of a ceiling left here really.
-      <br />
       Perhaps it is time to consider way out. If only you can successfully cover your tracks...
     `,
     window: {

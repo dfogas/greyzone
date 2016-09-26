@@ -1,4 +1,4 @@
-import './agent.equipment.slot.styl';
+import './agent.equipment.slot.styl'; //
 import * as agentActions from '../actions';
 import * as equipmentActions from '../../equipments/actions';
 import * as tutorialFirstMissionActions from '../../tutorial/firstmission/actions';
@@ -34,7 +34,6 @@ class AgentEquipmentSlot extends Component {
       tutorialFirstMissionActions.equipmentUseHintToggle();
     if (tutorial.getIn(['firstmission', 'equipmentusehint']) && !tutorial.getIn(['firstmission', 'anotherequipmentusehint']))
       tutorialFirstMissionActions.anotherEquipmentUseHintToggle();
-    agentActions.setETA(agent, agentequipment);
   }
 
   render() {

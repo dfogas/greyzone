@@ -8,7 +8,9 @@ const aboutMsg = {
     <p>
       Secret organization has missions to do and agents to complete them and
       you are part of this picture, as your avatar is represented by one of the agents.
-      Missions completition is represented as tried and tested dice and cards
+    </p>
+    <p>
+      Missions completion is represented as tried and tested dice and cards
       mechanism, where chance and skill of the agents play significant role.
       Equipments system gives you chance to directly influence the outcomes.
     </p>

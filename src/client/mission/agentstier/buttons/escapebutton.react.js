@@ -1,4 +1,4 @@
-import './escapebutton.styl'; //
+import './escapebutton.styl';
 import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -7,16 +7,16 @@ import {msg} from '../../../intl/store';
 
 class EscapeButton extends Component {
   missionFail() {
-    const {activemission} = this.props;
-    const agentsonmission = activemission.get('agentsonmission');
-    const agentontask = activemission.getIn(['mission', 'currenttask', 'agentontask']);
-    missionActions.checkFatalities(activemission.get('losses').toJS());
-    missionActions.agentMissionDone(agentontask);
-    for (var i = 0; i < agentsonmission.size; i += 1)
-      missionActions.agentMissionDone(agentsonmission.get(i));
+    const {jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
+    missionActions.checkFatalities(activemission.get('losses') || immutable.fromJS({}));
+    missionActions.agentMissionDone(activemission.getIn(['mission', 'currenttask', 'agentontask']));
+    for (var i = 0; i < activemission.get('agentsonmission').size; i += 1)
+      missionActions.agentMissionDone(activemission.get('agentsonmission').get(i));
     missionActions.bookLosses(activemission);
     missionActions.agentIsBackFromTask();
     missionActions.fail();
+    socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
     missionActions.organizationMissionDone();
   }
 
@@ -30,7 +30,7 @@ class EscapeButton extends Component {
 }
 
 EscapeButton.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default EscapeButton;

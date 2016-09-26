@@ -1,5 +1,7 @@
-/* Number [String] -> Boolean
+/* immutableMap(jsonapi) -> Boolean
   checks number of agents against max agents allowed by capability enhancement
+  false - you can't recruit new agent
+  true - you can recruit new agent
   BML: true
 */
 

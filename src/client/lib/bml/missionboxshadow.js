@@ -3,6 +3,8 @@
 const missionBoxShadow = function(mission) {
   if (mission.get('tag') === 'desinformation')
     return 'inset 0 0 500px sandybrown';
+  else if (mission.get('tag') === 'anolddebt')
+    return 'inset 0 0 500px maroon';
   else if (mission.get('tag') === 'agentintrouble')
     return 'inset 0 0 500px black';
   else if (mission.get('tag') === 'connectionsmap')

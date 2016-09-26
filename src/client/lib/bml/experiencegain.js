@@ -1,7 +1,8 @@
-/* ActiveMission(ImmutableMap) Agent(ImmutableMap) */
+/* ActiveMission(ImmutableMap) Agent(ImmutableMap) -> Experience(Number) */
+import prop from '../general/r.i.prop'; //
 
 const experienceGain = function(activemission, agentontask) {
-  return Math.round(((activemission.get('tier') * 3) / agentontask.get('rank')) * 15);
+  return Math.round(((prop('tier', activemission) * 3) / prop('rank', agentontask)) * 15);
 };
 
 export default experienceGain;

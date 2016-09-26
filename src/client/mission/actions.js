@@ -2,14 +2,10 @@ import cconfig from '../client.config'; //
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
-import immutable from 'immutable';
 import $ from 'jquery';
 import lockr from 'lockr';
 
-import announce from '../lib/announce';
 import noDoubleAgents from '../lib/bml/nodoubleagents';
-import maxAgentsCheck from '../lib/bml/maxagentscheck';
-import obscurityMissionCheck from '../lib/bml/obscuritymissioncheck';
 import playSound from '../lib/sound';
 
 const url = process.env.NODE_ENV === 'production' ? cconfig.dnsprod : cconfig.dnsdevel;
@@ -123,15 +119,14 @@ export function bookRewards(mission) {
 
 export function checkFatalities(results) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-  results = results || immutable.fromJS({});
-  if (results.agentImprisoned)
+  if (results.get('agentImprisoned'))
     dispatch(agentImprisoned, {agent: agentontask});
-  if (results.agentKilled) {
+  if (results.get('agentKilled')) {
     const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`) || [];
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, storage.concat([agentontask.toJS()]));
     dispatch(agentKilled, {agent: agentontask});
   }
-  if (results.agentFreed)
+  if (results.get('agentFreed'))
     dispatch(agentFreed, {agent: jsonapiCursor(['agentbeingsaved'])});
 }
 
@@ -206,20 +201,9 @@ export function setDefault() {
 
 /*sets activemission.started  true*/
 export function start() {
-  const activemission = jsonapiCursor(['activemission']);
-  const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
-  const countrystats = jsonapiCursor(['countrystats']);
-  const events = jsonapiCursor(['events']);
-
-  if (!obscurityMissionCheck(activemission, countrystats, events, countryofoperation))
-    announce(`Obscurity is too low.`, `dashboard`);
-  else if (!maxAgentsCheck(jsonapiCursor()) && (activemission.get('rewards').keySeq().indexOf('agentRecruited') !== -1))
-    announce(`Upgrade operations for more agents.`, `dashboard`);
-  else {
-    flashMission(`Mission Started`);
-    playSound(url + '/assets/audio/MissionStart.ogg');
-    dispatch(start, {});
-  }
+  flashMission(`Mission Started`);
+  playSound(url + '/assets/audio/MissionStart.ogg');
+  dispatch(start, {});
 }
 
 /* sets activemission result to 'success'

@@ -1,5 +1,5 @@
 /* eslint camelcase: 0 */
-import {decipher, monitor, tap, improv_el, hit, close_combat, improv_op, improv_st, pursuit, hide} from './actions';
+import {decipher, monitor, tap, improv_el, hit, close_combat, improv_op, improv_st, pursuit, hide} from './actions'; //
 
 const tag = 'bankrobbery';
 const imgsrc = 'BankRobbery.jpg';
@@ -34,7 +34,7 @@ const BankRobbery = [{
     [monitor, decipher, improv_el],
     [hit, close_combat, improv_op, improv_st],
     [pursuit, pursuit, improv_op],
-    [hide, hide, improv_st]
+    [hide, hide]
   ],
   inCountry: '',
   rewards: {
@@ -58,7 +58,7 @@ const BankRobbery = [{
     [monitor, decipher, tap, improv_el],
     [hit, close_combat, improv_op, improv_st],
     [pursuit, pursuit, improv_op],
-    [hide, hide, improv_st]
+    [hide, hide]
   ],
   inCountry: 'BankRobbery.jpg',
   rewards: {

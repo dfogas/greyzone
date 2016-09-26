@@ -33,6 +33,7 @@ class MissionListToggle extends Component {
         onClick={this.missionListToggle}
         onMouseLeave={this.dimTaskHelp.bind(this)}
         onMouseOver={this.highlightTaskHelp.bind(this)}>
+        <div id='MissionListToggleText'>Choose mission ...</div>
       </div>
     );
   }

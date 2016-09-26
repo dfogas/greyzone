@@ -1,7 +1,8 @@
 /* Smart Component */
 import './tabletop.styl';
-import * as missionActions from '../../actions';
+import * as componentsActions from '../../../components/actions';
 import * as diceActions from '../dice/actions';
+import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -24,7 +25,11 @@ class TableTop extends Component {
     missionActions.completeTask(currenttask);
     missionActions.clearTabletop();
     missionActions.agentOnTaskGetsExperienceForCompletingTask();
-    missionActions.clearTask();
+    componentsActions.experienceGainFlashToggle();
+    setTimeout(() => {
+      componentsActions.experienceGainFlashToggle();
+      missionActions.clearTask();
+    }, 2000);
   }
 
   drop(ev) {

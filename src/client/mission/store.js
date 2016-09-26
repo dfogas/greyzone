@@ -207,6 +207,7 @@ export const dispatchToken = register(({action, data}) => {
   }
 
   if (action === missionActions.completeTask)
+    // TODO: přepsat na formu kdy dělá pokaždé to samé
     jsonapiCursor(jsonapi => {
       return jsonapi
         .updateIn(['activemission', 'taskscompleted'], val => val.push(data.task));

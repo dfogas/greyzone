@@ -14,7 +14,7 @@ import generatePayReq from './payment.generator';
 // Sandbox
 // const clientId = `ASeVvgbUxX4kOI8YCk_in3_5QNUNP2-BfBqU3yHGO7ydQ2eHLbe593CLyBgZT7RrLkZe5K_QpkojtKQz`;
 // const secret = `EHcj0-gW6H82eEbHFdsr-o-PX91XtEmHlQBvy-e6ZB8xpnV_bTbdOqw6IY3N-KnxqctjMRNkMriLFN3Y`;
-
+// Live
 // const clientId = `ARX2tIvUWeatMK76ByR5Ah4eC3QZ4AnVx--uoukqEQ1bCexLgMqc48dnRu-pMRkrtX-QNGrUPN5nqT9U`;
 // const secret = `EB9tntFIjTX6aBGTx36dN-3Ft7gZJryPC8KLZwEswf321yU0kAeGCmUg5kbTVitZ-FoqvtJ03su8JtH`;
 

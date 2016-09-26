@@ -35,7 +35,7 @@ const PrisonBreak = [{
     [hide, improv_st, infiltrate, infiltrate],
     [decipher, tap, improv_el],
     [infiltrate, hide, close_combat],
-    [hide, hide, pursuit]
+    [hide, hide]
   ],
   inCountry: '',
   rewards: {

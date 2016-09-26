@@ -1,4 +1,4 @@
-import './travel.window.styl';
+import './travel.window.styl'; //
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,7 +10,7 @@ class TravelWindow extends Component {
     const {dashboard} = this.props;
     return (
       <div id='TravelWindow'>
-        <span id='TravelWindowStatus'>Moving your activities to other region ...</span>
+        <span id='TravelWindowStatus'>Moving your activities to {dashboard.get('countryofoperation')}</span>
         <TravelProgressBar dashboard={dashboard} />
       </div>
     );

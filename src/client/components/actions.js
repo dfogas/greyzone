@@ -22,6 +22,10 @@ export function devNoticeToggle() {
   dispatch(devNoticeToggle, {});
 }
 
+export function experienceGainFlashToggle() {
+  dispatch(experienceGainFlashToggle, {});
+}
+
 export function introductionWindowToggle() {
   dispatch(introductionWindowToggle, {});
 }
@@ -64,6 +68,7 @@ setToString('components', {
   bigScreenZ,
   deskPlanToggle,
   devNoticeToggle,
+  experienceGainFlashToggle,
   introductionWindowToggle,
   loginSignupToggle,
   missionListToggle,

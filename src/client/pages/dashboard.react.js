@@ -1,4 +1,5 @@
-import * as tutorialActions from '../tutorial/actions'; //
+import * as optionsActions from '../dashboard/optionswindow/actions';
+import * as tutorialActions from '../tutorial/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -13,6 +14,10 @@ import requireAuth from '../auth/requireauth.react';
 import {msg} from '../intl/store';
 
 class Dashboard extends Component {
+  componentWillMount() {
+    optionsActions.sanitizeAgents();
+    optionsActions.sanitizeMissions();
+  }
 
   render() {
     const {auth, contest, game, i18n, jsonapi, pendingActions, viewer} = this.props;

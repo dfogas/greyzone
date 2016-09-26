@@ -1,4 +1,4 @@
-import './successbutton.styl'; //
+import './successbutton.styl';
 import * as missionActions from '../../actions';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -7,19 +7,15 @@ import {msg} from '../../../intl/store';
 
 class SuccessButton extends Component {
   missionSuccess() {
-    const {activemission} = this.props;
-    const agentsonmission = activemission.get('agentsonmission');
-    const tasks = activemission.get('tasks');
-    const taskscompleted = activemission.get('taskscompleted');
-
-    if (tasks.size <= taskscompleted.size) {
-      missionActions.checkFatalities(activemission.get('rewards').toJS());
-      missionActions.bookRewards(activemission);
-      missionActions.success();
-      for (var i = 0; i < agentsonmission.size; i += 1)
-        missionActions.agentMissionDone(agentsonmission.get(i));
-      missionActions.organizationMissionDone();
-    }
+    const {jsonapi} = this.props;
+    const activemission = jsonapi.get('activemission');
+    missionActions.checkFatalities(activemission.get('rewards') || immutable.fromJS({}));
+    missionActions.bookRewards(activemission);
+    missionActions.success();
+    for (var i = 0; i < activemission.get('agentsonmission').size; i += 1)
+      missionActions.agentMissionDone(activemission.get('agentsonmission').get(i));
+    socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
+    missionActions.organizationMissionDone();
   }
 
   render() {
@@ -32,7 +28,7 @@ class SuccessButton extends Component {
 }
 
 SuccessButton.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default SuccessButton;

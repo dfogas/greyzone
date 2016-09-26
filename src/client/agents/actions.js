@@ -5,9 +5,7 @@ import cconfig from '../client.config';
 
 import announce from '../lib/announce';
 import actionDices from '../lib/bml/actiondices';
-import agentIncurDelay from '../lib/bml/agentincurdelay';
 import agentRankup from '../lib/bml/agentrankup';
-import isEquipmentBackfire from '../lib/bml/isequipmentbackfire';
 import leadershipcheck from '../lib/bml/leadershipcheck';
 import playSound from '../lib/sound';
 import $ from 'jquery';
@@ -105,14 +103,6 @@ export function getRank(agent) {
   }
 }
 
-export function setETA(agent, equipment) {
-  const delay = gameCursor(['globals', 'features', 'unpaid', 'equipments', 'ETAdelay']);
-  const agentsETA = agentIncurDelay(agent, delay, isEquipmentBackfire(agent, equipment));
-
-  // console.log(dayandtime(agentsETA, new Date().getTimezoneOffset()));
-  dispatch(setETA, {agentsETA});
-}
-
 setToString('agents', {
   armoryCode,
   toArmory,
@@ -124,6 +114,5 @@ setToString('agents', {
   codeChange,
   equip,
   flashArmory,
-  getRank,
-  setETA
+  getRank
 });

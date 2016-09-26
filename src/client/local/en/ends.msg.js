@@ -83,10 +83,12 @@ const ends = {
   leftinprison: `
     <p>
       Your actions in the past did not elicit proper loyalty in your agents
-      (or you are not paying player so the loyalty of your agents can't save you)
       and so you are now left in prison for life, as nobody has come to your
-      rescue. Next time either don't send your avatar agent on Prison mission,
+      rescue. Next time don't send your avatar agent on Prison mission,
+      watch for forced missions that have Prison in their losses,
       or have some loyal agents that are able to get her out of the prison.
+      (Anyways you might choose to load your game, if you did not forget to save,
+      that is.)
     </p>
   `,
   killed: `

@@ -70,8 +70,8 @@ const EnhancementList = [
       type: 'enhancement'
     }],
     price: {
-      cash: 5000000,
-      contacts: 5000
+      cash: 1000000,
+      contacts: 1000
     },
     type: 'capability'
   }, {
