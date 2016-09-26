@@ -19,6 +19,7 @@ import MissionsListTable from './missionlist.table.react';
 import MissionListToggle from './mission.list.toggle.react';
 import MissionShiftLeft from './shift.left.react';
 import MissionShiftRight from './shift.right.react';
+import QuickSave from './quick.save.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
 import ScreenHelp from '../tutorial/screen.help.react';
 import ToMission from '../navs/tomission.react';
@@ -74,10 +75,13 @@ class BriefingScreen extends Component {
               missions={jsonapi.get('missions')}
               />}
           {!jsonapi.getIn(['activemission', 'agentsonmission']).size && <BriefingToDashboard />}
-          <BriefingToArmory />
           <ActiveMissionToggle />
+          <BriefingToArmory />
           <DeskPlanToggle />
           <MissionListToggle />
+          <QuickSave
+            jsonapi={jsonapi}
+            />
           {jsonapi.getIn(['components', 'briefing', 'missionlist']) &&
             <MissionsListTable
               jsonapi={jsonapi}

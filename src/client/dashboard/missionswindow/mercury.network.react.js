@@ -22,11 +22,11 @@ class MercuryNetwork extends Component {
           id='ReputationFocusMissionButton'
           onClick={(e) => missionsWindowActions.reputationFocusMission()}
           >{`\u{1f3c6}`}</button>
-        <button
-          className='mercury-network-button'
+        <div
+          className='mercury-network-button double'
           id='ObscurityFocusMissionButton'
           onClick={(e) => missionsWindowActions.obscurityFocusMission()}
-          >{`\u{1f441}`}</button>
+          >{`\u{1f70b} \u{1f441}`}</div>
       </div>
     );
   }
