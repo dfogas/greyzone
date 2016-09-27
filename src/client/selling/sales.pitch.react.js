@@ -11,7 +11,7 @@ class SalesPitch extends Component {
         What do I get when I buy the game?
         <li>Unlimited access to tier 3 equipment - Protective Gear(operative), WPAS(technician), DCP(spy)</li>
         <li>A powerful tool to calculate dicethrow success rate.</li>
-        <li>Access to special mission, if your agent is a spy.</li>
+        <li>Access to special mission, if your agent is a spy(not implemented yet, just a stub).</li>
         <li>More content(special missions, special agents, equipments, ends) with the updates.</li>
         <li>Your support will enable me to drive the game toward its full potential.</li>
       </div>

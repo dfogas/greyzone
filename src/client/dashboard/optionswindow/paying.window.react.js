@@ -16,10 +16,10 @@ class PayingWindow extends Component {
     const revenge = paying ? paying.get('revenge') : false;
     return (
       <div id='PayingWindow'>
-        <legend>Paying Status (Going live)</legend>
+        <legend>{`Paying Status - ${window.location.href === 'http://localhost:8000/' ? 'Sandbox' : 'Live'}`}</legend>
         <label><input checked={base} name='base' onChange={(e) => this.changePaying('base', base)} type='checkbox' /><span>Base</span></label>
-        <label><input checked={collector} name='collector' onChange={(e) => this.changePaying('collector', collector)} type='checkbox' /><span>Collector</span></label>
-        <label><input checked={revenge} name='revenge' onChange={(e) => this.changePaying('revenge', revenge)} type='checkbox' /><span>Revenge</span></label>
+        <label><input checked={collector} disabled={true} name='collector' onChange={(e) => this.changePaying('collector', collector)} type='checkbox' /><span>Collector</span></label>
+        <label><input checked={revenge} disabled={true} name='revenge' onChange={(e) => this.changePaying('revenge', revenge)} type='checkbox' /><span>Revenge</span></label>
       </div>
     );
   }

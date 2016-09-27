@@ -1,4 +1,4 @@
-import './statuses.window.styl'; //
+import './statuses.window.styl';
 import * as statusesActions from './actions';
 import Component from '../../components/component.react';
 import React from 'react';

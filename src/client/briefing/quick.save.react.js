@@ -15,7 +15,7 @@ class QuickSave extends Component {
           briefingActions.flashBriefing(`Saved to savegame slot 1`);
         }}
         >
-        <div id='BriefingQuickSaveText'>Quicksave 1</div>
+        <div id='BriefingQuickSaveText'>Quicksave</div>
       </div>
     );
   }

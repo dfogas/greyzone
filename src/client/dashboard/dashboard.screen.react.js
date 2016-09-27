@@ -10,18 +10,15 @@ import {msg} from '../intl/store';
 
 import badEndsCheck from '../lib/bml/badendscheck';
 
-// import CampaignIntro from '../tutorial/campaign.intro.react';
+// import StrategicalIntro from './strategical.intro.react';
 import DashboardContent from './dashboard.content.react';
 import EndGameWindow from './endgame/endgame.window.react';
+import LanguageSelect from '../app/language.select.react';
 import OperationsUpgradeDialog from './playerswindow/operations.upgrade.dialog.react';
 import PlayerCampaignChoose from '../tutorial/choose.campaign.react';
 import ScreenHelp from '../tutorial/screen.help.react';
 import ScreenPlastic from '../tutorial/screen.plastic.react';
-// import StrategicalIntro from './strategical.intro.react';
 import TrainingUpgradeDialog from './playerswindow/training.upgrade.dialog.react';
-
-// buttons, selects
-import LanguageSelect from '../app/language.select.react';
 
 class DashboardScreen extends Component {
   componentDidMount() {
@@ -60,9 +57,9 @@ class DashboardScreen extends Component {
 
     return (
       <div id='DashboardScreen'>
-        <div
+        {<div
           id='DashboardScreenLabel'
-          >{`${msg('dashboard.screen.label.' + dashPointer)} ` + orgname}</div>
+          >{`${msg('dashboard.screen.label.' + dashPointer)} ` + orgname}</div>}
         <DashboardContent
           contest={contest}
           game={game}
@@ -93,15 +90,6 @@ class DashboardScreen extends Component {
             campaigns={jsonapi.getIn(['campaigns', 'campaigns'])}
             paying={jsonapi.get('paying')}
             />}
-        {/*(jsonapi.getIn(['campaigns', 'campaigns']) && (typeof jsonapi.getIn(['campaigns', 'campaigns']).toJS()) === 'object') &&
-          Object.keys(jsonapi.getIn(['campaigns', 'campaigns']).toJS()).map(campaign => {
-            if (!jsonapi.getIn(['campaigns', 'campaigns', campaign, 'intro', 'viewed']) && jsonapi.getIn(['campaigns', 'campaigns', campaign, 'selected']))
-              return (
-                <CampaignIntro
-                  campaign={jsonapi.getIn(['campaigns', 'campaigns', campaign])}
-                  />
-              );
-          })*/}
         {/*!jsonapi.get('dashboard').getIn(['strategical', 'intro']) && <StrategicalIntro jsonapi={jsonapi}/>*/}
         {/* end of start game */}
         {dashPointer === 'options' && <LanguageSelect i18n={i18n}/>}

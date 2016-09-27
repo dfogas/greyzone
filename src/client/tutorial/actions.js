@@ -7,10 +7,6 @@ import announce from '../lib/announce';
 import FirstMission from '../../server/lib/greyzone/missions/tutorial/first.mission';
 import Agent from '../../server/lib/greyzone/agents.generator';
 
-export function campaignIntroViewed(campaignname) {
-  dispatch(campaignIntroViewed, {campaignname});
-}
-
 export function completeTutorial() {
   dispatch(completeTutorial, {});
 }
@@ -75,7 +71,6 @@ export function toggleCampaign(name, value) {
 }
 
 setToString('tutorial', {
-  campaignIntroViewed,
   completeTutorial,
   confirmAvatar,
   confirmCampaignsSelection,

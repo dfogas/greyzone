@@ -15,8 +15,8 @@ let AgentInTrouble = [{
   ],
   // inCountry: '',
   rewards: {
-    agentRecruited: true,
-    gameCash: -2000
+    gameCash: -2000,
+    agentRecruited: true
   },
   losses: {
     gameCash: 1000,
@@ -37,8 +37,8 @@ let AgentInTrouble = [{
   ],
   inCountry: '',
   rewards: {
-    agentRecruited: true,
-    gameCash: -4000
+    gameCash: -4000,
+    agentRecruited: true
   },
   losses: {
     gameContacts: 50,
@@ -59,12 +59,12 @@ let AgentInTrouble = [{
   ],
   inCountry: '',
   rewards: {
-    agentRecruited: true,
-    gameCash: -6000
+    gameCash: -6000,
+    agentRecruited: true
   },
   losses: {
-    gameContacts: 75,
-    gameCash: 3000
+    gameCash: 3000,
+    gameContacts: 75
   },
   imgsrc: imgsrc,
   sound: sound,
@@ -82,8 +82,8 @@ let AgentInTrouble = [{
   ],
   inCountry: '',
   rewards: {
-    agentRecruited: true,
-    gameCash: -50000
+    gameCash: -50000,
+    agentRecruited: true
   },
   losses: {
     gameContacts: 175,
@@ -105,8 +105,8 @@ let AgentInTrouble = [{
   ],
   inCountry: '',
   rewards: {
-    agentRecruited: true,
-    gameCash: -100000
+    gameCash: -100000,
+    agentRecruited: true
   },
   losses: {
     gameContacts: 375,

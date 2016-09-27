@@ -25,12 +25,12 @@ class Login extends Component {
     return (
       <DocumentTitle title={msg('auth.title')}>
         <div className="login-page">
-          <button
+          <div
             id='LoginToIntro'
-            onClick={(e) => componentsActions.introductionWindowToggle()}>Introduction</button>
+            onClick={(e) => componentsActions.introductionWindowToggle()}>Introduction</div>
           <GSSigil />
           {/*<BackgroundMusic />*/}
-          {<div className='recommended-browsers'>*Recommended to play in Chrome, Brave or Vivaldi</div>}
+          {<div className='recommended-browsers'>*Recommended to play in Chrome, Brave or Vivaldi browsers</div>}
           {(!signupToggle && !introWindowToggle && !devNoticeToggle) &&
             <LoginMessage />}
           {(!signupToggle && !introWindowToggle && !devNoticeToggle) &&
@@ -39,9 +39,9 @@ class Login extends Component {
             <SignupMessage />}
           {(signupToggle && !devNoticeToggle && !introWindowToggle) &&
             <SignupForm {...this.props} />}
-          <button
+          <div
             id='LoginDevNoticeButton'
-            onClick={(e) => componentsActions.devNoticeToggle()}>Developers notice</button>
+            onClick={(e) => componentsActions.devNoticeToggle()}>{`Developer's note`}</div>
           {false &&
             <button
               id='LoginBigScreenButton'

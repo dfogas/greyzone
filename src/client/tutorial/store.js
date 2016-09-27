@@ -5,12 +5,6 @@ import immutable from 'immutable';
 
 export const dispatchToken = register(({action, data}) => {
 
-  if (action === tutorialActions.campaignIntroViewed)
-    jsonapiCursor(jsonapi => {
-      return jsonapi
-        .setIn(['campaigns', 'campaigns', data.campaignname, 'intro', 'viewed'], true);
-    });
-
   if (action === tutorialActions.completeTutorial)
     jsonapiCursor(jsonapi => {
       return jsonapi

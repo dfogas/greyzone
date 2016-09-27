@@ -1,36 +1,26 @@
 const developerMsg = {
   button: `Ok, I have read the notice`,
   notice: `
-    <h2>Ghost Struggle pre-production</h2>
+    <h2>Ghost Struggle production</h2>
     <p>
-      This game is still before production.
-      You can play it, as most of the game mechanisms are in place,
-      but there may be some unexpected behavior.
+      As the development of GS is on ongoing basis, I declare 27th September of 2016 the day that it went to production.
+      You can play it and expect good performance, free of gamecrashing bugs.
+      As such it maybe now bought in the options by selecting paying status.
     </p>
     <p>
-      <h2>Game Ends</h2>
-      <ul>Bad Ends:
-        <li>Given Up</li>
-        <li>Left in Prison</li>
-        <li>Killed</li>
-        <li>Not so secret now, huh?</li>
-        <li>Rich, But Not For Long</li>
-      </ul>
-      <ul>Good Ends:
-        <li>Rich and Covered</li>
-      </ul>
+      The game now has 5 bad ends and 1 good end. Ingame walkthrough is being made. Ultimately the ends are giving a
+      meaning to the game but the important thing is the experience you have while playing it.
     </p>
     <h3>Disclaimer</h3>
     <p>
       All graphic assets are original, but may be based on actually existing people or movie/game characters.
     </p>
     <p>
-      You may (not yet) buy full access to the game in the options menu, when logged in (including campaigns).
+      You may buy full access to the game in the options menu, when logged in (not including two planned campaigns).
     </p>
     <p>
       <em>
-        Fair Warning: Game might include some depictions and hints of violence
-        and suggestive scenes, so if that is something you are offended by then do not play it.
+        Fair Warning: Game might include some depictions and hints of violence and suggestive scenes.
       </em>
     </p>
   `

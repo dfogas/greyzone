@@ -11,21 +11,21 @@ const aboutMsg = {
     </p>
     <p>
       Missions completion is represented as tried and tested dice and cards
-      mechanism, where chance and skill of the agents play significant role.
-      Equipments system gives you chance to directly influence the outcomes.
+      mechanism, where chance and skills of the agents play deciding role.
+      Equipments system gives you chance to tactically manage the outcomes.
     </p>
     <p>
       Since doing espionage is tricky and dangerous, game captures that fact and
-      tracks how steathy you are in your actions, possibly leading to some bad ends
+      tracks how stealthy you are in your actions, possibly leading to some bad ends
       if you fail to deliver results quietly.
     </p>
     <p>
-      Multiplayer is coming soon, when it is done, players are going to have
-      competitive interactions among them.
+      Multiplayer is work in progress with some basic funtionality coming soon.
+      When it is done, players are going to have competitive interactions among them.
     </p>
     <p>
-      Feel free to sign up and try game in its current yet unfinished state, and
-      leave a feedback through email message to support@ghoststruggle.com.
+      Sign up and play game it is complete and as it is a web application, adding new features
+      and tuning out existing ones is every day business.
     </p>`,
   title: `About the game`
 };
