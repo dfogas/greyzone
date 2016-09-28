@@ -1,5 +1,5 @@
 /* Smart Component */
-import './tabletop.styl'; //
+import './tabletop.styl';
 import * as componentsActions from '../../../components/actions';
 import * as diceActions from '../dice/actions';
 import * as missionActions from '../../actions';

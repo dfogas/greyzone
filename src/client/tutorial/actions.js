@@ -23,7 +23,7 @@ export function confirmCampaignsSelection() {
 }
 
 export function firstMissionSetup() {
-  const self = jsonapiCursor(['self']);
+  const self = jsonapiCursor(['self']).set('loyalty', 'loyal');
   const EquipmentList = gameCursor(['globals', 'equipments']);
   const partnerTechnician = Agent('technician', 3, gameCursor(['globals', 'trainingtable']));
   let mission;

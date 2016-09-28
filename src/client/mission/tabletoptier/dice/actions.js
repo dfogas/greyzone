@@ -1,16 +1,21 @@
-import {dispatch} from '../../../dispatcher'; //
+import {dispatch} from '../../../dispatcher';
 import setToString from '../../../lib/settostring';
+import immutable from 'immutable';
+
 import playSound from '../../../lib/sound';
 import {jsonapiCursor} from '../../../state';
 import $ from 'jquery';
 
 export function create(dice) {
+  const actionchoose = jsonapiCursor(['activemission', 'equipmenteffects', 'actionchoose']) || immutable.fromJS([{}]);
   const dicekeys = jsonapiCursor(['activemission', 'mission', 'currenttask', 'actiondices']).map(die => die.get('dicekey'));
   const debugswitch = jsonapiCursor(['options', 'debug']);
   if (dicekeys.indexOf(dice.dicekey) !== -1)
     flashMission(`This is not possible`);
-  else
+  else if (actionchoose.find(ac => ac.get('dicekey') === dice.dicekey)) {// so that WPAS dice does not erase actionchoose
     dispatch(create, dice);
+    dispatch(removeActionChoose, {});
+  } else dispatch(create, dice);
   if (debugswitch)
     dispatch(create, dice);
 }
@@ -43,6 +48,10 @@ export function remove(dice) {
   dispatch(remove, dice);
 }
 
+export function removeActionChoose() {
+  dispatch(removeActionChoose, {});
+}
+
 export function roll(dice) {
   dispatch(roll, {dice});
 }
@@ -61,6 +70,7 @@ setToString('dice', {
   destroyLockedDice,
   protectiveGearEffectFizzle,
   remove,
+  removeActionChoose,
   roll,
   rollAll,
   selectForReroll

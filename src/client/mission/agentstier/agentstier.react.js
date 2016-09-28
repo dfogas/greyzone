@@ -1,4 +1,4 @@
-import './agentstier.styl'; //
+import './agentstier.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -66,7 +66,7 @@ class AgentsTier extends Component {
             agentlock={activemission.getIn(['mission', 'currenttask', 'agentlock'])}
           />}
         {activemission.getIn(['equipmenteffects', 'lockeddice']) &&
-          <LockedDiceContainer activemission={activemission}/>}
+          <LockedDiceContainer jsonapi={jsonapi} />}
         {isLastTaskDone && !missionResult && missionStarted &&
           <SuccessButton jsonapi={jsonapi} />}
         {activemission.getIn(['equipmenteffects', 'damageprotocol'])

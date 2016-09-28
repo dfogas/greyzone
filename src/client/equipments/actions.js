@@ -4,10 +4,12 @@ import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import playSound from '../lib/sound';
 import {gameCursor, jsonapiCursor} from '../state';
-import equipmentUseCheck from '../lib/bml/equipmentusecheck';
+import immutable from 'immutable';
+
+import announce from '../lib/announce';
 import cconfig from '../client.config';
 import equipmentSound from '../lib/equipmentsound';
-import immutable from 'immutable';
+import equipmentUseCheck from '../lib/bml/equipmentusecheck'; // ??
 
 export function agentUnequip(agent) {
   // TODO: add sound
@@ -20,7 +22,10 @@ export function buy(equipmentname) {
 }
 
 export function lockDice(dice) {
-  dispatch(lockDice, dice);
+  const actionchoose = jsonapiCursor(['activemission', 'equipmenteffects', 'actionchoose']) || immutable.fromJS([{}]);
+  if (actionchoose.find(ac => ac.get('dicekey') === dice.dicekey))
+    announce(`This is forbidden.`, 'Mission');
+  else dispatch(lockDice, dice);
 }
 
 export function noeffect(agentequipmentandindex) {

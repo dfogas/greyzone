@@ -14,6 +14,7 @@ class SalesPitch extends Component {
         <li>Access to special mission, if your agent is a spy(not implemented yet, just a stub).</li>
         <li>More content(special missions, special agents, equipments, ends) with the updates.</li>
         <li>Your support will enable me to drive the game toward its full potential.</li>
+        <li>You will always have access to the game features, once you pay (i.e. no memberships)</li>
       </div>
     );
   }

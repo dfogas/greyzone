@@ -1,4 +1,4 @@
-import * as componentsActions from '../components/actions'; //
+import * as componentsActions from '../components/actions';
 import Component from '../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -9,7 +9,7 @@ class MissionScreenDarkener extends Component {
     const {jsonapi} = this.props;
     if (jsonapi.getIn(['options', 'animations']))
       $(React.findDOMNode(this)).animate(
-        {opacity: 0.7},
+        {opacity: 0.4},
         1200,
         () => {componentsActions.missionScreenToggleOn(); });
     else componentsActions.missionScreenToggleOn();

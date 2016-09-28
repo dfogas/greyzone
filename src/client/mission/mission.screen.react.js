@@ -16,7 +16,7 @@ import MissionToBriefingButton from '../navs/missiontobriefing.react';
 import MissionToDashboardButton from '../navs/missiontodashboard.react';
 import ScreenHelp from '../tutorial/screen.help.react';
 
-class MissionTrackingScreen extends Component {
+class MissionScreen extends Component {
   componentDidMount() {
     const {jsonapi} = this.props;
     const mission = jsonapi.get('activemission');
@@ -47,7 +47,7 @@ class MissionTrackingScreen extends Component {
 
     return (
       <div
-        id='MissionTrackingScreen'
+        id='MissionScreen'
         style={isPlaceholder ? {} : {
           backgroundImage: `url(../../../assets/img/missions/thumbnails/${jsonapi.getIn(['activemission', 'imgsrc'])})`,
           boxShadow: missionBoxShadow(jsonapi.get('activemission'))
@@ -91,9 +91,9 @@ class MissionTrackingScreen extends Component {
   }
 }
 //
-MissionTrackingScreen.propTypes = {
+MissionScreen.propTypes = {
   game: React.PropTypes.instanceOf(immutable.Map).isRequired,
   jsonapi: React.PropTypes.instanceOf(immutable.Map).isRequired
 };
 
-export default MissionTrackingScreen;
+export default MissionScreen;

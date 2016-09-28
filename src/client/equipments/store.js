@@ -87,21 +87,39 @@ export const dispatchToken = register(({action, data}) => {
     if (data.agentequipment.get('name') === msg('equipments.operations.1.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'equipmenteffects', 'actionchoose'], 'operations')
+          .setIn(['activemission', 'equipmenteffects', 'actionchoose'], immutable.fromJS(['close_combat', 'hit', 'pursuit'].map(action => {
+            return {
+              dicekey: uuid() + 'operationschoose',
+              dicetype: 'operations',
+              name: action
+            };
+          })))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
     if (data.agentequipment.get('name') === msg('equipments.electronics.1.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'equipmenteffects', 'actionchoose'], 'electronics')
+          .setIn(['activemission', 'equipmenteffects', 'actionchoose'], immutable.fromJS(['decipher', 'monitor', 'tap'].map(action => {
+            return {
+              dicekey: uuid() + 'electronicschoose',
+              dicetype: 'electronics',
+              name: action
+            };
+          })))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 
     if (data.agentequipment.get('name') === msg('equipments.stealth.1.name'))
       jsonapiCursor(jsonapi => {
         return jsonapi
-          .setIn(['activemission', 'equipmenteffects', 'actionchoose'], 'stealth')
+          .setIn(['activemission', 'equipmenteffects', 'actionchoose'], immutable.fromJS(['hide', 'infiltrate', 'puppet'].map(action => {
+            return {
+              dicekey: uuid() + 'stealthchoose',
+              dicetype: 'stealth',
+              name: action
+            };
+          })))
           .setIn(['activemission', 'mission', 'currenttask', 'agentontask', 'equipments', data.equipmentindex], immutable.fromJS({name: ''}));
       });
 

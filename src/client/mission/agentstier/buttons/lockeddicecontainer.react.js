@@ -1,4 +1,4 @@
-import './lockeddicecontainer.styl';
+import './lockeddicecontainer.styl'; //
 import Component from '../../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -19,8 +19,8 @@ class LockedDiceContainer extends Component {
   }
 
   render() {
-    const {activemission} = this.props;
-    const lockeddice = activemission.getIn(['equipmenteffects', 'lockeddice']);
+    const {jsonapi} = this.props;
+    const lockeddice = jsonapi.getIn(['activemission', 'equipmenteffects', 'lockeddice']);
 
     return (
       <div
@@ -28,6 +28,8 @@ class LockedDiceContainer extends Component {
         onDragOver={this.allowDrop}
         onDrop={this.drop.bind(this)}
         >
+        {lockeddice.size === 0 && jsonapi.getIn(['options', 'tutorial']) &&
+          <div className='locked-dice-container-help'>You can save one dice here for later use.</div>}
         {lockeddice.size !== 0 &&
           <Dice
             dicekey={lockeddice ? lockeddice.get('dicekey') : ''}
@@ -40,7 +42,7 @@ class LockedDiceContainer extends Component {
 }
 
 LockedDiceContainer.propTypes = {
-  activemission: React.PropTypes.instanceOf(immutable.Map)
+  jsonapi: React.PropTypes.instanceOf(immutable.Map)
 };
 
 export default LockedDiceContainer;
