@@ -30,6 +30,13 @@ class Dashboard extends Component {
           {jsonapi.getIn(['dashboard', 'feedback']) &&
             <FeedbackForm
               auth={auth} />}
+          {!tutorialfinished && jsonapi.getIn(['self', 'name']) !== 'Default Self' &&
+            <div id="CleanSlate">
+              You are starting anew ...
+              <button
+                id='CleanSlateStartNewGameButton'
+                onClick={(e) => optionsActions.startNewGame(jsonapi)}>Start New Game</button>
+            </div>}
           {!tutorialfinished && jsonapi.getIn(['self', 'name']) === 'Default Self' &&
             <div id='NewGameStart'>
               <legend>Starting new game</legend>
