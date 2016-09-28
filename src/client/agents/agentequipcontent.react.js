@@ -1,4 +1,4 @@
-import './agentequipcontent.styl'; //
+import './agentequipcontent.styl';
 import * as agentsActions from './actions';
 import * as briefingActions from '../briefing/actions';
 import * as equipmentActions from '../equipments/actions';

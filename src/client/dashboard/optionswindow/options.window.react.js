@@ -1,4 +1,4 @@
-import './options.window.styl';
+import './options.window.styl'; //
 import * as componentsActions from '../../components/actions';
 import * as endGameActions from '../endgame/actions';
 import * as optionsActions from './actions';
@@ -60,6 +60,9 @@ class OptionsWindow extends Component {
           />
         <DashboardToIntro />
         <Pointer pointsto='strategical' />
+        <a className='patreon-logo-small' href='https://www.patreon.com/james_watson'>
+          <img src='../../../../assets/img/icons/patreon_logo_small.png' />
+        </a>
         <button id='RetireGameButton' onClick={(e) => this.retireGame()}>Retire&End Game</button>
         <button
           id='ProvideFeedbackButton'

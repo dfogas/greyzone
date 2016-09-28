@@ -1,5 +1,5 @@
 /* Smart Component */
-import './tabletop.styl';
+import './tabletop.styl'; //
 import * as componentsActions from '../../../components/actions';
 import * as diceActions from '../dice/actions';
 import * as missionActions from '../../actions';
@@ -95,7 +95,7 @@ class TableTop extends Component {
               : taskscompleted.size >= activemission.get('tasks').size && taskscompleted.size !== 0
                 ? (<div id="MissionStartStatus">You have been successfull.</div>)
                 : (activemission.getIn(['mission', 'currenttask', 'agentlock'])
-                  ? (<div id="MissionStartStatus">You most likely failed mission.</div>)
+                  ? (<div id="MissionStartStatus">So - what now?</div>)
                   : (<div id="MissionStartStatus">Continue next task.</div>))
           }
         </div>

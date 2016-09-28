@@ -14,8 +14,8 @@ class SuccessButton extends Component {
     missionActions.success();
     for (var i = 0; i < activemission.get('agentsonmission').size; i += 1)
       missionActions.agentMissionDone(activemission.get('agentsonmission').get(i));
-    socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
     missionActions.organizationMissionDone();
+    socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
   }
 
   render() {

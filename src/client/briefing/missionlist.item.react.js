@@ -24,11 +24,12 @@ class MissionListItem extends Component {
   }
 
   render() {
-    const {isSelected, mission} = this.props;
+    const {isSelected, jsonapi, mission} = this.props;
+    const isPresent = mission.get('inCountry') === jsonapi.getIn(['dashboard', 'countryofoperation']);
     return (
       <tr className={isSelected ? 'selected' : ''}>
         <td onClick={this.selectMission.bind(this)}>{mission.get('title')}</td>
-        <td>{mission.get('inCountry')}</td>
+        <td>{`${mission.get('inCountry')}${isPresent ? '*' : ''}`}</td>
         <td>{mission.get('tier')}</td>
         <td>
           <MissionClock

@@ -13,6 +13,8 @@ const missionBoxShadow = function(mission) {
     return 'inset 0 0 500px darkred';
   else if (mission.get('tag') === 'discovered')
     return 'inset 0 0 500px black';
+  else if (mission.get('tag') === 'moneychannelling')
+    return 'inset 0 0 500px maroon';
   else if (mission.get('tag') === 'pokertable')
     return 'inset 0 0 500px darkred';
   else if (mission.get('tag') === 'prisonbreak')

@@ -16,8 +16,8 @@ class EscapeButton extends Component {
     missionActions.bookLosses(activemission);
     missionActions.agentIsBackFromTask();
     missionActions.fail();
-    socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
     missionActions.organizationMissionDone();
+    socket.emit('mission', jsonapi.get('activemission').toJS()); // eslint-disable-line no-undef
   }
 
   render() {

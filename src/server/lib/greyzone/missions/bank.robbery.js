@@ -68,7 +68,7 @@ const BankRobbery = [{
   },
   losses: {
     agentImprisoned: true,
-    obscurity: 3,
+    obscurity: 2.71,
     gameContacts: 2000
   },
   imgsrc: imgsrc,

@@ -12,13 +12,12 @@ const SilenceWitness = [{
   ],
   inCountry: '',
   rewards: {
-    reputation: 700,
-    gameCash: 20000
+    witnessSilenced: true,
+    gameCash: -60000
   },
   losses: {
-    agentKilled: true,
     reputation: 400,
-    gameContacts: 10
+    gameContacts: 500
   },
   imgsrc: '',
   agentLimit: 2,
@@ -34,13 +33,12 @@ const SilenceWitness = [{
   ],
   inCountry: '',
   rewards: {
-    reputation: 1200,
-    gameCash: 60000
+    witnessSilenced: true,
+    gameCash: -120000
   },
   losses: {
-    agentKilled: true,
     reputation: 700,
-    gameContacts: 23
+    gameContacts: 1000
   },
   imgsrc: '',
   agentLimit: 2,
@@ -56,13 +54,12 @@ const SilenceWitness = [{
   ],
   inCountry: '',
   rewards: {
-    reputation: 1700,
-    gameCash: 120000
+    witnessSilenced: true,
+    gameCash: -180000
   },
   losses: {
-    agentKilled: true,
     reputation: 1000,
-    gameContacts: 38
+    gameContacts: 2000
   },
   imgsrc: '',
   agentLimit: 2,

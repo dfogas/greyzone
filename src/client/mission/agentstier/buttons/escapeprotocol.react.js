@@ -19,6 +19,7 @@ class EscapeProtocol extends Component {
     for (var i = 0; i < agentsonmission.size; i += 1)
       missionActions.agentMissionDone(agentsonmission.get(i));
     this.organizationMissionDone();
+    socket.emit('mission', activemission.toJS());// eslint-disable-line no-undef
   }
 
   organizationMissionDone() {
