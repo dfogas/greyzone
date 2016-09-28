@@ -37,7 +37,7 @@ export function acceptMission(tier, focus, country, options) {
 
 export function bookMissionPrice(tier) {
   const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', tier + '']);
-
+  flashDashboard(`-$${missionPrice.get('cash')} -\u{1f575}${missionPrice.get('contacts')}`);
   dispatch(bookMissionPrice, {message: missionPrice});
 }
 

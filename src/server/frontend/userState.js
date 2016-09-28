@@ -54,7 +54,19 @@ export default function userState() {
       gameCash: 0,
       gameContacts: 0,
       missions: [],
-      tutorial: {},
+      tutorial: {
+        playerhistory: {
+          slides: [
+            `You barely remember the start of story. It was a hot summer and you were recuited by some obscure character.`,
+            `You clearly remember the start, it had been intense, you were thrown out to wolves.`,
+            `Making it through initial trials you established level of confidence that helped you rise in the rank.`,
+            `You were left for dead after one action, considered KIA but you survived and - you shouldn't.`,
+            `Contacting your former companion, you kept yourself hiding, but time has come for risk.`,
+            `Monitoring the communication channels, it has come to your attention that there is a hunt on certain criminal going on.`,
+            `You decided to help her ...`
+          ]
+        }
+      },
       savegames: [],
       talk: {
         participants: []

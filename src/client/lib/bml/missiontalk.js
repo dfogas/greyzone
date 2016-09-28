@@ -10,9 +10,9 @@ const missionTalk = function(jsonapi) {
   const playerAgentOnMission = agents.find(agent => agent.get('id') === self.get('id'));
 
   if (playerAgentOnMission && agents.size === 1)
-    return [`Oh great, I got a mission to finish ... and I am alone on it.`];
+    return [`I got a mission to finish ... and I am alone on it.`];
   else if (playerAgentOnMission && agents.size > 1)
-    return [`Hey, boss, we got a mission to complete!`, `Of course we do, lets get to it.`];
+    return [`Hey, we got a mission to complete!`, `Of course we do, lets get to it.`];
   else if (!playerAgentOnMission && agents.size === 1)
     return [`I got to concentrate on this mission, I am alone here... Hopefully it works out.`];
   else if (!playerAgentOnMission && agents.size > 1)

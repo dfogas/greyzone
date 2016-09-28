@@ -22,7 +22,7 @@ export function acceptSpecifiedMission(mission) {
     announce('Missions limit reached, upgrade your operations.', 'Dashboard');
   else {
     dispatch(acceptSpecifiedMission, {mission});
-    bookMissionPrice(mission.tier);
+    bookMissionPrice(immutable.fromJS(mission));
   }
 }
 
@@ -32,9 +32,15 @@ export function bankRobberyMission() {
   acceptSpecifiedMission(mission);
 }
 
-export function bookMissionPrice(tier) {
-  const missionPrice = gameCursor(['globals', 'constants', 'missionsPriceList', tier + '']);
+export function bookMissionPrice(mission) {
+  const priceReputationChange = jsonapiCursor(['countrystats']).find(
+    cs => cs.get('name') === mission.get('inCountry')
+  ).get('reputation');
+  const missionPrice = gameCursor([
+    'globals', 'constants', 'missionsPriceList', mission.get('tier') + ''
+  ]).update('cash', val => val - priceReputationChange).update('contacts', val => val - priceReputationChange / 100);
 
+  flashDashboard(`-$${missionPrice.get('cash')} -\u{1f575}${missionPrice.get('contacts')}`);
   dispatch(bookMissionPrice, {message: missionPrice});
 }
 
@@ -51,7 +57,6 @@ export function cashFocusMission() {
   const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
   const mission = missionAccept('cash', countryofoperation, {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Cash Mission!`);
   acceptSpecifiedMission(mission);
 }
 
@@ -59,14 +64,12 @@ export function contactsFocusMission() {
   const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
   const mission = missionAccept('contacts', countryofoperation, {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Contacts Mission!`);
   acceptSpecifiedMission(mission);
 }
 
 export function destroyEvidenceMission() {
   const mission = missionAccept('evidence', 'random', {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Destroy Evidence Mission!`);
   acceptSpecifiedMission(mission);
 }
 
@@ -80,7 +83,6 @@ function flashDashboard(message) {
 export function innerCircleMission() {
   const mission = missionAccept('innercircle', 'random', {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Inner Circle Mission`);
   acceptSpecifiedMission(mission);
 }
 
@@ -88,14 +90,12 @@ export function obscurityFocusMission() {
   const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
   const mission = missionAccept('obscurity', countryofoperation, {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Obscurity Mission!`);
   acceptSpecifiedMission(mission);
 }
 
 export function oldDebtMission() {
   const mission = missionAccept('olddebt', 'random', {}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Old Debt Mission!`);
   acceptSpecifiedMission(mission);
 }
 
@@ -106,7 +106,6 @@ export function prisonBreakMission(agentbeingsaved) {
     .get('inCountry');
   const mission = missionAccept('prison', country, {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New PrisonBreak Mission!`);
   acceptSpecifiedMission(mission);
 }
 
@@ -114,7 +113,6 @@ export function reputationFocusMission() {
   const countryofoperation = jsonapiCursor(['dashboard', 'countryofoperation']);
   const mission = missionAccept('reputation', countryofoperation, {avoidfatals: false}, jsonapiCursor(), countryList, missionsList);
 
-  flashDashboard(`New Reputation Mission!`);
   acceptSpecifiedMission(mission);
 }
 

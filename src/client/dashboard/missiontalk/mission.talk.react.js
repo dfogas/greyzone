@@ -1,4 +1,4 @@
-import './mission.talk.styl'; //
+import './mission.talk.styl';
 import Component from '../../components/component.react';
 import React from 'react';
 import immutable from 'immutable';
@@ -10,13 +10,15 @@ class MissionTalk extends Component {
   render() {
     const {/*game,*/ jsonapi} = this.props;
     const activemission = jsonapi.get('activemission');
-    const agentsonmission = activemission.get('agentsonmission');
+    const allagentsonmission = jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask'])
+      ? activemission.get('agentsonmission').push(jsonapi.getIn(['activemission', 'mission', 'currenttask', 'agentontask']))
+      : activemission.get('agentsonmission');
     return (
       <div className='mission-talk'>
         {immutable.fromJS(missionTalk(jsonapi)).map((talk, i) => {
           return (
             <AgentTalkProfile
-              agent={agentsonmission.get(i)}
+              agent={allagentsonmission.get(i)}
               talk={talk}
               />);
         })}

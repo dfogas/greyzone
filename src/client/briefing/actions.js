@@ -15,14 +15,13 @@ export function assignMission(agent) {
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
   const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
   const totalmissionagents = agentontask ? agentsonmission.size + 1 : agentsonmission.size;
-  const activemissionlimit = jsonapiCursor(['activemission', 'agentLimit']);
 
-  if (totalmissionagents === activemissionlimit)
+  if (totalmissionagents === jsonapiCursor(['activemission', 'agentLimit']))
     flashBriefing('Mission agent limit already reached.');
   else if (agent.get('ETA') - Date.now() > 0)
     flashBriefing('Agent is tired.');
   else
-    dispatch(assignMission, {message: agent});
+    dispatch(assignMission, {agent});
 }
 
 export function bookLosses(mission) {

@@ -1,4 +1,4 @@
-import cconfig from '../client.config'; //
+import cconfig from '../client.config';
 import {dispatch} from '../dispatcher';
 import setToString from '../lib/settostring';
 import {jsonapiCursor} from '../state';
@@ -171,16 +171,20 @@ export function log(message) {
 export function organizationMissionDone() {
   const activemission = jsonapiCursor(['activemission']);
   const agentsonmission = jsonapiCursor(['activemission', 'agentsonmission']);
+  // console.log(agentsonmission.toJS());
   const agentontask = jsonapiCursor(['activemission', 'mission', 'currenttask', 'agentontask']);
-  const agentsmissionall = agentontask ? agentsonmission.concat(agentontask) : agentsonmission;
+  // console.log(agentontask ? agentontask.toJS() : '');
+  const agentsmissionall = agentontask ? agentsonmission.push(agentontask) : agentsonmission;
+  // console.log(agentsmissionall.toJS());
   const missionDone = {
     title: activemission.get('title'),
     timeDone: Date.now(),
     tier: activemission.get('tier'),
     result: activemission.get('result'),
     inCountry: activemission.get('inCountry'),
-    agents: agentsmissionall.toJS().map(agent => agent.id)
+    agents: agentsmissionall.map(agent => agent.get('id')).toArray()
   };
+  // console.log(missionDone);
   const storage = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`) || [];
 
   lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, storage.concat([missionDone]));

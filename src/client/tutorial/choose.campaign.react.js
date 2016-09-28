@@ -32,14 +32,14 @@ class ChooseCampaign extends Component {
               disabled={!paying.get('collector')}
               name='collector'
               onChange={(e) => this.toggleCampaign(e)}
-              type='checkbox' />Collector</label>
+              type='checkbox' />Collector(not ready)</label>
           <label>
             <input
               checked={campaigns ? campaigns.getIn(['revenge', 'selected']) : false}
               disabled={!paying.get('revenge')}
               name='revenge'
               onChange={(e) => this.toggleCampaign(e)}
-              type='checkbox' />Revenge</label>
+              type='checkbox' />Revenge(not ready)</label>
         </fieldset>
         <button onClick={this.confirmCampaignsSelection}>Confirm</button>
       </div>

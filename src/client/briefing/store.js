@@ -12,8 +12,8 @@ export const dispatchToken = register(({action, data}) => {
     let agents = jsonapiCursor(['agents']);
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(data.message))
-        .setIn(['agents'], agents.delete(agents.indexOf(data.message)));
+        .setIn(['activemission', 'agentsonmission'], agentsonmission.push(data.agent))
+        .setIn(['agents'], agents.delete(agents.indexOf(data.agent)));
     });
   }
 
@@ -49,7 +49,7 @@ export const dispatchToken = register(({action, data}) => {
   if (action === briefingActions.selectMission)
     jsonapiCursor(jsonapi => {
       return jsonapi
-      .set('activemission', data.mission ? immutable.fromJS(defaultActiveMission).mergeDeep(data.mission) : immutable.fromJS(defaultActiveMission));
+        .set('activemission', data.mission ? immutable.fromJS(defaultActiveMission).mergeDeep(data.mission) : immutable.fromJS(defaultActiveMission));
     });
 
   if (action === briefingActions.setDefaultAfterExpired)

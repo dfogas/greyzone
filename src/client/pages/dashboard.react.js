@@ -30,22 +30,20 @@ class Dashboard extends Component {
           {jsonapi.getIn(['dashboard', 'feedback']) &&
             <FeedbackForm
               auth={auth} />}
-          {!tutorialfinished &&
+          {!tutorialfinished && jsonapi.getIn(['self', 'name']) === 'Default Self' &&
             <div id='NewGameStart'>
               <legend>Starting new game</legend>
               <p>So, here I was, alive.</p>
               <p>But... - how did I get here?</p>
               <DashboardToTutorial />
-              {jsonapi.getIn(['self', 'name']) === 'Default Self' &&
-                <button
-                  id='SkipIntroButton'
-                  onClick={(e) => {
-                    tutorialActions.playerChoseAgentClass('spy');
-                    tutorialActions.completeTutorial();
-                  }}>
-                  Skip Intro
-                </button>
-              }
+              <button
+                id='SkipIntroButton'
+                onClick={(e) => {
+                  tutorialActions.playerChoseAgentClass('spy');
+                  tutorialActions.completeTutorial();
+                }}>
+                Skip Intro
+              </button>
             </div>}
           {!missionstarted && tutorialfinished &&
             <DashboardScreen
