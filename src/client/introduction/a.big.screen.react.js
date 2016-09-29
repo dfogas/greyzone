@@ -31,6 +31,7 @@ class BigScreen extends Component {
         id='ABigScreenIntro'
         onClick={e => componentsActions.bigScreenZ(-1)}
         onKeyDown={e => this.quickRead(e)}
+        onPress={e => componentsActions.bigScreenZ(-1)}
         style={{zIndex: zIndex}}
         tabIndex='1'>
         {zIndex !== -1 &&
