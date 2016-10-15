@@ -18,12 +18,12 @@ class OptionsGameWindow extends Component {
 
   render() {
     const {jsonapi} = this.props;
+    // TODO: program and plug in a function to check paying staus
     const paying = jsonapi.get('paying') ? jsonapi.get('paying').toJS() : null;
     const isPaying = paying ?
       Object.keys(paying).reduce((prev, curr, index, array) => {
         return paying[curr] || prev;
       }, false) : false;
-    // TODO: refactor savegames
     return (
       <div id="OptionsGameWindow">
         <fieldset>

@@ -51,9 +51,9 @@ export function backFromArmory(agent) {
   dispatch(backFromArmory, {message: agent});
 }
 
-export function backtoRoster(agent) {
+export function toRoster(agent) {
   /* agent se vrací z týmu přípravujícího se na misi zpět do agentů čekajících  */
-  dispatch(backtoRoster, {message: agent});
+  dispatch(toRoster, {agent});
 }
 
 export function buyEnhancement(enhancement) {
@@ -109,7 +109,7 @@ setToString('agents', {
   agentInArmoryAssignMission,
   assignTask,
   backFromArmory,
-  backtoRoster,
+  toRoster,
   buyEnhancement,
   codeChange,
   equip,

@@ -13,8 +13,8 @@ export const dispatchToken = register(({action, data}) => {
     });
 
   if (action === optionsActions.changePaying) {
+    // TODO: write better
     // terrible hack follows, hai
-    // TODO: fully implement paying functionality
     let paying = jsonapiCursor(['paying']) ? jsonapiCursor(['paying']).toJS() : {};
     const campaignname = data.name;
     paying[campaignname] = data.value;

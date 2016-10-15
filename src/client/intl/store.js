@@ -67,8 +67,7 @@ export function dateFormat(date, locales?, options?): string {
 }
 
 export const dispatchToken = register(({action, data}) => {
-  // TODO: Allow changing locale without app reload. Reset cache, force update
-  // root app component and PureComponents as well.
+  // loads proper locale
   if (action === intlActions.languageSelect)
     i18nCursor(i18n => {
       return i18n

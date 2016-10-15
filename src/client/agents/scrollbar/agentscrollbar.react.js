@@ -1,4 +1,4 @@
-import './agentscrollbar.styl'; //
+import './agentscrollbar.styl';
 import * as agentActions from '../actions';
 // import * as scrollbarActions from './actions';
 import Component from '../../components/component.react.js';
@@ -15,48 +15,20 @@ class AgentScrollBar extends Component {
     ev.preventDefault();
   }
 
-  // componentDidUpdate() {
-  //   const {agents, isAgents, isBriefing, isMission} = this.props;
-  //   const availableAgents = agents.filter(agent => !agent.get('prison')).filter(agent => !agent.get('KIA')).filter(agent => agent !== null);
-  //   if (availableAgents.size <= 3 && isAgents)
-  //     scrollbarActions.normalizeScrollbarLeft('armory');
-  //   if (availableAgents.size <= 3 && isBriefing)
-  //     scrollbarActions.normalizeScrollbarLeft('briefing');
-  //   if (agents.size <= 1 && isMission)
-  //     scrollbarActions.normalizeScrollbarLeft('mission');
-  // }
-
   drop(ev) {
     ev.preventDefault(ev);
 
     const {jsonapi} = this.props;
-    const activemission = jsonapi.get('activemission');
-    const agentinarmory = jsonapi.get('agentinarmory');
-    const agents = jsonapi.get('agents');
-    const agentsonmission = activemission.get('agentsonmission');
-    const missionstarted = activemission.get('started');
-    var data = ev.dataTransfer.getData('text');
+    const data = ev.dataTransfer.getData('text');
+    const transferredAgent = jsonapi.getIn(['activemission', 'agentsonmission']).find(agent => agent.get('name') === data);
 
-    // why is that condition there?
-    if (!agents.size) {
-      // ANTIPATTERN: Direct DOM manipulation (Works So Well!)
-      // TODO: get into library
-      document.getElementById(data).className = classnames(document.getElementById(data).className, {showcased: false});
-      var c = document.getElementById(data).children;
-      var i, j;
-      for (i = 0; i < c.length; i += 1) {
-        c[i].className = classnames(c[i].className, {showcased: false});
-        var cc = c[i].children;
-        for (j = 0; j < cc.length; j += 1)
-          cc[j].className = classnames(cc[j].className, {showcased: false});
-      }
-    }
-    if (missionstarted)
+    /* agentscrollbar drop logic */
+    if (jsonapi.getIn(['activemission', 'missionstarted']))
       return;
-    else if (agentinarmory && agentinarmory.get('name') === data)
-      agentActions.backFromArmory(agentinarmory);
-    else if (agentsonmission.indexOf(agentsonmission.find(agent => agent.get('name') === data)) !== -1)
-      agentActions.backtoRoster(agentsonmission.find(agent => agent.get('name') === data));
+    else if (jsonapi.getIn(['agentinarmory', 'name']) === data)
+      agentActions.backFromArmory(jsonapi.get('agentinarmory'));
+    else if (transferredAgent)
+      agentActions.toRoster(transferredAgent);
 
   }
 

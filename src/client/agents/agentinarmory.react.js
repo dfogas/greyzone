@@ -1,6 +1,3 @@
-/*
-  Smart Component
-*/
 import './agentinarmory.styl';
 import * as agentActions from './actions';
 import Component from '../components/component.react';
@@ -14,13 +11,9 @@ class AgentInArmory extends Component {
   drop(ev) {
     ev.preventDefault();
     const {jsonapi} = this.props;
-    const agents = jsonapi.get('agents');
-    const agentinarmory = jsonapi.get('agentinarmory');
 
-    var data = ev.dataTransfer.getData('text');
-
-    if (!agentinarmory)
-      agentActions.toArmory(agents.find(agent => agent.get('name') === data));
+    if (!jsonapi.get('agentinarmory'))
+      agentActions.toArmory(jsonapi.get('agents').find(agent => agent.get('name') === ev.dataTransfer.getData('text')));
   }
 
   allowDrop(ev) {

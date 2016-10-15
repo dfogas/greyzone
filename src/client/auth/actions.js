@@ -26,7 +26,6 @@ function validateForm(fields) {
     // Of course we can add another validation method.
     .prop('email').required().email()
     .prop('password').required().simplePassword()
-    /* TODO: validation of 'organization' prop */
     .promise;
 }
 
@@ -89,6 +88,8 @@ function validateEmail(fields) {
 function recoverPassword(fields) {
   return new Promise((resolve, reject) => {
     // TODO: find better way to write this, comment well on interfaces used
+    // though I have written several calls like that the pattern eludes me here
+    // it works well
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/v1/auth/lprecover', true);
     xhr.setRequestHeader('Content-type', 'application/json');
@@ -141,7 +142,6 @@ function validateSignupForm(fields) {
     // Of course we can add another validation method.
     .prop('email').required().email()
     .prop('password').required().simplePassword()
-    /* TODO: validation of 'organization' prop */
     .prop('organization').required().organization()
     .promise;
 }
@@ -153,7 +153,6 @@ function saveCredentials(fields) {
     xhr.setRequestHeader('Content-type', 'application/json');
 
     xhr.onreadystatechange = () => {
-      // TODO: figure out this API, put comment here
       if (xhr.readyState !== 4) return;
       // console.log(JSON.parse(xhr.responseText));
       if (JSON.parse(xhr.responseText).description === `New Signup`) {

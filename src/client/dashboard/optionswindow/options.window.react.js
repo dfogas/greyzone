@@ -13,7 +13,7 @@ import Logout from '../../auth/logout.react';
 import OptionsGameWindow from './options.game.window.react';
 import PayingWindow from './paying.window.react';
 import Pointer from '../pointer.react';
-import SalesPitch from '../../selling/sales.pitch.react';
+import SalesPitch from './sales/sales.pitch.react';
 
 class OptionsWindow extends Component {
   changeOption(ev) {

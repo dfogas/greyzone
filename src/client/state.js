@@ -3,8 +3,8 @@
   and providing it with storesReviver function as a callback.
 
   Revivers are linked in here and are used when appState is instantiated,
-  they should run whenever something in the state and update, the appropriate
-  fields in nested structure via cursors.
+  they should run whenever something in the state and update change to server,
+  the appropriate fields in nested structure via cursors.
 
   Later down cursors are exported in order to be used in by getState method of
   app.react.js,
@@ -14,7 +14,6 @@
 
 import State from './lib/state';
 import reviveAuth from './auth/revive';
-import revivePosts from './support/revive';
 import reviveUsers from './users/revive';
 
 const initialState = process.env.IS_BROWSER
@@ -24,7 +23,6 @@ const initialState = process.env.IS_BROWSER
 export const appState = new State(initialState, function(key, value) {
   switch (key) {
     case 'auth': return reviveAuth(value);
-    case 'posts': return revivePosts(value);
     case 'users': return reviveUsers(value);
   }
 });

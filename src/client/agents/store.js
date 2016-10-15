@@ -44,11 +44,11 @@ export const dispatchToken = register(({action, data}) => {
         .set('agentinarmory', null);
     });
 
-  if (action === agentsActions.backtoRoster)
+  if (action === agentsActions.toRoster)
     jsonapiCursor(jsonapi => {
       return jsonapi
-        .update('agents', val => val.push(data.message))
-        .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.message)));
+        .update('agents', val => val.push(data.agent))
+        .updateIn(['activemission', 'agentsonmission'], val => val.delete(val.indexOf(data.agent)));
     });
 
   if (action === agentsActions.buyEnhancement) {

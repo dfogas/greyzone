@@ -48,18 +48,8 @@ export function giveFeedback() {
 export function loadGame(game) {
   const savegame = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}`);
   const gamehash = lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}hash`);
-  const debug = jsonapiCursor(['options', 'debug']);
 
-  // TODO: I am not sure why debug is here, need to remove it
-  if (debug) {
-    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`) || []);
-    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentskilled`) || []);
-    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`) || []);
-    lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}missions`) || []);
-    dispatch(loadGame, savegame);
-    updateSaveGamesInfo();
-    announce(`Game has been loaded.`, `Dashboard`);
-  } else if (savegame && hashString(savegame) === gamehash) {
+  if (savegame && hashString(savegame) === gamehash) {
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsall`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsall`) || []);
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentskilled`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentskilled`) || []);
     lockr.set(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}agentsleftinprison`, lockr.get(`gs${jsonapiCursor(['userId'])}_save${game}agentsleftinprison`) || []);
@@ -73,16 +63,6 @@ export function loadGame(game) {
 export function loadMissions() {
   // loads missions from local storage passes them to store
   const missions = lockr.get(`gs${jsonapiCursor(['userId'])}${jsonapiCursor(['name'])}missions`) || [];
-  /*
-    const missionDone = {
-      title: activemission.get('title'),
-      timeDone: Date.now(),
-      tier: activemission.get('tier'),
-      result: activemission.get('result'),
-      inCountry: activemission.get('inCountry'),
-      agents: agentsmissionall.toJS().map(agent => agent.id)
-    };
-  */
   dispatch(loadMissions, {missions});
 }
 

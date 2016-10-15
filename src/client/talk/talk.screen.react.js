@@ -1,5 +1,4 @@
-import './talk.screen.styl'; //
-// import talkEnhancementsActions from './actions';
+import './talk.screen.styl';
 import * as talkActions from './actions';
 import Component from '../components/component.react';
 import React from 'react';

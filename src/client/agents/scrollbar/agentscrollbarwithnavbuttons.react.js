@@ -55,6 +55,7 @@ class AgentScrollBarWithNavButtons extends Component {
             isAgents={this.props.isAgents}
             isBriefing={isBriefing}
             isMission={isMission}
+            isShowcased={false}
             jsonapi={jsonapi}
             style={agentsbstyletojs}
             />

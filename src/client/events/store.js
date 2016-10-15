@@ -1,5 +1,5 @@
 /* eslint curly: 1 */
-// POC
+// POC TODO: zdokumentovat
 import * as missionActions from '../mission/actions';
 import {jsonapiCursor} from '../state';
 import {register} from '../dispatcher';
@@ -30,7 +30,7 @@ export const dispatchToken = register(({action, data}) => {
       });
   }
 
-  // IMPLEMENTATION of game mechanism #tbd
+  // IMPLEMENTATION of game mechanism
   if (action === missionActions.removeCompletedMission) {
     const missionCountryObscurity = jsonapiCursor(['countrystats', indexOfCS, 'obscurity']);
     const countryAL = jsonapiCursor(['events', indexOfCAL, 'level']);
@@ -40,17 +40,25 @@ export const dispatchToken = register(({action, data}) => {
     if (missionCountryObscurity <= 1 && chance <= 0.8)
       jsonapiCursor(game => {
         return game
-          .update('events', val => val.setIn([val.indexOf(val.find(gaev => gaev.get('country') === inCountry && gaev.get('tag') === 'attention')), 'level'], bookAttention(countryAL, 'up')));
+          .update('events', val => val.setIn([
+            val.indexOf(val.find(gaev => gaev.get('country') === inCountry && gaev.get('tag') === 'attention')),
+            'level'
+          ], bookAttention(countryAL, 'up')));
       });
     else if (missionCountryObscurity <= 2 && chance <= 0.3)
       jsonapiCursor(game => {
         return game
-          .update('events', val => val.setIn([val.indexOf(val.find(gaev => gaev.get('country') === inCountry && gaev.get('tag') === 'attention')), 'level'], bookAttention(countryAL, 'up')));
+          .update('events', val => val.setIn([
+            val.indexOf(val.find(gaev => gaev.get('country') === inCountry && gaev.get('tag') === 'attention')),
+            'level'
+          ], bookAttention(countryAL, 'up')));
       });
     else if (missionCountryObscurity <= 3 && chance <= 0.11)
       jsonapiCursor(game => {
         return game
-          .update('events', val => val.setIn([val.indexOf(val.find(gaev => gaev.get('country') === inCountry && gaev.get('tag') === 'attention')), 'level'], bookAttention(countryAL, 'up')));
+          .update('events', val => val.setIn([
+            val.indexOf(val.find(gaev => gaev.get('country') === inCountry && gaev.get('tag') === 'attention')),
+            'level'], bookAttention(countryAL, 'up')));
       });
   }
 

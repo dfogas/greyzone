@@ -36,7 +36,6 @@ import '../introduction/store';
 import '../mission/store';
 import '../mission/tabletoptier/dice/store';
 import '../mission/tabletoptier/rotatingdie/store';
-import '../support/store';
 import '../talk/enhancements/store';
 import '../talk/store';
 import '../tutorial/firstmission/store';

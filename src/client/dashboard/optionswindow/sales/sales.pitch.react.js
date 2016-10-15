@@ -1,7 +1,7 @@
 import './sales.pitch.styl';
-import * as componentsActions from '../components/actions';
+import * as componentsActions from '../../../components/actions';
 import React from 'react';
-import Component from '../components/component.react';
+import Component from '../../../components/component.react';
 
 class SalesPitch extends Component {
   render() {

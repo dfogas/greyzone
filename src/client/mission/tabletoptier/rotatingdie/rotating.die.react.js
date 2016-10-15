@@ -12,7 +12,7 @@ import './eleventh.rotating.die.styl';
 import './twelveth.rotating.die.styl';
 import './thirtienth.rotating.die.styl';
 import './fourteenth.rotating.die.styl';
-import '../../../lab/die.animations.styl';
+import './die.animations.styl';
 import * as rotatingDieActions from './actions';
 import Component from '../../../components/component.react';
 import React from 'react';
@@ -49,20 +49,13 @@ class RotatingDie extends Component {
         name={name}
         onClick={this.selectForReroll.bind(this)}
         onDragStart={this.drag.bind(this)}
-        style={
-          isSpin
-          ? {
-              animation: `${animationnames[(randomInt(0, 2))]} 2s infinite linear`
-            }
-          : {
-              animationPlayState: `paused`
-          }}
-        >
+        style={isSpin
+          ? {animation: `${animationnames[(randomInt(0, 2))]} 2s infinite linear`}
+          : {animationPlayState: `paused`}
+        }>
         <div
           className={`side front ${dicetype}`}
-          style={{
-            backgroundImage: `url(../../../../../assets/img/missions/actions/${name}.png)`
-          }}>
+          style={{backgroundImage: `url(../../../../../assets/img/missions/actions/${name}.png)`}}>
         </div>
         <div className='side front inner'>
         </div>
